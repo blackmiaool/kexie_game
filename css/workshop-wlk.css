@@ -1,0 +1,140 @@
+@charset "utf-8";
+
+
+
+/* menu */
+
+/*ul.nav li a{font-size:12px;}*/
+
+.nav li ul li a{font-size:12px;}
+
+/**/
+
+#menu-ext1{ background:url(http://wowimg.the9.com/images_wow/topmenu-extra1.gif); width:118px; height:20px; position:absolute; right:-22px; top:-6px;}
+
+#menu-ext2{ background:url(http://wowimg.the9.com/images_wow/topmenu-extra2.gif); width:22px; height:61px; position:absolute; right:-22px; top:14px;}
+
+#menu-ext3{ background:url(http://wowimg.the9.com/images_wow/topmenu-extra3.gif); width:118px; height:19px; position:absolute; right:-22px; top:75px;}
+
+
+
+
+
+/* layout */
+
+
+
+	body {overflow-x:hidden; margin:0; padding:0; background-color:#000000; background-position:center top; background-repeat:repeat-x;}
+
+	/*body#workshop,body.workshop{background-image:url(http://wowimg.the9.com/images_wow/gameinfo/talents/includes/bg-shadowmoon.jpg); background-repeat:repeat-x;}*/
+
+    /*body#workshop,body.workshop{background-image:url(http://wowimg.the9.com/images_wow/gameinfo/talents/includes/bg-zulaman.jpg); background-repeat:repeat-x;}*/
+
+	/*body#workshop,body.workshop{background-image:url(http://wowimg.the9.com/images_wow/gameinfo/talents/includes/bg-sunwell2.jpg); background-repeat:repeat-x;}*/
+
+	body#workshop,body.workshop{background-image:url(http://wowimg.the9.com/images_wow/gameinfo/talents-wlk/includes/background-icecrow.jpg); background-repeat:repeat-x;}
+
+	img{border:0}
+
+	/*#page-head{ background:url(http://wowimg.the9.com/images_wow/page-bg-top.jpg) center repeat-x; height:83px; margin-bottom:121px;}*/
+
+		#headcontent{ width:1003px; margin:0 auto; position:relative;}
+
+		#headcontent #menu{ width:803px; height:90px; background:url(http://wowimg.the9.com/images_wow/page-bg-topmenu.jpg) no-repeat; position:absolute; left:172px; top:12px; z-index:2;}
+
+		#headcontent #menu #m1{ position:absolute; width:720px; height:64px;left:85px; top:12px; z-index:5}
+
+		#headcontent #menu-extra{ width:118px; height:100px; background:url(http://wowimg.the9.com/images_wow/topmenu-extra.gif) no-repeat; position:absolute; left:879px; top:7px; z-index:1;}
+
+		#headcontent #logo-top{ position:absolute; top:0; left:-67px; width:332px; height:83px; background:url(http://wowimg.the9.com/images_wow/logo-top2.jpg); z-index:3;}
+
+
+
+		#headcontent #logo-top a{ display:block;width:332px; height:83px;}
+
+
+
+		#headcontent #logo-btm{ position:absolute; top:83px; left:-5px; width:284px; height:124px; z-index:4;filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='http://wowimg.the9.com/images_wow/logo-btm2.png',sizingMethod='scale');}
+
+
+
+		/*#headcontent #logo-btm[id]{ background:url(http://wowimg.the9.com/images_wow/logo-btm.png) no-repeat;}*/
+
+	#page-body{ width:100%; height:auto;}
+
+	/*#page-foot{ height:126px; background:url(http://wowimg.the9.com/images_wow/page-bg-foot.jpg) repeat-x; clear:both; position:relative; font-size:11px;}*/
+
+	/*page-foot*/
+
+	#page-foot-txt{width:740px;height:62px; padding:32px 0 0 120px;position:relative; text-align:left;clear:both;}
+
+	#page-foot-txt span{padding-left:8px;display:block;color:#317007; line-height:20px;}
+
+	#page-foot-txt span a{color:#317007; line-height:20px; text-decoration:none;}
+
+	#page-foot-txt span a:hover{text-decoration:underline;}
+
+	#page-foot-txt span.link{display:block;color:#5FED00; padding:0;}
+
+	#page-foot-txt span.link a{color:#5FED00;text-decoration:none;margin:0 8px 0 8px;}
+
+	#page-foot-txt span.link a:hover{text-decoration:underline;}
+
+	#page-foot-txt #logo {position:absolute;width:240px;height:61px;z-index:50;left:-100px;top:34px;}
+
+	#page-foot-txt #logo img{margin:0 16px 0 0;}
+
+	#page-foot-txt #gov {position:absolute;width:260px;height:50px;z-index:51;left:650px;top:44px;}
+
+	#page-foot-txt #gov img{margin:0 0 0 94px;}
+
+	
+
+	/*Related Links*/
+
+	#RelatedLinks{ color:#FFFFFF;}
+
+	    #RelatedLinks a:link{ color:#FFB019; text-decoration:underline; font-weight:bold;}
+
+		#RelatedLinks a:hover{ color:#FFFFFF; text-decoration:underline; font-weight:bold;}
+
+		#RelatedLinks a:active{ color:#FFB019; text-decoration:underline; font-weight:bold;}
+
+		#RelatedLinks a:visited{ color:#D38D01; text-decoration:underline; font-weight:bold;}
+
+
+
+
+
+/* Talent nav */
+
+    #talent-nav{ width:100%; height:auto; margin:0 auto; position:relative;}
+
+	#talent-nav #navicon{ width:80px; height:89px; background:url(http://wowimg.the9.com/images_wow/gameinfo/talents-wlk/includes/navigator_wlk.gif) no-repeat; position:absolute; right:0px; top:-80px;}
+
+	#talent-nav #navline{ width:620px; height:89px; background:url(http://wowimg.the9.com/images_wow/gameinfo/talents-wlk/includes/navigator_line_wlk.gif) no-repeat; position:absolute; right:80px; top:-80px;}
+
+	  #talent-nav #navline #version{ width:167px; height:21px; background:url(http://wowimg.the9.com/images_wow/gameinfo/talents/includes/navigator_version_bg.gif) no-repeat; position:absolute; left:77px; top:20px; font-size:12px; font-family:Arial; color:#CCCCCC; font-weight:bold; padding-top:3px; padding-left:20px;}
+
+	     #talent-nav #navline #version a{ font-size:12px; font-family:Arial; color:#FFCC00; font-weight:bold;}
+
+	  #talent-nav #navline a.druid{left:22px; top:45px; display: block; position: absolute; background: url('http://wowimg.the9.com/images_wow/gameinfo/talents/includes/navigator-druid.gif') no-repeat 0 0; width:auto; height:20px; font-family:Arial; font-size:12px; color:#FFCC00; padding-left:20px; padding-top:2px; text-decoration:none;}
+
+	  #talent-nav #navline a.hunter{left:82px; top:45px; display: block; position: absolute; background: url('http://wowimg.the9.com/images_wow/gameinfo/talents/includes/navigator-hunter.gif') no-repeat 0 0; width:auto; height:20px; font-family:Arial; font-size:12px; color:#FFCC00; padding-left:20px; padding-top:2px; text-decoration:none;}
+
+	  #talent-nav #navline a.mage{left:132px; top:45px; display: block; position: absolute; background: url('http://wowimg.the9.com/images_wow/gameinfo/talents/includes/navigator-mage.gif') no-repeat 0 0; width:auto; height:20px; font-family:Arial; font-size:12px; color:#FFCC00; padding-left:20px; padding-top:2px; text-decoration:none;}  
+
+	  #talent-nav #navline a.paladin{left:182px; top:45px; display: block; position: absolute; background: url('http://wowimg.the9.com/images_wow/gameinfo/talents/includes/navigator-paladin.gif') no-repeat 0 0; width:auto; height:20px; font-family:Arial; font-size:12px; color:#FFCC00; padding-left:20px; padding-top:2px; text-decoration:none;}
+
+	  #talent-nav #navline a.priest{left:242px; top:45px; display: block; position: absolute; background: url('http://wowimg.the9.com/images_wow/gameinfo/talents/includes/navigator-priest.gif') no-repeat 0 0; width:auto; height:20px; font-family:Arial; font-size:12px; color:#FFCC00; padding-left:20px; padding-top:2px; text-decoration:none;}
+
+	  #talent-nav #navline a.rogue{left:292px; top:45px; display: block; position: absolute; background: url('http://wowimg.the9.com/images_wow/gameinfo/talents/includes/navigator-rouge.gif') no-repeat 0 0; width:auto; height:20px; font-family:Arial; font-size:12px; color:#FFCC00; padding-left:20px; padding-top:2px; text-decoration:none;}
+
+	  #talent-nav #navline a.shaman{left:354px; top:45px; display: block; position: absolute; background: url('http://wowimg.the9.com/images_wow/gameinfo/talents/includes/navigator-shaman.gif') no-repeat 0 0; width:auto; height:20px; font-family:Arial; font-size:12px; color:#FFCC00; padding-left:20px; padding-top:2px; text-decoration:none;}
+
+	  #talent-nav #navline a.warlock{left:428px; top:45px; display: block; position: absolute; background: url('http://wowimg.the9.com/images_wow/gameinfo/talents/includes/navigator-warlock.gif') no-repeat 0 0; width:auto; height:20px; font-family:Arial; font-size:12px; color:#FFCC00; padding-left:20px; padding-top:2px; text-decoration:none;}
+
+	  #talent-nav #navline a.warrior{left:478px; top:45px; display: block; position: absolute; background: url('http://wowimg.the9.com/images_wow/gameinfo/talents/includes/navigator-warrior.gif') no-repeat 0 0; width:auto; height:20px; font-family:Arial; font-size:12px; color:#FFCC00; padding-left:20px; padding-top:2px; text-decoration:none;}
+
+	  #talent-nav #navline a.deathknight{left:530px; top:45px; display: block; position: absolute; background: url('http://wowimg.the9.com/images_wow/gameinfo/talents-wlk/includes/navigator-deathknight.gif') no-repeat 0 0; width:auto; height:20px; font-family:Arial; font-size:12px; color:#FFCC00; padding-left:20px; padding-top:2px; text-decoration:none;}
+

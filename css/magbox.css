@@ -1,0 +1,127 @@
+.mg-ie-shadow{display:none;overflow:hidden;background:#777;zoom:1;}
+
+.mg-shadow{display:none;position:fixed;overflow:hidden;left:0;top:0; position:fixed;}
+.mg-shadow *{overflow:hidden;}
+.mg-shadow *{padding:0;border:0;margin:0;clear:none;zoom:1;}
+.mg-shadow .xstc,.mg-shadow .xsbc{height:6px;float:left;}
+.mg-shadow .xstl,.mg-shadow .xstr,.mg-shadow .xsbl,.mg-shadow .xsbr{width:6px;height:6px;float:left;}
+.mg-shadow .xsc{width:100%;}
+.mg-shadow .xsml,.mg-shadow .xsmr{width:6px;float:left;height:100%;}
+/*.mg-shadow .xsmc{float:left;height:100%;background:transparent url( http://wowimg.the9.com/images_wow/msgbox/shadow-c.png );}
+.mg-shadow .xst,.mg-shadow .xsb{height:6px;overflow:hidden;width:100%;}
+.mg-shadow .xsml{background:transparent url( http://wowimg.the9.com/images_wow/msgbox/shadow-lr.png ) repeat-y 0 0;}
+.mg-shadow .xsmr{background:transparent url( http://wowimg.the9.com/images_wow/msgbox/shadow-lr.png ) repeat-y -6px 0;}
+.mg-shadow .xstl{background:transparent url( http://wowimg.the9.com/images_wow/msgbox/shadow.png ) no-repeat 0 0;}
+.mg-shadow .xstc{background:transparent url( http://wowimg.the9.com/images_wow/msgbox/shadow.png ) repeat-x 0 -30px;}
+.mg-shadow .xstr{background:transparent url( http://wowimg.the9.com/images_wow/msgbox/shadow.png ) repeat-x 0 -18px;}
+.mg-shadow .xsbl{background:transparent url( http://wowimg.the9.com/images_wow/msgbox/shadow.png ) no-repeat 0 -12px;}
+.mg-shadow .xsbc{background:transparent url( http://wowimg.the9.com/images_wow/msgbox/shadow.png ) repeat-x 0 -36px;}
+.mg-shadow .xsbr{background:transparent url( http://wowimg.the9.com/images_wow/msgbox/shadow.png ) repeat-x 0 -6px;}*/
+
+.mg-window-proxy{background:#C7DFFC;border:1px solid #99bbe8;z-index:12000;overflow:hidden;left:0;top:0;display:none;opacity:.5;-moz-opacity:.5;filter:alpha(opacity=50);}
+.mg-window-plain{VISIBILITY:visible;width:300px;}
+.mg-window-plain .mg-window-mc{background:#E7DFB3;border-right:1px solid #F5F2E5;border-bottom:1px solid #F5F2E5;border-top:1px solid #BEAF6D;border-left:1px solid #BEAF6D;}
+.mg-window-plain .mg-window-body{border-left:1px solid #F5F2E5;border-top:1px solid #F5F2E5;border-bottom:1px solid #BEAF6D;border-right:1px solid #BEAF6D;background:transparent!important;}
+body.mg-body-masked .mg-window-plain .mg-window-mc{background:#C7D6E9;}
+.mg-window{zoom:1;}
+.mg-window .mg-resizable-handle{opacity:0;-moz-opacity:0;filter:alpha(opacity=0);}
+
+.mg-window-header{overflow:hidden;zoom:1;}
+.mg-window-bwrap{z-index:1;position:relative;zoom:1;}
+.mg-window-tl .mg-window-header{color:#288015;font:bold 12px tahoma,arial,verdana,sans-serif;padding:5px 0 4px 0;}
+.mg-window-header-text{cursor:pointer;}
+/*.mg-window-tc{background:transparent url(http://wowimg.the9.com/images_wow/msgbox/top-bottom.png) repeat-x 0 0;overflow:hidden;zoom:1;}
+.mg-window-tl{background:transparent url(http://wowimg.the9.com/images_wow/msgbox/left-corners.png) no-repeat 0 0;padding-left:6px;zoom:1;z-index:1;position:relative;}
+.mg-window-tr{background:transparent url(http://wowimg.the9.com/images_wow/msgbox/right-corners.png) no-repeat right 0;padding-right:6px;}
+.mg-window-bc{background:transparent url(http://wowimg.the9.com/images_wow/msgbox/top-bottom.png) repeat-x 0 bottom;zoom:1;}
+.mg-window-bc .mg-window-footer{padding-bottom:6px;zoom:1;font-size:0;line-height:0;}
+.mg-window-bl{background:transparent url(http://wowimg.the9.com/images_wow/msgbox/left-corners.png) no-repeat 0 bottom;padding-left:6px;zoom:1;}
+.mg-window-br{background:transparent url(http://wowimg.the9.com/images_wow/msgbox/right-corners.png) no-repeat right bottom;padding-right:6px;zoom:1;}
+.mg-window-mc{border:1px solid #99bbe8;padding:0;margin:0;font:normal 12px tahoma,arial,helvetica,sans-serif;background:#F5F2E5;}
+.mg-window-ml{background:transparent url(http://wowimg.the9.com/images_wow/msgbox/left-right.png) repeat-y 0 0;padding-left:6px;zoom:1;}
+.mg-window-mr{background:transparent url(http://wowimg.the9.com/images_wow/msgbox/left-right.png) repeat-y right 0;padding-right:6px;zoom:1;}*/
+.mg-panel-nofooter .mg-window-bc{height:6px;}
+.mg-window-body{overflow:hidden;}
+.mg-window-bwrap{overflow:hidden;}
+.mg-window-maximized .mg-window-bl,.mg-window-maximized .mg-window-br,.mg-window-maximized .mg-window-ml,.mg-window-maximized .mg-window-mr,.mg-window-maximized .mg-window-tl,.mg-window-maximized .mg-window-tr{padding:0;}
+.mg-window-maximized .mg-window-footer{padding-bottom:0;}
+.mg-window-maximized .mg-window-tc{padding-left:3px;padding-right:3px;background-color:white;}
+.mg-window-maximized .mg-window-mc{border-left:0 none;border-right:0 none;}
+.mg-window-tbar .mg-toolbar,.mg-window-bbar .mg-toolbar{border-left:0 none;border-right:0 none;}
+.mg-window-bbar .mg-toolbar{border-top:1px solid #99bbe8;border-bottom:0 none;}
+.mg-window-draggable,.mg-window-draggable .mg-window-header-text{cursor:move;}
+.mg-window-maximized .mg-window-draggable,.mg-window-maximized .mg-window-draggable .mg-window-header-text{cursor:default;}
+.mg-window-body{background:transparent;}
+.mg-panel-ghost .mg-window-tl{border-bottom:1px solid #C0B16F;}
+.mg-panel-collapsed .mg-window-tl{border-bottom:1px solid #84a0c4;}
+.mg-window-maximized-ct{overflow:hidden;}
+.mg-window-maximized .mg-resizable-handle{display:none;}
+.mg-window-sizing-ghost ul{border:0 none!important;}
+
+.mg-form-element{padding-left:105px;position:relative;}
+.mg-form-field{margin:0;font:normal 12px tahoma,arial,helvetica,sans-serif;}
+.mg-form-text,textarea.mg-form-field{padding:1px 3px;background:#fff url(http://wowimg.the9.com/images_wow/msgbox/text-bg.gif) repeat-x 0 0;border:1px solid #B5B8C8;}
+.mg-form-text{height:20px;line-height:18px;vertical-align:middle;}
+.mg-form-item label{display:block;float:left;width:100px;padding:3px;padding-left:0;clear:left;z-index:2;position:relative;}
+.mg-hide-label .mg-form-element{padding-left:0!important;}
+
+.mg-btn{font:normal 12px tahoma,verdana,helvetica;cursor:pointer;white-space:nowrap;}
+.mg-btn button{border:0 none;background:transparent;font:normal 12px tahoma,verdana,helvetica;padding-left:3px;padding-right:3px;cursor:pointer;margin:0;overflow:visible;width:auto;-moz-outline:0 none;outline:0 none;}
+* html .ext-ie .mg-btn button{width:1px;}
+.ext-gecko .mg-btn button{padding-left:0;padding-right:0;}
+.ext-ie .mg-btn button{padding-top:2px;}
+.mg-btn-icon .mg-btn-center .mg-btn-text{background-position:center;background-repeat:no-repeat;height:16px;width:16px;cursor:pointer;white-space:nowrap;padding:0;}
+.mg-btn-icon .mg-btn-center{padding:1px;}
+.mg-btn em{font-style:normal;font-weight:normal;}
+.mg-btn-text-icon .mg-btn-center .mg-btn-text{background-position:0 2px;background-repeat:no-repeat;padding-left:18px;padding-top:3px;padding-bottom:2px;padding-right:0;}
+.mg-btn-left,.mg-btn-right{font-size:1px;line-height:1px;}
+.mg-btn-left{width:3px;height:21px;background:url(http://wowimg.the9.com/images_wow/msgbox/btn-sprite.gif) no-repeat 0 0;}
+.mg-btn-right{width:3px;height:21px;background:url(http://wowimg.the9.com/images_wow/msgbox/btn-sprite.gif) no-repeat 0 -21px;}
+.mg-btn-left i,.mg-btn-right i{display:block;width:3px;overflow:hidden;font-size:1px;line-height:1px;}
+.mg-btn-center{background:url(http://wowimg.the9.com/images_wow/msgbox/btn-sprite.gif) repeat-x 0 -42px;vertical-align:middle;text-align:center;padding:0 5px;cursor:pointer;white-space:nowrap;}
+.mg-btn-over .mg-btn-left{background-position:0 -63px;}
+.mg-btn-over .mg-btn-right{background-position:0 -84px;}
+.mg-btn-over .mg-btn-center{background-position:0 -105px;}
+.mg-btn-click .mg-btn-center,.mg-btn-menu-active .mg-btn-center{background-position:0 -126px;}
+.mg-btn-disabled *{color:gray!important;cursor:default!important;}
+.mg-btn-menu-text-wrap .mg-btn-center{padding:0 3px;}
+.ext-gecko .mg-btn-menu-text-wrap .mg-btn-center{padding:0 1px;}
+.mg-btn-menu-arrow-wrap .mg-btn-center{padding:0;}
+.mg-btn-menu-arrow-wrap .mg-btn-center button{width:12px!important;height:21px;padding:0!important;display:block;background:transparent url(http://wowimg.the9.com/images_wow/msgbox/btn-arrow.gif) no-repeat left 3px;}
+.mg-btn-with-menu .mg-btn-center{padding-right:2px!important;}
+.mg-btn-with-menu .mg-btn-center em{display:block;background:transparent url(http://wowimg.the9.com/images_wow/msgbox/btn-arrow.gif) no-repeat right 0;padding-right:10px;}
+.mg-btn-text-icon .mg-btn-with-menu .mg-btn-center em{display:block;background:transparent url(http://wowimg.the9.com/images_wow/msgbox/btn-arrow.gif) no-repeat right 3px;padding-right:10px;}
+
+.mg-panel-collapsed .mg-resizable-handle{display:none;}
+.ext-gecko .mg-panel-animated div{overflow:hidden!important;}
+.mg-plain-body{overflow:hidden;}
+.mg-plain-bbar .mg-toolbar{overflow:hidden;padding:2px;}
+.mg-plain-tbar .mg-toolbar{overflow:hidden;padding:2px;}
+.mg-plain-bwrap{overflow:hidden;zoom:1; }
+.mg-plain{overflow:hidden;}
+.mg-tool{overflow:hidden;width:15px;height:15px;float:right;cursor:pointer;background:transparent url(http://wowimg.the9.com/images_wow/msgbox/tool-sprites.gif) no-repeat;margin-left:2px;}
+.mg-tool-toggle{background-position:0 -60px;}
+.mg-tool-toggle-over{background-position:-15pmg-60px;}
+.mg-panel-collapsed .mg-tool-toggle{background-position:0 -75px;}
+.mg-panel-collapsed .mg-tool-toggle-over{background-position:-15pmg-75px;}
+
+.mg-panel-ghost{background:#E7DFB3;z-index:12000;overflow:hidden;opacity:.85;-moz-opacity:.85;filter:alpha(opacity=85);}
+.mg-panel-ghost ul{margin:0;padding:0;overflow:hidden;font-size:0;line-height:0;border:1px solid #BEAF6D;border-top:0 none;display:block;}
+.mg-panel-ghost *{cursor:move!important;}
+.mg-panel-btns-ct{padding:5px;}
+.mg-panel-btns-ct .mg-btn{float:right;clear:none;}
+.mg-panel-btns-ct .mg-panel-btns td{border:0;padding:0;}
+.mg-panel-btns-ct .mg-panel-btns-right table{float:right;clear:none;}
+.mg-panel-btns-ct .mg-panel-btns-left table{float:left;clear:none;}
+.mg-panel-btns-ct .mg-panel-btns-center{text-align:center;}
+.mg-panel-btns-ct .mg-panel-btns-center table{margin:0 auto;}
+.mg-panel-btns-ct table td.mg-panel-btn-td{padding:3px;}
+.mg-panel-btns-ct .mg-btn-focus .mg-btn-left{background-position:0 -147px;}
+.mg-panel-btns-ct .mg-btn-focus .mg-btn-right{background-position:0 -168px;}
+.mg-panel-btns-ct .mg-btn-focus .mg-btn-center{background-position:0 -189px;}
+.mg-panel-btns-ct .mg-btn-over .mg-btn-left{background-position:0 -63px;}
+.mg-panel-btns-ct .mg-btn-over .mg-btn-right{background-position:0 -84px;}
+.mg-panel-btns-ct .mg-btn-over .mg-btn-center{background-position:0 -105px;}
+.mg-panel-btns-ct .mg-btn-click .mg-btn-center{background-position:0 -126px;}
+.mg-panel-btns-ct .mg-btn-click .mg-btn-right{background-position:0 -84px;}
+.mg-panel-btns-ct .mg-btn-click .mg-btn-left{background-position:0 -63px;}
