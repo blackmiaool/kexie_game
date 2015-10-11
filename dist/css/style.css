@@ -91,6 +91,10 @@ label {
 .section#section_chat #div-btn {
   text-align: center;
 }
+.section#section_chat #div-bg img#background {
+  width: 960px;
+  height: 540px;
+}
 .section#section_cover .logo-title {
   /*    display: inline-block;*/
   color: #FFFFFF;
@@ -246,6 +250,9 @@ label {
 .section#section_home #home-main-tab span.error {
   background-color: #f1231a;
 }
+.section#section_home #tab-buy {
+  font-size: 16px;
+}
 .section#section_home #tab-buy label {
   margin-bottom: 0px;
 }
@@ -260,6 +267,9 @@ label {
   /*    height: 350px;*/
   margin: 0px;
   margin-top: 10px;
+}
+.section#section_home #tab-buy #buy-tabs {
+  margin-bottom: 7px;
 }
 .section#section_home #tab-buy #store-tabs-content .tab-store-items {
   font-size: 130%;
@@ -290,7 +300,6 @@ label {
   border-radius: 0px;
   border-width: 0px;
   border-top-width: 0px;
-  font-size: 90%;
   width: 100%;
   margin: 10px;
   margin-top: 0px;
@@ -486,10 +495,6 @@ label {
 .section#section_home #tab-quest .prop-tab-value {
   text-align: right;
   width: 25%;
-}
-.section#section_home .panel-default {
-  margin: 20px;
-  margin-top: 0px;
 }
 .section#section_home .tab-content {
   overflow: auto;

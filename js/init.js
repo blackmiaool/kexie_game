@@ -1,4 +1,4 @@
-g = function (str) {
+var g = function (str) {
     return "res/" + str
 }
 
@@ -44,7 +44,6 @@ function Sys() {
             $("#" + scene.id).css("z-index", "1")
             $("#" + scene.id).fadeIn(scene_fade_time)
             section_name_current = scene.id;
-
             if (scene.pre_enter) {
                 scene.pre_enter.apply(scene, arguments);
             }
@@ -132,7 +131,7 @@ function Sys() {
         window.addEventListener("resize", zoom_auto, false);
     }
 }
-sys = new Sys();
+var sys = new Sys(); 
 
 function scene(name, pre_enter_callback, enter_callback, init_callback, id) {
     this.name = name;
@@ -153,7 +152,7 @@ function scene_register_all() {
     sys.scene_register(new Bigmap_scene());
 }
 
-
+var section_running;
 var game_enter = function () {
     sys.zoom_and_developer_init();
     $(".section").hide();
@@ -161,6 +160,4 @@ var game_enter = function () {
     section_running = false;
     sys.to_scene("preload");
 }
-touched = false;
-
-section = {}
+var section = {} 

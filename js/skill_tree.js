@@ -1,4 +1,5 @@
 //skill_tree=new SKILL_TREE_OBJ();
+var skill_tree;
 angular.module('home_app')
     .controller("tab_skill_controller", function ($scope) {
         //        skill_tree={}
@@ -31,11 +32,11 @@ angular.module('home_app')
         //needed for ajax script loading
 
 
+        var query;
+        var e;
 
-
-
-
-
+        var iconSize;
+        var resetDisplay;
 
 
         var i = 0;
@@ -129,13 +130,19 @@ angular.module('home_app')
         var colorYellow = "#000000";
         var colorWhite = "#FFFFFF";
 
-
+        var talentName;
         var ness_mia = 0;
-
-
-
-
-
+        var tierTalent;
+        var requirements;
+        var requirement;
+        var requirementPoints;
+        var requirementName;
+        var thisTalentX;
+        var thisTalentY;
+        var requiredTalentX;
+    var requiredTalentY;
+    var reqTalentID;
+    var reqTalentPoints;
         function getMaxTier(theTree) {
             var maxTier = 0;
             for (var loopMaxTier = 0; loopMaxTier < tierNum; loopMaxTier++) {
@@ -626,7 +633,7 @@ angular.module('home_app')
         var requiresRequires = "需要";
         var requiresPointsIn = "点在";
         var requiresTalents = "天赋";
-        stylesheetsRestored = false;
+        var stylesheetsRestored = false;
 
         // function getStringRequires(requirementPoints, requirementName) {
         //     theS = "";
@@ -681,7 +688,7 @@ angular.module('home_app')
 
 
 
-
+        
         if (variableIsSite) query = window.location.search.substring(1);
         if (query.indexOf("tal=") > -1) query = query.slice(4)
 
@@ -799,7 +806,7 @@ angular.module('home_app')
         var imgDir = "";
 
         massiveReplaceString += '<div class="talentwrap1"><div class="talentwrap2"><table border = "0" cellpadding = "0" cellspacing = "0"><tr><td>';
-
+        
         if (variableIsSite) {
 
 

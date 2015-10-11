@@ -50,12 +50,13 @@ function Chat_scene() {
                     touched = true;
             }
         )
-        div_mood = $("#div_mood")
+        
+        div_mood = $("#div_mood") 
         div_mood.click(function () {
             if (touch_enable !== false)
                 touched = true;
         })
-        div_danmu = $("#div_danmu")
+        div_danmu = $("#div_danmu") 
         div_danmu.click(function () {
             if (touch_enable !== false)
                 touched = true;
@@ -66,7 +67,6 @@ function Chat_scene() {
 
         div_bg = $("#div-bg");
         div_bg.click(function () {
-            div_bg_click = true;
             if (touch_enable !== false)
                 touched = true;
             //print("touched")
@@ -74,7 +74,7 @@ function Chat_scene() {
         div_btn = $("#div-btn");
 
         message = message_create();
-        chat_text = $("#chat_text");
+        var chat_text = $("#chat_text");
         chat_text.click(function () {
             text_click = true;
             if (touch_enable !== false)
@@ -84,7 +84,7 @@ function Chat_scene() {
 
 
 
-        div_half = $("#div-half");
+        var div_half = $("#div-half");
         div_half.click(function () {
             div_half_click = true;
             if (touch_enable !== false)
@@ -122,13 +122,13 @@ function Chat_scene() {
             }
         }
 
-        section_current = $("#section_chat")
+         var section_current = $("#section_chat")
     }
 
     this.id = "section_chat";
 
     this.pre_enter = function (spot) {
-    
+        
         if(spot=="cover")
         {
             L.execute("start(plot,\"" + spot + "\")")

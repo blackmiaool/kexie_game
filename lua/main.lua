@@ -1,13 +1,13 @@
 plot=function()
     return coroutine.create(
         function(...)
+            
             if imdeveloper then
                 if p.test() then
 --                    return ;
                 end
             end            
             local args={...};
---            put(args)
             if args[1]=="spot" then
                 local spot=args[2];
                 local env={}

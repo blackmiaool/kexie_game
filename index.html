@@ -9,29 +9,33 @@
     <meta name="author" content="blackmiaool">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=4,minimum-scale=0.1">
     <h2 id="miao-first-tip">服务器连接成功，正在拉取JS与CSS~</h2>
-    <link href="css/bootstrap.min.css" rel="stylesheet">
-    <link href="css/buttons.css" rel="stylesheet">
-    <script src="js/jquery.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/buttons.css">
     <link rel="shortcut icon" href="res/monkey.png">
     <link rel="stylesheet" href="css/animate.css" />
     <link rel="stylesheet" href="css/magic.min.css" />
-    <script src="js/jquery.easing.min.js"></script>
-    <script src="js/angular1-4.min.js"></script>
-    <script src="js/angular-animate.min.js"></script>
-    <script src="js/scene_sys_preload.js"></script>
-    <script src="js/scene_sys_cover.js"></script>
-    <script src="js/scene_sys_home.js"></script>
-    <script src="js/scene_sys_save_load.js"></script>
-    <script src="js/scene_sys_chat.js"></script>
-    <script src="js/scene_sys_bigmap.js"></script>
-    <script src="js/init.js" charset="UTF-8"></script>
-    <script src="js/res.js" charset="UTF-8"></script>
-    <script src="js/lua.vm.js"></script>
-    <script src="js/res_diy.js" charset="UTF-8"></script>
-    <script src="js/api.js" charset="UTF-8"></script>
-    <script src="js/d3.js"></script>
-    <script src="js/skill_tree.js" charset="UTF-8"></script>
+    <link rel="stylesheet" href="dist/css/style.css" />
+
+
+    <script src="dist/js/libs/jquery.min.js"></script>
+    <script src="dist/js/libs/bootstrap.min.js"></script>
+    <script src="dist/js/libs/jquery.easing.min.js"></script>
+    <script src="dist/js/libs/angular.min.js"></script>
+    <script src="dist/js/libs/angular-animate.min.js"></script>
+    <script src="dist/js/libs/lua.vm.js"></script>
+
+    <script src="dist/js/scene_sys_preload.js"></script>
+    <script src="dist/js/scene_sys_cover.js"></script>
+    <script src="dist/js/scene_sys_home.js"></script>
+    <script src="dist/js/scene_sys_save_load.js"></script>
+    <script src="dist/js/scene_sys_chat.js"></script>
+    <script src="dist/js/scene_sys_bigmap.js"></script>
+    <script src="dist/js/init.js" charset="UTF-8"></script>
+    <script src="dist/js/res.js" charset="UTF-8"></script>
+    <script src="dist/js/res_diy.js" charset="UTF-8"></script>
+    <script src="dist/js/api.js" charset="UTF-8"></script>
+    <script src="dist/js/libs/d3.js"></script>
+    <script src="dist/js/skill_tree.js" charset="UTF-8"></script>
 
     <!--
 
@@ -41,14 +45,14 @@
     <link rel="prefetch" href="fonts/glyphicons-halflings-regular.svg" />
     <link rel="prefetch" href="fonts/glyphicons-halflings-regular.eot" />
 -->
-    <link rel="stylesheet" href="dist/css/style.css" />
+
 </head>
 
 <body>
     <script>
         $("#miao-first-tip").remove();
     </script>
-    
+
     <div ng-controller="bigmap_controller" class="section" id="section_bigmap" style="display:none;">
         <img src="res/System/bigmap.jpg" style="height:540px;">
         <button ng-click="enter(value.text)" ng-repeat="value in btns" class="btn" ng-class="value.class" ng-style="value" style="position:absolute;">
@@ -416,10 +420,10 @@
 
                 <div ng-controller="tab_item_controller" class="tab-pane " id="tab-item">
                     <ul>
-                        <li ng-repeat="(kind,items) in data" class="{{(cur_select==kind) && 'active' }} panel panel-default" ng-click="select(kind)">
+                        <li ng-repeat="(kind,items) in data" class="{{(cur_select==kind) && 'active' }} panel " ng-click="select(kind)">
                             {{kind}}
                         </li>
-                        <li class="{{(cur_select=='作品') && 'active' }} panel panel-default" ng-click="select('作品')">作品</li>
+                        <li class="{{(cur_select=='作品') && 'active' }} panel " ng-click="select('作品')">作品</li>
                     </ul>
                     <div ng-show="cur_select=='作品'" class="content">
                         <div class="panel-group" id="item-tab-作品-page" role="tablist" aria-multiselectable="true">
@@ -712,7 +716,7 @@
     </div>
 
     <script type="text/javascript">
-        $(document).ready(game_enter)
+        $(document).ready(game_enter)  
     </script>
 </body>
 

@@ -1,6 +1,6 @@
 var skill = {};
 var skills = {};
-combines={}
+var combines={}
 skill = {
     论文: {
 
@@ -108,8 +108,8 @@ for (var i in combine) {
 function md_trim(str) {
     return str.replace(/(^\s+)|(\s+$)/g, "");
 }
-section_onStart = []
-markdown_handle_finish = false;
+var section_onStart = []
+var markdown_handle_finish = false;
 
 function outf(text) { 
     console.warning(text)

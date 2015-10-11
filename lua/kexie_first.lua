@@ -14,7 +14,7 @@ p.kexie_first =function ()
     tc("……你怎么知道？",pp.gaoxiangchen)
     tc("物电科协，没有普通人。\n你以后就懂了。",pp.chenguo)
     tc("……",pp.gaoxiangchen)
-    th(0,0,0) 
+    th(0,0,0)
     ts(res.kexie2,10);  
     local chat_times=2;
 

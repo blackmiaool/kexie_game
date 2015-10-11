@@ -3,7 +3,6 @@ function Home_scene() {
         this.init = function () {
 
         }
-
         this.id = "section_home";
 
         this.pre_enter = function () {
@@ -101,7 +100,7 @@ function Home_scene() {
 
 
                 function carousel_change(event) {
-
+                    var index;
                     if (event === true) {
                         index = $("#tab-teammate .carousel-inner [first=true]")
                     } else {
@@ -1278,10 +1277,10 @@ angular.module('home_app', ["ngAnimate"])
         }
         $scope.go_out = function () {
             //            $scope.take_move_point();
-            section_home_go = function () {
+            (function () {
                 sys.to_scene("bigmap");
-            }
-            section_home_go();
+            })();
+            
         }
 
         $scope.pass_day = function () {

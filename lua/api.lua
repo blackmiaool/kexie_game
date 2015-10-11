@@ -18,8 +18,22 @@ end
 function rand(a,b)
     return jjj:rand(a,b)
 end
+function put(...)
+    local outs={};
+    local args={...}
+    for i,j in ipairs(args) do
+        local output="";
+        function append(text)
+            output=output..text;
+        end
+        PrintTable(j,append,false);
+        table.insert(outs,output);
+    end
 
-function start(scene,...)
+    --    print(output)
+    jjj:print_from_lua(table.unpack(outs));
+end
+function start(scene,...)   
     current_scene=scene();
     resume(...);
 end
@@ -105,21 +119,7 @@ end
 
 
 
-function put(...)
-    local outs={};
-    local args={...}
-    for i,j in ipairs(args) do
-        local output="";
-        function append(text)
-            output=output..text;
-        end
-        PrintTable(j,append,false);
-        table.insert(outs,output);
-    end
 
-    --    print(output)
-    jjj:print_from_lua(table.unpack(outs));
-end
 
 table.find=function(t,value)
     for i,j in ipairs(t) do

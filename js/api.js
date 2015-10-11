@@ -1,13 +1,14 @@
 var fade_time = 100
 var text_time = 100
 var scene_fade_time = 1000
-section_onShow = {}
+var section_onShow = {}
 var lua_arg = []
 var js_arg = {}
 var lua_handle_finish = false;
 var imdeveloper = local_load("Imdeveloper") == "true";
 var isinfastmode = local_load("Fastmode") == "true";
 var v;
+var bg;
 var gap = {
     def: 70,
     fast: 40,
@@ -39,10 +40,11 @@ var fadein_time = 100
 var color_award = color(166, 226, 45)
 var color_punish = color(253, 151, 32)
 
-game_over = true
-touch_enable = true
-message = {}
-people_move_time = 500;
+var game_over = true
+var touch_enable = true
+var message = {};
+var div_mood,div_danmu,div_text,div_bg,div_btn;
+var people_move_time = 500;
 
 
 
@@ -71,6 +73,7 @@ lua_arg_init();
 
 
 function plot_resume() {
+    console.log("resume")
     lua_arg_init();
     setTimeout(
         function () {
@@ -153,14 +156,14 @@ function print() {
         console.log(print.arguments[0])
     }
 }
-ppp = print;
-delay = function (ms) {
+var ppp = print;
+var delay = function (ms) {
     setTimeout(
         plot_resume, ms
     );
 }
 
-bg_fadeout = function (time) {
+var bg_fadeout = function (time) {
     bg.fadeOut(time);
 }
 
@@ -171,11 +174,11 @@ function ele_create(name, idd, classs) {
 
 
 
-bg_set = function (img) {
+var bg_set = function (img) {
     bg.attr("src", img)
 }
 
-bg_fadein = function (img, time) {
+var bg_fadein = function (img, time) {
     console.log("time", time)
     bg.attr("src", img)
     bg.fadeIn(time)
@@ -183,7 +186,7 @@ bg_fadein = function (img, time) {
 
 
 
-images = []
+var images = []
 
 
 
@@ -345,11 +348,10 @@ function message_create() {
     return t;
 }
 
-ts = function (background, time) {
+var ts = function (background, time) {
     if (isinfastmode) {
         time = 10;
     }
-
     touch_enable = true;
 
     if (time == undefined || time == false) {
@@ -358,16 +360,18 @@ ts = function (background, time) {
     if (background == current_background) {
         time = 0.01
     }
+    
     running = true;
+    
     message.fadeOut(time);
-    //        $await(th([0, 0, 0]))
-    //        console.info(time)
+
     if (!current_background) {
-        //            console.log("miao")
         bg.hide();
         bg.attr("src", background);
         bg.fadeIn(time);
+        
         setTimeout(function () {
+            console.log("ww2")
             plot_resume();
         }, time);
     } else {
@@ -385,10 +389,10 @@ ts = function (background, time) {
 }
 
 var tc_pre_things = {};
-tcc = function (text) {
+var tcc = function (text) {
     tc(text, tc_pre_things.name, tc_pre_things.gapnum, tc_pre_things.color)
 }
-tc = function (text, name, gapnum, color) {
+var tc = function (text, name, gapnum, color) {
     tc_pre_things.name = name;
     tc_pre_things.gapnum = gapnum;
     tc_pre_things.color = color;
@@ -471,7 +475,7 @@ var touch_wait = function (cb) {
     )
 }
 
-tm = function () {
+var tm = function () {
     touch_enable = false;
     var arg_len = 0;
     for (var i in lua_arg) {
@@ -621,7 +625,7 @@ function get_half(name, pos) {
 
 
 var people = [];
-th = function () {
+var th = function () {
     if (isinfastmode) {
         var people_move_time_this = 10;
     } else {
@@ -799,11 +803,12 @@ function color_text_create(text, color) {
 
 
 
-print_from_lua = function () {
+var print_from_lua = function () {
     var args = arguments;
     var outs = []
     for (var i in args) {
-        eval("var t=" + args[i]);
+        var t;
+        eval("t=" + args[i]);
         outs[i] = t;
     }
     console.log.apply(console, outs);

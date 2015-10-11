@@ -88,7 +88,7 @@ var pp = {
         name: "陈过",
         half: g("Half/chenguo.png"),
         color: color(153, 143, 152),
-        text_color: color(0, 0, 00),
+        text_color: color(0, 0, 0),
         canbeteammate: true,
         tag: "cs大法好",
         brief: "",

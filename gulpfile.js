@@ -8,6 +8,7 @@ var template = require('angular-template');
 var fs = require("fs");
 var shell = require('gulp-shell')
 var node_less = require('less');
+var babel = require('gulp-babel');
 gulp.task('less', function () {
     return gulp.src('less/**/*.less')
         .pipe(less({
@@ -15,6 +16,16 @@ gulp.task('less', function () {
         }))
         .pipe(gulp.dest('dist/css')).pipe(livereload());
 });
+
+gulp.task('es6', function () {
+    return gulp.src('js/*.js')
+        .pipe(babel({compact: false}))
+        .pipe(gulp.dest('dist/js'));
+});
+gulp.task('js',['es6'], function () {
+    return gulp.src('js/*.js').pipe(livereload());
+});
+
 
 gulp.task("injectHeader", function () {
     var tmpl = fs.readFileSync('src/theme/kxheader.html', "utf8");
@@ -78,11 +89,18 @@ gulp.task("injectHeader", function () {
 });
 gulp.task('default', function () {
 
-    gulp.start(["less"]);
+    gulp.start(["less"],["js"]);
+    
+});
+gulp.task('reload', function () {
+
+    gulp.src("").pipe(livereload());
     
 });
 livereload.listen();
 gulp.watch('**/*.less', ['less']);
+gulp.watch('js/*.js', ['js']);
+gulp.watch('index.html',['reload'] );
 gulp.task('mediawiki', function () {
     return gulp.src('src/mediawiki/mobile/less/**/*.less')
         .pipe(gulp.dest('mediawiki/extensions/MobileFrontend/less/'))

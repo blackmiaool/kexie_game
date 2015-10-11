@@ -1,4 +1,4 @@
-   
+var course; 
 function Preload_scene() {
     this.name = "preload";
     var preload_bar;
@@ -102,7 +102,8 @@ function Preload_scene() {
             }
             //        console.log(rows)
             eval(table_name + "=" + "[]");
-            eval("var data=" + table_name + ";");
+            var data;
+            eval("data=" + table_name + ";");
 
             for (var j in rows) {
                 if (j != 0) {
