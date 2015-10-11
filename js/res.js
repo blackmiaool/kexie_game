@@ -1,5 +1,5 @@
 var res = {
-    huodongzhongxin:g("Background/xueshenghuodongzhongxin.jpg"),
+    huodongzhongxin:g("Background/huodongzhongxin.jpg"),
     ickexie1:g("Background/ickexie1.jpg"),
     daditu:g("System/bigmap.jpg"),
     kexie0: g("Background/kexie0.jpg"),
@@ -11,7 +11,7 @@ var res = {
 
     sushe: g("Background/sushe.jpg"),
     delvyuanjian: g("Background/delv.jpg"),
-    jiaoshi: g("Background/jiaoshi.png"),
+    jiaoshi: g("Background/jiaoshi.jpg"),
     baozou_zhuakuang: g("Background/baozou.png"),
     kexiezhaoxin: g("Background/kexiezhaoxin.jpg"),
     desk: g("Background/zhuomian.jpg"),

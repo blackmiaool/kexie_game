@@ -15,8 +15,6 @@
     <script src="js/bootstrap.min.js"></script>
     <link rel="shortcut icon" href="res/monkey.png">
     <link rel="stylesheet" href="css/animate.css" />
-<!--    <link rel="stylesheet" href="css/hover.css" />-->
-
     <link rel="stylesheet" href="css/magic.min.css" />
     <script src="js/jquery.easing.min.js"></script>
     <script src="js/angular1-4.min.js"></script>
@@ -35,7 +33,7 @@
     <script src="js/d3.js"></script>
     <script src="js/skill_tree.js" charset="UTF-8"></script>
 
-<!--
+    <!--
 
     <link rel="prefetch" href="fonts/glyphicons-halflings-regular.woff" />
     <link rel="prefetch" href="fonts/glyphicons-halflings-regular.woff2" />
@@ -43,28 +41,14 @@
     <link rel="prefetch" href="fonts/glyphicons-halflings-regular.svg" />
     <link rel="prefetch" href="fonts/glyphicons-halflings-regular.eot" />
 -->
-    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="dist/css/style.css" />
 </head>
 
-<body >
-    <!-- Button trigger modal -->
-
-
-    <!-- Modal -->
-
-    <style>
-        #prefetch-trash {
-            display: none;
-        }
-        
-        #prefetch-trash:before {
-            content: "\e109";
-        }
-    </style>
+<body>
     <script>
         $("#miao-first-tip").remove();
-        //        console.log("start")
     </script>
+    
     <div ng-controller="bigmap_controller" class="section" id="section_bigmap" style="display:none;">
         <img src="res/System/bigmap.jpg" style="height:540px;">
         <button ng-click="enter(value.text)" ng-repeat="value in btns" class="btn" ng-class="value.class" ng-style="value" style="position:absolute;">
@@ -78,18 +62,18 @@
     <div class="section" id="section_chat" align=center onShow="">
         <div id="div-mood">
         </div>
-        <div id="div-bg">
+        <div id="div-bg" ondragstart="return false;">
         </div>
         <div id="div-half">
         </div>
-        <div id="div-text" >
+        <div id="div-text">
             <div id="chat_text" style="display:none;">
                 <p id="chat_content"></p>
             </div>
-            <div id="name_all"  style="text-align: left;color:rgb(255,255,255);background-image:url(res/UI/nameBack.png);display:none;" >
-                
+            <div id="name_all" style="text-align: left;color:rgb(255,255,255);background-image:url(res/UI/nameBack.png);display:none;">
+
                 <label id="name_content"></label>
-            </div>                        
+            </div>
         </div>
         <div id="div-btn">
         </div>
@@ -195,6 +179,7 @@
                 }
             </script>
             <style type="text/css">
+
             </style>
             <div class="tab-content">
                 <div ng-controller="tab_plan_controller" class="tab-pane" id="tab-plan" style="width:100%;overflow:hidden;">
@@ -372,7 +357,6 @@
                     
                     #tab-item>ul {
                         /*                        position: absolute;*/
-                        
                         float: left;
                         list-style: none;
                         padding-left: 5px;
@@ -548,8 +532,6 @@
                         </label>
                     </div>
                 </div>
-                <script>
-                </script>
                 <div ng-controller="tab_buy_controller" class="tab-pane" id="tab-buy">
                     <ul class="nav  nav-tabs nav-justified" id="buy-tabs-link" align="center" width="100%">
                         <li ng-repeat="(store_name,store) in data" ng-click="link_tab($event)" role="presentation">
@@ -731,16 +713,6 @@
 
     <script type="text/javascript">
         $(document).ready(game_enter)
-//        console.log(L)
-            //        setInterval(
-            //            function(){
-            ////                L.execute("coroutine.resume(co)")
-            //                console.log($("#dddd").html())
-            //            },1300
-            //        )
-    </script>
-    <script type="text/lua">
-        --js.global:alert('hello from Lua script tag in HTML!') -- this is Lua! co = coroutine.create(function () for i=1,10 do print("co", i) coroutine.yield() end end) --window:setInterval(function() coroutine.resume(co)end, 500)
     </script>
 </body>
 
