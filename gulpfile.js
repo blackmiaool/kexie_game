@@ -9,6 +9,7 @@ var fs = require("fs");
 var shell = require('gulp-shell')
 var node_less = require('less');
 var babel = require('gulp-babel');
+var copy = require('gulp-copy');
 gulp.task('less', function () {
     return gulp.src('less/**/*.less')
         .pipe(less({
@@ -16,7 +17,10 @@ gulp.task('less', function () {
         }))
         .pipe(gulp.dest('dist/css')).pipe(livereload());
 });
-
+gulp.task('mv-dist', function () {
+    return gulp.src('js/libs/*.js')
+        .pipe(gulp.dest('dist/js/libs/'));
+});
 gulp.task('es6', function () {
     return gulp.src('js/*.js')
         .pipe(babel({compact: false}))
@@ -89,7 +93,7 @@ gulp.task("injectHeader", function () {
 });
 gulp.task('default', function () {
 
-    gulp.start(["less"],["js"]);
+    gulp.start(["mv-dist","less","js"]);
     
 });
 gulp.task('reload', function () {

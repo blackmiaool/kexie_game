@@ -76,7 +76,6 @@ function Chat_scene() {
         message = message_create();
         var chat_text = $("#chat_text");
         chat_text.click(function () {
-            text_click = true;
             if (touch_enable !== false)
                 touched = true;
         })

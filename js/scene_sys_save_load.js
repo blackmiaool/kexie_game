@@ -1,3 +1,4 @@
+var backto;
 function Save_load_scene() {
     this.name = "save_load";
 
