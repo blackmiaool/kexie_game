@@ -16,6 +16,7 @@ angular.module('home_app')
         var rankTop = new Array();
         var pointsTree = new Array();
         var maxTierArray = new Array();
+        var theUpdatedRank;
         maxTierArray[0] = 1;
         maxTierArray[1] = 1;
         maxTierArray[2] = 1;
@@ -362,7 +363,7 @@ angular.module('home_app')
                 rankTop[talentID][1] = rank[talentID][theCurrentRank];
                 rankTop[talentID][0] ++; //if you haven't hit max rank, increment
                 theUpdatedRank = rankTop[talentID][0];
-                //                rankTop[talentID][2] = rank[talentID][theUpdatedRank];
+                //                rankTop[talentID][2] = rank[talentID][theUpdatedRank];  
                 v.state.skill_point--;
                 if (theUpdatedRank != maxRank) {
                     // rankString = rankTop[talentID][1] + '<br><br><font color = "ffffff">' + textNextRank + '</font><br>' + rankTop[talentID][2];

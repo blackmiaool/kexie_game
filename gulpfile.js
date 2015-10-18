@@ -10,6 +10,10 @@ var shell = require('gulp-shell')
 var node_less = require('less');
 var babel = require('gulp-babel');
 var copy = require('gulp-copy');
+var concat=require("gulp-concat");
+var md2json=require("gulp-markdown-table-to-json");
+var beautify = require('gulp-beautify');
+var rename = require("gulp-rename");
 gulp.task('less', function () {
     return gulp.src('less/**/*.less')
         .pipe(less({
@@ -27,8 +31,11 @@ gulp.task('es6', function () {
         .pipe(gulp.dest('dist/js'));
 });
 gulp.task('js',['es6'], function () {
-    return gulp.src('js/*.js').pipe(livereload());
+    return gulp.src('js/*.js').pipe(concat('miao.js')).pipe(gulp.dest(".")).pipe(livereload());
 });
+gulp.task('md', function () {
+    return gulp.src('README.md').pipe(md2json()).pipe(beautify()).pipe(rename("data.json")).pipe(gulp.dest("."))
+})
 
 
 gulp.task("injectHeader", function () {

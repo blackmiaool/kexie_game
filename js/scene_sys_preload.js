@@ -1,4 +1,5 @@
-var course; 
+var course;
+
 function Preload_scene() {
     this.name = "preload";
     var preload_bar;
@@ -8,9 +9,9 @@ function Preload_scene() {
         preload_bar = $("#preload_progress_bar");
 
     }
-      
+
     var sys_text_files = [{
-        name: "README.md",
+        name: "data.json",
         handle: markdown_handle
     }]
 
@@ -19,105 +20,10 @@ function Preload_scene() {
 
 
     function markdown_handle(text) {
-        var lines = text.split("\n");
-        var cur_line = 0;
-        var line = ""
-        var table_name = "";
-        var col_num = 0;
-        var cols = [];
-        var rows = [];
-        //    console.log("md handle")
-
-        function read_line() {
-            return lines[cur_line++];
-        }
-
-        while (true) {
-            var cols = [];
-            var rows = [];
-            //        console.log("cur_line", cur_line)
-            while (line.indexOf("######") == -1 && cur_line != lines.length) {
-                line = read_line();
-            }
-            if (cur_line == lines.length) {
-                break;
-            }
-            table_name = line.split("######")[1];
-            table_name = md_trim(table_name)
-                //        console.log(line)
-                //        console.log(table_name)
-
-            line = read_line()
-
-            if (line) {
-                line = line.split("|")
-                for (var j in line) {
-
-                    line[j] = md_trim(line[j])
-                    if ((j == 0 || j == line.length - 1) && line[j] === "") {
-
-                    } else {
-                        cols.push(line[j]);
-                    }
-                    //  console.log(line[j])
-                }
-                if (line.length) {
-                    cols = line;
-                    rows.push(cols)
-                        //                console.log(rows);
-                } else {
-                    console.error("markdown expect column title")
-                    break;
-                }
-            } else {
-                console.error("markdown expect table content")
-                break;
-            }
-
-            line = read_line()
-
-            if (line) {
-
-            } else {
-                console.error("markdown expect table spliter")
-                break;
-            }
-            line = read_line()
-            while (line.indexOf("|") != -1 && cur_line != lines.length) {
-
-                var line_this = line.split("|")
-                var row = []
-                for (var j in line_this) {
-                    line_this[j] = md_trim(line_this[j])
-                    if ((j == 0 || j == line_this.length - 1) && line_this[j] === "") {
-
-                    } else {
-                        row.push(line_this[j]);
-                        //                     console.log(line_this[j])
-                    }
-
-                }
-                rows.push(row);
-                line = read_line()
-            }
-            //        console.log(rows)
-            eval(table_name + "=" + "[]");
-            var data;
-            eval("data=" + table_name + ";");
-
-            for (var j in rows) {
-                if (j != 0) {
-                    var ele = {};
-                    //                console.log(rows[j])
-                    for (var k in rows[j]) {
-                        ele[rows[0][k]] = rows[j][k];
-                    }
-                    // console.log(ele);
-                    data.push(ele);
-                }
-
-            }
-            //        console.log(table_name, "raw", data);
+        var data = JSON.parse(text);
+        console.log(data);
+        for (var table_name in data) {
+            eval(table_name+"="+"data[\""+table_name+"\"];");
             switch (table_name) {
             case "course":
 
@@ -240,9 +146,10 @@ function Preload_scene() {
                 break;
 
             }
-            //        console.log(table_name, "handled", data);
-
         }
+        //        console.log(table_name, "handled", data);
+
+
         quest = [{
             title: "投名状",
             des: "为了进入科协，你需要完成一份科协的投名状。由于你选择了数字方向，你需要制作一个单片机流水灯。",
@@ -298,10 +205,10 @@ function Preload_scene() {
         for (var i in sys_text_files) {
             sys.readTextFile(sys_text_files[i]);
         }
-        var config_json_load_fnish=false;
+        var config_json_load_fnish = false;
         $.getJSON("config.json", function (data) {
-            sys.config=data;
-            config_json_load_fnish=true;
+            sys.config = data;
+            config_json_load_fnish = true;
         });
         var preload_interval;
 
@@ -309,7 +216,7 @@ function Preload_scene() {
             if (imdeveloper) { //skip res load in developer mode
                 load_cnt = res_sum;
             }
-            if ((load_cnt >= res_sum) && markdown_handle_finish && lua_handle_finish&&config_json_load_fnish) {
+            if ((load_cnt >= res_sum) && markdown_handle_finish && lua_handle_finish && config_json_load_fnish) {
                 //                console.log("check")
                 clearInterval(preload_interval);
                 //                preload_bar.parent().remove()
