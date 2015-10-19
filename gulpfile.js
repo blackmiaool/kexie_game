@@ -14,11 +14,13 @@ var concat=require("gulp-concat");
 var md2json=require("gulp-markdown-table-to-json");
 var beautify = require('gulp-beautify');
 var rename = require("gulp-rename");
+var cached = require("gulp-cached")
 gulp.task('less', function () {
     return gulp.src('less/**/*.less')
         .pipe(less({
             paths: [path.join(__dirname, 'less', 'includes')]
         }))
+        .pipe(cached("less"))
         .pipe(gulp.dest('dist/css')).pipe(livereload());
 });
 gulp.task('mv-dist', function () {
@@ -27,14 +29,13 @@ gulp.task('mv-dist', function () {
 });
 gulp.task('es6', function () {
     return gulp.src('js/*.js')
+        .pipe(cached("es6"))
         .pipe(babel({compact: false}))
         .pipe(gulp.dest('dist/js'));
 });
-gulp.task('js',['es6'], function () {
-    return gulp.src('js/*.js').pipe(concat('miao.js')).pipe(gulp.dest(".")).pipe(livereload());
-});
+
 gulp.task('md', function () {
-    return gulp.src('README.md').pipe(md2json()).pipe(beautify()).pipe(rename("data.json")).pipe(gulp.dest("."))
+    return gulp.src('README.md').pipe(md2json()).pipe(beautify()).pipe(rename("dist/data.json")).pipe(gulp.dest("."))
 })
 
 
@@ -100,7 +101,7 @@ gulp.task("injectHeader", function () {
 });
 gulp.task('default', function () {
 
-    gulp.start(["mv-dist","less","js"]);
+    gulp.start(["mv-dist","less",'md',"es6"]);
     
 });
 gulp.task('reload', function () {
@@ -110,7 +111,7 @@ gulp.task('reload', function () {
 });
 livereload.listen();
 gulp.watch('**/*.less', ['less']);
-gulp.watch('js/*.js', ['js']);
+gulp.watch('js/*.js', ['es6']);
 gulp.watch('index.html',['reload'] );
 gulp.task('mediawiki', function () {
     return gulp.src('src/mediawiki/mobile/less/**/*.less')

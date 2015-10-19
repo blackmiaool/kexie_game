@@ -11,7 +11,7 @@ function Preload_scene() {
     }
 
     var sys_text_files = [{
-        name: "data.json",
+        name: "dist/data.json",
         handle: markdown_handle
     }]
 
