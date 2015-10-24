@@ -30,7 +30,7 @@ gulp.task('mv-dist', function () {
 gulp.task('es6', function () {
     return gulp.src('js/*.js')
         .pipe(cached("es6"))
-        .pipe(babel({compact: false}))
+        .pipe(babel({compact: false,optional: ['runtime']}))
         .pipe(gulp.dest('dist/js'));
 });
 

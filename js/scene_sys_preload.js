@@ -188,7 +188,7 @@ function Preload_scene() {
     this.pre_enter = function () {
         var res_sum = 0
         preload_set(0, res_sum)
-        for (i in res) {
+        for (var i in res) {
             res_sum++;
             var name = res[i];
             name = name.split('.')
