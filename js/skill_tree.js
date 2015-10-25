@@ -1,4 +1,6 @@
 //skill_tree=new SKILL_TREE_OBJ();
+define([],function(){
+    
 var skill_tree;
 angular.module('home_app')
     .controller("tab_skill_controller", function ($scope) {
@@ -1138,6 +1140,8 @@ angular.module('home_app')
 
 
 
+
+})
 
 //needed for ajax script loading
 

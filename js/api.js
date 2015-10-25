@@ -364,7 +364,7 @@ var ts = function (background, time) {
     running = true;
     
     message.fadeOut(time);
-
+    
     if (!current_background) {
         bg.hide();
         bg.attr("src", background);

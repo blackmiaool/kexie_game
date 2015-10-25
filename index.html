@@ -16,26 +16,28 @@
     <link rel="stylesheet" href="css/magic.min.css" />
     <link rel="stylesheet" href="dist/css/style.css" />
 
-
+    <script data-main="dist/js/main" src="dist/js/libs/require.js"></script>
+<!--
     <script src="dist/js/libs/jquery.min.js"></script>
     <script src="dist/js/libs/bootstrap.min.js"></script>
     <script src="dist/js/libs/jquery.easing.min.js"></script>
     <script src="dist/js/libs/angular.min.js"></script>
     <script src="dist/js/libs/angular-animate.min.js"></script>
     <script src="dist/js/libs/lua.vm.js"></script>
-
     <script src="dist/js/scene_sys_preload.js"></script>
     <script src="dist/js/scene_sys_cover.js"></script>
     <script src="dist/js/scene_sys_home.js"></script>
     <script src="dist/js/scene_sys_save_load.js"></script>
     <script src="dist/js/scene_sys_chat.js"></script>
     <script src="dist/js/scene_sys_bigmap.js"></script>
-    <script src="dist/js/init.js" charset="UTF-8"></script>
-    <script src="dist/js/res.js" charset="UTF-8"></script>
+    <script src="dist/js/init.js"></script>
+    <script src="dist/js/res.js"></script>
     <script src="dist/js/res_diy.js" charset="UTF-8"></script>
     <script src="dist/js/api.js" charset="UTF-8"></script>
     <script src="dist/js/libs/d3.js"></script>
-    <script src="dist/js/skill_tree.js" charset="UTF-8"></script>
+    <script src="dist/js/skill_tree.js"></script>
+-->
+
 
     <!--
 
@@ -49,9 +51,11 @@
 </head>
 
 <body>
+    <!--
     <script>
         $("#miao-first-tip").remove();
     </script>
+-->
 
     <div ng-controller="bigmap_controller" class="section" id="section_bigmap" style="display:none;">
         <img src="res/System/bigmap.jpg" style="height:540px;">
@@ -583,18 +587,7 @@
                         </div>
                     </div>
                 </div>
-                <script>
-                    $(function () {
-                        // $('#home-main-tab a:last').tab('show');//初始化显示哪个tab
 
-                        setTimeout(function () {
-                            $('#buy-tabs a').click(function (e) {
-                                e.preventDefault(); //阻止a链接的跳转行为
-                                $(this).tab('show'); //显示当前选中的链接及关联的content
-                            })
-                        }, 300)
-                    })
-                </script>
                 <div ng-controller="tab_make_controller " class="tab-pane " id="tab-make" style="">
                     <div class="panel panel-default" style="position:absolute;left:15px;bottom:0px;width:385px;border-radius:0px;">
                         <div class="my-panel-heading" role="tab" width="100%">
@@ -666,17 +659,7 @@
                     </div>
                 </div>
             </div>
-            <script>
-                $(function () {
-                    $('#home-main-tab a').click(function (e) {
-                        e.preventDefault(); //阻止a链接的跳转行为
-                        $(this).tab('show'); //显示当前选中的链接及关联的content
-                    })
-                })
-                $(function () {
-                    $('[data-toggle="popover"]').popover()
-                })
-            </script>
+
         </div>
 
         <div id="system-setting" class="btn-group">
@@ -708,16 +691,15 @@
             </div>
         </div>
     </div>
-    <div ng-controller="save_controller" id="section_save_load" align=center class="section" style="background-image: url(res/UI/mysave.png);">
+    <div ng-controller="save_controller" id="section_save_load" align=center class="section" style="background-image: url(res/UI/mysave.png);display:none;">
 
         <h1 id="go-back" ng-click="go_back()">返回游戏</h1>
         <h1 id="title" ng-bind="title"></h1>
         <button ng-repeat="btn in buttons track by $index" ng-click="handle($index)" class="button button-3d button-inverse button-save" style="top: {{80+70*$index}}px; position: absolute; left: 280px;" ng-bind="btn.title"></button>
     </div>
 
-    <script type="text/javascript">
-        $(document).ready(game_enter)  
-    </script>
+
+
 </body>
 
 </html>

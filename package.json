@@ -24,6 +24,7 @@
     "gulp-replace": "~0.5.4",
     "gulp-shell": "~0.4.3",
     "gulp-template": "~3.0.0",
+    "gulp-util": "^3.0.7",
     "less": "~2.5.3",
     "underscore": "~1.8.3"
   },

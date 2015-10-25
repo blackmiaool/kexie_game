@@ -30,7 +30,7 @@ function Sys() {
 
         function call_enter(args) {
             setTimeout(function () {
-                if (scene.enter) {                    
+                if (scene.enter) {
                     scene.enter.apply(scene, args);
                 }
             }, scene_fade_time);
@@ -53,7 +53,7 @@ function Sys() {
         }
 
     }
-    this.readTextFile=function(file, cb) {
+    this.readTextFile = function (file, cb) {
         var rawFile = new XMLHttpRequest();
         rawFile.open("GET", file.name, true);
         rawFile.onreadystatechange = function () {
@@ -73,27 +73,23 @@ function Sys() {
 
         function key_handle(evt) {
             evt = (evt) ? evt : window.event
-            if(evt.ctrlKey&&evt.keyCode==66)
-            {
+            if (evt.ctrlKey && evt.keyCode == 66) {
                 console.log("reload plot")
                 sys.scenes["chat"].reload();
             }
             if (evt.keyCode) {
                 switch (evt.keyCode) {
                 case 115: //F4
-                    var fastmode=local_load("Fastmode");
-                    if(fastmode=="true")
-                    {
+                    var fastmode = local_load("Fastmode");
+                    if (fastmode == "true") {
                         local_set("Fastmode", false);
                         console.log("fast mode exit");
-                    }
-                    else
-                    {
+                    } else {
                         local_set("Fastmode", true);
                         console.log("fast mode start");
                     }
-                    
-                    
+
+
                     break;
                 case 118: //F7
                     local_set("Imdeveloper", true);
@@ -131,7 +127,7 @@ function Sys() {
         window.addEventListener("resize", zoom_auto, false);
     }
 }
-var sys = new Sys(); 
+var sys = new Sys();
 
 function scene(name, pre_enter_callback, enter_callback, init_callback, id) {
     this.name = name;
@@ -153,11 +149,19 @@ function scene_register_all() {
 }
 
 var section_running;
+define("init", [], function () {
+    var exports = {
+        game_enter: function () {
+            sys.zoom_and_developer_init();
+            $(".section").hide();
+            scene_register_all();
+            section_running = false;
+            sys.to_scene("preload");
+        }
+    };
+    return exports;
+})
 var game_enter = function () {
-    sys.zoom_and_developer_init();
-    $(".section").hide();
-    scene_register_all();
-    section_running = false;
-    sys.to_scene("preload");
+
 }
-var section = {} 
+var section = {}
