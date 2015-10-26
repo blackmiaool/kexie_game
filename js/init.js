@@ -148,8 +148,8 @@ function scene_register_all() {
     sys.scene_register(new Bigmap_scene());
 }
 
-var section_running;
-define("init", [], function () {
+var section_running; 
+define(["scenes/home2","scenes/bigmap","scenes/chat","scenes/cover","scenes/preload","scenes/save_load"], function () {
     var exports = {
         game_enter: function () {
             sys.zoom_and_developer_init();

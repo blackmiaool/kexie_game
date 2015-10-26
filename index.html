@@ -16,7 +16,7 @@
     <link rel="stylesheet" href="css/magic.min.css" />
     <link rel="stylesheet" href="dist/css/style.css" />
 
-    <script data-main="dist/js/main" src="dist/js/libs/require.js"></script>
+    
 <!--
     <script src="dist/js/libs/jquery.min.js"></script>
     <script src="dist/js/libs/bootstrap.min.js"></script>
@@ -164,27 +164,7 @@
         <div class=" well desk-frame" id="home-tabs" style="display:inline-block;">
 
             <script>
-                function IsPC() {
-                    var userAgentInfo = navigator.userAgent;
-                    var Agents = ["Android", "iPhone",
-                    "SymbianOS", "Windows Phone",
-                    "iPad", "iPod"
-                ];
-                    var flag = true;
-                    for (var v = 0; v < Agents.length; v++) {
-                        if (userAgentInfo.indexOf(Agents[v]) > 0) {
-                            flag = false;
-                            break;
-                        }
-                    }
-                    return flag;
-                }
-                if (!IsPC()) {
-                    $(".desk-frame-nav").css("display", "inline-block");
-                    $(".desk-frame-nav-a").css("width", "70px");
-                    $("body").css("position", "absolute").css("left", "240px").css("width", "960px").css("height:540px");
 
-                }
             </script>
             <style type="text/css">
 
@@ -699,7 +679,7 @@
     </div>
 
 
-
+<script data-main="dist/js/main" src="dist/js/libs/require.js"></script>
 </body>
 
 </html>

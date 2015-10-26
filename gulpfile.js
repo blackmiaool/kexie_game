@@ -32,8 +32,8 @@ gulp.task('less', function () {
         .pipe(gulp.dest('dist/css')).pipe(livereload());
 });
 gulp.task('mv-dist', function () {
-    return gulp.src('js/libs/*.js')
-        .pipe(gulp.dest('dist/js/libs/'));
+    return gulp.src('libs/**/*.*')
+        .pipe(gulp.dest('dist/'));
 });
 gulp.task('es6', function () {
     var e = babel({
@@ -44,7 +44,7 @@ gulp.task('es6', function () {
         gutil.log(ee);
         e.end();
     });
-    return gulp.src('js/*.js')
+    return gulp.src('js/**/*.js')
         .pipe(cached("es6"))
         .pipe(e)
         .pipe(gulp.dest('dist/js'));
