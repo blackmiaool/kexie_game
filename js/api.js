@@ -1,6 +1,5 @@
 var fade_time = 100
 var text_time = 100
-var scene_fade_time = 1000
 var section_onShow = {}
 var lua_arg = []
 var js_arg = {}
@@ -119,14 +118,7 @@ function local_rm(a) {
 }
 
 
-function clone(myObj) {
-    if (typeof (myObj) != 'object') return myObj;
-    if (myObj == null) return myObj;
-    var myNewObj = new Object();
-    for (var i in myObj)
-        myNewObj[i] = clone(myObj[i]);
-    return myNewObj;
-}
+
 
 rnd.today = new Date();
 rnd.seed = rnd.today.getTime();
@@ -748,43 +740,7 @@ function find_index(array, key, value) {
 
 
 
-function Danmu() {
-    this.label = $("<h4 class='danmu'></h4>")
 
-    this.label.css("position", "absolute")
-    this.put = function (text) {
-        // log("put " + text)
-        // log(this.label.length);
-        if ($(".container .danmu").length > 0) {
-            $($(".container .danmu")[$(".container .danmu").length - 1]).after(this.label)
-        } else {
-            $(".container").append(this.label)
-        }
-
-
-        this.label.html(text);
-        var a = this.label.css("width")
-        this.label.css("width", parseInt(a) * 1.5 + "px");
-
-        // this.label.css("width","200px")
-        this.label.css("z-index", "100000")
-        this.label.css("left", parseInt($("body").css("width")) * 1.2 + "px");
-        // this.label.css("height", "40px");
-        this.label.animate({
-            left: parseInt($("body").css("width")) * 0.5 + "px"
-        }, 500, "easeOutSine");
-        this.label.animate({
-            left: parseInt($("body").css("width")) * 0.4 + "px"
-        }, 3000, "linear");
-        this.label.animate({
-            left: parseInt($("body").css("width")) * (-0.2) + "px"
-        }, 500, "easeInSine", function () {
-            this.remove()
-        });
-
-    }
-
-}
 
 
 function miao_danmu(data, color) {

@@ -129,8 +129,8 @@ gulp.task('reload', function () {
 
 });
 livereload.listen();
-gulp.watch('**/*.less', ['less']);
-gulp.watch('js/*.js', ['es6']);
+gulp.watch('**/**/*.less', ['less']);
+gulp.watch('js/**/*.js', ['es6']);
 gulp.watch('index.html', ['reload']);
 gulp.task('mediawiki', function () {
     return gulp.src('src/mediawiki/mobile/less/**/*.less')
