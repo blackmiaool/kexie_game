@@ -185,7 +185,7 @@ var pp = {
         color: color(255, 255, 255),
     },
 }
-var res_json_data="<!-- inject: ../dist/data.json -->";
+var res_json_data= <!-- inject: ../dist/data.json--> ;
 for (i in pp) {
     res[i] = pp[i].half
 }

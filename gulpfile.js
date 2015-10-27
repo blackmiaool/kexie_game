@@ -1,23 +1,24 @@
 var gulp = require('gulp');
-var less = require('gulp-less');
+
 var path = require('path');
 var replace = require('gulp-replace')
 var livereload = require('gulp-livereload');
 var _ = require('underscore');
-var template = require('angular-template');
+
 var fs = require("fs");
 var shell = require('gulp-shell')
 var node_less = require('less');
-var babel = require('gulp-babel');
+
 var copy = require('gulp-copy');
 var concat = require("gulp-concat");
 var md2json = require("gulp-markdown-table-to-json");
-var beautify = require('gulp-beautify');
+
 var rename = require("gulp-rename");
 var cached = require("gulp-cached")
 var gutil = require('gulp-util');
 var injectfile = require('gulp-inject-file')
 gulp.task('less', function () {
+    var less = require('gulp-less');
     var e = less({
         paths: [path.join(__dirname, 'less', 'includes')]
     });
@@ -38,13 +39,14 @@ gulp.task('mv-dist', function () {
 });
 gulp.task('inject', function () {
     var src = 'js/res.js';
-    var folder = 'js/';
+    var folder = 'dist/js/';
     return gulp.src(src)
         .pipe(injectfile({
             pattern: '<!--\\sinject:<filename>-->'
         })).pipe(gulp.dest(folder));
 });
 gulp.task('es6', ['inject'], function () {
+    var babel = require('gulp-babel');
     var e = babel({
         compact: false,
         optional: ['runtime']
@@ -60,12 +62,14 @@ gulp.task('es6', ['inject'], function () {
 });
 
 gulp.task('md', function () {
+    var beautify = require('gulp-beautify');
     return gulp.src('README.md').pipe(md2json()).
     pipe(beautify()).pipe(rename("dist/data.json")).pipe(gulp.dest("."))
 })
 
 
 gulp.task("injectHeader", function () {
+    var template = require('angular-template');
     var tmpl = fs.readFileSync('src/theme/kxheader.html', "utf8");
     var header_less = fs.readFileSync('src/theme/kx-header.less', "utf8");
     var header_style = ""
