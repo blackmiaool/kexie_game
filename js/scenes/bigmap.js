@@ -1,4 +1,4 @@
-define(["scene"],function(){
+define(["sys","libs/angular.min"],function(sys,angular){
     function Bigmap_scene() {
     this.name = "bigmap";
     this.init = function () {}

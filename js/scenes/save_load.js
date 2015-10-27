@@ -1,5 +1,5 @@
 var backto;
-define(["scene"],function(){
+define(["sys","libs/angular.min"],function(sys,angular){
 function Save_load_scene() {
     this.name = "save_load";
 

@@ -16,6 +16,7 @@ var beautify = require('gulp-beautify');
 var rename = require("gulp-rename");
 var cached = require("gulp-cached")
 var gutil = require('gulp-util');
+var injectfile = require('gulp-inject-file')
 gulp.task('less', function () {
     var e = less({
         paths: [path.join(__dirname, 'less', 'includes')]
@@ -35,7 +36,15 @@ gulp.task('mv-dist', function () {
     return gulp.src('libs/**/*.*')
         .pipe(gulp.dest('dist/'));
 });
-gulp.task('es6', function () {
+gulp.task('inject', function () {
+    var src = 'js/res.js';
+    var folder = 'js/';
+    return gulp.src(src)
+        .pipe(injectfile({
+            pattern: '<!--\\sinject:<filename>-->'
+        })).pipe(gulp.dest(folder));
+});
+gulp.task('es6', ['inject'], function () {
     var e = babel({
         compact: false,
         optional: ['runtime']
@@ -51,7 +60,8 @@ gulp.task('es6', function () {
 });
 
 gulp.task('md', function () {
-    return gulp.src('README.md').pipe(md2json()).pipe(beautify()).pipe(rename("dist/data.json")).pipe(gulp.dest("."))
+    return gulp.src('README.md').pipe(md2json()).
+    pipe(beautify()).pipe(rename("dist/data.json")).pipe(gulp.dest("."))
 })
 
 

@@ -1,4 +1,4 @@
-define(["scene"],function(){
+define(["sys","libs/angular.min"],function(sys,angular){
 function Home_scene() {
     this.name = "home2";
     this.init = function () {
@@ -304,7 +304,7 @@ var tab_making_collapseing = false;
 var tab_make_controller_scope;
 
 
-angular.module('home_app', ["ngAnimate"])
+angular.module('home_app')
     //    .controller("danmu_controller", function ($scope) {
     //        $scope.data = []
     //        var danmu_list = []

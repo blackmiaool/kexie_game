@@ -185,6 +185,7 @@ var pp = {
         color: color(255, 255, 255),
     },
 }
+var res_json_data="<!-- inject: ../dist/data.json -->";
 for (i in pp) {
     res[i] = pp[i].half
 }
@@ -341,26 +342,3 @@ function load_object(key) {
     return JSON.parse(localStorage.getItem(key))
 }
 
-
-
-// var xmlhttp = new XMLHttpRequest();
-// var url = "http://localhost:8000/README.md";
-
-// xmlhttp.onreadystatechange = function() {
-//     if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
-//         var myArr = JSON.parse(xmlhttp.responseText);
-//         myFunction(myArr);
-//     }
-// }
-// xmlhttp.open("GET", url, true);
-// xmlhttp.send();
-
-// function myFunction(arr) {
-//     var out = "";
-//     var i;
-//     for(i = 0; i < arr.length; i++) {
-//         out += '<a href="' + arr[i].url + '">' + 
-//         arr[i].display + '</a><br>';
-//     }
-//     document.getElementById("id01").innerHTML = out;
-// }

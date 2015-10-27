@@ -1,10 +1,24 @@
-define(function () {
+console.log('ddd') 
+define(["libs/angular.min"],function (angular) {
     var section_running;
-    var scene_list = [];
+    var scenes = {};
     var scene_fade_time = 1000;
+    console.log("sss")
+    angular.module('home_app', ["ngAnimate"]);
     var exports = {
+        Scene: function Scene(id, dom_id, init_callback, pre_enter_callback, enter_callback) {
+            this.id = id;
+            this.dom_id = dom_id;
+            this.init = init_callback;
+            this.pre_enter = pre_enter_callback;
+            this.enter = enter_callback;
+            scenes[id] = this;
+            if (this.init) {
+                this.init();
+            }
+        },
         current_scene: {},
-        scene_list,
+        scenes,
         to_scene: target => {
             var args = arguments;
             Array.prototype.shift.call(arguments, 0)
@@ -12,7 +26,7 @@ define(function () {
                 return;
             }
             if (typeof (target) == "string") {
-                target = scene_list[target];
+                target = scenes[target];
             } else if (typeof (target) == "object") {
                 target = target;
             } else {
@@ -123,8 +137,8 @@ define(function () {
         put_danmu: (text) => {
             var label = $("<h4 class='danmu'></h4>");
             label.css("position", "absolute")
-            
-            
+
+
             if ($(".container .danmu").length > 0) {
                 $($(".container .danmu")[$(".container .danmu").length - 1]).after(label)
             } else {
