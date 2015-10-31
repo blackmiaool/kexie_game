@@ -1,11 +1,16 @@
-define(["sys","libs/angular.min"], function (sys,angular) {
+define(["sys", "angular","res"], function (sys, angular,res) {
     var exports;
     var preload_bar = $("#preload_progress_bar");
     var scene = new sys.Scene("preload", "section_preload", function () {}, pre_enter, function () {})
-
+    var images = []
     function pre_enter() {
         var res_sum = 0
         preload_set(0, res_sum)
+
+        function preload_set(a, b) {
+            preload_bar.text("资源加载中 " + a + "/" + b)
+            preload_bar.css("width", a / b * 100 + '%')
+        }
         for (var i in res) {
             res_sum++;
             var name = res[i];
@@ -18,16 +23,13 @@ define(["sys","libs/angular.min"], function (sys,angular) {
             images[i].onload = function () {
                 load_cnt++;
 
-                function preload_set(a, b) {
-                    preload_bar.text("资源加载中 " + a + "/" + b)
-                    preload_bar.css("width", a / b * 100 + '%')
-                }
+
                 preload_set(load_cnt, res_sum)
             }
         }
-        for (var i in sys_text_files) {
-            sys.readTextFile(sys_text_files[i]);
-        }
+//        for (var i in sys_text_files) {
+//            sys.readTextFile(sys_text_files[i]);
+//        }
         var config_json_load_fnish = false;
         $.getJSON("config.json", function (data) {
             sys.config = data;
@@ -70,7 +72,7 @@ define(["sys","libs/angular.min"], function (sys,angular) {
     }
     return exports;
 
-    
+
 })
 
 function developer_set() {

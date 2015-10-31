@@ -1,9 +1,10 @@
-console.log('ddd') 
-define(["libs/angular.min"],function (angular) {
+console.log('ddd')
+define(["angular"], function (angular) {
     var section_running;
     var scenes = {};
     var scene_fade_time = 1000;
-    console.log("sss")
+    var current_scene={};
+    console.log("step1");
     angular.module('home_app', ["ngAnimate"]);
     var exports = {
         Scene: function Scene(id, dom_id, init_callback, pre_enter_callback, enter_callback) {
@@ -17,7 +18,7 @@ define(["libs/angular.min"],function (angular) {
                 this.init();
             }
         },
-        current_scene: {},
+        current_scene: current_scene,
         scenes,
         to_scene: target => {
             var args = arguments;
@@ -131,9 +132,7 @@ define(["libs/angular.min"],function (angular) {
             zoom_auto();
             window.addEventListener("resize", zoom_auto, false);
         },
-        color: (r, g, b) => {
-            return "rgb(" + r + "," + g + "," + b + ")"
-        },
+        
         put_danmu: (text) => {
             var label = $("<h4 class='danmu'></h4>");
             label.css("position", "absolute")

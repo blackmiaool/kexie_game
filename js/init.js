@@ -1,5 +1,6 @@
 
-define(["scenes/home2", "scenes/bigmap", "scenes/chat", "scenes/cover", "scenes/preload", "scenes/save_load"], function () {
+define(["scenes/home2", "scenes/bigmap", "scenes/chat", "scenes/cover", "scenes/preload", "scenes/save_load","sys"], function () {
+    var sys=require("sys")
     var exports = {
         game_enter: function () {
             sys.zoom_and_developer_init();

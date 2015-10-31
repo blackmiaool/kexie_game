@@ -3,25 +3,36 @@
         baseUrl: "dist/js",
         paths: {
             jquery: "libs/jquery.min",
-
+            angular:"libs/angular.min",
         },
         sys_paths: {
             scene: "scene",
             sys: "sys",
+            common:"common"
         },
-        map: {}
+        map: {},
+        shim: {
+            "angular": {
+                //These script dependencies should be loaded before loading
+                //backbone.js
+                deps: ['jquery'],
+                //Once loaded, use the global 'Backbone' as the
+                //module value.
+                exports: 'angular'
+            },
+        }
     }
 
     for (var i in config.sys_paths) {
-        config.paths[i] = "sys/" + config.sys_paths[i];
+        config.paths[i] = "system/" + config.sys_paths[i];
     }
-    delete config.sys_paths;
+    delete config.sys_paths; 
     console.log(config);
     requirejs.config(config);
 })()
 
 
-requirejs(["jquery", "sys", "init", "libs/angular.min"], function ($, sys, init, angular) {
+requirejs(["jquery", "sys", "init", "angular"], function ($, sys, init, angular) {
     console.log("miao")
     console.log(init);
     setTimeout(function () {

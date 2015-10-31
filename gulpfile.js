@@ -37,15 +37,7 @@ gulp.task('mv-dist', function () {
     return gulp.src('libs/**/*.*')
         .pipe(gulp.dest('dist/'));
 });
-gulp.task('inject', function () {
-    var src = 'js/res.js';
-    var folder = 'dist/js/';
-    return gulp.src(src)
-        .pipe(injectfile({
-            pattern: '<!--\\sinject:<filename>-->'
-        })).pipe(gulp.dest(folder));
-});
-gulp.task('es6', ['inject'], function () {
+gulp.task('es6',  function () {
     var babel = require('gulp-babel');
     var e = babel({
         compact: false,
@@ -57,8 +49,11 @@ gulp.task('es6', ['inject'], function () {
     });
     return gulp.src('js/**/*.js')
         .pipe(cached("es6"))
+        .pipe(injectfile({
+            pattern: '<!--\\sinject:<filename>-->'
+        }))
         .pipe(e)
-        .pipe(gulp.dest('dist/js'));
+        .pipe(gulp.dest('dist/js')).pipe(livereload());
 });
 
 gulp.task('md', function () {
@@ -143,7 +138,7 @@ gulp.task('reload', function () {
 
 });
 livereload.listen();
-gulp.watch('**/**/*.less', ['less']);
+gulp.watch('less/**/*.less', ['less']);
 gulp.watch('js/**/*.js', ['es6']);
 gulp.watch('index.html', ['reload']);
 gulp.task('mediawiki', function () {

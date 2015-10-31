@@ -8,8 +8,11 @@ define(function () {
                 myNewObj[i] = clone(myObj[i]);
             return myNewObj;
         },
+        color: (r, g, b) => {
+            return "rgb(" + r + "," + g + "," + b + ")"
+        },
     }
-    var g = function (str) {
+    exports.g = function (str) {
         return "res/" + str
     }
     return exports;

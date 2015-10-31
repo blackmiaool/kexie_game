@@ -1,4 +1,4 @@
-define(["sys","libs/angular.min"], function (sys,angular) {
+define(["sys","angular"], function (sys,angular) {
     function Cover_scene() {
         this.name = "cover";
         this.init = function () {

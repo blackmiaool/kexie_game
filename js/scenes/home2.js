@@ -1,4 +1,4 @@
-define(["sys","libs/angular.min"],function(sys,angular){
+define(["sys","angular"],function(sys,angular){
 function Home_scene() {
     this.name = "home2";
     this.init = function () {

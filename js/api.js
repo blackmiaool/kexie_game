@@ -178,7 +178,7 @@ var bg_fadein = function (img, time) {
 
 
 
-var images = []
+
 
 
 
