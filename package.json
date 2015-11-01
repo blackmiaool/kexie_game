@@ -14,6 +14,7 @@
     "gulp-cached": "^1.1.0",
     "gulp-concat": "^2.6.0",
     "gulp-copy": "0.0.2",
+    "gulp-header-footer": "0.0.3",
     "gulp-htmlmin": "~1.1.4",
     "gulp-inject-file": "0.0.14",
     "gulp-jsmin": "~0.1.5",
@@ -27,6 +28,7 @@
     "gulp-template": "~3.0.0",
     "gulp-util": "^3.0.7",
     "less": "~2.5.3",
+    "merge-stream": "^1.0.0",
     "underscore": "~1.8.3"
   },
   "scripts": {

@@ -78,19 +78,7 @@ var combine = []
 var item = []
 var items = {}
 var quest = []
-var courses = [];
-for (var i = 0; i <= 4; i++) //term
-{
-    courses[i] = []
-    for (var j = 0; j <= 20; j++) //weeks
-    {
-        courses[i][j] = [];
-        for (var k = 0; k <= 7; k++) //days
-        {
-            courses[i][j][k] = {};
-        }
-    }
-}
+
 
 for (var i in combine) {
     combine[i].product = [];
@@ -105,11 +93,8 @@ for (var i in combine) {
 //    item[i].cnt = 0;
 //}
 
-function md_trim(str) {
-    return str.replace(/(^\s+)|(\s+$)/g, "");
-}
+
 var section_onStart = []
-var markdown_handle_finish = false;
 
 function outf(text) { 
     console.warning(text)

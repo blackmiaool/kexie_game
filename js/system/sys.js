@@ -1,10 +1,9 @@
-console.log('ddd')
-define(["angular"], function (angular) {
+define(["angular","dbg"], function (angular) {
+    
     var section_running;
     var scenes = {};
     var scene_fade_time = 1000;
     var current_scene={};
-    console.log("step1");
     angular.module('home_app', ["ngAnimate"]);
     var exports = {
         Scene: function Scene(id, dom_id, init_callback, pre_enter_callback, enter_callback) {
@@ -26,14 +25,18 @@ define(["angular"], function (angular) {
             if (section_running == true) {
                 return;
             }
+            console.log(scenes)
             if (typeof (target) == "string") {
+                console.log("fff")
                 target = scenes[target];
             } else if (typeof (target) == "object") {
+                console.log("sss")
                 target = target;
             } else {
+                console.log("ddd")
                 console.error("bad target");
             }
-
+            console.log(target)
             function call_enter(args) {
                 setTimeout(function () {
                     if (target.enter) {

@@ -1,176 +1,173 @@
-define(["sys","angular"],function(sys,angular){
-function Home_scene() {
-    this.name = "home2";
-    this.init = function () {
+
+var scene = new sys.Scene("home", "section_home", undefined, function () {
+    
+    var section = $("#section_home")
+    var tabs = {};
+
+    updt_all();
+    tabs_updt();
+    prop_updt();
+
+    function prop_updt() {
+        $(".prop-set .prop-value").css("left", "-97px")
+        var tab_div = $("#prop .prop-set[is-first=true]");
+
+        var i = 0;
+        var values = []
+        var index = 0;
+        while (tab_div.length != 0) {
+
+            // console.log(tab_div);
+
+            var value = tab_div.children(".prop-value")
+            values[values.length] = value;
+
+            // console.log(value);
+
+
+            setTimeout(function () {
+                values[index].animate({
+                    left: '0px'
+                });
+                index++;
+            }, i * 100)
+            i++;
+            tab_div = tab_div.next();
+        }
+    }
+
+    function tab_item_updt() {
 
     }
-    this.id = "section_home2";
 
-    this.pre_enter = function () {
-        var section = $("#section_home")
-        var tabs = {};
+    function tab_quest_updt() {
 
-        updt_all();
-        tabs_updt();
-        prop_updt();
-
-        function prop_updt() {
-            $(".prop-set .prop-value").css("left", "-97px")
-            var tab_div = $("#prop .prop-set[is-first=true]");
-
-            var i = 0;
-            var values = []
-            var index = 0;
-            while (tab_div.length != 0) {
-
-                // console.log(tab_div);
-
-                var value = tab_div.children(".prop-value")
-                values[values.length] = value;
-
-                // console.log(value);
+    }
 
 
-                setTimeout(function () {
-                    values[index].animate({
-                        left: '0px'
-                    });
-                    index++;
-                }, i * 100)
-                i++;
-                tab_div = tab_div.next();
-            }
-        }
+    function tab_store_updt() {
 
-        function tab_item_updt() {
+    }
 
-        }
-
-        function tab_quest_updt() {
-
-        }
-
-
-        function tab_store_updt() {
-
-        }
-
-        function tab_teammate_updt() {
-            var li_index = 0;
-            var first = true;
-            var text_head_width = 50;
-            var data = [{
-                head: "数字",
-                value: 33
+    function tab_teammate_updt() {
+        var li_index = 0;
+        var first = true;
+        var text_head_width = 50;
+        var data = [{
+            head: "数字",
+            value: 33
         }, {
-                head: "模拟",
-                value: 25
+            head: "模拟",
+            value: 25
         }, {
-                head: "效率",
-                value: 63
+            head: "效率",
+            value: 63
         }, {
-                head: "体力",
-                value: 73
+            head: "体力",
+            value: 73
         }, {
-                head: "节操",
-                value: 93
+            head: "节操",
+            value: 93
         }];
-            //        console.log()
-            //        var width = parseInt($(".chart").css("width")) - 15,
-            var width = 430,
+        //        console.log()
+        //        var width = parseInt($(".chart").css("width")) - 15,
+        var width = 430,
+            barHeight = 35,
+            gap = 10;
+
+        var x = d3.scale.linear().domain([0, 105]).range([0, width - text_head_width]);
+
+        var chart = d3.select(".chart").attr("height", (barHeight) * data.length);
+
+        var bar = chart.selectAll("g").data(data).enter().append("g")
+            .attr("transform", function (d, i) {
+                return "translate(0," + i * barHeight + ")";
+            });
+
+        bar.append("rect").data(data).attr("x", text_head_width).attr("width", "0px").attr("height", barHeight - gap)
+
+        bar.append("text").attr("x", text_head_width).attr("y", (barHeight - gap) / 2).attr("dy", ".35em").attr("kind", "value")
+
+        bar.append("text").attr("kind", "head").attr("x", 45).attr("y", (barHeight - gap) / 2).attr("dy", ".35em").text(function (d) {
+            return d.head;
+        });
+        $("#carousel-teammate-generic").addClass("slide")
+
+
+        function carousel_change(event) {
+            var index;
+            if (event === true) {
+                index = $("#tab-teammate .carousel-inner [first=true]")
+            } else {
+                index = $(event.relatedTarget);
+            }
+
+            var text_head_width = 50;
+            var current_pp = res.pp[index.attr("name")]
+            var width = 330,
                 barHeight = 35,
                 gap = 10;
-
-            var x = d3.scale.linear().domain([0, 105]).range([0, width - text_head_width]);
-
-            var chart = d3.select(".chart").attr("height", (barHeight) * data.length);
-
-            var bar = chart.selectAll("g").data(data).enter().append("g")
-                .attr("transform", function (d, i) {
-                    return "translate(0," + i * barHeight + ")";
-                });
-
-            bar.append("rect").data(data).attr("x", text_head_width).attr("width", "0px").attr("height", barHeight - gap)
-
-            bar.append("text").attr("x", text_head_width).attr("y", (barHeight - gap) / 2).attr("dy", ".35em").attr("kind", "value")
-
-            bar.append("text").attr("kind", "head").attr("x", 45).attr("y", (barHeight - gap) / 2).attr("dy", ".35em").text(function (d) {
-                return d.head;
-            });
-            $("#carousel-teammate-generic").addClass("slide")
-
-
-            function carousel_change(event) {
-                var index;
-                if (event === true) {
-                    index = $("#tab-teammate .carousel-inner [first=true]")
-                } else {
-                    index = $(event.relatedTarget);
-                }
-
-                var text_head_width = 50;
-                var current_pp = pp[index.attr("name")]
-                var width = 330,
-                    barHeight = 35,
-                    gap = 10;
-                // console.log(current_pp.name)
-                //console.log($("#tab-teammate .carousel-inner .item.active").attr("name"))
-                var data = [current_pp["数字"], current_pp["模拟"], current_pp["效率"], current_pp["体力"], current_pp["节操"]]
-                if (current_pp.skill != undefined) {
-                    $("#tab-teammate-skill-content").html(current_pp.skill)
-                }
-                d3.selectAll(".chart g rect")
-                    .data(data)
-                    .transition()
-                    .duration(1000)
-                    .ease("cubic-out")
-                    .attr("width", function (d, i) {
-                        // console.log("d=" + d + "i=" + i)
-                        return x(d + 5);
-                    })
-                    .attr("opacity", function (d, i) {
-                        return d / 100
-                    })
-
-                d3.selectAll(".chart g text[kind=value]")
-
-                .data(data)
-                    .text(function (d) {
-                        return d;
-                    })
-                    .transition()
-                    .duration(2000)
-                    .ease("cubic-out")
-                    .attr("x", function (d) {
-                        return x(d + 5) - 5 + text_head_width;
-                    })
+            // console.log(current_pp.name)
+            //console.log($("#tab-teammate .carousel-inner .item.active").attr("name"))
+            var data = [current_pp["数字"], current_pp["模拟"], current_pp["效率"], current_pp["体力"], current_pp["节操"]]
+            if (current_pp.skill != undefined) {
+                $("#tab-teammate-skill-content").html(current_pp.skill)
             }
-            $('#carousel-teammate-generic ').on('slide.bs.carousel', function (a, b) {
-                carousel_change(a, b)
-                var collapse = $("#teammate-skill-heading")
-                collapse.collapse('hide');
-                collapse.on('hidden.bs.collapse', function () {
-                    collapse.collapse('show');
+            d3.selectAll(".chart g rect")
+                .data(data)
+                .transition()
+                .duration(1000)
+                .ease("cubic-out")
+                .attr("width", function (d, i) {
+                    // console.log("d=" + d + "i=" + i)
+                    return x(d + 5);
                 })
+                .attr("opacity", function (d, i) {
+                    return d / 100
+                })
+
+            d3.selectAll(".chart g text[kind=value]")
+
+            .data(data)
+                .text(function (d) {
+                    return d;
+                })
+                .transition()
+                .duration(2000)
+                .ease("cubic-out")
+                .attr("x", function (d) {
+                    return x(d + 5) - 5 + text_head_width;
+                })
+        }
+        $('#carousel-teammate-generic ').on('slide.bs.carousel', function (a, b) {
+            carousel_change(a, b)
+            var collapse = $("#teammate-skill-heading")
+            collapse.collapse('hide');
+            collapse.on('hidden.bs.collapse', function () {
+                collapse.collapse('show');
             })
+        })
 
-            carousel_change(true);
-        }
-
-        function tab_make_updt() {
-
-
-        }
-
-        function tabs_updt() {
-            tab_item_updt();
-            tab_quest_updt();
-            tab_store_updt();
-            tab_teammate_updt();
-            tab_make_updt();
-        }
+        carousel_change(true);
     }
-}
+
+    function tab_make_updt() {
+
+
+    }
+
+    function tabs_updt() {
+        tab_item_updt();
+        tab_quest_updt();
+        tab_store_updt();
+        tab_teammate_updt();
+        tab_make_updt();
+    }
+}, function () {
+
+})
+
+
 
 
 function tab_table_create(data) {
@@ -268,8 +265,8 @@ function updt_all() {
 function get_item_avaliable(name) {
 
     var num_can_make = 100000;
-    var material = combine[find_index(combine, "name", name)].material
-    var instrument = combine[find_index(combine, "name", name)].instrument
+    var material = combine[common.find_index(combine, "name", name)].material
+    var instrument = combine[common.find_index(combine, "name", name)].instrument
     for (var i in material) {
 
         var j = material[i]
@@ -343,10 +340,10 @@ angular.module('home_app')
 
         $scope.data = {};
 
-        for (var i in pp) {
-            if (pp[i].tag) {
-                pp[i].visiability = true;
-                $scope.data[i] = pp[i];
+        for (var i in res.pp) {
+            if (res.pp[i].tag) {
+                res.pp[i].visiability = true;
+                $scope.data[i] = res.pp[i];
             }
 
         }
@@ -382,14 +379,15 @@ angular.module('home_app')
                     return "error";
                 }
             }
-            for (var i = 0; i < the_period_of_day.length; i++) {
-                var value = courses[v.time.term][v.time.week][v.time.week_day_index][the_period_of_day[i]];
+            for (var i = 0; i < res.the_period_of_day.length; i++) {
+                //                console.log(courses)
+                var value = courses[v.time.term][v.time.week][v.time.week_day_index][res.the_period_of_day[i]];
                 if (value) {
                     $scope.class.push({
-                        name: the_period_of_day[i],
+                        name: res.the_period_of_day[i],
                         data: value,
                         index: i,
-                        state: get_class_state($scope.arrange[v.time.week_day_index][the_period_of_day[i]])
+                        state: get_class_state($scope.arrange[v.time.week_day_index][res.the_period_of_day[i]])
                     });
                 }
             }
@@ -397,11 +395,11 @@ angular.module('home_app')
         $scope.week_name = ["上午", "下午", "晚上"]
 
 
-        $scope.get_left_points = get_left_points;
+        $scope.get_left_points = v.get_left_points;
 
         $scope.get_period = function () {
             //            console.log("get_period")
-            return the_period_of_day[v.time.period]
+            return res.the_period_of_day[v.time.period]
 
         }
 
@@ -411,7 +409,7 @@ angular.module('home_app')
         $scope.updt_button_state();
         $scope.updt_period = function () {
 
-            if ($scope.arrange[v.time.week_day_index][the_period_of_day[v.time.period]]) {
+            if ($scope.arrange[v.time.week_day_index][res.the_period_of_day[v.time.period]]) {
                 v.time.period++;
                 $scope.updt_period();
             }
@@ -441,7 +439,7 @@ angular.module('home_app')
         }
         $("#home-tabs>.tab-content>.tab-pane").css("visibility", "visible")
         $("#home-tabs>.tab-content>.tab-pane").hide();
-        var current_tab = load_object("current_tab")
+        var current_tab = common.load_object("current_tab")
         if (current_tab != undefined) {
             //            $("#home-main-tab a[mytext='" + current_tab.content + "']").tab("show");
             $(current_tab.content.href).show();
@@ -466,7 +464,7 @@ angular.module('home_app')
             $(href).show();
             $scope.tab_selecting = key;
 
-            save_object("current_tab", {
+            common.save_object("current_tab", {
                 content: {
                     href: href,
                     key: key
@@ -630,7 +628,7 @@ angular.module('home_app')
                         case "end":
                             go_on = false;
                             output_data = [];
-                            combine[find_index(combine, "name", current_combine)].product.push({
+                            combine[common.find_index(combine, "name", current_combine)].product.push({
                                 stability: 87,
                                 performance: 103
                             })
@@ -676,8 +674,8 @@ angular.module('home_app')
             $scope.updt++;
             $scope.value = combines[current_combine];
             var material = combines[current_combine].material;
-            //            $scope.value = combine[find_index(combine, "name", current_combine)];
-            //            var material = combine[find_index(combine, "name", current_combine)].material
+            //            $scope.value = combine[common.find_index(combine, "name", current_combine)];
+            //            var material = combine[common.find_index(combine, "name", current_combine)].material
             for (var i in material) {
 
                 var j = material[i]
@@ -819,7 +817,7 @@ angular.module('home_app')
             }
 
             if (!$("#tab-make-content").hasClass("in")) {
-                $scope.value = combine[find_index(combine, "name", name)];
+                $scope.value = combine[common.find_index(combine, "name", name)];
                 setTimeout(function () {
                     collapse.collapse('show');
                     $scope.$apply(function () {
@@ -835,7 +833,7 @@ angular.module('home_app')
 
 
                 $scope.$apply(function () {
-                    $scope.value = combine[find_index(combine, "name", name)];
+                    $scope.value = combine[common.find_index(combine, "name", name)];
                 })
                 setTimeout(function () {
                     collapse.collapse('show');
@@ -914,7 +912,7 @@ angular.module('home_app')
                     performance_need = target.data.performance;
                 }
                 var cnt = 0;
-                var products = combine[find_index(combine, "name", target.data.name)].product
+                var products = combine[common.find_index(combine, "name", target.data.name)].product
                 for (var i = 0; i < products.length; i++) {
                     if (products[i].stability > stability_need && products[i].performance > performance_need) {
                         cnt++;
@@ -936,7 +934,7 @@ angular.module('home_app')
                 var ret = target.data + " " + items[target.data].cnt + "/" + target.cnt;
                 return ret;
             case "combine_need":
-                var ret = target.data.name + " " + combine[find_index(combine, "name", target.data.name)].product.length + "/" + target.cnt;
+                var ret = target.data.name + " " + combine[common.find_index(combine, "name", target.data.name)].product.length + "/" + target.cnt;
                 return ret;
 
             }
@@ -1105,8 +1103,8 @@ angular.module('home_app')
         //            
         //        }
         //        $scope.class = ["凌晨", "微积分", "线性代数", "晚上", "午夜"];
-        var the_period_of_day = ["上午", "下午", "晚上", "午夜"]
-        $scope.the_period_of_day = the_period_of_day;
+        //         res.the_period_of_day = ["上午", "下午", "晚上", "午夜"]
+        $scope.the_period_of_day = res.the_period_of_day;
 
 
         var design_class = function () {
@@ -1251,7 +1249,7 @@ angular.module('home_app')
             end_day();
         }
 
-        //        if (local_load("Imdeveloper") == "true") {
+        //        if (local_load("dbg.imdeveloper") == "true") {
         //            setTimeout(function () {
         //                design_class()
         //            }, 100)
@@ -1328,4 +1326,3 @@ angular.module('home_app')
 
         }
     })
-})

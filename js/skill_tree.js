@@ -1,5 +1,5 @@
 //skill_tree=new SKILL_TREE_OBJ();
-define([],function(){
+define(["angular","v"],function(angular,v){
     
 var skill_tree;
 angular.module('home_app')

@@ -3,36 +3,49 @@
         baseUrl: "dist/js",
         paths: {
             jquery: "libs/jquery.min",
-            angular:"libs/angular.min",
+            angular: "libs/angular.min",
+            "angular-animate": "libs/angular-animate.min",
+            d3: "libs/d3.min",
+            bootstrap: "libs/bootstrap.min",
         },
         sys_paths: {
             scene: "scene",
             sys: "sys",
-            common:"common"
+            common: "common",
+            dbg: "dbg",
         },
         map: {},
         shim: {
             "angular": {
                 //These script dependencies should be loaded before loading
                 //backbone.js
-                deps: ['jquery'],
+                deps: ['jquery', 'd3', 'bootstrap'],
                 //Once loaded, use the global 'Backbone' as the
                 //module value.
                 exports: 'angular'
             },
+            "angular-animate": {
+                deps: ["angular"],
+            },
+            "d3": {
+                exports: 'd3'
+            },
+            "bootstrap": {
+                "deps": ['jquery']
+            }
         }
     }
 
     for (var i in config.sys_paths) {
         config.paths[i] = "system/" + config.sys_paths[i];
     }
-    delete config.sys_paths; 
+    delete config.sys_paths;
     console.log(config);
     requirejs.config(config);
 })()
 
 
-requirejs(["jquery", "sys", "init", "angular"], function ($, sys, init, angular) {
+requirejs(["jquery", "sys", "init", "angular", 'angular-animate'], function ($, sys, init, angular) {
     console.log("miao")
     console.log(init);
     setTimeout(function () {
@@ -42,10 +55,11 @@ requirejs(["jquery", "sys", "init", "angular"], function ($, sys, init, angular)
         })
     }, 300)
     $('#home-main-tab a').click(function (e) {
-            e.preventDefault(); //阻止a链接的跳转行为
-            $(this).tab('show'); //显示当前选中的链接及关联的content
-        })
-        //    $('[data-toggle="popover"]').popover();
+        e.preventDefault(); //阻止a链接的跳转行为
+        $(this).tab('show'); //显示当前选中的链接及关联的content
+    })
+    $('[data-toggle="popover"]').popover();
+
     function IsPC() {
         var userAgentInfo = navigator.userAgent;
         var Agents = ["Android", "iPhone",

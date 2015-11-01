@@ -1,4 +1,4 @@
-define(["sys","angular"], function (sys,angular) {
+
     function Cover_scene() {
         this.name = "cover";
         this.init = function () {
@@ -77,4 +77,3 @@ define(["sys","angular"], function (sys,angular) {
 
         }
     }
-})

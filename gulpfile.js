@@ -17,6 +17,8 @@ var rename = require("gulp-rename");
 var cached = require("gulp-cached")
 var gutil = require('gulp-util');
 var injectfile = require('gulp-inject-file')
+var headerfooter = require('gulp-header-footer');
+var merge = require('merge-stream');
 gulp.task('less', function () {
     var less = require('gulp-less');
     var e = less({
@@ -34,10 +36,19 @@ gulp.task('less', function () {
         .pipe(gulp.dest('dist/css')).pipe(livereload());
 });
 gulp.task('mv-dist', function () {
-    return gulp.src('libs/**/*.*')
+    return gulp.src('libs/**/*')
+        .pipe(rename(function (path) {
+        if(path.extname){
+           path.dirname += "/libs"; 
+        }
+            
+//            path.basename += "-goodbye";
+//            path.extname = ".md"
+        console.log(path);
+        }))
         .pipe(gulp.dest('dist/'));
 });
-gulp.task('es6',  function () {
+gulp.task('es6', function () {
     var babel = require('gulp-babel');
     var e = babel({
         compact: false,
@@ -47,7 +58,16 @@ gulp.task('es6',  function () {
         gutil.log(ee);
         e.end();
     });
-    return gulp.src('js/**/*.js')
+    var scenes = gulp.src('js/scenes/*.js', {
+        base: 'js'
+    }).pipe(headerfooter({
+        header: 'define(["sys","angular","v","common","res"],function(sys,angular,v,common,res){',
+        footer: '})',
+        filter: function (file) {
+            return true;
+        }
+    }));
+    return merge(scenes, gulp.src(['js/**/*.js', "!js/scenes/*.js"]))
         .pipe(cached("es6"))
         .pipe(injectfile({
             pattern: '<!--\\sinject:<filename>-->'

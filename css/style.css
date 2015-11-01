@@ -277,7 +277,7 @@ label {
 .prop-value {
     vertical-align: -3%;
     position: relative;
-    left: -97px;
+/*    left: -97px;*/
     /*    width: 100px;*/
     
     display: inline-block;

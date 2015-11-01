@@ -1,4 +1,4 @@
-define(["sys","angular"],function(sys,angular){
+
 function Chat_scene() {
     this.name = "chat";
     var lua_files = ["api.lua", "main.lua", "npc/npc.lua", "npc/chenjiong.lua", "npc/chenguo.lua", "start.lua", "nature_test.lua", "test.lua", "xuanjianghui.lua", "kexie_first.lua", "spot.lua", "end.lua"];
@@ -142,4 +142,4 @@ function Chat_scene() {
 
         
     }
-}})
+}

@@ -1,6 +1,7 @@
 @import "common.less";
 * {
-    cursor: url("@{res-folder}/cursor/normal.cur"), auto;
+    cursor: url("@{res-folder}/cursor/normal.cur"),
+    auto;
     -webkit-user-select: none;
     -moz-user-select: none;
     user-select: none;
@@ -12,12 +13,14 @@ h3,
 h4,
 h5,
 h6 {
-    cursor: url("@{res-folder}/cursor/text.cur"), auto;
+    cursor: url("@{res-folder}/cursor/text.cur"),
+    auto;
 }
 
 button,
 a {
-    cursor: url("@{res-folder}/cursor/link.cur"), auto;
+    cursor: url("@{res-folder}/cursor/link.cur"),
+    auto;
 }
 
 input,
@@ -33,7 +36,7 @@ label {
 }
 
 .section {
-    width: 960px; 
+    width: 960px;
     height: 540px;
     position: absolute;
 }
@@ -45,15 +48,15 @@ label {
         position: absolute;
         font-size: 20px;
     }
-}  
-  
+}
+
 .section#section_chat {
     #div-btn,
     #div-bg,
     #div-half,
     #div-text {
         position: relative;
-        top: 0px; 
+        top: 0px;
         height: 0px;
         border: none;
         /*text-align: center;*/
@@ -90,7 +93,7 @@ label {
     #div-btn {
         text-align: center;
     }
-    #div-bg img#background{
+    #div-bg img#background {
         width: 960px;
         height: 540px;
     }
@@ -193,7 +196,7 @@ label {
             .prop-value {
                 vertical-align: -3%;
                 position: relative;
-                left: -97px;
+                //                left: -97px;
                 /*    width: 100px;*/
                 display: inline-block;
                 text-align: center;
@@ -216,11 +219,12 @@ label {
         position: absolute;
         width: 100px;
         top: 100px;
-        left: 0px;
+        left: 30px;
         vertical-align: middle;
         margin-left: 0px;
         float: left;
         display: table-cell;
+        z-index: 1;
         &>button {
             text-align: center;
             background-color: steelblue;
@@ -276,11 +280,10 @@ label {
             margin: 0px;
             margin-top: 10px;
         }
-        #buy-tabs{
-                margin-bottom: 7px;
-            }
+        #buy-tabs {
+            margin-bottom: 7px;
+        }
         #store-tabs-content {
-            
             .tab-store-items {
                 font-size: 130%;
             }
@@ -299,7 +302,6 @@ label {
             .my-panel-heading {
                 /*padding: 2px;*/
                 font-size: 100%;
-  
                 &.selected {
                     background-color: steelblue;
                     color: #fff;
@@ -359,15 +361,15 @@ label {
         }
         .section-btn {
             margin: 9px;
-            width: 240px;
-            height: 141px;
+            width: 156px;
+            height: 100px;
             border-width: 2px;
             margin-top: 0px;
             div.des {
                 font-size: 25px;
             }
             div.glyphicon {
-                font-size: 50px;
+                font-size: 33px;
             }
         }
         .plan-right-label {
@@ -466,14 +468,14 @@ label {
     #home-tabs {
         position: absolute;
         margin: 0px;
-        width: 800px;
-        height: 480px;
-        right: 10px;
-        bottom: 10px;
+        //        width: 800px;
+        top:60px;
+        right: 20px;
+        left: 20px;
+        bottom: 20px;
         background-color: rgba(230, 230, 230, 0.7);
         .desk-frame {
             /*    position: absolute;*/
-            
             padding: 15px;
             border-color: rgba(51, 122, 183, 0.85);
             border-style: solid;
@@ -483,6 +485,22 @@ label {
             margin: 30px;
             margin-top: 50px;
             margin-bottom: 30px;
+        }
+        .tab-content{
+                margin-left: 91px;
+        }
+        #tab-plan {
+            #tab-plan-left {
+                 display: block;
+                text-align: center;
+                    margin-right: 200px;
+    margin-left: 200px;
+            }
+            #tab-plan-right {
+//                width: 26.2%;
+                width: 195px;
+                float: right;
+            }
         }
     }
     #tab-quest {
@@ -631,7 +649,7 @@ input.menu_btn,
 #div-danmu {
     position: relative;
     top: 40px;
-    z-index:1020;
+    z-index: 1020;
     div {
         /*  position: absolute;*/
         background-color: rgb(51, 122, 183);

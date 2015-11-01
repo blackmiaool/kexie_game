@@ -164,34 +164,7 @@
         <div class=" well desk-frame" id="home-tabs" style="display:inline-block;">
             <div class="tab-content">
                 <div ng-controller="tab_plan_controller" class="tab-pane" id="tab-plan" style="width:100%;overflow:hidden;">
-                    <div id="tab-plan-left" style="width:69.8%;float:left;">
-                        <button class="btn btn-primary  section-btn " ng-disabled="button_state" id="tab_plan_go_out_btn" ng-click="go_out()">
-                            <div class="glyphicon glyphicon-comment" aria-hidden="true"></div>
-                            <div class="des">外出</div>
-                        </button>
-                        <button class="btn btn-primary section-btn " ng-disabled="button_state" id="tab_plan_go_school_btn" ng-click="go_school()">
-                            <div class="glyphicon glyphicon-education" aria-hidden="true"></div>
-                            <div class="des">上课</div>
-                        </button>
-                        <button class="btn btn-primary section-btn " ng-disabled="button_state" id="tab_plan_make_btn" ng-click="make()">
-                            <div class="glyphicon glyphicon-wrench" aria-hidden="true"></div>
-                            <div class="des">制造</div>
-                        </button>
-                        <button class="btn btn-primary section-btn " ng-disabled="button_state" id="tab_plan_pass_day_btn" ng-click="study()">
-                            <div class="glyphicon glyphicon-book" aria-hidden="true"></div>
-                            <div class="des">自习</div>
-                        </button>
-                        <button class="btn btn-primary section-btn " ng-disabled="v.state.fatigue<=0||button_state" id="tab_plan_rest_btn" ng-click="rest()">
-                            <div class="glyphicon glyphicon-tower" aria-hidden="true"></div>
-                            <div class="des">休息</div>
-                        </button>
-                        <button class="btn btn-danger section-btn " id="tab_plan_pass_day_btn" ng-click="pass_day()">
-                            <div class="glyphicon glyphicon-bed" aria-hidden="true"></div>
-                            <div class="des">结束</div>
-                        </button>
-
-                    </div>
-                    <div id="tab-plan-right" style="width:30.2%;float:right;">
+                   <div id="tab-plan-right">
                         <div class="plan-right-block">
                             <label class="plan-right-label">剩余行动点数</label>
                             <label class="plan-right-value">{{get_left_points(updt)}}（{{get_period(updt)}}）</label>
@@ -267,6 +240,34 @@
                             </label>
                         </div>
                     </div>
+                    <div id="tab-plan-left">
+                        <button class="btn btn-primary  section-btn " ng-disabled="button_state" id="tab_plan_go_out_btn" ng-click="go_out()">
+                            <div class="glyphicon glyphicon-comment" aria-hidden="true"></div>
+                            <div class="des">外出</div>
+                        </button>
+                        <button class="btn btn-primary section-btn " ng-disabled="button_state" id="tab_plan_go_school_btn" ng-click="go_school()">
+                            <div class="glyphicon glyphicon-education" aria-hidden="true"></div>
+                            <div class="des">上课</div>
+                        </button>
+                        <button class="btn btn-primary section-btn " ng-disabled="button_state" id="tab_plan_make_btn" ng-click="make()">
+                            <div class="glyphicon glyphicon-wrench" aria-hidden="true"></div>
+                            <div class="des">制造</div>
+                        </button>
+                        <button class="btn btn-primary section-btn " ng-disabled="button_state" id="tab_plan_pass_day_btn" ng-click="study()">
+                            <div class="glyphicon glyphicon-book" aria-hidden="true"></div>
+                            <div class="des">自习</div>
+                        </button>
+                        <button class="btn btn-primary section-btn " ng-disabled="v.state.fatigue<=0||button_state" id="tab_plan_rest_btn" ng-click="rest()">
+                            <div class="glyphicon glyphicon-tower" aria-hidden="true"></div>
+                            <div class="des">休息</div>
+                        </button>
+                        <button class="btn btn-danger section-btn " id="tab_plan_pass_day_btn" ng-click="pass_day()">
+                            <div class="glyphicon glyphicon-bed" aria-hidden="true"></div>
+                            <div class="des">结束</div>
+                        </button>
+
+                    </div>
+                    
                 </div>
 
                 <div ng-controller="tab_teammate_controller" class="tab-pane" id="tab-teammate">

@@ -1,22 +1,33 @@
-define(["sys", "angular"], function (sys, angular) {
-    function Bigmap_scene() {
-        this.name = "bigmap";
-        this.init = function () {}
-        this.id = "section_bigmap";
-        this.pre_enter = function () {
-            $("#section_bigmap img").css("opacity", "1")
-        }
-        this.enter = function () {
-            //        L.execute("start(plot)")
-            $("#section_bigmap img").animate({
-                opacity: "0.7"
-            });
-        }
+    var scene = new sys.Scene("bigmap", "section_bigmap", undefined, function () {
+        $("#section_bigmap img").css("opacity", "1")
+    }, function () {
+        //        L.execute("start(plot)")
+        $("#section_bigmap img").animate({
+            opacity: "0.7"
+        });
+    })
+//
+//    function Bigmap_scene() {
+//        this.name = "bigmap";
+//        this.init = function () {}
+//        this.id = "section_bigmap";
+//        this.pre_enter =
+//            this.enter =
+//    }
+        var spots = [];
+
+    function spot_create(name, text, left, top, icon) {
+        spots.push({
+            class: text,
+            text: name,
+            left: left,
+            top: top,
+            icon: icon,
+        })
     }
-    console.log("step2");
     angular.module('home_app')
         .controller("bigmap_controller", function ($scope) {
-            $scope.get_left_points = get_left_points;
+            $scope.get_left_points = v.get_left_points;
             $scope.enter = function (spot) {
                 sys.to_scene("chat", spot);
             }
@@ -43,4 +54,3 @@ define(["sys", "angular"], function (sys, angular) {
                 sys.to_scene("home")
             }
         })
-})
