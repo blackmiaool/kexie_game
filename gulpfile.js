@@ -19,6 +19,16 @@ var gutil = require('gulp-util');
 var injectfile = require('gulp-inject-file')
 var headerfooter = require('gulp-header-footer');
 var merge = require('merge-stream');
+var yield_prefix = require('gulp-yield-prefix');
+var babel = require('gulp-babel');
+
+//gulp.task('yield',function(){
+//    return gulp.src('js/plot/*.js').pipe(yield_prefix(["tc","th","ts","tm",])).pipe(gulp.dest('js/plot/dist/'));
+//})
+gulp.task('yield', function () {
+    return gulp.src('js/plot/*.js').pipe(yield_prefix(["tc", "th", "ts", "tm", ])).pipe(gulp.dest('js/plot/dist/'));
+})
+
 gulp.task('less', function () {
     var less = require('gulp-less');
     var e = less({
@@ -38,42 +48,90 @@ gulp.task('less', function () {
 gulp.task('mv-dist', function () {
     return gulp.src('libs/**/*')
         .pipe(rename(function (path) {
-        if(path.extname){
-           path.dirname += "/libs"; 
-        }
-            
-//            path.basename += "-goodbye";
-//            path.extname = ".md"
-        console.log(path);
+            if (path.extname) {
+                path.dirname += "/libs";
+            }
+
+            //            path.basename += "-goodbye";
+            //            path.extname = ".md"
+            //        console.log(path);
         }))
         .pipe(gulp.dest('dist/'));
 });
-gulp.task('es6', function () {
-    var babel = require('gulp-babel');
-    var e = babel({
-        compact: false,
-        optional: ['runtime']
+gulp.task("plots", function () {
+    var babel_pipe = babel({
+        //        compact: false,
+        //        optional: ['runtime'],
+        presets: ['es2015'],
+        plugins: ["transform-runtime"],
     });
-    e.on('error', function (ee) {
+    babel_pipe.on('error', function (ee) {
         gutil.log(ee);
-        e.end();
+        babel_pipe.end();
     });
-    var scenes = gulp.src('js/scenes/*.js', {
-        base: 'js'
-    }).pipe(headerfooter({
-        header: 'define(["sys","angular","v","common","res"],function(sys,angular,v,common,res){',
-        footer: '})',
-        filter: function (file) {
-            return true;
-        }
-    }));
-    return merge(scenes, gulp.src(['js/**/*.js', "!js/scenes/*.js"]))
+    return gulp.src('js/plots/*.js', {
+            base: 'js'
+        })
+        .pipe(cached("plot"))
+        .pipe(babel_pipe)
+        .pipe(headerfooter({
+            header: 'define(["plot_common","res"],function(plot,res){',
+            footer: '\nreturn exports;})',
+            filter: function (file) {
+                return true;
+            }
+        }))
+        .pipe(cached("plots"))
+        .pipe(gulp.dest('dist/js'));
+})
+gulp.task("scenes", function () {
+    var babel_pipe = babel({
+        //        compact: false,
+        //        optional: ['runtime'],        
+        presets: ['es2015'],
+        plugins: ["transform-runtime"],
+    });
+    babel_pipe.on('error', function (ee) {
+        gutil.log(ee);
+        babel_pipe.end();
+    });
+    return gulp.src('js/scenes/*.js', {
+            base: 'js'
+        })
+        .pipe(headerfooter({
+            header: 'define(["sys","angular","v","common","res"],function(sys,angular,v,common,res){',
+            footer: '})',
+            filter: function (file) {
+                return true;
+            }
+        }))
+        .pipe(cached("scenes"))
+        .pipe(injectfile({
+            pattern: '<!--\\sinject:<filename>-->'
+        }))
+        .pipe(babel_pipe)
+        .pipe(gulp.dest('dist/js'))
+})
+gulp.task('es6', ["plots", "scenes"], function () {
+    var babel_pipe = babel({
+                compact: false,
+        presets: ['es2015'],
+        //        optional: ['runtime'],
+        plugins: ["transform-runtime"],
+ 
+    });
+    babel_pipe.on('error', function (ee) {
+        gutil.log(ee);
+        babel_pipe.end();
+    });
+    return gulp.src(['js/**/*.js', "!js/scenes/*.js", "!js/plots/*.js"])
         .pipe(cached("es6"))
         .pipe(injectfile({
             pattern: '<!--\\sinject:<filename>-->'
         }))
-        .pipe(e)
-        .pipe(gulp.dest('dist/js')).pipe(livereload());
+        .pipe(babel_pipe)
+        .pipe(gulp.dest('dist/js'))
+        .pipe(livereload());
 });
 
 gulp.task('md', function () {

@@ -1,6 +1,6 @@
 define(["angular","dbg"], function (angular) {
     
-    var section_running;
+    let section_running;
     var scenes = {};
     var scene_fade_time = 1000;
     var current_scene={};
@@ -173,3 +173,7 @@ define(["angular","dbg"], function (angular) {
 
     return exports;
 })
+function ttt(){
+    let a=1;
+    return a;
+}

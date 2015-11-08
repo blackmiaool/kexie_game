@@ -346,7 +346,8 @@ table {
     width: 100%;
 }
 #my_skill_tree_panel{
-    height:110px;
+    position: relative; 
+    height:89px;
     width: 100%;
     padding: 10px;
     background-color: white;

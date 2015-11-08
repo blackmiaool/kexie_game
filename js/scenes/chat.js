@@ -1,5 +1,4 @@
-
-function Chat_scene() {
+define(["plots/kexie_first"], function () {
     this.name = "chat";
     var lua_files = ["api.lua", "main.lua", "npc/npc.lua", "npc/chenjiong.lua", "npc/chenguo.lua", "start.lua", "nature_test.lua", "test.lua", "xuanjianghui.lua", "kexie_first.lua", "spot.lua", "end.lua"];
     for (var i in lua_files) {
@@ -51,13 +50,13 @@ function Chat_scene() {
                     touched = true;
             }
         )
-        
-        div_mood = $("#div_mood") 
+
+        div_mood = $("#div_mood")
         div_mood.click(function () {
             if (touch_enable !== false)
                 touched = true;
         })
-        div_danmu = $("#div_danmu") 
+        div_danmu = $("#div_danmu")
         div_danmu.click(function () {
             if (touch_enable !== false)
                 touched = true;
@@ -102,15 +101,15 @@ function Chat_scene() {
         message.hide()
 
         function center(obj) {
-                //console.log([$(window).width(), $("#base").width(), $(window).scrollLeft(), sx])
-                obj.css('position', 'absolute');
-                obj.css('top', ($(window).height() - obj.height()) / +$(window).scrollTop() + 'px');
-                obj.css('left', ($(window).width() - sx) / 2 + 'px');
+            //console.log([$(window).width(), $("#base").width(), $(window).scrollLeft(), sx])
+            obj.css('position', 'absolute');
+            obj.css('top', ($(window).height() - obj.height()) / +$(window).scrollTop() + 'px');
+            obj.css('left', ($(window).width() - sx) / 2 + 'px');
 
-                return obj;
+            return obj;
 
-            }
-            //    center($(".section"))
+        }
+        //    center($(".section"))
         var sections = $(".section")
         sections.hide()
         $("#section_chat").show()
@@ -122,24 +121,22 @@ function Chat_scene() {
             }
         }
 
-         var section_current = $("#section_chat")
+        var section_current = $("#section_chat")
     }
 
     this.id = "section_chat";
 
     this.pre_enter = function (spot) {
-        
-        if(spot=="cover")
-        {
+
+        if (spot == "cover") {
             L.execute("start(plot,\"" + spot + "\")")
-        }
-        else{
+        } else {
             L.execute("start(plot,\"spot\",\"" + spot + "\")")
         }
         //        console.info("enter spot", spot);
         //        section.start().start();
         //        L.execute("section_start()");
 
-        
+
     }
-}
+})

@@ -965,7 +965,7 @@ angular.module('home_app')
                             //                    if (is_ie4up)
                             //                        massiveReplaceString += '<div style = "z-index: 99999; position: relative;"><div style = "top: -2px; left: -2px; position: absolute;"><img src = "' + pixelGif + '" width = "50" height = "50" border = "0" onDblClick = "rankTopOnClick(' + i + ');" onClick = "rankTopOnClick(' + i + ');" onMouseOver = "unhideTalent(' + i + ');" onMouseOut = "hideTalent(' + i + ');" onContextMenu = "rankTopOnRightClick(' + i + '); return false;" /></div></div>';
                             //                    else
-                            massiveReplaceString += '<div style = "z-index: 99999; position: relative;"><div style = "top: -2px; left: -2px; position: absolute;"><img src = "' + pixelGif + '" width = "50" height = "50" border = "0" ondddblclick = "skill_tree.rankTopOnClick(' + i + ');" onClick = "skill_tree.unhideTalent(' + i + ');"   /></div></div>';
+                            massiveReplaceString += '<div style = "z-index: 99999; position: relative;"><div style = "top: -2px; left: -2px; position: absolute;"><img class="skill-img" src = "' + pixelGif + '" width = "50" height = "50" border = "0" data-skill-index='+i+'   /></div></div>';
 
                             massiveReplaceString += '<div id = "iconOverDefault' + i + '" style = "z-index: ' + (5 - talent[i][4]) * 10 + '; position: relative;"><div style = "top: -2px; left: -2px; position: absolute;"><img src = "' + mia_path + 'icon-over-grey.gif" border = "0" /></div></div>';
 
@@ -1137,9 +1137,14 @@ angular.module('home_app')
                 //        $scope.unhideTalent(index)
         }
     })
+    $("#replaceMeWithTalents").on("click","img.skill-img",function(){
+        skill_tree.unhideTalent($(this).data("skill-index"));
+    })
 
-
-
+//     $("#replaceMeWithTalents").on("dblclick","img.skill-img",function(){
+//        skill_tree.rankTopOnClick($(this).data("skill-index"));
+//    })
+    return skill_tree;
 
 })
 
