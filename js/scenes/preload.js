@@ -1,5 +1,5 @@
 
-    var dbg = require("dbg")
+//    var dbg = require("dbg")
     var exports;
     var preload_bar = $("#preload_progress_bar");
     var scene = new sys.Scene("preload", "section_preload", function () {}, pre_enter, function () {})
