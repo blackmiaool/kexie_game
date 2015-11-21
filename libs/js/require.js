@@ -1675,7 +1675,15 @@ var requirejs, require, define;
              * @private
              */
             execCb: function (name, callback, args, exports) {
-                return callback.apply(exports, args);
+                console.log("cbbbbbbb",name, callback, args, exports);
+                var str=callback.toString();
+                if(str[9]=="_"&&str[10]=="c"){
+                    ret=callback.apply(exports, args)._invoke().value;
+                    
+                }else{
+                    ret=callback.apply(exports, args)
+                }
+                return ret;
             },
 
             /**
@@ -2018,7 +2026,7 @@ var requirejs, require, define;
      */
     define = function (name, deps, callback) {
         var node, context;
-
+        
         //Allow for anonymous modules
         if (typeof name !== 'string') {
             //Adjust args appropriately

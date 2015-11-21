@@ -9,9 +9,9 @@ define(["angular","sys","scenes/home2", "scenes/bigmap", "scenes/chat", "scenes/
         }
     };
     $("#miao-first-tip").remove();
-    angular.bootstrap("body", ['home_app']);
+    setTimeout(function(){
+        angular.bootstrap("body", ['home_app']);
+    },100)
+    
     return exports;
 })
-var game_enter = function () {
-
-}

@@ -22,6 +22,20 @@ var merge = require('merge-stream');
 var yield_prefix = require('gulp-yield-prefix');
 var babel = require('gulp-babel');
 var browserify = require('gulp-browserify');
+function get_browserify_params(){
+    return {
+            insertGlobals: true,
+            debug: !gulp.env.production
+        }
+}
+function get_babel_params(){
+    return {
+        //        compact: false,
+        presets: ['es2015'],
+//        plugins: ["transform-runtime"],
+//        optional: ['runtime'],
+    }
+}
 //gulp.task('yield',function(){
 //    return gulp.src('js/plot/*.js').pipe(yield_prefix(["tc","th","ts","tm",])).pipe(gulp.dest('js/plot/dist/'));
 //})
@@ -59,12 +73,7 @@ gulp.task('mv-dist', function () {
         .pipe(gulp.dest('dist/'));
 });
 gulp.task("plots", function () {
-    var babel_pipe = babel({
-        //        compact: false,
-        //        optional: ['runtime'],
-        presets: ['es2015'],
-        plugins: ["transform-runtime"],
-    });
+    var babel_pipe = babel(get_babel_params());
     babel_pipe.on('error', function (ee) {
         gutil.log(ee);
         babel_pipe.end();
@@ -81,20 +90,12 @@ gulp.task("plots", function () {
                 return true;
             }
         }))
-        .pipe(browserify({
-            insertGlobals: true,
-            debug: !gulp.env.production
-        }))
+//        .pipe(browserify(get_browserify_params()))
         .pipe(cached("plots"))
-        .pipe(gulp.dest('dist/js'));
+        .pipe(gulp.dest('dist/js')).pipe(livereload())
 })
 gulp.task("scenes", function () {
-    var babel_pipe = babel({
-        //        compact: false,
-        //        optional: ['runtime'],        
-        presets: ['es2015'],
-        plugins: ["transform-runtime"],
-    });
+    var babel_pipe = babel(get_babel_params());
     babel_pipe.on('error', function (ee) {
         gutil.log(ee);
         babel_pipe.end();
@@ -103,7 +104,7 @@ gulp.task("scenes", function () {
             base: 'js'
         })
         .pipe(headerfooter({
-            header: 'define(["sys","angular","v","common","res","dbg"],function(sys,angular,v,common,res,dbg){',
+            header: 'define(["sys","angular","v","common","res","dbg"],function* (sys,angular,v,common,res,dbg){',
             footer: '})',
             filter: function (file) {
                 return true;
@@ -114,20 +115,11 @@ gulp.task("scenes", function () {
             pattern: '<!--\\sinject:<filename>-->'
         }))
         .pipe(babel_pipe)
-        .pipe(browserify({
-            insertGlobals: true,
-            debug: !gulp.env.production
-        }))
-        .pipe(gulp.dest('dist/js'))
+//        .pipe(browserify(get_browserify_params()))
+        .pipe(gulp.dest('dist/js')).pipe(livereload())
 })
 gulp.task('es6', ["plots", "scenes"], function () {
-    var babel_pipe = babel({
-        compact: false,
-        presets: ['es2015'],
-        //        optional: ['runtime'],
-        plugins: ["transform-runtime"],
-
-    });
+    var babel_pipe = babel(get_babel_params());
     babel_pipe.on('error', function (ee) {
         gutil.log(ee);
         babel_pipe.end();
@@ -138,10 +130,7 @@ gulp.task('es6', ["plots", "scenes"], function () {
             pattern: '<!--\\sinject:<filename>-->'
         }))
         .pipe(babel_pipe)
-        .pipe(browserify({
-            insertGlobals: true,
-            debug: !gulp.env.production
-        }))
+//        .pipe(browserify(get_browserify_params()))
         .pipe(gulp.dest('dist/js'))
         .pipe(livereload());
 });

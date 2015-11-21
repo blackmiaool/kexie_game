@@ -1,4 +1,5 @@
 
+console.log("mmm");
 var scene = new sys.Scene("home", "section_home", undefined, function () {
     
     var section = $("#section_home")

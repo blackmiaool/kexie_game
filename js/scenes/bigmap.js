@@ -1,4 +1,5 @@
-    var scene = new sys.Scene("bigmap", "section_bigmap", undefined, function () {
+console.log("arg",arguments)
+var scene = new sys.Scene("bigmap", "section_bigmap", undefined, function () {
         $("#section_bigmap img").css("opacity", "1")
     }, function () {
         //        L.execute("start(plot)")
