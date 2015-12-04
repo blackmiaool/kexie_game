@@ -1,5 +1,5 @@
 
-    console.log("miaoooo")
+    
     var exports;
     var preload_bar = $("#preload_progress_bar");
     var scene = new sys.Scene("preload", "section_preload", function () {}, pre_enter, function () {})
@@ -9,7 +9,7 @@
         var res_sum = 0
         preload_set(0, res_sum)
 
-        console.log("prerere")
+
         function preload_set(a, b) {
             preload_bar.text("资源加载中 " + a + "/" + b)
             preload_bar.css("width", a / b * 100 + '%')

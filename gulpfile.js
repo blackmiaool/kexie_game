@@ -22,26 +22,28 @@ var merge = require('merge-stream');
 var yield_prefix = require('gulp-yield-prefix');
 var babel = require('gulp-babel');
 var browserify = require('gulp-browserify');
-function get_browserify_params(){
+
+function get_browserify_params() {
     return {
-            insertGlobals: true,
-            debug: !gulp.env.production
-        }
+        insertGlobals: true,
+        debug: !gulp.env.production
+    }
 }
-function get_babel_params(){
+
+function get_babel_params() {
     return {
         //        compact: false,
         presets: ['es2015'],
-//        plugins: ["transform-runtime"],
-//        optional: ['runtime'],
+        //        plugins: ["transform-runtime"],
+        //        optional: ['runtime'],
     }
 }
 //gulp.task('yield',function(){
 //    return gulp.src('js/plot/*.js').pipe(yield_prefix(["tc","th","ts","tm",])).pipe(gulp.dest('js/plot/dist/'));
 //})
-gulp.task('yield', function () {
-    return gulp.src('js/plot/*.js').pipe(yield_prefix(["tc", "th", "ts", "tm", ])).pipe(gulp.dest('js/plot/dist/'));
-})
+//gulp.task('yield', function () {
+//    return gulp.src('js/plot/*.js').pipe(gulp.dest('js/plot/dist/'));
+//})
 
 gulp.task('less', function () {
     var less = require('gulp-less');
@@ -82,15 +84,16 @@ gulp.task("plots", function () {
             base: 'js'
         })
         .pipe(cached("plot"))
-        .pipe(babel_pipe)
+        .pipe(yield_prefix(["tc", "th", "ts", "tm", ]))
         .pipe(headerfooter({
-            header: 'define(["plot_common","res"],function(plot,res){',
-            footer: '\nreturn exports;})',
+            header: 'define(["plot_common","res","v"],function (plot,res,v){return function* (){for(var i in plot){eval("var "+i+"=plot."+i+";"); }',
+            footer: '\nreturn exports;}})',
             filter: function (file) {
                 return true;
             }
         }))
-//        .pipe(browserify(get_browserify_params()))
+        .pipe(babel_pipe)
+        //        .pipe(browserify(get_browserify_params()))
         .pipe(cached("plots"))
         .pipe(gulp.dest('dist/js')).pipe(livereload())
 })
@@ -107,6 +110,11 @@ gulp.task("scenes", function () {
             header: 'define(["sys","angular","v","common","res","dbg"],function* (sys,angular,v,common,res,dbg){',
             footer: '})',
             filter: function (file) {
+                var cwd=file.history[0].split("/");
+                var filename=cwd[cwd.length-1];
+                if(filename=="chat"){
+                    return false;
+                }                
                 return true;
             }
         }))
@@ -115,7 +123,7 @@ gulp.task("scenes", function () {
             pattern: '<!--\\sinject:<filename>-->'
         }))
         .pipe(babel_pipe)
-//        .pipe(browserify(get_browserify_params()))
+        //        .pipe(browserify(get_browserify_params()))
         .pipe(gulp.dest('dist/js')).pipe(livereload())
 })
 gulp.task('es6', ["plots", "scenes"], function () {
@@ -130,7 +138,7 @@ gulp.task('es6', ["plots", "scenes"], function () {
             pattern: '<!--\\sinject:<filename>-->'
         }))
         .pipe(babel_pipe)
-//        .pipe(browserify(get_browserify_params()))
+        //        .pipe(browserify(get_browserify_params()))
         .pipe(gulp.dest('dist/js'))
         .pipe(livereload());
 });

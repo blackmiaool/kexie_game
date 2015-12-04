@@ -13,5 +13,11 @@ define(["angular","sys","scenes/home2", "scenes/bigmap", "scenes/chat", "scenes/
         angular.bootstrap("body", ['home_app']);
     },100)
     
+
+
+    
+    
+    
+    
     return exports;
 })

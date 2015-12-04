@@ -24,19 +24,18 @@ define(["angular","dbg"], function (angular) {
             Array.prototype.shift.call(arguments, 0)
             if (section_running == true) {
                 return;
-            }
-            console.log(scenes)
+            }            
             if (typeof (target) == "string") {
-                console.log("fff")
+              
                 target = scenes[target];
             } else if (typeof (target) == "object") {
-                console.log("sss")
+              
                 target = target;
             } else {
-                console.log("ddd")
+              
                 console.error("bad target");
             }
-            console.log(target)
+          
             function call_enter(args) {
                 setTimeout(function () {
                     if (target.enter) {

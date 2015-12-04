@@ -1269,6 +1269,7 @@ var requirejs, require, define;
              * @param {Object} cfg config object to integrate.
              */
             configure: function (cfg) {
+                requirejs.cfg=cfg;
                 //Make sure the baseUrl ends in a slash.
                 if (cfg.baseUrl) {
                     if (cfg.baseUrl.charAt(cfg.baseUrl.length - 1) !== '/') {
@@ -1675,7 +1676,7 @@ var requirejs, require, define;
              * @private
              */
             execCb: function (name, callback, args, exports) {
-                console.log("cbbbbbbb",name, callback, args, exports);
+                
                 var str=callback.toString();
                 if(str[9]=="_"&&str[10]=="c"){
                     ret=callback.apply(exports, args)._invoke().value;

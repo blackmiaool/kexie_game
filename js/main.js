@@ -42,14 +42,14 @@
         config.paths[i] = "system/" + config.sys_paths[i];
     }
     delete config.sys_paths;
-    console.log(config);
+//    delete config.plot_paths;
     requirejs.config(config);
 })()
 
 
 requirejs(["jquery", "sys", "init", "angular", 'angular-animate'], function ($, sys, init, angular) {
-    console.log("miao")
-    console.log(init);
+   
+    
     setTimeout(function () {
         $('#buy-tabs a').click(function (e) {
             e.preventDefault(); //阻止a链接的跳转行为
