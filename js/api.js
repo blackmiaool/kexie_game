@@ -21,7 +21,7 @@ define(["common"],function (common) {
 
     var half = 0;
 
-    var touched = false
+    var touched = false;
     var current_background = 0;
 
     var quicken_btn;
@@ -169,7 +169,7 @@ define(["common"],function (common) {
 
     
 
-    var tc_pre_things = {};
+    
     var tcc = function (text) {
         tc(text, tc_pre_things.name, tc_pre_things.gapnum, tc_pre_things.color)
     }

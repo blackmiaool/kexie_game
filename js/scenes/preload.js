@@ -63,7 +63,7 @@
                     developer_set();
                     //                    sys.to_scene("chat");
                     //                    sys.to_scene("home");
-                    sys.to_scene("home");
+                    sys.to_scene("chat");
                 } else {
                     //                    sys.to_scene("home");
                     sys.to_scene("cover", "first");
