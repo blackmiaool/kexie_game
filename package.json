@@ -30,6 +30,7 @@
     "gulp-shell": "~0.4.3",
     "gulp-template": "~3.0.0",
     "gulp-util": "^3.0.7",
+    "gulp-yield-prefix": "^1.0.0",
     "less": "~2.5.3",
     "merge-stream": "^1.0.0",
     "underscore": "~1.8.3"

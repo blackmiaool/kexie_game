@@ -21,7 +21,7 @@ var headerfooter = require('gulp-header-footer');
 var merge = require('merge-stream');
 var yield_prefix = require('gulp-yield-prefix');
 var babel = require('gulp-babel');
-var browserify = require('gulp-browserify');
+
 
 function get_browserify_params() {
     return {
