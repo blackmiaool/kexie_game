@@ -529,6 +529,11 @@ define(["sys","common","dbg"],function(sys,common,dbg){
         current_background = background;
         running = false
     }
+    console.log("mmmmmmwerwer ")
+    $("#section_chat").on("click",function(){
+        touched=true;
+        console.log("tttttt");
+    })
     return exports;
     
 })
