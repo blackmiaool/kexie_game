@@ -2,16 +2,24 @@ define(["sys","common","dbg"],function(sys,common,dbg){
     var exports={
         running:{},
     };
+    var sx=sys.sx;
+    var sy=sys.sy;
+    var btn_gap = 50;
     var touched = false;
     var tc_pre_things = {};
     var touch_enable = true;
     var running = false;
+    var result={
+        
+    };    
+    exports.result=result;
     var message = message_create();
-    exports.gap = {
+    var gap={
         def: 70,
         fast: 40,
         slow: 200,
-    };
+    }
+    exports.gap=gap;
     function touch_wait(cb) {
         var a = setInterval(
             function () {
@@ -25,6 +33,23 @@ define(["sys","common","dbg"],function(sys,common,dbg){
             }, 100
         )
     };
+    var rnd;
+    rnd.today = new Date();
+    rnd.seed = rnd.today.getTime();
+
+    function rnd() {　　　　
+        rnd.seed = (rnd.seed * 9301 + 49297) % 233280;　　　　
+        return rnd.seed / (233280.0);
+    };
+
+    function rand(min, max) {
+        //    console.log(min,max)
+        var number = max - min + 1
+        number = Math.ceil(rnd() * number) + min - 1　　　　
+        return number;
+    };
+    exports.rand=rand; 
+    console.log(exports) 
     function message_create() {
         var t = $('#chat_text')
         var container = $("#chat_content");
@@ -181,39 +206,50 @@ define(["sys","common","dbg"],function(sys,common,dbg){
         var currentStyle = 'inline';
         return t;
     }
-    function plot_resume(){
-        console.log(exports.running._invoke());        
-    }
-    window.tm = function () {
+    function plot_resume(ret){
+//        exports.running();
+        exports.running.next(ret);        
+    } 
+    exports.tm = function () {
         touch_enable = false;
         var arg_len = 0;
-        for (var i in lua_arg) {
+        for (var i in arguments) {
             var empty = true;
-            for (var j in lua_arg[i]) {
+            for (var j in arguments[i]) {
                 empty = false;
                 break;
             }
             if (empty)
-                lua_arg[i] = undefined
+                arguments[i] = undefined
             else {
                 arg_len++;
             }
         }
-        lua_arg.length = arg_len;
-        var it = lua_arg;
+        arguments.length = arg_len;
+        var it = arguments;
 
         var len = it.length
         var menu_value = false;
+        var div_btn=$("#div-btn");
         var cb = function (index, v) {
             div_btn.empty();
             setTimeout(function () {
                 touched = false;
             }, 0);
-            js_arg = {
-                index: index,
-                value: v
-            };
-            plot_resume();
+//            var js_arg={};
+//            js_arg = {
+//                index: index,
+//                value: v
+//            };
+//            {
+//                index:index,
+//                v:v
+//            }
+//            plot_resume({
+//                index:index,
+//                value:v
+//            });
+            plot_resume(index);
 
         }
 
@@ -308,7 +344,7 @@ define(["sys","common","dbg"],function(sys,common,dbg){
         return menu_value;
 
     };
-    window.tc = function (text, name, gapnum, color) {
+    exports.tc = function (text, name, gapnum, color) {
         tc_pre_things.name = name;
         tc_pre_things.gapnum = gapnum;
         tc_pre_things.color = color;
@@ -377,7 +413,7 @@ define(["sys","common","dbg"],function(sys,common,dbg){
         }
 
     }
-    window.th = function () {
+    exports.th = function () {
         if (dbg.isinfastmode) {
             var people_move_time_this = 10;
         } else {
@@ -488,7 +524,7 @@ define(["sys","common","dbg"],function(sys,common,dbg){
     };
     var current_background = 0;
     var bg=$("#section_chat #div-bg img");
-    window.ts = function (background, time) {        
+    exports.ts = function (background, time) {        
         console.log("twssssss",background);
         var fadeout_time = 800;
         if (dbg.isinfastmode) {

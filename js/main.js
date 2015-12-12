@@ -4,6 +4,7 @@
         paths: {
             jquery: "libs/jquery.min",
             angular: "libs/angular.min",
+            underscore:"libs/underscore",
             "angular-animate": "libs/angular-animate.min",
             d3: "libs/d3.min",
             bootstrap: "libs/bootstrap.min",

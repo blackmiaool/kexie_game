@@ -6,6 +6,8 @@ define(["angular","dbg"], function (angular) {
     var current_scene={};
     angular.module('home_app', ["ngAnimate"]);
     var exports = {
+        sx:960,
+        sy:540,
         Scene: function Scene(id, dom_id, init_callback, pre_enter_callback, enter_callback) {
             this.id = id;
             this.dom_id = dom_id;

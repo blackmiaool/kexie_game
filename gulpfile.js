@@ -86,18 +86,23 @@ gulp.task("plots", function () {
         .pipe(cached("plot"))
         .pipe(yield_prefix(["tc", "th", "ts", "tm", ]))
         .pipe(headerfooter({
-            header: 'define(["plot_common","res","v"],function (plot,res,v){return function* (){for(var i in plot){eval("var "+i+"=plot."+i+";"); }',
-            footer: '\nreturn exports;}})',
+            header: 'define(["plot_common","res","v","sys"],function (plot,res,v,sys){var ts=plot.ts;for(var i in plot){ \
+        var ts=plot.ts; \
+var tc=plot.tc; \
+var th=plot.th; \
+var tm=plot.tm; \
+        console.log(i);console.log("var "+i+"=plot[\'"+i+"\'];") };return function* (){',
+            footer: '\n}})',
             filter: function (file) {
                 return true;
             }
         }))
         .pipe(babel_pipe)
         //        .pipe(browserify(get_browserify_params()))
-        .pipe(cached("plots"))
         .pipe(gulp.dest('dist/js')).pipe(livereload())
 })
 gulp.task("scenes", function () {
+    
     var babel_pipe = babel(get_babel_params());
     babel_pipe.on('error', function (ee) {
         gutil.log(ee);

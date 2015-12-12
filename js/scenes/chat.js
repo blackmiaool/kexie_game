@@ -2,7 +2,7 @@ define(["sys", "angular", "v", "common", "res", "dbg", "plots/start", "plot_comm
     var scene = new sys.Scene("chat", "section_chat", undefined, function () {
             plot.running = start();
             console.log("mmmmmmmmmmm", plot.running);
-            console.log("mmmmmmmmmmm", plot.running._invoke());
+            console.log("mmmmmmmmmmm", plot.running.next());
         })
         //    var plots = ["start"];
         //    var plots_len = plots.length;

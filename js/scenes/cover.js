@@ -1,4 +1,12 @@
 
+    var scene = new sys.Scene("cover", "section_cover", undefined, function () {
+            plot.running = start();
+            console.log("mmmmmmmmmmm", plot.running);
+            console.log("mmmmmmmmmmm", plot.running.next());
+        })
+
+
+
     function Cover_scene() {
         this.name = "cover";
         this.init = function () {
