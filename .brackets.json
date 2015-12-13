@@ -3,6 +3,7 @@
         "/.git/",
         "/dist",
         "/bower_components/",
-        "/node_modules/"
+        "/node_modules/",
+	"/libs/"
     ]
 }

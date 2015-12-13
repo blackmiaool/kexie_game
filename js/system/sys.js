@@ -5,15 +5,25 @@ define(["angular","dbg"], function (angular) {
     var scene_fade_time = 1000;
     var current_scene={};
     angular.module('home_app', ["ngAnimate"]);
+//    var scene = new sys.Scene({
+//        id:"",
+//        dom_id:"",
+//        init:function(){
+//        },
+//        pre_enter:function(){
+//        },
+//        enter:function(){
+//        }    
+//    })
     var exports = {
         sx:960,
         sy:540,
-        Scene: function Scene(id, dom_id, init_callback, pre_enter_callback, enter_callback) {
+        Scene: function Scene({id, dom_id, init, pre_enter, enter}) {            
             this.id = id;
             this.dom_id = dom_id;
-            this.init = init_callback;
-            this.pre_enter = pre_enter_callback;
-            this.enter = enter_callback;
+            this.init = init;            
+            this.pre_enter = pre_enter;
+            this.enter = enter;
             scenes[id] = this;
             if (this.init) {
                 this.init();
@@ -55,6 +65,7 @@ define(["angular","dbg"], function (angular) {
                 $("#" + target.dom_id).css("z-index", "1")
                 $("#" + target.dom_id).fadeIn(scene_fade_time)
                 current_scene = target;
+                
                 if (target.pre_enter) {
                     target.pre_enter.apply(target, arguments);
                 }

@@ -525,7 +525,7 @@ define(["sys","common","dbg"],function(sys,common,dbg){
     var current_background = 0;
     var bg=$("#section_chat #div-bg img");
     exports.ts = function (background, time) {        
-        console.log("twssssss",background);
+        
         var fadeout_time = 800;
         if (dbg.isinfastmode) {
             time = 10;
@@ -565,10 +565,10 @@ define(["sys","common","dbg"],function(sys,common,dbg){
         current_background = background;
         running = false
     }
-    console.log("mmmmmmwerwer ")
+    
     $("#section_chat").on("click",function(){
         touched=true;
-        console.log("tttttt");
+ 
     })
     return exports;
     

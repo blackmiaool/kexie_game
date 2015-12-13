@@ -261,7 +261,7 @@ define(["common"], function (common) {
 
                     }
                 }
-                console.log(courses)
+               
                 break;
             case "item":
                 window.items = {};

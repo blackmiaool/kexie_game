@@ -91,7 +91,7 @@ gulp.task("plots", function () {
 var tc=plot.tc; \
 var th=plot.th; \
 var tm=plot.tm; \
-        console.log(i);console.log("var "+i+"=plot[\'"+i+"\'];") };return function* (){',
+};return function* (){',
             footer: '\n}})',
             filter: function (file) {
                 return true;

@@ -1,172 +1,176 @@
+var scene = new sys.Scene({
+    id: "home",
+    dom_id: "section_home",
+    init: function () {},
+    pre_enter: function () {
 
 
-var scene = new sys.Scene("home", "section_home", undefined, function () {
-    
-    var section = $("#section_home")
-    var tabs = {};
+        var section = $("#section_home")
+        var tabs = {};
 
-    updt_all();
-    tabs_updt();
-    prop_updt();
+        updt_all();
+        tabs_updt();
+        prop_updt();
 
-    function prop_updt() {
-        $(".prop-set .prop-value").css("left", "-97px")
-        var tab_div = $("#prop .prop-set[is-first=true]");
+        function prop_updt() {
+            $(".prop-set .prop-value").css("left", "-97px")
+            var tab_div = $("#prop .prop-set[is-first=true]");
 
-        var i = 0;
-        var values = []
-        var index = 0;
-        while (tab_div.length != 0) {
+            var i = 0;
+            var values = []
+            var index = 0;
+            while (tab_div.length != 0) {
 
-            // console.log(tab_div);
+                // console.log(tab_div);
 
-            var value = tab_div.children(".prop-value")
-            values[values.length] = value;
+                var value = tab_div.children(".prop-value")
+                values[values.length] = value;
 
-            // console.log(value);
+                // console.log(value);
 
 
-            setTimeout(function () {
-                values[index].animate({
-                    left: '0px'
-                });
-                index++;
-            }, i * 100)
-            i++;
-            tab_div = tab_div.next();
-        }
-    }
-
-    function tab_item_updt() {
-
-    }
-
-    function tab_quest_updt() {
-
-    }
-
-
-    function tab_store_updt() {
-
-    }
-
-    function tab_teammate_updt() {
-        var li_index = 0;
-        var first = true;
-        var text_head_width = 50;
-        var data = [{
-            head: "数字",
-            value: 33
-        }, {
-            head: "模拟",
-            value: 25
-        }, {
-            head: "效率",
-            value: 63
-        }, {
-            head: "体力",
-            value: 73
-        }, {
-            head: "节操",
-            value: 93
-        }];
-        //        console.log()
-        //        var width = parseInt($(".chart").css("width")) - 15,
-        var width = 430,
-            barHeight = 35,
-            gap = 10;
-
-        var x = d3.scale.linear().domain([0, 105]).range([0, width - text_head_width]);
-
-        var chart = d3.select(".chart").attr("height", (barHeight) * data.length);
-
-        var bar = chart.selectAll("g").data(data).enter().append("g")
-            .attr("transform", function (d, i) {
-                return "translate(0," + i * barHeight + ")";
-            });
-
-        bar.append("rect").data(data).attr("x", text_head_width).attr("width", "0px").attr("height", barHeight - gap)
-
-        bar.append("text").attr("x", text_head_width).attr("y", (barHeight - gap) / 2).attr("dy", ".35em").attr("kind", "value")
-
-        bar.append("text").attr("kind", "head").attr("x", 45).attr("y", (barHeight - gap) / 2).attr("dy", ".35em").text(function (d) {
-            return d.head;
-        });
-        $("#carousel-teammate-generic").addClass("slide")
-
-
-        function carousel_change(event) {
-            var index;
-            if (event === true) {
-                index = $("#tab-teammate .carousel-inner [first=true]")
-            } else {
-                index = $(event.relatedTarget);
+                setTimeout(function () {
+                    values[index].animate({
+                        left: '0px'
+                    });
+                    index++;
+                }, i * 100)
+                i++;
+                tab_div = tab_div.next();
             }
+        }
 
+        function tab_item_updt() {
+
+        }
+
+        function tab_quest_updt() {
+
+        }
+
+
+        function tab_store_updt() {
+
+        }
+
+        function tab_teammate_updt() {
+            var li_index = 0;
+            var first = true;
             var text_head_width = 50;
-            var current_pp = res.pp[index.attr("name")]
-            var width = 330,
+            var data = [{
+                head: "数字",
+                value: 33
+        }, {
+                head: "模拟",
+                value: 25
+        }, {
+                head: "效率",
+                value: 63
+        }, {
+                head: "体力",
+                value: 73
+        }, {
+                head: "节操",
+                value: 93
+        }];
+            //        console.log()
+            //        var width = parseInt($(".chart").css("width")) - 15,
+            var width = 430,
                 barHeight = 35,
                 gap = 10;
-            // console.log(current_pp.name)
-            //console.log($("#tab-teammate .carousel-inner .item.active").attr("name"))
-            var data = [current_pp["数字"], current_pp["模拟"], current_pp["效率"], current_pp["体力"], current_pp["节操"]]
-            if (current_pp.skill != undefined) {
-                $("#tab-teammate-skill-content").html(current_pp.skill)
-            }
-            d3.selectAll(".chart g rect")
+
+            var x = d3.scale.linear().domain([0, 105]).range([0, width - text_head_width]);
+
+            var chart = d3.select(".chart").attr("height", (barHeight) * data.length);
+
+            var bar = chart.selectAll("g").data(data).enter().append("g")
+                .attr("transform", function (d, i) {
+                    return "translate(0," + i * barHeight + ")";
+                });
+
+            bar.append("rect").data(data).attr("x", text_head_width).attr("width", "0px").attr("height", barHeight - gap)
+
+            bar.append("text").attr("x", text_head_width).attr("y", (barHeight - gap) / 2).attr("dy", ".35em").attr("kind", "value")
+
+            bar.append("text").attr("kind", "head").attr("x", 45).attr("y", (barHeight - gap) / 2).attr("dy", ".35em").text(function (d) {
+                return d.head;
+            });
+            $("#carousel-teammate-generic").addClass("slide")
+
+
+            function carousel_change(event) {
+                var index;
+                if (event === true) {
+                    index = $("#tab-teammate .carousel-inner [first=true]")
+                } else {
+                    index = $(event.relatedTarget);
+                }
+
+                var text_head_width = 50;
+                var current_pp = res.pp[index.attr("name")]
+                var width = 330,
+                    barHeight = 35,
+                    gap = 10;
+                // console.log(current_pp.name)
+                //console.log($("#tab-teammate .carousel-inner .item.active").attr("name"))
+                var data = [current_pp["数字"], current_pp["模拟"], current_pp["效率"], current_pp["体力"], current_pp["节操"]]
+                if (current_pp.skill != undefined) {
+                    $("#tab-teammate-skill-content").html(current_pp.skill)
+                }
+                d3.selectAll(".chart g rect")
+                    .data(data)
+                    .transition()
+                    .duration(1000)
+                    .ease("cubic-out")
+                    .attr("width", function (d, i) {
+                        // console.log("d=" + d + "i=" + i)
+                        return x(d + 5);
+                    })
+                    .attr("opacity", function (d, i) {
+                        return d / 100
+                    })
+
+                d3.selectAll(".chart g text[kind=value]")
+
                 .data(data)
-                .transition()
-                .duration(1000)
-                .ease("cubic-out")
-                .attr("width", function (d, i) {
-                    // console.log("d=" + d + "i=" + i)
-                    return x(d + 5);
+                    .text(function (d) {
+                        return d;
+                    })
+                    .transition()
+                    .duration(2000)
+                    .ease("cubic-out")
+                    .attr("x", function (d) {
+                        return x(d + 5) - 5 + text_head_width;
+                    })
+            }
+            $('#carousel-teammate-generic ').on('slide.bs.carousel', function (a, b) {
+                carousel_change(a, b)
+                var collapse = $("#teammate-skill-heading")
+                collapse.collapse('hide');
+                collapse.on('hidden.bs.collapse', function () {
+                    collapse.collapse('show');
                 })
-                .attr("opacity", function (d, i) {
-                    return d / 100
-                })
-
-            d3.selectAll(".chart g text[kind=value]")
-
-            .data(data)
-                .text(function (d) {
-                    return d;
-                })
-                .transition()
-                .duration(2000)
-                .ease("cubic-out")
-                .attr("x", function (d) {
-                    return x(d + 5) - 5 + text_head_width;
-                })
-        }
-        $('#carousel-teammate-generic ').on('slide.bs.carousel', function (a, b) {
-            carousel_change(a, b)
-            var collapse = $("#teammate-skill-heading")
-            collapse.collapse('hide');
-            collapse.on('hidden.bs.collapse', function () {
-                collapse.collapse('show');
             })
-        })
 
-        carousel_change(true);
-    }
+            carousel_change(true);
+        }
 
-    function tab_make_updt() {
+        function tab_make_updt() {
 
 
-    }
+        }
 
-    function tabs_updt() {
-        tab_item_updt();
-        tab_quest_updt();
-        tab_store_updt();
-        tab_teammate_updt();
-        tab_make_updt();
-    }
-}, function () {
-
+        function tabs_updt() {
+            tab_item_updt();
+            tab_quest_updt();
+            tab_store_updt();
+            tab_teammate_updt();
+            tab_make_updt();
+        }
+    },
+    enter: function () {}
 })
+
 
 
 
