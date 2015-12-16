@@ -351,7 +351,7 @@ define(["sys","common","dbg"],function(sys,common,dbg){
         touched = false;
         touch_enable = true;
         if (!gapnum) {
-            gapnum = gap.def
+            gapnum = exports.gap.def
         }
         if (text) {
             message.show()

@@ -6,7 +6,7 @@ define(["sys", "angular", "v", "common", "res", "dbg", "plots/start","plots/natu
         dom_id: "section_chat",
         init: function () {},
         pre_enter: function () {
-            plot.running = nature_test();            
+            plot.running = start();            
             plot.running.next()
         },
         enter: function () {}
