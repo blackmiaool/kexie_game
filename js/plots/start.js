@@ -1,11 +1,10 @@
  
     ts(res.img.uestc);
     tc(v.time.year + "年，9月 成都 郫县 电子神技大学校门口", 0, plot.gap.slow);
-//    tc("你望着“电子神技大学”这五个字，心灰意冷。");
-    tmood(res.img.axe); 
-//    tc("你是一名大一新生，本该考上桃浦二大的你，高考时发挥失常，不得已而在志愿书上填报了神大的物理电子学院。");
-//    tc("“当初如果大姨夫没来该多好！”你又一次地感叹道。");
-//    tc("这时，你决定");
+    tc("你望着“电子神技大学”这五个字，心灰意冷。");
+    tc("你是一名大一新生，本该考上桃浦二大的你，高考时发挥失常，不得已而在志愿书上填报了神大的物理电子学院。");
+    tc("“当初如果大姨夫没来该多好！”你又一次地感叹道。");
+    tc("这时，你决定");
     var result = tm("勇敢走入校门","扭头就走");
     console.log(result) 
     if (result == 1) {
@@ -19,7 +18,7 @@
             plot.game_over = true;
             sys.to_scene("cover")
             ts(res.img.black,1);
-            return "cover";
+            setTimeout(function(){plot_cb("cover")});            
         }
         else{
             ts(res.img.luobang)
@@ -28,5 +27,7 @@
             v.time.year = 1+v.time.year            
             return false;
         }
+    }else{
+        tc("权衡了一下利弊，你决定还是顺其自然比较好。于是你定了定神，迈步走进了神大。");    
     }
-    tc("权衡了一下利弊，你决定还是顺其自然比较好。于是你定了定神，迈步走进了神大。");
+    

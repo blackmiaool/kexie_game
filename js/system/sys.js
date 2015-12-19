@@ -1,8 +1,8 @@
-define(["angular","dbg"], function (angular) {
+define(["angular","dbg"], function (angular,dbg) {
     
     let section_running;
     var scenes = {};
-    var scene_fade_time = 1000;
+    var scene_fade_time = dbg.imdeveloper?1:1000;
     var current_scene={};
     angular.module('home_app', ["ngAnimate","ngRoute"]);
 //    var scene = new sys.Scene({

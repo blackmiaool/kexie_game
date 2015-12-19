@@ -1,8 +1,13 @@
-define(["sys", "common", "dbg"], function (sys, common, dbg) {
+define(function (require) {
+    var plot_core=require("plot_core");
+    var sys=require("sys");
+    var common=require("common");
+    var dbg=require("dbg");
+    
     var exports = {
         running: {},
     };
-
+    
     var sx = sys.sx;
     var sy = sys.sy;
     var btn_gap = 50;
@@ -214,7 +219,11 @@ define(["sys", "common", "dbg"], function (sys, common, dbg) {
 
     function plot_resume(ret) {
         //        exports.running();
-        exports.running.next(ret);
+        plot_core.resume(ret);
+//        var state=exports.running.next(ret);
+//        if(state.done){
+//            plot_core.update(exports.running);
+//        }                
     }
     exports.tm = function () {
         touch_enable = false;
@@ -583,7 +592,7 @@ define(["sys", "common", "dbg"], function (sys, common, dbg) {
         touched = true;
 
     })
-
+    window.plot=exports;
     return exports;
 
 })

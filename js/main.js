@@ -4,7 +4,7 @@
         paths: {
             jquery: "libs/jquery.min",
             angular: "libs/angular.min",
-            underscore:"libs/underscore",
+            underscore: "libs/underscore",
             "angular-animate": "libs/angular-animate.min",
             "angular-route": "libs/angular-route.min",
             d3: "libs/d3.min",
@@ -15,8 +15,8 @@
             sys: "sys",
             common: "common",
             dbg: "dbg",
-            plot_common:"plot_common",
-            
+            plot_common: "plot_common",
+
         },
         map: {},
         shim: {
@@ -47,46 +47,68 @@
         config.paths[i] = "system/" + config.sys_paths[i];
     }
     delete config.sys_paths;
-//    delete config.plot_paths;
+    //    delete config.plot_paths;
     requirejs.config(config);
 })()
 
 
-requirejs(["jquery", "sys", "init", "angular", 'angular-animate', 'angular-route'], function ($, sys, init, angular) {
-   
-    
-    setTimeout(function () {
-        $('#buy-tabs a').click(function (e) {
-            e.preventDefault(); //阻止a链接的跳转行为
-            $(this).tab('show'); //显示当前选中的链接及关联的content
-        })
-    }, 300)
-    $('#home-main-tab a').click(function (e) {
-        e.preventDefault(); //阻止a链接的跳转行为
-        $(this).tab('show'); //显示当前选中的链接及关联的content
-    })
-    $('[data-toggle="popover"]').popover();
+requirejs(["jquery", "sys", "angular", 'angular-animate', 'angular-route', "scenes/home2", "scenes/bigmap", "scenes/chat", "scenes/cover", "scenes/preload", "scenes/save_load", 'angular-animate', 'skill_tree'], function ($, sys, angular) {
+    $("#miao-first-tip").remove();
 
-    function IsPC() {
-        var userAgentInfo = navigator.userAgent;
-        var Agents = ["Android", "iPhone",
+
+    angular.module('home_app').controller("root_controller", ["$rootScope", "$scope", function ($rootScope, $scope) {
+        $scope.$on('$includeContentLoaded', function (params) {
+            
+            console.log("mdfgdfm",params);
+
+        });
+
+    }]);
+    angular.module('home_app').run(
+        function () {
+            setTimeout(function () {
+
+                sys.zoom_and_developer_init();
+                $(".section").hide();
+                $('#buy-tabs a').click(function (e) {
+                    e.preventDefault(); //阻止a链接的跳转行为
+                    $(this).tab('show'); //显示当前选中的链接及关联的content
+                })
+                $('#home-main-tab a').click(function (e) {
+                    e.preventDefault(); //阻止a链接的跳转行为
+                    $(this).tab('show'); //显示当前选中的链接及关联的content
+                })
+                $('[data-toggle="popover"]').popover();
+
+                function IsPC() {
+                    var userAgentInfo = navigator.userAgent;
+                    var Agents = ["Android", "iPhone",
                     "SymbianOS", "Windows Phone",
                     "iPad", "iPod"
                 ];
-        var flag = true;
-        for (var v = 0; v < Agents.length; v++) {
-            if (userAgentInfo.indexOf(Agents[v]) > 0) {
-                flag = false;
-                break;
-            }
-        }
-        return flag;
-    }
-    if (!IsPC()) {
-        $(".desk-frame-nav").css("display", "inline-block");
-        $(".desk-frame-nav-a").css("width", "70px");
-        $("body").css("position", "absolute").css("left", "240px").css("width", "960px").css("height:540px");
+                    var flag = true;
+                    for (var v = 0; v < Agents.length; v++) {
+                        if (userAgentInfo.indexOf(Agents[v]) > 0) {
+                            flag = false;
+                            break;
+                        }
+                    }
+                    return flag;
+                }
+                if (!IsPC()) {
+                    $(".desk-frame-nav").css("display", "inline-block");
+                    $(".desk-frame-nav-a").css("width", "70px");
+                    $("body").css("position", "absolute").css("left", "240px").css("width", "960px").css("height:540px");
 
-    }
-    init.game_enter();
+                }
+                console.log("mmmm");
+                sys.to_scene("preload");
+
+                // Do post-load initialization stuff here
+            }, 100)
+        });
+
+
+
+    angular.bootstrap("body", ['home_app']);
 })

@@ -12,6 +12,7 @@ var pre_enter = function () {
         preload_bar.text("资源加载中 " + a + "/" + b)
         preload_bar.css("width", a / b * 100 + '%')
     }
+    if (!dbg.imdeveloper) {
     for (var i in res.img) {
         res_sum++;
         var name = res.img[i];
@@ -27,7 +28,7 @@ var pre_enter = function () {
 
             preload_set(load_cnt, res_sum)
         }
-    }
+    }}
     //        for (var i in sys_text_files) {
     //            sys.readTextFile(sys_text_files[i]);
     //        }
@@ -41,7 +42,7 @@ var pre_enter = function () {
     var preload_interval;
 
     function preload_check() {
-        console.log(dbg.imdeveloper);
+        
         if (dbg.imdeveloper) { //skip res load in developer mode
             load_cnt = res_sum;
         }
@@ -64,7 +65,11 @@ var pre_enter = function () {
                 developer_set();
                 //                    sys.to_scene("chat");
                 //                    sys.to_scene("home");
-                sys.to_scene("chat");
+                
+                sys.to_scene("home");    
+//                    sys.to_scene("chat"); 
+                
+                
             } else {
                 //                    sys.to_scene("home");
                 sys.to_scene("cover", "first");
@@ -72,7 +77,7 @@ var pre_enter = function () {
         }
 
     }
-    preload_interval = setInterval(preload_check, 50);
+    preload_interval = setInterval(preload_check, 10);
 }
 
 

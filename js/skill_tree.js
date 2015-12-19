@@ -1,9 +1,12 @@
 //skill_tree=new SKILL_TREE_OBJ();
-define(["angular","v"],function(angular,v){
+define(["angular","v","dbg"],function(angular,v,dbg){
     
 var skill_tree;
 angular.module('home_app')
     .controller("tab_skill_controller", function ($scope) {
+    if (dbg.imdeveloper){
+        return;
+    }
         //        skill_tree={}
         var variableIsSite = 1;
         var talent = new Array();

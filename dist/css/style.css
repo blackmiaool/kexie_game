@@ -42,28 +42,12 @@ label {
   height: 100%;
   width: 100%;
 }
-.section#section_chat #div-mood {
-  position: absolute;
-  height: 100%;
-  width: 100%;
-  z-index: 1;
-  text-align: center;
-}
-.section#section_chat #div-mood .mood {
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  margin: auto;
-}
 .section#section_chat #div-btn,
 .section#section_chat #div-bg,
 .section#section_chat #div-half,
 .section#section_chat #div-text {
-  position: relative;
-  top: 0px;
-  height: 0px;
+  position: absolute;
+  height: 100%;
   border: none;
   /*text-align: center;*/
 }
@@ -108,12 +92,26 @@ label {
   text-align: center;
   width: 250px;
 }
+.section#section_chat #div-mood {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  text-align: center;
+}
+.section#section_chat #div-mood .mood {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
+}
 .section#section_chat #div-btn {
   text-align: center;
 }
-.section#section_chat #div-bg img#background {
-  width: 960px;
-  height: 540px;
+.section#section_chat #div-bg img {
+  width: 100%;
+  height: 100%;
 }
 .section#section_cover .logo-title {
   /*    display: inline-block;*/
@@ -136,6 +134,7 @@ label {
 }
 .section#section_home .tab-pane {
   height: 100%;
+  visibility: visible;
 }
 .section#section_home .modal-body label {
   font-weight: normal;
@@ -361,17 +360,20 @@ label {
 .section#section_home #tab-plan .plan-right-block {
   text-align: center;
 }
-.section#section_home #tab-plan .section-btn {
+.section#section_home #tab-plan #tab-plan-left {
+  height: 100%;
+}
+.section#section_home #tab-plan #tab-plan-left .section-btn {
   margin: 9px;
   width: 156px;
-  height: 100px;
+  height: 100%;
   border-width: 2px;
   margin-top: 0px;
 }
-.section#section_home #tab-plan .section-btn div.des {
+.section#section_home #tab-plan #tab-plan-left .section-btn div.des {
   font-size: 25px;
 }
-.section#section_home #tab-plan .section-btn div.glyphicon {
+.section#section_home #tab-plan #tab-plan-left .section-btn div.glyphicon {
   font-size: 33px;
 }
 .section#section_home #tab-plan .plan-right-label {
@@ -491,7 +493,6 @@ label {
   display: block;
   text-align: center;
   margin-right: 200px;
-  margin-left: 200px;
 }
 .section#section_home #home-tabs #tab-plan #tab-plan-right {
   width: 195px;

@@ -93,14 +93,14 @@ gulp.task("plots", function () {
         .pipe(cached("plot"))
         .pipe(yield_prefix(["tc", "th", "ts", "tm", ]))
         .pipe(headerfooter({
-            header: 'define(["plot_common","res","v","sys"],function (plot,res,v,sys){var ts=plot.ts;for(var i in plot){ \
-        var ts=plot.ts; \
+            header: 'define(["res","v","sys"],function (res,v,sys){\
+return function* (plot_cb){ \
+var ts=plot.ts; \
 var tc=plot.tc; \
 var th=plot.th; \
 var tm=plot.tm; \
-var tmood=plot.tmood; \
-};return function* (){',
-            footer: '\n}})',
+var tmood=plot.tmood; ',
+            footer: '\n setTimeout(function(){plot_cb("cover")});\n}})',
             filter: function (file) {
                 return true;
             }
@@ -241,6 +241,7 @@ livereload.listen();
 gulp.watch('less/**/*.less', ['less']);
 gulp.watch('js/**/*.js', ['es6']);
 gulp.watch('index.html', ['reload']);
+gulp.watch('html/**/*.html', ['reload']);
 gulp.task('mediawiki', function () {
     return gulp.src('src/mediawiki/mobile/less/**/*.less')
         .pipe(gulp.dest('mediawiki/extensions/MobileFrontend/less/'))

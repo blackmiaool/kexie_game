@@ -1,4 +1,4 @@
-define(["sys", "angular", "v", "common", "res", "dbg", "plots/start", "plots/nature_test", "plot_common"], function* (sys, angular, v, common, res, dbg, start, nature_test, plot) {
+define(["sys", "angular", "v", "common", "res", "dbg",  "plot_common","plot_core"], function* (sys, angular, v, common, res, dbg,  plot,plot_core) {
 
 
     var scene = new sys.Scene({
@@ -17,8 +17,9 @@ define(["sys", "angular", "v", "common", "res", "dbg", "plots/start", "plots/nat
 
         },
         pre_enter: function () {
-            plot.running = start();
-            plot.running.next()
+            plot_core.init();
+//            plot.running = start();
+//            plot.running.next()
         },
         enter: function () {}
     })

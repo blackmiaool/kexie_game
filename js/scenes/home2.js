@@ -175,56 +175,6 @@ var scene = new sys.Scene({
 
 
 
-function tab_table_create(data) {
-    var frame = $('<div class="panel panel-default"></div>')
-    var head = $('<div class="panel-heading" align="center"></div>')
-    head.text(data.head)
-    frame.append(head)
-    if (data.des != undefined) {
-        var des = $('<div class="panel-des" align="left"></div>')
-        des.text(data.des);
-        frame.append(des)
-    }
-
-    var table = $('<table class="table"></table>')
-
-    var column = 0;
-    var tr;
-    for (var i in data.data) {
-        var pair = data.data[i];
-        if (column == 0) {
-            column = 1;
-            tr = $('<tr></tr>');
-            var key = $('<td class="prop-tab-name prop-tab-name-right"></td>')
-            key.text(pair.key);
-            tr.append(key)
-            var value = $('<td class="prop-tab-value prop-tab-name-left"></td>')
-            value.text(pair.num)
-            tr.append(value)
-
-        } else {
-            column = 0;
-            var key = $('<td class="prop-tab-name prop-tab-name-right"></td>')
-            key.text(pair.key);
-            tr.append(key)
-            var value = $('<td class="prop-tab-value prop-tab-name-right"></td>')
-            value.text(pair.num)
-            tr.append(value)
-            table.append(tr);
-
-        }
-
-
-    }
-    if (column == 1) {
-        table.append(tr);
-
-    }
-    frame.append(table);
-    //console.dir(table.children());
-    return frame;
-}
-
 //
 //itemd = [{
 //    head: "科协投名状",
@@ -341,7 +291,7 @@ angular.module('home_app')
     //        }
     //    })
     .controller("tab_teammate_controller", function ($scope) {
-
+console.log("team");;
 
         $scope.data = {};
 

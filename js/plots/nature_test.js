@@ -5,15 +5,15 @@
     if (result == 1) {
         tc("首先请选择你的名字")
         var result, value = tm({
-            type : "input_with_btn",
-                data : {
-                    placeholder: "手动输入姓名（昵称）",
-                    btn: "确定",
-                    width: "25%",
-                }
+            type: "input_with_btn",
+            data: {
+                placeholder: "手动输入姓名（昵称）",
+                btn: "确定",
+                width: "25%",
+            }
         }, "使用作者指定姓名：李厷叺", "系统随机生成姓名")
         console.log(1, result);
-        console.log(2, typeof(result))
+        console.log(2, typeof (result))
 
         if (result == 1) {
             v.basic.name = "李厷叺";
@@ -35,46 +35,50 @@
         } else {
             v.basic.work_abt = v.basic.work_abt + 0.2
         }
-    }
-    tc("这三样东西，如果要你抛弃一样，你会选择");
-    var result = tm("金钱", "智商", "意志力");
-    if( result == 0) {
-        v.basic.money_abt = v.basic.money_abt - 0.1
-    } else if (result == 1) {
-        v.basic.study_abt = v.basic.study_abt - 0.1
-    } else {
-        v.basic.work_abt = v.basic.work_abt - 0.1
-    }
-    
-    tc("在大学里，你觉得这二者哪个更重要？");
-    var result = tm("兄弟（姐妹）", "情人（配偶）");
-    if (result == 1) {
-        v.basic.work_abt = v.basic.work_abt - 0.1
-    }
-    tc("你高中除了学习高考知识，还做过")
-    var result = tm("OI", "物竞", "数竞", "打工或者创业赚钱", "没做过别的，专心高考")
-    if (result == 0) {
-        v.experience.OI = true;}
-    else if (result == 1) {
-        v.experience.phy = true;
-    } else if (result == 2) {
-        v.experience.math = true;
-    } else if (result == 3) {
-        v.basic.money = v.basic.money + 4000;
-    } else if (result == 4) {
-        v.basic.work_abt = v.basic.work_abt + 0.1;
-        tc("真是诚实的孩子，三把斧头都归你了。");
-        tmood(res.img.axe);
-    }
-    tc("你的性别");
-    var result = tm("男", "女");
-    if (result == 1) {
-        v.basic.work_abt = v.basic.work_abt - 0.1;
-        v.basic.female = true;
+
+
+        tc("这三样东西，如果要你抛弃一样，你会选择");
+        var result = tm("金钱", "智商", "意志力");
+        if (result == 0) {
+            v.basic.money_abt = v.basic.money_abt - 0.1
+        } else if (result == 1) {
+            v.basic.study_abt = v.basic.study_abt - 0.1
+        } else {
+            v.basic.work_abt = v.basic.work_abt - 0.1
+        }
+
+        tc("在大学里，你觉得这二者哪个更重要？");
+        var result = tm("兄弟（姐妹）", "情人（配偶）");
+        if (result == 1) {
+            v.basic.work_abt = v.basic.work_abt - 0.1
+        }
+        tc("你高中除了学习高考知识，还做过")
+        var result = tm("OI", "物竞", "数竞", "打工或者创业赚钱", "没做过别的，专心高考")
+        if (result == 0) {
+            v.experience.OI = true;
+        } else if (result == 1) {
+            v.experience.phy = true;
+        } else if (result == 2) {
+            v.experience.math = true;
+        } else if (result == 3) {
+            v.basic.money = v.basic.money + 4000;
+        } else if (result == 4) {
+            v.basic.work_abt = v.basic.work_abt + 0.1;
+            tc("真是诚实的孩子，三把斧头都归你了。");
+            tmood(res.img.axe);
+        }
+        tc("你的性别");
+        var result = tm("男", "女");
+        if (result == 1) {
+            v.basic.work_abt = v.basic.work_abt - 0.1;
+            v.basic.female = true;
+
+        }
+        tc("测试结束。");
+
 
     }
-    tc("测试结束。");
-    
+
+
     tc("伸了伸懒腰，你回到了宿舍。");
-    sys.to_scene("home");
-    
+   

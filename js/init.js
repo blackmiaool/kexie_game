@@ -9,9 +9,9 @@ define(["angular","sys","scenes/home2", "scenes/bigmap", "scenes/chat", "scenes/
         }
     };
     $("#miao-first-tip").remove();
-    setTimeout(function(){
+//    setTimeout(function(){
         angular.bootstrap("body", ['home_app']);
-    },100)
+//    },100)
     
 
 
