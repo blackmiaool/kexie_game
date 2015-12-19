@@ -37,6 +37,26 @@ label {
   position: absolute;
   font-size: 20px;
 }
+.section#section_chat .chat-wrap {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+}
+.section#section_chat #div-mood {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  z-index: 1;
+  text-align: center;
+}
+.section#section_chat #div-mood .mood {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
+}
 .section#section_chat #div-btn,
 .section#section_chat #div-bg,
 .section#section_chat #div-half,

@@ -6,6 +6,7 @@
             angular: "libs/angular.min",
             underscore:"libs/underscore",
             "angular-animate": "libs/angular-animate.min",
+            "angular-route": "libs/angular-route.min",
             d3: "libs/d3.min",
             bootstrap: "libs/bootstrap.min",
         },
@@ -30,6 +31,9 @@
             "angular-animate": {
                 deps: ["angular"],
             },
+            "angular-route": {
+                deps: ["angular"],
+            },
             "d3": {
                 exports: 'd3'
             },
@@ -48,7 +52,7 @@
 })()
 
 
-requirejs(["jquery", "sys", "init", "angular", 'angular-animate'], function ($, sys, init, angular) {
+requirejs(["jquery", "sys", "init", "angular", 'angular-animate', 'angular-route'], function ($, sys, init, angular) {
    
     
     setTimeout(function () {

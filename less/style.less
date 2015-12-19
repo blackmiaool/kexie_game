@@ -51,14 +51,36 @@ label {
 }
 
 .section#section_chat {
+    .chat-wrap{
+        position: absolute;
+        height: 100%;
+        width: 100%;
+    }
+    #div-mood{
+        position: absolute;
+        height: 100%;
+        width: 100%;
+        z-index: 1;
+        text-align: center;
+        .mood{
+            position: absolute;
+            top:0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            margin: auto;
+        }
+    }
     #div-btn,
     #div-bg,
     #div-half,
-    #div-text {
+    #div-text,
+   {
         position: relative;
         top: 0px;
         height: 0px;
         border: none;
+       
         /*text-align: center;*/
         #chat_text {
             background-image: url("@{res-folder}/UI/messageBack.png");

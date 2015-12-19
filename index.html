@@ -16,8 +16,8 @@
     <link rel="stylesheet" href="css/magic.min.css" />
     <link rel="stylesheet" href="dist/css/style.css" />
     <script src="dist/js/libs/poli.js"></script>
-    
-<!--
+
+    <!--
     <script src="dist/js/libs/jquery.min.js"></script>
     <script src="dist/js/libs/bootstrap.min.js"></script>
     <script src="dist/js/libs/jquery.easing.min.js"></script>
@@ -67,37 +67,33 @@
         </button>
         <label class="move-point">剩余行动点:&nbsp;<font>{{get_left_points()}}</font></label>
     </div>
-    <div class="section" id="section_chat" align=center onShow="">
-        <div id="div-mood">
-        </div>
-        <div id="div-bg" ondragstart="return false;">
-            <img src="" alt="">
-        </div>
-        <div id="div-half">
-        </div>
-        <div id="div-text">
-            <div id="chat_text" style="display:none;">
-                <p id="chat_content"></p>
-            </div>
-            <div id="name_all" style="text-align: left;color:rgb(255,255,255);background-image:url(res/UI/nameBack.png);display:none;">
+    <div ng-controller="chat_controller" class="section" id="section_chat" align=center onShow="">
+        <div class="chat-wrap">
 
-                <label id="name_content"></label>
+            <div id="div-bg" ondragstart="return false;">
+                <img src="" alt="">
             </div>
-        </div>
-        <div id="div-btn">
+            <div id="div-half">
+            </div>
+            <div id="div-text">
+                <div id="chat_text" style="display:none;">
+                    <p id="chat_content"></p>
+                </div>
+                <div id="name_all" style="text-align: left;color:rgb(255,255,255);background-image:url(res/UI/nameBack.png);display:none;">
+
+                    <label id="name_content"></label>
+                </div>
+            </div>
+            <div id="div-mood">
+                <img src="" alt="" class="mood">
+            </div>
+            <div id="div-btn">
+            </div>
         </div>
 
     </div>
-    <div class="section" id="section_cover" style="background:url(res/Background/cover.jpg);text-align:center;display:none;">
-        <label class='logo-title' style="">科协浮生记</label>
-        <br/>
-        <button indexx=0 class="cover_btn button  button-rounded button-raised button-caution" id="cover_btn1" style="position: relative;top:120px;">开始游戏</button>
-        <br/>
-        <button indexx=1 id="cover_btn2" class="cover_btn button  button-raised button-rounded button-primary" href="langshenjiao/index.html" style="position: relative;top:150px;">读取进度</button>
-        <br/>
-        <button indexx=2 id="cover_btn3" class="cover_btn button  button-raised button-rounded button-primary" style="position: relative;top:180px;">关于游戏</button>
-        <br/>
-        <br/>
+    <div ng-controller="cover_controller" class="section" id="section_cover" style="background:url(res/Background/cover.jpg);text-align:center;display:none;" ng-include="'html/cover.html'">
+
     </div>
     <div class="section" id="section_preload" style="display:none;">
         <div class="progress" style="width:960px;">
@@ -165,7 +161,7 @@
         <div class=" well desk-frame" id="home-tabs" style="display:inline-block;">
             <div class="tab-content">
                 <div ng-controller="tab_plan_controller" class="tab-pane" id="tab-plan" style="width:100%;overflow:hidden;">
-                   <div id="tab-plan-right">
+                    <div id="tab-plan-right">
                         <div class="plan-right-block">
                             <label class="plan-right-label">剩余行动点数</label>
                             <label class="plan-right-value">{{get_left_points(updt)}}（{{get_period(updt)}}）</label>
@@ -268,7 +264,7 @@
                         </button>
 
                     </div>
-                    
+
                 </div>
 
                 <div ng-controller="tab_teammate_controller" class="tab-pane" id="tab-teammate">
@@ -674,7 +670,7 @@
     </div>
 
 
-<script data-main="dist/js/main" src="dist/js/libs/require.js"></script>
+    <script data-main="dist/js/main" src="dist/js/libs/require.js"></script>
 </body>
 
 </html>

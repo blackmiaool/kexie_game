@@ -14,6 +14,7 @@ define(["common"], function (common) {
             keamenkou: g("Background/keamenkou.png"),
             kealouti: g("Background/kealouti.png"),
 
+            axe: g("Mood/axe.png"),
             sushe: g("Background/sushe.jpg"),
             delvyuanjian: g("Background/delv.jpg"),
             jiaoshi: g("Background/jiaoshi.jpg"),

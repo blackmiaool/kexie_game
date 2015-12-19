@@ -44,6 +44,12 @@ function get_babel_params() {
 //gulp.task('yield', function () {
 //    return gulp.src('js/plot/*.js').pipe(gulp.dest('js/plot/dist/'));
 //})
+gulp.task('html', function () {
+    return gulp.src('html/**/*.html')
+        .pipe(cached("html"))
+        .pipe(gulp.dest('dist/html')).pipe(livereload());
+});
+
 
 gulp.task('less', function () {
     var less = require('gulp-less');
@@ -74,6 +80,7 @@ gulp.task('mv-dist', function () {
         }))
         .pipe(gulp.dest('dist/'));
 });
+
 gulp.task("plots", function () {
     var babel_pipe = babel(get_babel_params());
     babel_pipe.on('error', function (ee) {
@@ -91,6 +98,7 @@ gulp.task("plots", function () {
 var tc=plot.tc; \
 var th=plot.th; \
 var tm=plot.tm; \
+var tmood=plot.tmood; \
 };return function* (){',
             footer: '\n}})',
             filter: function (file) {
@@ -102,7 +110,7 @@ var tm=plot.tm; \
         .pipe(gulp.dest('dist/js')).pipe(livereload())
 })
 gulp.task("scenes", function () {
-    
+
     var babel_pipe = babel(get_babel_params());
     babel_pipe.on('error', function (ee) {
         gutil.log(ee);
@@ -115,11 +123,11 @@ gulp.task("scenes", function () {
             header: 'define(["sys","angular","v","common","res","dbg"],function* (sys,angular,v,common,res,dbg){',
             footer: '})',
             filter: function (file) {
-                var cwd=file.history[0].split("/");
-                var filename=cwd[cwd.length-1];
-                if(filename=="chat"){
+                var cwd = file.history[0].split("/");
+                var filename = cwd[cwd.length - 1];
+                if (filename == "chat") {
                     return false;
-                }                
+                }
                 return true;
             }
         }))
@@ -221,7 +229,7 @@ gulp.task("injectHeader", function () {
 });
 gulp.task('default', function () {
 
-    gulp.start(["mv-dist", "less", 'md', "es6"]);
+    gulp.start(["mv-dist", "less", "html", 'md', "es6"]);
 
 });
 gulp.task('reload', function () {

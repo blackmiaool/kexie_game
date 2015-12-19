@@ -4,7 +4,7 @@ define(["angular","dbg"], function (angular) {
     var scenes = {};
     var scene_fade_time = 1000;
     var current_scene={};
-    angular.module('home_app', ["ngAnimate"]);
+    angular.module('home_app', ["ngAnimate","ngRoute"]);
 //    var scene = new sys.Scene({
 //        id:"",
 //        dom_id:"",

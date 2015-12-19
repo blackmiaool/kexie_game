@@ -1,25 +1,29 @@
-define(["sys","common","dbg"],function(sys,common,dbg){
-    var exports={
-        running:{},
+define(["sys", "common", "dbg"], function (sys, common, dbg) {
+    var exports = {
+        running: {},
     };
-    var sx=sys.sx;
-    var sy=sys.sy;
+
+    var sx = sys.sx;
+    var sy = sys.sy;
     var btn_gap = 50;
     var touched = false;
     var tc_pre_things = {};
     var touch_enable = true;
     var running = false;
-    var result={
-        
-    };    
-    exports.result=result;
+    var result = {
+
+    };
+    exports.result = result;
     var message = message_create();
-    var gap={
+
+
+    var gap = {
         def: 70,
         fast: 40,
         slow: 200,
     }
-    exports.gap=gap;
+    exports.gap = gap;
+
     function touch_wait(cb) {
         var a = setInterval(
             function () {
@@ -48,8 +52,9 @@ define(["sys","common","dbg"],function(sys,common,dbg){
         number = Math.ceil(rnd() * number) + min - 1　　　　
         return number;
     };
-    exports.rand=rand; 
-    console.log(exports) 
+    exports.rand = rand;
+    console.log(exports)
+
     function message_create() {
         var t = $('#chat_text')
         var container = $("#chat_content");
@@ -206,10 +211,11 @@ define(["sys","common","dbg"],function(sys,common,dbg){
         var currentStyle = 'inline';
         return t;
     }
-    function plot_resume(ret){
-//        exports.running();
-        exports.running.next(ret);        
-    } 
+
+    function plot_resume(ret) {
+        //        exports.running();
+        exports.running.next(ret);
+    }
     exports.tm = function () {
         touch_enable = false;
         var arg_len = 0;
@@ -230,25 +236,25 @@ define(["sys","common","dbg"],function(sys,common,dbg){
 
         var len = it.length
         var menu_value = false;
-        var div_btn=$("#div-btn");
+        var div_btn = $("#div-btn");
         var cb = function (index, v) {
             div_btn.empty();
             setTimeout(function () {
                 touched = false;
             }, 0);
-//            var js_arg={};
-//            js_arg = {
-//                index: index,
-//                value: v
-//            };
-//            {
-//                index:index,
-//                v:v
-//            }
-//            plot_resume({
-//                index:index,
-//                value:v
-//            });
+            //            var js_arg={};
+            //            js_arg = {
+            //                index: index,
+            //                value: v
+            //            };
+            //            {
+            //                index:index,
+            //                v:v
+            //            }
+            //            plot_resume({
+            //                index:index,
+            //                value:v
+            //            });
             plot_resume(index);
 
         }
@@ -523,9 +529,16 @@ define(["sys","common","dbg"],function(sys,common,dbg){
 
     };
     var current_background = 0;
-    var bg=$("#section_chat #div-bg img");
-    exports.ts = function (background, time) {        
-        
+    var bg = $("#section_chat #div-bg img");
+    exports.tmood=function(background){
+        var mood=$("#div-mood .mood");
+        $("")
+        console.log(mood);
+        console.log(background)
+        mood.attr("src",background);
+    }
+    exports.ts = function (background, time) {
+
         var fadeout_time = 800;
         if (dbg.isinfastmode) {
             time = 10;
@@ -549,7 +562,7 @@ define(["sys","common","dbg"],function(sys,common,dbg){
             bg.fadeIn(time);
 
             setTimeout(function () {
-                
+
                 plot_resume();
             }, time);
         } else {
@@ -565,11 +578,12 @@ define(["sys","common","dbg"],function(sys,common,dbg){
         current_background = background;
         running = false
     }
-    
-    $("#section_chat").on("click",function(){
-        touched=true;
- 
+
+    $("#section_chat").on("click", function () {
+        touched = true;
+
     })
+
     return exports;
-    
+
 })

@@ -24,7 +24,7 @@ while (chat_times > 0) {
     var result = tm(pp.daijun.name, pp.chenguo.name, pp.tanjinchuan.name,
         pp.tanchengzi.name, "离开")
     chat_times = chat_times - 1;
- 
+
     if (result == 0) { //daijun 
         th(0, pp.daijun, 0)
         if (v.basic.way == 1 || v.basic.way == 2) { //模拟
@@ -122,11 +122,18 @@ while (chat_times > 0) {
             while (false);
             if (right == true) {
 
-                tc(people.name +
-                    "学长好感度+1\n数字电路技能+1", 0, 0, color_award)
+
+
+
+                tc(people.name + "学长好感度+1\n数字电路技能+1", 0, 0, color_award);
                 v.skill.digital_circuit = v.skill.digital_circuit + 1;
+
+
+
                 tc("去和其他人聊聊吧。", people)
             } else {
+
+
 
                 tc("继续努力吧。", people)
             }
@@ -134,14 +141,16 @@ while (chat_times > 0) {
 
             tc("你和我不是一个同方向，去找模拟电路方向的学长吧", pp.people)
         }
+
+
     } else if (result == 4) {
         return exit();
 
     }
 
 }
-th(0, 0, 0)
-tc("参观完科协，你回到了宿舍。")
+th(0, 0, 0);
+tc("参观完科协，你回到了宿舍。");
 return exit();
 
 /*
