@@ -1,20 +1,37 @@
 var backto;
-
-
 var scene = new sys.Scene({
-    id: "save_load",
-    dom_id: "section_save_load",
+    id: "save",
+    dom_id: "scene_save",
     init: function () {
         angular.module('home_app')
-            .controller("save_controller", function ($scope) {
+            .controller("save_controller", ["$rootScope", "$scope", function ($rootScope, $scope) {
 
                 $scope.buttons = [];
+                $rootScope.$on("save_pre_enter", (args, params) => {
+                    console.log("enter");
+             
+                    let [save_this, backto_this] = params;
+                    save = save_this;
+                    backto = backto_this;
+                    if (save == "save") {
+                        $scope.title = "存档";
+                    } else {
+                        
+                        $scope.title = "读档";
+                    }
+                    
+                    load_records();
+                    
+                    if(!$scope.$$phase)
+                        $scope.$digest();
+
+                })
+                setInterval(()=>{console.log($scope.buttons)},1000)
                 for (var i = 0; i < 6; i++) {
                     $scope.buttons[i] = {}
-                        //            $scope.buttons[i].version=sys.config.version;
                 }
 
-                var save_load, backto;
+                var save, backto;
                 var storage_name = "kexiegamesave";
 
                 function getProgressName(index) {
@@ -38,10 +55,10 @@ var scene = new sys.Scene({
                 }
 
                 function save_all() {
-                    local_set_obj(storage_name, $scope.buttons);
+                    sys.local.set(storage_name, $scope.buttons);
 
                 }
-                var save = function (index) {
+                var save_record = index => {
                     if ($scope.buttons[index].version) {
                         if (confirm("是否确定覆盖存档？")) {
 
@@ -58,71 +75,46 @@ var scene = new sys.Scene({
 
                     }
                     save_all();
-                    load_record();
+                    load_records();
                 }
-                var load = function (index) {
+                var load_record = function (index) {
                     if ($scope.buttons[index].version) {
-                        angular.element("#section_home").scope().v = $scope.buttons[index].data;
+                        angular.element("#scene_home").scope().v = $scope.buttons[index].data;
                         v = $scope.buttons[index].data;
                         sys.to_scene("home");
                     }
 
-                    //    toSection("home")
+                    //    toscene("home")
                 }
 
-                function load_record() {
-                    var record = local_load_obj(storage_name);
-                    console.log(record)
-                    if (record === null) {
-                        console.log("www")
+                function load_records() {
+                    var record = sys.local.load(storage_name);
+
+                    if (!record) {                        
                         save_all();
                     }
                     $scope.buttons = record;
-                    //            angular.element("#section_home").scope().$digest();
+                    //            angular.element("#scene_home").scope().$digest();
 
 
                 }
-                $scope.enter = function (save_load_this, backto_this) {
-                    save_load = save_load_this;
-                    backto = backto_this;
-                    if (save_load == "save") {
-                        $scope.title = "存档";
-                    } else {
-                        $scope.title = "读档";
-                    }
-                    load_record();
-                }
+
                 $scope.go_back = function () {
-                    sys.to_scene(backto);
+
+                    sys.to_scene(backto ? backto : "home");
                 }
                 $scope.get_btn_text = function (index) {
 
                 }
                 $scope.handle = function (index) {
-                    if (save_load == "save") {
-                        save(index);
+                    if (save == "save") {
+                        save_record(index);
                     } else {
-                        load(index);
+                        load_record(index);
                     }
                 }
 
-            })
-    },
-    pre_enter: function (save_load, backto_this) {
-
-        backto = backto_this;
-        var $scope = angular.element("#section_save_load").scope();
-
-
-        if (!$scope.$$phase) {
-            $scope.$apply(
-                function ($scope) {
-                    $scope.enter(save_load, backto_this);
-                }
-            );
-        } else {
-            $scope.enter(save_load, backto_this);
-        }
+            }])
     },
     enter: function () {}
 })

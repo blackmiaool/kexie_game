@@ -538,7 +538,7 @@ define(function (require) {
 
     };
     var current_background = 0;
-    var bg = $("#section_chat #div-bg img");
+    var bg = $("#scene_chat #div-bg img");
     exports.tmood=function(background){
         var mood=$("#div-mood .mood");
         $("")
@@ -588,7 +588,7 @@ define(function (require) {
         running = false
     }
 
-    $("#section_chat").on("click", function () {
+    $("#scene_chat").on("click", function () {
         touched = true;
 
     })

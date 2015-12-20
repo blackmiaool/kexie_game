@@ -63,10 +63,10 @@ var pre_enter = function () {
             }
             if (dbg.imdeveloper) {
                 developer_set();
-                //                    sys.to_scene("chat");
+                sys.to_scene("home"); 
                 //                    sys.to_scene("home");
                 
-                sys.to_scene("home");    
+//                sys.to_scene("home");    
 //                    sys.to_scene("chat"); 
                 
                 
@@ -83,7 +83,7 @@ var pre_enter = function () {
 
 var scene = {
     id: "preload",
-    dom_id: "section_preload",
+    dom_id: "scene_preload",
     pre_enter: pre_enter,
 };
 

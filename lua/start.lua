@@ -29,6 +29,6 @@ p.start=function()
         end
     end
     tc("权衡了一下利弊，你决定还是顺其自然比较好。于是你定了定神，迈步走进了神大。")
-    --section.nature_test()
+    --scene.nature_test()
     return true;
 end

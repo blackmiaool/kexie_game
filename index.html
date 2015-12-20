@@ -8,7 +8,7 @@
     <meta name="description" content="game">
     <meta name="author" content="blackmiaool">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=4,minimum-scale=0.1">
-    <h5 id="miao-first-tip" style="text-align:center;color:#ccc;">服务器连接成功，正在拉取JS与CSS~</h5>
+    <h5 id="game-first-tip" style="">服务器连接成功，正在拉取JS与CSS~</h5>
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/buttons.css">
     <link rel="shortcut icon" href="res/monkey.png">
@@ -19,30 +19,18 @@
 </head>
 
 <body ng-controller="root_controller">
-    <div ng-controller="bigmap_controller" class="section" id="section_bigmap" style="display:none;" ng-include="'html/bigmap.html'">
-        
-    </div>
-    <div ng-controller="chat_controller" class="section" id="section_chat" align=center onShow="" ng-include="'html/chat.html'">
-       
-
-    </div>
-    <div ng-controller="cover_controller" class="section" id="section_cover" style="background:url(res/Background/cover.jpg);text-align:center;display:none;" ng-include="'html/cover.html'">
-
-    </div>
-    <div class="section" id="section_preload" style="display:none;" ng-include="'html/preload.html'">
-        
-    </div>
-    <div class="section" id="section_home" ng-include="'html/home.html'">
-         
-    </div>
-    <div ng-controller="save_controller" id="section_save_load" align=center class="section" style="background-image: url(res/UI/mysave.png);display:none;">
-
-        <h1 id="go-back" ng-click="go_back()">返回游戏</h1>
-        <h1 id="title" ng-bind="title"></h1>
-        <button ng-repeat="btn in buttons track by $index" ng-click="handle($index)" class="button button-3d button-inverse button-save" style="top: {{80+70*$index}}px; position: absolute; left: 280px;" ng-bind="btn.title"></button>
-    </div>
-
-
+    <div ng-include="'html/bigmap.html'" class="scene" id="scene_bigmap"></div>
+    
+    <div ng-include="'html/chat.html'" class="scene" id="scene_chat"></div>
+    
+    <div ng-include="'html/cover.html'" class="scene" id="scene_cover"></div>
+    
+    <div ng-include="'html/preload.html'" class="scene" id="scene_preload"></div>
+    
+    <div ng-include="'html/home.html'" class="scene" id="scene_home"></div>
+    
+    <div ng-include="'html/save.html'" class="scene" id="scene_save"></div>
+    
     <script data-main="dist/js/main" src="dist/js/libs/require.js"></script>
 </body>
 

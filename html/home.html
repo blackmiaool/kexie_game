@@ -35,196 +35,22 @@
             </div>
         </div>
     </div>
-    <div id="home-head">
-
-        <div ng-controller="prop_controller" class="well highlight" id="prop">
-            <div ng-repeat="(key ,value) in data" class=" prop-set" is-first={{$first}}>
-                <h4 class="prop-name prop-common" style="">
-                    <span class="glyphicon {{key | get_prop_icon}}" aria-hidden="true"></span>&nbsp;{{key}}
-                </h4>
-                <h4 class="prop-value prop-common" key="{{key}}">
-                    {{value}}
-                </h4>
-            </div>
-        </div>
-
-    </div>
+    <div id="home-head" ng-include="'html/home/head.html'" class="" ></div>
+    
     <div class="" id="home-main-tab">
 
         <button ng-repeat="(key,value) in list" class="desk-frame-nav-a btn {{(value.title==tab_selecting && 'active')}}" ng-click="tab_select(value.title,value.href)">
             {{key}}<span class="badge {{value.state}}" style="vertical-align: 25%;  margin-left: 5px;  margin-right: -10px;">{{value.content}}</span>
         </button>
     </div>
+    
+    
     <div class=" well desk-frame" id="home-tabs" style="display:inline-block;">
         <div class="tab-content">
-            <div ng-controller="tab_plan_controller" class="tab-pane" id="tab-plan" style="width:100%;overflow:hidden;">
-                <div id="tab-plan-right">
-                    <div class="plan-right-block">
-                        <label class="plan-right-label">剩余行动点数</label>
-                        <label class="plan-right-value">{{get_left_points(updt)}}（{{get_period(updt)}}）</label>
-                    </div>
-                    <div class="plan-right-block" style="overflow:hide;">
-                        <label class="plan-right-label">星期</label>
-                        <label class="plan-right-value week_day_index" ng-bind="v.time.week_day_index"></label>
-                    </div>
-                    <div class="plan-right-block">
-                        <label class="plan-right-label">疲劳度</label>
+            <div ng-include="'html/home/plan.html'"  class="tab-pane" id="tab-plan" style="width:100%;overflow:hidden;"></div>
 
-                        <div id="tab-plan-skill-progress" class="progress active" style="margin:0px;margin-bottom:3px;margin-top:3px;height:10px;">
-                            <div min-width="2em" class="progress-bar {{v.state.fatigue | progress_color}} progress-bar-striped" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: {{v.state.fatigue}}%;">
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="plan-right-block">
-                        <label class="plan-right-label">技能点</label>
-                        <label class="plan-right-value">已拥有:{{v.state.skill_point}}</label>
-                        <div id="tab-plan-skill-progress" class="progress active" style="margin:0px;margin-bottom:3px;height:10px;">
-                            <div min-width="2em" class="progress-bar progress-bar-info progress-bar-striped" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: {{v.state.skill_progress}}%;">
-                            </div>
-                        </div>
-
-                    </div>
-                    <div class="plan-right-block">
-                        <label class="plan-right-label">制造进度</label>
-                        <div ng-if="!v.make.target" class="make-state" style="width:100%;">
-                            <label>并没有</label>
-                        </div>
-                        <div ng-if="v.make.target">
-                            <div class="make-state" style="width:100%;">
-                                <span class="make-state-line">
-                                    <label class="left">制造:
-                                    </label>
-                                    <label class="right">{{v.make.target}}
-                                    </label>
-                                </span>
-                                <div class="make-state-line">
-                                    <label class="left">完成度:
-                                    </label>
-                                    <label class="right">{{v.make.progress}}%
-                                    </label>
-                                </div>
-                                <div class="make-state-line">
-                                    <label class="left">创新度:
-                                    </label>
-                                    <label class="right">{{v.make.innovate}}
-                                    </label>
-                                </div>
-
-                            </div>
-                            <div id="tab-plan-skill-progress" class="progress active" style="margin:0px;margin-bottom:3px;height:10px;width:100%;">
-                                <div min-width="2em" class="progress-bar progress-bar-info progress-bar-striped" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width:{{v.make.progress}}%;">
-                                </div>
-                            </div>
-                            <div class="make-state-line">
-                                <button ng-click="make_end()" class="btn btn-default" style="margin:5px;width:90%;">结束制作</button>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="plan-right-block">
-                        <label class="plan-right-label">今日课程</label>
-                        <label id="tody-class-section" class="plan-right-value" style="width:100%;">
-
-
-                            <label ng-repeat="value in class" class="today-class {{value.state}}">
-                                <label class="left">{{value.name}}</label>
-                                <label class="right">{{value.data}}</label>
-                            </label>
-
-                        </label>
-                    </div>
-                </div>
-                <div id="tab-plan-left">
-                    <button class="btn btn-primary  section-btn " ng-disabled="button_state" id="tab_plan_go_out_btn" ng-click="go_out()">
-                        <div class="glyphicon glyphicon-comment" aria-hidden="true"></div>
-                        <div class="des">外出</div>
-                    </button>
-                    <button class="btn btn-primary section-btn " ng-disabled="button_state" id="tab_plan_go_school_btn" ng-click="go_school()">
-                        <div class="glyphicon glyphicon-education" aria-hidden="true"></div>
-                        <div class="des">上课</div>
-                    </button>
-                    <button class="btn btn-primary section-btn " ng-disabled="button_state" id="tab_plan_make_btn" ng-click="make()">
-                        <div class="glyphicon glyphicon-wrench" aria-hidden="true"></div>
-                        <div class="des">制造</div>
-                    </button>
-                    <button class="btn btn-primary section-btn " ng-disabled="button_state" id="tab_plan_pass_day_btn" ng-click="study()">
-                        <div class="glyphicon glyphicon-book" aria-hidden="true"></div>
-                        <div class="des">自习</div>
-                    </button>
-                    <button class="btn btn-primary section-btn " ng-disabled="v.state.fatigue<=0||button_state" id="tab_plan_rest_btn" ng-click="rest()">
-                        <div class="glyphicon glyphicon-tower" aria-hidden="true"></div>
-                        <div class="des">休息</div>
-                    </button>
-                    <button class="btn btn-danger section-btn " id="tab_plan_pass_day_btn" ng-click="pass_day()">
-                        <div class="glyphicon glyphicon-bed" aria-hidden="true"></div>
-                        <div class="des">结束</div>
-                    </button>
-
-                </div>
-
-            </div>
-
-            <div ng-controller="tab_teammate_controller" class="tab-pane" id="tab-teammate">
-                <div style="float:left;left:0px;" id="carousel-teammate-generic" class="carousel " data-ride="carousel">
-                    <!-- Indicators -->
-                    <style type="text/css">
-                        .left.carousel-control {
-                            background-image: linear-gradient(to right, rgba(128, 128, 128, .5) 0, rgba(128, 128, 128, .0001) 100%);
-                        }
-                        
-                        .right.carousel-control {
-                            background-image: linear-gradient(to left, rgba(128, 128, 128, .5) 0, rgba(128, 128, 128, .0001) 100%);
-                        }
-                    </style>
-                    <ol class="carousel-indicators">
-                    </ol>
-                    <!-- Wrapper for slides -->
-                    <div class="carousel-inner" role="listbox">
-                        <div ng-repeat="(key,value) in data" class="item {{$first && 'active'}}" name="{{key}}" first="{{$first}}">
-                            <div><img align="center" ng-src="{{value.half}}" />
-                            </div>
-                            <div class="carousel-caption" style="width: 100%; right:0px;left:0px; background-color: rgba(0, 0, 0, 0.298039);">{{value.tag}}
-                                <br>{{value.name}}</div>
-                        </div>
-
-                    </div>
-                    <!-- Controls -->
-                    <a class="left carousel-control" href="#carousel-teammate-generic" role="button" data-slide="prev">
-                        <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-                        <span class="sr-only">Previous</span>
-                    </a>
-                    <a class="right carousel-control" href="#carousel-teammate-generic" role="button" data-slide="next">
-                        <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-                        <span class="sr-only">Next</span>
-                    </a>
-                </div>
-                <style>
-                    .chart rect {
-                        fill: steelblue;
-                    }
-                    
-                    .chart text {
-                        fill: white;
-                        font: 15px sans-serif;
-                        text-anchor: end;
-                    }
-                    
-                    .chart text[kind="head"] {
-                        fill: black;
-                        font: 15px sans-serif;
-                        text-anchor: end;
-                    }
-                </style>
-                <svg class="chart" style="float:right;width:58%;text-align:left;"></svg>
-                <div class="panel panel-default">
-                    <div class="my-panel-heading" role="tab" width="100%"><span style="text-align:center;position:relative;display:inline-block; width:100%;" class="panel-title" data-toggle="collapse" href="#teammate-skill-heading" aria-expanded="true" aria-controls="teammate-skill-heading"><label style="width: 32%;">天赋技能</label></span>
-                    </div>
-                    <div style="transition: height 0.2s; -webkit-transition: height 0.2s;" id="teammate-skill-heading" class="panel-collapse collapse in" role="tabpanel" aria-expanded="true">
-                        <div class="store-panel-content">
-                            <h5 class="item-panel" id="tab-teammate-skill-content">每月可以膜拜一次指定对象，增加目标对本团队的好感度</h5>
-                        </div>
-                    </div>
-                </div>
+            <div ng-include="'html/home/team.html'"  class="tab-pane" id="tab-teammate">
+                
             </div>
             <style>
                 #tab-item {
@@ -536,9 +362,9 @@
         <ul class="dropdown-menu" role="menu" style="min-width:0px;">
             <li><a href="#">设置</a>
             </li>
-            <li id="section-home-btn-save"><a href="#" ng-click="home_save()">存档</a>
+            <li id="scene-home-btn-save"><a href="#" ng-click="home_save()">存档</a>
             </li>
-            <li id="section-home-btn-load"><a href="#" ng-click="home_load()">读档</a>
+            <li id="scene-home-btn-load"><a href="#" ng-click="home_load()">读档</a>
             </li>
             <li class="divider"></li>
             <li><a href="#">关于</a>

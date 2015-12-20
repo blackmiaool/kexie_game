@@ -1,0 +1,5 @@
+<div ng-controller="save_controller" class="wrap">
+    <h1 class="back" ng-click="go_back()">返回游戏</h1>
+    <h1 class="title" ng-bind="title"></h1>
+    <button ng-repeat="btn in buttons track by $index" ng-click="handle($index)" class="button button-3d button-inverse button-save" style="top: {{80+70*$index}}px; " ng-bind="btn.title"></button>
+</div>

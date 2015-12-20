@@ -2,7 +2,7 @@
 // 
 //    var fade_time = 100
 //    var text_time = 100
-//    var section_onShow = {}
+//    var scene_onShow = {}
 //    var lua_arg = []
 //    var js_arg = {}
 //    var lua_handle_finish = false;

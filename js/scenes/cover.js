@@ -1,6 +1,6 @@
 var scene = new sys.Scene({
     id: "cover",
-    dom_id: "section_cover",
+    dom_id: "scene_cover",
     init: function () {
 
 
@@ -33,7 +33,7 @@ var scene = new sys.Scene({
             })
         $(".cover_btn#cover_btn2").click(
             function () {
-                sys.to_scene("save_load", "load", "cover");
+                sys.to_scene("save", "load", "cover");
 
             })
         $(".cover_btn#cover_btn3").click(

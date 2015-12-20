@@ -94,7 +94,7 @@ for (var i in combine) {
 //}
 
 
-var section_onStart = []
+var scene_onStart = []
 
 function outf(text) { 
     console.warning(text)

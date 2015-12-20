@@ -3,7 +3,7 @@ define(["sys", "angular", "v", "common", "res", "dbg",  "plot_common","plot_core
 
     var scene = new sys.Scene({
         id: "chat",
-        dom_id: "section_chat",
+        dom_id: "scene_chat",
         init: function () {
 
 

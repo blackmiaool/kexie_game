@@ -1,27 +1,29 @@
-define(["angular","dbg"], function (angular,dbg) {
-    
-    let section_running;
+define(["angular", "dbg"], function (angular, dbg) {
+
+    let scene_running;
     var scenes = {};
-    var scene_fade_time = dbg.imdeveloper?1:1000;
-    var current_scene={};
-    angular.module('home_app', ["ngAnimate","ngRoute"]);
-//    var scene = new sys.Scene({
-//        id:"",
-//        dom_id:"",
-//        init:function(){
-//        },
-//        pre_enter:function(){
-//        },
-//        enter:function(){
-//        }    
-//    })
+    var scene_fade_time = dbg.imdeveloper ? 1 : 1000;
+    var current_scene = {};
+    angular.module('home_app', ["ngAnimate", "ngRoute"]);
+    //    var scene = new sys.Scene({
+    //        id:"",
+    //        dom_id:"",
+    //        init:function(){
+    //        },
+    //        pre_enter:function(){
+    //        },
+    //        enter:function(){
+    //        }    
+    //    })
     var exports = {
-        sx:960,
-        sy:540,
-        Scene: function Scene({id, dom_id, init, pre_enter, enter}) {            
+        sx: 960,
+        sy: 540,
+        Scene: function Scene({
+            id, dom_id, init, pre_enter, enter
+        }) {
             this.id = id;
             this.dom_id = dom_id;
-            this.init = init;            
+            this.init = init;
             this.pre_enter = pre_enter;
             this.enter = enter;
             scenes[id] = this;
@@ -31,33 +33,32 @@ define(["angular","dbg"], function (angular,dbg) {
         },
         current_scene: current_scene,
         scenes,
-        to_scene: target => {
-            var args = arguments;
-            Array.prototype.shift.call(arguments, 0)
-            if (section_running == true) {
+        to_scene: (target, ...args) => {
+            if (scene_running == true) {
                 return;
-            }            
+            }
             if (typeof (target) == "string") {
-              
+
                 target = scenes[target];
             } else if (typeof (target) == "object") {
-              
+
                 target = target;
             } else {
-              
+
                 console.error("bad target");
             }
-          
+
             function call_enter(args) {
                 setTimeout(function () {
                     if (target.enter) {
                         target.enter.apply(target, args);
                     }
+                    exports.$rootScope.$emit(target.id + "_enter", args);
                 }, scene_fade_time);
             }
 
             if (target.id) {
-                console.info("out", current_scene.id, "in", target.id)
+                console.info("out", current_scene.id, "in", target.id, args)
                 if (current_scene.dom_id) {
                     $("#" + current_scene.dom_id).css("z-index", "0")
                     $("#" + current_scene.dom_id).fadeOut(scene_fade_time);
@@ -65,13 +66,14 @@ define(["angular","dbg"], function (angular,dbg) {
                 $("#" + target.dom_id).css("z-index", "1")
                 $("#" + target.dom_id).fadeIn(scene_fade_time)
                 current_scene = target;
-                
+
                 if (target.pre_enter) {
-                    target.pre_enter.apply(target, arguments);
+                    target.pre_enter.apply(target, args);
                 }
-                call_enter(arguments);
+                exports.$rootScope.$emit(target.id + "_pre_enter", args);
+                call_enter(args);
             } else {
-                call_enter(arguments);
+                call_enter(args);
             }
 
         },
@@ -137,7 +139,7 @@ define(["angular","dbg"], function (angular,dbg) {
                 var scale2 = height / 545;
                 var scale = Math.min(scale1, scale2) * 100;
                 $("body").css("zoom", scale + "%");
-                $(".section").each(
+                $(".scene").each(
                     function () {
                         body_center($(this))
                     }
@@ -147,7 +149,7 @@ define(["angular","dbg"], function (angular,dbg) {
             zoom_auto();
             window.addEventListener("resize", zoom_auto, false);
         },
-        
+
         put_danmu: (text) => {
             var label = $("<h4 class='danmu'></h4>");
             label.css("position", "absolute")
@@ -183,9 +185,32 @@ define(["angular","dbg"], function (angular,dbg) {
         }
     };
 
+
+    exports.local = {
+        set: (a, b) => {
+            if (typeof (b) == "object")
+
+                localStorage.setItem(a, JSON.stringify(b));
+            else
+                localStorage.setItem(a, b);
+        },
+        load: (a) => {
+            var item = localStorage.getItem(a);
+            var ret = item;
+            console.log("got",item)
+            if (item) {
+                try {
+                    ret = JSON.parse(item);
+                } catch (e) {
+                    //whatever
+                }
+            }
+
+            return ret;
+        },
+        rm: (a) => {
+            localStorage.removeItem(a)
+        }
+    };
     return exports;
 })
-function ttt(){
-    let a=1;
-    return a;
-}

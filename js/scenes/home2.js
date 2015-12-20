@@ -1,11 +1,11 @@
 var scene = new sys.Scene({
     id: "home",
-    dom_id: "section_home",
+    dom_id: "scene_home",
     init: function () {},
     pre_enter: function () {
 
 
-        var section = $("#section_home")
+        var scene = $("#scene_home")
         var tabs = {};
 
         updt_all();
@@ -14,7 +14,7 @@ var scene = new sys.Scene({
 
         function prop_updt() {
             $(".prop-set .prop-value").css("left", "-97px")
-            var tab_div = $("#prop .prop-set[is-first=true]");
+            var tab_div = $("#home-head .prop .prop-set[is-first=true]");
 
             var i = 0;
             var values = []
@@ -188,7 +188,7 @@ var scene = new sys.Scene({
 //    }, ]
 //}, ]
 function take_move_point() {
-    var $scope = angular.element("#section_home").scope()
+    var $scope = angular.element("#scene_home").scope()
 
     $scope.take_move_point();
 
@@ -198,6 +198,7 @@ function take_move_point() {
 }
 
 function updt_all() {
+    angular.element("body").scope().$parent.$root.$emit("home-update-all");
     angular.element("#tab-buy").scope().$emit('home_root', {
         name: 'item_updt',
         param: ""
@@ -291,7 +292,7 @@ angular.module('home_app')
     //        }
     //    })
     .controller("tab_teammate_controller", function ($scope) {
-console.log("team");;
+console.log("team");
 
         $scope.data = {};
 
@@ -304,14 +305,23 @@ console.log("team");;
         }
 
     })
-    .controller("home_root", function ($scope) {
+    .controller("home_root", ["$rootScope","$scope",function ($rootScope,$scope) {
+        $rootScope.$on("home-update-all",function(){            
+            $scope.$broadcast("item_updt");
+            $scope.$broadcast("prop_updt");
+            $scope.$broadcast("quest_updt");
+            $scope.$broadcast("combine_updt");
+        });
+
+        
+        
         $scope.v = v;
         $scope.courses = courses;
         $scope.home_save = function () {
-            sys.to_scene("save_load", "save", "home");
+            sys.to_scene("save", "save", "home");
         }
         $scope.home_load = function () {
-            sys.to_scene("save_load", "load", "home");
+            sys.to_scene("save", "load", "home");
         }
 
 
@@ -456,7 +466,7 @@ console.log("team");;
                 href: "#tab-make"
             }
         }
-    })
+    }])
     .controller("danmu_controller", function ($scope) {
         $scope.data = []
         var danmu_list = []
@@ -1089,7 +1099,7 @@ console.log("team");;
         }
         $scope.week_day_index_value = $(".plan-right-block .week_day_index")
 
-        function section_value_effect(obj, effect, timeout) {
+        function scene_value_effect(obj, effect, timeout) {
             if (timeout == undefined) {
                 timeout = 1000;
             }
@@ -1106,7 +1116,7 @@ console.log("team");;
         }
 
         function end_day() {
-            section_value_effect($scope.week_day_index_value, 'magictime puffIn');
+            scene_value_effect($scope.week_day_index_value, 'magictime puffIn');
             v.time.week_day_index++;
             if (v.time.week_day_index == 8) {
                 v.time.week_day_index = 1;

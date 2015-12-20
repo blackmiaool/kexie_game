@@ -52,24 +52,26 @@
 })()
 
 
-requirejs(["jquery", "sys", "angular", 'angular-animate', 'angular-route', "scenes/home2", "scenes/bigmap", "scenes/chat", "scenes/cover", "scenes/preload", "scenes/save_load", 'angular-animate', 'skill_tree'], function ($, sys, angular) {
-    $("#miao-first-tip").remove();
+requirejs(["jquery", "sys", "angular", 'angular-animate', 'angular-route', "scenes/home2", "scenes/bigmap", "scenes/chat", "scenes/cover", "scenes/preload", "scenes/save", 'angular-animate', 'skill_tree'], function ($, sys, angular) {
+    $("#game-first-tip").remove();
 
 
     angular.module('home_app').controller("root_controller", ["$rootScope", "$scope", function ($rootScope, $scope) {
+        sys.$rootScope = angular.element("body").scope().$parent.$root;
         $scope.$on('$includeContentLoaded', function (params) {
-            
-            console.log("mdfgdfm",params);
+
+            //            console.log("mdfgdfm",params);
 
         });
 
     }]);
     angular.module('home_app').run(
         function () {
+
             setTimeout(function () {
 
                 sys.zoom_and_developer_init();
-                $(".section").hide();
+                $(".scene").hide();
                 $('#buy-tabs a').click(function (e) {
                     e.preventDefault(); //阻止a链接的跳转行为
                     $(this).tab('show'); //显示当前选中的链接及关联的content
@@ -101,7 +103,7 @@ requirejs(["jquery", "sys", "angular", 'angular-animate', 'angular-route', "scen
                     $("body").css("position", "absolute").css("left", "240px").css("width", "960px").css("height:540px");
 
                 }
-                console.log("mmmm");
+                //                console.log("mmmm");
                 sys.to_scene("preload");
 
                 // Do post-load initialization stuff here

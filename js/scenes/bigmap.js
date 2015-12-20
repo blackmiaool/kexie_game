@@ -1,11 +1,11 @@
 var scene = new sys.Scene({
     id: "bigmap",
-    dom_id: "section_bigmap",
+    dom_id: "scene_bigmap",
     init: function () {
-        $("#section_bigmap img").css("opacity", "1")
+        $("#scene_bigmap img").css("opacity", "1")
     },
     pre_enter: function () {
-        $("#section_bigmap img").animate({
+        $("#scene_bigmap img").animate({
             opacity: "0.7"
         });
     },

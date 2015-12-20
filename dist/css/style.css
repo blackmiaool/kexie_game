@@ -26,94 +26,21 @@ label {
   margin-bottom: 2px;
   margin-top: 3px;
 }
-.section {
+#game-first-tip {
+  text-align: center;
+  color: #333;
+}
+.scene {
+  display: none;
   width: 960px;
   height: 540px;
   position: absolute;
 }
-.section#section_bigmap > label.move-point {
-  left: 10px;
-  bottom: 70px;
-  position: absolute;
-  font-size: 20px;
-}
-.section#section_chat .chat-wrap {
-  position: absolute;
-  height: 100%;
-  width: 100%;
-}
-.section#section_chat #div-btn,
-.section#section_chat #div-bg,
-.section#section_chat #div-half,
-.section#section_chat #div-text {
-  position: absolute;
-  height: 100%;
-  border: none;
-  /*text-align: center;*/
-}
-.section#section_chat #div-btn #chat_text,
-.section#section_chat #div-bg #chat_text,
-.section#section_chat #div-half #chat_text,
-.section#section_chat #div-text #chat_text {
-  background-image: url("../../res/UI/messageBack.png");
-  position: relative;
-  top: 350px;
-  width: 960px;
-  height: 180px;
-  padding-top: 25px;
-  padding-left: 50px;
-  padding-right: 50px;
-}
-.section#section_chat #div-btn #chat_text #chat_content,
-.section#section_chat #div-bg #chat_text #chat_content,
-.section#section_chat #div-half #chat_text #chat_content,
-.section#section_chat #div-text #chat_text #chat_content {
-  text-align: left;
-  font-size: 25px;
-  color: #ffffff;
-  text-indent: 2em;
-}
-.section#section_chat #div-btn #name_all,
-.section#section_chat #div-bg #name_all,
-.section#section_chat #div-half #name_all,
-.section#section_chat #div-text #name_all {
-  position: absolute;
-  top: 315px;
-  left: 0px;
-  width: 398px;
-  height: 53px;
-}
-.section#section_chat #div-btn #name_all #name_content,
-.section#section_chat #div-bg #name_all #name_content,
-.section#section_chat #div-half #name_all #name_content,
-.section#section_chat #div-text #name_all #name_content {
-  font-size: 23px;
-  margin-top: 18px;
-  text-align: center;
-  width: 250px;
-}
-.section#section_chat #div-mood {
-  position: absolute;
-  height: 100%;
-  width: 100%;
+.scene#scene_cover {
+  background: url("../../res/Background/cover.jpg");
   text-align: center;
 }
-.section#section_chat #div-mood .mood {
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  margin: auto;
-}
-.section#section_chat #div-btn {
-  text-align: center;
-}
-.section#section_chat #div-bg img {
-  width: 100%;
-  height: 100%;
-}
-.section#section_cover .logo-title {
+.scene#scene_cover .logo-title {
   /*    display: inline-block;*/
   color: #FFFFFF;
   position: relative;
@@ -124,7 +51,92 @@ label {
   text-transform: uppercase;
   text-shadow: 6px 8px 0px rgba(0, 0, 0, 0.25);
 }
-.section#section_home {
+.scene#scene_chat .chat-wrap {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+}
+.scene#scene_chat button.menu_btn,
+.scene#scene_chat input.menu_btn,
+.scene#scene_chat #div-btn .input-group {
+  position: absolute;
+  margin-left: auto;
+  margin-right: auto;
+  font-size: 20px;
+  width: 300px;
+}
+.scene#scene_chat #div-btn,
+.scene#scene_chat #div-bg,
+.scene#scene_chat #div-half,
+.scene#scene_chat #div-text {
+  position: absolute;
+  height: 100%;
+  border: none;
+  /*text-align: center;*/
+}
+.scene#scene_chat #div-btn #chat_text,
+.scene#scene_chat #div-bg #chat_text,
+.scene#scene_chat #div-half #chat_text,
+.scene#scene_chat #div-text #chat_text {
+  background-image: url("../../res/UI/messageBack.png");
+  position: relative;
+  top: 350px;
+  width: 960px;
+  height: 180px;
+  padding-top: 25px;
+  padding-left: 50px;
+  padding-right: 50px;
+}
+.scene#scene_chat #div-btn #chat_text #chat_content,
+.scene#scene_chat #div-bg #chat_text #chat_content,
+.scene#scene_chat #div-half #chat_text #chat_content,
+.scene#scene_chat #div-text #chat_text #chat_content {
+  text-align: left;
+  font-size: 25px;
+  color: #ffffff;
+  text-indent: 2em;
+}
+.scene#scene_chat #div-btn #name_all,
+.scene#scene_chat #div-bg #name_all,
+.scene#scene_chat #div-half #name_all,
+.scene#scene_chat #div-text #name_all {
+  position: absolute;
+  top: 315px;
+  left: 0px;
+  width: 398px;
+  height: 53px;
+}
+.scene#scene_chat #div-btn #name_all #name_content,
+.scene#scene_chat #div-bg #name_all #name_content,
+.scene#scene_chat #div-half #name_all #name_content,
+.scene#scene_chat #div-text #name_all #name_content {
+  font-size: 23px;
+  margin-top: 18px;
+  text-align: center;
+  width: 250px;
+}
+.scene#scene_chat #div-mood {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  text-align: center;
+}
+.scene#scene_chat #div-mood .mood {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
+}
+.scene#scene_chat #div-btn {
+  text-align: center;
+}
+.scene#scene_chat #div-bg img {
+  width: 100%;
+  height: 100%;
+}
+.scene#scene_home {
   margin: 0px;
   display: none;
   padding: 0px;
@@ -132,36 +144,32 @@ label {
   padding-top: 0px;
   background-image: url("../../res/Background/zhuomian.jpg");
 }
-.section#section_home .tab-pane {
-  height: 100%;
-  visibility: visible;
-}
-.section#section_home .modal-body label {
+.scene#scene_home .modal-body label {
   font-weight: normal;
   margin: 0px;
 }
-.section#section_home .modal-body label input {
+.scene#scene_home .modal-body label input {
   zoom: 110%;
 }
-.section#section_home .modal-body > .table > tbody > tr > td,
-.section#section_home .modal-body > .table > tbody > trth {
+.scene#scene_home .modal-body > .table > tbody > tr > td,
+.scene#scene_home .modal-body > .table > tbody > trth {
   padding: 4px;
 }
-.section#section_home .modal-body table.class-design {
+.scene#scene_home .modal-body table.class-design {
   font-size: 18px;
 }
-.section#section_home #home-head {
-  width: 960px;
+.scene#scene_home #home-head {
+  width: 100%;
   height: 40px;
   background-color: rgba(0, 0, 0, 0.5);
   position: absolute;
   border-bottom: 5px solid steelblue;
 }
-.section#section_home #home-head #prop {
+.scene#scene_home #home-head .prop {
   position: absolute;
   left: 0px;
   top: 0px;
-  width: 960px;
+  width: 100%;
   opacity: 1;
   background-color: rgba(170, 170, 170, 0);
   border-width: 0px;
@@ -170,7 +178,7 @@ label {
   padding: 0px;
   margin: 0px;
 }
-.section#section_home #home-head #prop .prop-set {
+.scene#scene_home #home-head .prop .prop-set {
   opacity: 2;
   margin: 0px;
   margin-top: 5px;
@@ -180,7 +188,7 @@ label {
   display: inline-block;
   float: left;
 }
-.section#section_home #home-head #prop .prop-name {
+.scene#scene_home #home-head .prop .prop-name {
   vertical-align: middle;
   position: relative;
   width: 80px;
@@ -202,7 +210,7 @@ label {
   padding-top: 3px;
   font-weight: bold;
 }
-.section#section_home #home-head #prop .prop-value {
+.scene#scene_home #home-head .prop .prop-value {
   vertical-align: -3%;
   position: relative;
   /*    width: 100px;*/
@@ -218,10 +226,10 @@ label {
   z-index: 0;
   height: 30px;
 }
-.section#section_home #home-head #prop .prop-value[key="日期"] {
+.scene#scene_home #home-head .prop .prop-value[key="日期"] {
   width: 120px;
 }
-.section#section_home #home-main-tab {
+.scene#scene_home #home-main-tab {
   position: absolute;
   width: 100px;
   top: 100px;
@@ -232,7 +240,7 @@ label {
   display: table-cell;
   z-index: 1;
 }
-.section#section_home #home-main-tab > button {
+.scene#scene_home #home-main-tab > button {
   text-align: center;
   background-color: steelblue;
   margin: 5px;
@@ -246,74 +254,74 @@ label {
   font-weight: bold;
   transition: transform 0.2s;
 }
-.section#section_home #home-main-tab > button:hover {
+.scene#scene_home #home-main-tab > button:hover {
   transform: translateX(5px);
 }
-.section#section_home #home-main-tab > button.active {
+.scene#scene_home #home-main-tab > button.active {
   background-color: coral;
 }
-.section#section_home #home-main-tab .desk-frame-nav {
+.scene#scene_home #home-main-tab .desk-frame-nav {
   padding: 0px;
   font-size: 120%;
 }
-.section#section_home #home-main-tab li.desk-frame-nav a {
+.scene#scene_home #home-main-tab li.desk-frame-nav a {
   color: rgba(0, 0, 0, 0.85);
   font-weight: bold;
 }
-.section#section_home #home-main-tab span.success {
+.scene#scene_home #home-main-tab span.success {
   background-color: #5cb85c;
 }
-.section#section_home #home-main-tab span.warning {
+.scene#scene_home #home-main-tab span.warning {
   background-color: #f0ad4e;
 }
-.section#section_home #home-main-tab span.error {
+.scene#scene_home #home-main-tab span.error {
   background-color: #f1231a;
 }
-.section#section_home #tab-buy {
+.scene#scene_home #tab-buy {
   font-size: 16px;
 }
-.section#section_home #tab-buy label {
+.scene#scene_home #tab-buy label {
   margin-bottom: 0px;
 }
-.section#section_home #tab-buy .my-tab-store-content {
+.scene#scene_home #tab-buy .my-tab-store-content {
   overflow: auto;
   /*    height: 310px;*/
   margin: 0px;
   margin-top: 10px;
 }
-.section#section_home #tab-buy .my-tab-content {
+.scene#scene_home #tab-buy .my-tab-content {
   overflow: auto;
   /*    height: 350px;*/
   margin: 0px;
   margin-top: 10px;
 }
-.section#section_home #tab-buy #buy-tabs {
+.scene#scene_home #tab-buy #buy-tabs {
   margin-bottom: 7px;
 }
-.section#section_home #tab-buy #store-tabs-content .tab-store-items {
+.scene#scene_home #tab-buy #store-tabs-content .tab-store-items {
   font-size: 130%;
 }
-.section#section_home #tab-buy #store-tabs-content .panel-head {
+.scene#scene_home #tab-buy #store-tabs-content .panel-head {
   border-style: solid solid none solid;
 }
-.section#section_home #tab-buy #store-tabs-content .panel-table {
+.scene#scene_home #tab-buy #store-tabs-content .panel-table {
   border-style: none solid none solid;
   font-size: 70%;
   padding-bottom: 0px;
   padding-top: 0px;
 }
-.section#section_home #tab-buy #store-tabs-content .panel-foot {
+.scene#scene_home #tab-buy #store-tabs-content .panel-foot {
   border-style: none solid solid solid;
 }
-.section#section_home #tab-buy #store-tabs-content .my-panel-heading {
+.scene#scene_home #tab-buy #store-tabs-content .my-panel-heading {
   /*padding: 2px;*/
   font-size: 100%;
 }
-.section#section_home #tab-buy #store-tabs-content .my-panel-heading.selected {
+.scene#scene_home #tab-buy #store-tabs-content .my-panel-heading.selected {
   background-color: steelblue;
   color: #fff;
 }
-.section#section_home #tab-buy #store-tabs-content .item-panel {
+.scene#scene_home #tab-buy #store-tabs-content .item-panel {
   border-color: #fff;
   border-style: none solid solid solid;
   border-radius: 0px;
@@ -326,19 +334,19 @@ label {
   vertical-align: baseline;
   font-color: #ff0000;
 }
-.section#section_home #tab-buy .store-panel-content {
+.scene#scene_home #tab-buy .store-panel-content {
   padding: 10px;
   text-align: center;
 }
-.section#section_home #tab-teammate #carousel-teammate-generic {
+.scene#scene_home #tab-teammate #carousel-teammate-generic {
   width: 250px;
   position: relative;
   left: -150px;
 }
-.section#section_home #tab-teammate #carousel-teammate-generic .carousel-inner img {
+.scene#scene_home #tab-teammate #carousel-teammate-generic .carousel-inner img {
   height: 400px;
 }
-.section#section_home #tab-teammate .panel-default {
+.scene#scene_home #tab-teammate .panel-default {
   width: 58%;
   margin: 0px;
   margin-top: 30px;
@@ -346,37 +354,37 @@ label {
   border-radius: 0px;
   float: right;
 }
-.section#section_home #tab-teammate .carousel {
+.scene#scene_home #tab-teammate .carousel {
   width: 40%;
   /*    height: 100%;*/
   vertical-align: middle;
 }
-.section#section_home #tab-teammate .carousel-inner .item {
+.scene#scene_home #tab-teammate .carousel-inner .item {
   text-align: center;
 }
-.section#section_home #tab-teammate .carousel-inner .item img {
+.scene#scene_home #tab-teammate .carousel-inner .item img {
   text-align: center;
 }
-.section#section_home #tab-plan .plan-right-block {
+.scene#scene_home #tab-plan .plan-right-block {
   text-align: center;
 }
-.section#section_home #tab-plan #tab-plan-left {
+.scene#scene_home #tab-plan #tab-plan-left {
   height: 100%;
 }
-.section#section_home #tab-plan #tab-plan-left .section-btn {
+.scene#scene_home #tab-plan #tab-plan-left .scene-btn {
   margin: 9px;
   width: 156px;
   height: 100%;
   border-width: 2px;
   margin-top: 0px;
 }
-.section#section_home #tab-plan #tab-plan-left .section-btn div.des {
+.scene#scene_home #tab-plan #tab-plan-left .scene-btn div.des {
   font-size: 25px;
 }
-.section#section_home #tab-plan #tab-plan-left .section-btn div.glyphicon {
+.scene#scene_home #tab-plan #tab-plan-left .scene-btn div.glyphicon {
   font-size: 33px;
 }
-.section#section_home #tab-plan .plan-right-label {
+.scene#scene_home #tab-plan .plan-right-label {
   background-color: steelblue;
   color: aliceblue;
   width: 100%;
@@ -384,80 +392,80 @@ label {
   padding: 2px;
   margin: 0px;
 }
-.section#section_home #tab-plan .plan-right-value {
+.scene#scene_home #tab-plan .plan-right-value {
   font-size: 16px;
   margin: 0px;
   width: 100%;
   text-align: center;
 }
-.section#section_home #tab-plan .plan-right-value.transparent {
+.scene#scene_home #tab-plan .plan-right-value.transparent {
   color: rgba(255, 255, 255, 0);
 }
-.section#section_home #tab-plan .today-class {
+.scene#scene_home #tab-plan .today-class {
   width: 100%;
   color: #0a0a0a;
   margin-bottom: -5px;
   margin-top: 2px;
 }
-.section#section_home #tab-plan .today-class.ng-move,
-.section#section_home #tab-plan .today-class.ng-enter,
-.section#section_home #tab-plan .today-class label {
+.scene#scene_home #tab-plan .today-class.ng-move,
+.scene#scene_home #tab-plan .today-class.ng-enter,
+.scene#scene_home #tab-plan .today-class label {
   -webkit-transition: all linear 0.5s;
   transition: all linear 0.5s;
 }
-.section#section_home #tab-plan .today-class.ng-enter,
-.section#section_home #tab-plan .today-class.ng-move {
+.scene#scene_home #tab-plan .today-class.ng-enter,
+.scene#scene_home #tab-plan .today-class.ng-move {
   background-color: white;
 }
-.section#section_home #tab-plan .today-class.ng-enter.ng-enter-active,
-.section#section_home #tab-plan .today-class.ng-move-active {
+.scene#scene_home #tab-plan .today-class.ng-enter.ng-enter-active,
+.scene#scene_home #tab-plan .today-class.ng-move-active {
   background-color: rgba(255, 255, 255, 0);
 }
-.section#section_home #tab-plan .today-class.error {
+.scene#scene_home #tab-plan .today-class.error {
   color: #c9302c;
 }
-.section#section_home #tab-plan .today-class.success {
+.scene#scene_home #tab-plan .today-class.success {
   color: #5cb85c;
 }
-.section#section_home #tab-plan .today-class.selected {
+.scene#scene_home #tab-plan .today-class.selected {
   width: 100%;
   color: #0a0a0a;
   margin-bottom: -5px;
   margin-top: 0px;
 }
-.section#section_home #tab-plan .today-class .left {
+.scene#scene_home #tab-plan .today-class .left {
   width: 35%;
   float: left;
   text-align: left;
   margin: 0px;
 }
-.section#section_home #tab-plan .today-class .right {
+.scene#scene_home #tab-plan .today-class .right {
   width: 65%;
   float: right;
   text-align: right;
   margin: 0px;
 }
-.section#section_home #tab-plan .make-state {
+.scene#scene_home #tab-plan .make-state {
   text-align: center;
   margin: 0px;
   margin-right: 0px;
 }
-.section#section_home #tab-plan .make-state .left {
+.scene#scene_home #tab-plan .make-state .left {
   width: 35%;
   float: left;
   text-align: left;
   margin: 0px;
 }
-.section#section_home #tab-plan .make-state .right {
+.scene#scene_home #tab-plan .make-state .right {
   width: 65%;
   float: right;
   text-align: right;
   margin: 0px;
 }
-.section#section_home #tab-plan .make-state .make-state-line {
+.scene#scene_home #tab-plan .make-state .make-state-line {
   display: block;
 }
-.section#section_home #tab-skill #skill_point {
+.scene#scene_home #tab-skill #skill_point {
   position: absolute;
   right: 30px;
   top: 30px;
@@ -465,7 +473,7 @@ label {
   display: inline-block;
   font-size: 30px;
 }
-.section#section_home #home-tabs {
+.scene#scene_home #home-tabs {
   position: absolute;
   margin: 0px;
   top: 60px;
@@ -474,7 +482,7 @@ label {
   bottom: 20px;
   background-color: rgba(230, 230, 230, 0.7);
 }
-.section#section_home #home-tabs .desk-frame {
+.scene#scene_home #home-tabs .desk-frame {
   /*    position: absolute;*/
   padding: 15px;
   border-color: rgba(51, 122, 183, 0.85);
@@ -486,29 +494,29 @@ label {
   margin-top: 50px;
   margin-bottom: 30px;
 }
-.section#section_home #home-tabs .tab-content {
+.scene#scene_home #home-tabs .tab-content {
   margin-left: 91px;
 }
-.section#section_home #home-tabs #tab-plan #tab-plan-left {
+.scene#scene_home #home-tabs #tab-plan #tab-plan-left {
   display: block;
   text-align: center;
   margin-right: 200px;
 }
-.section#section_home #home-tabs #tab-plan #tab-plan-right {
+.scene#scene_home #home-tabs #tab-plan #tab-plan-right {
   width: 195px;
   float: right;
 }
-.section#section_home #tab-quest .panel-des {
+.scene#scene_home #tab-quest .panel-des {
   text-indent: 35px;
   border-style: none none solid none;
   border-width: 1px;
   border-color: rgba(0, 0, 0, 0.1);
 }
-.section#section_home #tab-quest .panel-heading {
+.scene#scene_home #tab-quest .panel-heading {
   /*border-radius: 0px;*/
   padding: 2px;
 }
-.section#section_home #tab-quest .prop-tab-name-left {
+.scene#scene_home #tab-quest .prop-tab-name-left {
   border-style: none solid none none;
   border-width: 1px;
   border-color: rgba(0, 0, 0, 0.1);
@@ -516,55 +524,55 @@ label {
   font-size: 130%;
   border-radius: 0px;
 }
-.section#section_home #tab-quest .prop-tab-name-right {
+.scene#scene_home #tab-quest .prop-tab-name-right {
   border-style: none none none none;
   border-width: 1px;
   border-color: rgba(0, 0, 0, 0.1);
   font-size: 130%;
   border-bottom-left-radius: 0px;
 }
-.section#section_home #tab-quest .prop-tab-name {
+.scene#scene_home #tab-quest .prop-tab-name {
   width: 25%;
 }
-.section#section_home #tab-quest .prop-tab-value {
+.scene#scene_home #tab-quest .prop-tab-value {
   text-align: right;
   width: 25%;
 }
-.section#section_home .tab-content {
+.scene#scene_home .tab-content {
   overflow: auto;
   margin: 0px;
 }
-.section#section_home #tab-make #make-panel-group .panel {
+.scene#scene_home #tab-make #make-panel-group .panel {
   background-color: #fff;
   border-radius: 0px;
   width: 100%;
   margin: 0px;
 }
-.section#section_home #tab-make .panel-group {
+.scene#scene_home #tab-make .panel-group {
   float: right;
   width: 40%;
 }
-.section#section_home #tab-make .store-panel-content span label {
+.scene#scene_home #tab-make .store-panel-content span label {
   font-size: 15px;
   font-weight: 400;
 }
-.section#section_home #tab-make .item-num {
+.scene#scene_home #tab-make .item-num {
   color: green;
 }
-.section#section_home #tab-make .insufficient {
+.scene#scene_home #tab-make .insufficient {
   color: red;
 }
-.section#section_home #tab-make .sufficient {
+.scene#scene_home #tab-make .sufficient {
   color: green;
 }
-.section#section_home #tab-make #tab-make-progress {
+.scene#scene_home #tab-make #tab-make-progress {
   width: 90%;
   background-color: #eee;
   margin: 0px;
   bottom: 0px;
   display: inline-block;
 }
-.section#section_home #tab-make #tab-make-output {
+.scene#scene_home #tab-make #tab-make-output {
   height: 230px;
   margin: 0px;
   margin-bottom: 10px;
@@ -573,29 +581,32 @@ label {
   overflow: auto;
   display: inline-block;
 }
-.section#section_home #tab-make #tab-make-output p {
+.scene#scene_home #tab-make #tab-make-output p {
   margin-bottom: 3px;
   float: left;
   text-align: left;
   display: block;
   width: 100%;
 }
-.section#section_home .store-panel-content {
+.scene#scene_home .store-panel-content {
   padding-top: 5px;
   padding-left: 0px;
   padding-right: 0px;
 }
-.section#section_home #system-setting {
+.scene#scene_home #system-setting {
   position: absolute;
   border-radius: 0px;
   right: 0px;
   top: 0px;
 }
-.section#section_home #system-setting button {
+.scene#scene_home #system-setting button {
   border-radius: 0px;
   font-size: 18px;
 }
-.section#section_save_load #go-back {
+.scene#scene_save {
+  background-image: url("../../res/UI/mysave.png");
+}
+.scene#scene_save .back {
   position: absolute;
   left: 50px;
   top: 511px;
@@ -612,24 +623,20 @@ label {
   cursor: pointer;
   margin: 0px;
 }
-.section#section_save_load .button-save {
+.scene#scene_save .button-save {
   width: 400px;
   font-size: 120%;
+  position: absolute;
+  left: 280px;
 }
-.section#section_save_load #title {
+.scene#scene_save .title {
   color: #fff;
   position: absolute;
   right: 65px;
   top: 20px;
 }
-button.menu_btn,
-input.menu_btn,
-#div-btn .input-group {
-  position: absolute;
-  margin-left: auto;
-  margin-right: auto;
-  font-size: 20px;
-  width: 300px;
+.tab-content > .tab-pane {
+  visibility: visible;
 }
 #div-danmu {
   position: relative;
