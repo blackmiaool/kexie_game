@@ -292,7 +292,7 @@ angular.module('home_app')
     //        }
     //    })
     .controller("tab_teammate_controller", function ($scope) {
-console.log("team");
+        console.log("team");
 
         $scope.data = {};
 
@@ -305,16 +305,16 @@ console.log("team");
         }
 
     })
-    .controller("home_root", ["$rootScope","$scope",function ($rootScope,$scope) {
-        $rootScope.$on("home-update-all",function(){            
+    .controller("home_root", ["$rootScope", "$scope", function ($rootScope, $scope) {
+        $rootScope.$on("home-update-all", function () {
             $scope.$broadcast("item_updt");
             $scope.$broadcast("prop_updt");
             $scope.$broadcast("quest_updt");
             $scope.$broadcast("combine_updt");
         });
 
-        
-        
+
+
         $scope.v = v;
         $scope.courses = courses;
         $scope.home_save = function () {
@@ -404,11 +404,16 @@ console.log("team");
         }
         $("#home-tabs>.tab-content>.tab-pane").css("visibility", "visible")
         $("#home-tabs>.tab-content>.tab-pane").hide();
-        var current_tab = common.load_object("current_tab")
-        if (current_tab != undefined) {
+        var current_tab = common.local.get("current_tab")
+        if (current_tab) {
+            console.log(current_tab.content.name + "!!!");
             //            $("#home-main-tab a[mytext='" + current_tab.content + "']").tab("show");
-            $(current_tab.content.href).show();
-            $scope.tab_selecting = current_tab.content.key;
+            $("#home-tabs").data("tab", current_tab.content.name)
+                //            setTimeout(function(){
+                //                $(current_tab.content.href).show();
+                //            $scope.tab_selecting = current_tab.content.key;
+                //            },1000)
+
         }
         $scope.$on("home_root",
             function (event, msg) {
@@ -423,15 +428,15 @@ console.log("team");
 
             })
 
-        $scope.tab_select = function (key, href) {
+        $scope.tab_select = function (key, name) {
             $scope.list[key].content = ""
             $("#home-tabs>.tab-content>.tab-pane").hide();
-            $(href).show();
+            $("#tab-" + name).show();
             $scope.tab_selecting = key;
 
-            common.save_object("current_tab", {
+            common.local.set("current_tab", {
                 content: {
-                    href: href,
+                    name: name,
                     key: key
                 }
             });
@@ -439,33 +444,49 @@ console.log("team");
         $scope.list = {
             执行: {
                 title: "执行",
-                href: "#tab-plan"
+                name: "plan"
             },
             物品: {
                 title: "物品",
-                href: "#tab-item"
+                name: "item"
             },
             队友: {
                 title: "队友",
-                href: "#tab-teammate"
+                name: "teammate"
             },
             任务: {
                 title: "任务",
-                href: "#tab-quest"
+                name: "quest"
             },
             技能: {
                 title: "技能",
-                href: "#tab-skill"
+                name: "skill"
             },
             购物: {
                 title: "购物",
-                href: "#tab-buy"
+                name: "buy"
             },
             制造: {
                 title: "制造",
-                href: "#tab-make"
+                name: "make"
             }
         }
+        var loaded_cnt = 0;
+        var loaded_target=0;
+        for(var i in $scope.list){
+            loaded_target++;
+        }
+        $scope.$on("$includeContentLoaded", function (params, data) {
+            //            console.log("miao",params,data);
+            //            var reg=new RegExp(/\/([a-z]+).html/);
+            //            var name=reg.exec(data)[1];
+            loaded_cnt++;
+            console.log(loaded_cnt,loaded_target)
+            if(loaded_cnt>=loaded_target){
+                console.log("finish");
+            }
+
+        })
     }])
     .controller("danmu_controller", function ($scope) {
         $scope.data = []

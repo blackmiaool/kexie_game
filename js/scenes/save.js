@@ -26,7 +26,7 @@ var scene = new sys.Scene({
                         $scope.$digest();
 
                 })
-                setInterval(()=>{console.log($scope.buttons)},1000)
+//                setInterval(()=>{console.log($scope.buttons)},1000)
                 for (var i = 0; i < 6; i++) {
                     $scope.buttons[i] = {}
                 }
@@ -55,7 +55,7 @@ var scene = new sys.Scene({
                 }
 
                 function save_all() {
-                    sys.local.set(storage_name, $scope.buttons);
+                    common.local.set(storage_name, $scope.buttons);
 
                 }
                 var save_record = index => {
@@ -88,7 +88,7 @@ var scene = new sys.Scene({
                 }
 
                 function load_records() {
-                    var record = sys.local.load(storage_name);
+                    var record = common.local.get(storage_name);
 
                     if (!record) {                        
                         save_all();
@@ -114,7 +114,7 @@ var scene = new sys.Scene({
                     }
                 }
 
-            }])
+            }])  
     },
     enter: function () {}
 })

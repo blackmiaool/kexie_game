@@ -186,31 +186,6 @@ define(["angular", "dbg"], function (angular, dbg) {
     };
 
 
-    exports.local = {
-        set: (a, b) => {
-            if (typeof (b) == "object")
-
-                localStorage.setItem(a, JSON.stringify(b));
-            else
-                localStorage.setItem(a, b);
-        },
-        load: (a) => {
-            var item = localStorage.getItem(a);
-            var ret = item;
-            console.log("got",item)
-            if (item) {
-                try {
-                    ret = JSON.parse(item);
-                } catch (e) {
-                    //whatever
-                }
-            }
-
-            return ret;
-        },
-        rm: (a) => {
-            localStorage.removeItem(a)
-        }
-    };
+    
     return exports;
 })
