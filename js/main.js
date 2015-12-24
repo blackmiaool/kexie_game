@@ -52,7 +52,7 @@
 })()
 
 
-requirejs(["jquery", "sys", "angular", 'angular-animate', 'angular-route', "scenes/home2", "scenes/bigmap", "scenes/chat", "scenes/cover", "scenes/preload", "scenes/save", 'angular-animate', 'skill_tree'], function ($, sys, angular) {
+requirejs(["jquery", "sys", "angular", 'angular-animate', 'angular-route', "scenes/home", "scenes/bigmap", "scenes/chat", "scenes/cover", "scenes/preload", "scenes/save", 'angular-animate', 'skill_tree'], function ($, sys, angular) {
     $("#game-first-tip").remove();
 
 
@@ -72,14 +72,22 @@ requirejs(["jquery", "sys", "angular", 'angular-animate', 'angular-route', "scen
 
                 sys.zoom_and_developer_init();
                 $(".scene").hide();
-                $('#buy-tabs a').click(function (e) {
-                    e.preventDefault(); //阻止a链接的跳转行为
-                    $(this).tab('show'); //显示当前选中的链接及关联的content
-                })
-                $('#home-main-tab a').click(function (e) {
-                    e.preventDefault(); //阻止a链接的跳转行为
-                    $(this).tab('show'); //显示当前选中的链接及关联的content
-                })
+
+
+                setTimeout(function () {
+//                    $('#buy-tabs-link a').click(function (e) {
+//                        e.preventDefault();
+//                        $(this).tab('show');
+//                    })
+//                    $('#buy-tabs a').click(function (e) {
+//                        e.preventDefault(); //阻止a链接的跳转行为
+//                        $(this).tab('show'); //显示当前选中的链接及关联的content
+//                    })
+//                    $('#home-main-tab a').click(function (e) {
+//                        e.preventDefault(); //阻止a链接的跳转行为
+//                        $(this).tab('show'); //显示当前选中的链接及关联的content
+//                    })
+                }, 1000)
                 $('[data-toggle="popover"]').popover();
 
                 function IsPC() {

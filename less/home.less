@@ -3,7 +3,6 @@
 //    height: 100%;
 //    visibility: visible;
 //}
-
 .modal-body {
     label {
         font-weight: normal;
@@ -76,8 +75,6 @@
         .prop-value {
             vertical-align: -3%;
             position: relative;
-            //                left: -97px;
-            /*    width: 100px;*/
             display: inline-block;
             text-align: center;
             font-family: verdana;
@@ -209,8 +206,8 @@
     }
 }
 
-#tab-teammate {
-    #carousel-teammate-generic {
+#tab-team {
+    #carousel-team-generic {
         width: 250px;
         position: relative;
         left: -150px;
@@ -497,4 +494,56 @@
 #system-setting button {
     border-radius: 0px;
     font-size: 18px;
+}
+
+#tab-item {
+    text-align: left;
+    &>ul {
+        float: left;
+        list-style: none;
+        padding-left: 5px;
+        width: 20%;
+        margin: 0px;
+        text-align: center;
+        &>li {
+            float: none;
+            margin: 5px;
+            width: 80%;
+            padding-top: 5px;
+            padding-bottom: 5px;
+            box-sizing: border-box;
+            border-width: 2px;
+            border-color: rgba(0, 0, 0, 0);
+            padding-bottom: 0px;
+            padding-top: 0px;
+            font-size: 20px;
+            &.active {
+                background-color: #337ab7;
+                color: aliceblue;
+            }
+            &:hover {
+                border-color: #337ab7;
+            }
+        }
+    }
+    .panel {
+        text-align: center;
+        position: relative;
+        left: 0px;
+    }
+    .content {
+        width: 80%;
+        float: right;
+        text-align: center;
+        .panel {
+            margin: 0px;
+            margin-top: 5px;
+        }
+        .item-panel {
+            margin-top: 0px;
+        }
+        .panel-title {
+            background-color: #fff;
+        }
+    }
 }

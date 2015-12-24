@@ -213,7 +213,6 @@ label {
 .scene#scene_home #home-head .prop .prop-value {
   vertical-align: -3%;
   position: relative;
-  /*    width: 100px;*/
   display: inline-block;
   text-align: center;
   font-family: verdana;
@@ -338,15 +337,15 @@ label {
   padding: 10px;
   text-align: center;
 }
-.scene#scene_home #tab-teammate #carousel-teammate-generic {
+.scene#scene_home #tab-team #carousel-team-generic {
   width: 250px;
   position: relative;
   left: -150px;
 }
-.scene#scene_home #tab-teammate #carousel-teammate-generic .carousel-inner img {
+.scene#scene_home #tab-team #carousel-team-generic .carousel-inner img {
   height: 400px;
 }
-.scene#scene_home #tab-teammate .panel-default {
+.scene#scene_home #tab-team .panel-default {
   width: 58%;
   margin: 0px;
   margin-top: 30px;
@@ -354,15 +353,15 @@ label {
   border-radius: 0px;
   float: right;
 }
-.scene#scene_home #tab-teammate .carousel {
+.scene#scene_home #tab-team .carousel {
   width: 40%;
   /*    height: 100%;*/
   vertical-align: middle;
 }
-.scene#scene_home #tab-teammate .carousel-inner .item {
+.scene#scene_home #tab-team .carousel-inner .item {
   text-align: center;
 }
-.scene#scene_home #tab-teammate .carousel-inner .item img {
+.scene#scene_home #tab-team .carousel-inner .item img {
   text-align: center;
 }
 .scene#scene_home #tab-plan .plan-right-block {
@@ -602,6 +601,57 @@ label {
 .scene#scene_home #system-setting button {
   border-radius: 0px;
   font-size: 18px;
+}
+.scene#scene_home #tab-item {
+  text-align: left;
+}
+.scene#scene_home #tab-item > ul {
+  float: left;
+  list-style: none;
+  padding-left: 5px;
+  width: 20%;
+  margin: 0px;
+  text-align: center;
+}
+.scene#scene_home #tab-item > ul > li {
+  float: none;
+  margin: 5px;
+  width: 80%;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  box-sizing: border-box;
+  border-width: 2px;
+  border-color: rgba(0, 0, 0, 0);
+  padding-bottom: 0px;
+  padding-top: 0px;
+  font-size: 20px;
+}
+.scene#scene_home #tab-item > ul > li.active {
+  background-color: #337ab7;
+  color: aliceblue;
+}
+.scene#scene_home #tab-item > ul > li:hover {
+  border-color: #337ab7;
+}
+.scene#scene_home #tab-item .panel {
+  text-align: center;
+  position: relative;
+  left: 0px;
+}
+.scene#scene_home #tab-item .content {
+  width: 80%;
+  float: right;
+  text-align: center;
+}
+.scene#scene_home #tab-item .content .panel {
+  margin: 0px;
+  margin-top: 5px;
+}
+.scene#scene_home #tab-item .content .item-panel {
+  margin-top: 0px;
+}
+.scene#scene_home #tab-item .content .panel-title {
+  background-color: #fff;
 }
 .scene#scene_save {
   background-image: url("../../res/UI/mysave.png");

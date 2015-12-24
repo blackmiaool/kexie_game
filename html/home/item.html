@@ -1,0 +1,63 @@
+<div ng-controller="tab_item_controller">
+    <ul>
+        <li ng-repeat="(kind,items) in data" class="{{(cur_select==kind) && 'active' }} panel " ng-click="select(kind)">
+            {{kind}}
+        </li>
+        <li class="{{(cur_select=='作品') && 'active' }} panel " ng-click="select('作品')">作品</li>
+    </ul>
+    <div ng-show="cur_select=='作品'" class="content">
+        <div class="panel-group" id="item-tab-作品-page" role="tablist" aria-multiselectable="true">
+            <span style="background-color:#006fb0;color:#fff;position:relative;display:inline-block; width:100%;">
+                                    <label style="width:45%;">名称</label>
+                                    <label style="width:25%;">完成度</label>
+                                    <label style="width:25%;">创新度</label>
+                            </span>
+            <div ng-repeat="(key,value) in data_combine" name="{{key}}">
+                <div ng-repeat="item in value.product" class="panel panel-default">
+                    <div class="my-panel-heading" role="tab" width="100%">
+                        <span style="position:relative;display:inline-block; width:100%;" class="collapsed panel-title " data-toggle="collapse" data-parent="#item-tab-作品-page" href="#{{$index}}{{key}}-{{item.name}}" aria-expanded="false" aria-controls="{{store_name}}{{key}}-{{item.name}}">
+                                    <label style="width:45%;">{{item.name}}</label>
+                                    <label style="width:25%;">{{item.progress}}</label>
+                                    <label style="width:25%;">{{item.innovate}}</label>
+                                           
+
+                                    </span>
+                    </div>
+                    <div id="{{$index}}{{key}}-{{item.name}}" class="panel-collapse collapse " role="tabpanel">
+                        <div class="store-panel-content">
+                            <h5 class="item-panel">{{item.brief}}</h5>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="content">
+        <div ng-repeat="(kind,items) in data" ng-show="cur_select==kind" class="panel-group" id="item-tab-{{kind}}-page" role="tablist" aria-multiselectable="true">
+            <span style="background-color:#006fb0;color:#fff;position:relative;display:inline-block; width:100%;">
+                                    <label style="width:70%;">名称</label>
+
+                                    <label style="width:25%;">数量</label>
+                            </span>
+            <div ng-repeat="item in items" class="panel panel-default">
+                <div class="my-panel-heading" role="tab" width="100%">
+                    <span style="position:relative;display:inline-block; width:100%;" class="collapsed panel-title " data-toggle="collapse" data-parent="#item-tab-{{kind}}-page" href="#{{store_name}}{{key}}-{{item.name}}" aria-expanded="false" aria-controls="{{store_name}}{{key}}-{{item.name}}">
+                                                    <label style="width: 70%;">{{item.name}}</label>
+                                                    <label style="width: 25%;">{{item.cnt}}</label>
+
+                                    </span>
+                </div>
+                <div id="{{store_name}}{{key}}-{{item.name}}" class="panel-collapse collapse " role="tabpanel">
+                    <div class="store-panel-content">
+                        <h5 class="item-panel">{{item.brief}}</h5>
+                        <!--
+                                        <button name="{{item.name}}" class="button button-primary {{item.price | buy_btn_price_handle:home_app:updt}} " ng-click="store_buy($event)">购买</button>
+                                        <button name="{{item.name}}" class="button button-primary {{item.cnt | buy_btn_cnt_handle:home_app:updt}}" ng-click="store_sell($event)">出售</button>
+-->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

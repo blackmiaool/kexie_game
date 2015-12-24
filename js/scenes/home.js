@@ -53,7 +53,7 @@ var scene = new sys.Scene({
 
         }
 
-        function tab_teammate_updt() {
+        function tab_team_updt() {
             var li_index = 0;
             var first = true;
             var text_head_width = 50;
@@ -95,13 +95,13 @@ var scene = new sys.Scene({
             bar.append("text").attr("kind", "head").attr("x", 45).attr("y", (barHeight - gap) / 2).attr("dy", ".35em").text(function (d) {
                 return d.head;
             });
-            $("#carousel-teammate-generic").addClass("slide")
+            $("#carousel-team-generic").addClass("slide")
 
 
             function carousel_change(event) {
                 var index;
                 if (event === true) {
-                    index = $("#tab-teammate .carousel-inner [first=true]")
+                    index = $("#tab-team .carousel-inner [first=true]")
                 } else {
                     index = $(event.relatedTarget);
                 }
@@ -112,10 +112,10 @@ var scene = new sys.Scene({
                     barHeight = 35,
                     gap = 10;
                 // console.log(current_pp.name)
-                //console.log($("#tab-teammate .carousel-inner .item.active").attr("name"))
+                //console.log($("#tab-team .carousel-inner .item.active").attr("name"))
                 var data = [current_pp["数字"], current_pp["模拟"], current_pp["效率"], current_pp["体力"], current_pp["节操"]]
                 if (current_pp.skill != undefined) {
-                    $("#tab-teammate-skill-content").html(current_pp.skill)
+                    $("#tab-team-skill-content").html(current_pp.skill)
                 }
                 d3.selectAll(".chart g rect")
                     .data(data)
@@ -143,9 +143,9 @@ var scene = new sys.Scene({
                         return x(d + 5) - 5 + text_head_width;
                     })
             }
-            $('#carousel-teammate-generic ').on('slide.bs.carousel', function (a, b) {
+            $('#carousel-team-generic ').on('slide.bs.carousel', function (a, b) {
                 carousel_change(a, b)
-                var collapse = $("#teammate-skill-heading")
+                var collapse = $("#team-skill-heading")
                 collapse.collapse('hide');
                 collapse.on('hidden.bs.collapse', function () {
                     collapse.collapse('show');
@@ -164,7 +164,7 @@ var scene = new sys.Scene({
             tab_item_updt();
             tab_quest_updt();
             tab_store_updt();
-            tab_teammate_updt();
+            tab_team_updt();
             tab_make_updt();
         }
     },
@@ -291,7 +291,7 @@ angular.module('home_app')
     //
     //        }
     //    })
-    .controller("tab_teammate_controller", function ($scope) {
+    .controller("tab_team_controller", function ($scope) {
         console.log("team");
 
         $scope.data = {};
@@ -307,6 +307,7 @@ angular.module('home_app')
     })
     .controller("home_root", ["$rootScope", "$scope", function ($rootScope, $scope) {
         $rootScope.$on("home-update-all", function () {
+            console.log("uppuup")
             $scope.$broadcast("item_updt");
             $scope.$broadcast("prop_updt");
             $scope.$broadcast("quest_updt");
@@ -405,16 +406,14 @@ angular.module('home_app')
         $("#home-tabs>.tab-content>.tab-pane").css("visibility", "visible")
         $("#home-tabs>.tab-content>.tab-pane").hide();
         var current_tab = common.local.get("current_tab")
-        if (current_tab) {
-            console.log(current_tab.content.name + "!!!");
-            //            $("#home-main-tab a[mytext='" + current_tab.content + "']").tab("show");
-            $("#home-tabs").data("tab", current_tab.content.name)
-                //            setTimeout(function(){
-                //                $(current_tab.content.href).show();
-                //            $scope.tab_selecting = current_tab.content.key;
-                //            },1000)
-
+        setTimeout(function(){
+            if (current_tab) {
+            console.log(current_tab.content.name + "!!!");        
+            $("#home-tabs").data("tab", current_tab.content.name)        
+ 
         }
+        },1000)
+        
         $scope.$on("home_root",
             function (event, msg) {
                 $scope.$broadcast(msg.name, msg.param);
@@ -452,7 +451,7 @@ angular.module('home_app')
             },
             队友: {
                 title: "队友",
-                name: "teammate"
+                name: "team"
             },
             任务: {
                 title: "任务",
@@ -952,6 +951,7 @@ angular.module('home_app')
             //            console.log("ddd")
             $scope.data = {}
             var data = $scope.data;
+            
             for (var i in items) {
                 var thing = items[i]
                 if (thing.store == undefined) {
@@ -979,10 +979,10 @@ angular.module('home_app')
         }
         $scope.store_updt = store_updt;
         store_updt();
-
+        
         $scope.link_tab = function (event) {
             $(event.target).tab('show')
-            console.log("link")
+            console.log($(event.target).tab,"link")
         };
         $scope.store_buy = function (event) {
             var item_this = items[$(event.target).attr("name")];
@@ -998,10 +998,6 @@ angular.module('home_app')
                 name: 'prop_updt',
                 param: ""
             });
-
-            //            store_updt();
-
-            // setTimeout(function(){tab_make_controller_scope.$apply(function(){});},500)
         }
         $scope.store_sell = function (event) {
             var item_this = items[$(event.target).attr("name")];
@@ -1021,11 +1017,12 @@ angular.module('home_app')
 
         }
         $scope.$on('item_updt', function (event, data) {
-            //            console.log('ddd')
+                        console.log('ddd')
             store_updt();
 
 
         });
+        console.log($scope.data,"dd");
     })
     .controller("tab_item_controller", function ($scope) {
         //        console.log(combines)
