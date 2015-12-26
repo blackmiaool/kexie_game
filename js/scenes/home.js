@@ -480,9 +480,9 @@ angular.module('home_app')
             //            var reg=new RegExp(/\/([a-z]+).html/);
             //            var name=reg.exec(data)[1];
             loaded_cnt++;
-            console.log(loaded_cnt,loaded_target)
+//            console.log(loaded_cnt,loaded_target)
             if(loaded_cnt>=loaded_target){
-                console.log("finish");
+             
             }
 
         })

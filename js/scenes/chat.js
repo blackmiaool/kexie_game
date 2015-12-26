@@ -17,6 +17,7 @@ define(["sys", "angular", "v", "common", "res", "dbg",  "plot_common","plot_core
 
         },
         pre_enter: function () {
+            plot.init();
             plot_core.init();
 //            plot.running = start();
 //            plot.running.next()

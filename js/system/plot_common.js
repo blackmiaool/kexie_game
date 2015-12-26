@@ -1,13 +1,15 @@
 define(function (require) {
-    var plot_core=require("plot_core");
-    var sys=require("sys");
-    var common=require("common");
-    var dbg=require("dbg");
-    
+    var plot_core = require("plot_core");
+    var sys = require("sys");
+    var common = require("common");
+    var dbg = require("dbg");
+    var res=require("res");
+    var pp=res.pp;
+    var people = [];
     var exports = {
         running: {},
     };
-    
+
     var sx = sys.sx;
     var sy = sys.sy;
     var btn_gap = 50;
@@ -19,7 +21,7 @@ define(function (require) {
 
     };
     exports.result = result;
-    var message = message_create();
+    var message;
 
 
     var gap = {
@@ -27,7 +29,9 @@ define(function (require) {
         fast: 40,
         slow: 200,
     }
+
     exports.gap = gap;
+    var people_move_time = 500;
 
     function touch_wait(cb) {
         var a = setInterval(
@@ -220,10 +224,10 @@ define(function (require) {
     function plot_resume(ret) {
         //        exports.running();
         plot_core.resume(ret);
-//        var state=exports.running.next(ret);
-//        if(state.done){
-//            plot_core.update(exports.running);
-//        }                
+        //        var state=exports.running.next(ret);
+        //        if(state.done){
+        //            plot_core.update(exports.running);
+        //        }                
     }
     exports.tm = function () {
         touch_enable = false;
@@ -359,6 +363,12 @@ define(function (require) {
         return menu_value;
 
     };
+    var pp_pre;
+    exports.tcc = function () {
+        var args = [].slice.call(arguments, 0);
+        args.splice(1, 0, pp_pre);
+        exports.tc.apply(this, args);
+    }
     exports.tc = function (text, name, gapnum, color) {
         tc_pre_things.name = name;
         tc_pre_things.gapnum = gapnum;
@@ -369,8 +379,9 @@ define(function (require) {
             gapnum = exports.gap.def
         }
         if (text) {
-            message.show()
-            if (name != undefined)
+            message.show();
+            if (name) {
+                pp_pre = name;
                 switch (typeof (name)) {
                 case "string":
                     message.setName(name)
@@ -395,8 +406,10 @@ define(function (require) {
                         //                $("#pp" + name.name).css("opacity", 1);
                         //                console.log("#pp" + name.name)
                     break;
-                } else
-                    message.setName(false)
+                }
+            } else {
+                message.setName(false)
+            }
         } else {
             message.hide()
         }
@@ -428,6 +441,7 @@ define(function (require) {
         }
 
     }
+
     exports.th = function () {
         if (dbg.isinfastmode) {
             var people_move_time_this = 10;
@@ -441,13 +455,13 @@ define(function (require) {
             //print(input)
 
         //console.log(people)
-        for (j in people) {
+        for (var j in people) {
 
             var found = false;
             if (!people[j]) {
                 continue;
             }
-            for (i in input) {
+            for (var i in input) {
                 //            print("input")
                 //            print([people[j].name, input[i]])
                 if (people[j].name == input[i].name) {
@@ -478,15 +492,36 @@ define(function (require) {
             pp_show();
         }
 
+        function get_half(name, pos) {
+            var id = "pp" + name.name
+            
+            var pp=$(`<img id="${id}" class="pp"/>`)
+            $("#div-half").append(pp)
+            
+            
+            pp.attr("indexx", pos)
+            pp.attr("src", name.half)
+            pp.css("position", "absolute")
+            pp.css("top", 40 + "px")
+
+            pp.css("left", pos_covert(pos, pp) + "px")
+
+            //console.dir(pp[0])
+            //console.log(pp[0].clientWidth)
+            return pp;
+        }
+    function pos_covert(pos, pp) {
+        return sx / 6 * (pos * 2 + 1) - parseInt(pp.css("width")) / 2
+    }
         function pp_show() {
 
 
-            for (i in input) {
+            for (let i in input) {
                 var found = false;
                 if (!input[i]) {
                     continue;
                 }
-                for (j in people) {
+                for (var j in people) {
                     //                print("end")
                     //                console.log(people[j])
                     if (!people[j]) {
@@ -538,13 +573,13 @@ define(function (require) {
 
     };
     var current_background = 0;
-    var bg = $("#scene_chat #div-bg img");
-    exports.tmood=function(background){
-        var mood=$("#div-mood .mood");
-        $("")
+    var bg;
+    exports.tmood = function (background) {
+        var mood = $("#div-mood .mood");
+
         console.log(mood);
         console.log(background)
-        mood.attr("src",background);
+        mood.attr("src", background);
     }
     exports.ts = function (background, time) {
 
@@ -588,11 +623,16 @@ define(function (require) {
         running = false
     }
 
-    $("#scene_chat").on("click", function () {
-        touched = true;
 
-    })
-    window.plot=exports;
+    window.plot = exports;
+    exports.init = function () {
+        bg = $("#scene_chat #div-bg img");
+        message = message_create();
+        $("#scene_chat").on("click", function () {
+            touched = true;
+
+        })
+    }
     return exports;
 
 })
