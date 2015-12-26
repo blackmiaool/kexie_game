@@ -258,41 +258,7 @@ var tab_make_controller_scope;
 
 
 angular.module('home_app')
-    //    .controller("danmu_controller", function ($scope) {
-    //        $scope.data = []
-    //        var danmu_list = []
-    //        $scope.enter = function (data, index) {
-    //            //            console.log($(".danmu_bg"))
-    //            var bg = $(".danmu_bg")
-    //                //            danmu_list.push(bg);
-    //
-    //            bg.attr("danmu-text", data.text);
-    //            bg.attr("danmu-bg-color", data.bg_color);
-    //            //            console.log(this)
-    //            $(".danmu_bg").slideDown(500, function () {
-    //                var label = $(this).find("label")
-    //
-    //                //                label.show()
-    //                label.css("left", "960px");
-    //                //        
-    //                label.animate({
-    //                    left: "100px"
-    //                }, 1000, "easeOutSine");
-    //                label.animate({
-    //                    left: "-100px"
-    //                }, 3000, "linear");
-    //                label.animate({
-    //                    left: "-960px"
-    //                }, 1000, "easeInSine", function () {
-    //                    label.hide()
-    //                    $(this).parent().slideUp(500);
-    //                });
-    //            });
-    //
-    //        }
-    //    })
     .controller("tab_team_controller", function ($scope) {
-        console.log("team");
 
         $scope.data = {};
 
@@ -305,16 +271,13 @@ angular.module('home_app')
         }
 
     })
-    .controller("home_root", ["$rootScope", "$scope", function ($rootScope, $scope) {
+    .controller("home_root", ["$rootScope", "$scope", "$timeout", function ($rootScope, $scope,$timeout) {
         $rootScope.$on("home-update-all", function () {
-            console.log("uppuup")
             $scope.$broadcast("item_updt");
             $scope.$broadcast("prop_updt");
             $scope.$broadcast("quest_updt");
             $scope.$broadcast("combine_updt");
         });
-
-
 
         $scope.v = v;
         $scope.courses = courses;
@@ -405,15 +368,24 @@ angular.module('home_app')
         }
         $("#home-tabs>.tab-content>.tab-pane").css("visibility", "visible")
         $("#home-tabs>.tab-content>.tab-pane").hide();
-        var current_tab = common.local.get("current_tab")
-        setTimeout(function(){
+        var current_tab = common.local.get("current_tab");
+
+        $timeout(function () {
             if (current_tab) {
-            console.log(current_tab.content.name + "!!!");        
-            $("#home-tabs").data("tab", current_tab.content.name)        
- 
-        }
-        },1000)
-        
+                console.log("current",current_tab);
+                $("#home-tabs").data("tab", current_tab.content.name);
+                var key= current_tab.content.key;
+                var name=current_tab.content.name;
+                $scope.list[key].content = "";
+                $("#home-tabs>.tab-content>.tab-pane").hide();
+                $("#tab-" + name).show();
+                $scope.tab_selecting = key;
+
+            }
+        }, 1000);
+
+
+
         $scope.$on("home_root",
             function (event, msg) {
                 $scope.$broadcast(msg.name, msg.param);
@@ -471,8 +443,8 @@ angular.module('home_app')
             }
         }
         var loaded_cnt = 0;
-        var loaded_target=0;
-        for(var i in $scope.list){
+        var loaded_target = 0;
+        for (var i in $scope.list) {
             loaded_target++;
         }
         $scope.$on("$includeContentLoaded", function (params, data) {
@@ -480,9 +452,9 @@ angular.module('home_app')
             //            var reg=new RegExp(/\/([a-z]+).html/);
             //            var name=reg.exec(data)[1];
             loaded_cnt++;
-//            console.log(loaded_cnt,loaded_target)
-            if(loaded_cnt>=loaded_target){
-             
+            //            console.log(loaded_cnt,loaded_target)
+            if (loaded_cnt >= loaded_target) {
+
             }
 
         })
@@ -566,21 +538,21 @@ angular.module('home_app')
             // $("#tab-make-output").append($("<br></br>"))
             for (var i = 0; i < output_data.length; i++) {
                 switch (typeof (output_data[i].data)) {
-                case "string":
-                    if (output_data[i].config.head !== false) {
-                        data.push({
-                            type: "system",
-                            data: "head",
-                        })
-                    }
-                    for (var j = 0; j < output_data[i].data.length; j++) {
-                        data.push(output_data[i].data.charAt(j))
-                    }
+                    case "string":
+                        if (output_data[i].config.head !== false) {
+                            data.push({
+                                type: "system",
+                                data: "head",
+                            })
+                        }
+                        for (var j = 0; j < output_data[i].data.length; j++) {
+                            data.push(output_data[i].data.charAt(j))
+                        }
 
-                    break;
-                case "object":
-                    data.push(output_data[i].data);
-                    break;
+                        break;
+                    case "object":
+                        data.push(output_data[i].data);
+                        break;
                 }
 
             }
@@ -597,49 +569,49 @@ angular.module('home_app')
 
                 // console.log(d);
                 switch (typeof (d)) {
-                case "object":
-                    switch (d.type) {
-                    case "system":
-                        switch (d.data) {
-                        case "head":
-                            line = $("<p></p>")
-                            $("#tab-make-output").append(line);
-                            go_on_gap = line_gap_time;
-                            break;
-                            // case "rear":
-                            //     // $("#tab-make-output").append($("<br/>"));
+                    case "object":
+                        switch (d.type) {
+                            case "system":
+                                switch (d.data) {
+                                    case "head":
+                                        line = $("<p></p>")
+                                        $("#tab-make-output").append(line);
+                                        go_on_gap = line_gap_time;
+                                        break;
+                                        // case "rear":
+                                        //     // $("#tab-make-output").append($("<br/>"));
 
-                            //     break;
-                        case "end":
-                            go_on = false;
-                            output_data = [];
-                            combine[common.find_index(combine, "name", current_combine)].product.push({
-                                stability: 87,
-                                performance: 103
-                            })
-                            $scope.$apply();
-                            $scope.$emit('home_root', {
-                                name: 'item_updt',
-                                param: ""
-                            });
-                            // $scope.emit()
-                            break;
-                        case "progress":
-                            console.log("progress" + d.current)
-                            progress_set(d.current, d.sum);
-                            break;
+                                        //     break;
+                                    case "end":
+                                        go_on = false;
+                                        output_data = [];
+                                        combine[common.find_index(combine, "name", current_combine)].product.push({
+                                            stability: 87,
+                                            performance: 103
+                                        })
+                                        $scope.$apply();
+                                        $scope.$emit('home_root', {
+                                            name: 'item_updt',
+                                            param: ""
+                                        });
+                                        // $scope.emit()
+                                        break;
+                                    case "progress":
+                                        console.log("progress" + d.current)
+                                        progress_set(d.current, d.sum);
+                                        break;
+                                }
+                                break;
+                            case "color_text":
+                                // line = $("<p></p>")
+                                // $("#tab-make-output").append(line);
+                                line.append(d.data);
+                                break;
                         }
                         break;
-                    case "color_text":
-                        // line = $("<p></p>")
-                        // $("#tab-make-output").append(line);
-                        line.append(d.data);
+                    case "string":
+                        line.html(line.html() + d);
                         break;
-                    }
-                    break;
-                case "string":
-                    line.html(line.html() + d);
-                    break;
                 }
                 $("#tab-make-output")[0].scrollTop = $("#tab-make-output")[0].scrollHeight;
                 output_len++;
@@ -878,49 +850,49 @@ angular.module('home_app')
         }
         $scope.target_check = function (target) {
             switch (target.type) {
-            case "thing_need":
-                if (items[target.data].cnt >= target.cnt) {
-                    return "sufficient";
-                } else {
-                    return "insufficient"
-                }
-                break;
-            case "combine_need":
-
-                var stability_need = 0;
-                var performance_need = 0;
-
-                if (target.data.stability > 0) {
-                    stability_need = target.data.stability;
-                }
-                if (target.data.performance > 0) {
-                    performance_need = target.data.performance;
-                }
-                var cnt = 0;
-                var products = combine[common.find_index(combine, "name", target.data.name)].product
-                for (var i = 0; i < products.length; i++) {
-                    if (products[i].stability > stability_need && products[i].performance > performance_need) {
-                        cnt++;
+                case "thing_need":
+                    if (items[target.data].cnt >= target.cnt) {
+                        return "sufficient";
+                    } else {
+                        return "insufficient"
                     }
-                }
-                if (cnt >= target.cnt) {
-                    return "sufficient";
-                } else {
-                    return "insufficient"
-                }
-                break;
+                    break;
+                case "combine_need":
+
+                    var stability_need = 0;
+                    var performance_need = 0;
+
+                    if (target.data.stability > 0) {
+                        stability_need = target.data.stability;
+                    }
+                    if (target.data.performance > 0) {
+                        performance_need = target.data.performance;
+                    }
+                    var cnt = 0;
+                    var products = combine[common.find_index(combine, "name", target.data.name)].product
+                    for (var i = 0; i < products.length; i++) {
+                        if (products[i].stability > stability_need && products[i].performance > performance_need) {
+                            cnt++;
+                        }
+                    }
+                    if (cnt >= target.cnt) {
+                        return "sufficient";
+                    } else {
+                        return "insufficient"
+                    }
+                    break;
             }
 
         }
         $scope.target_handle = function (target) {
 
             switch (target.type) {
-            case "thing_need":
-                var ret = target.data + " " + items[target.data].cnt + "/" + target.cnt;
-                return ret;
-            case "combine_need":
-                var ret = target.data.name + " " + combine[common.find_index(combine, "name", target.data.name)].product.length + "/" + target.cnt;
-                return ret;
+                case "thing_need":
+                    var ret = target.data + " " + items[target.data].cnt + "/" + target.cnt;
+                    return ret;
+                case "combine_need":
+                    var ret = target.data.name + " " + combine[common.find_index(combine, "name", target.data.name)].product.length + "/" + target.cnt;
+                    return ret;
 
             }
         }
@@ -951,7 +923,7 @@ angular.module('home_app')
             //            console.log("ddd")
             $scope.data = {}
             var data = $scope.data;
-            
+
             for (var i in items) {
                 var thing = items[i]
                 if (thing.store == undefined) {
@@ -979,10 +951,10 @@ angular.module('home_app')
         }
         $scope.store_updt = store_updt;
         store_updt();
-        
+
         $scope.link_tab = function (event) {
             $(event.target).tab('show')
-            console.log($(event.target).tab,"link")
+            console.log($(event.target).tab, "link")
         };
         $scope.store_buy = function (event) {
             var item_this = items[$(event.target).attr("name")];
@@ -1017,12 +989,11 @@ angular.module('home_app')
 
         }
         $scope.$on('item_updt', function (event, data) {
-                        console.log('ddd')
             store_updt();
 
 
         });
-        console.log($scope.data,"dd");
+
     })
     .controller("tab_item_controller", function ($scope) {
         //        console.log(combines)
@@ -1240,15 +1211,6 @@ angular.module('home_app')
         //        }
     })
     .filter("buy_btn_price_handle", function () {
-
-        // var filterfun = function(person, sep) {
-        //     sep = sep || " ";
-        //     person = person || {};
-        //     person.first = person.first || "";
-        //     person.last = person.last || "";
-        //     return person.first + sep + person.last;
-        // };
-        // return filterfun;
         return function (price) {
             if (price > v.basic.money) {
                 return "disabled"
@@ -1261,15 +1223,6 @@ angular.module('home_app')
         return get_item_avaliable;
     })
     .filter("buy_btn_cnt_handle", function () {
-
-        // var filterfun = function(person, sep) {
-        //     sep = sep || " ";
-        //     person = person || {};
-        //     person.first = person.first || "";
-        //     person.last = person.last || "";
-        //     return person.first + sep + person.last;
-        // };
-        // return filterfun;
         return function (cnt) {
             if (cnt < 1) {
                 return "disabled"

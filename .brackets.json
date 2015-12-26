@@ -4,7 +4,7 @@
         "/dist",
         "/bower_components/",
         "/node_modules/",
-	"/libs/",
-        "*.cur"
+	    "/libs/",
+        "res/cursor/"
     ]
 }

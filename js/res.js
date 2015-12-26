@@ -202,7 +202,7 @@ define(["common"], function (common) {
     }
 
     function res_data_handle(data) {
-        console.log(data);
+    
         for (var table_name in data) {
             eval("window." + table_name + "=" + "data[\"" + table_name + "\"];");
             switch (table_name) {

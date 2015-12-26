@@ -62,7 +62,7 @@ define(function (require) {
         return number;
     };
     exports.rand = rand;
-    console.log(exports)
+
 
     function message_create() {
         var t = $('#chat_text')

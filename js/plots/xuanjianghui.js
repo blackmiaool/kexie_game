@@ -121,8 +121,7 @@ tc("科协的招新宣讲会结束了，你决定");
     if (result == 0) {
         //第一次进入科协
         p.kexie_first();
-    } else {
-        //        sys:to_scene("home")
-        return exit()
+    } else {                
+        return "home";
     }
 }

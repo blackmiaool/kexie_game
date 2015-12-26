@@ -46,7 +46,7 @@ define(function () {
         get: (a) => {
             var item = localStorage.getItem(a);
             var ret = item;
-            console.log("got",item)
+        
             if (item) {
                 try {
                     ret = JSON.parse(item);
