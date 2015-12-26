@@ -91,15 +91,19 @@ gulp.task("plots", function () {
             base: 'js'
         })
         .pipe(cached("plot"))
-        .pipe(yield_prefix(["tc", "th", "ts", "tm", ]))
+        .pipe(yield_prefix(["tc", "th", "ts", "tm", "tcc",]))
         .pipe(headerfooter({
-            header: 'define(["res","v","sys"],function (res,v,sys){\
-return function* (plot_cb){ \
-var ts=plot.ts; \
-var tc=plot.tc; \
-var th=plot.th; \
-var tm=plot.tm; \
-var tmood=plot.tmood; ',
+            header: `define(["res","v","sys"],function (res,v,sys){\
+return function* (plot_cb){ 
+var ts=plot.ts; 
+var tc=plot.tc; 
+var tcc=plot.tcc; 
+var th=plot.th; 
+var tm=plot.tm; 
+var img=res.img; 
+var gap=plot.gap; 
+var pp=res.pp; 
+var tmood=plot.tmood; `,
             footer: '\n setTimeout(function(){plot_cb("cover")});\n}})',
             filter: function (file) {
                 return true;
