@@ -297,6 +297,10 @@ label {
 .scene#scene_home #tab-buy #buy-tabs {
   margin-bottom: 7px;
 }
+.scene#scene_home #tab-buy .tab-pane {
+  margin-top: 10px;
+  padding-bottom: 10px;
+}
 .scene#scene_home #tab-buy #store-tabs-content .tab-store-items {
   font-size: 130%;
 }
@@ -481,6 +485,19 @@ label {
   bottom: 20px;
   background-color: rgba(230, 230, 230, 0.7);
 }
+.scene#scene_home #home-tabs.desk-frame > .tab-content {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  padding: 20px;
+  margin-left: 100px;
+}
+.scene#scene_home #home-tabs.desk-frame > .tab-content .tab-content {
+  overflow: auto;
+  margin: 0px;
+}
 .scene#scene_home #home-tabs .desk-frame {
   /*    position: absolute;*/
   padding: 15px;
@@ -493,9 +510,6 @@ label {
   margin-top: 50px;
   margin-bottom: 30px;
 }
-.scene#scene_home #home-tabs .tab-content {
-  margin-left: 91px;
-}
 .scene#scene_home #home-tabs #tab-plan #tab-plan-left {
   display: block;
   text-align: center;
@@ -504,6 +518,7 @@ label {
 .scene#scene_home #home-tabs #tab-plan #tab-plan-right {
   width: 195px;
   float: right;
+  overflow: hidden;
 }
 .scene#scene_home #tab-quest .panel-des {
   text-indent: 35px;
@@ -536,10 +551,6 @@ label {
 .scene#scene_home #tab-quest .prop-tab-value {
   text-align: right;
   width: 25%;
-}
-.scene#scene_home .tab-content {
-  overflow: auto;
-  margin: 0px;
 }
 .scene#scene_home #tab-make #make-panel-group .panel {
   background-color: #fff;
@@ -605,7 +616,7 @@ label {
 .scene#scene_home #tab-item {
   text-align: left;
 }
-.scene#scene_home #tab-item > ul {
+.scene#scene_home #tab-item ul {
   float: left;
   list-style: none;
   padding-left: 5px;
@@ -613,7 +624,7 @@ label {
   margin: 0px;
   text-align: center;
 }
-.scene#scene_home #tab-item > ul > li {
+.scene#scene_home #tab-item ul > li {
   float: none;
   margin: 5px;
   width: 80%;
@@ -626,11 +637,11 @@ label {
   padding-top: 0px;
   font-size: 20px;
 }
-.scene#scene_home #tab-item > ul > li.active {
+.scene#scene_home #tab-item ul > li.active {
   background-color: #337ab7;
   color: aliceblue;
 }
-.scene#scene_home #tab-item > ul > li:hover {
+.scene#scene_home #tab-item ul > li:hover {
   border-color: #337ab7;
 }
 .scene#scene_home #tab-item .panel {
