@@ -82,11 +82,12 @@ define(function (require) {
             var ele = $("<label>" + text + "</label>");
             var data = [];
             var running = true;
+            var text_bak=text;
             var ret = function (cmd) {
                 switch (cmd) {
                 case "fast":
                     running = false;
-                    container[0].innerHTML = text;
+                    container[0].innerHTML = text_bak;
                     cb();
                     break;
                 }
@@ -323,11 +324,11 @@ define(function (require) {
 
                     input_div.css("top", (sy - 180) * 0.5 + ((len - 1) / (-2) + index) * btn_gap + "px")
 
-                    if (content.data.width == undefined) {
-                        input_div.css("width", "30%")
-                    } else {
-                        input_div.css("width", content.data.width)
-                    }
+//                    if (content.data.width == undefined) {
+//                        input_div.css("width", "30%")
+//                    } else {
+//                        input_div.css("width", content.data.width)
+//                    }
                     var input = input_div.find("input")
                     var index_this = index;
                     input_div.find("button").click(function () {

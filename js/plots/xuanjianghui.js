@@ -1,56 +1,56 @@
 v.plot.xuanjianghui = true;
 ts(img.kexiezhaoxin)
-//tc("这一日，你发现各大科协在进行招新，你决定")
-//let result = tm("加入物电科协", "加入微固科协（待施工）", "加入电工科协（待施工）", "加入总会（待施工）");
-//if (result > 0) {
-//    ts(img.baozou_zhuakuang)
-//    tc("都说了在施工，你还点。。。")
-//    tc("跳转进入物电科协剧情。。。")
-//}
-//tc("由于你考入的是「物电学院」，你决定加入「物电科协」。")
-//ts(img.black)
-//tc("十天后，物电科协宣讲会。", 0, gap.slow)
-//
-//ts(img.jiaoshi)
-//tc("教室里挤满了想加入科协的同学，一片嘈杂。")
-//tc("坐在教室一隅的你，决定");
-//
-//{
-//    let result = tm("和旁边的同学搭讪", "坐等宣讲会开始");
-//
-//    if (result == 0) {
-//        tc("你左边坐着一个身材一般的男生，正在拨弄耳机。右边则坐着一个帅哥，正在看书，好像是什么团。你决定")
-//        let result = tm("向左边的同学搭讪", "向右边的同学搭讪")
-//        if (result == 0) {
-//            th(0, pp.lizhao, 0)
-//            tc("同学，你在做什么啊？", pp.you)
-//            tc("我在测试耳机。新买的这个手机，音质真是不错～", pp.lizhao)
-//            let result = tm("嗯！索尼大法好！", "这是中兴吧？")
-//            if (result == 0) {
-//                tc("嘿嘿，同道中人～", pp.lizhao)
-//                v.amity.lizhao = v.amity.lizhao + 1;
-//            } else {
-//                tc("。。。", pp.lizhao)
-//            }
-//        } else {
-//            th(0, pp.gaoxiangchen, 0)
-//            tc("同学，你在看什么书啊？", pp.you)
-//            tc("少儿不宜，别问了～", pp.gaoxiangchen)
-//            let result = tm("据说最近上映了这本书的3D电影啊", "你也喜欢韩寒啊？")
-//            if (result == 0) {
-//                tc("矮呦～同道中人", pp.gaoxiangchen)
-//                v.amity.gaoxiangchen = v.amity.gaoxiangchen + 1;
-//            } else {
-//                tc("韩你妹！别烦我！", pp.gaoxiangchen)
-//            }
-//
-//
-//        }
-//        th(0, 0, 0)
-//    }
-//}
-//tc("几分钟后。。。")
-//tc("一个学长模样的人走上讲台。")
+tc("这一日，你发现各大科协在进行招新，你决定")
+let result = tm("加入物电科协", "加入微固科协（待施工）", "加入电工科协（待施工）", "加入总会（待施工）");
+if (result > 0) {
+    ts(img.baozou_zhuakuang)
+    tc("都说了在施工，你还点。。。")
+    tc("跳转进入物电科协剧情。。。")
+}
+tc("由于你考入的是「物电学院」，你决定加入「物电科协」。")
+ts(img.black)
+tc("十天后，物电科协宣讲会。", 0, gap.slow)
+
+ts(img.jiaoshi)
+tc("教室里挤满了想加入科协的同学，一片嘈杂。")
+tc("坐在教室一隅的你，决定");
+
+{
+    let result = tm("和旁边的同学搭讪", "坐等宣讲会开始");
+
+    if (result == 0) {
+        tc("你左边坐着一个身材一般的男生，正在拨弄耳机。右边则坐着一个帅哥，正在看书，好像是什么团。你决定")
+        let result = tm("向左边的同学搭讪", "向右边的同学搭讪")
+        if (result == 0) {
+            th(0, pp.lizhao, 0)
+            tc("同学，你在做什么啊？", pp.you)
+            tc("我在测试耳机。新买的这个手机，音质真是不错～", pp.lizhao)
+            let result = tm("嗯！索尼大法好！", "这是中兴吧？")
+            if (result == 0) {
+                tc("嘿嘿，同道中人～", pp.lizhao)
+                v.amity.lizhao = v.amity.lizhao + 1;
+            } else {
+                tc("。。。", pp.lizhao)
+            }
+        } else {
+            th(0, pp.gaoxiangchen, 0)
+            tc("同学，你在看什么书啊？", pp.you)
+            tc("少儿不宜，别问了～", pp.gaoxiangchen)
+            let result = tm("据说最近上映了这本书的3D电影啊", "你也喜欢韩寒啊？")
+            if (result == 0) {
+                tc("矮呦～同道中人", pp.gaoxiangchen)
+                v.amity.gaoxiangchen = v.amity.gaoxiangchen + 1;
+            } else {
+                tc("韩你妹！别烦我！", pp.gaoxiangchen)
+            }
+
+
+        }
+        th(0, 0, 0)
+    }
+}
+tc("几分钟后。。。")
+tc("一个学长模样的人走上讲台。")
 th(0, 0, pp.daijun)
 th(0, pp.daijun, 0)
 tc("大家好，我是物电科协的会长戴俊。", pp.daijun);
@@ -87,7 +87,7 @@ tc(pp.chenguo.name + "学长，独臂程序员，擅长嵌入式开发。----" +
 th(0, pp.zhangfai, 0)
 tc(pp.zhangfai.name + "学长，人赢典范，喜欢涉猎电子设计所有相关领域，特别是FPGA方面----" + pp.daijun.name)
 
-th(0, pp.tanjinchuan, 0)
+th(0, pp.tanjinchuan, 0)xingdong
 tc("谭劲船，擅长模拟电路设计。----" + pp.daijun.name)
 
 th(0, pp.tanchengzi, 0)
