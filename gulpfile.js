@@ -104,7 +104,7 @@ var img=res.img;
 var gap=plot.gap; 
 var pp=res.pp; 
 var tmood=plot.tmood; `,
-            footer: '\n setTimeout(function(){plot_cb("cover")});\n}})',
+            footer: '\n setTimeout(function(){plot_cb("cover")},0);\n}})',
             filter: function (file) {
                 return true;
             }

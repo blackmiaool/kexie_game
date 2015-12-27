@@ -582,12 +582,12 @@ define(function (require) {
         mood.attr("src", background);
     }
     exports.ts = function (background, time) {
-
+        touch_enable=false;
         var fadeout_time = 800;
         if (dbg.isinfastmode) {
             time = 10;
         }
-        touch_enable = true;
+//        touch_enable = true;
 
         if (time == undefined || time == false) {
             time = fadeout_time;
@@ -617,6 +617,7 @@ define(function (require) {
             }, time);
             setTimeout(function () {
                 plot_resume();
+                console.log("ppp");
             }, 2 * time + 10);
         }
         current_background = background;

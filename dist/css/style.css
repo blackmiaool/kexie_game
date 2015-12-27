@@ -4,6 +4,9 @@
   -moz-user-select: none;
   user-select: none;
 }
+html {
+  background-color: black;
+}
 h1,
 h2,
 h3,
@@ -159,85 +162,48 @@ label {
   font-size: 18px;
 }
 .scene#scene_home #home-head {
-  width: 100%;
+  display: block;
   height: 40px;
   background-color: rgba(0, 0, 0, 0.5);
-  position: absolute;
+  border: none;
   border-bottom: 5px solid steelblue;
 }
 .scene#scene_home #home-head .prop {
-  position: absolute;
-  left: 0px;
-  top: 0px;
   width: 100%;
   opacity: 1;
   background-color: rgba(170, 170, 170, 0);
-  border-width: 0px;
-  border-radius: 0px;
-  border-color: rgba(51, 122, 183, 0.85);
+  border: none;
   padding: 0px;
   margin: 0px;
+  padding-top: 8px;
 }
 .scene#scene_home #home-head .prop .prop-set {
-  opacity: 2;
   margin: 0px;
-  margin-top: 5px;
-  margin-left: 20px;
-  padding: 0px;
-  vertical-align: baseline;
+  margin-left: 25px;
   display: inline-block;
   float: left;
 }
 .scene#scene_home #home-head .prop .prop-name {
-  vertical-align: middle;
-  position: relative;
-  width: 80px;
   display: inline-block;
-  border-color: #000000;
-  border-style: solid none solid solid;
-  border-width: 0px;
-  border-radius: 6px;
-  border-right-width: 0px;
-  text-align: center;
-  font-family: verdana;
+  border: none;
   color: #ffffe6;
   margin: 0px;
-  margin-right: 0px;
-  border-bottom-right-radius: 0px;
-  border-top-right-radius: 0px;
-  height: 30px;
-  z-index: 1;
-  padding-top: 3px;
   font-weight: bold;
 }
 .scene#scene_home #home-head .prop .prop-value {
-  vertical-align: -3%;
-  position: relative;
   display: inline-block;
-  text-align: center;
-  font-family: verdana;
   color: white;
   margin: 0px;
-  margin-right: 15px;
-  margin-left: -5px;
-  border-bottom-left-radius: 0px;
-  border-top-left-radius: 0px;
-  z-index: 0;
-  height: 30px;
-}
-.scene#scene_home #home-head .prop .prop-value[key="日期"] {
-  width: 120px;
+  margin-left: 5px;
 }
 .scene#scene_home #home-main-tab {
   position: absolute;
   width: 100px;
-  top: 100px;
+  top: 0px;
   left: 30px;
-  vertical-align: middle;
-  margin-left: 0px;
-  float: left;
-  display: table-cell;
-  z-index: 1;
+  bottom: 0;
+  margin: auto;
+  height: 303px;
 }
 .scene#scene_home #home-main-tab > button {
   text-align: center;
@@ -247,7 +213,6 @@ label {
   padding: 5px;
   padding-right: 20px;
   padding-left: 20px;
-  /*    */
   color: white;
   font-size: 20px;
   font-weight: bold;

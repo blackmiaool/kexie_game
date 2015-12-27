@@ -429,10 +429,10 @@ angular.module('home_app')
                 title: "任务",
                 name: "quest"
             },
-            技能: {
-                title: "技能",
-                name: "skill"
-            },
+//            技能: {
+//                title: "技能",
+//                name: "skill"
+//            },
             购物: {
                 title: "购物",
                 name: "buy"
@@ -1031,7 +1031,7 @@ angular.module('home_app')
             职位: "",
             信仰: "",
             金钱: "",
-            日期: "",
+            剩余行动点: "", 
         };
         $scope.prop_updt = function () {
             $scope.data = {
@@ -1039,7 +1039,7 @@ angular.module('home_app')
                 职位: v.basic.title,
                 信仰: v.basic.belief,
                 金钱: v.basic.money,
-                日期: "学期" + v.time.term + "-第" + v.time.week + "周",
+                剩余行动点: "学期" + v.time.term + "-第" + v.time.week + "周",
                 //                日期: (v.time.year + "").charAt(2) + (v.time.year + "").charAt(3) + "/" + v.time.month + "/" + v.time.day,
 
 
@@ -1194,7 +1194,7 @@ angular.module('home_app')
         $scope.go_out = function () {
             //            $scope.take_move_point();
             (function () {
-                sys.to_scene("bigmap");
+//                sys.to_scene("bigmap");
             })();
 
         }
@@ -1243,7 +1243,7 @@ angular.module('home_app')
             职位: "glyphicon-star-empty",
             信仰: "glyphicon-glyphicon glyphicon-leaf",
             金钱: "glyphicon-bitcoin",
-            日期: "glyphicon-calendar",
+            剩余行动点: "glyphicon-calendar",
         };
         return function (name) {
             //            console.log(name)

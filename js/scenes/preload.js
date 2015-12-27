@@ -63,8 +63,8 @@ var pre_enter = function () {
             }
             if (dbg.imdeveloper) {
                 developer_set();
-                sys.to_scene("home"); 
-//                sys.to_scene("chat"); 
+//                sys.to_scene("home"); 
+                sys.to_scene("chat"); 
                  
                 
             } else {
