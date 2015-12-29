@@ -3,8 +3,8 @@ define(function (require) {
     var sys = require("sys");
     var common = require("common");
     var dbg = require("dbg");
-    var res=require("res");
-    var pp=res.pp;
+    var res = require("res");
+    var pp = res.pp;
     var people = [];
     var exports = {
         running: {},
@@ -82,7 +82,7 @@ define(function (require) {
             var ele = $("<label>" + text + "</label>");
             var data = [];
             var running = true;
-            var text_bak=text;
+            var text_bak = text;
             var ret = function (cmd) {
                 switch (cmd) {
                 case "fast":
@@ -324,11 +324,11 @@ define(function (require) {
 
                     input_div.css("top", (sy - 180) * 0.5 + ((len - 1) / (-2) + index) * btn_gap + "px")
 
-//                    if (content.data.width == undefined) {
-//                        input_div.css("width", "30%")
-//                    } else {
-//                        input_div.css("width", content.data.width)
-//                    }
+                    //                    if (content.data.width == undefined) {
+                    //                        input_div.css("width", "30%")
+                    //                    } else {
+                    //                        input_div.css("width", content.data.width)
+                    //                    }
                     var input = input_div.find("input")
                     var index_this = index;
                     input_div.find("button").click(function () {
@@ -495,11 +495,11 @@ define(function (require) {
 
         function get_half(name, pos) {
             var id = "pp" + name.name
-            
-            var pp=$(`<img id="${id}" class="pp"/>`)
+
+            var pp = $(`<img id="${id}" class="pp"/>`)
             $("#div-half").append(pp)
-            
-            
+
+
             pp.attr("indexx", pos)
             pp.attr("src", name.half)
             pp.css("position", "absolute")
@@ -511,9 +511,11 @@ define(function (require) {
             //console.log(pp[0].clientWidth)
             return pp;
         }
-    function pos_covert(pos, pp) {
-        return sx / 6 * (pos * 2 + 1) - parseInt(pp.css("width")) / 2
-    }
+
+        function pos_covert(pos, pp) {
+            return sx / 6 * (pos * 2 + 1) - parseInt(pp.css("width")) / 2
+        }
+
         function pp_show() {
 
 
@@ -578,17 +580,29 @@ define(function (require) {
     exports.tmood = function (background) {
         var mood = $("#div-mood .mood");
 
-        console.log(mood);
-        console.log(background)
         mood.attr("src", background);
+
+        function after_touched() {
+                mood.hide();
+                plot_resume();
+            
+        }
+        if (dbg.isinfastmode) {
+            after_touched();
+        } else {
+            if (name != "跳过") {
+                //        $await(touch_wait())
+                touch_wait(after_touched);
+            }
+        }
     }
     exports.ts = function (background, time) {
-        touch_enable=false;
+        touch_enable = false;
         var fadeout_time = 800;
         if (dbg.isinfastmode) {
             time = 10;
         }
-//        touch_enable = true;
+        //        touch_enable = true;
 
         if (time == undefined || time == false) {
             time = fadeout_time;

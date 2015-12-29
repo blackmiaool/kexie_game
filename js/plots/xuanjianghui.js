@@ -1,5 +1,6 @@
 v.plot.xuanjianghui = true;
-ts(img.kexiezhaoxin)
+ts(img.kexiezhaoxin);
+
 tc("这一日，你发现各大科协在进行招新，你决定")
 let result = tm("加入物电科协", "加入微固科协（待施工）", "加入电工科协（待施工）", "加入总会（待施工）");
 if (result > 0) {
@@ -87,7 +88,7 @@ tc(pp.chenguo.name + "学长，独臂程序员，擅长嵌入式开发。----" +
 th(0, pp.zhangfai, 0)
 tc(pp.zhangfai.name + "学长，人赢典范，喜欢涉猎电子设计所有相关领域，特别是FPGA方面----" + pp.daijun.name)
 
-th(0, pp.tanjinchuan, 0)xingdong
+th(0, pp.tanjinchuan, 0)
 tc("谭劲船，擅长模拟电路设计。----" + pp.daijun.name)
 
 th(0, pp.tanchengzi, 0)

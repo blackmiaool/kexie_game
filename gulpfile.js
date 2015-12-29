@@ -91,7 +91,7 @@ gulp.task("plots", function () {
             base: 'js'
         })
         .pipe(cached("plot"))
-        .pipe(yield_prefix(["tc", "th", "ts", "tm", "tcc",]))
+        .pipe(yield_prefix(["tc", "th", "ts", "tm", "tcc","tmood"]))
         .pipe(headerfooter({
             header: `define(["res","v","sys"],function (res,v,sys){\
 return function* (plot_cb){ 
@@ -100,6 +100,7 @@ var tc=plot.tc;
 var tcc=plot.tcc; 
 var th=plot.th; 
 var tm=plot.tm; 
+var tmood=plot.tmood; 
 var img=res.img; 
 var gap=plot.gap; 
 var pp=res.pp; 
