@@ -15,16 +15,16 @@ if (result == 1) {
         ts(res.img.qinghuadaxue);
         tc("经过不懈的努力，你考入了TOP2!<br/>完美结局【未曾开始的结束】达成!<br/>难度：1");
         plot.game_over = true;
-        
+
         ts(res.img.black, 1);
         setTimeout(function () {
             plot_cb("cover")
         });
         return;
     } else {
-        ts(res.img.luobang)
-        tc("你又一次落榜了。")
-        tc("无奈之下，你再一次填报了神大。")
+        ts(res.img.luobang);
+        tc("你又一次落榜了。");
+        tc("无奈之下，你再一次填报了神大。");
         v.time.year++;
         setTimeout(function () {
             plot_cb("again")
