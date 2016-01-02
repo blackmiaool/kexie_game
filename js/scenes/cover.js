@@ -2,9 +2,6 @@ var scene = new sys.Scene({
     id: "cover",
     dom_id: "scene_cover",
     init: function () {
-
-
-
         angular.module('home_app').controller("cover_controller", function ($scope) {
             $scope.start = function () {
                 sys.to_scene("chat", "cover");
@@ -15,8 +12,8 @@ var scene = new sys.Scene({
             $scope.about = function () {
                 sys.to_scene("about", "save");
             }
-            
-            
+
+
             $(".cover_btn").mouseover(
                 function (e) {
                     var eve = e || window.event;

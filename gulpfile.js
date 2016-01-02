@@ -91,13 +91,14 @@ gulp.task("plots", function () {
             base: 'js'
         })
         .pipe(cached("plot"))
-        .pipe(yield_prefix(["tc", "th", "ts", "tm", "tcc","tmood"]))
+        .pipe(yield_prefix(["tc", "th", "ts", "tm", "tcc","tmood","tcn"]))
         .pipe(headerfooter({
             header: `define(["res","v","sys"],function (res,v,sys){\
 return function* (plot_cb){ 
 var ts=plot.ts; 
 var tc=plot.tc; 
-var tcc=plot.tcc; 
+var tcc=plot.tcc; //use same person as last invoke tc
+var tcn=plot.tcn; //tc without wait touch
 var th=plot.th; 
 var tm=plot.tm; 
 var tmood=plot.tmood; 

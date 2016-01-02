@@ -135,9 +135,9 @@ label {
 .scene#scene_chat #div-btn {
   text-align: center;
 }
-.scene#scene_chat #div-bg img {
+.scene#scene_chat #div-bg {
   width: 100%;
-  height: 100%;
+  background-size: cover;
 }
 .scene#scene_home {
   margin: 0px;

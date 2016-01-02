@@ -222,13 +222,11 @@ define(function (require) {
         return t;
     }
 
-    function plot_resume(ret) {
-        //        exports.running();
-        plot_core.resume(ret);
-        //        var state=exports.running.next(ret);
-        //        if(state.done){
-        //            plot_core.update(exports.running);
-        //        }                
+    function plot_resume(ret) {     
+        setTimeout(function(){
+            plot_core.resume(ret);  
+        },0)
+           
     }
     exports.tm = function () {
         touch_enable = false;
@@ -370,7 +368,12 @@ define(function (require) {
         args.splice(1, 0, pp_pre);
         exports.tc.apply(this, args);
     }
-    exports.tc = function (text, name, gapnum, color) {
+    var tc_fast_mode=false;
+    exports.tcn=function(){  
+        tc_fast_mode=true;
+        exports.tc.apply(this,arguments);
+    }
+    exports.tc = function (text, name, gapnum, color) {   
         tc_pre_things.name = name;
         tc_pre_things.gapnum = gapnum;
         tc_pre_things.color = color;
@@ -396,16 +399,17 @@ define(function (require) {
                     if (name == pp.you)
                         break;
                     $("#div-half img").each(function () {
-                            //                        console.log($(this).attr("id"))
-                            //                        console.log(("#pp" + name.name))
+
                             if ($(this).attr("id") != ("pp" + name.name)) {
                                 $(this).animate({
                                     opacity: "0.5"
                                 }, "fast");
+                            }else{
+                                $(this).animate({
+                                    opacity: "1"
+                                }, "fast");
                             }
                         })
-                        //                $("#pp" + name.name).css("opacity", 1);
-                        //                console.log("#pp" + name.name)
                     break;
                 }
             } else {
@@ -418,9 +422,14 @@ define(function (require) {
 
         function cb1() {
             text_processing = false;
+            if(tc_fast_mode){
+                console.log("a");
+                cb2(); 
+                tc_fast_mode=false;
+            }
         }
         var handle = message.setNString(text, cb1, gapnum)
-
+                
         function cb2() {
             if (text_processing) {
                 //            console.log("slkjswer")
@@ -428,7 +437,8 @@ define(function (require) {
                 //            message.fast();
                 touch_wait(cb2);
             } else {
-                $("#div-half img").css("opacity", 1);
+//                $("#div-half img").css("opacity", 1);
+                console.log("resume");
                 plot_resume();
             }
         }
@@ -437,6 +447,8 @@ define(function (require) {
         } else {
             if (name != "跳过") {
                 //        $await(touch_wait())
+                
+                if(!tc_fast_mode)
                 touch_wait(cb2);
             }
         }
@@ -571,6 +583,7 @@ define(function (require) {
                 setTimeout(plot_resume, people_move_time_this);
             } else {
                 plot_resume();
+                
             }
         }
 
@@ -614,20 +627,24 @@ define(function (require) {
         running = true;
 
         message.fadeOut(time);
-
+        function get_url(u){
+            return `url("../../${u}")`;
+        }
         if (!current_background) {
             bg.hide();
-            bg.attr("src", background);
+            console.log(bg,background)
+            bg.css("background-image", get_url(background));
+            console.log(bg,bg.css("background-image"))
             bg.fadeIn(time);
 
             setTimeout(function () {
 
                 plot_resume();
             }, time);
-        } else {
+        } else { 
             bg.fadeOut(time)
             setTimeout(function () {
-                bg.attr("src", background);
+                bg.css("background-image", get_url(background));
                 bg.fadeIn(time);
             }, time);
             setTimeout(function () {
@@ -642,7 +659,8 @@ define(function (require) {
 
     window.plot = exports;
     exports.init = function () {
-        bg = $("#scene_chat #div-bg img");
+        bg = $("#scene_chat #div-bg");
+        
         message = message_create();
         $("#scene_chat").on("click", function () {
             touched = true;
