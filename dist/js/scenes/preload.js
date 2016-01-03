@@ -26,7 +26,7 @@ define(["sys", "angular", "v", "common", "res", "dbg"], regeneratorRuntime.mark(
                             preload_bar.text("资源加载中 " + a + "/" + b);
                             preload_bar.css("width", a / b * 100 + '%');
                         }
-                        if (!dbg.imdeveloper) {
+                        if (!dbg.imdeveloper || true) {
                             for (var i in res.img) {
                                 res_sum++;
                                 var name = res.img[i];

@@ -645,7 +645,7 @@ define(function (require) {
         message.fadeOut(time);
 
         function get_url(u) {
-            return `url("../../${u}")`;
+            return `url("${u}")`;
         }
         if (!current_background) {
             bg.hide();
