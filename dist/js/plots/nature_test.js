@@ -2,7 +2,7 @@
 
 function _typeof(obj) { return obj && typeof Symbol !== "undefined" && obj.constructor === Symbol ? "symbol" : typeof obj; }
 
-define(["res", "v", "sys"], function (res, v, sys) {
+define(["res", "v", "sys", "_"], function (res, v, sys, _) {
     return regeneratorRuntime.mark(function _callee(plot_cb) {
         var ts, tc, tcc, tcn, th, tm, tmood, img, gap, pp, result, value;
         return regeneratorRuntime.wrap(function _callee$(_context) {

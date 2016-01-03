@@ -371,6 +371,7 @@ define(function (require) {
             gapnum = exports.gap.def;
         }
         if (text) {
+            text = text.replace(/,/g, "，").replace(/\./g, "。").replace(/!/g, "！").replace(/\?/g, "？");
             message.show();
             if (name) {
                 pp_pre = name;

@@ -40,7 +40,7 @@
 
                                     <label style="width:25%;">数量</label>
                             </span>
-            <div ng-repeat="item in items" class="panel panel-default">
+            <div ng-repeat="item in items" class="panel panel-default" ng-if="item.cnt">
                 <div class="my-panel-heading" role="tab" width="100%">
                     <span style="position:relative;display:inline-block; width:100%;" class="collapsed panel-title " data-toggle="collapse" data-parent="#item-tab-{{kind}}-page" href="#{{store_name}}{{key}}-{{item.name}}" aria-expanded="false" aria-controls="{{store_name}}{{key}}-{{item.name}}">
                                                     <label style="width: 70%;">{{item.name}}</label>

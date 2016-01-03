@@ -2,7 +2,7 @@
 
 define(["res", "v", "sys", "_"], function (res, v, sys, _) {
     return regeneratorRuntime.mark(function _callee(plot_cb) {
-        var ts, tc, tcc, tcn, th, tm, tmood, img, gap, pp, chat_times, get_talk, items, chatting, result, a, b, _result, _a, _b, _a2, _b2, _a3, _b3;
+        var ts, tc, tcc, tcn, th, tm, tmood, img, gap, pp, chat_times, get_talk, items, chatting, result, a, b, _result, _a, _b, _a2, _b2, _a3, _b3, _a4, _b4;
 
         return regeneratorRuntime.wrap(function _callee$(_context) {
             while (1) {
@@ -42,57 +42,65 @@ define(["res", "v", "sys", "_"], function (res, v, sys, _) {
 
                     case 20:
                         _context.next = 22;
-                        return tc("你和其他听讲座的同学来到了干净整洁、朝气蓬勃的物电科协。");
+                        return tc("走出了品学楼,进入科研楼.长途跋涉后的你终于来到了干净整洁、朝气蓬勃的物电科协。");
 
                     case 22:
                         _context.next = 24;
-                        return th(0, pp.daijun, 0);
+                        return tc("物电科协看起来是建立在普通实验室之上的,各种电子元件和仪器都堆在了白色的实验桌之上,毫无违和感.");
 
                     case 24:
                         _context.next = 26;
-                        return tc("那么，这里就是物电科协了。由于你们是新来的，所以暂时还没有你们的固定位置。", pp.daijun);
+                        return tc("看到会长带了人来,原本在科协埋头苦干的学长们都跑来迎接");
 
                     case 26:
                         _context.next = 28;
-                        return th(pp.chenguo, pp.tanchengzi, pp.tanjinchuan);
+                        return th(0, pp.daijun, 0);
 
                     case 28:
                         _context.next = 30;
-                        return tc("欢迎欢迎~~", "众人");
+                        return tc("那么，这里就是物电科协了。由于你们是新来的，所以暂时还没有你们的固定位置。", pp.daijun);
 
                     case 30:
                         _context.next = 32;
-                        return tc("这几个就是这次的新人了吗？看起来这次的新人质量还不错嘛。", pp.chenguo);
+                        return th(pp.chenguo, pp.tanchengzi, pp.tanjinchuan);
 
                     case 32:
                         _context.next = 34;
-                        return tc("支持，威武，有希望了。", pp.tanjinchuan);
+                        return tc("欢迎欢迎~~", "众人");
 
                     case 34:
                         _context.next = 36;
-                        return tc("哼，不知道有几个人能坚持到最后。", pp.tanchengzi);
+                        return tc("这几个就是这次的新人了吗？看起来这次的新人质量还不错嘛。", pp.chenguo);
 
                     case 36:
                         _context.next = 38;
-                        return tc("说起来，说好的学妹呢？", pp.chenguo);
+                        return tc("支持，威武，有希望了。", pp.tanjinchuan);
 
                     case 38:
                         _context.next = 40;
-                        return tc("...", pp.tanjinchuan);
+                        return tc("哼，不知道有几个人能坚持到最后。", pp.tanchengzi);
 
                     case 40:
                         _context.next = 42;
-                        return tc("...", pp.tanchengzi);
+                        return tc("说起来，说好的学妹呢？", pp.chenguo);
 
                     case 42:
                         _context.next = 44;
-                        return th(0, 0, 0);
+                        return tc("...", pp.tanjinchuan);
 
                     case 44:
                         _context.next = 46;
-                        return ts(res.img.kexie2, 1000);
+                        return tc("...", pp.tanchengzi);
 
                     case 46:
+                        _context.next = 48;
+                        return th(0, 0, 0);
+
+                    case 48:
+                        _context.next = 50;
+                        return ts(res.img.kexie2, 1000);
+
+                    case 50:
                         chat_times = 2;
                         items = new Array(get_talk(pp.daijun.name), get_talk(pp.chenguo.name), get_talk(pp.tanjinchuan.name), get_talk(pp.tanchengzi.name), get_talk(pp.zhangfai.name), "离开");
 
@@ -104,277 +112,359 @@ define(["res", "v", "sys", "_"], function (res, v, sys, _) {
                         });
                         chatting = true;
 
-                    case 50:
+                    case 54:
                         if (!chatting) {
-                            _context.next = 148;
+                            _context.next = 192;
                             break;
                         }
 
-                        _context.next = 53;
+                        _context.next = 57;
                         return th(0, 0, 0);
 
-                    case 53:
-                        _context.next = 55;
+                    case 57:
+                        _context.next = 59;
                         return tcn("你决定");
 
-                    case 55:
-                        _context.next = 57;
+                    case 59:
+                        _context.next = 61;
                         return tm(items);
 
-                    case 57:
+                    case 61:
                         result = _context.sent;
 
                         items[result].type = "disabled_btn";
 
                         _context.t0 = result;
-                        _context.next = _context.t0 === 0 ? 62 : _context.t0 === 1 ? 85 : _context.t0 === 2 ? 102 : _context.t0 === 3 ? 125 : _context.t0 === 4 ? 126 : _context.t0 === 5 ? 145 : 146;
+                        _context.next = _context.t0 === 0 ? 66 : _context.t0 === 1 ? 91 : _context.t0 === 2 ? 116 : _context.t0 === 3 ? 149 : _context.t0 === 4 ? 168 : _context.t0 === 5 ? 189 : 190;
                         break;
 
-                    case 62:
-                        _context.next = 64;
+                    case 66:
+                        _context.next = 68;
                         return th(0, pp.daijun, 0);
 
-                    case 64:
+                    case 68:
                         a = pp.daijun;
                         b = pp.you;
-                        _context.next = 68;
+                        _context.next = 72;
                         return tcn("你对这里感觉如何？", a);
 
-                    case 68:
-                        _context.next = 70;
+                    case 72:
+                        _context.next = 74;
                         return tm("棒极了", "有点乱");
 
-                    case 70:
+                    case 74:
                         _result = _context.sent;
                         _context.t1 = _result;
-                        _context.next = _context.t1 === 0 ? 74 : _context.t1 === 1 ? 79 : 84;
+                        _context.next = _context.t1 === 0 ? 78 : _context.t1 === 1 ? 83 : 90;
                         break;
 
-                    case 74:
-                        _context.next = 76;
+                    case 78:
+                        _context.next = 80;
                         return tc("感觉非常好！这就是我最想要的学习场所！", b);
 
-                    case 76:
-                        _context.next = 78;
+                    case 80:
+                        _context.next = 82;
                         return tc("不错，喜欢就好", a);
 
-                    case 78:
-                        return _context.abrupt("break", 84);
-
-                    case 79:
-                        _context.next = 81;
-                        return tc("还好吧，就是有点乱……", b);
-
-                    case 81:
-                        _context.next = 83;
-                        return tc("嘿嘿，习惯就好", a);
+                    case 82:
+                        return _context.abrupt("break", 90);
 
                     case 83:
-                        return _context.abrupt("break", 84);
-
-                    case 84:
-                        return _context.abrupt("break", 146);
+                        _context.next = 85;
+                        return tc("还好吧，就是有点乱……", b);
 
                     case 85:
-                        _a = pp.chenguo;
-                        _context.next = 88;
-                        return th(0, _a, 0);
+                        _context.next = 87;
+                        return tc("嘿嘿，习惯就好", a);
 
-                    case 88:
-                        _b = pp.you;
-                        _context.next = 91;
-                        return tc("我看你天庭饱满，地阁方圆，是个搞数字电路的好苗子。", _a);
+                    case 87:
+                        _context.next = 89;
+                        return tc(a.name + "笑得很尴尬.");
+
+                    case 89:
+                        return _context.abrupt("break", 90);
+
+                    case 90:
+                        return _context.abrupt("break", 190);
 
                     case 91:
-                        _context.next = 93;
-                        return tc("学长你这都能看出来？", _b);
+                        _a = pp.chenguo;
+                        _context.next = 94;
+                        return th(0, _a, 0);
 
-                    case 93:
-                        _context.next = 95;
-                        return tc("那当然，自从我断臂之后，各种感觉都变得敏锐了。说起来，你给我的感觉和别人不同。", _a);
-
-                    case 95:
+                    case 94:
+                        _b = pp.you;
                         _context.next = 97;
-                        return tcc("想必，你能在科协历史上留下浓墨重彩的一笔。");
+                        return tc("我看你天庭饱满，地阁方圆，是个搞数字电路的好苗子。", _a);
 
                     case 97:
                         _context.next = 99;
-                        return tc("这……", _b);
+                        return tc(_a.name + "微笑地看着你");
 
                     case 99:
                         _context.next = 101;
-                        return tc("不好，我的麒麟臂要发作了，你去找其他人聊吧。", pp.chenguo);
+                        return tc("学长你这都能看出来？", _b);
 
                     case 101:
-                        return _context.abrupt("break", 146);
+                        _context.next = 103;
+                        return tc("你不禁后退一步,心想这学长怎么和算命的似的...");
 
-                    case 102:
-                        _a2 = pp.tanjinchuan;
+                    case 103:
                         _context.next = 105;
-                        return th(0, _a2, 0);
+                        return tc("那当然，自从我断臂之后，各种感觉都变得敏锐了。说起来，你给我的感觉和别人不同。", _a);
 
                     case 105:
-                        _b2 = pp.you;
-                        _context.next = 108;
-                        return tc("我带你参观一下整个科协吧。", _a2);
+                        _context.next = 107;
+                        return tc(_a.name + "闭上了眼睛,然后猛然睁开(虽然你看不出区别)");
 
-                    case 108:
-                        _context.next = 110;
-                        return tcc("我右手边这张桌子用来放置仪器，你可以在这里进行焊接和调试");
+                    case 107:
+                        _context.next = 109;
+                        return tcc("想必，你能在科协历史上留下浓墨重彩的一笔。");
 
-                    case 110:
-                        _context.next = 112;
-                        return ts(img.kexie0);
+                    case 109:
+                        _context.next = 111;
+                        return tc("这……", _b);
 
-                    case 112:
-                        _context.next = 114;
-                        return tcc("这张大桌子是大家平时办公学习和放置杂物的地方");
+                    case 111:
+                        _context.next = 113;
+                        return tc("你心中微动");
 
-                    case 114:
-                        _context.next = 116;
-                        return tcc("后面的小桌子上的电脑是这个实验室的管理老师用的，其他地方则用来放我们的杂物");
+                    case 113:
+                        _context.next = 115;
+                        return tc("不好，我的麒麟臂要发作了，你去找其他人聊吧。", pp.chenguo);
+
+                    case 115:
+                        return _context.abrupt("break", 190);
 
                     case 116:
-                        _context.next = 118;
-                        return ts(img.kexie1);
+                        _a2 = pp.tanjinchuan;
+                        _context.next = 119;
+                        return th(0, _a2, 0);
 
-                    case 118:
-                        _context.next = 120;
-                        return tcc("这张桌子是科协大牛专用的桌子，如果你以后为科协做出了杰出贡献，那这个桌子就归你了。");
-
-                    case 120:
+                    case 119:
+                        _b2 = pp.you;
                         _context.next = 122;
-                        return tcc("基本情况就是这样了，希望你以后能为科协做出杰出贡献，独占这桌子～哈哈");
+                        return tc("我带你参观一下整个科协吧。", _a2);
 
                     case 122:
                         _context.next = 124;
-                        return ts(res.img.kexie2, 1000);
+                        return tc(_a2.name + "不由分说就带着你逛起了科协");
 
                     case 124:
-                        return _context.abrupt("break", 146);
-
-                    case 125:
-                        return _context.abrupt("break", 146);
+                        _context.next = 126;
+                        return tcc("我右手边这张桌子用来放置仪器，你可以在这里进行焊接和调试");
 
                     case 126:
-                        _a3 = pp.zhangfai;
-                        _b3 = pp.you;
+                        _context.next = 128;
+                        return tc("你看到这个桌子上堆着一堆仪器,彰显着这个科协的土豪之气.桌面非常干净,似乎是有专人负责桌面卫生.");
+
+                    case 128:
                         _context.next = 130;
-                        return th(0, _a3, 0);
+                        return ts(img.kexie0);
 
                     case 130:
                         _context.next = 132;
-                        return tc("能来到这里，说明你很有眼光啊", _a3);
+                        return tcc("这张大桌子是大家平时办公学习和放置杂物的地方");
 
                     case 132:
                         _context.next = 134;
-                        return tc("学长谬赞了，我不过是对电子比较感兴趣。", _b3);
+                        return tcc("后面的小桌子上的电脑是这个实验室的管理老师用的，其他地方则用来放我们的杂物");
 
                     case 134:
                         _context.next = 136;
-                        return tc("我知道我知道~这个学校基本所有的人都对电子感兴趣，但是走到这里的人却没几个。", _a3);
+                        return tc("你发现这两张桌子上已经没有空位了");
 
                     case 136:
                         _context.next = 138;
-                        return tc("另外，讲真，电设搞得好，会有意想不到的收获！", _a3);
+                        return ts(img.kexie1);
 
                     case 138:
                         _context.next = 140;
-                        return tc("比如？", _b3);
+                        return tcc("这张桌子是科协大牛专用的桌子，如果你以后为科协做出了杰出贡献，那这个桌子就归你了。");
 
                     case 140:
                         _context.next = 142;
-                        return tc("比如一不小心就解决了个人问题，嘿嘿~", _a3);
+                        return tc("这张桌上空无一物,似乎在等待着自己的主人.");
 
                     case 142:
                         _context.next = 144;
-                        return tc("……", _b3);
+                        return tcc("基本情况就是这样了，希望你以后能为科协做出杰出贡献，独占这桌子～哈哈");
 
                     case 144:
-                        return _context.abrupt("break", 146);
-
-                    case 145:
-                        chatting = false;
-
-                    case 146:
-                        _context.next = 50;
-                        break;
-
-                    case 148:
-                        _context.next = 150;
+                        _context.next = 146;
                         return th(0, 0, 0);
 
-                    case 150:
+                    case 146:
+                        _context.next = 148;
+                        return ts(res.img.kexie2, 1000);
+
+                    case 148:
+                        return _context.abrupt("break", 190);
+
+                    case 149:
+                        _a3 = pp.tanchengzi;
                         _context.next = 152;
-                        return ts(img.black);
+                        return th(0, _a3, 0);
 
                     case 152:
-                        _context.next = 154;
-                        return tc("与此同时，IC科协");
+                        _b3 = pp.you;
+                        _context.next = 155;
+                        return tc("这么说来你就是这一届的新人咯?看起来很普通嘛~", _a3);
 
-                    case 154:
-                        _context.next = 156;
-                        return ts(img.ickexie1);
+                    case 155:
+                        _context.next = 157;
+                        return tc(_a3.name + "面无表情地说着,手里把玩着一个黑色的东西");
 
-                    case 156:
-                        a = pp.wangyixie;
-                        b = pp.ouyangyang;
-                        _context.next = 160;
-                        return th(a, pp.what, b);
+                    case 157:
+                        _context.next = 159;
+                        return tc("学长明鉴,我确实只是个普通人而已", _b3);
 
-                    case 160:
-                        _context.next = 162;
-                        return tc("情况不容乐观 似乎已经有人觉察到了", a);
+                    case 159:
+                        _context.next = 161;
+                        return tc("不错,有自知之明.既然进了科协,就要守科协的规矩,别人的东西不要随便动,懂了么?", _a3);
 
-                    case 162:
-                        _context.next = 164;
-                        return tc("不可能！这件事不可能有其他人知道！", b);
+                    case 161:
+                        _context.next = 163;
+                        return tc("懂了", _b3);
 
-                    case 164:
-                        _context.next = 166;
-                        return tc("可事实就是这样，招新人数急剧下降，新人质量也堪忧。一定是有人在阻碍我们科协发展。", a);
+                    case 163:
+                        _context.next = 165;
+                        return tc("你很是无语,不知哪里得罪这学长了");
 
-                    case 166:
-                        _context.next = 168;
-                        return tc("说不定是因为别的科协采用了新的招新方式。。。", b);
+                    case 165:
+                        _context.next = 167;
+                        return tc("好,没事就回宿舍吧,等要干活了再来", _a3);
+
+                    case 167:
+                        return _context.abrupt("break", 190);
 
                     case 168:
-                        _context.next = 170;
-                        return tc("就算如此，我们的基本盘也不会被蚕食至此！", a);
-
-                    case 170:
+                        _a4 = pp.zhangfai;
+                        _b4 = pp.you;
                         _context.next = 172;
-                        return tc("……", b);
+                        return th(0, _a4, 0);
 
                     case 172:
                         _context.next = 174;
-                        return tc("没办法了  只好开启那个了", a);
+                        return tc("能来到这里，说明你很有眼光啊", _a4);
 
                     case 174:
                         _context.next = 176;
-                        return tc("可是……", b);
+                        return tc("学长谬赞了，我不过是对电子比较感兴趣。", _b4);
 
                     case 176:
                         _context.next = 178;
-                        return tc("没什么可是！照这种趋势继续下去，明年我们就亡协了！", a);
+                        return tc("我知道我知道~这个学校基本所有的人都对电子感兴趣，但是走到这里的人却没几个。", _a4);
 
                     case 178:
                         _context.next = 180;
-                        return tc("好，我这就去准备。", b);
+                        return tc("另外，讲真，电设搞得好，会有意想不到的收获！", _a4);
 
                     case 180:
                         _context.next = 182;
-                        return th(0, 0, 0);
+                        return tc("比如？", _b4);
 
                     case 182:
                         _context.next = 184;
-                        return ts(img.black);
+                        return tc("比如一不小心就解决了个人问题，嘿嘿~", _a4);
 
                     case 184:
                         _context.next = 186;
-                        return tc("参观完物电科协，你回到了宿舍。");
+                        return tc(_a4.name + "并不猥琐地笑着");
 
                     case 186:
+                        _context.next = 188;
+                        return tc("……", _b4);
+
+                    case 188:
+                        return _context.abrupt("break", 190);
+
+                    case 189:
+                        chatting = false;
+
+                    case 190:
+                        _context.next = 54;
+                        break;
+
+                    case 192:
+                        _context.next = 194;
+                        return th(0, 0, 0);
+
+                    case 194:
+                        _context.next = 196;
+                        return ts(img.black);
+
+                    case 196:
+                        _context.next = 198;
+                        return tc("与此同时，IC科协");
+
+                    case 198:
+                        _context.next = 200;
+                        return ts(img.ickexie1);
+
+                    case 200:
+                        a = pp.wangyixie;
+                        b = pp.ouyangyang;
+                        _context.next = 204;
+                        return th(a, pp.what, b);
+
+                    case 204:
+                        _context.next = 206;
+                        return tc("两个人站在IC科协的储物柜旁,气氛似乎很沉闷");
+
+                    case 206:
+                        _context.next = 208;
+                        return tc("情况不容乐观 似乎已经有人觉察到了", a);
+
+                    case 208:
+                        _context.next = 210;
+                        return tc("不可能！这件事不可能有其他人知道！", b);
+
+                    case 210:
+                        _context.next = 212;
+                        return tc("可事实就是这样，招新人数急剧下降，新人质量也堪忧。一定是有人在阻碍我们科协发展。", a);
+
+                    case 212:
+                        _context.next = 214;
+                        return tc("说不定是因为别的科协采用了新的招新方式。。。", b);
+
+                    case 214:
+                        _context.next = 216;
+                        return tc("就算如此，我们的基本盘也不会被蚕食至此！", a);
+
+                    case 216:
+                        _context.next = 218;
+                        return tc("……", b);
+
+                    case 218:
+                        _context.next = 220;
+                        return tc("没办法了  只好开启那个了", a);
+
+                    case 220:
+                        _context.next = 222;
+                        return tc("可是……", b);
+
+                    case 222:
+                        _context.next = 224;
+                        return tc("没什么可是！照这种趋势继续下去，明年我们就亡协了！", a);
+
+                    case 224:
+                        _context.next = 226;
+                        return tc("好，我这就去准备。", b);
+
+                    case 226:
+                        _context.next = 228;
+                        return th(0, 0, 0);
+
+                    case 228:
+                        _context.next = 230;
+                        return ts(img.black);
+
+                    case 230:
+                        _context.next = 232;
+                        return tc("参观完物电科协，你回到了宿舍。");
+
+                    case 232:
 
                         //    if (result == 0) { //daijun
                         //
@@ -513,7 +603,7 @@ define(["res", "v", "sys", "_"], function (res, v, sys, _) {
                             plot_cb();
                         }, 0);
 
-                    case 187:
+                    case 233:
                     case "end":
                         return _context.stop();
                 }

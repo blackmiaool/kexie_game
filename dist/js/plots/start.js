@@ -1,6 +1,6 @@
 "use strict";
 
-define(["res", "v", "sys"], function (res, v, sys) {
+define(["res", "v", "sys", "_"], function (res, v, sys, _) {
     return regeneratorRuntime.mark(function _callee(plot_cb) {
         var ts, tc, tcc, tcn, th, tm, tmood, img, gap, pp, result;
         return regeneratorRuntime.wrap(function _callee$(_context) {
