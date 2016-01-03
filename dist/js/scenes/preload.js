@@ -35,7 +35,7 @@ define(["sys", "angular", "v", "common", "res", "dbg"], regeneratorRuntime.mark(
                                 name = name[name.length - 2].split('/');
                                 name = name[name.length - 1];
                                 images[i] = new Image();
-                                images[i].src = res.img[i];
+                                images[i].src = "../../" + res.img[i];
                                 images[i].onload = function () {
                                     load_cnt++;
 
