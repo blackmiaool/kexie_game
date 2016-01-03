@@ -1,7 +1,7 @@
 define(function(){
     var exports={
         imdeveloper:true,
-        isinfastmode:true,
+//        isinfastmode:true,
     };
     return exports;
 })

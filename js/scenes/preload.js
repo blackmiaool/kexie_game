@@ -63,7 +63,7 @@ var pre_enter = function () {
             }
             if (dbg.imdeveloper) {
                 developer_set();
-                sys.to_scene("home"); 
+                sys.to_scene("cover"); 
 //                sys.to_scene("chat"); 
                  
                 
