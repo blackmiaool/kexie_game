@@ -43,7 +43,7 @@ var pre_enter = function () {
 
     function preload_check() {
         
-        if (dbg.imdeveloper) { //skip res load in developer mode
+        if (dbg.imdeveloper||true) { //skip res load in developer mode
             load_cnt = res_sum;
         }
         if ((load_cnt >= res_sum) ) {

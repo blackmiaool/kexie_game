@@ -59,7 +59,7 @@ define(["sys", "angular", "v", "common", "res", "dbg"], regeneratorRuntime.mark(
 
                         function preload_check() {
 
-                            if (dbg.imdeveloper) {
+                            if (dbg.imdeveloper || true) {
                                 //skip res load in developer mode
                                 load_cnt = res_sum;
                             }
