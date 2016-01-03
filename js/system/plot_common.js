@@ -445,7 +445,7 @@ define(function (require) {
         function cb1() {
             text_processing = false;
             if (tc_fast_mode) {
-            
+
                 cb2();
                 tc_fast_mode = false;
             }
@@ -487,9 +487,6 @@ define(function (require) {
         var input = arguments;
         var remove = false
         var show = false
-            //print(input)
-
-        //console.log(people)
         for (var j in people) {
 
             var found = false;
@@ -497,8 +494,6 @@ define(function (require) {
                 continue;
             }
             for (var i in input) {
-                //            print("input")
-                //            print([people[j].name, input[i]])
                 if (people[j].name == input[i].name) {
 
                     found = true
@@ -519,7 +514,6 @@ define(function (require) {
         }
 
         if (remove) {
-            //        $await(Wind.Async.sleep(people_move_time * 1.2));
             setTimeout(
                 pp_show, people_move_time_this * 1.2
             )
@@ -538,25 +532,24 @@ define(function (require) {
             pp.attr("src", name.half)
             pp.css("position", "absolute")
             pp.css("top", 40 + "px")
-            if(pos==0)
+            if (pos == 0) {
+                pp.css("right", "auto");
                 pp.css("left", pos_covert(pos, pp) + "px")
-            else if(pos==2)
+            } else if (pos == 2) {
+                pp.css("left", "auto");
                 pp.css("right", pos_covert(0, pp) + "px")
-            else{
-                pp.css("left",0);
-                pp.css("right",0);
+            } else {
+                pp.css("left", 0);
+                pp.css("right", 0);
             }
-
-            //console.dir(pp[0])
-            //console.log(pp[0].clientWidth)
             return pp;
         }
-        
+
         function pos_covert(pos, pp) {
-            var width=parseInt(pp.prop("width"));
-            var height=parseInt(pp.prop("height"));
-            if(width<250)
-                width=250;
+            var width = parseInt(pp.prop("width"));
+            var height = parseInt(pp.prop("height"));
+            if (width < 250)
+                width = 250;
             return (sx / 6 * (pos * 2 + 1)) - width / 2;
         }
 
@@ -569,20 +562,15 @@ define(function (require) {
                     continue;
                 }
                 for (var j in people) {
-                    //                print("end")
-                    //                console.log(people[j])
                     if (!people[j]) {
                         continue;
                     }
                     if (people[j].name == input[i].name) {
-                        //                    print("end2")
-                        //                    print([people[j].name, input[i].name])
                         found = true;
                         //print("found")
                         if (people[j].pos != i) {
                             //print("not",i)
                             show = true
-                                //          people[j].runAction(cc.MoveTo.create(people_move_time, get_pp_position(i)))
                             people[j].pos = i
                             people[j].animate({
                                 left: pos_covert(people[j].pos, people[j]) + "px"
@@ -595,10 +583,7 @@ define(function (require) {
                 }
 
                 if (!found) {
-                    //print("notnot")
-                    //  print(input[i])
                     var ppp = get_half(input[i], i)
-                        //      ppp.setOpacity(0)
                     ppp.hide();
                     ppp.name = input[i].name
                     ppp.pos = i;
@@ -606,7 +591,6 @@ define(function (require) {
                     people[people.length] = ppp
 
                     show = true
-                        //      ppp.runAction(cc.FadeIn.create(people_move_time))
                     ppp.fadeIn(people_move_time_this);
                 }
             }

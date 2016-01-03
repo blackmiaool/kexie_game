@@ -271,7 +271,7 @@ angular.module('home_app')
         }
 
     })
-    .controller("home_root", ["$rootScope", "$scope", "$timeout", function ($rootScope, $scope,$timeout) {
+    .controller("home_root", ["$rootScope", "$scope", "$timeout", function ($rootScope, $scope, $timeout) {
         $rootScope.$on("home-update-all", function () {
             $scope.$broadcast("item_updt");
             $scope.$broadcast("prop_updt");
@@ -280,7 +280,7 @@ angular.module('home_app')
         });
 
         $scope.v = v;
-        $scope.courses = courses;
+
         $scope.home_save = function () {
             sys.to_scene("save", "save", "home");
         }
@@ -288,52 +288,10 @@ angular.module('home_app')
             sys.to_scene("save", "load", "home");
         }
 
-
-        $scope.weeks = [1, 2, 3, 4, 5, 6, 7];
-        $scope.arrange = v.study.arrange;
-        $scope.arrage_finish = function () {
-            $scope.updt_period();
-            $scope.updt++;
-            $scope.load_class();
-            //            console.log($scope.arrange)
-            //            v.time.left_points = $scope.get_left_points();
-        }
-        $scope.load_class = function () {
-            $scope.class = [];
-
-            function get_class_state(state) {
-                if (state == true) {
-                    return "success";
-                } else {
-                    return "error";
-                }
-            }
-            for (var i = 0; i < res.the_period_of_day.length; i++) {
-                //                console.log(courses)
-                var value = courses[v.time.term][v.time.week][v.time.week_day_index][res.the_period_of_day[i]];
-                if (value) {
-                    $scope.class.push({
-                        name: res.the_period_of_day[i],
-                        data: value,
-                        index: i,
-                        state: get_class_state($scope.arrange[v.time.week_day_index][res.the_period_of_day[i]])
-                    });
-                }
-            }
-        }
-        $scope.week_name = ["上午", "下午", "晚上"]
-
-
-        $scope.get_left_points = v.get_left_points;
-
-        $scope.get_period = function () {
-            //            console.log("get_period")
-            return res.the_period_of_day[v.time.period]
-
-        }
+        $scope.left_points = v.left_points;
 
         $scope.updt_button_state = function () {
-            $scope.button_state = (v.time.period >= v.time.total_point_today);
+            //            $scope.button_state = (v.time.period >= v.time.total_point_today);
         }
         $scope.updt_button_state();
         $scope.updt_period = function () {
@@ -343,20 +301,22 @@ angular.module('home_app')
                 $scope.updt_period();
             }
         }
+
+
         $scope.updt = 0;
         $scope.take_move_point = function () {
-            if (v.time.period < v.time.total_point_today) {
-                v.time.period++;
-                $scope.button_state = (v.time.period >= v.time.total_point_today);
-                //                console.log($scope.button_state)
-
-                $scope.updt_period();
-                $scope.updt++;
-                return true;
-            } else {
-                console.error("get point err");
-                return false;
-            }
+            //            if (v.time.period < v.time.total_point_today) {
+            //                v.time.period++;
+            //                $scope.button_state = (v.time.period >= v.time.total_point_today);
+            //                //                console.log($scope.button_state)
+            //
+            //                $scope.updt_period();
+            //                $scope.updt++;
+            //                return true;
+            //            } else {
+            //                console.error("get point err");
+            //                return false;
+            //            }
         }
 
 
@@ -371,17 +331,7 @@ angular.module('home_app')
         var current_tab = common.local.get("current_tab");
 
         $timeout(function () {
-            if (current_tab) {
-                console.log("current",current_tab);
-                $("#home-tabs").data("tab", current_tab.content.name);
-                var key= current_tab.content.key;
-                var name=current_tab.content.name;
-                $scope.list[key].content = "";
-                $("#home-tabs>.tab-content>.tab-pane").hide();
-                $("#tab-" + name).show();
-                $scope.tab_selecting = key;
 
-            }
         }, 1000);
 
 
@@ -429,10 +379,10 @@ angular.module('home_app')
                 title: "任务",
                 name: "quest"
             },
-//            技能: {
-//                title: "技能",
-//                name: "skill"
-//            },
+            //            技能: {
+            //                title: "技能",
+            //                name: "skill"
+            //            },
             购物: {
                 title: "购物",
                 name: "buy"
@@ -447,16 +397,25 @@ angular.module('home_app')
         for (var i in $scope.list) {
             loaded_target++;
         }
+        loaded_target += 2;
+
         $scope.$on("$includeContentLoaded", function (params, data) {
-            //            console.log("miao",params,data);
-            //            var reg=new RegExp(/\/([a-z]+).html/);
-            //            var name=reg.exec(data)[1];
             loaded_cnt++;
-            //            console.log(loaded_cnt,loaded_target)
-            if (loaded_cnt >= loaded_target) {
-
+            console.log(loaded_cnt, loaded_target)
+            if (loaded_cnt == loaded_target) {
+                if (current_tab) {
+                    $timeout(function () {
+                        
+                        $("#home-tabs").data("tab", current_tab.content.name);
+                        var key = current_tab.content.key;
+                        var name = current_tab.content.name;
+                        $scope.list[key].content = "";
+                        $("#home-tabs>.tab-content>.tab-pane").hide();
+                        $("#tab-" + name).show();
+                        $scope.tab_selecting = key;
+                    })
+                }
             }
-
         })
     }])
     .controller("danmu_controller", function ($scope) {
@@ -538,21 +497,21 @@ angular.module('home_app')
             // $("#tab-make-output").append($("<br></br>"))
             for (var i = 0; i < output_data.length; i++) {
                 switch (typeof (output_data[i].data)) {
-                    case "string":
-                        if (output_data[i].config.head !== false) {
-                            data.push({
-                                type: "system",
-                                data: "head",
-                            })
-                        }
-                        for (var j = 0; j < output_data[i].data.length; j++) {
-                            data.push(output_data[i].data.charAt(j))
-                        }
+                case "string":
+                    if (output_data[i].config.head !== false) {
+                        data.push({
+                            type: "system",
+                            data: "head",
+                        })
+                    }
+                    for (var j = 0; j < output_data[i].data.length; j++) {
+                        data.push(output_data[i].data.charAt(j))
+                    }
 
-                        break;
-                    case "object":
-                        data.push(output_data[i].data);
-                        break;
+                    break;
+                case "object":
+                    data.push(output_data[i].data);
+                    break;
                 }
 
             }
@@ -569,49 +528,49 @@ angular.module('home_app')
 
                 // console.log(d);
                 switch (typeof (d)) {
-                    case "object":
-                        switch (d.type) {
-                            case "system":
-                                switch (d.data) {
-                                    case "head":
-                                        line = $("<p></p>")
-                                        $("#tab-make-output").append(line);
-                                        go_on_gap = line_gap_time;
-                                        break;
-                                        // case "rear":
-                                        //     // $("#tab-make-output").append($("<br/>"));
+                case "object":
+                    switch (d.type) {
+                    case "system":
+                        switch (d.data) {
+                        case "head":
+                            line = $("<p></p>")
+                            $("#tab-make-output").append(line);
+                            go_on_gap = line_gap_time;
+                            break;
+                            // case "rear":
+                            //     // $("#tab-make-output").append($("<br/>"));
 
-                                        //     break;
-                                    case "end":
-                                        go_on = false;
-                                        output_data = [];
-                                        combine[common.find_index(combine, "name", current_combine)].product.push({
-                                            stability: 87,
-                                            performance: 103
-                                        })
-                                        $scope.$apply();
-                                        $scope.$emit('home_root', {
-                                            name: 'item_updt',
-                                            param: ""
-                                        });
-                                        // $scope.emit()
-                                        break;
-                                    case "progress":
-                                        console.log("progress" + d.current)
-                                        progress_set(d.current, d.sum);
-                                        break;
-                                }
-                                break;
-                            case "color_text":
-                                // line = $("<p></p>")
-                                // $("#tab-make-output").append(line);
-                                line.append(d.data);
-                                break;
+                            //     break;
+                        case "end":
+                            go_on = false;
+                            output_data = [];
+                            combine[common.find_index(combine, "name", current_combine)].product.push({
+                                stability: 87,
+                                performance: 103
+                            })
+                            $scope.$apply();
+                            $scope.$emit('home_root', {
+                                name: 'item_updt',
+                                param: ""
+                            });
+                            // $scope.emit()
+                            break;
+                        case "progress":
+                            console.log("progress" + d.current)
+                            progress_set(d.current, d.sum);
+                            break;
                         }
                         break;
-                    case "string":
-                        line.html(line.html() + d);
+                    case "color_text":
+                        // line = $("<p></p>")
+                        // $("#tab-make-output").append(line);
+                        line.append(d.data);
                         break;
+                    }
+                    break;
+                case "string":
+                    line.html(line.html() + d);
+                    break;
                 }
                 $("#tab-make-output")[0].scrollTop = $("#tab-make-output")[0].scrollHeight;
                 output_len++;
@@ -850,49 +809,49 @@ angular.module('home_app')
         }
         $scope.target_check = function (target) {
             switch (target.type) {
-                case "thing_need":
-                    if (items[target.data].cnt >= target.cnt) {
-                        return "sufficient";
-                    } else {
-                        return "insufficient"
-                    }
-                    break;
-                case "combine_need":
+            case "thing_need":
+                if (items[target.data].cnt >= target.cnt) {
+                    return "sufficient";
+                } else {
+                    return "insufficient"
+                }
+                break;
+            case "combine_need":
 
-                    var stability_need = 0;
-                    var performance_need = 0;
+                var stability_need = 0;
+                var performance_need = 0;
 
-                    if (target.data.stability > 0) {
-                        stability_need = target.data.stability;
+                if (target.data.stability > 0) {
+                    stability_need = target.data.stability;
+                }
+                if (target.data.performance > 0) {
+                    performance_need = target.data.performance;
+                }
+                var cnt = 0;
+                var products = combine[common.find_index(combine, "name", target.data.name)].product
+                for (var i = 0; i < products.length; i++) {
+                    if (products[i].stability > stability_need && products[i].performance > performance_need) {
+                        cnt++;
                     }
-                    if (target.data.performance > 0) {
-                        performance_need = target.data.performance;
-                    }
-                    var cnt = 0;
-                    var products = combine[common.find_index(combine, "name", target.data.name)].product
-                    for (var i = 0; i < products.length; i++) {
-                        if (products[i].stability > stability_need && products[i].performance > performance_need) {
-                            cnt++;
-                        }
-                    }
-                    if (cnt >= target.cnt) {
-                        return "sufficient";
-                    } else {
-                        return "insufficient"
-                    }
-                    break;
+                }
+                if (cnt >= target.cnt) {
+                    return "sufficient";
+                } else {
+                    return "insufficient"
+                }
+                break;
             }
 
         }
         $scope.target_handle = function (target) {
 
             switch (target.type) {
-                case "thing_need":
-                    var ret = target.data + " " + items[target.data].cnt + "/" + target.cnt;
-                    return ret;
-                case "combine_need":
-                    var ret = target.data.name + " " + combine[common.find_index(combine, "name", target.data.name)].product.length + "/" + target.cnt;
-                    return ret;
+            case "thing_need":
+                var ret = target.data + " " + items[target.data].cnt + "/" + target.cnt;
+                return ret;
+            case "combine_need":
+                var ret = target.data.name + " " + combine[common.find_index(combine, "name", target.data.name)].product.length + "/" + target.cnt;
+                return ret;
 
             }
         }
@@ -1031,7 +990,7 @@ angular.module('home_app')
             职位: "",
             信仰: "",
             金钱: "",
-            剩余行动点: "", 
+            剩余行动点: "",
         };
         $scope.prop_updt = function () {
             $scope.data = {
@@ -1039,7 +998,7 @@ angular.module('home_app')
                 职位: v.basic.title,
                 信仰: v.basic.belief,
                 金钱: v.basic.money,
-                剩余行动点: "学期" + v.time.term + "-第" + v.time.week + "周",
+                剩余行动点: v.left_points,
                 //                日期: (v.time.year + "").charAt(2) + (v.time.year + "").charAt(3) + "/" + v.time.month + "/" + v.time.day,
 
 
@@ -1071,7 +1030,7 @@ angular.module('home_app')
             //        console.log($scope.courses);
 
 
-        $scope.load_class();
+
 
 
 
@@ -1135,7 +1094,7 @@ angular.module('home_app')
             $scope.updt_period();
             $scope.updt_button_state();
             console.log("enday")
-            $scope.load_class();
+
             if (v.time.week_day_index == 1) {
                 design_class();
             }
@@ -1194,7 +1153,7 @@ angular.module('home_app')
         $scope.go_out = function () {
             //            $scope.take_move_point();
             (function () {
-//                sys.to_scene("bigmap");
+                //                sys.to_scene("bigmap");
             })();
 
         }

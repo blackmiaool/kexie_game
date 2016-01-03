@@ -26,7 +26,7 @@ function spot_create(name, text, left, top, icon) {
 }
 angular.module('home_app')
     .controller("bigmap_controller", function ($scope) {
-        $scope.get_left_points = v.get_left_points;
+   
         $scope.enter = function (spot) {
             sys.to_scene("chat", spot);
         }

@@ -1,14 +1,6 @@
 <div ng-controller="tab_plan_controller" class="wrap">
     <div id="tab-plan-right">
         <div class="plan-right-block">
-            <label class="plan-right-label">剩余行动点数</label>
-            <label class="plan-right-value">{{get_left_points(updt)}}（{{get_period(updt)}}）</label>
-        </div>
-        <div class="plan-right-block" style="overflow:hide;">
-            <label class="plan-right-label">星期</label>
-            <label class="plan-right-value week_day_index" ng-bind="v.time.week_day_index"></label>
-        </div>
-        <div class="plan-right-block">
             <label class="plan-right-label">疲劳度</label>
 
             <div id="tab-plan-skill-progress" class="progress active" style="margin:0px;margin-bottom:3px;margin-top:3px;height:10px;">
@@ -62,23 +54,12 @@
                 </div>
             </div>
         </div>
-        <div class="plan-right-block">
-            <label class="plan-right-label">今日课程</label>
-            <label id="tody-class-scene" class="plan-right-value" style="width:100%;">
 
-
-                <label ng-repeat="value in class" class="today-class {{value.state}}">
-                    <label class="left">{{value.name}}</label>
-                    <label class="right">{{value.data}}</label>
-                </label>
-
-            </label>
-        </div>
     </div>
     <div id="tab-plan-left">
         <button class="btn btn-primary  scene-btn " ng-disabled="button_state" id="tab_plan_go_out_btn" ng-click="go_out()">
-            <div class="glyphicon glyphicon-comment" aria-hidden="true"></div>
-            <div class="des">外出</div>
+            <div class="glyphicon glyphicon-scissors" aria-hidden="true"></div>
+            <div class="des">打工</div>
         </button>
         <button class="btn btn-primary scene-btn " ng-disabled="button_state" id="tab_plan_go_school_btn" ng-click="go_school()">
             <div class="glyphicon glyphicon-education" aria-hidden="true"></div>

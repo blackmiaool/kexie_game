@@ -63,7 +63,7 @@ define(["res","common"],function (res,common) {
 
         },
         components:{},
-
+        left_points:10,
     }
     for (var i in res.pp) {
         v_init.amity[i] = 0;
@@ -72,14 +72,14 @@ define(["res","common"],function (res,common) {
         v_init.study.arrange[i] = [];
     }
     var v=common.clone(v_init);
-    v.get_left_points=()=> {
-        var retval = 0;
-        for (var i = v.time.period; i < v.time.total_point_today; i++) {
-            if (!v.study.arrange[v.time.week_day_index][res.the_period_of_day[i]]) {
-                retval++;
-            }
-        }
-        return retval;
-    }
+//    v.get_left_points=()=> {
+//        var retval = 0;
+//        for (var i = v.time.period; i < v.time.total_point_today; i++) {
+//            if (!v.study.arrange[v.time.week_day_index][res.the_period_of_day[i]]) {
+//                retval++;
+//            }
+//        }
+//        return retval;
+//    }
     return v;
 })

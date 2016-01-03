@@ -203,6 +203,7 @@ label {
   display: inline-block;
   color: white;
   margin: 0px;
+  min-width: 60px;
   margin-left: 5px;
 }
 .scene#scene_home #home-main-tab {
