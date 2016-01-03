@@ -1,0 +1,62 @@
+<div ng-controller="tab_team_controller" class="wrap">
+    <div style="float:left;left:0px;" id="carousel-team-generic" class="carousel " data-ride="carousel">
+        <!-- Indicators -->
+        <style type="text/css">
+            .left.carousel-control {
+                background-image: linear-gradient(to right, rgba(128, 128, 128, .5) 0, rgba(128, 128, 128, .0001) 100%);
+            }
+            
+            .right.carousel-control {
+                background-image: linear-gradient(to left, rgba(128, 128, 128, .5) 0, rgba(128, 128, 128, .0001) 100%);
+            }
+        </style>
+        <ol class="carousel-indicators">
+        </ol>
+        <!-- Wrapper for slides -->
+        <div class="carousel-inner" role="listbox">
+            <div ng-repeat="(key,value) in data" class="item {{$first && 'active'}}" name="{{key}}" first="{{$first}}">
+                <div><img align="center" ng-src="{{value.half}}" />
+                </div>
+                <div class="carousel-caption" style="width: 100%; right:0px;left:0px; background-color: rgba(0, 0, 0, 0.298039);">{{value.tag}}
+                    <br>{{value.name}}</div>
+            </div>
+
+        </div>
+        <!-- Controls -->
+        <a class="left carousel-control" href="#carousel-team-generic" role="button" data-slide="prev">
+            <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+        </a>
+        <a class="right carousel-control" href="#carousel-team-generic" role="button" data-slide="next">
+            <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+        </a>
+    </div>
+    <style>
+        .chart rect {
+            fill: steelblue;
+        }
+        
+        .chart text {
+            fill: white;
+            font: 15px sans-serif;
+            text-anchor: end;
+        }
+        
+        .chart text[kind="head"] {
+            fill: black;
+            font: 15px sans-serif;
+            text-anchor: end;
+        }
+    </style>
+    <svg class="chart" style="float:right;width:58%;text-align:left;"></svg>
+    <div class="panel panel-default">
+        <div class="my-panel-heading" role="tab" width="100%"><span style="text-align:center;position:relative;display:inline-block; width:100%;" class="panel-title" data-toggle="collapse" href="#team-skill-heading" aria-expanded="true" aria-controls="team-skill-heading"><label style="width: 32%;">天赋技能</label></span>
+        </div>
+        <div style="transition: height 0.2s; -webkit-transition: height 0.2s;" id="team-skill-heading" class="panel-collapse collapse in" role="tabpanel" aria-expanded="true">
+            <div class="store-panel-content">
+                <h5 class="item-panel" id="tab-team-skill-content">每月可以膜拜一次指定对象，增加目标对本团队的好感度</h5>
+            </div>
+        </div>
+    </div>
+</div>

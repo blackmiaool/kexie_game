@@ -1,0 +1,28 @@
+<div ng-controller="tab_quest_controller" ng-repeat="(key,value) in data" class="panel panel-default">
+    <div class="panel-heading" align="center">
+        <label>{{value.title}}</label>
+    </div>
+    <div class="panel-heading" align="center">
+        <button class="btn  btn-primary {{value.finished || 'disabled' }}" style="width:49%;">
+            完成
+        </button>
+        <button class="btn btn-primary disabled" style="width:49%;">
+            放弃
+        </button>
+    </div>
+    <div class="panel-des" align="left">{{value.des}}</div>
+    <table class="table">
+        <tbody>
+            <tr>
+                <td class="prop-tab-name prop-tab-name-right">任务期限</td>
+                <td class="prop-tab-value prop-tab-name-left">{{value.date}}天</td>
+                <td class="prop-tab-name prop-tab-name-right">任务目标：</td>
+                <td class="prop-tab-value prop-tab-name-right">
+                    <label ng-repeat="target in value.target" class="{{target_check(target,updt)}}">
+                        {{target_handle(target,updt)}}
+                    </label>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>

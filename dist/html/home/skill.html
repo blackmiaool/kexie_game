@@ -1,0 +1,24 @@
+<div ng-controller="tab_skill_controller">
+    <link href="./css/magbox.css" type="text/css" rel="stylesheet">
+    <link href="./css/workshop-wlk.css" type="text/css" rel="stylesheet">
+    <link href="./css/talent.css" type="text/css" rel="stylesheet">
+    <div id="talent" class="workshop">
+        <div id="page-body">
+            <center>
+                <div id="replaceMeWithTalents">
+                </div>
+
+            </center>
+        </div>
+    </div>
+    <div id="my_skill_tree_panel">
+        <div id="my_skill_tree_panel_content">
+
+        </div>
+        <button ng-click="study_skill(current_skill_index)" class="btn btn-primary {{v.state.skill_point<=0 && 'disabled'}}" style="position:absolute;right:0px;bottom:0px;border-radius: 0px;font-size:25px;">学习</button>
+    </div>
+    <div id="skill_point">
+        <label><font style="font-weight:normal;">技能点：</font><font style="color:steelblue;">{{v.state.skill_point}}</font>
+        </label>
+    </div>
+</div>

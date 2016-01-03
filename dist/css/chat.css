@@ -1,0 +1,94 @@
+.chat-wrap {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+}
+button.menu_btn,
+input.menu_btn,
+#div-btn .input-group {
+  position: absolute;
+  margin-left: auto;
+  margin-right: auto;
+  font-size: 20px;
+  width: 300px;
+}
+button.menu_btn {
+  left: 0;
+  right: 0;
+  margin: auto;
+}
+#div-btn,
+#div-bg,
+#div-half,
+#div-text {
+  position: absolute;
+  height: 100%;
+  border: none;
+  width: 100%;
+  /*text-align: center;*/
+}
+#div-btn #chat_text,
+#div-bg #chat_text,
+#div-half #chat_text,
+#div-text #chat_text {
+  background-image: url("../../res/UI/messageBack.png");
+  position: relative;
+  top: 350px;
+  width: 960px;
+  height: 180px;
+  padding-top: 25px;
+  padding-left: 50px;
+  padding-right: 50px;
+}
+#div-btn #chat_text #chat_content,
+#div-bg #chat_text #chat_content,
+#div-half #chat_text #chat_content,
+#div-text #chat_text #chat_content {
+  text-align: left;
+  font-size: 25px;
+  color: #ffffff;
+  text-indent: 2em;
+}
+#div-btn #name_all,
+#div-bg #name_all,
+#div-half #name_all,
+#div-text #name_all {
+  position: absolute;
+  top: 315px;
+  left: 0px;
+  width: 398px;
+  height: 53px;
+}
+#div-btn #name_all #name_content,
+#div-bg #name_all #name_content,
+#div-half #name_all #name_content,
+#div-text #name_all #name_content {
+  font-size: 23px;
+  margin-top: 18px;
+  text-align: center;
+  width: 250px;
+}
+#div-half .pp {
+  margin: auto;
+}
+#div-mood {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  text-align: center;
+}
+#div-mood .mood {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
+}
+#div-btn {
+  text-align: center;
+}
+#div-bg {
+  width: 100%;
+  background-size: cover;
+}

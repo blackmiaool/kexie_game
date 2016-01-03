@@ -1,0 +1,10 @@
+<div ng-controller="prop_controller" class="well highlight prop">
+    <div ng-repeat="(key ,value) in data" class=" prop-set" is-first={{$first}}>
+        <h4 class="prop-name prop-common" style="">
+                    <span class="glyphicon {{key | get_prop_icon}}" aria-hidden="true"></span>&nbsp;{{key}}
+                </h4>
+        <h4 class="prop-value prop-common" key="{{key}}">
+                    {{value}}
+                </h4>
+    </div>
+</div>
