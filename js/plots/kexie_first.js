@@ -10,7 +10,7 @@
 //
 //tc("这几个就是这次的新人了吗？看起来这次的新人质量还不错嘛。", pp.chenguo);
 //tc("支持，威武，有希望了。", pp.tanjinchuan);
-//tc("只是不知道有几个人能坚持到最后。", pp.tanchengzi);
+//tc("哼，不知道有几个人能坚持到最后。", pp.tanchengzi);
 //tc("说起来，说好的学妹呢？", pp.chenguo);
 //tc("...", pp.tanjinchuan);
 //tc("...", pp.tanchengzi);
@@ -22,36 +22,77 @@ while (chat_times > 0) {
     th(0, 0, 0);
     tcn(`你决定（剩余${chat_times}次）`);
     chat_times = chat_times - 1;
-    function get_talk(data){
+
+    function get_talk(data) {
         return `与${data}交谈`;
     }
-    var result = tm(get_talk(pp.daijun.name),get_talk(pp.chenguo.name), get_talk(pp.tanjinchuan.name),get_talk(pp.tanchengzi.name),"探索", "离开");
-      
-    
-    switch(result){
-        case 0://daijun
+    var result = tm(get_talk(pp.daijun.name), get_talk(pp.chenguo.name), get_talk(pp.tanjinchuan.name), get_talk(pp.tanchengzi.name), "离开");
+
+
+    switch (result) {
+        case 0: //daijun
             th(0, pp.daijun, 0);
+            let a = pp.daijun;
+            let b = pp.you;
+            tcn("你对这里感觉如何？", a); {
+                let result = tm("棒极了", "有点乱");
+                switch (result) {
+                    case 0:
+                        tc("感觉非常好！这就是我最想要的学习场所！", b);
+                        tc("不错，喜欢就好", a);
+                        break;
+                    case 1:
+                        tc("还好吧，就是有点乱……", b);
+                        tc("嘿嘿，习惯就好", a);
+                        break;
+                }
+            }
             break;
-        case 1://chenguo
+        case 1: //chenguo            
+            {
+                let a = pp.chenguo;
+                th(0,a,0);
+                let b = pp.you;
+                tc("我看你天庭饱满，地阁方圆，是个搞数字电路的好苗子。", a);
+                tc("学长你这都能看出来？",b)
+                tc("那当然，自从我断臂之后，各种感觉都变得敏锐了。说起来，你给我的感觉和别人不同。",a)
+                tcc("想必，你能在科协历史上留下浓墨重彩的一笔。");
+                tc("这……",b);
+                tc("不好，我的麒麟臂要发作了，你去找其他人聊吧。", pp.chenguo);                
+            }
             break;
-        case 2://tanjinchuan
+        case 2: //tanjinchuan
+            {
+                let a = pp.tanjinchuan;
+                th(0,a,0);
+                let b = pp.you;
+                tc("我带你参观一下整个科协吧。", a);
+                tcc("我右手边这张桌子用来放置仪器，你可以在这里进行焊接和调试");
+                ts(img.kexie0);
+                tcc("这张大桌子是大家平时办公学习和放置杂物的地方");
+                tcc("后面的小桌子上的电脑是这个实验室的管理老师用的，其他地方则用来放我们的杂物");
+                ts(img.kexie1);
+                tcc("这张桌子是科协大牛专用的桌子，如果你以后为科协做出了杰出贡献，那这个桌子就归你了。", a);
+                tcc("基本情况就是这样了，希望你以后能为科协做出杰出贡献，独占这桌子～哈哈");
+                
+            }
             break;
-        case 3://tanchengzi
+        case 3: //tanchengzi
             break;
-        case 4://tansuo
+        case 4: //tansuo
             break;
     }
-        
-    
-    
+
+
+
     if (result == 0) { //daijun 
-        
-//        if (v.basic.way == 1 || v.basic.way == 2) { //模拟
-//            tc("刚才宣讲会的时候我就看到你天庭饱满，地阁方圆，是个搞模拟电路的好苗子。", pp.daijun)
-//            tc("我来问你几个问题吧。", pp.daijun)
-//        } else {
-//            tc("你和我不是一个方向，去找数字电路方向的学长吧", pp.daijun)
-//        } 
+
+        //        if (v.basic.way == 1 || v.basic.way == 2) { //模拟
+        //            tc("刚才宣讲会的时候我就看到你天庭饱满，地阁方圆，是个搞模拟电路的好苗子。", pp.daijun)
+        //            tc("我来问你几个问题吧。", pp.daijun)
+        //        } else {
+        //            tc("你和我不是一个方向，去找数字电路方向的学长吧", pp.daijun)
+        //        } 
     } else if (result == 1) { //chenguo
         th(0, pp.chenguo, 0)
         tc("我的麒麟臂要发作了，你去找其他人聊吧。", pp.chenguo)
