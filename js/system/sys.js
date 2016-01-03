@@ -138,6 +138,7 @@ define(["angular", "dbg"], function (angular, dbg) {
                 var scale1 = width / 960;
                 var scale2 = height / 545;
                 var scale = Math.min(scale1, scale2) * 100;
+                window.scene_scale=scale;
                 $("body").css("zoom", scale + "%");
                 $(".scene").each(
                     function () {

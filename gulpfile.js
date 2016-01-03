@@ -93,7 +93,7 @@ gulp.task("plots", function () {
         .pipe(cached("plot"))
         .pipe(yield_prefix(["tc", "th", "ts", "tm", "tcc","tmood","tcn"]))
         .pipe(headerfooter({
-            header: `define(["res","v","sys"],function (res,v,sys){\
+            header: `define(["res","v","sys","_"],function (res,v,sys,_){\
 return function* (plot_cb){ 
 var ts=plot.ts; 
 var tc=plot.tc; 
@@ -106,7 +106,7 @@ var img=res.img;
 var gap=plot.gap; 
 var pp=res.pp; 
 var tmood=plot.tmood; `,
-            footer: '\n setTimeout(function(){plot_cb()},0);\n}})',
+            footer: `\n setTimeout(function(){plot_cb()},0);\n}})`,
             filter: function (file) {
                 return true;
             }

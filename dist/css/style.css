@@ -68,6 +68,11 @@ label {
   font-size: 20px;
   width: 300px;
 }
+.scene#scene_chat button.menu_btn {
+  left: 0;
+  right: 0;
+  margin: auto;
+}
 .scene#scene_chat #div-btn,
 .scene#scene_chat #div-bg,
 .scene#scene_chat #div-half,
@@ -75,6 +80,7 @@ label {
   position: absolute;
   height: 100%;
   border: none;
+  width: 100%;
   /*text-align: center;*/
 }
 .scene#scene_chat #div-btn #chat_text,
@@ -117,6 +123,9 @@ label {
   margin-top: 18px;
   text-align: center;
   width: 250px;
+}
+.scene#scene_chat #div-half .pp {
+  margin: auto;
 }
 .scene#scene_chat #div-mood {
   position: absolute;

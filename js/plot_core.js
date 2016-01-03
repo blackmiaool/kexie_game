@@ -4,7 +4,7 @@ define(["sys", "plot_common", "plots/start", "plots/nature_test", "plots/xuanjia
         
         function run_plot(p, cb) {
             exports.running = p(cb); 
-            console.log("next2");
+//            console.log("next2");
             setTimeout(function(){
                 exports.running.next();
             })
@@ -29,7 +29,7 @@ define(["sys", "plot_common", "plots/start", "plots/nature_test", "plots/xuanjia
         run_plot(p_kexiefirst, start_cb)
     }
     exports.resume = function (ret) {
-        console.log("next1");
+//        console.log("next1");
         exports.running.next(ret);
     }
     return exports;

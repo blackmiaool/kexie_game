@@ -56,8 +56,6 @@ define(["common"], function (common) {
                 name: "???",
                 half: g("Half/touming.png"),
                 color: color(255, 255, 255),
-
-
             },
             you: {
                 name: "你",
@@ -182,6 +180,16 @@ define(["common"], function (common) {
             chenjiong: {
                 name: "陈囧",
                 half: g("Half/chenjiong.png"),
+                color: color(255, 255, 255),
+            },
+            wangyixie: {
+                name: "王一血",
+                half: g("Half/wangyixie.png"),
+                color: color(255, 255, 255),
+            },
+            ouyangyang: {
+                name: "欧洋洋",
+                half: g("Half/ouyangyang.png"),
                 color: color(255, 255, 255),
             },
 

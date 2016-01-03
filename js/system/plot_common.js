@@ -222,29 +222,35 @@ define(function (require) {
         return t;
     }
 
-    function plot_resume(ret) {     
-        setTimeout(function(){
-            plot_core.resume(ret);  
-        },0)
-           
+    function plot_resume(ret) {
+        setTimeout(function () {
+            plot_core.resume(ret);
+        }, 0)
+
     }
     exports.tm = function () {
         touch_enable = false;
         var arg_len = 0;
-        for (var i in arguments) {
-            var empty = true;
-            for (var j in arguments[i]) {
-                empty = false;
-                break;
+        var it;
+        if (arguments[0] && !arguments[1] && Array.isArray(arguments[0])) {
+            it = arguments[0];
+        } else {
+            for (var i in arguments) {
+                var empty = true;
+                for (var j in arguments[i]) {
+                    empty = false;
+                    break;
+                }
+                if (empty)
+                    arguments[i] = undefined
+                else {
+                    arg_len++;
+                }
             }
-            if (empty)
-                arguments[i] = undefined
-            else {
-                arg_len++;
-            }
+            arguments.length = arg_len;
+            it = arguments;
         }
-        arguments.length = arg_len;
-        var it = arguments;
+
 
         var len = it.length
         var menu_value = false;
@@ -277,30 +283,46 @@ define(function (require) {
 
             switch (typeof (content)) {
             case "string":
-                var btn = $('<button id=' + id + ' class="menu_btn btn btn-primary"></button>')
-                div_btn.append(btn)
-                btn.attr("miao_index", index)
-                btn.html(content)
                 var vertical_offset = 0;
                 if (message.css("display") != "none") {
                     vertical_offset = 180;
                 }
 
-                btn.css("top", (sy - vertical_offset) * 0.5 + ((len - 1) / (-2) + index) * btn_gap + "px")
-                btn.css("left", "480" - parseInt(btn.css("width")) / 2 + "px")
-                btn.click(function () {
-                        menu_value = parseInt($(this).attr("miao_index"));
-
+                var btn = $(`<button id='${id}' class="menu_btn btn btn-primary">
+                            </button>`);
+                btn.data("index", index)
+                    .css("top", (sy - vertical_offset) * 0.5 + ((len - 1) / (-2) + index) * btn_gap + "px")
+                    .html(content)
+                    .click(function () {
+                        menu_value = parseInt($(this).data("index"));
                         cb(index, content);
-                        //print(parseInt($(this).attr("indexx")))
                     })
-                    // 
+
+                div_btn.append(btn)
                 break;
             case "object":
                 switch (content.type) {
-
                 case undefined:
                     console.log('you should define the "type" key in the object params of tm');
+                    break;
+                case "btn":
+                case "disabled_btn":
+                    var disabled = content.type == "btn" ? "" : "disabled";
+                    var vertical_offset = 0;
+                    if (message.css("display") != "none") {
+                        vertical_offset = 210;
+                    }
+                    var btn = $(`<button id='${id}' class="menu_btn btn btn-primary ${disabled}">
+                                </button>`);
+                    btn.css("top", (sy - vertical_offset) * 0.5 + ((len - 1) / (-2) + index) * btn_gap + "px")
+                        .data("index", index)
+                        .html(content.data)
+                        .click(function () {
+                            menu_value = parseInt($(this).data("index"));
+                            cb(index, content.data);
+                        })
+
+                    div_btn.append(btn)
                     break;
                 case "input_with_btn":
                     var input_id = "menu_btn_" + index;
@@ -313,12 +335,12 @@ define(function (require) {
                     if (content.data.btn != undefined) {
                         btn = content.data.btn;
                     }
-                    var input_div = $('<div class="input-group"> \
-                                    <input type="text" class="form-control" placeholder="' + placeholder + '"> \
-                                    <span class="input-group-btn"> \
-                                        <button miao_index=' + index + ' class="btn btn-default" type="button">' + btn + '</button> \
-                                    </span> \
-                                 </div>')
+                    var input_div = $(`<div class="input-group">
+                                    <input type="text" class="form-control" placeholder="${placeholder}"> 
+                                    <span class="input-group-btn"> 
+                                        <button miao_index="${index}"class="btn btn-default" type="button">${btn}</button> 
+                                    </span> 
+                                 </div>`)
 
                     input_div.css("top", (sy - 180) * 0.5 + ((len - 1) / (-2) + index) * btn_gap + "px")
 
@@ -368,12 +390,12 @@ define(function (require) {
         args.splice(1, 0, pp_pre);
         exports.tc.apply(this, args);
     }
-    var tc_fast_mode=false;
-    exports.tcn=function(){  
-        tc_fast_mode=true;
-        exports.tc.apply(this,arguments);
+    var tc_fast_mode = false;
+    exports.tcn = function () {
+        tc_fast_mode = true;
+        exports.tc.apply(this, arguments);
     }
-    exports.tc = function (text, name, gapnum, color) {   
+    exports.tc = function (text, name, gapnum, color) {
         tc_pre_things.name = name;
         tc_pre_things.gapnum = gapnum;
         tc_pre_things.color = color;
@@ -396,20 +418,20 @@ define(function (require) {
                         //                $("#div-half img").animate({opacity:"0.5"});
                         //                $("#div-half img").css("opacity", 0.5);
                         //                $("#pp" + name.name).animate({opacity:"1"});
-                    if (name == pp.you)
-                        break;
+                        //                    if (name == pp.you)
+                        //                        break;
                     $("#div-half img").each(function () {
 
-                            if ($(this).attr("id") != ("pp" + name.name)) {
-                                $(this).animate({
-                                    opacity: "0.5"
-                                }, "fast");
-                            }else{
-                                $(this).animate({
-                                    opacity: "1"
-                                }, "fast");
-                            }
-                        })
+                        if ($(this).attr("id") != ("pp" + name.name)) {
+                            $(this).animate({
+                                opacity: "0.5"
+                            }, "fast");
+                        } else {
+                            $(this).animate({
+                                opacity: "1"
+                            }, "fast");
+                        }
+                    })
                     break;
                 }
             } else {
@@ -422,14 +444,14 @@ define(function (require) {
 
         function cb1() {
             text_processing = false;
-            if(tc_fast_mode){
-                console.log("a");
-                cb2(); 
-                tc_fast_mode=false;
+            if (tc_fast_mode) {
+            
+                cb2();
+                tc_fast_mode = false;
             }
         }
         var handle = message.setNString(text, cb1, gapnum)
-                
+
         function cb2() {
             if (text_processing) {
                 //            console.log("slkjswer")
@@ -437,7 +459,7 @@ define(function (require) {
                 //            message.fast();
                 touch_wait(cb2);
             } else {
-//                $("#div-half img").css("opacity", 1);
+                //                $("#div-half img").css("opacity", 1);
                 console.log("resume");
                 plot_resume();
             }
@@ -447,9 +469,9 @@ define(function (require) {
         } else {
             if (name != "跳过") {
                 //        $await(touch_wait())
-                
-                if(!tc_fast_mode)
-                touch_wait(cb2);
+
+                if (!tc_fast_mode)
+                    touch_wait(cb2);
             }
         }
 
@@ -516,16 +538,26 @@ define(function (require) {
             pp.attr("src", name.half)
             pp.css("position", "absolute")
             pp.css("top", 40 + "px")
-
-            pp.css("left", pos_covert(pos, pp) + "px")
+            if(pos==0)
+                pp.css("left", pos_covert(pos, pp) + "px")
+            else if(pos==2)
+                pp.css("right", pos_covert(0, pp) + "px")
+            else{
+                pp.css("left",0);
+                pp.css("right",0);
+            }
 
             //console.dir(pp[0])
             //console.log(pp[0].clientWidth)
             return pp;
         }
-
+        
         function pos_covert(pos, pp) {
-            return sx / 6 * (pos * 2 + 1) - parseInt(pp.css("width")) / 2
+            var width=parseInt(pp.prop("width"));
+            var height=parseInt(pp.prop("height"));
+            if(width<250)
+                width=250;
+            return (sx / 6 * (pos * 2 + 1)) - width / 2;
         }
 
         function pp_show() {
@@ -583,7 +615,7 @@ define(function (require) {
                 setTimeout(plot_resume, people_move_time_this);
             } else {
                 plot_resume();
-                
+
             }
         }
 
@@ -596,9 +628,9 @@ define(function (require) {
         mood.attr("src", background);
 
         function after_touched() {
-                mood.hide();
-                plot_resume();
-            
+            mood.hide();
+            plot_resume();
+
         }
         if (dbg.isinfastmode) {
             after_touched();
@@ -627,21 +659,22 @@ define(function (require) {
         running = true;
 
         message.fadeOut(time);
-        function get_url(u){
+
+        function get_url(u) {
             return `url("../../${u}")`;
         }
         if (!current_background) {
             bg.hide();
-            console.log(bg,background)
+            console.log(bg, background)
             bg.css("background-image", get_url(background));
-            console.log(bg,bg.css("background-image"))
+            console.log(bg, bg.css("background-image"))
             bg.fadeIn(time);
 
             setTimeout(function () {
 
                 plot_resume();
             }, time);
-        } else { 
+        } else {
             bg.fadeOut(time)
             setTimeout(function () {
                 bg.css("background-image", get_url(background));
@@ -660,7 +693,7 @@ define(function (require) {
     window.plot = exports;
     exports.init = function () {
         bg = $("#scene_chat #div-bg");
-        
+
         message = message_create();
         $("#scene_chat").on("click", function () {
             touched = true;
