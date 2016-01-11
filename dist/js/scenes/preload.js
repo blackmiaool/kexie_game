@@ -1,7 +1,7 @@
 "use strict";
 
 define(["sys", "angular", "v", "common", "res", "dbg"], regeneratorRuntime.mark(function _callee(sys, angular, v, common, res, dbg) {
-    var exports, preload_bar, pre_enter, scene, images, developer_set;
+    var exports, pre_enter, scene, images, developer_set;
     return regeneratorRuntime.wrap(function _callee$(_context) {
         while (1) {
             switch (_context.prev = _context.next) {
@@ -15,18 +15,18 @@ define(["sys", "angular", "v", "common", "res", "dbg"], regeneratorRuntime.mark(
                         item[common.find_index(item, "name", "烙铁")].cnt = 5;
                     };
 
-                    preload_bar = $("#preload_progress_bar");
-
                     pre_enter = function pre_enter() {
-
+                        var preload_bar = $("#preload_progress_bar");
+                        console.log(preload_bar.length, "!!!");
                         var res_sum = 0;
                         preload_set(0, res_sum);
 
                         function preload_set(a, b) {
+                            console.log(preload_bar, a, b);
                             preload_bar.text("资源加载中 " + a + "/" + b);
                             preload_bar.css("width", a / b * 100 + '%');
                         }
-                        if (!dbg.imdeveloper || true) {
+                        if (!dbg.imdeveloper) {
                             for (var i in res.img) {
                                 res_sum++;
                                 var name = res.img[i];
@@ -37,8 +37,8 @@ define(["sys", "angular", "v", "common", "res", "dbg"], regeneratorRuntime.mark(
                                 images[i] = new Image();
                                 images[i].src = res.img[i];
                                 images[i].onload = function () {
-                                    load_cnt++;
 
+                                    load_cnt++;
                                     preload_set(load_cnt, res_sum);
                                 };
                             }
@@ -59,7 +59,7 @@ define(["sys", "angular", "v", "common", "res", "dbg"], regeneratorRuntime.mark(
 
                         function preload_check() {
 
-                            if (dbg.imdeveloper || true) {
+                            if (dbg.imdeveloper) {
                                 //skip res load in developer mode
                                 load_cnt = res_sum;
                             }
@@ -74,11 +74,11 @@ define(["sys", "angular", "v", "common", "res", "dbg"], regeneratorRuntime.mark(
                                 }
                                 if (dbg.imdeveloper) {
                                     developer_set();
-                                    sys.to_scene("cover");
+                                    sys.to_scene("home");
                                     //                sys.to_scene("chat");
                                 } else {
-                                        //                    sys.to_scene("home");
-                                        sys.to_scene("cover", "first");
+                                        //                sys.to_scene("chat");
+                                        //                sys.to_scene("cover", "first");
                                     }
                             }
                         }
@@ -96,7 +96,7 @@ define(["sys", "angular", "v", "common", "res", "dbg"], regeneratorRuntime.mark(
                     images = [];
                     return _context.abrupt("return", exports);
 
-                case 7:
+                case 6:
                 case "end":
                     return _context.stop();
             }

@@ -30,7 +30,7 @@ define(["sys", "plot_common", "plots/start", "plots/nature_test", "plots/xuanjia
 
         }
         //        run_plot(p_start, start_cb) 
-        run_plot(p_start, start_cb)
+        run_plot(p_kexiefirst, start_cb)
     }
     exports.resume = function (ret) {
         //        console.log("next1");
