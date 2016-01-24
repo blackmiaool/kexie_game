@@ -388,83 +388,159 @@ define(["res", "v", "sys", "_"], function (res, v, sys, _) {
 
                     case 192:
                         _context.next = 194;
-                        return th(0, 0, 0);
+                        return th(a, pp.daijun, b);
 
                     case 194:
                         _context.next = 196;
-                        return ts(img.black);
+                        return tc("那么，今天基本就这样吧，等待我们的下一步通知吧。", pp.daijun);
 
                     case 196:
                         _context.next = 198;
-                        return tc("与此同时，IC科协");
+                        return th(0, 0, 0);
 
                     case 198:
                         _context.next = 200;
-                        return ts(img.ickexie1);
+                        return tc("参观完科协，你带着复杂的心情回了宿舍。");
 
                     case 200:
-                        a = pp.wangyixie;
-                        b = pp.ouyangyang;
+                        _context.next = 202;
+                        return ts(img.black);
+
+                    case 202:
                         _context.next = 204;
-                        return th(a, pp.what, b);
+                        return tc("与此同时，IC科协");
 
                     case 204:
                         _context.next = 206;
-                        return tc("两个人站在IC科协的储物柜旁,气氛似乎很沉闷");
+                        return ts(img.ickexie1);
 
                     case 206:
-                        _context.next = 208;
-                        return tc("情况不容乐观 似乎已经有人觉察到了", a);
-
-                    case 208:
+                        a = pp.wangyixie;
+                        b = pp.ouyangyang;
                         _context.next = 210;
-                        return tc("不可能！这件事不可能有其他人知道！", b);
+                        return th(a, pp.what, b);
 
                     case 210:
                         _context.next = 212;
-                        return tc("可事实就是这样，招新人数急剧下降，新人质量也堪忧。一定是有人在阻碍我们科协发展。", a);
+                        return tc("两个人站在IC科协的储物柜旁,气氛似乎很沉闷");
 
                     case 212:
                         _context.next = 214;
-                        return tc("说不定是因为别的科协采用了新的招新方式。。。", b);
+                        return tc("情况不容乐观 似乎已经有人觉察到了", a);
 
                     case 214:
                         _context.next = 216;
-                        return tc("就算如此，我们的基本盘也不会被蚕食至此！", a);
+                        return tc("不可能！这件事不可能有其他人知道！", b);
 
                     case 216:
                         _context.next = 218;
-                        return tc("……", b);
+                        return tc("可事实就是这样，招新人数急剧下降，新人质量也堪忧。一定是有人在阻碍我们科协发展。", a);
 
                     case 218:
                         _context.next = 220;
-                        return tc("没办法了  只好开启那个了", a);
+                        return tc("说不定是因为别的科协采用了新的招新方式。。。", b);
 
                     case 220:
                         _context.next = 222;
-                        return tc("可是……", b);
+                        return tc("就算如此，我们的基本盘也不会被蚕食至此！", a);
 
                     case 222:
                         _context.next = 224;
-                        return tc("没什么可是！照这种趋势继续下去，明年我们就亡协了！", a);
+                        return tc("……", b);
 
                     case 224:
                         _context.next = 226;
-                        return tc("好，我这就去准备。", b);
+                        return tc("没办法了  只好开启那个了", a);
 
                     case 226:
                         _context.next = 228;
-                        return th(0, 0, 0);
+                        return tc("可是……", b);
 
                     case 228:
                         _context.next = 230;
-                        return ts(img.black);
+                        return tc("没什么可是！照这种趋势继续下去，明年我们就亡协了！", a);
 
                     case 230:
                         _context.next = 232;
-                        return tc("参观完物电科协，你回到了宿舍。");
+                        return tc("好，我这就去准备", b);
 
                     case 232:
+                        _context.next = 234;
+                        return th(0, 0, 0);
+
+                    case 234:
+                        _context.next = 236;
+                        return ts(img.black);
+
+                    case 236:
+                        _context.next = 238;
+                        return tc("十天后，你收到了科协的开会通知");
+
+                    case 238:
+                        _context.next = 240;
+                        return ts(img.jiaoshi);
+
+                    case 240:
+                        _context.next = 242;
+                        return tc("你来到通知中提到的教室，等待学长们的到来");
+
+                    case 242:
+                        _context.next = 244;
+                        return tc("20分钟后  戴俊带着其他几个学长来到教室，几个学长都一脸严肃，教室里顿时变得安静了。");
+
+                    case 244:
+                        _context.next = 246;
+                        return th(pp.tanjinchuan, pp.daijun, pp.chenguo);
+
+                    case 246:
+                        _context.next = 248;
+                        return tc("根据我们的探子得到的消息，总协学院明天要举办第22届EE杯了", pp.daijun);
+
+                    case 248:
+                        _context.next = 250;
+                        return tc("不错，EE杯分为大一大二大三三个组别，通常在学年初期举办。各大科协为了第一时间彰显自己科协的实力，吸引更多优秀人才，往往会对EE杯投入巨大的人力和物力", pp.chenguo);
+
+                    case 250:
+                        _context.next = 252;
+                        return tc("虽然EE杯是总协举办的，但是总协并不会对总协自己的参赛队伍有任何偏袒", pp.daijun);
+
+                    case 252:
+                        _context.next = 254;
+                        return tc("你们都知道的，我们只是一个小科协，所以之前在EE杯上取得的成绩并不突出，很少有人可以在EE杯中拿到一等奖", pp.daijun);
+
+                    case 254:
+                        _context.next = 256;
+                        return tc("毕竟我们实力有限，所以不会说什么一定要拿到一等奖之类的话，你们每个队能拿到三等奖我们就很满足了", pp.daijun);
+
+                    case 256:
+                        _context.next = 258;
+                        return tc("没错，只要能拿到三等奖，除了总协学院给出的微不足道的奖品之外，我们还会专门给你们提供我们内部的特殊奖品", pp.tanjinchuan);
+
+                    case 258:
+                        _context.next = 260;
+                        return tc("而且，万一，我是说万一，你们有人拿到了一等奖，科协中的VIP位置就归你了。", pp.daijun);
+
+                    case 260:
+                        _context.next = 262;
+                        return tc("我靠！不是吧!不是说好VIP座位等我拿到飞卡三等奖之后给我吗?!", pp.tanjinchuan);
+
+                    case 262:
+                        _context.next = 264;
+                        return tc("淡定淡定，反正不大可能有人拿到EE杯一等的。。。", pp.daijun);
+
+                    case 264:
+                        _context.next = 266;
+                        return tc("额。。好吧", pp.tanjinchuan);
+
+                    case 266:
+                        _context.next = 268;
+                        return tc("那么今天的会就到这里，大家回去努力吧！", pp.daijun);
+
+                    case 268:
+                        _context.next = 270;
+                        return th(0, 0, 0);
+
+                    case 270:
 
                         //    if (result == 0) { //daijun
                         //
@@ -603,7 +679,7 @@ define(["res", "v", "sys", "_"], function (res, v, sys, _) {
                             plot_cb();
                         }, 0);
 
-                    case 233:
+                    case 271:
                     case "end":
                         return _context.stop();
                 }

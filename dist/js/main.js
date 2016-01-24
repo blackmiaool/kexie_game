@@ -108,7 +108,11 @@ requirejs(["jquery", "sys", "angular", 'angular-animate', 'angular-route', "scen
             sys.to_scene("preload");
 
             // Do post-load initialization stuff here
+<<<<<<< HEAD
         }, 0);
+=======
+        }, 200);
+>>>>>>> 866d0cea52a2eeb8c5850067c8d54b303780f31e
     });
 
     angular.bootstrap("body", ['home_app']);
