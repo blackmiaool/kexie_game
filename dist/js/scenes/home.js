@@ -246,7 +246,7 @@ define(["sys", "angular", "v", "common", "res", "dbg"], regeneratorRuntime.mark(
                         });
 
                         $scope.v = v;
-
+                        console.log(v);
                         $scope.home_save = function () {
                             sys.to_scene("save", "save", "home");
                         };
@@ -353,25 +353,25 @@ define(["sys", "angular", "v", "common", "res", "dbg"], regeneratorRuntime.mark(
                             loaded_target++;
                         }
                         loaded_target += 2;
+                        if (current_tab) {
+                            $timeout(function () {
 
-                        $scope.$on("$includeContentLoaded", function (params, data) {
-                            loaded_cnt++;
-                            console.log(loaded_cnt, loaded_target);
-                            if (loaded_cnt == loaded_target) {
-                                if (current_tab) {
-                                    $timeout(function () {
-
-                                        $("#home-tabs").data("tab", current_tab.content.name);
-                                        var key = current_tab.content.key;
-                                        var name = current_tab.content.name;
-                                        $scope.list[key].content = "";
-                                        $("#home-tabs>.tab-content>.tab-pane").hide();
-                                        $("#tab-" + name).show();
-                                        $scope.tab_selecting = key;
-                                    });
-                                }
-                            }
-                        });
+                                $("#home-tabs").data("tab", current_tab.content.name);
+                                var key = current_tab.content.key;
+                                var name = current_tab.content.name;
+                                $scope.list[key].content = "";
+                                $("#home-tabs>.tab-content>.tab-pane").hide();
+                                $("#tab-" + name).show();
+                                $scope.tab_selecting = key;
+                            });
+                        }
+                        //        $scope.$on("$includeContentLoaded", function (params, data) {
+                        //            loaded_cnt++;
+                        //            console.log(loaded_cnt, loaded_target)
+                        //            if (loaded_cnt == loaded_target) {
+                        //               
+                        //            }
+                        //        })
                     }]).controller("danmu_controller", function ($scope) {
                         $scope.data = [];
                         var danmu_list = [];
@@ -877,17 +877,12 @@ define(["sys", "angular", "v", "common", "res", "dbg"], regeneratorRuntime.mark(
                             store_updt();
                         });
                     }).controller("tab_item_controller", function ($scope) {
-                        //        console.log(combines)
                         $scope.data_combine = combines;
-                        $('#buy-tabs a').click(function (e) {
-                            e.preventDefault(); //阻止a链接的跳转行为
-                            $(this).tab('show'); //显示当前选中的链接及关联的content
-                        });
                         $scope.cur_select = "";
                         $scope.select = function (cur_select) {
-
                             $scope.cur_select = cur_select;
                         };
+
                         $scope.item_updt = function () {
                             $scope.data = {};
                             for (var i in items) {
@@ -896,10 +891,39 @@ define(["sys", "angular", "v", "common", "res", "dbg"], regeneratorRuntime.mark(
                                 }
                                 $scope.data[items[i].kind].push(items[i]);
                             }
-                            //            console.log("item", $scope.data)
                         };
+
                         $scope.item_updt();
                         $scope.store_name = "item-tab";
+                        $scope.check_items = function (items) {
+                            var _iteratorNormalCompletion = true;
+                            var _didIteratorError = false;
+                            var _iteratorError = undefined;
+
+                            try {
+
+                                for (var _iterator = items[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
+                                    var i = _step.value;
+
+                                    if (i.cnt) return true;
+                                }
+                            } catch (err) {
+                                _didIteratorError = true;
+                                _iteratorError = err;
+                            } finally {
+                                try {
+                                    if (!_iteratorNormalCompletion && _iterator.return) {
+                                        _iterator.return();
+                                    }
+                                } finally {
+                                    if (_didIteratorError) {
+                                        throw _iteratorError;
+                                    }
+                                }
+                            }
+
+                            return false;
+                        };
                         $scope.$on('item_updt', function (event, data) {
                             $scope.item_updt();
                         });

@@ -1,19 +1,42 @@
 <div ng-controller="home_root" class="home-wrap">
-    <div ng-include="'html/home/modal.html'" class="modal fade" id="class_form" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" data-backdrop="static"></div>
+    <div class="modal fade" id="class_form" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" data-backdrop="static">
+        <!-- inject: home/modal.html-->
+    </div>
 
-    <div id="home-head" ng-include="'html/home/head.html'" class=""></div>
+    <div id="home-head" class="">
+        <!-- inject: home/head.html-->
+    </div>
 
 
 
 
     <div class=" well desk-frame" id="home-tabs" style="display:inline-block;">
         <div class="tab-content">
-
-            <div ng-repeat="(key,value) in list" ng-include="'html/home/'+value.name+'.html'" class="tab-pane" id="tab-{{value.name}}"></div>
+            <div class="tab-pane" id="tab-buy">
+                <!-- inject: home/buy.html-->
+            </div>
+            <div class="tab-pane" id="tab-item">
+                <!-- inject: home/item.html-->
+            </div>
+            <div class="tab-pane" id="tab-make">
+                <!-- inject: home/make.html-->
+            </div>
+            <div class="tab-pane" id="tab-plan">
+                <!-- inject: home/plan.html-->
+            </div>
+            <div class="tab-pane" id="tab-quest">
+                <!-- inject: home/quest.html-->
+            </div>
+            <div class="tab-pane" id="tab-team">
+                <!-- inject: home/team.html-->
+            </div>
+            <div class="tab-pane" id="tab-skill">
+                <!-- inject: home/skill.html-->
+            </div>
         </div>
 
     </div>
-    
+
     <div class="" id="home-main-tab">
         <button ng-repeat="(key,value) in list" class="desk-frame-nav-a btn {{(value.title==tab_selecting && 'active')}}" ng-click="tab_select(value.title,value.name)">
             {{key}}<span class="badge {{value.state}}" style="vertical-align: 25%;  margin-left: 5px;  margin-right: -10px;">{{value.content}}</span>

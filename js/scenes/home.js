@@ -280,7 +280,7 @@ angular.module('home_app')
         });
 
         $scope.v = v;
-
+        console.log(v);
         $scope.home_save = function () {
             sys.to_scene("save", "save", "home");
         }
@@ -398,25 +398,25 @@ angular.module('home_app')
             loaded_target++;
         }
         loaded_target += 2;
+        if (current_tab) {
+            $timeout(function () {
 
-        $scope.$on("$includeContentLoaded", function (params, data) {
-            loaded_cnt++;
-            console.log(loaded_cnt, loaded_target)
-            if (loaded_cnt == loaded_target) {
-                if (current_tab) {
-                    $timeout(function () {
-                        
-                        $("#home-tabs").data("tab", current_tab.content.name);
-                        var key = current_tab.content.key;
-                        var name = current_tab.content.name;
-                        $scope.list[key].content = "";
-                        $("#home-tabs>.tab-content>.tab-pane").hide();
-                        $("#tab-" + name).show();
-                        $scope.tab_selecting = key;
-                    })
-                }
-            }
-        })
+                $("#home-tabs").data("tab", current_tab.content.name);
+                var key = current_tab.content.key;
+                var name = current_tab.content.name;
+                $scope.list[key].content = "";
+                $("#home-tabs>.tab-content>.tab-pane").hide();
+                $("#tab-" + name).show();
+                $scope.tab_selecting = key;
+            })
+        }
+        //        $scope.$on("$includeContentLoaded", function (params, data) {
+        //            loaded_cnt++;
+        //            console.log(loaded_cnt, loaded_target)
+        //            if (loaded_cnt == loaded_target) {
+        //                
+        //            }
+        //        })
     }])
     .controller("danmu_controller", function ($scope) {
         $scope.data = []
@@ -497,21 +497,21 @@ angular.module('home_app')
             // $("#tab-make-output").append($("<br></br>"))
             for (var i = 0; i < output_data.length; i++) {
                 switch (typeof (output_data[i].data)) {
-                case "string":
-                    if (output_data[i].config.head !== false) {
-                        data.push({
-                            type: "system",
-                            data: "head",
-                        })
-                    }
-                    for (var j = 0; j < output_data[i].data.length; j++) {
-                        data.push(output_data[i].data.charAt(j))
-                    }
+                    case "string":
+                        if (output_data[i].config.head !== false) {
+                            data.push({
+                                type: "system",
+                                data: "head",
+                            })
+                        }
+                        for (var j = 0; j < output_data[i].data.length; j++) {
+                            data.push(output_data[i].data.charAt(j))
+                        }
 
-                    break;
-                case "object":
-                    data.push(output_data[i].data);
-                    break;
+                        break;
+                    case "object":
+                        data.push(output_data[i].data);
+                        break;
                 }
 
             }
@@ -528,49 +528,49 @@ angular.module('home_app')
 
                 // console.log(d);
                 switch (typeof (d)) {
-                case "object":
-                    switch (d.type) {
-                    case "system":
-                        switch (d.data) {
-                        case "head":
-                            line = $("<p></p>")
-                            $("#tab-make-output").append(line);
-                            go_on_gap = line_gap_time;
-                            break;
-                            // case "rear":
-                            //     // $("#tab-make-output").append($("<br/>"));
+                    case "object":
+                        switch (d.type) {
+                            case "system":
+                                switch (d.data) {
+                                    case "head":
+                                        line = $("<p></p>")
+                                        $("#tab-make-output").append(line);
+                                        go_on_gap = line_gap_time;
+                                        break;
+                                        // case "rear":
+                                        //     // $("#tab-make-output").append($("<br/>"));
 
-                            //     break;
-                        case "end":
-                            go_on = false;
-                            output_data = [];
-                            combine[common.find_index(combine, "name", current_combine)].product.push({
-                                stability: 87,
-                                performance: 103
-                            })
-                            $scope.$apply();
-                            $scope.$emit('home_root', {
-                                name: 'item_updt',
-                                param: ""
-                            });
-                            // $scope.emit()
-                            break;
-                        case "progress":
-                            console.log("progress" + d.current)
-                            progress_set(d.current, d.sum);
-                            break;
+                                        //     break;
+                                    case "end":
+                                        go_on = false;
+                                        output_data = [];
+                                        combine[common.find_index(combine, "name", current_combine)].product.push({
+                                            stability: 87,
+                                            performance: 103
+                                        })
+                                        $scope.$apply();
+                                        $scope.$emit('home_root', {
+                                            name: 'item_updt',
+                                            param: ""
+                                        });
+                                        // $scope.emit()
+                                        break;
+                                    case "progress":
+                                        console.log("progress" + d.current)
+                                        progress_set(d.current, d.sum);
+                                        break;
+                                }
+                                break;
+                            case "color_text":
+                                // line = $("<p></p>")
+                                // $("#tab-make-output").append(line);
+                                line.append(d.data);
+                                break;
                         }
                         break;
-                    case "color_text":
-                        // line = $("<p></p>")
-                        // $("#tab-make-output").append(line);
-                        line.append(d.data);
+                    case "string":
+                        line.html(line.html() + d);
                         break;
-                    }
-                    break;
-                case "string":
-                    line.html(line.html() + d);
-                    break;
                 }
                 $("#tab-make-output")[0].scrollTop = $("#tab-make-output")[0].scrollHeight;
                 output_len++;
@@ -809,49 +809,49 @@ angular.module('home_app')
         }
         $scope.target_check = function (target) {
             switch (target.type) {
-            case "thing_need":
-                if (items[target.data].cnt >= target.cnt) {
-                    return "sufficient";
-                } else {
-                    return "insufficient"
-                }
-                break;
-            case "combine_need":
-
-                var stability_need = 0;
-                var performance_need = 0;
-
-                if (target.data.stability > 0) {
-                    stability_need = target.data.stability;
-                }
-                if (target.data.performance > 0) {
-                    performance_need = target.data.performance;
-                }
-                var cnt = 0;
-                var products = combine[common.find_index(combine, "name", target.data.name)].product
-                for (var i = 0; i < products.length; i++) {
-                    if (products[i].stability > stability_need && products[i].performance > performance_need) {
-                        cnt++;
+                case "thing_need":
+                    if (items[target.data].cnt >= target.cnt) {
+                        return "sufficient";
+                    } else {
+                        return "insufficient"
                     }
-                }
-                if (cnt >= target.cnt) {
-                    return "sufficient";
-                } else {
-                    return "insufficient"
-                }
-                break;
+                    break;
+                case "combine_need":
+
+                    var stability_need = 0;
+                    var performance_need = 0;
+
+                    if (target.data.stability > 0) {
+                        stability_need = target.data.stability;
+                    }
+                    if (target.data.performance > 0) {
+                        performance_need = target.data.performance;
+                    }
+                    var cnt = 0;
+                    var products = combine[common.find_index(combine, "name", target.data.name)].product
+                    for (var i = 0; i < products.length; i++) {
+                        if (products[i].stability > stability_need && products[i].performance > performance_need) {
+                            cnt++;
+                        }
+                    }
+                    if (cnt >= target.cnt) {
+                        return "sufficient";
+                    } else {
+                        return "insufficient"
+                    }
+                    break;
             }
 
         }
         $scope.target_handle = function (target) {
 
             switch (target.type) {
-            case "thing_need":
-                var ret = target.data + " " + items[target.data].cnt + "/" + target.cnt;
-                return ret;
-            case "combine_need":
-                var ret = target.data.name + " " + combine[common.find_index(combine, "name", target.data.name)].product.length + "/" + target.cnt;
-                return ret;
+                case "thing_need":
+                    var ret = target.data + " " + items[target.data].cnt + "/" + target.cnt;
+                    return ret;
+                case "combine_need":
+                    var ret = target.data.name + " " + combine[common.find_index(combine, "name", target.data.name)].product.length + "/" + target.cnt;
+                    return ret;
 
             }
         }
@@ -955,31 +955,32 @@ angular.module('home_app')
 
     })
     .controller("tab_item_controller", function ($scope) {
-        //        console.log(combines)
         $scope.data_combine = combines;
-        $('#buy-tabs a').click(function (e) {
-            e.preventDefault(); //阻止a链接的跳转行为
-            $(this).tab('show'); //显示当前选中的链接及关联的content
-        })
         $scope.cur_select = "";
         $scope.select = function (cur_select) {
-
             $scope.cur_select = cur_select;
-
         }
+        
         $scope.item_updt = function () {
             $scope.data = {};
             for (var i in items) {
                 if (!$scope.data[items[i].kind]) {
                     $scope.data[items[i].kind] = [];
                 }
-                $scope.data[items[i].kind].push(items[i]);
-            }
-            //            console.log("item", $scope.data)
-
+                $scope.data[items[i].kind].push(items[i]);                
+            }            
         }
+        
         $scope.item_updt();
         $scope.store_name = "item-tab";
+        $scope.check_items=function(items){
+   
+            for(var i of items){
+                if(i.cnt)
+                    return true;
+            }
+            return false;
+        }
         $scope.$on('item_updt', function (event, data) {
             $scope.item_updt();
         });

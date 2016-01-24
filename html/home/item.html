@@ -1,6 +1,6 @@
 <div ng-controller="tab_item_controller">
     <ul>
-        <li ng-repeat="(kind,items) in data" class="{{(cur_select==kind) && 'active' }} panel " ng-click="select(kind)">
+        <li ng-repeat="(kind,items) in data" class="{{(cur_select==kind) && 'active' }} panel " ng-click="select(kind)" ng-show="check_items(items)">
             {{kind}}
         </li>
         <li class="{{(cur_select=='作品') && 'active' }} panel " ng-click="select('作品')">作品</li>

@@ -72,6 +72,10 @@ define(["res", "common"], function (res, common) {
         v_init.study.arrange[i] = [];
     }
     var v = common.clone(v_init);
+    var components = ["skills", "combines", "items", "quest", "courses"];
+    for (var i in components) {
+        v[components[i]] = window[components[i]];
+    }
     //    v.get_left_points=()=> {
     //        var retval = 0;
     //        for (var i = v.time.period; i < v.time.total_point_today; i++) {

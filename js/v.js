@@ -1,4 +1,4 @@
-define(["res","common"],function (res,common) {
+define(["res", "common"], function (res, common) {
     var v_init = {
         prop: {
             shane: 0,
@@ -62,8 +62,8 @@ define(["res","common"],function (res,common) {
         item: {
 
         },
-        components:{},
-        left_points:10,
+        components: {},
+        left_points: 10,
     }
     for (var i in res.pp) {
         v_init.amity[i] = 0;
@@ -71,15 +71,25 @@ define(["res","common"],function (res,common) {
     for (var i = 0; i < 8; i++) {
         v_init.study.arrange[i] = [];
     }
-    var v=common.clone(v_init);
-//    v.get_left_points=()=> {
-//        var retval = 0;
-//        for (var i = v.time.period; i < v.time.total_point_today; i++) {
-//            if (!v.study.arrange[v.time.week_day_index][res.the_period_of_day[i]]) {
-//                retval++;
-//            }
-//        }
-//        return retval;
-//    }
+    var v = common.clone(v_init);
+    var components = [
+                    "skills",
+                    "combines",
+                    "items",
+                    "quest",
+                    "courses",
+                ];
+    for (var i in components) {
+        v[components[i]] = window[components[i]];
+    }
+    //    v.get_left_points=()=> {
+    //        var retval = 0;
+    //        for (var i = v.time.period; i < v.time.total_point_today; i++) {
+    //            if (!v.study.arrange[v.time.week_day_index][res.the_period_of_day[i]]) {
+    //                retval++;
+    //            }
+    //        }
+    //        return retval;
+    //    }
     return v;
 })

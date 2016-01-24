@@ -45,10 +45,22 @@ function get_babel_params() {
 //    return gulp.src('js/plot/*.js').pipe(gulp.dest('js/plot/dist/'));
 //})
 gulp.task('html', function () {
-    return gulp.src('html/**/*.html')
+        return gulp.src(['html/index.html'])
         .pipe(cached("html"))
-        .pipe(gulp.dest('dist/html')).pipe(livereload());
-});
+        .pipe(injectfile({
+            pattern: '<!--\\sinject:<filename>-->',
+            recursive:true
+        }))
+        .pipe(gulp.dest('./')).pipe(livereload());
+})
+//gulp.task('html', function () {
+//    return gulp.src(['html/**/*.html',"!html/index.html/*.js"])
+//        .pipe(cached("html"))
+////        .pipe(injectfile({
+////            pattern: '<!--\\sinject:<filename>-->'
+////        }))
+//        .pipe(gulp.dest('dist/html')).pipe(livereload());
+//});
 
 
 gulp.task('less', function () {
@@ -247,7 +259,7 @@ livereload.listen();
 gulp.watch('less/**/*.less', ['less']);
 gulp.watch('js/**/*.js', ['es6']);
 gulp.watch('index.html', ['reload']);
-gulp.watch('html/**/*.html', ['reload']);
+gulp.watch('html/**/*.html', ['html']);
 gulp.task('mediawiki', function () {
     return gulp.src('src/mediawiki/mobile/less/**/*.less')
         .pipe(gulp.dest('mediawiki/extensions/MobileFrontend/less/'))

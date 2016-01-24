@@ -12,12 +12,13 @@ var pre_enter = function () {
         preload_bar.text("资源加载中 " + a + "/" + b)
         preload_bar.css("width", a / b * 100 + '%')
     }
-    if (!dbg.imdeveloper||true) {
+    var load_cnt = 0;
+    if (!dbg.imdeveloper) {
     for (var i in res.img) {
         res_sum++;
         var name = res.img[i];
         name = name.split('.')
-        var load_cnt = 0;
+        
         name = name[name.length - 2].split('/')
         name = name[name.length - 1];
         images[i] = new Image()
@@ -43,7 +44,7 @@ var pre_enter = function () {
 
     function preload_check() {
         
-        if (dbg.imdeveloper||true) { //skip res load in developer mode
+        if (dbg.imdeveloper) { //skip res load in developer mode
             load_cnt = res_sum;
         }
         if ((load_cnt >= res_sum) ) {
@@ -51,19 +52,11 @@ var pre_enter = function () {
             clearInterval(preload_interval);
             //                preload_bar.parent().remove()
 
-            var components = [
-                    "skills",
-                    "combines",
-                    "items",
-                    "quest",
-                    "courses",
-                ];
-            for (var i in components) {
-                eval("v[components[" + i + "]]=" + components[i]);
-            }
+
+
             if (dbg.imdeveloper) {
                 developer_set();
-                sys.to_scene("cover"); 
+                sys.to_scene("home"); 
 //                sys.to_scene("chat"); 
                  
                 

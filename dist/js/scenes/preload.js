@@ -26,12 +26,13 @@ define(["sys", "angular", "v", "common", "res", "dbg"], regeneratorRuntime.mark(
                             preload_bar.text("资源加载中 " + a + "/" + b);
                             preload_bar.css("width", a / b * 100 + '%');
                         }
-                        if (!dbg.imdeveloper || true) {
+                        var load_cnt = 0;
+                        if (!dbg.imdeveloper) {
                             for (var i in res.img) {
                                 res_sum++;
                                 var name = res.img[i];
                                 name = name.split('.');
-                                var load_cnt = 0;
+
                                 name = name[name.length - 2].split('/');
                                 name = name[name.length - 1];
                                 images[i] = new Image();
@@ -59,7 +60,7 @@ define(["sys", "angular", "v", "common", "res", "dbg"], regeneratorRuntime.mark(
 
                         function preload_check() {
 
-                            if (dbg.imdeveloper || true) {
+                            if (dbg.imdeveloper) {
                                 //skip res load in developer mode
                                 load_cnt = res_sum;
                             }
@@ -68,13 +69,9 @@ define(["sys", "angular", "v", "common", "res", "dbg"], regeneratorRuntime.mark(
                                 clearInterval(preload_interval);
                                 //                preload_bar.parent().remove()
 
-                                var components = ["skills", "combines", "items", "quest", "courses"];
-                                for (var i in components) {
-                                    eval("v[components[" + i + "]]=" + components[i]);
-                                }
                                 if (dbg.imdeveloper) {
                                     developer_set();
-                                    sys.to_scene("cover");
+                                    sys.to_scene("home");
                                     //                sys.to_scene("chat");
                                 } else {
                                         //                    sys.to_scene("home");

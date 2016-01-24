@@ -19,17 +19,557 @@
 </head>
 
 <body ng-controller="root_controller" ng-cloak>
-    <div ng-include="'html/bigmap.html'" class="scene" id="scene_bigmap"></div>
-    
-    <div ng-include="'html/chat.html'" class="scene" id="scene_chat"></div>
-    
-    <div ng-include="'html/cover.html'" class="scene" id="scene_cover"></div>
-    
-    <div ng-include="'html/preload.html'" class="scene" id="scene_preload"></div>
-    
-    <div ng-include="'html/home.html'" class="scene" id="scene_home"></div>
-    
-    <div ng-include="'html/save.html'" class="scene" id="scene_save"></div>
+   <div class="scene" id="scene_bigmap">
+       <div ng-controller="bigmap_controller">
+           <img src="res/System/bigmap.jpg" style="height:540px;">
+           <button ng-click="enter(value.text)" ng-repeat="value in btns" class="btn" ng-class="value.class" ng-style="value" style="position:absolute;">
+               <span class="glyphicon glyphicon-{{value.icon}}"></span>&nbsp;{{value.text}}
+           </button>
+           <button ng-click="go_back()" class="btn btn-primary btn-lg" style="position:absolute;bottom:10px;left:10px;">
+               <span class="glyphicon glyphicon-home"></span>&nbsp;回家
+           </button>
+       <!--    <label class="move-point">剩余行动点:&nbsp;<font>{{get_left_points()}}</font></label>-->
+       </div>
+   </div>
+   <div class="scene" id="scene_chat">
+       <div class="chat-wrap"  ng-controller="chat_controller">
+       
+           <div id="div-bg" ondragstart="return false;">
+       
+           </div>
+           <div id="div-half">
+           </div>
+           <div id="div-text">
+               <div id="chat_text" style="display:none;">
+                   <p id="chat_content"></p>
+               </div>
+               <div id="name_all" style="text-align: left;color:rgb(255,255,255);background-image:url(res/UI/nameBack.png);display:none;">
+       
+                   <label id="name_content"></label>
+               </div>
+           </div>
+           <div id="div-mood">
+               <img src="" alt="" class="mood">
+           </div>
+           <div id="div-btn">
+           </div>
+       </div>
+   </div>
+   <div class="scene" id="scene_cover">
+       <div ng-controller="cover_controller">
+           <label class='logo-title' style="">科协浮生记</label>
+           <br/>
+           <button ng-click="start()" indexx=0 class="cover_btn button  button-rounded button-raised button-caution" id="cover_btn1" style="position: relative;top:120px;">开始游戏</button>
+           <br/>
+           <button ng-click="read()" indexx=1 id="cover_btn2" class="cover_btn button  button-raised button-rounded button-primary" href="langshenjiao/index.html" style="position: relative;top:150px;">读取进度</button>
+           <br/>
+           <button ng-click="about()" indexx=2 id="cover_btn3" class="cover_btn button  button-raised button-rounded button-primary" style="position: relative;top:180px;">关于游戏</button>
+           <br/>
+           <br/>
+       </div>
+   </div>
+   <div class="scene" id="scene_preload">
+       <div class="progress" style="width:960px;">
+           <div id="preload_progress_bar" min-width="2em" class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 0%;">
+           </div>
+       </div>
+   </div>
+   <div class="scene" id="scene_home">
+       <div ng-controller="home_root" class="home-wrap">
+           <div class="modal fade" id="class_form" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" data-backdrop="static">
+               <div class="modal-dialog" role="document">
+                   <div class="modal-content">
+                       <div class="modal-header">
+               
+                           <h4 class="modal-title" id="myModalLabel" style="text-align:center;">本周课程安排(第{{v.time.week}}周)</h4>
+                       </div>
+                       <div class="modal-body">
+                           <table class="table table-striped class-design">
+                               <thead>
+                                   <tr>
+                                       <th>星期</th>
+                                       <th>上午</th>
+                                       <th>下午</th>
+                                       <th>晚上</th>
+                                   </tr>
+                               </thead>
+                               <tbody>
+                                   <tr ng-repeat="index in weeks">
+                                       <th scope="row">{{index}}</th>
+                                       <td ng-repeat="period in week_name">
+                                           <label>
+                                               <input ng-if="courses[v.time.term][v.time.week][index][period]" type="checkbox" ng-model="arrange[index][period]" />{{courses[v.time.term][v.time.week][index][period]}}</label>
+                                       </td>
+               
+                                   </tr>
+                               </tbody>
+                           </table>
+                       </div>
+                       <div class="modal-footer">
+                           <button type="button" class="btn btn-default">同上周</button>
+                           <button type="button" class="btn btn-primary" data-dismiss="modal" ng-click="arrage_finish()">完成</button>
+                       </div>
+                   </div>
+               </div>
+           </div>
+       
+           <div id="home-head" class="">
+               <div ng-controller="prop_controller" class="well highlight prop">
+                   <div ng-repeat="(key ,value) in data" class=" prop-set" is-first={{$first}}>
+                       <h4 class="prop-name prop-common" style="">
+                                   <span class="glyphicon {{key | get_prop_icon}}" aria-hidden="true"></span>&nbsp;{{key}}
+                               </h4>
+                       <h4 class="prop-value prop-common" key="{{key}}">
+                                   {{value}}
+                               </h4>
+                   </div>
+               </div>
+           </div>
+       
+       
+       
+       
+           <div class=" well desk-frame" id="home-tabs" style="display:inline-block;">
+               <div class="tab-content">
+                   <div class="tab-pane" id="tab-buy">
+                       <div ng-controller="tab_buy_controller">
+                           <ul class="nav  nav-tabs nav-justified" id="buy-tabs-link" align="center" width="100%">
+                               <li ng-repeat="(store_name,store) in data" ng-click="link_tab($event)" role="presentation">
+                                   <a href="#buy-tab-{{store_name}}">{{store_name}}</a>
+                               </li>
+                           </ul>
+                           <div class="tab-content my-tab-content" id="buy-tabs-content">
+                               <div ng-repeat="(store_name,store) in data" class="tab-pane" id="buy-tab-{{store_name}}">
+                                   <ul class="nav  nav-pills  nav-justified" id="buy-tabs" align="center" width="100%">
+                                       <li ng-repeat="(key,kind) in store" role="presentation" store-tab="{{key}}">
+                                           <a href="#{{store_name}}buy-tab-content-{{key}}">{{key}}</a>
+                                       </li>
+                                   </ul>
+                                   <div class="my-panel-heading" role="tab" width="100%" style="margin:0px;margin-bottom:-5px;">
+                                       <div class="panel panel-default" style="color:#fff;background-color:#006fb0;border-width:0px;border-radius:0px;margin-bottom:0px;">
+                                           <span style="position:relative;display:inline-block; width:100%;" style="">
+                                                               <label style="width: 32%;">物品</label>
+                                                               <label style="width: 32%;">已拥有</label>
+                                                               <label style="width: 32%;">价格</label>
+                                                           </span>
+                                       </div>
+                                   </div>
+                                   <div class="tab-content my-tab-store-content" id="store-tabs-content">
+                                       <div ng-repeat="(key,kind) in store" class="tab-pane" id="{{store_name}}buy-tab-content-{{key}}">
+                                           <div class="panel-group" id="{{store_name}}buy-tab-group{{key}}" role="tablist" aria-multiselectable="true">
+                                               <div ng-repeat="item in kind" class="panel panel-default">
+                                                   <div class="my-panel-heading" role="tab" width="100%">
+                                                       <span style="position:relative;display:inline-block; width:100%;" class="collapsed panel-title " data-toggle="collapse" data-parent="#{{store_name}}buy-tab-group{{key}}" href="#{{store_name}}{{key}}-{{item.name}}" aria-expanded="false" aria-controls="{{store_name}}{{key}}-{{item.name}}">
+                                                                           <label style="width: 32%;">{{item.name}}</label>
+                                                                           <label style="width: 32%;">{{item.cnt}}</label>
+                                                                           <label style="width: 32%;">{{item.price}}</label>
+                                                                       </span>
+                                                   </div>
+                                                   <div id="{{store_name}}{{key}}-{{item.name}}" class="panel-collapse collapse " role="tabpanel">
+                                                       <div class="store-panel-content">
+                                                           <h5 class="item-panel">{{item.brief}}</h5>
+                                                           <button name="{{item.name}}" class="button button-primary {{item.price | buy_btn_price_handle:updt}} " ng-click="store_buy($event)">购买</button>
+                                                           <button name="{{item.name}}" class="button button-primary {{item.cnt | buy_btn_cnt_handle:updt}}" ng-click="store_sell($event)">出售</button>
+                                                       </div>
+                                                   </div>
+                                               </div>
+                                           </div>
+                                       </div>
+                                   </div>
+                               </div>
+                           </div>
+                       </div>
+                   </div>
+                   <div class="tab-pane" id="tab-item">
+                       <div ng-controller="tab_item_controller">
+                           <ul>
+                               <li ng-repeat="(kind,items) in data" class="{{(cur_select==kind) && 'active' }} panel " ng-click="select(kind)" ng-show="check_items(items)">
+                                   {{kind}}
+                               </li>
+                               <li class="{{(cur_select=='作品') && 'active' }} panel " ng-click="select('作品')">作品</li>
+                           </ul>
+                           <div ng-show="cur_select=='作品'" class="content">
+                               <div class="panel-group" id="item-tab-作品-page" role="tablist" aria-multiselectable="true">
+                                   <span style="background-color:#006fb0;color:#fff;position:relative;display:inline-block; width:100%;">
+                                                           <label style="width:45%;">名称</label>
+                                                           <label style="width:25%;">完成度</label>
+                                                           <label style="width:25%;">创新度</label>
+                                                   </span>
+                                   <div ng-repeat="(key,value) in data_combine" name="{{key}}">
+                                       <div ng-repeat="item in value.product" class="panel panel-default">
+                                           <div class="my-panel-heading" role="tab" width="100%">
+                                               <span style="position:relative;display:inline-block; width:100%;" class="collapsed panel-title " data-toggle="collapse" data-parent="#item-tab-作品-page" href="#{{$index}}{{key}}-{{item.name}}" aria-expanded="false" aria-controls="{{store_name}}{{key}}-{{item.name}}">
+                                                           <label style="width:45%;">{{item.name}}</label>
+                                                           <label style="width:25%;">{{item.progress}}</label>
+                                                           <label style="width:25%;">{{item.innovate}}</label>
+                                                                  
+                       
+                                                           </span>
+                                           </div>
+                                           <div id="{{$index}}{{key}}-{{item.name}}" class="panel-collapse collapse " role="tabpanel">
+                                               <div class="store-panel-content">
+                                                   <h5 class="item-panel">{{item.brief}}</h5>
+                       
+                                               </div>
+                                           </div>
+                                       </div>
+                                   </div>
+                               </div>
+                           </div>
+                           <div class="content">
+                               <div ng-repeat="(kind,items) in data" ng-show="cur_select==kind" class="panel-group" id="item-tab-{{kind}}-page" role="tablist" aria-multiselectable="true">
+                                   <span style="background-color:#006fb0;color:#fff;position:relative;display:inline-block; width:100%;">
+                                                           <label style="width:70%;">名称</label>
+                       
+                                                           <label style="width:25%;">数量</label>
+                                                   </span>
+                                   <div ng-repeat="item in items" class="panel panel-default" ng-if="item.cnt">
+                                       <div class="my-panel-heading" role="tab" width="100%">
+                                           <span style="position:relative;display:inline-block; width:100%;" class="collapsed panel-title " data-toggle="collapse" data-parent="#item-tab-{{kind}}-page" href="#{{store_name}}{{key}}-{{item.name}}" aria-expanded="false" aria-controls="{{store_name}}{{key}}-{{item.name}}">
+                                                                           <label style="width: 70%;">{{item.name}}</label>
+                                                                           <label style="width: 25%;">{{item.cnt}}</label>
+                       
+                                                           </span>
+                                       </div>
+                                       <div id="{{store_name}}{{key}}-{{item.name}}" class="panel-collapse collapse " role="tabpanel">
+                                           <div class="store-panel-content">
+                                               <h5 class="item-panel">{{item.brief}}</h5>
+                                               <!--
+                                                               <button name="{{item.name}}" class="button button-primary {{item.price | buy_btn_price_handle:home_app:updt}} " ng-click="store_buy($event)">购买</button>
+                                                               <button name="{{item.name}}" class="button button-primary {{item.cnt | buy_btn_cnt_handle:home_app:updt}}" ng-click="store_sell($event)">出售</button>
+                       -->
+                                           </div>
+                                       </div>
+                                   </div>
+                               </div>
+                           </div>
+                       </div>
+                   </div>
+                   <div class="tab-pane" id="tab-make">
+                       <div ng-controller="tab_make_controller">
+                           <div class="panel panel-default" style="position:absolute;left:0px;bottom:0px;width:385px;border-radius:0px;">
+                               <div class="my-panel-heading" role="tab" width="100%">
+                                   <label style="position:relative;display:inline-block; width:100%;" class=" panel-title">工作台</label>
+                               </div>
+                               <div id="tab-make-desk" class="panel-collapse collapse " role="tabpanel">
+                                   <div class="store-panel-content" style="width:100%;padding-bottom:0px;height:280px;">
+                                       <!-- ng-init="make_test()"  -->
+                                       <div id="tab-make-output" class="panel panel-default">
+                                           <!-- <div  ng-model="output" class="panel-body">
+                                                               
+                                                           </div>  -->
+                                       </div>
+                                       <div id="tab-make-progress" class="progress">
+                                           <div min-width="2em" class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 0%;">
+                                           </div>
+                                       </div>
+                                   </div>
+                               </div>
+                           </div>
+                           <div class="panel panel-default" style="text-align:center;float:left;width:50%;border-radius:0px;">
+                               <div class="my-panel-heading" role="tab" width="100%">
+                                   <label style="position:relative;display:inline-block; width:100%;" class=" panel-title">物料清单</label>
+                               </div>
+                               <div id="tab-make-content" class="panel-collapse collapse " role="tabpanel">
+                                   <div class="store-panel-content" style="width:100%;padding-bottom:0px;">
+                                       <span style="background-color:#006fb0;color:#fff;position:relative;display:inline-block; width:100%;">
+                                                           <label style="width:50%;">原料</label>
+                                                           <label style="width:23%;">需求</label>
+                                                           <label style="width:23%;">现有</label>
+                                                       </span>
+                                       <span ng-repeat="material in value.material" style="position:relative;display:inline-block; width:100%;">
+                                                           <label style="width:50%;">{{material.name}}</label>
+                                                           <label style="width:23%;" class="item-num {{(material.cnt <= (material.name | get_item_cnt:updt)) || 'insufficient'}}">{{material.cnt}}</label>
+                                                           <label style="width:23%;">{{material.name | get_item_cnt:updt}}</label>
+                                                       </span>
+                                       <span style="background-color:#006fb0;color:#fff;position:relative;display:inline-block; width:100%;">
+                                                           <label style="width:100%;">仪器</label>
+                                                       </span>
+                                       <span ng-repeat="instrument in value.instrument" style="position:relative;display:inline-block; width:100%;">
+                                                           <label style="width:100%;" class="item-num {{(1 <= (instrument | get_item_cnt:updt)) || 'insufficient'}}">{{instrument}}</label>
+                                                       </span>
+                                   </div>
+                               </div>
+                               <label ng-if="v.make.target">正在制作：{{v.make.target}} </label>
+                               <div>
+                                   <button ng-click="make($event)" class="btn btn-primary {{make_check()}}" style="width:75px;padding:10px;margin:10px;margin-top:0px;">计划制作</button>
+                       
+                                   <button ng-click="resolve($event)" class="btn btn-primary {{resolve_check()}}" style="width:75px;padding:10px;margin:10px;margin-top:0px;">分解</button>
+                               </div>
+                           </div>
+                           <div class="panel-group" id="make-panel-group" role="tablist" aria-multiselectable="true">
+                               <div style="width:100%;margin-bottom:5px;background-color:#fff;">
+                                   <span style="position:relative;display:inline-block; width:100%;">
+                                                       <label style="width:50%;margin-bottom:0px;">物品</label>
+                                                       <label style="width:20%;margin-bottom:0px;">拥有</label>
+                                                       <label style="width:25%;margin-bottom:0px;">可制作</label>
+                                                   </span>
+                               </div>
+                               <div ng-repeat="value in data" class="panel panel-default" style="border-width:0px;">
+                                   <div ng-click="change_thing($event,value.name)" class="my-panel-heading " name={{value.name}} role="tab" width="100%">
+                                       <span style="position:relative;display:inline-block; width:100%;" class=" panel-title ">
+                                                           <label style="font-weight:400;width: 50%;margin-bottom:0px;">{{value.name}}</label>
+                                                           <label style="font-weight:400;width: 20%;margin-bottom:0px;">{{value.product.length}}</label>
+                                                           <label style="font-weight:400;width: 25%;margin-bottom:0px;">{{value.name | get_item_avaliable:updt }}</label>
+                                                       </span>
+                                   </div>
+                               </div>
+                           </div>
+                       </div>
+                   </div>
+                   <div class="tab-pane" id="tab-plan">
+                       <div ng-controller="tab_plan_controller" class="wrap">
+                           <div id="tab-plan-right">
+                               <div class="plan-right-block">
+                                   <label class="plan-right-label">疲劳度</label>
+                       
+                                   <div id="tab-plan-skill-progress" class="progress active" style="margin:0px;margin-bottom:3px;margin-top:3px;height:10px;">
+                                       <div min-width="2em" class="progress-bar {{v.state.fatigue | progress_color}} progress-bar-striped" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: {{v.state.fatigue}}%;">
+                                       </div>
+                                   </div>
+                               </div>
+                       
+                               <div class="plan-right-block">
+                                   <label class="plan-right-label">技能点</label>
+                                   <label class="plan-right-value">已拥有:{{v.state.skill_point}}</label>
+                                   <div id="tab-plan-skill-progress" class="progress active" style="margin:0px;margin-bottom:3px;height:10px;">
+                                       <div min-width="2em" class="progress-bar progress-bar-info progress-bar-striped" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: {{v.state.skill_progress}}%;">
+                                       </div>
+                                   </div>
+                       
+                               </div>
+                               <div class="plan-right-block">
+                                   <label class="plan-right-label">制造进度</label>
+                                   <div ng-if="!v.make.target" class="make-state" style="width:100%;">
+                                       <label>并没有</label>
+                                   </div>
+                                   <div ng-if="v.make.target">
+                                       <div class="make-state" style="width:100%;">
+                                           <span class="make-state-line">
+                                                           <label class="left">制造:
+                                                           </label>
+                                                           <label class="right">{{v.make.target}}
+                                                           </label>
+                                                       </span>
+                                           <div class="make-state-line">
+                                               <label class="left">完成度:
+                                               </label>
+                                               <label class="right">{{v.make.progress}}%
+                                               </label>
+                                           </div>
+                                           <div class="make-state-line">
+                                               <label class="left">创新度:
+                                               </label>
+                                               <label class="right">{{v.make.innovate}}
+                                               </label>
+                                           </div>
+                       
+                                       </div>
+                                       <div id="tab-plan-skill-progress" class="progress active" style="margin:0px;margin-bottom:3px;height:10px;width:100%;">
+                                           <div min-width="2em" class="progress-bar progress-bar-info progress-bar-striped" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width:{{v.make.progress}}%;">
+                                           </div>
+                                       </div>
+                                       <div class="make-state-line">
+                                           <button ng-click="make_end()" class="btn btn-default" style="margin:5px;width:90%;">结束制作</button>
+                                       </div>
+                                   </div>
+                               </div>
+                       
+                           </div>
+                           <div id="tab-plan-left">
+                               <button class="btn btn-primary  scene-btn " ng-disabled="button_state" id="tab_plan_go_out_btn" ng-click="go_out()">
+                                   <div class="glyphicon glyphicon-scissors" aria-hidden="true"></div>
+                                   <div class="des">打工</div>
+                               </button>
+                               <button class="btn btn-primary scene-btn " ng-disabled="button_state" id="tab_plan_go_school_btn" ng-click="go_school()">
+                                   <div class="glyphicon glyphicon-education" aria-hidden="true"></div>
+                                   <div class="des">上课</div>
+                               </button>
+                               <button class="btn btn-primary scene-btn " ng-disabled="button_state" id="tab_plan_make_btn" ng-click="make()">
+                                   <div class="glyphicon glyphicon-wrench" aria-hidden="true"></div>
+                                   <div class="des">制造</div>
+                               </button>
+                               <button class="btn btn-primary scene-btn " ng-disabled="button_state" id="tab_plan_pass_day_btn" ng-click="study()">
+                                   <div class="glyphicon glyphicon-book" aria-hidden="true"></div>
+                                   <div class="des">自习</div>
+                               </button>
+                               <button class="btn btn-primary scene-btn " ng-disabled="v.state.fatigue<=0||button_state" id="tab_plan_rest_btn" ng-click="rest()">
+                                   <div class="glyphicon glyphicon-tower" aria-hidden="true"></div>
+                                   <div class="des">休息</div>
+                               </button>
+                               <button class="btn btn-danger scene-btn " id="tab_plan_pass_day_btn" ng-click="pass_day()">
+                                   <div class="glyphicon glyphicon-bed" aria-hidden="true"></div>
+                                   <div class="des">结束</div>
+                               </button>
+                       
+                           </div>
+                       
+                       </div>
+                   </div>
+                   <div class="tab-pane" id="tab-quest">
+                       <div ng-controller="tab_quest_controller" ng-repeat="(key,value) in data" class="panel panel-default">
+                           <div class="panel-heading" align="center">
+                               <label>{{value.title}}</label>
+                           </div>
+                           <div class="panel-heading" align="center">
+                               <button class="btn  btn-primary {{value.finished || 'disabled' }}" style="width:49%;">
+                                   完成
+                               </button>
+                               <button class="btn btn-primary disabled" style="width:49%;">
+                                   放弃
+                               </button>
+                           </div>
+                           <div class="panel-des" align="left">{{value.des}}</div>
+                           <table class="table">
+                               <tbody>
+                                   <tr>
+                                       <td class="prop-tab-name prop-tab-name-right">任务期限</td>
+                                       <td class="prop-tab-value prop-tab-name-left">{{value.date}}天</td>
+                                       <td class="prop-tab-name prop-tab-name-right">任务目标：</td>
+                                       <td class="prop-tab-value prop-tab-name-right">
+                                           <label ng-repeat="target in value.target" class="{{target_check(target,updt)}}">
+                                               {{target_handle(target,updt)}}
+                                           </label>
+                                       </td>
+                                   </tr>
+                               </tbody>
+                           </table>
+                       </div>
+                   </div>
+                   <div class="tab-pane" id="tab-team">
+                       <div ng-controller="tab_team_controller" class="wrap">
+                           <div style="float:left;left:0px;" id="carousel-team-generic" class="carousel " data-ride="carousel">
+                               <!-- Indicators -->
+                               <style type="text/css">
+                                   .left.carousel-control {
+                                       background-image: linear-gradient(to right, rgba(128, 128, 128, .5) 0, rgba(128, 128, 128, .0001) 100%);
+                                   }
+                                   
+                                   .right.carousel-control {
+                                       background-image: linear-gradient(to left, rgba(128, 128, 128, .5) 0, rgba(128, 128, 128, .0001) 100%);
+                                   }
+                               </style>
+                               <ol class="carousel-indicators">
+                               </ol>
+                               <!-- Wrapper for slides -->
+                               <div class="carousel-inner" role="listbox">
+                                   <div ng-repeat="(key,value) in data" class="item {{$first && 'active'}}" name="{{key}}" first="{{$first}}">
+                                       <div><img align="center" ng-src="{{value.half}}" />
+                                       </div>
+                                       <div class="carousel-caption" style="width: 100%; right:0px;left:0px; background-color: rgba(0, 0, 0, 0.298039);">{{value.tag}}
+                                           <br>{{value.name}}</div>
+                                   </div>
+                       
+                               </div>
+                               <!-- Controls -->
+                               <a class="left carousel-control" href="#carousel-team-generic" role="button" data-slide="prev">
+                                   <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+                                   <span class="sr-only">Previous</span>
+                               </a>
+                               <a class="right carousel-control" href="#carousel-team-generic" role="button" data-slide="next">
+                                   <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+                                   <span class="sr-only">Next</span>
+                               </a>
+                           </div>
+                           <style>
+                               .chart rect {
+                                   fill: steelblue;
+                               }
+                               
+                               .chart text {
+                                   fill: white;
+                                   font: 15px sans-serif;
+                                   text-anchor: end;
+                               }
+                               
+                               .chart text[kind="head"] {
+                                   fill: black;
+                                   font: 15px sans-serif;
+                                   text-anchor: end;
+                               }
+                           </style>
+                           <svg class="chart" style="float:right;width:58%;text-align:left;"></svg>
+                           <div class="panel panel-default">
+                               <div class="my-panel-heading" role="tab" width="100%"><span style="text-align:center;position:relative;display:inline-block; width:100%;" class="panel-title" data-toggle="collapse" href="#team-skill-heading" aria-expanded="true" aria-controls="team-skill-heading"><label style="width: 32%;">天赋技能</label></span>
+                               </div>
+                               <div style="transition: height 0.2s; -webkit-transition: height 0.2s;" id="team-skill-heading" class="panel-collapse collapse in" role="tabpanel" aria-expanded="true">
+                                   <div class="store-panel-content">
+                                       <h5 class="item-panel" id="tab-team-skill-content">每月可以膜拜一次指定对象，增加目标对本团队的好感度</h5>
+                                   </div>
+                               </div>
+                           </div>
+                       </div>
+                   </div>
+                   <div class="tab-pane" id="tab-skill">
+                       <div ng-controller="tab_skill_controller">
+                           <link href="./css/magbox.css" type="text/css" rel="stylesheet">
+                           <link href="./css/workshop-wlk.css" type="text/css" rel="stylesheet">
+                           <link href="./css/talent.css" type="text/css" rel="stylesheet">
+                           <div id="talent" class="workshop">
+                               <div id="page-body">
+                                   <center>
+                                       <div id="replaceMeWithTalents">
+                                       </div>
+                       
+                                   </center>
+                               </div>
+                           </div>
+                           <div id="my_skill_tree_panel">
+                               <div id="my_skill_tree_panel_content">
+                       
+                               </div>
+                               <button ng-click="study_skill(current_skill_index)" class="btn btn-primary {{v.state.skill_point<=0 && 'disabled'}}" style="position:absolute;right:0px;bottom:0px;border-radius: 0px;font-size:25px;">学习</button>
+                           </div>
+                           <div id="skill_point">
+                               <label><font style="font-weight:normal;">技能点：</font><font style="color:steelblue;">{{v.state.skill_point}}</font>
+                               </label>
+                           </div>
+                       </div>
+                   </div>
+               </div>
+       
+           </div>
+       
+           <div class="" id="home-main-tab">
+               <button ng-repeat="(key,value) in list" class="desk-frame-nav-a btn {{(value.title==tab_selecting && 'active')}}" ng-click="tab_select(value.title,value.name)">
+                   {{key}}<span class="badge {{value.state}}" style="vertical-align: 25%;  margin-left: 5px;  margin-right: -10px;">{{value.content}}</span>
+               </button>
+           </div>
+       
+           <div id="system-setting" class="btn-group">
+               <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><span class="glyphicon glyphicon-wrench" aria-hidden="true"></span>&nbsp;系统<span class="caret"></span>
+               </button>
+               <ul class="dropdown-menu" role="menu" style="min-width:0px;">
+                   <li><a href="#">设置</a></li>
+                   <li id="scene-home-btn-save"><a href="#" ng-click="home_save()">存档</a></li>
+                   <li id="scene-home-btn-load"><a href="#" ng-click="home_load()">读档</a></li>
+                   <li class="divider"></li>
+                   <li><a href="#">关于</a></li>
+               </ul>
+           </div>
+       
+       
+       
+           <div ng-controller="danmu_controller" id="div-danmu">
+               <div ng-repeat="danmu in data" class="{{($last)&&'danmu_bg'}}" ng-init="enter(danmu,$id)" style="display:none;">
+                   <label class="danmu-out" style="background-color:steelblue;display:none;">
+                       &nbsp;
+                       <label class="danmu-in" style="display:none;">
+                           {{danmu.text}}
+                       </label>
+                   </label>
+               </div>
+           </div>
+       </div>
+   </div>
+   <div class="scene" id="scene_save">
+       <div ng-controller="save_controller" class="wrap">
+           <h1 class="back" ng-click="go_back()">返回游戏</h1>
+           <h1 class="title" ng-bind="title"></h1>
+           <button ng-repeat="btn in buttons track by $index" ng-click="handle($index)" class="button button-3d button-inverse button-save" style="top: {{80+70*$index}}px; " ng-bind="btn.title"></button>
+       </div>
+   </div>
+
     
     <script data-main="dist/js/main" src="dist/js/libs/require.js"></script>
 </body>
