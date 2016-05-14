@@ -1,0 +1,47 @@
+<div ng-controller="tab_buy_controller">
+    <ul class="nav  nav-tabs nav-justified" id="buy-tabs-link" align="center" width="100%">
+        <li ng-repeat="(store_name,store) in data" ng-click="link_tab($event)" role="presentation">
+            <a href="#buy-tab-{{store_name}}">{{store_name}}</a>
+        </li>
+    </ul>
+    <div class="tab-content my-tab-content" id="buy-tabs-content">
+        <div ng-repeat="(store_name,store) in data" class="tab-pane" id="buy-tab-{{store_name}}">
+            <ul class="nav  nav-pills  nav-justified" id="buy-tabs" align="center" width="100%">
+                <li ng-repeat="(key,kind) in store" role="presentation" store-tab="{{key}}">
+                    <a href="#{{store_name}}buy-tab-content-{{key}}">{{key}}</a>
+                </li>
+            </ul>
+            <div class="my-panel-heading" role="tab" width="100%" style="margin:0px;margin-bottom:-5px;">
+                <div class="panel panel-default" style="color:#fff;background-color:#006fb0;border-width:0px;border-radius:0px;margin-bottom:0px;">
+                    <span style="position:relative;display:inline-block; width:100%;" style="">
+                                        <label style="width: 32%;">物品</label>
+                                        <label style="width: 32%;">已拥有</label>
+                                        <label style="width: 32%;">价格</label>
+                                    </span>
+                </div>
+            </div>
+            <div class="tab-content my-tab-store-content" id="store-tabs-content">
+                <div ng-repeat="(key,kind) in store" class="tab-pane" id="{{store_name}}buy-tab-content-{{key}}">
+                    <div class="panel-group" id="{{store_name}}buy-tab-group{{key}}" role="tablist" aria-multiselectable="true">
+                        <div ng-repeat="item in kind" class="panel panel-default">
+                            <div class="my-panel-heading" role="tab" width="100%">
+                                <span style="position:relative;display:inline-block; width:100%;" class="collapsed panel-title " data-toggle="collapse" data-parent="#{{store_name}}buy-tab-group{{key}}" href="#{{store_name}}{{key}}-{{item.name}}" aria-expanded="false" aria-controls="{{store_name}}{{key}}-{{item.name}}">
+                                                    <label style="width: 32%;">{{item.name}}</label>
+                                                    <label style="width: 32%;">{{item.cnt}}</label>
+                                                    <label style="width: 32%;">{{item.price}}</label>
+                                                </span>
+                            </div>
+                            <div id="{{store_name}}{{key}}-{{item.name}}" class="panel-collapse collapse " role="tabpanel">
+                                <div class="store-panel-content">
+                                    <h5 class="item-panel">{{item.brief}}</h5>
+                                    <button name="{{item.name}}" class="button button-primary {{item.price | buy_btn_price_handle:updt}} " ng-click="store_buy($event)">购买</button>
+                                    <button name="{{item.name}}" class="button button-primary {{item.cnt | buy_btn_cnt_handle:updt}}" ng-click="store_sell($event)">出售</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

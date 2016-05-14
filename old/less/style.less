@@ -1,0 +1,112 @@
+@import "common.less";
+* {
+    cursor: url("@{res-folder}/cursor/normal.cur"),
+    auto;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    user-select: none;
+}
+html{
+background-color: black;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    cursor: url("@{res-folder}/cursor/text.cur"),
+    auto;
+}
+
+button,
+a {
+    cursor: url("@{res-folder}/cursor/link.cur"),
+    auto;
+}
+
+input,
+button,
+a {
+    outline: 0 none !important;
+}
+
+label {
+    text-align: center;
+    margin-bottom: 2px;
+    margin-top: 3px;
+}
+
+#game-first-tip {
+    text-align: center;
+    color: #333;
+}
+
+.scene {
+    display: none;
+    width: 960px;
+    height: 540px;
+    position: absolute;
+    &#scene_cover {
+        background: url("@{res-folder}/Background/cover.jpg");
+        text-align: center;
+        @import "cover.less";
+    }
+    &#scene_bigmap {}
+    &#scene_chat {
+        @import "chat.less";
+    }
+    &#scene_preload {}
+    &#scene_home {
+        margin: 0px;
+        display: none;
+        padding: 0px;
+        padding-bottom: 0px;
+        padding-top: 0px;
+        background-image: url("@{res-folder}/Background/zhuomian.jpg");
+        @import "home.less";
+    }
+    &#scene_save {
+        background-image: url("@{res-folder}/UI/mysave.png");
+        @import "save.less";
+    }
+}
+.tab-content>.tab-pane{
+//    display: block;
+    visibility: visible;
+}
+#div-danmu {
+    position: relative;
+    top: 40px;
+    z-index: 1020;
+    div {
+        /*  position: absolute;*/
+        background-color: rgb(51, 122, 183);
+        height: 30px;
+        /*  width:960px;*/
+        text-align: center;
+        /*    z-index=1020;*/
+        margin: 0px;
+    }
+    &>div>label {
+        position: absolute;
+        color: #fff;
+        height: 30px;
+        background-color: rgb(51, 122, 183);
+        /*    z-index=1020;*/
+        width: 960px;
+        left: 0px;
+        margin: 0px;
+        border-width: 0px;
+    }
+    #div-danmu>div>label>label {
+        position: absolute;
+        color: #fff;
+        font-size: 20px;
+        /*    z-index=1020;*/
+        width: 960px;
+        margin: 0px;
+        border-width: 0px;
+    }
+}

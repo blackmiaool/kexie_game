@@ -1,0 +1,70 @@
+<div ng-controller="home_root" class="home-wrap">
+    <div class="modal fade" id="class_form" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" data-backdrop="static">
+        <!-- inject: home/modal.html-->
+    </div>
+
+    <div id="home-head" class="">
+        <!-- inject: home/head.html-->
+    </div>
+
+
+
+
+    <div class=" well desk-frame" id="home-tabs" style="display:inline-block;">
+        <div class="tab-content">
+            <div class="tab-pane" id="tab-buy">
+                <!-- inject: home/buy.html-->
+            </div>
+            <div class="tab-pane" id="tab-item">
+                <!-- inject: home/item.html-->
+            </div>
+            <div class="tab-pane" id="tab-make">
+                <!-- inject: home/make.html-->
+            </div>
+            <div class="tab-pane" id="tab-plan">
+                <!-- inject: home/plan.html-->
+            </div>
+            <div class="tab-pane" id="tab-quest">
+                <!-- inject: home/quest.html-->
+            </div>
+            <div class="tab-pane" id="tab-team">
+                <!-- inject: home/team.html-->
+            </div>
+            <div class="tab-pane" id="tab-skill">
+                <!-- inject: home/skill.html-->
+            </div>
+        </div>
+
+    </div>
+
+    <div class="" id="home-main-tab">
+        <button ng-repeat="(key,value) in list" class="desk-frame-nav-a btn {{(value.title==tab_selecting && 'active')}}" ng-click="tab_select(value.title,value.name)">
+            {{key}}<span class="badge {{value.state}}" style="vertical-align: 25%;  margin-left: 5px;  margin-right: -10px;">{{value.content}}</span>
+        </button>
+    </div>
+
+    <div id="system-setting" class="btn-group">
+        <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><span class="glyphicon glyphicon-wrench" aria-hidden="true"></span>&nbsp;系统<span class="caret"></span>
+        </button>
+        <ul class="dropdown-menu" role="menu" style="min-width:0px;">
+            <li><a href="#">设置</a></li>
+            <li id="scene-home-btn-save"><a href="#" ng-click="home_save()">存档</a></li>
+            <li id="scene-home-btn-load"><a href="#" ng-click="home_load()">读档</a></li>
+            <li class="divider"></li>
+            <li><a href="#">关于</a></li>
+        </ul>
+    </div>
+
+
+
+    <div ng-controller="danmu_controller" id="div-danmu">
+        <div ng-repeat="danmu in data" class="{{($last)&&'danmu_bg'}}" ng-init="enter(danmu,$id)" style="display:none;">
+            <label class="danmu-out" style="background-color:steelblue;display:none;">
+                &nbsp;
+                <label class="danmu-in" style="display:none;">
+                    {{danmu.text}}
+                </label>
+            </label>
+        </div>
+    </div>
+</div>
