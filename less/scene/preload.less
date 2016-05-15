@@ -1,0 +1,13 @@
+@import "common.less";
+@import "variables.less";
+.scene[data-scene="preload"] {
+    text-align: center;
+    .wrap {
+        position: absolute;
+        top: 50%;
+        .transform(translateY(-50%));
+        .loading-img {
+            width: 20px;
+        }
+    }
+}

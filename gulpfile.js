@@ -39,12 +39,12 @@ function get_babel_params() {
     }
 }
 gulp.task('html', function () {
-        return gulp.src(['html/index.html'])
-        .pipe(cached("html"))
+    return gulp.src(['html/index.html'])        
         .pipe(injectfile({
             pattern: '<!--\\sinject:<filename>-->',
-            recursive:true
+            recursive: true
         }))
+        .pipe(cached("html"))
         .pipe(gulp.dest('./')).pipe(livereload());
 })
 
@@ -65,9 +65,9 @@ gulp.task('less', function () {
         .pipe(gulp.dest('dist/css')).pipe(livereload());
 });
 gulp.task('mv-dist-js', function () {
-    
+
 })
-gulp.task('mv-dist', ['mv-dist-js'],function () {
+gulp.task('mv-dist', ['mv-dist-js'], function () {
     return gulp.src('libs/js/**/*')
         .pipe(gulp.dest('dist/js'));
 });
@@ -82,7 +82,7 @@ gulp.task("plots", function () {
             base: 'js'
         })
         .pipe(cached("plot"))
-        .pipe(yield_prefix(["tc", "th", "ts", "tm", "tcc","tmood","tcn"]))
+        .pipe(yield_prefix(["tc", "th", "ts", "tm", "tcc", "tmood", "tcn"]))
         .pipe(headerfooter({
             header: `define(["res","v","sys","_"],function (res,v,sys,_){\
 return function* (plot_cb){ 
@@ -113,12 +113,13 @@ gulp.task("scenes", function () {
         gutil.log(ee);
         babel_pipe.end();
     });
-    return gulp.src('js/scenes/*.js', {
+    return gulp.src('js/scene/*.js', {
             base: 'js'
         })
         .pipe(headerfooter({
-            header: 'define(["sys","angular","v","common","res","dbg"],function* (sys,angular,v,common,res,dbg){',
-            footer: '})',
+            //            header: `define(["require","sys","angular","v","common","res","dbg"],function* (require,sys,angular,v,common,res,dbg){`,
+            header: `define(["scene","sys","angular","dbg","v","res","angular-module"],function* (scene,sys,angular,dbg,v,res,module){`,
+            footer: `})`,
             filter: function (file) {
                 var cwd = file.history[0].split("/");
                 var filename = cwd[cwd.length - 1];
@@ -141,7 +142,7 @@ gulp.task('es6', ["plots", "scenes"], function () {
         gutil.log(ee);
         babel_pipe.end();
     });
-    return gulp.src(['js/**/*.js', "!js/scenes/*.js", "!js/plots/*.js"])
+    return gulp.src(['js/**/*.js', "!js/scene/*.js", "!js/plots/*.js"])
         .pipe(cached("es6"))
         .pipe(injectfile({
             pattern: '<!--\\sinject:<filename>-->'

@@ -2,26 +2,110 @@
 
 function _typeof(obj) { return obj && typeof Symbol !== "undefined" && obj.constructor === Symbol ? "symbol" : typeof obj; }
 
-define(["angular", "dbg"], function (angular, dbg) {
+define(["angular", "dbg", "config", "_"], function (angular, dbg, config) {
 
-    var scene_running = undefined;
+    var sceneChanging = false;
+    var quick = false;
     var scenes = {};
-    var scene_fade_time = dbg.imdeveloper ? 1 : 1000;
-    var current_scene = {};
-    angular.module('home_app', ["ngAnimate", "ngRoute"]);
-    //    var scene = new sys.Scene({
-    //        id:"",
-    //        dom_id:"",
-    //        init:function(){
-    //        },
-    //        pre_enter:function(){
-    //        },
-    //        enter:function(){
-    //        }   
-    //    })
+    var sceneFadeTimeRow = 1000;
+    var sceneFadeTime = dbg.imdeveloper ? 1 : quick ? 1 : sceneFadeTimeRow;
+    var currentScene = {};
+
+    _.extend($.fn, {
+        hide: function hide() {
+            this.addClass("hide");
+            return this;
+        },
+        show: function show() {
+            this.removeClass("hide");
+            return this;
+        },
+        isShown: function isShown() {
+            return !this.hasClass("hide");
+        },
+        toggleShow: function toggleShow() {
+            if (this.hasClass("hide")) {
+                this.removeClass("hide");
+            } else {
+                this.addClass("hide");
+            }
+        },
+        active: function active() {
+            var state = arguments.length <= 0 || arguments[0] === undefined ? true : arguments[0];
+
+            this.addClass("active");
+            return this;
+        },
+        inactive: function inactive() {
+            var state = arguments.length <= 0 || arguments[0] === undefined ? true : arguments[0];
+
+            this.removeClass("active");
+            return this;
+        },
+        isActive: function isActive() {
+            return this.hasClass("active");
+        },
+        toggleActive: function toggleActive() {
+            if (this.hasClass("active")) {
+                this.removeClass("active");
+            } else {
+                this.addClass("active");
+            }
+        }
+    });
+
+    function changeScene(target) {
+        for (var _len = arguments.length, args = Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
+            args[_key - 1] = arguments[_key];
+        }
+
+        if (sceneChanging == true) {
+            return;
+        }
+        if (typeof target == "string") {
+
+            target = scenes[target];
+        } else if ((typeof target === "undefined" ? "undefined" : _typeof(target)) == "object") {
+
+            //            target = target;
+        } else {
+
+                console.error("bad target");
+            }
+
+        function call_enter(args) {
+            setTimeout(function () {
+                if (target.enter) {
+                    target.enter.apply(target, args);
+                }
+                exports.$rootScope.$emit(target.id + "_enter", args);
+            }, sceneFadeTime);
+        }
+
+        if (target.id) {
+            console.info("out", currentScene.id, "in", target.id, args);
+            if (currentScene.dom_id) {
+                $("#" + currentScene.dom_id).css("z-index", "0");
+                $("#" + currentScene.dom_id).fadeOut(sceneFadeTime);
+            }
+            $("#" + target.dom_id).css("z-index", "1");
+            $("#" + target.dom_id).fadeIn(sceneFadeTime);
+            currentScene = target;
+
+            if (target.pre_enter) {
+                target.pre_enter.apply(target, args);
+            }
+            exports.$rootScope.$emit(target.id + "_pre_enter", args);
+            call_enter(args);
+        } else {
+            call_enter(args);
+        }
+    }
     var exports = {
         sx: 960,
         sy: 540,
+        quick: quick,
+        sceneChanging: sceneChanging,
         Scene: function Scene(_ref) {
             var id = _ref.id;
             var dom_id = _ref.dom_id;
@@ -39,55 +123,9 @@ define(["angular", "dbg"], function (angular, dbg) {
                 this.init();
             }
         },
-        current_scene: current_scene,
+        currentScene: currentScene,
         scenes: scenes,
-        to_scene: function to_scene(target) {
-            for (var _len = arguments.length, args = Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
-                args[_key - 1] = arguments[_key];
-            }
-
-            if (scene_running == true) {
-                return;
-            }
-            if (typeof target == "string") {
-
-                target = scenes[target];
-            } else if ((typeof target === "undefined" ? "undefined" : _typeof(target)) == "object") {
-
-                target = target;
-            } else {
-
-                console.error("bad target");
-            }
-
-            function call_enter(args) {
-                setTimeout(function () {
-                    if (target.enter) {
-                        target.enter.apply(target, args);
-                    }
-                    exports.$rootScope.$emit(target.id + "_enter", args);
-                }, scene_fade_time);
-            }
-
-            if (target.id) {
-                console.info("out", current_scene.id, "in", target.id, args);
-                if (current_scene.dom_id) {
-                    $("#" + current_scene.dom_id).css("z-index", "0");
-                    $("#" + current_scene.dom_id).fadeOut(scene_fade_time);
-                }
-                $("#" + target.dom_id).css("z-index", "1");
-                $("#" + target.dom_id).fadeIn(scene_fade_time);
-                current_scene = target;
-
-                if (target.pre_enter) {
-                    target.pre_enter.apply(target, args);
-                }
-                exports.$rootScope.$emit(target.id + "_pre_enter", args);
-                call_enter(args);
-            } else {
-                call_enter(args);
-            }
-        },
+        changeScene: changeScene,
         readTextFile: function readTextFile(file, cb) {
             var rawFile = new XMLHttpRequest();
             rawFile.open("GET", file.name, true);

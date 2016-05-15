@@ -9,14 +9,17 @@
             "_": "underscore",
             "angular-animate": "angular-animate.min"
         },
-        sys_paths: {
-            scene: "scene",
+        sysPaths: {
+            //            scene: "scene",
             sys: "sys",
             common: "common",
             dbg: "dbg",
-            plot_common: "plot_common"
+            config: "config",
+            scene: "scene"
+            //            plot_common: "plot_common",
 
         },
+        scenePaths: ["preload", "cover"],
         map: {},
         shim: {
             "angular": {
@@ -29,27 +32,29 @@
         }
     };
 
-    //    for (var i in config.sys_paths) {
-    //        config.paths[i] = "system/" + config.sys_paths[i];
-    //    }
-    delete config.sys_paths;
+    for (var i in config.sysPaths) {
+        config.paths[i] = "system/" + config.sysPaths[i];
+    }
+    for (var i in config.scenePaths) {
+        config.paths[config.scenePaths[i]] = "scene/" + config.scenePaths[i];
+    }
+    delete config.scenePaths;
+    delete config.sysPaths;
     //    delete config.plot_paths;
     requirejs.config(config);
 })();
 
-requirejs(["jquery", "sys", "angular", 'angular-animate'], function ($, sys, angular) {
+requirejs(["jquery", "sys", "angular", 'angular-module', "scene", 'angular-animate'], function ($, sys, angular, module, scene) {
     $("#game-first-tip").remove();
 
-    angular.module('home-app', []);
-
-    angular.module('home-app').controller("root_controller", ["$rootScope", "$scope", function ($rootScope, $scope) {
+    module.controller("root_controller", ["$rootScope", "$scope", function ($rootScope, $scope) {
         sys.$rootScope = angular.element("body").scope().$parent.$root;
-        $scope.$on('$includeContentLoaded', function (params) {
-
-            //            console.log("mdfgdfm",params);
-
-        });
+        sys.sceneLoaded = function () {
+            scene.go("preload");
+        };
     }]);
+    angular.bootstrap("body", ['home-app']);
+
     //    angular.module('home-app').run(
     //        function () {
     //
@@ -106,6 +111,4 @@ requirejs(["jquery", "sys", "angular", 'angular-animate'], function ($, sys, ang
     //            }, 200)
     //
     //        });
-
-    angular.bootstrap("body", ['home-app']);
 });
