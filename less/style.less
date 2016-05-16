@@ -1,7 +1,37 @@
 @import "common.less";
 @import "variables.less";
 @import "scene/preload.less";
+html,
+body {
+    margin: 0;
+    padding: 0;
+    background-color: black;
+}
+
+#wrap {
+    .abs-fill;
+    //    min-height: 400px
+}
+
+* {
+    box-sizing: border-box;
+    font-family: punctuation, "PingFangSC-Regular", "Microsoft Yahei", "sans-serif";
+    -webkit-font-smoothing: subpixel-antialiased;
+}
+
+button {
+    .clickable;
+    .unselectable;
+}
+
+input {
+    height: 30px;
+    border-radius: 3px;
+    border: 1px solid #aaa;
+}
+
 .scene {
+    border-radius: 7px;
     z-index: 0;
     width: 960px;
     height: 540px;
@@ -10,5 +40,8 @@
     &.active {
         display: block;
         z-index: 1;
+    }
+    &[data-scene="cover"] {
+        @import "scene/cover.less";
     }
 }

@@ -1,5 +1,5 @@
-define(["sys","dbg"], function (sys,dbg) {
-    requirejs(["preload","cover"], function () {
+define(["sys", "dbg"], function (sys, dbg) {
+    requirejs(["preload", "cover"], function () {
         sys.sceneLoaded();
     });
     let sceneChanging = false;
@@ -9,16 +9,16 @@ define(["sys","dbg"], function (sys,dbg) {
     let sceneFadeTime = dbg.imdeveloper ? 1 : sys.quick ? 1 : sceneFadeTimeRow;
 
     function register({
-        id, dom_id, init, pre_enter, enter
+        id, init, preEnter, enter
     }) {
         let sceneThis = arguments[0];
         scenes[id] = sceneThis;
-        if (this.init) {
-            this.init();
+        if (init) {
+            init();
         }
     }
 
-    function go(target, ...args) {           
+    function go(target, ...args) {
         if (sceneChanging) {
             return;
         }
@@ -43,19 +43,15 @@ define(["sys","dbg"], function (sys,dbg) {
 
         if (target.id) {
             console.info("out", currentScene.id, "in", target.id, args)
-            function getScene(id){
-                return $(`#wrap>.scene[data-scene="${id}`);
-            }
-            if (currentScene.id) {
-                let $scene=getScene(currentScene.id);
-                $scene.fadeOut(sceneFadeTime).inactive();
-            }
-            let $scene=getScene(target.id);
-            $scene.show().fadeIn(sceneFadeTime).active();          
+
+            if (currentScene.id) {                
+                currentScene.$dom.fadeOut(sceneFadeTime).inactive();
+            }            
+            target.$dom.show().fadeIn(sceneFadeTime).active();
             currentScene = target;
 
-            if (target.pre_enter) {
-                target.pre_enter.apply(target, args);
+            if (target.preEnter) {
+                target.preEnter.apply(target, args);
             }
             sys.$rootScope.$emit(target.id + "-preEnter", args);
             callEnter(args);
@@ -64,10 +60,15 @@ define(["sys","dbg"], function (sys,dbg) {
         }
 
     }
+
+    function getScene(id) {
+        return $(`#wrap>.scene[data-scene="${id}`);
+    }
     let exports = {
         go,
         scenes,
         register,
+        getScene,
     };
     return exports;
 })

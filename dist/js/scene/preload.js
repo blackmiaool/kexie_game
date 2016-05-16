@@ -1,7 +1,7 @@
 "use strict";
 
 define(["scene", "sys", "angular", "dbg", "v", "res", "angular-module"], regeneratorRuntime.mark(function _callee(scene, sys, angular, dbg, v, res, module) {
-    var exports, sceneThis, pre_enter, images, developer_set;
+    var exports, sceneId, $dom, sceneThis, $$, preEnter, images, developer_set;
     return regeneratorRuntime.wrap(function _callee$(_context) {
         while (1) {
             switch (_context.prev = _context.next) {
@@ -15,7 +15,7 @@ define(["scene", "sys", "angular", "dbg", "v", "res", "angular-module"], regener
                         //    item[common.find_index(item, "name", "烙铁")].cnt = 5;
                     };
 
-                    pre_enter = function pre_enter() {
+                    preEnter = function preEnter() {
                         var preload_bar = $("#preload_progress_bar");
 
                         var resSum = 0;
@@ -81,20 +81,24 @@ define(["scene", "sys", "angular", "dbg", "v", "res", "angular-module"], regener
                         preload_interval = setInterval(preload_check, 50);
                     };
 
-                    exports = undefined;
+                    exports = {};
+                    sceneId = "preload";
+                    $dom = scene.getScene(sceneId);
                     sceneThis = {
-                        id: "preload",
-                        pre_enter: pre_enter
+                        id: sceneId,
+                        preEnter: preEnter,
+                        $dom: $dom
                     };
-
-                    scene.register(sceneThis);
+                    $$ = $dom.find.bind($dom);
 
                     //new sys.Scene(sceneThis);
 
                     images = [];
+
+                    scene.register(sceneThis);
                     return _context.abrupt("return", exports);
 
-                case 7:
+                case 10:
                 case "end":
                     return _context.stop();
             }

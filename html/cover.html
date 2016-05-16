@@ -1,11 +1,13 @@
 <div ng-controller="cover_controller">
-    <label class='logo-title' style="">科协浮生记</label>
-    <br/>
-    <button ng-click="start()" indexx=0 class="cover_btn button  button-rounded button-raised button-caution" id="cover_btn1" style="position: relative;top:120px;">开始游戏</button>
-    <br/>
-    <button ng-click="read()" indexx=1 id="cover_btn2" class="cover_btn button  button-raised button-rounded button-primary" href="langshenjiao/index.html" style="position: relative;top:150px;">读取进度</button>
-    <br/>
-    <button ng-click="about()" indexx=2 id="cover_btn3" class="cover_btn button  button-raised button-rounded button-primary" style="position: relative;top:180px;">关于游戏</button>
-    <br/>
-    <br/>
+    <h1 class='logo-title'>科协浮生记</h1>
+
+    <div class="btns">
+        <button ng-click="start()" index="0" class="btn btn-lg btn-primary" id="cover_btn1">开始游戏</button>
+
+        <button ng-click="read()" index="1" class="btn btn-lg  btn-default" href="langshenjiao/index.html">读取进度</button>
+
+        <button ng-click="about()" index="2" class="btn btn-lg btn-warning">关于游戏</button>
+    </div>
+
+
 </div>

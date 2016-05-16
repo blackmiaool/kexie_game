@@ -1,10 +1,15 @@
-let exports;
+let exports={};
+let sceneId="preload";
+let $dom=scene.getScene(sceneId);
 let sceneThis = {
-    id: "preload",
-    pre_enter,
+    id:sceneId,
+    preEnter,
+    $dom,
 };
+let $$=$dom.find.bind($dom);
 
-function pre_enter() {
+
+function preEnter() {
     let preload_bar = $("#preload_progress_bar");
 
     let resSum = 0;
@@ -74,7 +79,7 @@ function pre_enter() {
 
 
 
-scene.register(sceneThis);
+
 
 //new sys.Scene(sceneThis);
 
@@ -89,4 +94,7 @@ function developer_set() {
     //    item[common.find_index(item, "name", "电路基础元件")].cnt = 10;
     //    item[common.find_index(item, "name", "烙铁")].cnt = 5;
 }
+
+
+scene.register(sceneThis);
 return exports;

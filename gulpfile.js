@@ -39,7 +39,7 @@ function get_babel_params() {
     }
 }
 gulp.task('html', function () {
-    return gulp.src(['html/index.html'])        
+    return gulp.src(['html/index.html'])
         .pipe(injectfile({
             pattern: '<!--\\sinject:<filename>-->',
             recursive: true
@@ -157,10 +157,12 @@ gulp.task('md', function () {
     return gulp.src('README.md').pipe(md2json()).
     pipe(beautify()).pipe(rename("dist/data.json")).pipe(gulp.dest("."))
 })
-
+gulp.task('mv-res', function () {
+    return gulp.src('res/**/*').pipe(gulp.dest("dist/res/"))
+})
 gulp.task('default', function () {
 
-    gulp.start(["mv-dist", "less", "html", 'md', "es6"]);
+    gulp.start(["mv-dist", "mv-res", "less", "html", 'md', "es6"]);
 
 });
 gulp.task('reload', function () {

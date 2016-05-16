@@ -2454,24 +2454,6 @@ input[type="button"].btn-block {
   background-image: -o-linear-gradient(45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
   background-image: linear-gradient(45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
 }
-html,
-body {
-  margin: 0;
-  padding: 0;
-}
-#wrap {
-  position: absolute;
-  left: 0;
-  right: 0;
-  top: 0;
-  bottom: 0;
-  margin: auto;
-}
-* {
-  box-sizing: border-box;
-  font-family: punctuation, "PingFangSC-Regular", "Microsoft Yahei", "sans-serif";
-  -webkit-font-smoothing: subpixel-antialiased;
-}
 .clickable {
   cursor: pointer;
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
@@ -2482,20 +2464,6 @@ body {
   -ms-user-select: none;
   -o-user-select: none;
   user-select: none;
-}
-button {
-  cursor: pointer;
-  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  -o-user-select: none;
-  user-select: none;
-}
-input {
-  height: 30px;
-  border-radius: 3px;
-  border: 1px solid #aaa;
 }
 .caret {
   display: inline-block;
@@ -2560,7 +2528,41 @@ input {
 .scene[data-scene="preload"] .wrap .loading-img {
   width: 20px;
 }
+html,
+body {
+  margin: 0;
+  padding: 0;
+  background-color: black;
+}
+#wrap {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+}
+* {
+  box-sizing: border-box;
+  font-family: punctuation, "PingFangSC-Regular", "Microsoft Yahei", "sans-serif";
+  -webkit-font-smoothing: subpixel-antialiased;
+}
+button {
+  cursor: pointer;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  -o-user-select: none;
+  user-select: none;
+}
+input {
+  height: 30px;
+  border-radius: 3px;
+  border: 1px solid #aaa;
+}
 .scene {
+  border-radius: 7px;
   z-index: 0;
   width: 960px;
   height: 540px;
@@ -2575,4 +2577,22 @@ input {
 .scene.active {
   display: block;
   z-index: 1;
+}
+.scene[data-scene="cover"] {
+  background: url("../res/Background/cover.jpg");
+  text-align: center;
+}
+.scene[data-scene="cover"] .logo-title {
+  font-size: 43px;
+  color: white;
+  margin-top: 100px;
+  margin-bottom: 80px;
+}
+.scene[data-scene="cover"] .btns {
+  display: inline-block;
+}
+.scene[data-scene="cover"] .btn {
+  margin-bottom: 40px;
+  display: block;
+  text-align: center;
 }

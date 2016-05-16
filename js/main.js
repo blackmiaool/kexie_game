@@ -17,7 +17,7 @@
                 //            plot_common: "plot_common",
 
         },
-        scenePaths: ["preload","cover"],
+        scenePaths: ["preload", "cover"],
         map: {},
         shim: {
             "angular": {
@@ -48,11 +48,12 @@ requirejs(["jquery", "sys", "angular", 'angular-module', "scene", 'angular-anima
 
     module.controller("root_controller", ["$rootScope", "$scope", function ($rootScope, $scope) {
         sys.$rootScope = angular.element("body").scope().$parent.$root;
-        sys.sceneLoaded = function () {
-            scene.go("preload");
-        }
+
     }]);
-    angular.bootstrap("body", ['home-app']);
+    sys.sceneLoaded = function () {
+        angular.bootstrap("body", ['home-app']);
+        scene.go("preload");
+    }
 
 
     //    angular.module('home-app').run(

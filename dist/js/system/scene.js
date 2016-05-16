@@ -14,15 +14,14 @@ define(["sys", "dbg"], function (sys, dbg) {
 
     function register(_ref) {
         var id = _ref.id;
-        var dom_id = _ref.dom_id;
         var init = _ref.init;
-        var pre_enter = _ref.pre_enter;
+        var preEnter = _ref.preEnter;
         var enter = _ref.enter;
 
         var sceneThis = arguments[0];
         scenes[id] = sceneThis;
-        if (this.init) {
-            this.init();
+        if (init) {
+            init();
         }
     }
 
@@ -54,22 +53,16 @@ define(["sys", "dbg"], function (sys, dbg) {
         }
 
         if (target.id) {
-            var getScene = function getScene(id) {
-                return $("#wrap>.scene[data-scene=\"" + id);
-            };
-
             console.info("out", currentScene.id, "in", target.id, args);
 
             if (currentScene.id) {
-                var _$scene = getScene(currentScene.id);
-                _$scene.fadeOut(sceneFadeTime).inactive();
+                currentScene.$dom.fadeOut(sceneFadeTime).inactive();
             }
-            var $scene = getScene(target.id);
-            $scene.show().fadeIn(sceneFadeTime).active();
+            target.$dom.show().fadeIn(sceneFadeTime).active();
             currentScene = target;
 
-            if (target.pre_enter) {
-                target.pre_enter.apply(target, args);
+            if (target.preEnter) {
+                target.preEnter.apply(target, args);
             }
             sys.$rootScope.$emit(target.id + "-preEnter", args);
             callEnter(args);
@@ -77,10 +70,15 @@ define(["sys", "dbg"], function (sys, dbg) {
             callEnter(args);
         }
     }
+
+    function getScene(id) {
+        return $("#wrap>.scene[data-scene=\"" + id);
+    }
     var exports = {
         go: go,
         scenes: scenes,
-        register: register
+        register: register,
+        getScene: getScene
     };
     return exports;
 });
