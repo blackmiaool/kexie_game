@@ -2595,4 +2595,34 @@ input {
   margin-bottom: 40px;
   display: block;
   text-align: center;
+  position: relative;
+}
+.scene[data-scene="cover"] .btn:before {
+  content: "";
+  width: 23px;
+  height: 56px;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: -40px;
+  background-size: contain;
+  opacity: 0;
+  -webkit-transition: 0.2s ease-out all;
+  -o-transition: 0.2s ease-out all;
+  transition: 0.2s ease-out all;
+}
+.scene[data-scene="cover"] .btn:hover:before {
+  -webkit-transform: translateX(10px);
+  -ms-transform: translateX(10px);
+  transform: translateX(10px);
+  opacity: 1;
+}
+.scene[data-scene="cover"] .btn:nth-child(1):hover:before {
+  background: url("../res/pixel/me.gif") no-repeat;
+}
+.scene[data-scene="cover"] .btn:nth-child(2):hover:before {
+  background: url("../res/pixel/chenjiong.gif") no-repeat;
+}
+.scene[data-scene="cover"] .btn:nth-child(3):hover:before {
+  background: url("../res/pixel/zhangfuai.gif") no-repeat;
 }

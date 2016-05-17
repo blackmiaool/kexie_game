@@ -1,6 +1,6 @@
 (function () {
     var config = {
-        baseUrl: "dist/js",
+        baseUrl: "js",
         paths: {
             jquery: "jquery.min",
             angular: "angular.min",

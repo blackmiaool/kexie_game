@@ -45,7 +45,7 @@ gulp.task('html', function () {
             recursive: true
         }))
         .pipe(cached("html"))
-        .pipe(gulp.dest('./')).pipe(livereload());
+        .pipe(gulp.dest('dist/')).pipe(livereload());
 })
 
 gulp.task('less', function () {
