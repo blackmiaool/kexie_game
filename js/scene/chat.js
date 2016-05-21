@@ -24,6 +24,7 @@ function init() {
 }
 
 function preEnter() {
+    
     plot.init();
 //    plot_core.init();
     //            plot.running = start();

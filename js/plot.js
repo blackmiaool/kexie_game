@@ -1,27 +1,48 @@
-define(["system-sys"], function (sys, plot, p_start, p_nature, p_xuanjianghui, p_kexiefirst) {
-    var exports = {};
+console.log(234);
+define(["system-sys", "system-plotApi", "exports"], function (sys, plotApi, exports) {
+    console.log(234);
+
     let start;
     console.log(requirejs.cfg.plotPaths);
-    requirejs(requirejs.cfg.plotPaths, function () {
-        let evalStr="";
-        requirejs.cfg.plotPaths.forEach(function(v,i){
-            evalStr+=`${v}=arguments[${i}];`
-        })
-        eval(evalStr);
-    });
+
+    let plotsPromise = new Promise(function (resolve, reject) {
+        requirejs(requirejs.cfg.plotPaths, function () {
+            let evalStr = "";
+            console.log(arguments);
+            requirejs.cfg.plotPaths.forEach(function (v, i) {
+                evalStr += `${v}=arguments[${i}];`
+            })
+            console.log(evalStr)
+            eval(evalStr);
+            resolve();
+        });
+    })
+
+
+    console.log(start);
 
     function run_plot(p, cb) {
+
         exports.running = p(cb);
         console.log("next2");
         setTimeout(function () {
             exports.running.next();
         })
 
+
+
     }
     exports.init = function () {
-        run_plot(start,function(){
-            console.log(123)
+        plotApi.init();
+        plotsPromise.then(function () {
+            run_plot(start, function () {
+                console.log(123)
+            })
         })
+    }
+    exports.resume = function (ret) {
+            //        console.log("next1");
+            exports.running.next(ret);
         }
         //    exports.init = function () {
         //

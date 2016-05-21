@@ -1,4 +1,4 @@
-define(["system-sys", "system-dbg","system-plot"], function (sys, dbg) {
+define(["system-sys", "system-dbg"], function (sys, dbg) {
     requirejs(requirejs.cfg.scenePaths, function () {
         sys.sceneLoaded();
     }); 

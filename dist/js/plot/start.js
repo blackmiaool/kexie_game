@@ -1,7 +1,6 @@
 "use strict";
 
-define(["require", "res", "v", "system-sys", "_"], function (require, res, v, sys, _) {
-    var plot = require("plot");
+define(["require", "res", "v", "system-sys", "_", "system-plotApi"], function (require, res, v, sys, _, plot) {
     return regeneratorRuntime.mark(function _callee(plot_cb) {
         var ts, tc, tcc, tcn, th, tm, tmood, img, gap, pp, result;
         return regeneratorRuntime.wrap(function _callee$(_context) {
@@ -26,7 +25,7 @@ define(["require", "res", "v", "system-sys", "_"], function (require, res, v, sy
 
                     case 13:
                         _context.next = 15;
-                        return tc(v.time.year + "年，9月 成都 郫县 电子神技大学校门口", 0, plot.gap.slow);
+                        return tc(v.time.year + "年，9月 成都 郫县 电子神技大学校门口", 0, gap.slow);
 
                     case 15:
                         _context.next = 17;

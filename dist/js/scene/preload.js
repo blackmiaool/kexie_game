@@ -1,6 +1,6 @@
 "use strict";
 
-define(["require", "system-scene", "system-sys", "angular", "system-dbg", "v", "res", "angular-module", "system-plot"], function (require, scene, sys, angular, dbg, v, res, module, plot) {
+define(["require", "system-scene", "system-sys", "angular", "system-dbg", "v", "res", "angular-module", "plot"], function (require, scene, sys, angular, dbg, v, res, module, plot) {
     var exports = {};
     var sceneId = "preload";
     var $dom = scene.getScene(sceneId);

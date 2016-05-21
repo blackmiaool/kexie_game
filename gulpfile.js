@@ -84,8 +84,7 @@ gulp.task("plots", function () {
         .pipe(cached("plot"))
         .pipe(yield_prefix(["tc", "th", "ts", "tm", "tcc", "tmood", "tcn"]))
         .pipe(headerfooter({
-            header: `define(["require","res","v","system-sys","_"],function (require,res,v,sys,_){\
-let plot=require("plot");
+            header: `define(["require","res","v","system-sys","_","system-plotApi"],function (require,res,v,sys,_,plot){\
 return function* (plot_cb){ 
 var ts=plot.ts; 
 var tc=plot.tc; 
@@ -119,7 +118,7 @@ gulp.task("scenes", function () {
         })
         .pipe(headerfooter({
             //            header: `define(["require","sys","angular","v","common","res","dbg"],function* (require,sys,angular,v,common,res,dbg){`,
-            header: `define(["require","system-scene","system-sys","angular","system-dbg","v","res","angular-module","system-plot"],function (require,scene,sys,angular,dbg,v,res,module,plot){`,
+            header: `define(["require","system-scene","system-sys","angular","system-dbg","v","res","angular-module","plot"],function (require,scene,sys,angular,dbg,v,res,module,plot){`,
             footer: `})`,
             filter: function (file) {
                 var cwd = file.history[0].split("/");

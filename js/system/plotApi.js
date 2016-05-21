@@ -1,9 +1,16 @@
-define(function (require) {
-    var plot_core = require("plot_core");
-    var sys = require("sys");
-    var common = require("common");
-    var dbg = require("dbg");
-    var res = require("res");
+console.log(25)
+define(["require","system-sys","system-common","system-dbg","res"],function (require,sys,common,dbg,res) {
+//    
+//    var sys = require("system-sys");
+//    var common = require("system-common");
+//    var dbg = require("system-dbg");
+//    var res = require("res");
+    var plot_core;
+    setTimeout(function(){
+     plot_core = require("plot");    
+        console.log(plot_core,"lkjlkjlkj")
+    })
+    
     var pp = res.pp;
     var people = [];
     var exports = {
@@ -222,7 +229,7 @@ define(function (require) {
         return t;
     }
 
-    function plot_resume(ret) {
+    function plot_resume(ret) {        
         setTimeout(function () {
             plot_core.resume(ret);
         }, 0)
@@ -675,7 +682,7 @@ define(function (require) {
     }
 
 
-    window.plot = exports;
+//    window.plot = exports;
     exports.init = function () {
         bg = $("#scene_chat #div-bg");
 

@@ -8,7 +8,7 @@
             "angular-animate": "angular-animate.min",
         },
         plotPaths:["start"],
-        sysPaths: ["sys","common","dbg","config","scene"],
+        sysPaths: ["sys","common","dbg","config","scene","plotApi"],
         scenePaths: ["preload", "cover","chat"],
         map: {},
         shim: {
@@ -20,18 +20,18 @@
                 deps: ["angular"],
             },
         }
-    }
+    };
     config.sysPaths.forEach(function(v,i,a){
         config.paths["system-"+v]="system/" + v;
-    })
+    });
     
     config.scenePaths.forEach(function(v,i,a){
         config.paths[v]="scene/" + v;
-    })
+    });
     
     config.plotPaths.forEach(function(v,i,a){
         config.paths[v]="plot/" + v;
-    })
+    });
 
     
 
@@ -45,7 +45,7 @@
     
     
     
-    requirejs(["jquery", "system-sys", "angular", 'angular-module', "system-scene", 'angular-animate', ], function ($, sys, angular, module, scene) {
+    requirejs(["jquery", "system-sys", "angular", 'angular-module', "system-scene", 'angular-animate'], function ($, sys, angular, module, scene) {
     $("#game-first-tip").remove();
 
     module.controller("root_controller", ["$rootScope", "$scope", function ($rootScope, $scope) {
@@ -55,7 +55,7 @@
     sys.sceneLoaded = function () {
         angular.bootstrap("body", ['home-app']);
         scene.go("preload");
-    }})
+    }});
 })()
 
 //

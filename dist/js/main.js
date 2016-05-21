@@ -10,7 +10,7 @@
             "angular-animate": "angular-animate.min"
         },
         plotPaths: ["start"],
-        sysPaths: ["sys", "common", "dbg", "config", "scene", "plot"],
+        sysPaths: ["sys", "common", "dbg", "config", "scene", "plotApi"],
         scenePaths: ["preload", "cover", "chat"],
         map: {},
         shim: {

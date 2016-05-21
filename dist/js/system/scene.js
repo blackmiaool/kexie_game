@@ -2,7 +2,7 @@
 
 var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol ? "symbol" : typeof obj; };
 
-define(["system-sys", "system-dbg", "system-plot"], function (sys, dbg) {
+define(["system-sys", "system-dbg"], function (sys, dbg) {
     requirejs(requirejs.cfg.scenePaths, function () {
         sys.sceneLoaded();
     });
