@@ -1,4 +1,4 @@
-define(["common"], function (common) {
+define(["system-common"], function (common) {
     var g = common.g;
     var color = common.color;
     var res = {

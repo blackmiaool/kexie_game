@@ -68,8 +68,8 @@ function preEnter() {
                 //                scene.go("home");
                 //                sys.to_scene("chat"); 
             } else {
-                //                                sys.to_scene("chat");
-                scene.go("cover", "first");
+                scene.go("chat");
+//                scene.go("cover", "first");
             }
         }
 

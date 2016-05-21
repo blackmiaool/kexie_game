@@ -16,7 +16,6 @@
             common: "common",
             dbg: "dbg",
             plot_common: "plot_common",
-
         },
         map: {},
         shim: {

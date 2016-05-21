@@ -1,8 +1,8 @@
 "use strict";
 
-function _typeof(obj) { return obj && typeof Symbol !== "undefined" && obj.constructor === Symbol ? "symbol" : typeof obj; }
+var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol ? "symbol" : typeof obj; };
 
-define(["angular", "dbg", "config", "_"], function (angular, dbg, config) {
+define(["angular", "system-dbg", "system-config", "_"], function (angular, dbg, config) {
 
     var sceneChanging = false;
     var quick = false;
@@ -38,6 +38,7 @@ define(["angular", "dbg", "config", "_"], function (angular, dbg, config) {
         },
         inactive: function inactive() {
             var state = arguments.length <= 0 || arguments[0] === undefined ? true : arguments[0];
+
 
             this.removeClass("active");
             return this;

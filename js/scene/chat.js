@@ -1,5 +1,3 @@
-let plot=require("plot");
-console.log(plot);
 let exports = {};
 let sceneId = "chat";
 let $dom = scene.getScene(sceneId);
@@ -27,7 +25,7 @@ function init() {
 
 function preEnter() {
     plot.init();
-    plot_core.init();
+//    plot_core.init();
     //            plot.running = start();
     //            plot.running.next()
 }

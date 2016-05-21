@@ -1,5 +1,5 @@
 //define(["res", "common"], function (res, common) {
-define(["common"], function ( common) {
+define(["system-common"], function ( common) {
     var v_init = {
         prop: {
             shane: 0,

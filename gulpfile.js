@@ -78,13 +78,14 @@ gulp.task("plots", function () {
         gutil.log(ee);
         babel_pipe.end();
     });
-    return gulp.src('js/plots/*.js', {
+    return gulp.src('js/plot/*.js', {
             base: 'js'
         })
         .pipe(cached("plot"))
         .pipe(yield_prefix(["tc", "th", "ts", "tm", "tcc", "tmood", "tcn"]))
         .pipe(headerfooter({
-            header: `define(["res","v","sys","_"],function (res,v,sys,_){\
+            header: `define(["require","res","v","system-sys","_"],function (require,res,v,sys,_){\
+let plot=require("plot");
 return function* (plot_cb){ 
 var ts=plot.ts; 
 var tc=plot.tc; 
@@ -104,7 +105,7 @@ var tmood=plot.tmood; `,
         }))
         .pipe(babel_pipe)
         //        .pipe(browserify(get_browserify_params()))
-        .pipe(gulp.dest('dist/js')).pipe(livereload())
+        .pipe(gulp.dest('dist/js')).pipe(livereload());
 })
 gulp.task("scenes", function () {
 
@@ -118,7 +119,7 @@ gulp.task("scenes", function () {
         })
         .pipe(headerfooter({
             //            header: `define(["require","sys","angular","v","common","res","dbg"],function* (require,sys,angular,v,common,res,dbg){`,
-            header: `define(["require","scene","sys","angular","dbg","v","res","angular-module"],function (require,scene,sys,angular,dbg,v,res,module){`,
+            header: `define(["require","system-scene","system-sys","angular","system-dbg","v","res","angular-module","system-plot"],function (require,scene,sys,angular,dbg,v,res,module,plot){`,
             footer: `})`,
             filter: function (file) {
                 var cwd = file.history[0].split("/");
@@ -134,15 +135,15 @@ gulp.task("scenes", function () {
             pattern: '<!--\\sinject:<filename>-->'
         }))
         .pipe(babel_pipe)
-        .pipe(gulp.dest('dist/js')).pipe(livereload())
+        .pipe(gulp.dest('dist/js')).pipe(livereload());
 })
-gulp.task('es6', ["plots", "scenes"], function () {
+gulp.task('es6',["md"], function () {
     var babel_pipe = babel(get_babel_params());
     babel_pipe.on('error', function (ee) {
         gutil.log(ee);
         babel_pipe.end();
     });
-    return gulp.src(['js/**/*.js', "!js/scene/*.js", "!js/plots/*.js"])
+    return gulp.src(['js/**/*.js', "!js/scene/*.js", "!js/plot/*.js"])
         .pipe(cached("es6"))
         .pipe(injectfile({
             pattern: '<!--\\sinject:<filename>-->'
@@ -162,7 +163,7 @@ gulp.task('mv-res', function () {
 })
 gulp.task('default', function () {
 
-    gulp.start(["mv-dist", "mv-res", "less", "html", 'md', "es6"]);
+    gulp.start(["mv-dist", "mv-res", "less", "html", 'md', "es6","plots","scenes"]);
 
 });
 gulp.task('reload', function () {
@@ -172,6 +173,8 @@ gulp.task('reload', function () {
 });
 livereload.listen();
 gulp.watch('less/**/*.less', ['less']);
-gulp.watch('js/**/*.js', ['es6']);
+gulp.watch(['js/**/*.js', "!js/scene/*.js", "!js/plot/*.js"], ['es6']);
+gulp.watch("js/plot/*.js", ['plots']);
+gulp.watch("js/scene/*.js", ['scenes']);
 gulp.watch('index.html', ['reload']);
 gulp.watch('html/**/*.html', ['html']);

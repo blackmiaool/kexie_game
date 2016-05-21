@@ -1,7 +1,7 @@
-define(["sys", "dbg","plot"], function (sys, dbg) {
-    requirejs(["preload", "cover","chat"], function () {
+define(["system-sys", "system-dbg","system-plot"], function (sys, dbg) {
+    requirejs(requirejs.cfg.scenePaths, function () {
         sys.sceneLoaded();
-    });
+    }); 
     let sceneChanging = false;
     let scenes = {};
     let currentScene = {};

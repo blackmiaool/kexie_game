@@ -1,4 +1,4 @@
-define(["angular", "dbg", "config", "_"], function (angular, dbg, config) {
+define(["angular", "system-dbg", "system-config", "_"], function (angular, dbg, config) {
 
     let sceneChanging = false;
     let quick = false;
