@@ -118,7 +118,7 @@ gulp.task("scenes", function () {
         })
         .pipe(headerfooter({
             //            header: `define(["require","sys","angular","v","common","res","dbg"],function* (require,sys,angular,v,common,res,dbg){`,
-            header: `define(["scene","sys","angular","dbg","v","res","angular-module"],function* (scene,sys,angular,dbg,v,res,module){`,
+            header: `define(["require","scene","sys","angular","dbg","v","res","angular-module"],function (require,scene,sys,angular,dbg,v,res,module){`,
             footer: `})`,
             filter: function (file) {
                 var cwd = file.history[0].split("/");

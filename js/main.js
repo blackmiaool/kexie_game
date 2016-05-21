@@ -17,7 +17,7 @@
                 //            plot_common: "plot_common",
 
         },
-        scenePaths: ["preload", "cover"],
+        scenePaths: ["preload", "cover","chat","home","save","bigmap"],
         map: {},
         shim: {
             "angular": {
@@ -41,7 +41,7 @@
     //    delete config.plot_paths;
     requirejs.config(config);
 })()
-
+console.log(requirejs.config)
 
 requirejs(["jquery", "sys", "angular", 'angular-module', "scene", 'angular-animate', ], function ($, sys, angular, module, scene) {
     $("#game-first-tip").remove();

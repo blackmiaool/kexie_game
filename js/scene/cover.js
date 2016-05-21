@@ -12,22 +12,19 @@ let $$ = $dom.find.bind($dom);
 function init() {
     module.controller("cover_controller", function ($scope) {
         $scope.start = function () {
-            scene.to_scene("chat", "cover");
+            scene.go("chat", "cover");
         }
         $scope.read = function () {
-            scene.to_scene("save", "load", "cover");
+            scene.go("save", "load", "cover");
         }
         $scope.about = function () {
-            scene.to_scene("about", "save");
+            scene.go("about");
         }
     })
 }
 
 function preEnter() {
-    $('.logo-title').addClass('animated zoomIn').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend',
-        function () {
-            $(this).removeClass('animated zoomIn');
-        });
+
 }
 
 

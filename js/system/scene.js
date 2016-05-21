@@ -1,5 +1,5 @@
-define(["sys", "dbg"], function (sys, dbg) {
-    requirejs(["preload", "cover"], function () {
+define(["sys", "dbg","plot"], function (sys, dbg) {
+    requirejs(["preload", "cover","chat"], function () {
         sys.sceneLoaded();
     });
     let sceneChanging = false;
