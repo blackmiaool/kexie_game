@@ -1,6 +1,7 @@
 @import "common.less";
 @import "variables.less";
-@import "scene/preload.less";
+
+
 html,
 body {
     margin: 0;
@@ -43,5 +44,11 @@ input {
     }
     &[data-scene="cover"] {
         @import "scene/cover.less";
+    }
+    &[data-scene="preload"] {
+        @import "scene/preload.less";
+    }
+    &[data-scene="chat"] {
+        @import "scene/chat.less";
     }
 }

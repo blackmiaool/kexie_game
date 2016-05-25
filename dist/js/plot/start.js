@@ -69,7 +69,7 @@ define(["require", "res", "v", "system-sys", "_", "system-plotApi"], function (r
                     case 33:
                         console.log(plot.rand(1, 10));
 
-                        if (!(plot.rand(1, 10) > 5)) {
+                        if (!(plot.rand(1, 10) > 1)) {
                             _context.next = 46;
                             break;
                         }

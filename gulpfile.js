@@ -22,7 +22,10 @@ var merge = require('merge-stream');
 var yield_prefix = require('gulp-yield-prefix');
 var babel = require('gulp-babel');
 
-
+var treeify = require('file-tree-sync');
+ 
+var plotTree = treeify(path.join(__dirname, 'js',"plot"), ['.*']);
+console.log(typeof plotTree)
 function get_browserify_params() {
     return {
         insertGlobals: true,
@@ -146,6 +149,13 @@ gulp.task('es6',["md"], function () {
         .pipe(cached("es6"))
         .pipe(injectfile({
             pattern: '<!--\\sinject:<filename>-->'
+        }))
+        .pipe(headerfooter({
+            header: `let gulpConfig={plots:${JSON.stringify(plotTree)}};\n`,
+            footer: ``,
+            filter: function (file) {
+                return file.path.split("/").pop()=="main.js"
+            }
         }))
         .pipe(babel_pipe)
         .pipe(gulp.dest('dist/js'))

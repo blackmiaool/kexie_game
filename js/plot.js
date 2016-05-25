@@ -1,84 +1,63 @@
-console.log(234);
-define(["system-sys", "system-plotApi", "exports"], function (sys, plotApi, exports) {
-    console.log(234);
-
-    let start;
+define(["system-sys", "system-plotApi", "exports", "system-scene"], function (sys, plotApi, exports,scene) {
+    let p_start;
+    let p_kexie_first;
+    let p_nature_test;
+    let p_xuanjianghui;
     console.log(requirejs.cfg.plotPaths);
 
     let plotsPromise = new Promise(function (resolve, reject) {
         requirejs(requirejs.cfg.plotPaths, function () {
             let evalStr = "";
-            console.log(arguments);
+
             requirejs.cfg.plotPaths.forEach(function (v, i) {
-                evalStr += `${v}=arguments[${i}];`
+                evalStr += `p_${v}=arguments[${i}];`
             })
-            console.log(evalStr)
+
             eval(evalStr);
             resolve();
         });
     })
 
-
-    console.log(start);
-
-    function run_plot(p, cb) {
-
+    function runPlot(p, cb) {
         exports.running = p(cb);
-        console.log("next2");
         setTimeout(function () {
             exports.running.next();
         })
-
-
-
     }
-    exports.init = function () {
+
+    function init() {
         plotApi.init();
         plotsPromise.then(function () {
-            run_plot(start, function () {
-                console.log(123)
-            })
+
+            function start_cb(result) {
+                console.log("startcb", result)
+                if (result == "again") {
+                    runPlot(p_start, start_cb);
+                } else if (result == "cover") {
+                    scene.go("cover");
+                } else {
+                    runPlot(p_nature_test, function () {
+                        runPlot(p_xuanjianghui, function () {
+
+                            runPlot(p_kexie_first, function () {
+                                scene.go("home");
+                            })
+                        })
+                    })
+                }
+
+            }
+//            runPlot(p_start, start_cb)
+                            runPlot(p_xuanjianghui, start_cb)
         })
     }
-    exports.resume = function (ret) {
-            //        console.log("next1");
-            exports.running.next(ret);
-        }
-        //    exports.init = function () {
-        //
-        //        function run_plot(p, cb) {
-        //            exports.running = p(cb);
-        //            //            console.log("next2");
-        //            setTimeout(function () {
-        //                exports.running.next();
-        //            })
-        //
-        //        }
-        //
-        //        function start_cb(result) {
-        //            console.log("startcb", result)
-        //            if (result == "again") {
-        //                run_plot(p_start, start_cb);
-        //            } else if (result == "cover") {
-        //                sys.to_scene("cover");
-        //            } else {
-        //                run_plot(p_nature, function () {
-        //                    run_plot(p_xuanjianghui, function () {
-        //
-        //                        run_plot(p_kexiefirst, function () {
-        //                            sys.to_scene("home");
-        //                        })
-        //                    })
-        //                })
-        //            }
-        //
-        //        }
-        //        //        run_plot(p_start, start_cb) 
-        //        run_plot(p_kexiefirst, start_cb)
-        //    }
-        //    exports.resume = function (ret) {
-        //        //        console.log("next1");
-        //        exports.running.next(ret);
-        //    }
+
+    function resume(ret) {
+        exports.running.next(ret);
+    }
+    exports = $.extend(exports, {
+        init,
+        resume,
+    })
     return exports;
 })

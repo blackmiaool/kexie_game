@@ -11,7 +11,7 @@ if (result == 1) {
     tc("你想了想觉得不甘心，于是回到高中复读。")
     tc("结果。。。")
     console.log(plot.rand(1, 10));
-    if (plot.rand(1, 10) > 5) {
+    if (plot.rand(1, 10) > 1) {
         ts(res.img.qinghuadaxue);
         tc("经过不懈的努力，你考入了TOP2!<br/>完美结局【未曾开始的结束】达成!<br/>难度：1");
         plot.game_over = true;

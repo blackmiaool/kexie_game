@@ -1,0 +1,103 @@
+@import "common.less";
+.chat-wrap {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+}
+
+button.menu_btn,
+input.menu_btn,
+.btn-wrap .input-group {
+    position: absolute;
+    margin-left: auto;
+    margin-right: auto;
+    font-size: 20px;
+    width: 300px;
+}
+
+button.menu_btn {
+    left: 0;
+    right: 0;
+    margin: auto;
+}
+
+.btn-wrap,
+.bg,
+.half-wrap,
+.text-wrap,
+{
+    position: absolute;
+    height: 100%;
+    border: none;
+    width: 100%;
+    /*text-align: center;*/
+}
+
+.text-wrap {
+    .chat-text {
+        .unselectable;
+        background-image: url("@{res-folder}/UI/messageBack.png");
+        position: relative;
+        top: 350px;
+        width: 960px;
+        height: 180px;
+        padding-top: 30px;
+        padding-left: 50px;
+        padding-right: 50px;
+        .chat-content {
+            text-align: left;
+            font-size: 25px;
+            color: rgb(255, 255, 255);
+            text-indent: 2em;
+            margin: 0px;
+        }
+    }
+    .name-wrap {
+        position: absolute;
+        top: 315px;
+        left: 0px;
+        width: 398px;
+        height: 53px;
+        .name-content {
+            font-size: 23px;
+            margin-top: 18px;
+            text-align: center;
+            width: 250px;
+        }
+    }
+}
+
+.half-wrap {
+    .pp {        
+        .unselectable;
+        .transform(translateX(-50%));
+        position: absolute;
+        height: 450px;
+        bottom: 0;
+        
+    }
+}
+
+.mood-wrap {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    text-align: center;
+    .mood {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        margin: auto;
+    }
+}
+
+.btn-wrap {
+    text-align: center;
+}
+
+.bg {
+    width: 100%;
+    background-size: cover;
+}

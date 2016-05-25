@@ -2,112 +2,111 @@
 
 var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol ? "symbol" : typeof obj; };
 
-console.log(25);
 define(["require", "system-sys", "system-common", "system-dbg", "res"], function (require, sys, common, dbg, res) {
-    //   
-    //    var sys = require("system-sys");
-    //    var common = require("system-common");
-    //    var dbg = require("system-dbg");
-    //    var res = require("res");
-    var plot_core;
-    setTimeout(function () {
-        plot_core = require("plot");
-        console.log(plot_core, "lkjlkjlkj");
-    });
+
+    var $dom = $(".scene[data-scene=\"chat\"]");
+    var $$ = $dom.find.bind($dom);
+    var $bg = $$(".bg");
+    var $chat = $$(".chat-text");
+    var $chatContent = $$(".chat-content");
+    var $nameWrap = $$(".name-wrap");
+    var $nameContent = $$(".name-content");
+    var $btnWrap = $$(".btn-wrap");
+
+    var $halfWrap = $$(".half-wrap");
+    var $mood = $$(".mood-wrap .mood");
+
+    var plot_core = require("plot");
+    var $pp = $(".half-wrap .pp");
 
     var pp = res.pp;
-    var people = [];
-    var exports = {
-        running: {}
-    };
-
-    var sx = sys.sx;
-    var sy = sys.sy;
-    var btn_gap = 50;
-    var touched = false;
-    var tc_pre_things = {};
-    var touch_enable = true;
-    var running = false;
-    var result = {};
-    exports.result = result;
-    var message;
-
+    var message = messageCreate($chat, $chatContent, $nameWrap);
     var gap = {
         def: 70,
         fast: 40,
         slow: 200
     };
+    var sx = sys.sx;
+    var sy = sys.sy;
+    var peopleMoveTime = 500;
+    var btn_gap = 50;
 
-    exports.gap = gap;
-    var people_move_time = 500;
+    var fastMode = false;
+    var people = [];
+    var exports = {
+        running: {},
+        ts: ts,
+        tc: tc,
+        tm: tm,
+        tmood: tmood,
+        th: th,
+        tcc: tcc,
+        tcn: tcn,
+        gap: gap,
+        rand: rand,
+        init: init
+    };
+
+    var touched = false;
+    //    let tc_pre_things = {};
+    var touch_enable = true;
+    var running = false;
+
+    $dom.on("click", function () {
+        touched = true;
+    });
+
+    function clearTouchState() {
+        touched = false;
+    }
+
+    function rand(min, max) {
+        var number = max - min + 1;
+        number = Math.ceil(Math.random() * number) + min - 1;
+        return number;
+    };
 
     function touch_wait(cb) {
         var a = setInterval(function () {
             if (touched) {
                 touched = false;
-                if (touch_enable) {
-                    clearInterval(a);
-                    cb();
-                }
+                clearInterval(a);
+                cb();
             }
         }, 100);
     };
-    var rnd;
-    rnd.today = new Date();
-    rnd.seed = rnd.today.getTime();
 
-    function rnd() {
-        rnd.seed = (rnd.seed * 9301 + 49297) % 233280;
-        return rnd.seed / 233280.0;
-    };
-
-    function rand(min, max) {
-        //    console.log(min,max)
-        var number = max - min + 1;
-        number = Math.ceil(rnd() * number) + min - 1;
-        return number;
-    };
-    exports.rand = rand;
-
-    function message_create() {
-        var t = $('#chat_text');
-        var container = $("#chat_content");
-        var name_img = $('#name_all');
+    function messageCreate(t, $container, $nameImg) {
 
         var skip;
-        t.fadeOut_real = t.fadeOut;
-        t.fadeOut = function () {
-            //        console.log("faddeee",arguments)
-            name_img.fadeOut(arguments);
-            t.fadeOut_real.apply(t, arguments);
+        t.fade = function () {
+            $nameImg.fadeOut(arguments);
+            this.fadeOut(this, arguments);
         };
-        t.setNString = function (text, cb, gap) {
-            //    console.log($("<label>" + text + "</label>").children())
-            container.html("");
-            var ele = $("<label>" + text + "</label>");
+        t.setNString = function (textRaw, cb, gap) {
+            $container.empty();
+            var text = textRaw;
+            var $all = $("<label>" + text + "</label>");
             var data = [];
             var running = true;
-            var text_bak = text;
-            var ret = function ret(cmd) {
+
+            function setState(cmd) {
                 switch (cmd) {
                     case "fast":
                         running = false;
-                        container[0].innerHTML = text_bak;
+                        $container[0].innerHTML = textRaw;
                         cb();
                         break;
                 }
-            };
-
-            function push(a) {
-                data.push(a);
             }
-            text = ele[0].innerHTML;
-            ele.children().each(function () {
+
+            text = $all[0].innerHTML;
+            $all.children().each(function () {
                 //            console.log(1,text);
                 text = text.split(this.outerHTML);
                 //            console.log(2,text);
-                push(text[0]);
-                push(this);
+                data.push(text[0]);
+                data.push(this);
                 var a = "";
                 var start = true;
                 for (var i = 1; i < text.length; i++) {
@@ -122,7 +121,7 @@ define(["require", "system-sys", "system-common", "system-dbg", "res"], function
                 text = a;
                 //            console.log(3,text);
             });
-            push(text);
+            data.push(text);
             var index = 0;
             //        var gap = 200;
 
@@ -137,7 +136,7 @@ define(["require", "system-sys", "system-common", "system-dbg", "res"], function
                         case "string":
                             var t_put = function t_put(ttt) {
                                 //                    console.info(t);
-                                container[0].innerHTML += ttt;
+                                $container[0].innerHTML += ttt;
                             };
 
                             var j = 0;
@@ -165,7 +164,7 @@ define(["require", "system-sys", "system-common", "system-dbg", "res"], function
                             //                console.log(thing.outerHTML)
                             thing.innerHTML = "";
                             thing = $(thing);
-                            container.append(thing);
+                            $container.append(thing);
                             var j = 0;
                             var len = m.length;
                             //                console.log(len);
@@ -192,14 +191,13 @@ define(["require", "system-sys", "system-common", "system-dbg", "res"], function
                 }
             }
             play();
-            return ret;
+            return setState;
         };
         var charIndex = -1;
         var stringLength = 0;
         var inputText;
-        var text_content = $("#chat_text_content");
-        var name_text = $("#name_content");
-        var name_all = $("#name_all");
+        var name_text = $nameContent;
+        var name_all = $nameWrap;
         var name;
         name_all.hide();
         t.setName = function (text) {
@@ -221,8 +219,8 @@ define(["require", "system-sys", "system-common", "system-dbg", "res"], function
             plot_core.resume(ret);
         }, 0);
     }
-    exports.tm = function () {
-        touch_enable = false;
+
+    function tm() {
         var arg_len = 0;
         var it;
         if (arguments[0] && !arguments[1] && Array.isArray(arguments[0])) {
@@ -244,11 +242,11 @@ define(["require", "system-sys", "system-common", "system-dbg", "res"], function
 
         var len = it.length;
         var menu_value = false;
-        var div_btn = $("#div-btn");
+        var div_btn = $btnWrap;
         var cb = function cb(index, v) {
             div_btn.empty();
             setTimeout(function () {
-                touched = false;
+                clearTouchState();
             }, 0);
             //            var js_arg={};
             //            js_arg = {
@@ -358,24 +356,26 @@ define(["require", "system-sys", "system-common", "system-dbg", "res"], function
         return menu_value;
     };
     var pp_pre;
-    exports.tcc = function () {
+
+    function tcc() {
         var args = [].slice.call(arguments, 0);
         args.splice(1, 0, pp_pre);
-        exports.tc.apply(this, args);
-    };
+        tc.apply(this, args);
+    }
     var tc_fast_mode = false;
-    exports.tcn = function () {
+
+    function tcn() {
         tc_fast_mode = true;
-        exports.tc.apply(this, arguments);
-    };
-    exports.tc = function (text, name, gapnum, color) {
-        tc_pre_things.name = name;
-        tc_pre_things.gapnum = gapnum;
-        tc_pre_things.color = color;
-        touched = false;
-        touch_enable = true;
+        tc.apply(this, arguments);
+    }
+
+    function tc(text, name, gapnum, color) {
+        //        tc_pre_things.name = name;
+        //        tc_pre_things.gapnum = gapnum;
+        //        tc_pre_things.color = color;
+        clearTouchState();
         if (!gapnum) {
-            gapnum = exports.gap.def;
+            gapnum = gap.def;
         }
         if (text) {
             text = text.replace(/,/g, "，").replace(/\./g, "。").replace(/!/g, "！").replace(/\?/g, "？");
@@ -394,7 +394,7 @@ define(["require", "system-sys", "system-common", "system-dbg", "res"], function
                         //                $("#pp" + name.name).animate({opacity:"1"});
                         //                    if (name == pp.you)
                         //                        break;
-                        $("#div-half img").each(function () {
+                        $pp.each(function () {
 
                             if ($(this).attr("id") != "pp" + name.name) {
                                 $(this).animate({
@@ -424,12 +424,12 @@ define(["require", "system-sys", "system-common", "system-dbg", "res"], function
                 tc_fast_mode = false;
             }
         }
-        var handle = message.setNString(text, cb1, gapnum);
+        var setState = message.setNString(text, cb1, gapnum);
 
         function cb2() {
             if (text_processing) {
                 //            console.log("slkjswer")
-                handle("fast");
+                setState("fast");
                 //            message.fast();
                 touch_wait(cb2);
             } else {
@@ -438,7 +438,7 @@ define(["require", "system-sys", "system-common", "system-dbg", "res"], function
                 plot_resume();
             }
         }
-        if (dbg.isinfastmode) {
+        if (fastMode) {
             cb2();
         } else {
             if (name != "跳过") {
@@ -447,127 +447,103 @@ define(["require", "system-sys", "system-common", "system-dbg", "res"], function
                 if (!tc_fast_mode) touch_wait(cb2);
             }
         }
-    };
+    }
 
-    exports.th = function () {
-        if (dbg.isinfastmode) {
-            var people_move_time_this = 10;
+    function th() {
+        var time = void 0;
+        var left = ["150px", "480px", "810px"];
+        if (fastMode) {
+            time = 10;
         } else {
-            people_move_time_this = people_move_time;
+            time = peopleMoveTime;
         }
         //message.setName(name.name)
-        var input = arguments;
+        var args = arguments;
         var remove = false;
         var show = false;
         for (var j in people) {
-
+            //check and remove
             var found = false;
             if (!people[j]) {
                 continue;
             }
-            for (var i in input) {
-                if (people[j].name == input[i].name) {
-
+            for (var i in args) {
+                if (people[j].name == args[i].name) {
                     found = true;
-                    continue;
+                    break;
                 }
             }
             if (!found) {
-
-                people[j].fadeOut(people_move_time_this, function () {
-                    $(this.remove());
+                people[j].fadeOut(time, function () {
+                    $(this).remove();
                 }); //.remove();
-                people[j].miaoindex = j;
-                people[j] = undefined;
+                people[j] = false;
                 remove = true;
             }
         }
 
         if (remove) {
-            setTimeout(pp_show, people_move_time_this * 1.2);
+            //choose show time
+            setTimeout(pp_show, time * 1.2);
         } else {
             pp_show();
         }
 
-        function get_half(name, pos) {
-            var id = "pp" + name.name;
-
-            var pp = $("<img id=\"" + id + "\" class=\"pp\"/>");
-            $("#div-half").append(pp);
-
-            pp.attr("indexx", pos);
-            pp.attr("src", name.half);
-            pp.css("position", "absolute");
-            pp.css("top", 40 + "px");
-            if (pos == 0) {
-                pp.css("right", "auto");
-                pp.css("left", pos_covert(pos, pp) + "px");
-            } else if (pos == 2) {
-                pp.css("left", "auto");
-                pp.css("right", pos_covert(0, pp) + "px");
-            } else {
-                pp.css("left", 0);
-                pp.css("right", 0);
-            }
-            return pp;
-        }
-
-        function pos_covert(pos, pp) {
-            var width = parseInt(pp.prop("width"));
-            var height = parseInt(pp.prop("height"));
-            if (width < 250) width = 250;
-            return sx / 6 * (pos * 2 + 1) - width / 2;
-        }
-
         function pp_show() {
-
-            for (var _i in input) {
-                var found = false;
-                if (!input[_i]) {
+            for (var _i in args) {
+                if (!args[_i]) {
                     continue;
                 }
+                var _found = false;
                 for (var j in people) {
                     if (!people[j]) {
                         continue;
                     }
-                    if (people[j].name == input[_i].name) {
-                        found = true;
-                        //print("found")
+                    if (people[j].name == args[_i].name) {
+                        _found = true;
                         if (people[j].pos != _i) {
-                            //print("not",i)
                             show = true;
                             people[j].pos = _i;
                             people[j].animate({
-                                left: pos_covert(people[j].pos, people[j]) + "px"
-                            }, people_move_time_this);
+                                left: left[_i]
+                            }, time);
                         }
                     }
                 }
 
-                if (!found) {
-                    var ppp = get_half(input[_i], _i);
+                if (!_found) {
+                    var ppp = getHalf(args[_i], _i);
                     ppp.hide();
-                    ppp.name = input[_i].name;
+                    ppp.name = args[_i].name;
                     ppp.pos = _i;
 
                     people[people.length] = ppp;
 
                     show = true;
-                    ppp.fadeIn(people_move_time_this);
+                    ppp.fadeIn(time);
                 }
             }
 
             if (show) {
-                setTimeout(plot_resume, people_move_time_this);
+                setTimeout(plot_resume, time);
             } else {
                 plot_resume();
+            }
+
+            function getHalf(peopleThis, pos) {
+                var id = "pp" + peopleThis.name;
+
+                var $pp = $("<img id=\"" + id + "\" class=\"pp\" data-name=\"" + peopleThis.name + "\" src=\"" + peopleThis.half + "\"/>");
+                $halfWrap.append($pp);
+                $pp.css("left", left[pos]);
+                return $pp;
             }
         }
     };
     var current_background = 0;
-    var bg;
-    exports.tmood = function (background) {
-        var mood = $("#div-mood .mood");
+
+    function tmood(background) {
+        var mood = $mood;
 
         mood.attr("src", background);
 
@@ -575,7 +551,7 @@ define(["require", "system-sys", "system-common", "system-dbg", "res"], function
             mood.hide();
             plot_resume();
         }
-        if (dbg.isinfastmode) {
+        if (fastMode) {
             after_touched();
         } else {
             if (name != "跳过") {
@@ -583,18 +559,16 @@ define(["require", "system-sys", "system-common", "system-dbg", "res"], function
                 touch_wait(after_touched);
             }
         }
-    };
-    exports.ts = function (background, time) {
-        touch_enable = false;
-        var fadeout_time = 800;
-        if (dbg.isinfastmode) {
+    }
+
+    function ts(background) {
+        var time = arguments.length <= 1 || arguments[1] === undefined ? 800 : arguments[1];
+
+
+        if (fastMode) {
             time = 10;
         }
-        //        touch_enable = true;
 
-        if (time == undefined || time == false) {
-            time = fadeout_time;
-        }
         if (background == current_background) {
             time = 0.01;
         }
@@ -607,39 +581,32 @@ define(["require", "system-sys", "system-common", "system-dbg", "res"], function
             return "url(\"" + u + "\")";
         }
         if (!current_background) {
-            bg.hide();
-            console.log(bg, background);
-            bg.css("background-image", get_url(background));
-            console.log(bg, bg.css("background-image"));
-            bg.fadeIn(time);
+            $bg.hide();
+            //            console.log($bg, background)
+            $bg.css("background-image", get_url(background));
+            //            console.log($bg, $bg.css("background-image"))
+            $bg.fadeIn(time);
 
             setTimeout(function () {
 
                 plot_resume();
             }, time);
         } else {
-            bg.fadeOut(time);
+            $bg.fadeOut(time);
             setTimeout(function () {
-                bg.css("background-image", get_url(background));
-                bg.fadeIn(time);
+                $bg.css("background-image", get_url(background));
+                $bg.fadeIn(time);
             }, time);
             setTimeout(function () {
                 plot_resume();
-                console.log("ppp");
+                //                console.log("ppp");
             }, 2 * time + 10);
         }
         current_background = background;
         running = false;
-    };
+    }
 
     //    window.plot = exports;
-    exports.init = function () {
-        bg = $("#scene_chat #div-bg");
-
-        message = message_create();
-        $("#scene_chat").on("click", function () {
-            touched = true;
-        });
-    };
+    function init() {}
     return exports;
 });

@@ -2515,19 +2515,6 @@ input[type="button"].btn-block {
   border-radius: 10000px;
   overflow: hidden;
 }
-.scene[data-scene="preload"] {
-  text-align: center;
-}
-.scene[data-scene="preload"] .wrap {
-  position: absolute;
-  top: 50%;
-  -webkit-transform: translateY(-50%);
-  -ms-transform: translateY(-50%);
-  transform: translateY(-50%);
-}
-.scene[data-scene="preload"] .wrap .loading-img {
-  width: 20px;
-}
 html,
 body {
   margin: 0;
@@ -2625,4 +2612,115 @@ input {
 }
 .scene[data-scene="cover"] .btn:nth-child(3):hover:before {
   background: url("../res/pixel/zhangfuai.gif") no-repeat;
+}
+.scene[data-scene="preload"] {
+  text-align: center;
+}
+.scene[data-scene="preload"] .wrap {
+  position: absolute;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+}
+.scene[data-scene="preload"] .wrap .loading-img {
+  width: 20px;
+}
+.scene[data-scene="chat"] .chat-wrap {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+}
+.scene[data-scene="chat"] button.menu_btn,
+.scene[data-scene="chat"] input.menu_btn,
+.scene[data-scene="chat"] .btn-wrap .input-group {
+  position: absolute;
+  margin-left: auto;
+  margin-right: auto;
+  font-size: 20px;
+  width: 300px;
+}
+.scene[data-scene="chat"] button.menu_btn {
+  left: 0;
+  right: 0;
+  margin: auto;
+}
+.scene[data-scene="chat"] .btn-wrap,
+.scene[data-scene="chat"] .bg,
+.scene[data-scene="chat"] .half-wrap,
+.scene[data-scene="chat"] .text-wrap {
+  position: absolute;
+  height: 100%;
+  border: none;
+  width: 100%;
+  /*text-align: center;*/
+}
+.scene[data-scene="chat"] .text-wrap .chat-text {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  -o-user-select: none;
+  user-select: none;
+  background-image: url("../res/UI/messageBack.png");
+  position: relative;
+  top: 350px;
+  width: 960px;
+  height: 180px;
+  padding-top: 30px;
+  padding-left: 50px;
+  padding-right: 50px;
+}
+.scene[data-scene="chat"] .text-wrap .chat-text .chat-content {
+  text-align: left;
+  font-size: 25px;
+  color: #ffffff;
+  text-indent: 2em;
+  margin: 0px;
+}
+.scene[data-scene="chat"] .text-wrap .name-wrap {
+  position: absolute;
+  top: 315px;
+  left: 0px;
+  width: 398px;
+  height: 53px;
+}
+.scene[data-scene="chat"] .text-wrap .name-wrap .name-content {
+  font-size: 23px;
+  margin-top: 18px;
+  text-align: center;
+  width: 250px;
+}
+.scene[data-scene="chat"] .half-wrap .pp {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  -o-user-select: none;
+  user-select: none;
+  -webkit-transform: translateX(-50%);
+  -ms-transform: translateX(-50%);
+  transform: translateX(-50%);
+  position: absolute;
+  height: 450px;
+  bottom: 0;
+}
+.scene[data-scene="chat"] .mood-wrap {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  text-align: center;
+}
+.scene[data-scene="chat"] .mood-wrap .mood {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
+}
+.scene[data-scene="chat"] .btn-wrap {
+  text-align: center;
+}
+.scene[data-scene="chat"] .bg {
+  width: 100%;
+  background-size: cover;
 }

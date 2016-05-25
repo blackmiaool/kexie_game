@@ -1,6 +1,14 @@
 "use strict";
 
+var gulpConfig = { plots: [{ "name": "kexie_first.js", "fullpath": "/home/blackmiaool/Nutstore/github/kexie_game/js/plot/kexie_first.js", "relativePath": "kexie_first.js" }, { "name": "nature_test.js", "fullpath": "/home/blackmiaool/Nutstore/github/kexie_game/js/plot/nature_test.js", "relativePath": "nature_test.js" }, { "name": "start.js", "fullpath": "/home/blackmiaool/Nutstore/github/kexie_game/js/plot/start.js", "relativePath": "start.js" }, { "name": "xuanjianghui.js", "fullpath": "/home/blackmiaool/Nutstore/github/kexie_game/js/plot/xuanjianghui.js", "relativePath": "xuanjianghui.js" }] };
+//Here inject gulpConfig veriable
 (function () {
+    console.log(gulpConfig);
+    var plotPaths = gulpConfig.plots.map(function (v, i) {
+        return v.name.split(".")[0];
+    });
+    //    let plotPaths=["start","kexie_first","nature_test","xuanjianghui"];
+    var scenePaths = ["preload", "cover", "chat"];
     var config = {
         baseUrl: "js",
         paths: {
@@ -9,9 +17,9 @@
             "_": "underscore",
             "angular-animate": "angular-animate.min"
         },
-        plotPaths: ["start"],
+        plotPaths: plotPaths,
+        scenePaths: scenePaths,
         sysPaths: ["sys", "common", "dbg", "config", "scene", "plotApi"],
-        scenePaths: ["preload", "cover", "chat"],
         map: {},
         shim: {
             "angular": {

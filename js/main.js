@@ -1,4 +1,11 @@
+//Here inject gulpConfig veriable
 (function () {
+    console.log(gulpConfig)
+    let plotPaths=gulpConfig.plots.map(function(v,i){
+        return v.name.split(".")[0];
+    });
+//    let plotPaths=["start","kexie_first","nature_test","xuanjianghui"];
+    let scenePaths= ["preload", "cover","chat"];
     var config = {
         baseUrl: "js",
         paths: {
@@ -7,9 +14,9 @@
             "_": "underscore",
             "angular-animate": "angular-animate.min",
         },
-        plotPaths:["start"],
+        plotPaths,
+        scenePaths,
         sysPaths: ["sys","common","dbg","config","scene","plotApi"],
-        scenePaths: ["preload", "cover","chat"],
         map: {},
         shim: {
             "angular": {
