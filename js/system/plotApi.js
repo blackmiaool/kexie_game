@@ -13,8 +13,8 @@ define(["require", "system-sys", "system-common", "system-dbg", "res"], function
     const $mood = $$(".mood-wrap .mood");
 
     const plot_core = require("plot");
-    const $pp=$(".half-wrap .pp");
-          
+    const $pp = $(".half-wrap .pp");
+
     const pp = res.pp;
     const message = messageCreate($chat, $chatContent, $nameWrap);
     const gap = {
@@ -242,9 +242,9 @@ define(["require", "system-sys", "system-common", "system-dbg", "res"], function
 
     function tm() {
         var arg_len = 0;
-        var it;
-        if (arguments[0] && !arguments[1] && Array.isArray(arguments[0])) {
-            it = arguments[0];
+        var items = [];
+        if (arguments.length == 1 && Array.isArray(arguments[0])) {
+            items = arguments[0];
         } else {
             for (var i in arguments) {
                 var empty = true;
@@ -252,148 +252,86 @@ define(["require", "system-sys", "system-common", "system-dbg", "res"], function
                     empty = false;
                     break;
                 }
-                if (empty)
-                    arguments[i] = undefined
-                else {
-                    arg_len++;
+                if (!empty) {
+                    items.push(arguments[i]);
                 }
             }
-            arguments.length = arg_len;
-            it = arguments;
         }
+        var len = items.length;
+        var $btnGroup = $btnWrap.find(".chat-btn-group");
 
-
-        var len = it.length
-        var menu_value = false;
-        var div_btn = $btnWrap;
-        var cb = function (index, v) {
-            div_btn.empty();
+        function choose(index, v) {
+            $btnGroup.empty();
             setTimeout(function () {
                 clearTouchState();
             }, 0);
-            //            var js_arg={};
-            //            js_arg = {
-            //                index: index,
-            //                value: v
-            //            };
-            //            {
-            //                index:index,
-            //                v:v
-            //            }
-            //            plot_resume({
-            //                index:index,
-            //                value:v
-            //            });
             plot_resume(index);
 
         }
+        items.forEach(function (v, i) {
+            menuBtnInsert(i, v, len)
+        })
 
-        function menu_btn_create(index, content, len) {
-            var id = "menu_btn" + index
-                //        console.log(typeof (content))
 
-            switch (typeof (content)) {
-            case "string":
-                var vertical_offset = 0;
+        function menuBtnInsert(index, content, len) {
+            let type;
+            let text;
+            if (typeof content == "string") {
+                type = "btn";
+                text = content;
+            } else {
+                type = content.type;
+                text = content.data;
+            }
+            switch (type) {
+            case undefined:
+                console.log('you should define the "type" key in the object params of tm');
+                break;
+            case "btn":
+            case "disabled_btn":
+                var disabled = type == "btn" ? "" : "disabled";
                 if (message.css("display") != "none") {
-                    vertical_offset = 180;
+                    $$(".btn-wrap").addClass("chatting");
+                } else {
+                    $$(".btn-wrap").removeClass("chatting");
                 }
-
-                var btn = $(`<button id='${id}' class="menu_btn btn btn-primary">
-                            </button>`);
+                var btn = $(`<div class="single-btn-wrap"><button class="menu_btn btn btn-primary ${disabled}">${text}</button></div>`);
                 btn.data("index", index)
-                    .css("top", (sy - vertical_offset) * 0.5 + ((len - 1) / (-2) + index) * btn_gap + "px")
-                    .html(content)
+                    .find("button")
                     .click(function () {
-                        menu_value = parseInt($(this).data("index"));
-                        cb(index, content);
+                        choose(index, text);
                     })
 
-                div_btn.append(btn)
+                $btnGroup.append(btn)
                 break;
-            case "object":
-                switch (content.type) {
-                case undefined:
-                    console.log('you should define the "type" key in the object params of tm');
-                    break;
-                case "btn":
-                case "disabled_btn":
-                    var disabled = content.type == "btn" ? "" : "disabled";
-                    var vertical_offset = 0;
-                    if (message.css("display") != "none") {
-                        vertical_offset = 210;
-                    }
-                    var btn = $(`<button id='${id}' class="menu_btn btn btn-primary ${disabled}">
-                                </button>`);
-                    btn.css("top", (sy - vertical_offset) * 0.5 + ((len - 1) / (-2) + index) * btn_gap + "px")
-                        .data("index", index)
-                        .html(content.data)
-                        .click(function () {
-                            menu_value = parseInt($(this).data("index"));
-                            cb(index, content.data);
-                        })
-
-                    div_btn.append(btn)
-                    break;
-                case "input_with_btn":
-                    var input_id = "menu_btn_" + index;
-                    var input_button = "menu_btn_btn" + index;
-                    var placeholder = "";
-                    var btn = "";
-                    if (content.data.placeholder != undefined) {
-                        placeholder = content.data.placeholder;
-                    }
-                    if (content.data.btn != undefined) {
-                        btn = content.data.btn;
-                    }
-                    var input_div = $(`<div class="input-group">
+            case "input_with_btn":
+                var placeholder = "";
+                var btn = "";
+                if (content.data.placeholder != undefined) {
+                    placeholder = content.data.placeholder;
+                }
+                if (content.data.btn != undefined) {
+                    btn = content.data.btn;
+                }
+                var input_div = $(`<div class="input-group">
                                     <input type="text" class="form-control" placeholder="${placeholder}"> 
                                     <span class="input-group-btn"> 
                                         <button miao_index="${index}"class="btn btn-default" type="button">${btn}</button> 
                                     </span> 
-                                 </div>`)
+                                 </div>`);
 
-                    input_div.css("top", (sy - 180) * 0.5 + ((len - 1) / (-2) + index) * btn_gap + "px")
+                var input = input_div.find("input")
+                input_div.find("button").click(function () {
+                    choose(index, input.val());
+                })
 
-                    //                    if (content.data.width == undefined) {
-                    //                        input_div.css("width", "30%")
-                    //                    } else {
-                    //                        input_div.css("width", content.data.width)
-                    //                    }
-                    var input = input_div.find("input")
-                    var index_this = index;
-                    input_div.find("button").click(function () {
-                        menu_value = {
-                            data: input.val(),
-                            index: index_this
-                        }
-                        cb(menu_value.index, menu_value.data);
-                    })
+                $btnGroup.append(input_div);
+                input_div.css("left", "480" - parseInt(input_div.css("width")) / 2 + "px")
 
-                    div_btn.append(input_div);
-                    input_div.css("left", "480" - parseInt(input_div.css("width")) / 2 + "px")
-
-                    break;
-                default:
-
-                    break;
-                }
-
-
-                break;
+                break;                
             }
 
-            return;
         }
-
-        for (var i = 0; i < len; i++) {
-
-            var btn = menu_btn_create(i, it[i], len)
-        };
-
-
-        return menu_value;
-
     };
     var pp_pre;
 
@@ -493,7 +431,7 @@ define(["require", "system-sys", "system-common", "system-dbg", "res"], function
 
     function th() {
         let time;
-        let left=["150px","480px","810px"];
+        let left = ["150px", "480px", "810px"];
         if (fastMode) {
             time = 10;
         } else {
@@ -575,13 +513,13 @@ define(["require", "system-sys", "system-common", "system-dbg", "res"], function
                 plot_resume();
 
             }
-            
+
             function getHalf(peopleThis, pos) {
                 var id = "pp" + peopleThis.name;
 
                 var $pp = $(`<img id="${id}" class="pp" data-name="${peopleThis.name}" src="${peopleThis.half}"/>`)
                 $halfWrap.append($pp)
-                $pp.css("left",left[pos]);
+                $pp.css("left", left[pos]);
                 return $pp;
             }
         }

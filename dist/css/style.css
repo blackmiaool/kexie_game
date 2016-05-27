@@ -2631,19 +2631,25 @@ input {
   height: 100%;
   width: 100%;
 }
-.scene[data-scene="chat"] button.menu_btn,
-.scene[data-scene="chat"] input.menu_btn,
-.scene[data-scene="chat"] .btn-wrap .input-group {
-  position: absolute;
-  margin-left: auto;
-  margin-right: auto;
-  font-size: 20px;
-  width: 300px;
+.scene[data-scene="chat"] .btn-wrap {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
-.scene[data-scene="chat"] button.menu_btn {
-  left: 0;
-  right: 0;
-  margin: auto;
+.scene[data-scene="chat"] .btn-wrap.chatting {
+  padding-bottom: 180px;
+}
+.scene[data-scene="chat"] .btn-wrap .chat-btn-group .single-btn-wrap {
+  text-align: center;
+}
+.scene[data-scene="chat"] .btn-wrap .chat-btn-group .single-btn-wrap button.menu_btn,
+.scene[data-scene="chat"] .btn-wrap .chat-btn-group .single-btn-wrap input.menu_btn,
+.scene[data-scene="chat"] .btn-wrap .chat-btn-group .single-btn-wrap .input-group {
+  font-size: 20px;
+  min-width: 300px;
+  display: inline-block;
+  margin-bottom: 10px;
+  text-align: center;
 }
 .scene[data-scene="chat"] .btn-wrap,
 .scene[data-scene="chat"] .bg,
@@ -2716,9 +2722,6 @@ input {
   left: 0;
   right: 0;
   margin: auto;
-}
-.scene[data-scene="chat"] .btn-wrap {
-  text-align: center;
 }
 .scene[data-scene="chat"] .bg {
   width: 100%;

@@ -5,20 +5,28 @@
     width: 100%;
 }
 
-button.menu_btn,
-input.menu_btn,
-.btn-wrap .input-group {
-    position: absolute;
-    margin-left: auto;
-    margin-right: auto;
-    font-size: 20px;
-    width: 300px;
-}
-
-button.menu_btn {
-    left: 0;
-    right: 0;
-    margin: auto;
+.btn-wrap {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    &.chatting{
+        padding-bottom: 180px;
+    }
+    .chat-btn-group {
+        .single-btn-wrap {
+            text-align: center;
+            button.menu_btn,
+            input.menu_btn,
+            .input-group {
+                font-size: 20px;
+                min-width: 300px;
+                display: inline-block;
+                margin-bottom: 10px;
+                text-align: center;
+            }
+            button.menu_btn {}
+        }
+    }
 }
 
 .btn-wrap,
@@ -68,13 +76,12 @@ button.menu_btn {
 }
 
 .half-wrap {
-    .pp {        
+    .pp {
         .unselectable;
         .transform(translateX(-50%));
         position: absolute;
         height: 450px;
         bottom: 0;
-        
     }
 }
 
@@ -91,10 +98,6 @@ button.menu_btn {
         right: 0;
         margin: auto;
     }
-}
-
-.btn-wrap {
-    text-align: center;
 }
 
 .bg {
