@@ -3,7 +3,7 @@ define(["system-sys", "system-plotApi", "exports", "system-scene"], function (sy
     let p_kexie_first;
     let p_nature_test;
     let p_xuanjianghui;
-    console.log(requirejs.cfg.plotPaths);
+    
 
     let plotsPromise = new Promise(function (resolve, reject) {
         requirejs(requirejs.cfg.plotPaths, function () {

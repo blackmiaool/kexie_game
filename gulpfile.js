@@ -25,7 +25,8 @@ var babel = require('gulp-babel');
 var treeify = require('file-tree-sync');
  
 var plotTree = treeify(path.join(__dirname, 'js',"plot"), ['.*']);
-console.log(typeof plotTree)
+var sceneTree = treeify(path.join(__dirname, 'js',"scene"), ['.*']);
+
 function get_browserify_params() {
     return {
         insertGlobals: true,
@@ -151,7 +152,7 @@ gulp.task('es6',["md"], function () {
             pattern: '<!--\\sinject:<filename>-->'
         }))
         .pipe(headerfooter({
-            header: `let gulpConfig={plots:${JSON.stringify(plotTree)}};\n`,
+            header: `let gulpConfig={plots:${JSON.stringify(plotTree)},scenes:${JSON.stringify(sceneTree)}};\n`,
             footer: ``,
             filter: function (file) {
                 return file.path.split("/").pop()=="main.js"

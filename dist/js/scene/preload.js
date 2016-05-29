@@ -69,7 +69,7 @@ define(["require", "system-scene", "system-sys", "angular", "system-dbg", "v", "
                     //                scene.go("home");
                     //                sys.to_scene("chat");
                 } else {
-                        scene.go("chat");
+                        scene.go("state");
                         //                scene.go("cover", "first");
                     }
             }

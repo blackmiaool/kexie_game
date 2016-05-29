@@ -5,7 +5,6 @@ define(["system-sys", "system-plotApi", "exports", "system-scene"], function (sy
     var p_kexie_first = void 0;
     var p_nature_test = void 0;
     var p_xuanjianghui = void 0;
-    console.log(requirejs.cfg.plotPaths);
 
     var plotsPromise = new Promise(function (resolve, reject) {
         requirejs(requirejs.cfg.plotPaths, function () {

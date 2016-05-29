@@ -4,8 +4,12 @@
     let plotPaths=gulpConfig.plots.map(function(v,i){
         return v.name.split(".")[0];
     });
+    let scenePaths=gulpConfig.scenes.map(function(v,i){
+        return v.name.split(".")[0];
+    });
+    console.log(scenePaths)
 //    let plotPaths=["start","kexie_first","nature_test","xuanjianghui"];
-    let scenePaths= ["preload", "cover","chat"];
+//    let scenePaths= ["preload", "cover","chat"];
     var config = {
         baseUrl: "js",
         paths: {
@@ -52,7 +56,7 @@
     
     
     
-    requirejs(["jquery", "system-sys", "angular", 'angular-module', "system-scene", 'angular-animate'], function ($, sys, angular, module, scene) {
+    requirejs(["jquery", "system-sys", "angular", 'angular-module', "system-scene", 'angular-animate',"plot"], function ($, sys, angular, module, scene) {
     $("#game-first-tip").remove();
 
     module.controller("root_controller", ["$rootScope", "$scope", function ($rootScope, $scope) {

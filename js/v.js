@@ -14,7 +14,6 @@ define(["system-common"], function ( common) {
             study_abt: 1,
             work_abt: 1,
             isFemale: false,
-            way: 0, //0:digital 1:analog 2:both
             belief: 0,
 
         },
