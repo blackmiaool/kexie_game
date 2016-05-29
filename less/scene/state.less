@@ -1,9 +1,8 @@
 @import "common.less";
 @import "variables.less";
-background: url("@{res-folder}/Background/state.jpg") center top no-repeat;
-background-size: cover;
 .page-select-wrap {
     position: absolute;
+    z-index: 1;
     .transform(translateY(-50%));
     top: 50%;
     left: 30px;
@@ -12,7 +11,7 @@ background-size: cover;
     flex-direction: column;
     justify-content: space-between;
     .page-select {
-//        &:extend(.btn-lg);
+        //        &:extend(.btn-lg);
         position: relative;
         outline: none;
         &:nth-child(1),
@@ -26,54 +25,144 @@ background-size: cover;
     }
 }
 
-.name,
-.job {
-    background-color: #6f5499;
-    color: white;
-    position: absolute;
-    right: 20px;
-    top: 10px;
-    padding: 5px 15px;
-    font-size: 20px;
-    display: inline-block;
-    vertical-align: middle;
-}
-
-.job {
-    right: 20px;
-    top: 60px;
-}
-
-.money {
-    .horizontal-center;
-    bottom: 10px;
-    font-size: 20px;
-    color: white;
-//    background-image: linear-gradient(#5c5b5b, #353535);
-    background-color: #5c5b5b;
-    border: 1px solid rgba(0, 0, 0, 0.5);
-    border-radius: 4px;
-    box-shadow: inset 0px 1px rgba(255, 255, 255, 0.24), 0px 1px 5px rgba(0, 0, 0, 0.6);
-    padding: 5px 15px;
-}
-
-.analog,
-.digital {
-    .horizontal-center;
-    .unselectable;
-    cursor: default;
-    font-size: 23px;
-    color: white;
-    transition: font-size 0.1s linear;
-    &:hover {
-        font-size: 26px;
+.page {
+    .abs-fill;
+    background: url("@{res-folder}/Background/state.jpg") center top no-repeat;
+    background-size: cover;
+    &[data-page="status"] {
+        background-image: url("@{res-folder}/Background/state.jpg");
+        .user-name,
+        .job {
+            background-color: @purple;
+            color: white;
+            position: absolute;
+            right: 20px;
+            top: 10px;
+            padding: 5px 15px;
+            font-size: 20px;
+            display: inline-block;
+            vertical-align: middle;
+        }
+        .job {
+            right: 20px;
+            top: 60px;
+        }
+        .money {
+            .horizontal-center;
+            bottom: 10px;
+            font-size: 20px;
+            color: white;
+                background-image: linear-gradient(#5c5b5b, #353535);
+            background-color: #5c5b5b;
+            border: 1px solid rgba(0, 0, 0, 0.5);
+            border-radius: 4px;
+            box-shadow: inset 0px 1px rgba(255, 255, 255, 0.24), 0px 1px 5px rgba(0, 0, 0, 0.6);
+            padding: 5px 15px;
+        }
+        .analog,
+        .digital {
+            .horizontal-center;
+            .unselectable;
+            cursor: default;
+            font-size: 23px;
+            color: white;
+            transition: font-size 0.1s linear;
+            &:hover {
+                font-size: 26px;
+            }
+        }
+        .analog {
+            top: 34%;
+        }
+        .digital {
+            top: 63%;
+        }
+        .props-wrap {
+            position: absolute;
+            right: 100px;
+            top: 220px;
+            display: flex;
+            flex-direction: column;
+            .prop {
+                margin-bottom: 20px;
+            }
+        }
+        .prop {
+            padding: 3px 7px 4px 7px;
+            border-radius: 5px;
+            display: inline-block;
+            @color: steelblue;
+            font-size: 0;
+            color: white;
+            background-color: @color;
+            .key {
+                display: inline-block;
+                padding: 5px 10px 5px 5px;
+                font-size: 18px;
+            }
+            .value {
+                display: inline-block;
+                text-align: center;
+                border-radius: 4px;
+                font-size: 18px;
+                color: black;
+                background-color: white;
+                padding: 3px 0px;
+                width: 60px;
+            }
+        }
+        .basic-wrap {
+            position: absolute;
+            right: 60px;
+            top: 30px;
+            display: flex;
+            flex-direction: column;
+            .basic {
+                margin-bottom: 15px;
+            }
+        }
+        .basic {
+            padding: 3px 7px 4px 7px;
+            border-radius: 5px;
+            display: inline-block;
+            @color: @purple;
+            font-size: 0;
+            color: white;
+            background-color: @color;
+            .key {
+                display: inline-block;
+                padding: 5px 10px 5px 5px;
+                font-size: 18px;
+            }
+            .value {
+                display: inline-block;
+                text-align: center;
+                border-radius: 4px;
+                font-size: 18px;
+                color: black;
+                background-color: white;
+                padding: 3px 0px;
+                width: 100px;
+            }
+        }
     }
-}
-
-.analog {
-    top: 34%;
-}
-
-.digital {
-    top: 63%;
+    &[data-page="skill"] {
+        background-image: url("@{res-folder}/Background/skill_bg.jpg");
+        .highlight {
+            overflow: auto;
+            padding: 9px 14px;
+            margin-bottom: 14px;
+            background-color: rgba(255, 255, 255, 0.3);
+            border: 1px solid #e1e1e8;
+            border-radius: 4px;
+            .abs-fill;
+            left: 200px;
+            top: 20px;
+            bottom: 20px;
+            right: 30px;
+            table {
+                color: white;
+            }
+        }
+    }
 }

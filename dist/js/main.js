@@ -3,14 +3,14 @@
 var gulpConfig = { plots: [{ "name": "kexie_first.js", "fullpath": "/home/blackmiaool/Nutstore/github/kexie_game/js/plot/kexie_first.js", "relativePath": "kexie_first.js" }, { "name": "nature_test.js", "fullpath": "/home/blackmiaool/Nutstore/github/kexie_game/js/plot/nature_test.js", "relativePath": "nature_test.js" }, { "name": "start.js", "fullpath": "/home/blackmiaool/Nutstore/github/kexie_game/js/plot/start.js", "relativePath": "start.js" }, { "name": "xuanjianghui.js", "fullpath": "/home/blackmiaool/Nutstore/github/kexie_game/js/plot/xuanjianghui.js", "relativePath": "xuanjianghui.js" }], scenes: [{ "name": "chat.js", "fullpath": "/home/blackmiaool/Nutstore/github/kexie_game/js/scene/chat.js", "relativePath": "chat.js" }, { "name": "cover.js", "fullpath": "/home/blackmiaool/Nutstore/github/kexie_game/js/scene/cover.js", "relativePath": "cover.js" }, { "name": "home.js", "fullpath": "/home/blackmiaool/Nutstore/github/kexie_game/js/scene/home.js", "relativePath": "home.js" }, { "name": "preload.js", "fullpath": "/home/blackmiaool/Nutstore/github/kexie_game/js/scene/preload.js", "relativePath": "preload.js" }, { "name": "state.js", "fullpath": "/home/blackmiaool/Nutstore/github/kexie_game/js/scene/state.js", "relativePath": "state.js" }] };
 //Here inject gulpConfig veriable
 (function () {
-    console.log(gulpConfig);
+    //    console.log(gulpConfig)
     var plotPaths = gulpConfig.plots.map(function (v, i) {
         return v.name.split(".")[0];
     });
     var scenePaths = gulpConfig.scenes.map(function (v, i) {
         return v.name.split(".")[0];
     });
-    console.log(scenePaths);
+    //    console.log(scenePaths)
     //    let plotPaths=["start","kexie_first","nature_test","xuanjianghui"];
     //    let scenePaths= ["preload", "cover","chat"];
     var config = {

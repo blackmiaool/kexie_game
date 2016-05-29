@@ -389,67 +389,6 @@ define(["system-common"], function (common) {
             "instrument": "烙铁+电锯+机械基础工具",
             "date": "25"
         }],
-        "course": [{
-            "name": "微积分1",
-            "week": "1-18",
-            "even_odd": "both",
-            "index": "1-上午,5-上午",
-            "term": "1"
-        }, {
-            "name": "新生教育课",
-            "week": "1-15",
-            "even_odd": "even",
-            "index": "1-下午",
-            "term": "1"
-        }, {
-            "name": "线性代数",
-            "week": "1-18",
-            "even_odd": "both",
-            "index": "2-上午,3-下午",
-            "term": "1"
-        }, {
-            "name": "C语言",
-            "week": "1-18",
-            "even_odd": "even",
-            "index": "2-下午",
-            "term": "1"
-        }, {
-            "name": "中国近代史纲要",
-            "week": "1-18",
-            "even_odd": "odd",
-            "index": "2-下午",
-            "term": "1"
-        }, {
-            "name": "高级英语听说",
-            "week": "1-18",
-            "even_odd": "both",
-            "index": "3-上午",
-            "term": "1"
-        }, {
-            "name": "现代工程设计制图",
-            "week": "1-18",
-            "even_odd": "both",
-            "index": "4-上午",
-            "term": "1"
-        }, {
-            "name": "形式与政策",
-            "week": "11-18",
-            "even_odd": "both",
-            "index": "4-下午",
-            "term": "1"
-        }, {
-            "name": "军事理论",
-            "week": "1-10",
-            "even_odd": "both",
-            "index": "4-下午",
-            "term": "1"
-        }, {
-            "name": "大学体育1",
-            "week": "1-18",
-            "even_odd": "both",
-            "index": "5-下午",
-            "term": "1"
-        }],
         "skill": [{
             "name": "论文",
             "pre": "none",
@@ -511,7 +450,7 @@ define(["system-common"], function (common) {
             "upgrade": "1,1,2,2,3,3",
             "des": "中高级电子技能，嵌入式的重要基础，用于理解单片机的原理"
         }, {
-            "name": "算法与数据结构",
+            "name": "数据结构与算法",
             "pre": "C语言",
             "upgrade": "1,1,2,2,3,3",
             "des": "中级编程技能，笔试面试的重要部分，用于组织数据，减少计算所需空间与时间"
@@ -567,7 +506,7 @@ define(["system-common"], function (common) {
             "des": "高级嵌入式技能，用于设计数字可编程电路与仿真ASIC"
         }, {
             "name": "嵌入式",
-            "pre": "接口技术,单片机原理,数据结构",
+            "pre": "接口技术,单片机原理,数据结构与算法",
             "upgrade": "1,2,3,4,5,6,7,8",
             "des": "高级技能，用于设计嵌入式相关电路与软件"
         }]
@@ -582,65 +521,9 @@ define(["system-common"], function (common) {
     function res_data_handle(data) {
 
         for (var table_name in data) {
-            eval("window." + table_name + "=" + "data[\"" + table_name + "\"];");
+            console.log(table_name);
+            window[table_name] = data[table_name];
             switch (table_name) {
-                case "course":
-                    window.courses = [];
-                    var course = data.course;
-                    for (var i = 0; i <= 4; i++) //term
-                    {
-                        courses[i] = [];
-                        for (var j = 0; j <= 20; j++) //weeks
-                        {
-                            courses[i][j] = [];
-                            for (var k = 0; k <= 7; k++) //days
-                            {
-                                courses[i][j][k] = {};
-                            }
-                        }
-                    }
-                    for (var i in course) {
-                        course[i].start = parseInt(course[i].week.split("-")[0]);
-                        course[i].end = parseInt(course[i].week.split("-")[1]);
-                        course[i].index = course[i].index.split(",");
-                        course[i].data = [];
-                        for (var j in course[i].index) {
-                            course[i].data.push({
-                                index: parseInt(course[i].index[j].split("-")[0]),
-                                period: course[i].index[j].split("-")[1]
-                            });
-                        }
-
-                        course[i].week = [];
-                        switch (course[i].even_odd) {
-                            case "even":
-                                for (var j = course[i].start; j <= course[i].end; j++) {
-                                    if (j % 2 == 0) {
-                                        course[i].week.push(j);
-                                    }
-                                }
-                                break;
-                            case "odd":
-                                for (var j = course[i].start; j <= course[i].end; j++) {
-                                    if (j % 2 == 1) {
-                                        course[i].week.push(j);
-                                    }
-                                }
-                                break;
-                            case "both":
-                                for (var j = course[i].start; j <= course[i].end; j++) {
-                                    course[i].week.push(j);
-                                }
-                                break;
-                        }
-                        for (var j in course[i].week) {
-                            for (var k in course[i].data) {
-                                courses[course[i].term][course[i].week[j]][course[i].data[k].index][course[i].data[k].period] = course[i].name;
-                            }
-                        }
-                    }
-
-                    break;
                 case "item":
                     window.items = {};
                     for (var i in item) {
@@ -683,10 +566,12 @@ define(["system-common"], function (common) {
                     for (var i in skill) {
                         skills[skill[i].name] = {};
                         skills[skill[i].name].name = skill[i].name;
+                        skills[skill[i].name].level = "0";
                         var skill_this = skills[skill[i].name];
                         skill_this.pre = [];
                         var pre_array = skill[i].pre.split(",");
                         for (var j in pre_array) {
+                            console.log(pre_array[j], skills[pre_array[j]]);
                             if (pre_array[j] != "none") {
                                 skill_this.pre.push(skills[pre_array[j]]);
                             }

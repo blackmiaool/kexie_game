@@ -108,20 +108,61 @@
             <!-- inject2: save.html-->
         </div>
         <div class="scene" data-scene="state">
-            <div class="wrap">
-                <div class="page-select-wrap">
-                    <button class="ym-button ym-success ym-large page-select">状态</button>
-                    <button class="ym-button ym-warning  ym-large page-select">技能</button>
-                    <button class="ym-button ym-success  ym-large page-select">朋友</button>
-                    <button class="ym-button ym-success ym-large page-select">经历</button>
-                    <button class="ym-button ym-warning ym-large page-select">物品</button>
-                    <button class="ym-button ym-success ym-large page-select">设备</button>
+            <div ng-controller="state-controller" class="wrap">
+                <div class="page-select-wrap" ng-init="currentPage='技能'">
+                    <button ng-repeat="page in pages" ng-click="setPage(page.name)" class="ym-button {{page.class}} ym-large page-select" ng-bind="page.name"></button>
                 </div>
-                <span class="name">理论考</span>
-                <div class="job">麻瓜</div>
-                <div class="money">34534元</div>
-                <span class="analog">模拟: 234</span>
-                <span class="digital">数字: 432</span>
+            
+                <div class="page" data-page="status" ng-show="currentPage=='状态'">
+                    <div class="money" ng-bind="'金钱: '+v.basic.money"></div>
+                    <span class="analog">模拟: 234</span>
+                    <span class="digital">数字: 432</span>
+                    <div class="basic-wrap">
+                        <span class="basic">
+                        <span class="key"><span class="glyphicon glyphicon-user"></span> 姓名</span>
+                        <span class="value" ng-bind="v.basic.name"></span>
+                        </span>
+                        <span class="basic">
+                        <span class="key"><span class="glyphicon glyphicon-star"></span> 职位</span>
+                        <span class="value" ng-bind="v.basic.title"></span>
+                        </span>
+                        <span class="basic">
+                        <span class="key"><span class="glyphicon glyphicon-king"></span> 阵营</span>
+                        <span class="value">绝对中立</span>
+                        </span>
+                    </div>
+                    <div class="props-wrap">
+                        <span class="prop" ng-repeat="key in ['焊接','论文','声望','道德','秩序']">
+                    <span class="key"><span class="glyphicon" ng-class="{'glyphicon-save':key=='焊接','glyphicon-file':key=='论文','glyphicon-fire':key=='声望','glyphicon-heart':key=='道德','glyphicon-leaf':key=='秩序'}"></span> <span ng-bind="key"></span></span>
+                        <span class="value" ng-bind="v.prop[key]"></span>
+                        </span>
+                    </div>
+                </div>
+                <div class="page" data-page="skill" ng-show="currentPage=='技能'">
+                    <div class="table-wrap highlight">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>技能</th>
+                                    <td>等级</td>
+                                    <td>依赖</td>
+            <!--                        <td>操作</td>-->
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="v in skills" title="{{::v.des}}">
+                                    <th ng-bind="::v.name"></th>
+                                    <td ng-bind="v.level"></td>
+                                    <td ng-bind="::getPre(v)"></td>
+            <!--                        <td><button class="ym-button ym-black">升级</button></td>-->
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+            
+                </div>
+            
+            
             </div>
         </div>
     </div>

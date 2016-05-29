@@ -1,13 +1,13 @@
 //Here inject gulpConfig veriable
 (function () {
-    console.log(gulpConfig)
+//    console.log(gulpConfig)
     let plotPaths=gulpConfig.plots.map(function(v,i){
         return v.name.split(".")[0];
     });
     let scenePaths=gulpConfig.scenes.map(function(v,i){
         return v.name.split(".")[0];
     });
-    console.log(scenePaths)
+//    console.log(scenePaths)
 //    let plotPaths=["start","kexie_first","nature_test","xuanjianghui"];
 //    let scenePaths= ["preload", "cover","chat"];
     var config = {

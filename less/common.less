@@ -8,6 +8,7 @@
 @import "bootstrap/glyphicons.less";
 @import "bootstrap/dropdowns.less";
 @import "bootstrap/progress-bars.less";
+@import "bootstrap/tables.less";
 @import "prefix.less";
 .clickable {
     cursor: pointer;
@@ -128,6 +129,7 @@
     overflow: visible;
     text-decoration: none !important;
     text-shadow: 0 1px 0 rgba(255, 255, 255, 0.8);
+    outline: none;
     &.ym-xlarge{
         font-size: 1.5em;
     }
@@ -157,33 +159,34 @@
     &.ym-primary {
         -webkit-box-shadow: 0 0 1px 1px rgba(255, 255, 255, 0.3) inset, 0 1px 0 rgba(0, 0, 0, 0.15);
         box-shadow: 0 0 1px 1px rgba(255, 255, 255, 0.3) inset, 0 1px 0 rgba(0, 0, 0, 0.15);
-        background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #8888ee), color-stop(100%, #6666cc));
-        background: -webkit-linear-gradient(top, #8888ee, #6666cc);
-        background: -moz-linear-gradient(top, #8888ee, #6666cc);
-        background: -ms-linear-gradient(top, #8888ee, #6666cc);
-        background: linear-gradient("to bottom", #8888ee, #6666cc);
+        .linear-gradient-top(#8888ee,#8888ee, 0,#6666cc,100%); 
         zoom: 1;
         border: 1px solid #007;
         color: #fff !important;
         text-shadow: 0 1px 0 rgba(0, 0, 0, 0.8);
         &:hover {
-            background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #8888ff), color-stop(100%, #6666dd));
-            background: -webkit-linear-gradient(top, #8888ff, #6666dd);
-            background: -moz-linear-gradient(top, #8888ff, #6666dd);
-            background: -ms-linear-gradient(top, #8888ff, #6666dd);
-            background: linear-gradient("to bottom", #8888ff, #6666dd);
+            .linear-gradient-top(#8888ff,#8888ff, 0,#6666dd,100%); 
             zoom: 1;
         }
         &:active {
             -webkit-box-shadow: inset 2px 2px 3px rgba(0, 0, 0, 0.2);
             box-shadow: inset 2px 2px 3px rgba(0, 0, 0, 0.2);
-            background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #8888cc), color-stop(100%, #6666aa));
-            background: -webkit-linear-gradient(top, #8888cc, #6666aa);
-            background: -moz-linear-gradient(top, #8888cc, #6666aa);
-            background: -ms-linear-gradient(top, #8888cc, #6666aa);
-            background: linear-gradient("to bottom", #8888cc, #6666aa);
+            .linear-gradient-top(#8888cc,#8888cc, 0,#6666aa,100%); 
             zoom: 1;
         }
+    }
+    &.ym-black {
+        @color1:rgba(255,255,255,0.24);
+        @color2:rgba(0,0,0,0.6);
+        @color3:#5c5b5b;
+        @color4:#353535;
+        -webkit-box-shadow: inset 0px 1px @color1, 0px 1px 5px @color2;
+        box-shadow: inset 0px 1px @color1, 0px 1px 5px @color2;
+        .linear-gradient-top(@color3,@color3, 0,@color4,100%); 
+        zoom: 1;
+        border: 1px solid rgba(0, 0, 0, 0.5);
+        color: #fff !important;
+        text-shadow: 0 1px 0 rgba(0, 0, 0, 0.8);
     }
     &.ym-success {
         -webkit-box-shadow: 0 0 1px 1px rgba(255, 255, 255, 0.3) inset, 0 1px 0 rgba(0, 0, 0, 0.15);

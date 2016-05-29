@@ -1,22 +1,22 @@
 "use strict";
 
-//define(["res", "common"], function (res, common) {
-define(["system-common"], function (common) {
+define(["res", "system-common"], function (res, common) {
     var v_init = {
         prop: {
-            shane: 0,
-            zhixu: 0
+            数字: 0,
+            模拟: 0,
+            焊接: 0,
+            论文: 0,
+            声望: 0,
+            道德: 0,
+            秩序: 0
         },
         basic: {
             name: "李厷叺",
             title: "麻瓜",
             test: 0,
             money: 1000,
-            money_abt: 1,
-            study_abt: 1,
-            work_abt: 1,
-            isFemale: false,
-            belief: 0
+            sex: "male"
 
         },
         study: {
@@ -65,12 +65,13 @@ define(["system-common"], function (common) {
         components: {},
         left_points: 10
     };
-    //    for (var i in res.pp) {
-    //        v_init.amity[i] = 0;
-    //    }
+    for (var i in res.pp) {
+        v_init.amity[i] = 0;
+    }
     for (var i = 0; i < 8; i++) {
         v_init.study.arrange[i] = [];
     }
+
     var v = common.clone(v_init);
     var components = ["skills", "combines", "items", "quest", "courses"];
     for (var i in components) {
