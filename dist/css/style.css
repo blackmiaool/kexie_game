@@ -3248,10 +3248,10 @@ input {
 .scene[data-scene="state"] .page[data-page="status"] .analog,
 .scene[data-scene="state"] .page[data-page="status"] .digital {
   position: absolute;
-  left: 50%;
-  -webkit-transform: translateX(-50%);
-  -ms-transform: translateX(-50%);
-  transform: translateX(-50%);
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
   -webkit-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
@@ -3261,16 +3261,31 @@ input {
   font-size: 23px;
   color: white;
   transition: font-size 0.1s linear;
+  text-align: center;
+  text-shadow: 1px 1px 1px black;
 }
 .scene[data-scene="state"] .page[data-page="status"] .analog:hover,
 .scene[data-scene="state"] .page[data-page="status"] .digital:hover {
-  font-size: 26px;
+  text-shadow: 1px 1px 1px black, -1px -1px 1px black;
+}
+.scene[data-scene="state"] .page[data-page="status"] .analog img,
+.scene[data-scene="state"] .page[data-page="status"] .digital img {
+  width: 60px;
+  display: block;
+  margin: 10px;
 }
 .scene[data-scene="state"] .page[data-page="status"] .analog {
-  top: 34%;
+  color: black;
+  text-shadow: 1px 1px 1px white;
+  left: 30%;
+  top: 47%;
+}
+.scene[data-scene="state"] .page[data-page="status"] .analog:hover {
+  text-shadow: 1px 1px 1px white, -1px -1px 1px white;
 }
 .scene[data-scene="state"] .page[data-page="status"] .digital {
-  top: 63%;
+  left: 61%;
+  top: 55%;
 }
 .scene[data-scene="state"] .page[data-page="status"] .props-wrap {
   position: absolute;
