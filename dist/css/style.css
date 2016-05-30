@@ -2694,8 +2694,17 @@ table th[class*="col-"] {
     border-bottom: 0;
   }
 }
+.normal-pointer {
+  cursor: url("../res/cursor/normal.cur"), auto;
+}
+.text-pointer {
+  cursor: url("../res/cursor/text.cur"), auto;
+}
+.pointer-cursor {
+  cursor: url("../res/cursor/link.cur"), auto;
+}
 .clickable {
-  cursor: pointer;
+  cursor: url("../res/cursor/link.cur"), auto;
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
 .unselectable {
@@ -2783,7 +2792,6 @@ table th[class*="col-"] {
   -webkit-box-shadow: 0 0 1px 1px rgba(255, 255, 255, 0.8) inset, 0 1px 0 rgba(0, 0, 0, 0.15);
   box-shadow: 0 0 1px 1px rgba(255, 255, 255, 0.8) inset, 0 1px 0 rgba(0, 0, 0, 0.15);
   color: #333 !important;
-  cursor: pointer;
   font: normal 1em/2em Arial, Helvetica;
   margin: 0 0.75em 0 0;
   padding: 0 1.5em;
@@ -2981,9 +2989,22 @@ body {
   box-sizing: border-box;
   font-family: punctuation, "PingFangSC-Regular", "Microsoft Yahei", "sans-serif";
   -webkit-font-smoothing: subpixel-antialiased;
+  cursor: url("../res/cursor/normal.cur"), auto;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  cursor: url("../res/cursor/text.cur"), auto;
+}
+button,
+a {
+  cursor: url("../res/cursor/link.cur"), auto;
 }
 button {
-  cursor: pointer;
+  cursor: url("../res/cursor/link.cur"), auto;
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
   -webkit-user-select: none;
   -moz-user-select: none;
@@ -3257,7 +3278,6 @@ input {
   -ms-user-select: none;
   -o-user-select: none;
   user-select: none;
-  cursor: default;
   font-size: 23px;
   color: white;
   transition: font-size 0.1s linear;
