@@ -125,8 +125,8 @@ gulp.task("scenes", function () {
             header: `define(["require","system-scene","system-sys","angular","system-dbg","v","res","angular-module","plot"],function (require,scene,sys,angular,dbg,v,res,module,plot){`,
             footer: `})`,
             filter: function (file) {
-                var cwd = file.history[0].split("/");
-                var filename = cwd[cwd.length - 1];
+                var cwd = file.history[0].split("/").pop().split("\\");
+                var filename = cwd.pop();
                 if (filename == "chat") {
                     return false;
                 }
@@ -155,7 +155,7 @@ gulp.task('es6',["md"], function () {
             header: `let gulpConfig={plots:${JSON.stringify(plotTree)},scenes:${JSON.stringify(sceneTree)}};\n`,
             footer: ``,
             filter: function (file) {
-                return file.path.split("/").pop()=="main.js"
+                return file.path.split("/").pop().split("\\").pop()=="main.js"
             }
         }))
         .pipe(babel_pipe)

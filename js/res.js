@@ -214,70 +214,69 @@ define(["system-common"], function (common) {
 
         for (var table_name in data) {
             console.log(table_name)
-            window[table_name]=data[table_name];
-            switch (table_name) {                
-                case "item":
-                    window.items = {};
-                    for (var i in item) {
-                        item[i].cnt = 0;
-                        item[i].price = parseInt(item[i].price)
-                        items[item[i].name] = item[i];
+            window[table_name] = data[table_name];
+            switch (table_name) {
+            case "item":
+                window.items = {};
+                for (var i in item) {
+                    item[i].cnt = 0;
+                    item[i].price = parseInt(item[i].price)
+                    items[item[i].name] = item[i];
+                }
+                break;
+            case "combine":
+                window.combines = {};
+                for (var i in combine) {
+                    //replace
+                    combine[i].material = md_trim(combine[i].material);
+                    combine[i].material = combine[i].material.split("+")
+                    var material = combine[i].material;
+                    for (var j in material) {
+                        var materials = material[j].split("*")
+                        if (!materials[0]) {
+                            console.error("missing material name");
+                        } else if (!materials[1]) {
+                            materials[1] = 1;
+                        }
+                        materials[1] = parseInt(materials[1])
+                        material[j] = {
+                            name: materials[0],
+                            cnt: materials[1]
+                        };
                     }
-                    break;
-                case "combine":
-                    window.combines = {};
+
+                    combine[i].instrument = combine[i].instrument.split("+");
+                    combine[i].product = [];
                     for (var i in combine) {
-                        //replace
-                        combine[i].material = md_trim(combine[i].material);
-                        combine[i].material = combine[i].material.split("+")
-                        var material = combine[i].material;
-                        for (var j in material) {
-                            var materials = material[j].split("*")
-                            if (!materials[0]) {
-                                console.error("missing material name");
-                            } else if (!materials[1]) {
-                                materials[1] = 1;
-                            }
-                            materials[1] = parseInt(materials[1])
-                            material[j] = {
-                                name: materials[0],
-                                cnt: materials[1]
-                            };
-                        }
-
-                        combine[i].instrument = combine[i].instrument.split("+");
-                        combine[i].product = [];
-                        for (var i in combine) {
-                            combines[combine[i].name] = combine[i]
-                        }
-
+                        combines[combine[i].name] = combine[i]
                     }
 
-                    break;
-                case "skill":
-                    window.skills = {}
-                    for (var i in skill) {
-                        skills[skill[i].name] = {};
-                        skills[skill[i].name].name = skill[i].name;
-                        skills[skill[i].name].level="0";
-                        var skill_this = skills[skill[i].name];
-                        skill_this.pre = [];
+                }
+
+                break;
+            case "skill":
+                window.skills = {}
+                for (var i in skill) {
+                    skills[skill[i].name] = {};
+                    skills[skill[i].name].name = skill[i].name;
+                    skills[skill[i].name].level = 0;
+                }
+                for (var i in skill) {
+                    var skill_this = skills[skill[i].name];
+                    skill_this.pre = [];
+                    if (skill[i].pre != "none") {
                         var pre_array = skill[i].pre.split(",");
                         for (var j in pre_array) {
-                            console.log(pre_array[j],skills[pre_array[j]])
+                            let skill=skills[pre_array[j].split("v")[0]];
+                            let level=pre_array[j].split("v")[1];
                             if (pre_array[j] != "none") {
-                                skill_this.pre.push(skills[pre_array[j]])
+                                skill_this.pre.push({skill,level})
                             }
                         }
-                        var skill_upgrades = skill[i].upgrade;
-                        skill_upgrades = skill_upgrades.split(",")
-                        skills[skill[i].name].upgrade = []
-                        skills[skill[i].name].des = skill[i].des;
-                        for (var j in skill_upgrades) {
-                            skills[skill[i].name].upgrade[j] = parseInt(skill_upgrades[j])
-                        }
                     }
-                    break;
+
+                }
+                break;
 
             }
         }

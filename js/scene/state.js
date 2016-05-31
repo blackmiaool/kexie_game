@@ -19,52 +19,86 @@ scene.register(sceneThis);
     设备:总结出关键设备  
 */
 module.controller("state-controller", ["$scope", function (sp) {
-    const pages=[
+    const pages = [
         {
-            name:"状态",
-            class:"ym-success",            
+            name: "状态",
+            class: "ym-success",
         },
         {
-            name:"技能",
-            class:"ym-warning",            
+            name: "技能",
+            class: "ym-warning",
         },
         {
-            name:"朋友",
-            class:"ym-success",            
+            name: "朋友",
+            class: "ym-success",
         },
         {
-            name:"经历",
-            class:"ym-success",            
+            name: "经历",
+            class: "ym-success",
         },
         {
-            name:"物品",
-            class:"ym-warning",            
+            name: "物品",
+            class: "ym-warning",
         },
         {
-            name:"设备",
-            class:"ym-success",            
+            name: "设备",
+            class: "ym-success",
         },
     ];
-    function getPre(v){
-        let preText="";
-        v.pre.forEach(function(v,i){
-            if(i>0)
-                preText+=",";
-            preText+=v.name;            
-        })
-        console.log(v,preText)
-        return preText; 
+
+    function getName(skill) {
+        let show = true;
+        console.log(skill);
+        if (skill.pre.length != 0) {
+            skill.pre.forEach(function (v, i) {
+                if (v.skill.level < v.level)
+                    show = false;
+            })
+        }
+        if (show) {
+            return skill.name;
+        } else {
+            return "???";
+        }
     }
-//    let currentPage="状态";
-    function setPage(name){
-        sp.currentPage=name;
+
+    function getPre(skill) {
+        let preText = "";
+        skill.pre.forEach(function (v, i) {
+            if (i > 0)
+                preText += " , ";
+            preText += v.skill.name + "Lv" + v.level;
+        })
+        return preText;
+    }
+
+
+    function setPage(name) {
+        sp.currentPage = name;
     }
     console.log(skills)
-    _.extend(sp,{
-        pages,v,setPage,skills,getPre
-    });    
+    _.extend(sp, {
+        pages, v, setPage, skills, getPre, getName
+    });
     console.log(v);
-}])
+}]).filter('skillLevel', function () {
+    var filter = function (level) {
+        if(level==0){
+            return "菜鸟"
+        }else if(level<4){
+            return "新手"
+        }else if(level<7){
+            return "熟手"
+        }else if(level<10){
+            return "高手"
+        }
+        else if(level==10){
+            return "大师"
+        }
+        return input + '...';
+    };
+    return filter;
+});
 
 function preEnter() {}
 

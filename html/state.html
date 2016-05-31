@@ -41,8 +41,8 @@
                 </thead>
                 <tbody>
                     <tr ng-repeat="v in skills" title="{{::v.des}}">
-                        <th ng-bind="::v.name"></th>
-                        <td ng-bind="v.level"></td>
+                        <th ng-bind="::getName(v)"></th>
+                        <td ng-bind="v.level+' ('+(v.level | skillLevel)+')'"></td>
                         <td ng-bind="::getPre(v)"></td>
 <!--                        <td><button class="ym-button ym-black">升级</button></td>-->
                     </tr>
