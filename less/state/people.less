@@ -1,0 +1,54 @@
+@import "common.less";
+@import "variables.less";
+background-image: url("@{res-folder}/Background/state/people_bg2.jpg");
+>.desc-wrap,
+>.select {
+    position: absolute;
+    .blue-panel;
+}
+
+>.desc-wrap {
+    @gap: 50px;
+    left: 200px;
+    width: 550px;
+    top: @gap;
+    bottom: @gap;
+    //    transform: perspective(500px) rotate3d(0,1,0,7deg);
+    .currentP {
+        position: absolute;
+        bottom: 0;
+        left: 50px;
+        height: 384px;
+    }
+}
+
+>.select {
+    @gap: 50px;
+    width: 160px;
+    right: 30px;
+    top: @gap;
+    bottom: @gap;
+    //    transform: perspective(500px) rotate3d(0,1,0,-7deg);
+    padding: 10px;
+    overflow: auto;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    .pp-select {
+//        flex: 1;
+        justify-content: space-around;
+        .square(58px);
+        display: inline-block;
+        margin: 5px;
+        border: 1px solid black;
+        position: relative;
+        overflow: hidden;
+        padding-top: 5px;
+        img {
+            //            .abs-fill;
+            //            .fill;
+            width: 100%;
+            pointer-events: none;
+        }
+    }
+}

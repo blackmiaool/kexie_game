@@ -1,15 +1,15 @@
 //Here inject gulpConfig veriable
 (function () {
-//    console.log(gulpConfig)
-    let plotPaths=gulpConfig.plots.map(function(v,i){
+    //    console.log(gulpConfig)
+    let plotPaths = gulpConfig.plots.map(function (v, i) {
         return v.name.split(".")[0];
     });
-    let scenePaths=gulpConfig.scenes.map(function(v,i){
+    let scenePaths = gulpConfig.scenes.map(function (v, i) {
         return v.name.split(".")[0];
     });
-//    console.log(scenePaths)
-//    let plotPaths=["start","kexie_first","nature_test","xuanjianghui"];
-//    let scenePaths= ["preload", "cover","chat"];
+    //    console.log(scenePaths)
+    //    let plotPaths=["start","kexie_first","nature_test","xuanjianghui"];
+    //    let scenePaths= ["preload", "cover","chat"];
     var config = {
         baseUrl: "js",
         paths: {
@@ -20,7 +20,7 @@
         },
         plotPaths,
         scenePaths,
-        sysPaths: ["sys","common","dbg","config","scene","plotApi"],
+        sysPaths: ["sys", "common", "dbg", "config", "scene", "plotApi"],
         map: {},
         shim: {
             "angular": {
@@ -32,41 +32,42 @@
             },
         }
     };
-    config.sysPaths.forEach(function(v,i,a){
-        config.paths["system-"+v]="system/" + v;
-    });
-    
-    config.scenePaths.forEach(function(v,i,a){
-        config.paths[v]="scene/" + v;
-    });
-    
-    config.plotPaths.forEach(function(v,i,a){
-        config.paths[v]="plot/" + v;
+    config.sysPaths.forEach(function (v, i, a) {
+        config.paths["system-" + v] = "system/" + v;
     });
 
-    
+    config.scenePaths.forEach(function (v, i, a) {
+        config.paths[v] = "scene/" + v;
+    });
+
+    config.plotPaths.forEach(function (v, i, a) {
+        config.paths[v] = "plot/" + v;
+    });
+
+
 
     requirejs.config(config);
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    requirejs(["jquery", "system-sys", "angular", 'angular-module', "system-scene", 'angular-animate',"plot"], function ($, sys, angular, module, scene) {
-    $("#game-first-tip").remove();
 
-    module.controller("root_controller", ["$rootScope", "$scope", function ($rootScope, $scope) {
-        sys.$rootScope = angular.element("body").scope().$parent.$root;
+
+
+
+
+
+
+
+
+    requirejs(["jquery", "system-sys", "angular", 'angular-module', "system-scene", 'angular-animate', "plot"], function ($, sys, angular, module, scene) {
+        $("#game-first-tip").remove();
+
+        module.controller("root_controller", ["$rootScope", "$scope", function ($rootScope, $scope) {
+            sys.$rootScope = angular.element("body").scope().$parent.$root;
 
     }]);
-    sys.sceneLoaded = function () {
-        angular.bootstrap("body", ['home-app']);
-        scene.go("preload");
-    }});
+        sys.sceneLoaded = function () {
+            angular.bootstrap("body", ['home-app']);
+            scene.go("preload");
+        }
+    });
 })()
 
 //

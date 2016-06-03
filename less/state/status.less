@@ -1,0 +1,142 @@
+@import "common.less";
+@import "variables.less";
+background-image: url("@{res-folder}/Background/state/state.jpg");
+.user-name,
+.job {
+    background-color: @purple;
+    color: white;
+    position: absolute;
+    right: 20px;
+    top: 10px;
+    padding: 5px 15px;
+    font-size: 20px;
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.job {
+    right: 20px;
+    top: 60px;
+}
+
+.money {
+    .horizontal-center;
+    bottom: 10px;
+    font-size: 20px;
+    color: white;
+    background-image: linear-gradient(#5c5b5b, #353535);
+    background-color: #5c5b5b;
+    border: 1px solid rgba(0, 0, 0, 0.5);
+    border-radius: 4px;
+    box-shadow: inset 0px 1px rgba(255, 255, 255, 0.24), 0px 1px 5px rgba(0, 0, 0, 0.6);
+    padding: 5px 15px;
+}
+
+.analog,
+.digital {
+    .vertical-center;
+    .unselectable;
+    //            cursor: default;
+    font-size: 23px;
+    color: white;
+    transition: font-size 0.1s linear;
+    text-align: center;
+    text-shadow: 1px 1px 1px black;
+    &:hover {
+        text-shadow: 1px 1px 1px black, -1px -1px 1px black;
+    }
+    img {
+        width: 60px;
+        display: block;
+        margin: 10px;
+    }
+}
+
+.analog {
+    color: black;
+    text-shadow: 1px 1px 1px white;
+    &:hover {
+        text-shadow: 1px 1px 1px white, -1px -1px 1px white;
+    }
+    left: 30%;
+    top: 47%;
+    //            top: 34%;
+}
+
+.digital {
+    left: 61%;
+    top: 55%;
+    //            top: 58%;
+}
+
+.props-wrap {
+    position: absolute;
+    right: 100px;
+    top: 220px;
+    display: flex;
+    flex-direction: column;
+    .prop {
+        margin-bottom: 20px;
+    }
+}
+
+.prop {
+    padding: 3px 7px 4px 7px;
+    border-radius: 5px;
+    display: inline-block;
+    @color: steelblue;
+    font-size: 0;
+    color: white;
+    background-color: @color;
+    .key {
+        display: inline-block;
+        padding: 5px 10px 5px 5px;
+        font-size: 18px;
+    }
+    .value {
+        display: inline-block;
+        text-align: center;
+        border-radius: 4px;
+        font-size: 18px;
+        color: black;
+        background-color: white;
+        padding: 3px 0px;
+        width: 60px;
+    }
+}
+
+.basic-wrap {
+    position: absolute;
+    right: 60px;
+    top: 30px;
+    display: flex;
+    flex-direction: column;
+    .basic {
+        margin-bottom: 15px;
+    }
+}
+
+.basic {
+    padding: 3px 7px 4px 7px;
+    border-radius: 5px;
+    display: inline-block;
+    @color: @purple;
+    font-size: 0;
+    color: white;
+    background-color: @color;
+    .key {
+        display: inline-block;
+        padding: 5px 10px 5px 5px;
+        font-size: 18px;
+    }
+    .value {
+        display: inline-block;
+        text-align: center;
+        border-radius: 4px;
+        font-size: 18px;
+        color: black;
+        background-color: white;
+        padding: 3px 0px;
+        width: 100px;
+    }
+}

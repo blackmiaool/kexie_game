@@ -24,7 +24,7 @@ define(function () {
         return myNewObj;
     }
     exports.g = function (str) {
-        return "res/" + str
+        return "/res/" + str
     }
 
     function save_object(key, obj) {

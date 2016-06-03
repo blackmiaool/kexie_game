@@ -1,0 +1,20 @@
+<div class="table-wrap highlight">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>技能</th>
+                        <td>等级</td>
+                        <td>依赖</td>
+                        <!--                        <td>操作</td>-->
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="v in skills" title="{{::v.des}}">
+                        <th ng-bind="::getName(v)"></th>
+                        <td ng-bind="v.level+' ('+(v.level | skillLevel)+')'"></td>
+                        <td ng-bind="::getPre(v)"></td>
+                        <!--                        <td><button class="ym-button ym-black">升级</button></td>-->
+                    </tr>
+                </tbody>
+            </table>
+        </div>

@@ -1,0 +1,52 @@
+@import "common.less";
+@import "variables.less";
+background-image: url("@{res-folder}/Background/state/item.jpg");
+.kind-wrap {
+    .abs-fill;
+    left: 100px;
+    bottom: auto;
+    top: 20px;
+    text-align: center;
+    .item-kind-select {
+        display: inline-block;
+        margin: 0px 15px;
+        @height: 65px;
+        opacity: 0.5;
+        transition: opacity 0.1s linear;
+        
+        &:hover {
+            opacity: 0.7;
+        }
+        &.active {
+            opacity: 1;
+        }
+        img {            
+            height: @height;
+            vertical-align: middle;
+        }
+        .name {
+            //            height: @height;
+            vertical-align: middle;
+            width: 17px;
+            display: inline-block;
+        }
+    }
+}
+
+.items-wrap,
+.desc-wrap {
+    .blue-panel;
+    position: absolute;
+    top: 120px;
+    bottom: 30px;
+}
+
+.items-wrap {
+    left: 209px;
+    
+    width: 450px;
+}
+.desc-wrap{
+    right:20px;
+    width: 250px;
+}

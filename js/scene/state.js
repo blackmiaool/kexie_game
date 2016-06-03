@@ -18,8 +18,8 @@ scene.register(sceneThis);
     经历:模仿
     设备:总结出关键设备  
 */
-module.controller("state-controller", ["$scope", function (sp) {
-    const pages = [
+const itemKinds=[{name:"仪器",icon:"microscope"},{name:"IC",icon:"cpu"},{name:"基础器件",icon:"settings"},{name:"机械",icon:"physics"},{name:"神器",icon:"molecule"}];
+const pages = [
         {
             name: "状态",
             class: "ym-success",
@@ -34,21 +34,23 @@ module.controller("state-controller", ["$scope", function (sp) {
         },
         {
             name: "经历",
-            class: "ym-success",
-        },
-        {
-            name: "物品",
             class: "ym-warning",
         },
         {
-            name: "设备",
+            name: "物品",
             class: "ym-success",
         },
+//        {
+//            name: "设备",
+//            class: "ym-success",
+//        },
     ];
-
+module.controller("state-controller", ["$scope", function (sp) {
+    
+    //console.log(res.pp)
     function getName(skill) {
         let show = true;
-        console.log(skill);
+        //        console.log(skill);
         if (skill.pre.length != 0) {
             skill.pre.forEach(function (v, i) {
                 if (v.skill.level < v.level)
@@ -76,23 +78,39 @@ module.controller("state-controller", ["$scope", function (sp) {
     function setPage(name) {
         sp.currentPage = name;
     }
-    console.log(skills)
+
+    function setP(pp) {
+        console.log(pp);
+        sp.currentP = pp;
+    }
+    function setItemKind(kind){
+        sp.currentItemKind=kind;
+    }
+    //    console.log(skills)
     _.extend(sp, {
-        pages, v, setPage, skills, getPre, getName
+        pp: res.pp,
+        pages,
+        v,
+        setPage,
+        skills,
+        getPre,
+        getName,
+        setP,
+        itemKinds,
+        setItemKind
     });
-    console.log(v);
+    //    console.log(v);
 }]).filter('skillLevel', function () {
     var filter = function (level) {
-        if(level==0){
+        if (level == 0) {
             return "菜鸟"
-        }else if(level<4){
+        } else if (level < 4) {
             return "新手"
-        }else if(level<7){
+        } else if (level < 7) {
             return "熟手"
-        }else if(level<10){
+        } else if (level < 10) {
             return "高手"
-        }
-        else if(level==10){
+        } else if (level == 10) {
             return "大师"
         }
         return input + '...';

@@ -51,11 +51,11 @@ define(["system-common"], function (common) {
             shopt_btn2: g("UI/shop_btn2.png"),
         },
         pp: {
-
             what: {
                 name: "???",
                 half: g("Half/touming.png"),
                 color: color(255, 255, 255),
+                
             },
             you: {
                 name: "你",
@@ -81,6 +81,7 @@ define(["system-common"], function (common) {
                 效率: 90,
                 体力: 85,
                 节操: 100,
+                identity:"teammate",
             },
             chenguo: {
                 name: "陈过",
@@ -95,6 +96,7 @@ define(["system-common"], function (common) {
                 效率: 70,
                 体力: 50,
                 节操: 60,
+                identity:"teammate",
             },
             lizhao: {
                 name: "李照",
@@ -108,6 +110,7 @@ define(["system-common"], function (common) {
                 效率: 60,
                 体力: 90,
                 节操: 90,
+                identity:"teammate",
             },
             gaoxiangchen: {
                 name: "高向晨",
@@ -122,6 +125,7 @@ define(["system-common"], function (common) {
                 效率: 80,
                 体力: 20,
                 节操: 10,
+                identity:"teammate",
             },
             tanchengzi: {
                 name: "谭橙子",
@@ -135,6 +139,7 @@ define(["system-common"], function (common) {
                 效率: 80,
                 体力: 80,
                 节操: 15,
+                identity:"teammate",
             },
             tanjinchuan: {
                 name: "谭劲船",
@@ -148,6 +153,7 @@ define(["system-common"], function (common) {
                 效率: 60,
                 体力: 80,
                 节操: 5,
+                identity:"teammate",
             },
             delv: {
                 name: "德律",
@@ -171,6 +177,7 @@ define(["system-common"], function (common) {
                 效率: 50,
                 体力: 70,
                 节操: 25,
+                identity:"teammate",
             },
             zhongren: {
                 name: "众人",
@@ -181,16 +188,19 @@ define(["system-common"], function (common) {
                 name: "陈囧",
                 half: g("Half/chenjiong.png"),
                 color: color(255, 255, 255),
+                identity:"teammate",
             },
             wangyixie: {
                 name: "王一血",
                 half: g("Half/wangyixie.png"),
                 color: color(255, 255, 255),
+                identity:"teammate",
             },
             ouyangyang: {
                 name: "欧洋洋",
                 half: g("Half/ouyangyang.png"),
                 color: color(255, 255, 255),
+                identity:"teammate",
             },
 
         },
@@ -213,7 +223,7 @@ define(["system-common"], function (common) {
     function res_data_handle(data) {
 
         for (var table_name in data) {
-            console.log(table_name)
+//            console.log(table_name)
             window[table_name] = data[table_name];
             switch (table_name) {
             case "item":

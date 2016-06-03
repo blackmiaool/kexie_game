@@ -1,0 +1,13 @@
+<div class="kind-wrap">
+    <div ng-click="setItemKind(kind.name)" ng-repeat="kind in itemKinds" class="item-kind-select clickable" ng-class="{active:currentItemKind==kind.name}">
+        <img draggable="false" ng-src="/res/icon/{{kind.icon}}.svg" alt="">
+        <div class="name" ng-bind="::kind.name"></div>
+    </div>
+    
+</div>
+<div class="items-wrap">
+        
+    </div>
+    <div class="desc-wrap">
+        
+    </div>

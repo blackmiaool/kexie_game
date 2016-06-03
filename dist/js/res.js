@@ -53,11 +53,11 @@ define(["system-common"], function (common) {
             shopt_btn2: g("UI/shop_btn2.png")
         },
         pp: {
-
             what: {
                 name: "???",
                 half: g("Half/touming.png"),
                 color: color(255, 255, 255)
+
             },
             you: {
                 name: "你",
@@ -82,7 +82,8 @@ define(["system-common"], function (common) {
                 模拟: 80,
                 效率: 90,
                 体力: 85,
-                节操: 100
+                节操: 100,
+                identity: "teammate"
             },
             chenguo: {
                 name: "陈过",
@@ -96,7 +97,8 @@ define(["system-common"], function (common) {
                 模拟: 0,
                 效率: 70,
                 体力: 50,
-                节操: 60
+                节操: 60,
+                identity: "teammate"
             },
             lizhao: {
                 name: "李照",
@@ -109,7 +111,8 @@ define(["system-common"], function (common) {
                 模拟: 70,
                 效率: 60,
                 体力: 90,
-                节操: 90
+                节操: 90,
+                identity: "teammate"
             },
             gaoxiangchen: {
                 name: "高向晨",
@@ -123,7 +126,8 @@ define(["system-common"], function (common) {
                 模拟: 20,
                 效率: 80,
                 体力: 20,
-                节操: 10
+                节操: 10,
+                identity: "teammate"
             },
             tanchengzi: {
                 name: "谭橙子",
@@ -136,7 +140,8 @@ define(["system-common"], function (common) {
                 模拟: 30,
                 效率: 80,
                 体力: 80,
-                节操: 15
+                节操: 15,
+                identity: "teammate"
             },
             tanjinchuan: {
                 name: "谭劲船",
@@ -149,7 +154,8 @@ define(["system-common"], function (common) {
                 模拟: 20,
                 效率: 60,
                 体力: 80,
-                节操: 5
+                节操: 5,
+                identity: "teammate"
             },
             delv: {
                 name: "德律",
@@ -172,7 +178,8 @@ define(["system-common"], function (common) {
                 模拟: 50,
                 效率: 50,
                 体力: 70,
-                节操: 25
+                节操: 25,
+                identity: "teammate"
             },
             zhongren: {
                 name: "众人",
@@ -182,17 +189,20 @@ define(["system-common"], function (common) {
             chenjiong: {
                 name: "陈囧",
                 half: g("Half/chenjiong.png"),
-                color: color(255, 255, 255)
+                color: color(255, 255, 255),
+                identity: "teammate"
             },
             wangyixie: {
                 name: "王一血",
                 half: g("Half/wangyixie.png"),
-                color: color(255, 255, 255)
+                color: color(255, 255, 255),
+                identity: "teammate"
             },
             ouyangyang: {
                 name: "欧洋洋",
                 half: g("Half/ouyangyang.png"),
-                color: color(255, 255, 255)
+                color: color(255, 255, 255),
+                identity: "teammate"
             }
 
         }
@@ -396,17 +406,17 @@ define(["system-common"], function (common) {
             "des": "使用文字与图片解释你的作品"
         }, {
             "name": "PPT",
-            "pre": "论文",
+            "pre": "论文v3",
             "upgrade": "1,1,1,2,3,5,7",
             "des": "使用文字与图片与效果展示你的作品或想法"
         }, {
             "name": "演讲",
-            "pre": "PPT",
+            "pre": "PPTv2",
             "upgrade": "1,1,1,2,3,5,7,11,13",
             "des": "使用口才与PPT结合来展示你的作品或想法"
         }, {
             "name": "传销",
-            "pre": "演讲",
+            "pre": "演讲v10",
             "upgrade": "1,1,1,2,3,5,7,11,13",
             "des": "使用口才与其他资料影响别人的想法"
         }, {
@@ -431,82 +441,82 @@ define(["system-common"], function (common) {
             "des": "基础编程技能，单片机编程必备"
         }, {
             "name": "信号与系统",
-            "pre": "线性代数,微积分",
+            "pre": "线性代数v2,微积分v5",
             "upgrade": "1,2,3,4,5,6,7",
             "des": "通信相关核心技能，用于对信号进行简单分析"
         }, {
             "name": "模拟电路",
-            "pre": "微积分,电路分析",
+            "pre": "微积分v2,电路分析v5",
             "upgrade": "1,2,3,4,5,6,7,8,9",
             "des": "中级电子技能，电子设计核心技能，用于分析与设计三极管与MOS管相关电路"
         }, {
             "name": "数字电路",
-            "pre": "电路分析,C语言",
+            "pre": "电路分析v3",
             "upgrade": "1,2,3,4,5,6,7,8,9",
             "des": "中级电子技能，电子设计核心技能，用于分析与设计数字芯片相关电路"
         }, {
             "name": "单片机原理",
-            "pre": "电路分析,C语言",
+            "pre": "电路分析v2,C语言v4",
             "upgrade": "1,1,2,2,3,3",
             "des": "中高级电子技能，嵌入式的重要基础，用于理解单片机的原理"
         }, {
             "name": "数据结构与算法",
-            "pre": "C语言",
+            "pre": "C语言v5",
             "upgrade": "1,1,2,2,3,3",
             "des": "中级编程技能，笔试面试的重要部分，用于组织数据，减少计算所需空间与时间"
         }, {
             "name": "其他语言",
-            "pre": "C语言",
+            "pre": "C语言v2",
             "upgrade": "1,1,2,2,3,3,3,3,3",
             "des": "中高级编程技能，常用于APP与web编程"
         }, {
             "name": "数字信号处理",
-            "pre": "信号与系统",
+            "pre": "信号与系统v5",
             "upgrade": "1,3,3,5,5,5",
             "des": "通信相关核心技能，用于处理数字信号"
         }, {
             "name": "电磁场与电磁波",
-            "pre": "信号与系统,模拟电路",
+            "pre": "信号与系统v7,模拟电路v5",
             "upgrade": "3,3,4,4,5,6,7,8,9",
             "des": "高级电子技能，用于分析电磁波"
         }, {
             "name": "开关电源",
-            "pre": "模拟电路",
+            "pre": "模拟电路v7",
             "upgrade": "3,3,4,4,5,6,7,8,9,10,11",
             "des": "高级电子技能，用于制作开关电源"
         }, {
             "name": "接口技术",
-            "pre": "数字电路",
+            "pre": "数字电路v4",
             "upgrade": "1,2,3,4,4,4,4",
             "des": "嵌入式相关核心技能，用于编写单片机片上外设与板上外设的驱动"
         }, {
             "name": "自动控制",
-            "pre": "数据结构与算法",
+            "pre": "数据结构与算法v5",
             "upgrade": "1,1,2,2,3,3,5,7,9",
             "des": "用于优化设备的控制算法"
         }, {
             "name": "上位机软件",
-            "pre": "数据结构与算法",
+            "pre": "数据结构与算法v3",
             "upgrade": "1,1,2,2,3,3,4,5,6",
             "des": "用于对设备进行分析与控制"
         }, {
             "name": "图像识别",
-            "pre": "数字信号处理",
+            "pre": "数字信号处理v3,数据结构与算法v7",
             "upgrade": "2,2,3,3,5,7,9",
             "des": "高级数学技能，用于识别图像"
         }, {
             "name": "射频电路",
-            "pre": "电磁场与电磁波",
+            "pre": "电磁场与电磁波v3",
             "upgrade": "3,3,4,4,5,6,7,8,9",
             "des": "高级电子技能，用于分析与设计射频电路"
         }, {
             "name": "FPGA与CPLD",
-            "pre": "接口技术",
+            "pre": "接口技术v5",
             "upgrade": "1,1,2,3,5,7,9",
             "des": "高级嵌入式技能，用于设计数字可编程电路与仿真ASIC"
         }, {
             "name": "嵌入式",
-            "pre": "接口技术,单片机原理,数据结构与算法",
+            "pre": "接口技术v3,单片机原理v5,数据结构与算法v3",
             "upgrade": "1,2,3,4,5,6,7,8",
             "des": "高级技能，用于设计嵌入式相关电路与软件"
         }]
@@ -521,7 +531,7 @@ define(["system-common"], function (common) {
     function res_data_handle(data) {
 
         for (var table_name in data) {
-            console.log(table_name);
+            //            console.log(table_name)
             window[table_name] = data[table_name];
             switch (table_name) {
                 case "item":
@@ -566,22 +576,20 @@ define(["system-common"], function (common) {
                     for (var i in skill) {
                         skills[skill[i].name] = {};
                         skills[skill[i].name].name = skill[i].name;
-                        skills[skill[i].name].level = "0";
+                        skills[skill[i].name].level = 0;
+                    }
+                    for (var i in skill) {
                         var skill_this = skills[skill[i].name];
                         skill_this.pre = [];
-                        var pre_array = skill[i].pre.split(",");
-                        for (var j in pre_array) {
-                            console.log(pre_array[j], skills[pre_array[j]]);
-                            if (pre_array[j] != "none") {
-                                skill_this.pre.push(skills[pre_array[j]]);
+                        if (skill[i].pre != "none") {
+                            var pre_array = skill[i].pre.split(",");
+                            for (var j in pre_array) {
+                                var _skill = skills[pre_array[j].split("v")[0]];
+                                var level = pre_array[j].split("v")[1];
+                                if (pre_array[j] != "none") {
+                                    skill_this.pre.push({ skill: _skill, level: level });
+                                }
                             }
-                        }
-                        var skill_upgrades = skill[i].upgrade;
-                        skill_upgrades = skill_upgrades.split(",");
-                        skills[skill[i].name].upgrade = [];
-                        skills[skill[i].name].des = skill[i].des;
-                        for (var j in skill_upgrades) {
-                            skills[skill[i].name].upgrade[j] = parseInt(skill_upgrades[j]);
                         }
                     }
                     break;
