@@ -56,10 +56,11 @@
 
 
 
-    requirejs(["jquery", "system-sys", "angular", 'angular-module', "system-scene", 'angular-animate', "plot"], function ($, sys, angular, module, scene) {
+    requirejs(["jquery", "system-sys", "angular", 'angular-module', "system-scene", "res",'angular-animate', "plot"], function ($, sys, angular, module, scene,res) {
         $("#game-first-tip").remove();
 
-        module.controller("root_controller", ["$rootScope", "$scope", function ($rootScope, $scope) {
+        module.controller("root_controller", ["$rootScope", "$scope", function (rsp, sp) {
+            sp.img=res.img;       
             sys.$rootScope = angular.element("body").scope().$parent.$root;
 
     }]);

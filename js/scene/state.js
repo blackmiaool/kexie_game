@@ -18,21 +18,22 @@ scene.register(sceneThis);
     经历:模仿
     设备:总结出关键设备  
 */
+console.log(common)
 const itemKinds = [{
     name: "基础器件",
-    icon: "settings"
+    icon: common.resPath+"icon/settings"
 }, {
     name: "IC",
-    icon: "cpu"
+    icon: common.resPath+"icon/cpu"
 },  {
     name: "机械",
-    icon: "mechanical-arm2"
+    icon: common.resPath+"icon/mechanical-arm2"
 },{
     name: "仪器",
-    icon: "microscope"
+    icon: common.resPath+"icon/microscope"
 }, {
     name: "神器",
-    icon: "god-1"
+    icon: common.resPath+"icon/god-1"
 }];
 const pages = [
     {
@@ -64,6 +65,9 @@ module.controller("state-controller", ["$scope", function (sp) {
     function setPage(name) {
         sp.currentPage = name;
     }
+    function back(){
+        scene.go("home");
+    }
     window.dd=function(str){
             eval(str);
     }
@@ -71,6 +75,7 @@ module.controller("state-controller", ["$scope", function (sp) {
         pages,
         v,
         setPage,
+        back,
     });
 }])
 module.filter('skillLevel', function () {
@@ -95,8 +100,7 @@ module.filter('skillLevel', function () {
 module.controller("status-controller", ["$scope", "$rootScope",
 function (sp, rsp) {
 
-}
-                                       ])
+}])
 module.controller("skill-controller", ["$scope", "$rootScope",
 function (sp, rsp) {
         function getSkillName(skill) {
@@ -171,8 +175,12 @@ function (sp, rsp) {
         function selectItem(item){
             sp.selectingItem=item;
         }
+        function getIconUrl(item){
+            return `${common.resPath}icon/item/white/${item.icon}`;
+        }
         
         _.extend(sp, {
+            getIconUrl,
             itemKinds,
             setItemKind,
             getLast,

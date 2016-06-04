@@ -1,4 +1,5 @@
 <div ng-controller="state-controller" class="wrap">
+    <img ng-click="back()" draggable="false"  ng-src="{{::img.state_back}}" title="返回" class="back">    
     <div class="page-select-wrap" ng-init="currentPage='物品'">
 
         <div ng-repeat="page in pages" class="page-select" ng-class="{active:currentPage==page.name}"  ng-click="setPage(page.name)">

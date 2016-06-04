@@ -3,7 +3,9 @@
 var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol ? "symbol" : typeof obj; };
 
 define(function () {
+    var resPath = "/res/";
     var exports = {
+        resPath: resPath,
         color: function color(r, g, b) {
             return "rgb(" + r + "," + g + "," + b + ")";
         },
@@ -28,7 +30,7 @@ define(function () {
         }return myNewObj;
     }
     exports.g = function (str) {
-        return "/res/" + str;
+        return resPath + str;
     };
 
     function save_object(key, obj) {
@@ -40,6 +42,7 @@ define(function () {
         return JSON.parse(localStorage.getItem(key));
     }
     exports.local = {
+
         set: function set(a, b) {
             if ((typeof b === "undefined" ? "undefined" : _typeof(b)) == "object") localStorage.setItem(a, JSON.stringify(b));else localStorage.setItem(a, b);
         },

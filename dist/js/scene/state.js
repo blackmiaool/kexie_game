@@ -1,6 +1,6 @@
 "use strict";
 
-define(["require", "system-scene", "system-sys", "angular", "system-dbg", "v", "res", "angular-module", "plot"], function (require, scene, sys, angular, dbg, v, res, module, plot) {
+define(["require", "system-scene", "system-sys", "angular", "system-dbg", "v", "res", "angular-module", "plot", "system-common"], function (require, scene, sys, angular, dbg, v, res, module, plot, common) {
     var exports = {};
     var sceneId = "state";
     var $dom = scene.getScene(sceneId);
@@ -21,21 +21,22 @@ define(["require", "system-scene", "system-sys", "angular", "system-dbg", "v", "
         经历:模仿
         设备:总结出关键设备  
     */
+    console.log(common);
     var itemKinds = [{
         name: "基础器件",
-        icon: "settings"
+        icon: common.resPath + "icon/settings"
     }, {
         name: "IC",
-        icon: "cpu"
+        icon: common.resPath + "icon/cpu"
     }, {
         name: "机械",
-        icon: "mechanical-arm2"
+        icon: common.resPath + "icon/mechanical-arm2"
     }, {
         name: "仪器",
-        icon: "microscope"
+        icon: common.resPath + "icon/microscope"
     }, {
         name: "神器",
-        icon: "god-1"
+        icon: common.resPath + "icon/god-1"
     }];
     var pages = [{
         name: "状态",
@@ -62,13 +63,17 @@ define(["require", "system-scene", "system-sys", "angular", "system-dbg", "v", "
         function setPage(name) {
             sp.currentPage = name;
         }
+        function back() {
+            scene.go("home");
+        }
         window.dd = function (str) {
             eval(str);
         };
         _.extend(sp, {
             pages: pages,
             v: v,
-            setPage: setPage
+            setPage: setPage,
+            back: back
         });
     }]);
     module.filter('skillLevel', function () {
@@ -159,8 +164,12 @@ define(["require", "system-scene", "system-sys", "angular", "system-dbg", "v", "
         function selectItem(item) {
             sp.selectingItem = item;
         }
+        function getIconUrl(item) {
+            return common.resPath + "icon/item/white/" + item.icon;
+        }
 
         _.extend(sp, {
+            getIconUrl: getIconUrl,
             itemKinds: itemKinds,
             setItemKind: setItemKind,
             getLast: getLast,

@@ -1,5 +1,7 @@
 define(function () {
+    let resPath="/res/";
     var exports = {
+        resPath,
         color: (r, g, b) => {
             return "rgb(" + r + "," + g + "," + b + ")"
         },
@@ -24,7 +26,7 @@ define(function () {
         return myNewObj;
     }
     exports.g = function (str) {
-        return "/res/" + str
+        return resPath + str
     }
 
     function save_object(key, obj) {
@@ -36,6 +38,7 @@ define(function () {
         return JSON.parse(localStorage.getItem(key))
     }
     exports.local = {
+        
         set: (a, b) => {
             if (typeof (b) == "object")
 

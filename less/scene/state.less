@@ -1,5 +1,16 @@
 @import "common.less";
 @import "variables.less";
+>.wrap {
+    .abs-fill;
+    >.back {
+        position: absolute;
+        left: 10px;
+        top: 10px;
+        z-index: 1;
+        .transform(rotate(180deg));
+    }
+}
+
 .page-select-wrap {
     position: absolute;
     z-index: 1;
@@ -15,35 +26,35 @@
         //        &:extend(.btn-lg);
         position: relative;
         outline: none;
-        >.cover{
+        >.cover {
             .abs-fill;
             width: 100%;
             opacity: 0;
         }
-        >button{
-            transform-origin: left ;
+        >button {
+            transform-origin: left;
         }
-        &:hover{
-            >button.solid{
-                transform: perspective(500px) rotate3d(0,1,0,10deg);
+        &:hover {
+            >button.solid {
+                transform: perspective(500px) rotate3d(0, 1, 0, 10deg);
                 transition: 0.07s transform linear;
-            }            
+            }
         }
-        &:active,&.active{
-            >button.solid{
-                transform: perspective(500px) rotate3d(0,1,0,30deg);
-            }            
+        &:active,
+        &.active {
+            >button.solid {
+                transform: perspective(500px) rotate3d(0, 1, 0, 30deg);
+            }
         }
-         
-         
         &:nth-child(1),
         &:nth-child(5) {
             left: 30px;
         }
-        &:nth-child(2),&:nth-child(4){
+        &:nth-child(2),
+        &:nth-child(4) {
             left: 15px;
         }
-//        &:nth-child(2),
+        //        &:nth-child(2),
         &:nth-child(3) {
             left: 10px;
         }
@@ -52,7 +63,13 @@
 
 .page {
     .abs-fill;
-//    background: url("@{res-folder}/Background/state.jpg") center top no-repeat;
+    transition: 0.15s opacity linear;
+    opacity: 1;
+    &.ng-hide{
+        
+        opacity: 0;
+    }    
+    //    background: url("@{res-folder}/Background/state.jpg") center top no-repeat;
     background-size: cover;
     &[data-page="status"] {
         @import "state/status.less";

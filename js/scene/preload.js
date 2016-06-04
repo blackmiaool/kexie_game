@@ -14,7 +14,12 @@ function preEnter() {
 
     let resSum = 0;
     preload_set(0, resSum)
-
+    if (dbg.imdeveloper) {
+        setTimeout(function(){
+            scene.go("home");
+        })
+        return;
+    }
 
     function preload_set(a, b) {
         preload_bar.text("资源加载中 " + a + "/" + b)
@@ -65,10 +70,11 @@ function preEnter() {
 
             if (dbg.imdeveloper) {
                 developer_set();
+                scene.go("home");//see top
                 //                scene.go("home");
                 //                sys.to_scene("chat"); 
             } else {
-                scene.go("state");
+                scene.go("home");
 //                scene.go("cover", "first");
             }
         }

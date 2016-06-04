@@ -26,7 +26,7 @@ var treeify = require('file-tree-sync');
 
 var plotTree = treeify(path.join(__dirname, 'js', "plot"), ['.*']);
 var sceneTree = treeify(path.join(__dirname, 'js', "scene"), ['.*']);
-
+var imgTree = treeify(path.join(__dirname, 'res'), ['.*','.jpg','.png','svg']);
 function get_browserify_params() {
     return {
         insertGlobals: true,
@@ -123,7 +123,7 @@ gulp.task("scenes", function () {
         })
         .pipe(headerfooter({
             //            header: `define(["require","sys","angular","v","common","res","dbg"],function* (require,sys,angular,v,common,res,dbg){`,
-            header: `define(["require","system-scene","system-sys","angular","system-dbg","v","res","angular-module","plot"],function (require,scene,sys,angular,dbg,v,res,module,plot){`,
+            header: `define(["require","system-scene","system-sys","angular","system-dbg","v","res","angular-module","plot","system-common"],function (require,scene,sys,angular,dbg,v,res,module,plot,common){`,
             footer: `})`,
             filter: function (file) {
                 var cwd = file.history[0].split("/").pop().split("\\");
@@ -153,7 +153,7 @@ gulp.task('es6', ["md"], function () {
             pattern: '<!--\\sinject:<filename>-->'
         }))
         .pipe(headerfooter({
-            header: `let gulpConfig={plots:${JSON.stringify(plotTree)},scenes:${JSON.stringify(sceneTree)}};\n`,
+            header: `let gulpConfig={plots:${JSON.stringify(plotTree)},scenes:${JSON.stringify(sceneTree)},imgs:${JSON.stringify(imgTree)}};\n`,
             footer: ``,
             filter: function (file) {
                 return file.path.split("/").pop().split("\\").pop() == "main.js"

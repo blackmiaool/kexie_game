@@ -3232,6 +3232,23 @@ input {
   width: 100%;
   background-size: cover;
 }
+.scene[data-scene="state"] > .wrap {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+}
+.scene[data-scene="state"] > .wrap > .back {
+  position: absolute;
+  left: 10px;
+  top: 10px;
+  z-index: 1;
+  -webkit-transform: rotate(180deg);
+  -ms-transform: rotate(180deg);
+  transform: rotate(180deg);
+}
 .scene[data-scene="state"] .page-select-wrap {
   position: absolute;
   z-index: 1;
@@ -3261,7 +3278,7 @@ input {
   opacity: 0;
 }
 .scene[data-scene="state"] .page-select-wrap .page-select > button {
-  transform-origin: left ;
+  transform-origin: left;
 }
 .scene[data-scene="state"] .page-select-wrap .page-select:hover > button.solid {
   transform: perspective(500px) rotate3d(0, 1, 0, 10deg);
@@ -3289,7 +3306,12 @@ input {
   top: 0;
   bottom: 0;
   margin: auto;
+  transition: 0.15s opacity linear;
+  opacity: 1;
   background-size: cover;
+}
+.scene[data-scene="state"] .page.ng-hide {
+  opacity: 0;
 }
 .scene[data-scene="state"] .page[data-page="status"] {
   background-image: url("../res/Background/state/state.jpg");
@@ -3553,7 +3575,7 @@ input {
 .scene[data-scene="state"] .page[data-page="item"] .items-wrap {
   left: 209px;
   width: 448px;
-  padding: 10px;
+  padding: 13px;
 }
 .scene[data-scene="state"] .page[data-page="item"] .items-wrap .item-wrap {
   margin: 2px 5px ;
@@ -3561,7 +3583,7 @@ input {
   position: relative;
   background-image: url("../res/UI/item_bg.jpg");
   background-repeat: no-repeat;
-  background-size: contain;
+  background-size: cover;
   width: 95px;
   height: 95px;
 }
@@ -3620,4 +3642,9 @@ input {
   text-indent: 2em;
   margin-top: 0;
   margin-bottom: 5px;
+}
+.scene[data-scene="home"] {
+  background-image: url("../res/Background/home.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
 }

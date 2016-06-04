@@ -1,6 +1,6 @@
 <div class="kind-wrap">
     <div ng-click="setItemKind(kind.name)" ng-repeat="kind in itemKinds" class="item-kind-select clickable" ng-class="{active:currentItemKind==kind.name}">
-        <img draggable="false" ng-src="/res/icon/{{::kind.icon}}.svg" alt="">
+        <img draggable="false" ng-src="{{::kind.icon}}.svg" alt="">
         <div class="name" ng-bind="::kind.name"></div>
     </div>
 
@@ -9,7 +9,7 @@
     <div ng-click="selectItem(item)" ng-repeat="item in items" ng-if="currentItemKind==item.kind" class="item-wrap clickable">
         <label class="cnt" ng-bind="item.cnt"></label>
         <label class="name" ng-bind="item.name"></label>
-        <img draggable="false" ng-src="/res/icon/item/white/{{item.icon}}.svg" alt="">
+        <img draggable="false" ng-src="{{::getIconUrl(item)}}.svg" alt="">
     </div>
     <!--
 <div ng-repeat="last in getLast()" class="item-wrap" style="visibility: hidden;">
@@ -19,7 +19,7 @@
 <div class="desc-wrap">
     <div ng-if="selectingItem" class="desc-wrap1">
         <div class="icon-wrap">
-            <img draggable="false" ng-src="/res/icon/item/white/{{selectingItem.icon}}.svg" alt="">
+            <img draggable="false" ng-src="{{::getIconUrl(selectingItem)}}.svg" alt="">
         </div>
 
         <label class="tag name">名称:</label>

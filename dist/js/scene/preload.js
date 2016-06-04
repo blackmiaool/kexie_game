@@ -1,6 +1,6 @@
 "use strict";
 
-define(["require", "system-scene", "system-sys", "angular", "system-dbg", "v", "res", "angular-module", "plot"], function (require, scene, sys, angular, dbg, v, res, module, plot) {
+define(["require", "system-scene", "system-sys", "angular", "system-dbg", "v", "res", "angular-module", "plot", "system-common"], function (require, scene, sys, angular, dbg, v, res, module, plot, common) {
     var exports = {};
     var sceneId = "preload";
     var $dom = scene.getScene(sceneId);
@@ -16,6 +16,12 @@ define(["require", "system-scene", "system-sys", "angular", "system-dbg", "v", "
 
         var resSum = 0;
         preload_set(0, resSum);
+        if (dbg.imdeveloper) {
+            setTimeout(function () {
+                scene.go("home");
+            });
+            return;
+        }
 
         function preload_set(a, b) {
             preload_bar.text("资源加载中 " + a + "/" + b);
@@ -66,10 +72,11 @@ define(["require", "system-scene", "system-sys", "angular", "system-dbg", "v", "
 
                 if (dbg.imdeveloper) {
                     developer_set();
+                    scene.go("home"); //see top
                     //                scene.go("home");
                     //                sys.to_scene("chat");
                 } else {
-                        scene.go("state");
+                        scene.go("home");
                         //                scene.go("cover", "first");
                     }
             }
