@@ -18,27 +18,42 @@ scene.register(sceneThis);
     经历:模仿
     设备:总结出关键设备  
 */
-const itemKinds=[{name:"仪器",icon:"microscope"},{name:"IC",icon:"cpu"},{name:"基础器件",icon:"settings"},{name:"机械",icon:"physics"},{name:"神器",icon:"molecule"}];
+const itemKinds = [{
+    name: "基础器件",
+    icon: "settings"
+}, {
+    name: "IC",
+    icon: "cpu"
+},  {
+    name: "机械",
+    icon: "mechanical-arm2"
+},{
+    name: "仪器",
+    icon: "microscope"
+}, {
+    name: "神器",
+    icon: "god-1"
+}];
 const pages = [
-        {
-            name: "状态",
-            class: "ym-success",
+    {
+        name: "状态",
+        class: "ym-success",
         },
-        {
-            name: "技能",
-            class: "ym-warning",
+    {
+        name: "技能",
+        class: "ym-warning",
         },
-        {
-            name: "朋友",
-            class: "ym-success",
+    {
+        name: "朋友",
+        class: "ym-success",
         },
-        {
-            name: "经历",
-            class: "ym-warning",
+    {
+        name: "经历",
+        class: "ym-warning",
         },
-        {
-            name: "物品",
-            class: "ym-success",
+    {
+        name: "物品",
+        class: "ym-success",
         },
 //        {
 //            name: "设备",
@@ -46,61 +61,19 @@ const pages = [
 //        },
     ];
 module.controller("state-controller", ["$scope", function (sp) {
-    
-    //console.log(res.pp)
-    function getName(skill) {
-        let show = true;
-        //        console.log(skill);
-        if (skill.pre.length != 0) {
-            skill.pre.forEach(function (v, i) {
-                if (v.skill.level < v.level)
-                    show = false;
-            })
-        }
-        if (show) {
-            return skill.name;
-        } else {
-            return "???";
-        }
-    }
-
-    function getPre(skill) {
-        let preText = "";
-        skill.pre.forEach(function (v, i) {
-            if (i > 0)
-                preText += " , ";
-            preText += v.skill.name + "Lv" + v.level;
-        })
-        return preText;
-    }
-
-
     function setPage(name) {
         sp.currentPage = name;
     }
-
-    function setP(pp) {
-        console.log(pp);
-        sp.currentP = pp;
+    window.dd=function(str){
+            eval(str);
     }
-    function setItemKind(kind){
-        sp.currentItemKind=kind;
-    }
-    //    console.log(skills)
     _.extend(sp, {
-        pp: res.pp,
         pages,
         v,
         setPage,
-        skills,
-        getPre,
-        getName,
-        setP,
-        itemKinds,
-        setItemKind
     });
-    //    console.log(v);
-}]).filter('skillLevel', function () {
+}])
+module.filter('skillLevel', function () {
     var filter = function (level) {
         if (level == 0) {
             return "菜鸟"
@@ -113,10 +86,103 @@ module.controller("state-controller", ["$scope", function (sp) {
         } else if (level == 10) {
             return "大师"
         }
-        return input + '...';
     };
     return filter;
 });
+//module.controller("status-controller", ["$scope", "$rootScope", function (sp, rsp) {
+//
+//                                       }])
+module.controller("status-controller", ["$scope", "$rootScope",
+function (sp, rsp) {
+
+}
+                                       ])
+module.controller("skill-controller", ["$scope", "$rootScope",
+function (sp, rsp) {
+        function getSkillName(skill) {
+            let show = true;
+            //        console.log(skill);
+            if (skill.pre.length != 0) {
+                skill.pre.forEach(function (v, i) {                    
+                    if (v.skill.level < v.level)
+                        show = false;
+                })
+            }
+            if (show) {
+                return skill.name;
+            } else {
+                return "???";
+            }
+        }
+
+        function getPre(skill) {
+            let preText = "";
+            skill.pre.forEach(function (v, i) {
+                if (i > 0)
+                    preText += " , ";
+                preText += v.skill.name + "Lv" + v.level;
+            })
+            return preText;
+        }
+        _.extend(sp, {
+            getSkillName,
+            skills:res.skills,
+            getPre,
+        });
+}])
+module.controller("people-controller", ["$scope", "$rootScope",
+function (sp, rsp) {
+        function setP(pp) {
+            console.log(pp);
+            sp.currentP = pp;
+        }
+
+        _.extend(sp, {
+            pp: res.pp,
+            setP,
+        });
+}])
+module.controller("story-controller", ["$scope", "$rootScope",
+function (sp, rsp) {
+        _.extend(sp, {});
+}])
+module.controller("item-controller", ["$scope", "$rootScope",
+function (sp, rsp) {
+        function setItemKind(kind) {
+            sp.currentItemKind = kind;
+        }
+//        console.log(res.items);
+        let lastArr=[[],[],[],[],[],[],[]];
+        lastArr.forEach(function(v,i){
+            for(var j=0;j<i;j++){
+                v.push({});
+            }
+        })
+        function getLast(){
+            let lineCnt=5;
+            let cnt=0;
+            for(var i in res.items){
+                cnt++;
+            }
+            cnt=lineCnt-cnt%lineCnt;
+            
+            return lastArr[cnt];
+        }
+        function selectItem(item){
+            sp.selectingItem=item;
+        }
+        
+        _.extend(sp, {
+            itemKinds,
+            setItemKind,
+            getLast,
+            selectItem,
+            selectingItem:false,
+            items:res.items,
+            currentItemKind:"基础器件",
+        });
+}])
+
 
 function preEnter() {}
 

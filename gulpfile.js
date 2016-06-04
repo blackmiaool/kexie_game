@@ -23,9 +23,9 @@ var yield_prefix = require('gulp-yield-prefix');
 var babel = require('gulp-babel');
 
 var treeify = require('file-tree-sync');
- 
-var plotTree = treeify(path.join(__dirname, 'js',"plot"), ['.*']);
-var sceneTree = treeify(path.join(__dirname, 'js',"scene"), ['.*']);
+
+var plotTree = treeify(path.join(__dirname, 'js', "plot"), ['.*']);
+var sceneTree = treeify(path.join(__dirname, 'js', "scene"), ['.*']);
 
 function get_browserify_params() {
     return {
@@ -108,7 +108,8 @@ var tmood=plot.tmood; `,
         }))
         .pipe(babel_pipe)
         //        .pipe(browserify(get_browserify_params()))
-        .pipe(gulp.dest('dist/js')).pipe(livereload());
+        .pipe(gulp.dest('dist/js'))
+        .pipe(livereload());
 })
 gulp.task("scenes", function () {
 
@@ -140,24 +141,25 @@ gulp.task("scenes", function () {
         .pipe(babel_pipe)
         .pipe(gulp.dest('dist/js')).pipe(livereload());
 })
-gulp.task('es6',["md"], function () {
+gulp.task('es6', ["md"], function () {
     var babel_pipe = babel(get_babel_params());
     babel_pipe.on('error', function (ee) {
         gutil.log(ee);
         babel_pipe.end();
     });
     return gulp.src(['js/**/*.js', "!js/scene/*.js", "!js/plot/*.js"])
-        .pipe(cached("es6"))
-        .pipe(injectfile({
+
+    .pipe(injectfile({
             pattern: '<!--\\sinject:<filename>-->'
         }))
         .pipe(headerfooter({
             header: `let gulpConfig={plots:${JSON.stringify(plotTree)},scenes:${JSON.stringify(sceneTree)}};\n`,
             footer: ``,
             filter: function (file) {
-                return file.path.split("/").pop().split("\\").pop()=="main.js"
+                return file.path.split("/").pop().split("\\").pop() == "main.js"
             }
         }))
+        .pipe(cached("es6"))
         .pipe(babel_pipe)
         .pipe(gulp.dest('dist/js'))
         .pipe(livereload());
@@ -165,15 +167,22 @@ gulp.task('es6',["md"], function () {
 
 gulp.task('md', function () {
     var beautify = require('gulp-beautify');
-    return gulp.src('README.md').pipe(md2json()).
-    pipe(beautify()).pipe(rename("dist/data.json")).pipe(gulp.dest("."))
+    return gulp.src('README.md')
+        .pipe(md2json())
+        .pipe(beautify())
+        .pipe(cached("md"))
+        .pipe(rename("dist/data.json"))
+        .pipe(gulp.dest("."))
+        .pipe(livereload());
 })
 gulp.task('mv-res', function () {
-    return gulp.src('res/**/*').pipe(gulp.dest("dist/res/"))
+    return gulp.src('res/**/*')
+        .pipe(cached("mv-res"))
+        .pipe(gulp.dest("dist/res/"));
 })
 gulp.task('default', function () {
 
-    gulp.start(["mv-dist", "mv-res", "less", "html", 'md', "es6","plots","scenes"]);
+    gulp.start(["mv-dist", "mv-res", "less", "html", 'md', "es6", "plots", "scenes"]);
 
 });
 gulp.task('reload', function () {
@@ -188,3 +197,5 @@ gulp.watch("js/plot/*.js", ['plots']);
 gulp.watch("js/scene/*.js", ['scenes']);
 gulp.watch('index.html', ['reload']);
 gulp.watch('html/**/*.html', ['html']);
+gulp.watch('res/**/*.*', ['mv-res', 'reload'])
+gulp.watch('README.md', ['es6']);

@@ -2,171 +2,199 @@
     "item": [{
         "name": "烙铁",
         "kind": "仪器",
+        "icon": "iron-soldering",
         "price": "20",
         "brief": "最基础的工具，新手工程师家中常备",
-        "store": "德律商店"
+        "comment": "通电数分钟后用手握住它的金属部分可以起到提神的作用"
     }, {
         "name": "低端示波器",
         "kind": "仪器",
+        "icon": "oscilloscope",
         "price": "500",
         "brief": "低端调试仪器，可以增加少许的调试速度",
-        "store": "德律商店"
+        "comment": "学校的旧实验室有一堆这种东西"
     }, {
         "name": "中端示波器",
         "kind": "仪器",
+        "icon": "oscilloscope",
         "price": "1000",
         "brief": "中端调试仪器，可以增加一定的调试速度",
-        "store": "德律商店"
+        "comment": "好一点的实验室才有的好东西"
     }, {
         "name": "高端示波器",
         "kind": "仪器",
+        "icon": "oscilloscope",
         "price": "2000",
         "brief": "高端调试仪器，可以增加大量的调试速度",
-        "store": "德律商店"
+        "comment": "高级实验室和校队才有的稀有仪器"
     }, {
         "name": "机械基础工具",
         "kind": "仪器",
+        "icon": "tool",
         "price": "200",
         "brief": "最基础的机械工具套装",
-        "store": "德律商店"
+        "comment": "看起来像是工具,但是往往会变成消耗品"
     }, {
         "name": "低端单片机",
         "kind": "IC",
+        "icon": "computer",
         "price": "3",
         "brief": "性能很弱的单片机，可以用于制作简陋的电路系统",
-        "store": "德律商店"
+        "comment": "郭天祥为它代言"
     }, {
         "name": "中端单片机",
         "kind": "IC",
+        "icon": "computer",
         "price": "15",
         "brief": "性能一般的单片机，可以用于制作一般的电路系统",
-        "store": "德律商店"
+        "comment": "意法公司代表性作品,在21种情况下会下载失败"
     }, {
         "name": "高端单片机",
         "kind": "IC",
+        "icon": "computer",
         "price": "50",
         "brief": "性能强劲的单片机，可以用于制作复杂的电路系统",
-        "store": "德律商店"
+        "comment": "有时候买开发板还不如买个手机"
     }, {
         "name": "五5伍",
         "kind": "IC",
+        "icon": "computer",
         "price": "2",
         "brief": "常用数字芯片，用于产生基础的数字信号",
-        "store": "德律商店"
+        "comment": "听说可以用来设计500种电路"
     }, {
         "name": "锁存器",
         "kind": "IC",
+        "icon": "computer",
         "price": "2",
         "brief": "郭天祥最喜欢的芯片",
-        "store": "德律商店"
+        "comment": "德律商店"
     }, {
         "name": "FPGA",
         "kind": "IC",
+        "icon": "computer",
         "price": "30",
         "brief": "高级可编程数字芯片，常被单片机奴役，可用于制作单片机",
-        "store": "德律商店"
+        "comment": "德律商店"
     }, {
         "name": "CPLD",
         "kind": "IC",
+        "icon": "computer",
         "price": "15",
         "brief": "廉价可编程数字芯片",
-        "store": "德律商店"
+        "comment": "德律商店"
     }, {
         "name": "普通电池",
         "kind": "基础器件",
+        "icon": "battery",
         "price": "2",
         "brief": "给电路板供电用的一次性器件",
-        "store": "德律商店"
+        "comment": "德律商店"
     }, {
         "name": "锂电池",
         "kind": "基础器件",
+        "icon": "battery",
         "price": "30",
         "brief": "给电路板供电用的器件，可重复使用",
-        "store": "德律商店"
+        "comment": "德律商店"
     }, {
         "name": "电路基础元件",
         "kind": "基础器件",
+        "icon": "resistance",
         "price": "10",
         "brief": "最基础的电路元件套装，包括焊锡、排针、杜邦线、电阻、电容等器件",
-        "store": "德律商店"
+        "comment": "德律商店"
     }, {
         "name": "LED",
         "kind": "基础器件",
+        "icon": "led",
         "price": "1",
         "brief": "电子设计基础材料，用于进行焊接",
-        "store": "德律商店"
+        "comment": "德律商店"
     }, {
         "name": "数码管",
         "kind": "基础器件",
+        "icon": "digital-display",
         "price": "10",
         "brief": "可以显示出数字或字幕的元件，常用作显示设备",
-        "store": "德律商店"
+        "comment": "为了显示几个数字去驱动这东西?"
     }, {
         "name": "舵机",
         "kind": "机械",
+        "icon": "motor",
         "price": "30",
         "brief": "机电的基础元件，通过输入占空比进行转动",
-        "store": "德律商店"
+        "comment": "舵机才是极客的浪漫!"
     }, {
         "name": "振动电机",
         "kind": "机械",
+        "icon": "motor",
         "price": "5",
         "brief": "可以让系统产生震动的电机",
-        "store": "德律商店"
+        "comment": "请勿配合电池使用"
     }, {
         "name": "机械元件",
         "kind": "机械",
+        "icon": "gears",
         "price": "10",
         "brief": "机械设备的基础单位",
-        "store": "五金店"
+        "comment": "不知从哪里拆下来的"
     }, {
         "name": "电钻",
         "kind": "仪器",
+        "icon": "drill-tool",
         "price": "200",
         "brief": "基础机械工具，用于打孔",
-        "store": "五金店"
+        "comment": "不使用它有助于提高周围人对你的友好度"
     }, {
         "name": "电锯",
         "kind": "仪器",
+        "icon": "saw-hand-drawn-electrical-cutting-tool",
         "price": "300",
         "brief": "基础机械工具，用于切割，噪音较大",
-        "store": "五金店"
+        "comment": "僵尸入侵时它可以帮助你活下去"
     }, {
         "name": "浪神炮伪",
         "kind": "伪神器",
+        "icon": "gods-shield",
         "price": "5000",
         "brief": "浪神用过的武器的仿制版，毁灭比赛中的一个队伍",
-        "store": "浪神殿"
+        "comment": "浪神殿"
     }, {
         "name": "浪神炮",
         "kind": "神器",
+        "icon": "gods-shield",
         "price": "10000",
         "brief": "浪神用过的武器，毁灭比赛中所有其他队伍",
-        "store": "浪神殿"
+        "comment": "浪神殿"
     }, {
         "name": "浪经",
         "kind": "神器",
+        "icon": "gods-shield",
         "price": "2000",
         "brief": "浪神说过的话语，阅读后可提高一定的知识属性（数字、模拟）",
-        "store": "浪神殿"
+        "comment": "浪神殿"
     }, {
         "name": "浪布丁",
         "kind": "神器",
+        "icon": "gods-shield",
         "price": "2000",
         "brief": "浪神制作的布丁，随机技能等级提升1",
-        "store": "浪神殿"
+        "comment": "浪神殿"
     }, {
         "name": "浪手帕",
         "kind": "神器",
+        "icon": "gods-shield",
         "price": "6000",
         "brief": "浪神偶然得到的手帕，100%成功率招募本级同学或高一级的学长作为队友",
-        "store": "浪神殿"
+        "comment": "浪神殿"
     }, {
         "name": "浪粉丝芳心",
         "kind": "伪神器",
+        "icon": "gods-shield",
         "price": "10000",
         "brief": "浪神粉丝的芳心，使用后效率降低50%",
-        "store": "浪神殿"
+        "comment": "浪神殿"
     }],
     "combine": [{
         "name": "单片机流水灯",

@@ -223,24 +223,30 @@ define(["system-common"], function (common) {
     function res_data_handle(data) {
 
         for (var table_name in data) {
+            let d=data[table_name];
 //            console.log(table_name)
-            window[table_name] = data[table_name];
+//            window[table_name] = data[table_name];
             switch (table_name) {
             case "item":
-                window.items = {};
-                for (var i in item) {
-                    item[i].cnt = 0;
-                    item[i].price = parseInt(item[i].price)
-                    items[item[i].name] = item[i];
+                let items={};
+//                window.items = {};
+                    res.items=items;
+                for (var i in d) {
+                    d[i].cnt = 0;
+                    d[i].price = parseInt(d[i].price)
+                    items[d[i].name] = d[i];
                 }
                 break;
             case "combine":
-                window.combines = {};
-                for (var i in combine) {
+                    let combines={};
+//                window.combines = {};
+                    res.combines=combines;
+                for (var i in d) {
+                    let v=d[i];
                     //replace
-                    combine[i].material = md_trim(combine[i].material);
-                    combine[i].material = combine[i].material.split("+")
-                    var material = combine[i].material;
+                    v.material = md_trim(v.material);
+                    v.material = v.material.split("+")
+                    var material = v.material;
                     for (var j in material) {
                         var materials = material[j].split("*")
                         if (!materials[0]) {
@@ -255,31 +261,33 @@ define(["system-common"], function (common) {
                         };
                     }
 
-                    combine[i].instrument = combine[i].instrument.split("+");
-                    combine[i].product = [];
-                    for (var i in combine) {
-                        combines[combine[i].name] = combine[i]
+                    v.instrument = v.instrument.split("+");
+                    v.product = [];
+                    for (var i in d) {
+                        combines[d[i].name] = d[i]
                     }
 
                 }
 
                 break;
             case "skill":
-                window.skills = {}
-                for (var i in skill) {
-                    skills[skill[i].name] = {};
-                    skills[skill[i].name].name = skill[i].name;
-                    skills[skill[i].name].level = 0;
+//                window.skills = {};
+                let skills={};
+                res.skills=skills;
+                for (var i in d) {
+                    skills[d[i].name] = {};
+                    skills[d[i].name].name = d[i].name;
+                    skills[d[i].name].level = 0;
                 }
-                for (var i in skill) {
-                    var skill_this = skills[skill[i].name];
+                for (var i in d) {
+                    var skill_this = skills[d[i].name];
                     skill_this.pre = [];
-                    if (skill[i].pre != "none") {
-                        var pre_array = skill[i].pre.split(",");
-                        for (var j in pre_array) {
-                            let skill=skills[pre_array[j].split("v")[0]];
-                            let level=pre_array[j].split("v")[1];
-                            if (pre_array[j] != "none") {
+                    if (d[i].pre != "none") {
+                        var preArr = d[i].pre.split(",");
+                        for (var j in preArr) {
+                            let skill=skills[preArr[j].split("v")[0]];
+                            let level=preArr[j].split("v")[1];
+                            if (preArr[j] != "none") {
                                 skill_this.pre.push({skill,level})
                             }
                         }

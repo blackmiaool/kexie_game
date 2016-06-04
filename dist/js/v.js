@@ -19,23 +19,6 @@ define(["res", "system-common"], function (res, common) {
             sex: "male"
 
         },
-        study: {
-            arrange: []
-        },
-        state: {
-            fatigue: 30,
-            skill_point: 2,
-            skill_progress: 30
-        },
-        abality: {
-            rest_eff: 10
-        },
-        make: {
-            target: false,
-            progress: 107,
-            innovate: 54
-
-        },
         time: {
             year: 2014,
             term: 1,
@@ -58,9 +41,7 @@ define(["res", "system-common"], function (res, common) {
             kexie_first: false
         },
         amity: {},
-        skill: {
-            digital_circuit: 0
-        },
+        skill: {},
         item: {},
         components: {},
         left_points: 10
@@ -68,23 +49,10 @@ define(["res", "system-common"], function (res, common) {
     for (var i in res.pp) {
         v_init.amity[i] = 0;
     }
-    for (var i = 0; i < 8; i++) {
-        v_init.study.arrange[i] = [];
+    for (var i in res.items) {
+        v_init.item[i] = { cnt: 0 };
     }
-
     var v = common.clone(v_init);
-    var components = ["skills", "combines", "items", "quest", "courses"];
-    for (var i in components) {
-        v[components[i]] = window[components[i]];
-    }
-    //    v.get_left_points=()=> {
-    //        var retval = 0;
-    //        for (var i = v.time.period; i < v.time.total_point_today; i++) {
-    //            if (!v.study.arrange[v.time.week_day_index][res.the_period_of_day[i]]) {
-    //                retval++;
-    //            }
-    //        }
-    //        return retval;
-    //    }
+
     return v;
 });

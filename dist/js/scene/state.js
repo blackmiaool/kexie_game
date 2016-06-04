@@ -21,7 +21,22 @@ define(["require", "system-scene", "system-sys", "angular", "system-dbg", "v", "
         经历:模仿
         设备:总结出关键设备  
     */
-    var itemKinds = [{ name: "仪器", icon: "microscope" }, { name: "IC", icon: "cpu" }, { name: "基础器件", icon: "settings" }, { name: "机械", icon: "physics" }, { name: "神器", icon: "molecule" }];
+    var itemKinds = [{
+        name: "基础器件",
+        icon: "settings"
+    }, {
+        name: "IC",
+        icon: "cpu"
+    }, {
+        name: "机械",
+        icon: "mechanical-arm2"
+    }, {
+        name: "仪器",
+        icon: "microscope"
+    }, {
+        name: "神器",
+        icon: "god-1"
+    }];
     var pages = [{
         name: "状态",
         class: "ym-success"
@@ -44,9 +59,40 @@ define(["require", "system-scene", "system-sys", "angular", "system-dbg", "v", "
     //            class: "ym-success",
     //        },
     module.controller("state-controller", ["$scope", function (sp) {
-
-        //console.log(res.pp)
-        function getName(skill) {
+        function setPage(name) {
+            sp.currentPage = name;
+        }
+        window.dd = function (str) {
+            eval(str);
+        };
+        _.extend(sp, {
+            pages: pages,
+            v: v,
+            setPage: setPage
+        });
+    }]);
+    module.filter('skillLevel', function () {
+        var filter = function filter(level) {
+            if (level == 0) {
+                return "菜鸟";
+            } else if (level < 4) {
+                return "新手";
+            } else if (level < 7) {
+                return "熟手";
+            } else if (level < 10) {
+                return "高手";
+            } else if (level == 10) {
+                return "大师";
+            }
+        };
+        return filter;
+    });
+    //module.controller("status-controller", ["$scope", "$rootScope", function (sp, rsp) {
+    //
+    //                                       }])
+    module.controller("status-controller", ["$scope", "$rootScope", function (sp, rsp) {}]);
+    module.controller("skill-controller", ["$scope", "$rootScope", function (sp, rsp) {
+        function getSkillName(skill) {
             var show = true;
             //        console.log(skill);
             if (skill.pre.length != 0) {
@@ -69,49 +115,61 @@ define(["require", "system-scene", "system-sys", "angular", "system-dbg", "v", "
             });
             return preText;
         }
-
-        function setPage(name) {
-            sp.currentPage = name;
-        }
-
+        _.extend(sp, {
+            getSkillName: getSkillName,
+            skills: res.skills,
+            getPre: getPre
+        });
+    }]);
+    module.controller("people-controller", ["$scope", "$rootScope", function (sp, rsp) {
         function setP(pp) {
             console.log(pp);
             sp.currentP = pp;
         }
+
+        _.extend(sp, {
+            pp: res.pp,
+            setP: setP
+        });
+    }]);
+    module.controller("story-controller", ["$scope", "$rootScope", function (sp, rsp) {
+        _.extend(sp, {});
+    }]);
+    module.controller("item-controller", ["$scope", "$rootScope", function (sp, rsp) {
         function setItemKind(kind) {
             sp.currentItemKind = kind;
         }
-        //    console.log(skills)
-        _.extend(sp, {
-            pp: res.pp,
-            pages: pages,
-            v: v,
-            setPage: setPage,
-            skills: skills,
-            getPre: getPre,
-            getName: getName,
-            setP: setP,
-            itemKinds: itemKinds,
-            setItemKind: setItemKind
-        });
-        //    console.log(v);
-    }]).filter('skillLevel', function () {
-        var filter = function filter(level) {
-            if (level == 0) {
-                return "菜鸟";
-            } else if (level < 4) {
-                return "新手";
-            } else if (level < 7) {
-                return "熟手";
-            } else if (level < 10) {
-                return "高手";
-            } else if (level == 10) {
-                return "大师";
+        //        console.log(res.items);
+        var lastArr = [[], [], [], [], [], [], []];
+        lastArr.forEach(function (v, i) {
+            for (var j = 0; j < i; j++) {
+                v.push({});
             }
-            return input + '...';
-        };
-        return filter;
-    });
+        });
+        function getLast() {
+            var lineCnt = 5;
+            var cnt = 0;
+            for (var i in res.items) {
+                cnt++;
+            }
+            cnt = lineCnt - cnt % lineCnt;
+
+            return lastArr[cnt];
+        }
+        function selectItem(item) {
+            sp.selectingItem = item;
+        }
+
+        _.extend(sp, {
+            itemKinds: itemKinds,
+            setItemKind: setItemKind,
+            getLast: getLast,
+            selectItem: selectItem,
+            selectingItem: false,
+            items: res.items,
+            currentItemKind: "基础器件"
+        });
+    }]);
 
     function preEnter() {}
 

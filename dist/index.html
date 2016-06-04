@@ -119,7 +119,7 @@
                     </div>
                 </div>
             
-                <div class="page" data-page="status" ng-show="currentPage=='状态'">
+                <div ng-controller="status-controller" class="page" data-page="status" ng-show="currentPage=='状态'">
                    <div class="money" ng-bind="'金钱: '+v.basic.money"></div>
                            <div class="analog" title="模拟电路能力"><img src="/res/UI/analog3.png" alt=""><span class="value">234</span></div>
                            <div class="digital" title="数字电路能力"><span class="value">666</span><img src="/res/UI/digital1.png" alt=""> </div>
@@ -144,30 +144,30 @@
                                </span>
                            </div>        
                 </div>
-                <div class="page" data-page="skill" ng-show="currentPage=='技能'">
+                <div ng-controller="skill-controller" class="page" data-page="skill" ng-show="currentPage=='技能'">
                     <div class="table-wrap highlight">
-                                <table class="table">
-                                    <thead>
-                                        <tr>
-                                            <th>技能</th>
-                                            <td>等级</td>
-                                            <td>依赖</td>
-                                            <!--                        <td>操作</td>-->
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr ng-repeat="v in skills" title="{{::v.des}}">
-                                            <th ng-bind="::getName(v)"></th>
-                                            <td ng-bind="v.level+' ('+(v.level | skillLevel)+')'"></td>
-                                            <td ng-bind="::getPre(v)"></td>
-                                            <!--                        <td><button class="ym-button ym-black">升级</button></td>-->
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div> 
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>技能</th>
+                                    <td>等级</td>
+                                    <td>依赖</td>
+                                    <!--                        <td>操作</td>-->
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="v in skills" title="{{::v.des}}">
+                                    <th ng-bind="::getSkillName(v)"></th>
+                                    <td ng-bind="v.level+' ('+(v.level | skillLevel)+')'"></td>
+                                    <td ng-bind="::getPre(v)"></td>
+                                    <!--                        <td><button class="ym-button ym-black">升级</button></td>-->
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div> 
             
                 </div>
-                <div class="page" data-page="people" ng-show="currentPage=='朋友'">
+                <div ng-controller="people-controller" class="page" data-page="people" ng-show="currentPage=='朋友'">
                     <div class="desc-wrap">
                         <img ng-src="{{currentP.half}}" alt="" class="currentP">
                     </div>
@@ -177,20 +177,44 @@
                         </div>
                     </div>
                 </div>
-                <div class="page" data-page="item" ng-show="currentPage=='物品'">
+                <div ng-controller="item-controller" class="page" data-page="item" ng-show="currentPage=='物品'">
                     <div class="kind-wrap">
                         <div ng-click="setItemKind(kind.name)" ng-repeat="kind in itemKinds" class="item-kind-select clickable" ng-class="{active:currentItemKind==kind.name}">
-                            <img draggable="false" ng-src="/res/icon/{{kind.icon}}.svg" alt="">
+                            <img draggable="false" ng-src="/res/icon/{{::kind.icon}}.svg" alt="">
                             <div class="name" ng-bind="::kind.name"></div>
                         </div>
-                        
+                    
                     </div>
                     <div class="items-wrap">
-                            
+                        <div ng-click="selectItem(item)" ng-repeat="item in items" ng-if="currentItemKind==item.kind" class="item-wrap clickable">
+                            <label class="cnt" ng-bind="item.cnt"></label>
+                            <label class="name" ng-bind="item.name"></label>
+                            <img draggable="false" ng-src="/res/icon/item/white/{{item.icon}}.svg" alt="">
                         </div>
-                        <div class="desc-wrap">
-                            
+                        <!--
+                    <div ng-repeat="last in getLast()" class="item-wrap" style="visibility: hidden;">
+                    </div>
+                    -->
+                    </div>
+                    <div class="desc-wrap">
+                        <div ng-if="selectingItem" class="desc-wrap1">
+                            <div class="icon-wrap">
+                                <img draggable="false" ng-src="/res/icon/item/white/{{selectingItem.icon}}.svg" alt="">
+                            </div>
+                    
+                            <label class="tag name">名称:</label>
+                            <p class="value name" ng-bind="selectingItem.name"></p>
+                            <label class="tag cnt">数量:</label>
+                            <p class="value cnt" ng-bind="selectingItem.cnt"></p>
+                            <label class="tag brief">简介:</label>
+                            <p class="value brief" ng-bind="selectingItem.brief"></p>
+                            <label class="tag comment">备注:</label>
+                            <p class="value comment" ng-bind="selectingItem.comment"></p>
                         </div>
+                    </div>
+                </div>
+                <div ng-controller="story-controller" class="page" data-page="story" ng-show="currentPage=='经历'">
+                    
                 </div>
             
             

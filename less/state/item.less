@@ -42,11 +42,69 @@ background-image: url("@{res-folder}/Background/state/item.jpg");
 }
 
 .items-wrap {
-    left: 209px;
-    
-    width: 450px;
+    left: 209px;    
+    width: 448px;
+//    display: flex;
+    padding: 10px;
+//    flex-direction: row;
+//    flex-wrap: wrap;
+//    align-items: flex-start;
+//    align-content: flex-start;    
+//    justify-content: space-between;    
+    .item-wrap{
+        margin: 2px 5px ;
+        display: inline-block;
+        position: relative;
+        .common-bg("UI/item_bg.jpg");
+        .square(95px);
+        img{
+            .abs-fill;
+            .square(50%);
+            display: block;
+//            width: 70%;
+//            height: 70%;
+        }
+        label{
+            color: white;
+            font-weight: normal;
+            .abs-fill;
+            
+            &.name{
+                top: auto;
+                bottom: 3px;
+                font-size: 14px;
+                text-align: center;
+            }
+            &.cnt{
+                left: auto;
+                bottom: auto;
+                right: 5px;
+                top: 2px;
+            }
+        }
+    }
 }
 .desc-wrap{
     right:20px;
     width: 250px;
+    padding: 10px;
+    color: #131e2f;
+    color: white;
+    .icon-wrap{
+        padding-top: 5px;
+        text-align: center;
+        
+        img{
+            width: 80px;
+            display: inline-block;
+        }
+    }
+    .tag{
+        font-weight: normal;
+    }
+    p{
+        text-indent: 2em;
+        margin-top: 0;
+       margin-bottom: 5px;
+    }
 }

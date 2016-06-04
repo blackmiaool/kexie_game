@@ -109,7 +109,11 @@
     width: @size;
     height: @size;
 }
-
+.common-bg(@location){
+    background-image: url("@{res-folder}/@{location}");
+    background-repeat: no-repeat;
+    background-size: contain;
+}
 .round {
     border-radius: 10000px;
     overflow: hidden;
@@ -127,7 +131,7 @@
     .transform(translateX(-50%));
 }
 .blue-panel{
-    background-color: rgba(70, 130, 180, 0.4);
+    background-color: rgba(70, 130, 180, 0.25);
     border-radius: 10px;
     border:rgb(70, 130, 180) 1px solid;
 }
