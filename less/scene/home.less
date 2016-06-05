@@ -1,3 +1,142 @@
 @import "common.less";
 @import "variables.less";
 .common-bg("Background/home.jpg");
+.basic {
+    padding: 3px 7px 4px 7px;
+    border-radius: 5px;
+    display: inline-block;
+    @color: steelblue;
+    font-size: 0;
+    color: white;
+    background-color: @color;
+    .key {
+        display: inline-block;
+        padding: 5px 10px 5px 5px;
+        font-size: 18px;
+    }
+    .value {
+        display: inline-block;
+        text-align: center;
+        border-radius: 4px;
+        font-size: 18px;
+        color: black;
+        background-color: white;
+        padding: 3px 0px;
+        width: 100px;
+    }
+    &.name {
+        position: absolute;
+        top: 15px;
+        left: 15px;
+    }
+    &.power {
+        position: absolute;
+        top: 70px;
+        left: 15px;
+        .value {
+            width: 150px;
+            background-color: white;
+            color: black;
+            position: relative;
+            >span {
+                border-radius: 4px;
+            }
+            >.bg {
+                background-color: white;
+            }
+            >.fill {
+                .abs-fill;
+                transition: 0.2s width linear;
+                right: auto;
+                background-color: #449d44;
+                width: 100%;
+            }
+            >.text {
+                position: relative;
+                color: white;
+                text-shadow: 1px 1px 1px black, -1px 1px 1px black, 1px -1px 1px black, -1px -1px 1px black;
+            }
+        }
+    }
+    &.term{
+        position: absolute;
+        top: 90px;
+        right: 15px;
+        background-color: @purple;
+    }
+    &.month{
+        position: absolute;
+        top: 145px;
+        right: 15px;
+         background-color: @purple;
+    }
+}
+
+.settings {
+    .common-bg("UI/blue_settings.png");
+    .square(50px);
+    position: absolute;
+    top: 10px;
+    right: 10px;
+}
+
+.action-panel {
+    .abs-fill;
+    top: auto;
+    bottom: 10px;
+    left: 30px;
+    right: 30px;
+    border-radius: 10px;
+    height: 150px;
+    background-color: rgba(255, 255, 255, 0.8);
+    border: 6px solid steelblue;
+    //    padding: 20px;
+    .action {
+        display: inline-block;
+        text-align: center;
+        margin: 20px;
+        width: 70px;
+        img {
+            .fill;
+        }
+        &[data-action="状态"] {
+            float: right;
+        }
+    }
+}
+
+.power-wrap {
+    position: absolute;
+    top: 80px;
+    left: 15px;
+    img {
+        display: block;
+    }
+    .icon {
+        display: inline-block;
+        img {
+            width: 70px;
+        }
+    }
+    .progress-wrap {
+        position: relative;
+        display: inline-block;
+        width: 200px;
+        height: 30px;
+        left: 80px;
+        .vertical-center;
+        >img {
+            .fill;
+        }
+        .pro {
+            .abs-fill;
+            top: 31%;
+            bottom: 28%;
+            left: 4.3%;
+            right: 4.7%;
+            >img {
+                .fill;
+            }
+        }
+    }
+}

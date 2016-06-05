@@ -7,6 +7,9 @@ let sceneThis = {
     $dom,
 };
 let $$ = $dom.find.bind($dom);
+
+window.dd={scene,common,v,res}
+
 scene.register(sceneThis);
 /*
 需要展示:
@@ -68,14 +71,13 @@ module.controller("state-controller", ["$scope", function (sp) {
     function back(){
         scene.go("home");
     }
-    window.dd=function(str){
-            eval(str);
-    }
+    
     _.extend(sp, {
         pages,
         v,
         setPage,
         back,
+        res,
     });
 }])
 module.filter('skillLevel', function () {
@@ -175,8 +177,8 @@ function (sp, rsp) {
         function selectItem(item){
             sp.selectingItem=item;
         }
-        function getIconUrl(item){
-            return `${common.resPath}icon/item/white/${item.icon}`;
+        function getIconUrl(item,color){
+            return `${common.resPath}icon/item/${color}/${item.icon}`;
         }
         
         _.extend(sp, {

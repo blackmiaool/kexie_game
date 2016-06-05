@@ -10,6 +10,9 @@ define(["require", "system-scene", "system-sys", "angular", "system-dbg", "v", "
         $dom: $dom
     };
     var $$ = $dom.find.bind($dom);
+
+    window.dd = { scene: scene, common: common, v: v, res: res };
+
     scene.register(sceneThis);
     /*
     需要展示:
@@ -66,14 +69,13 @@ define(["require", "system-scene", "system-sys", "angular", "system-dbg", "v", "
         function back() {
             scene.go("home");
         }
-        window.dd = function (str) {
-            eval(str);
-        };
+
         _.extend(sp, {
             pages: pages,
             v: v,
             setPage: setPage,
-            back: back
+            back: back,
+            res: res
         });
     }]);
     module.filter('skillLevel', function () {
@@ -164,8 +166,8 @@ define(["require", "system-scene", "system-sys", "angular", "system-dbg", "v", "
         function selectItem(item) {
             sp.selectingItem = item;
         }
-        function getIconUrl(item) {
-            return common.resPath + "icon/item/white/" + item.icon;
+        function getIconUrl(item, color) {
+            return common.resPath + "icon/item/" + color + "/" + item.icon;
         }
 
         _.extend(sp, {

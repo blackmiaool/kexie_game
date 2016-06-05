@@ -1,12 +1,12 @@
 <div ng-controller="state-controller" class="wrap">
-    <img ng-click="back()" draggable="false"  ng-src="{{::img.state_back}}" title="返回" class="back">    
+    <div ng-click="back()" draggable="false" title="返回" class="back">    </div>
     <div class="page-select-wrap" ng-init="currentPage='物品'">
 
         <div ng-repeat="page in pages" class="page-select" ng-class="{active:currentPage==page.name}"  ng-click="setPage(page.name)">
-
-            <button ng-click="setPage(page.name)" class="ym-button solid {{page.class}} ym-large " ng-bind="::page.name">
-                <button class="cover" ng-click="setPage(page.name)">d</button>
-            </button>
+            <img ng-src="{{::res.img.blue_btn}}" alt="" class="bg">
+            <div ng-click="setPage(page.name)" class="select solid {{page.class}} unselectable"  ng-bind="::page.name">
+                <button class="cover" ng-click="setPage(page.name)"></button>
+            </div>
         </div>
     </div>
 

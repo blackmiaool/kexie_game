@@ -45,10 +45,17 @@ define(["system-common"], function (common) {
 
             shopt_btn: g("UI/shop_btn.png"),
             shopt_btn2: g("UI/shop_btn2.png"),
+            //ui:
+            blue_btn: g("UI/blue_btn.png"),
+            power_icon: g("UI/power_icon.png"),
+            progress_frame: g("UI/progress_frame.png"),
+            progress_content: g("UI/progress_content.png"),
             //state
             state_back: g("UI/back.png"),
             state_analog: g("UI/analog3.png"),
-            state_digital: g("UI/digital1.png")
+            state_digital: g("UI/digital1.png"),
+            items_frame: g("UI/items_frame.png"),
+            items_desc_frame: g("UI/item_desc_bg.png")
         },
         pp: {
             what: {

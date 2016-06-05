@@ -67,8 +67,61 @@
             </div>
         </div>
         <div class="scene" data-scene="home">
-            <div class="home-wrap">
-            <!--
+            <div ng-controller="home-controller" class="home-wrap">
+                <span class="basic name">
+                    <span class="key"><span class="glyphicon glyphicon-user"></span> 姓名</span>
+                <span class="value" ng-bind="v.basic.name"></span>
+                </span>
+                <span class="basic power">
+                    <span class="key"><span class="glyphicon glyphicon-fire"></span> 体力</span>
+                <span class="value">
+                        <span class="bg"></span>
+                <span class="fill" ng-style="{width:v.actionPoints*10+'%'}"></span>
+                <span class="text" ng-bind="v.actionPoints"></span>
+                </span>
+                </span>
+                
+                <span class="basic term">
+                    <span class="key"><span class="glyphicon glyphicon-calendar"></span> 学期</span>
+                <span class="value" ng-bind="v.time.term | term"></span>
+                </span>
+                
+                <span class="basic month">
+                    <span class="key"><span class="glyphicon glyphicon-stats"></span> 月份</span>
+                <span class="value" ng-bind="getMonth(v.time.month,v.time.part)"></span>
+                </span>
+                
+                <div class="settings"></div>
+                <div class="action-panel">
+                    <div ng-mouseover="hover(action)" ng-click="doAction(action)" ng-repeat="action in actions" class="action clickable" data-action="{{::action.name}}">
+            
+                        <img draggable="false" ng-src="{{::getActionIcon(action.icon)}}">
+            
+                        <label ng-bind="::action.name"></label>
+                    </div>
+                    <img ng-src="{{monkey}}" alt="" class="monkey">
+                </div>
+                <!--
+                <div class="power-wrap">
+                    <div class="icon">
+                        <img draggable="false" ng-src="{{::res.img.power_icon}}" alt="">
+                    </div>
+                    <div draggable="false" class="progress-wrap">
+                        <img ng-src="{{::res.img.progress_frame}}" alt="">
+                        <div class="pro">
+                            <img ng-src="{{::res.img.progress_content}}" alt="">
+                        </div>
+                    </div>
+                </div>
+            -->
+                <div class="time-wrap">
+                    <div class="icon"></div>
+                    <div class="progress-wrap">
+                        <div class="pro"></div>
+                    </div>
+                </div>
+            
+                <!--
                
             
                 <div class="" id="home-main-tab">
@@ -109,14 +162,14 @@
         </div>
         <div class="scene" data-scene="state">
             <div ng-controller="state-controller" class="wrap">
-                <img ng-click="back()" draggable="false"  ng-src="{{::img.state_back}}" title="返回" class="back">    
+                <div ng-click="back()" draggable="false" title="返回" class="back">    </div>
                 <div class="page-select-wrap" ng-init="currentPage='物品'">
             
                     <div ng-repeat="page in pages" class="page-select" ng-class="{active:currentPage==page.name}"  ng-click="setPage(page.name)">
-            
-                        <button ng-click="setPage(page.name)" class="ym-button solid {{page.class}} ym-large " ng-bind="::page.name">
-                            <button class="cover" ng-click="setPage(page.name)">d</button>
-                        </button>
+                        <img ng-src="{{::res.img.blue_btn}}" alt="" class="bg">
+                        <div ng-click="setPage(page.name)" class="select solid {{page.class}} unselectable"  ng-bind="::page.name">
+                            <button class="cover" ng-click="setPage(page.name)"></button>
+                        </div>
                     </div>
                 </div>
             
@@ -186,31 +239,36 @@
                         </div>
                     
                     </div>
-                    <div class="items-wrap">
-                        <div ng-click="selectItem(item)" ng-repeat="item in items" ng-if="currentItemKind==item.kind" class="item-wrap clickable">
-                            <label class="cnt" ng-bind="item.cnt"></label>
-                            <label class="name" ng-bind="item.name"></label>
-                            <img draggable="false" ng-src="{{::getIconUrl(item)}}.svg" alt="">
-                        </div>
-                        <!--
-                    <div ng-repeat="last in getLast()" class="item-wrap" style="visibility: hidden;">
-                    </div>
-                    -->
-                    </div>
-                    <div class="desc-wrap">
-                        <div ng-if="selectingItem" class="desc-wrap1">
-                            <div class="icon-wrap">
-                                <img draggable="false" ng-src="{{::getIconUrl(selectingItem)}}.svg" alt="">
+                    <div class="items-frame">
+                        <img draggable="false" ng-src="{{res.img.items_frame}}" class="bg">
+                        <div class="items-wrap">
+                            <div ng-click="selectItem(item)" ng-repeat="item in items" ng-if="currentItemKind==item.kind" class="item-wrap clickable">
+                                <label class="cnt" ng-bind="item.cnt"></label>
+                                <label class="name" ng-bind="item.name"></label>
+                                <img draggable="false" ng-src="{{::getIconUrl(item,'blue')}}.svg" alt="">
                             </div>
                     
-                            <label class="tag name">名称:</label>
-                            <p class="value name" ng-bind="selectingItem.name"></p>
-                            <label class="tag cnt">数量:</label>
-                            <p class="value cnt" ng-bind="selectingItem.cnt"></p>
-                            <label class="tag brief">简介:</label>
-                            <p class="value brief" ng-bind="selectingItem.brief"></p>
-                            <label class="tag comment">备注:</label>
-                            <p class="value comment" ng-bind="selectingItem.comment"></p>
+                        </div>
+                    </div>
+                    
+                    <!--item_desc_bg.png-->
+                    <div class="items-desc-frame">
+                        <img draggable="false" ng-src="{{res.img.items_desc_frame}}" class="bg">
+                        <div class="desc-wrap">
+                            <div ng-if="selectingItem" class="desc-wrap1">
+                                <div class="icon-wrap">
+                                    <img draggable="false" ng-src="{{getIconUrl(selectingItem,'white')}}.svg" alt="">
+                                </div>
+                    
+                                <label class="tag name">名称:</label>
+                                <p class="value name" ng-bind="selectingItem.name"></p>
+                                <label class="tag cnt">数量:</label>
+                                <p class="value cnt" ng-bind="selectingItem.cnt"></p>
+                                <label class="tag brief">简介:</label>
+                                <p class="value brief" ng-bind="selectingItem.brief"></p>
+                                <label class="tag comment">备注:</label>
+                                <p class="value comment" ng-bind="selectingItem.comment"></p>
+                            </div>
                         </div>
                     </div>
                 </div>

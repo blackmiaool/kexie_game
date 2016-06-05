@@ -3,11 +3,17 @@
 >.wrap {
     .abs-fill;
     >.back {
+        .common-bg("UI/blue_back_left.png");
+        .square(50px);
         position: absolute;
         left: 10px;
         top: 10px;
         z-index: 1;
-        .transform(rotate(180deg));
+        transition: 0.05s transform linear;
+        &:hover{
+            .transform(scale(1.1));
+        }
+//        .transform(rotate(180deg));
     }
 }
 
@@ -16,48 +22,52 @@
     z-index: 1;
     .transform(translateY(-50%));
     top: 50%;
-    left: 30px;
-    height: 400px;
+    left: 15px;
+    height: 350px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    
     .page-select {
         width: 105px;
+        height: 46px;
+        opacity: 0.6;
         //        &:extend(.btn-lg);
         position: relative;
         outline: none;
+        transition: all 0.1s linear;
+        >.bg{
+            .fill;
+//            transform-origin: left;
+        }
         >.cover {
             .abs-fill;
             width: 100%;
             opacity: 0;
         }
-        >button {
-            transform-origin: left;
+        >.select {
+            .abs-fill;
+            text-align: center;
+            margin-top: 12px;
+            color: #A1E0E7;
+//            transform-origin: left;
         }
         &:hover {
-            >button.solid {
-                transform: perspective(500px) rotate3d(0, 1, 0, 10deg);
-                transition: 0.07s transform linear;
+            opacity: 1;
+            >.select.solid,>.bg {
+//                transform: perspective(500px) rotate3d(0, 1, 0, 10deg);
+//                transition: 0.07s transform linear;
             }
-        }
+        }        
         &:active,
         &.active {
-            >button.solid {
-                transform: perspective(500px) rotate3d(0, 1, 0, 30deg);
+            .transform(translateX(10%));
+            opacity: 1;
+            >.select.solid,>.bg {
+//                transform: perspective(500px) rotate3d(0, 1, 0, 30deg);
             }
         }
-        &:nth-child(1),
-        &:nth-child(5) {
-            left: 30px;
-        }
-        &:nth-child(2),
-        &:nth-child(4) {
-            left: 15px;
-        }
-        //        &:nth-child(2),
-        &:nth-child(3) {
-            left: 10px;
-        }
+        
     }
 }
 

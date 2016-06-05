@@ -5,30 +5,35 @@
     </div>
 
 </div>
-<div class="items-wrap">
-    <div ng-click="selectItem(item)" ng-repeat="item in items" ng-if="currentItemKind==item.kind" class="item-wrap clickable">
-        <label class="cnt" ng-bind="item.cnt"></label>
-        <label class="name" ng-bind="item.name"></label>
-        <img draggable="false" ng-src="{{::getIconUrl(item)}}.svg" alt="">
-    </div>
-    <!--
-<div ng-repeat="last in getLast()" class="item-wrap" style="visibility: hidden;">
-</div>
--->
-</div>
-<div class="desc-wrap">
-    <div ng-if="selectingItem" class="desc-wrap1">
-        <div class="icon-wrap">
-            <img draggable="false" ng-src="{{::getIconUrl(selectingItem)}}.svg" alt="">
+<div class="items-frame">
+    <img draggable="false" ng-src="{{res.img.items_frame}}" class="bg">
+    <div class="items-wrap">
+        <div ng-click="selectItem(item)" ng-repeat="item in items" ng-if="currentItemKind==item.kind" class="item-wrap clickable">
+            <label class="cnt" ng-bind="item.cnt"></label>
+            <label class="name" ng-bind="item.name"></label>
+            <img draggable="false" ng-src="{{::getIconUrl(item,'blue')}}.svg" alt="">
         </div>
 
-        <label class="tag name">名称:</label>
-        <p class="value name" ng-bind="selectingItem.name"></p>
-        <label class="tag cnt">数量:</label>
-        <p class="value cnt" ng-bind="selectingItem.cnt"></p>
-        <label class="tag brief">简介:</label>
-        <p class="value brief" ng-bind="selectingItem.brief"></p>
-        <label class="tag comment">备注:</label>
-        <p class="value comment" ng-bind="selectingItem.comment"></p>
+    </div>
+</div>
+
+<!--item_desc_bg.png-->
+<div class="items-desc-frame">
+    <img draggable="false" ng-src="{{res.img.items_desc_frame}}" class="bg">
+    <div class="desc-wrap">
+        <div ng-if="selectingItem" class="desc-wrap1">
+            <div class="icon-wrap">
+                <img draggable="false" ng-src="{{getIconUrl(selectingItem,'white')}}.svg" alt="">
+            </div>
+
+            <label class="tag name">名称:</label>
+            <p class="value name" ng-bind="selectingItem.name"></p>
+            <label class="tag cnt">数量:</label>
+            <p class="value cnt" ng-bind="selectingItem.cnt"></p>
+            <label class="tag brief">简介:</label>
+            <p class="value brief" ng-bind="selectingItem.brief"></p>
+            <label class="tag comment">备注:</label>
+            <p class="value comment" ng-bind="selectingItem.comment"></p>
+        </div>
     </div>
 </div>

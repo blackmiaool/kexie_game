@@ -21,6 +21,7 @@ define(["res", "system-common"], function (res, common) {
             year: 2014,
             term: 1,
             month: 9,
+            part:2,
             week: 1,
             week_day_index: 5,
             day: 1,
@@ -45,7 +46,7 @@ define(["res", "system-common"], function (res, common) {
 
         },
         components: {},
-        left_points: 10,
+        actionPoints: 8,
     }
     for (var i in res.pp) {
         v_init.amity[i] = 0;

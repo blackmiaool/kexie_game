@@ -2,13 +2,20 @@
 let fs = require("fs");
 let files=fs.readdirSync(".");
 let path = require('path');
-let color=process.argv[2];
-if(!color){
+let colorName=process.argv[2];
+if(!colorName){
     console.error("Need color as first argument.");
     return;
 }
+let color;
+if(colorName=="blue"){
+  color="#A1E0E7";
+}else{
+  color=colorName;
+}
+
 try{
-    fs.mkdirSync(path.join(__dirname,color));
+    fs.mkdirSync(path.join(__dirname,colorName));
 }catch(e){
     
 }
@@ -24,5 +31,5 @@ files.forEach(function(v,i){
         content=content.replace(/<svg version=/g,`<svg style="fill: ${color}" version=`);
     }
     
-    fs.writeFileSync(path.join(__dirname, color,v),content);
+    fs.writeFileSync(path.join(__dirname, colorName,v),content);
 })

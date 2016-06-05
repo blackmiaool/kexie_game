@@ -3241,13 +3241,21 @@ input {
   margin: auto;
 }
 .scene[data-scene="state"] > .wrap > .back {
+  background-image: url("../res/UI/blue_back_left.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  width: 50px;
+  height: 50px;
   position: absolute;
   left: 10px;
   top: 10px;
   z-index: 1;
-  -webkit-transform: rotate(180deg);
-  -ms-transform: rotate(180deg);
-  transform: rotate(180deg);
+  transition: 0.05s transform linear;
+}
+.scene[data-scene="state"] > .wrap > .back:hover {
+  -webkit-transform: scale(1.1);
+  -ms-transform: scale(1.1);
+  transform: scale(1.1);
 }
 .scene[data-scene="state"] .page-select-wrap {
   position: absolute;
@@ -3256,16 +3264,23 @@ input {
   -ms-transform: translateY(-50%);
   transform: translateY(-50%);
   top: 50%;
-  left: 30px;
-  height: 400px;
+  left: 15px;
+  height: 350px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
 }
 .scene[data-scene="state"] .page-select-wrap .page-select {
   width: 105px;
+  height: 46px;
+  opacity: 0.6;
   position: relative;
   outline: none;
+  transition: all 0.1s linear;
+}
+.scene[data-scene="state"] .page-select-wrap .page-select > .bg {
+  height: 100%;
+  width: 100%;
 }
 .scene[data-scene="state"] .page-select-wrap .page-select > .cover {
   position: absolute;
@@ -3277,27 +3292,26 @@ input {
   width: 100%;
   opacity: 0;
 }
-.scene[data-scene="state"] .page-select-wrap .page-select > button {
-  transform-origin: left;
+.scene[data-scene="state"] .page-select-wrap .page-select > .select {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+  text-align: center;
+  margin-top: 12px;
+  color: #A1E0E7;
 }
-.scene[data-scene="state"] .page-select-wrap .page-select:hover > button.solid {
-  transform: perspective(500px) rotate3d(0, 1, 0, 10deg);
-  transition: 0.07s transform linear;
+.scene[data-scene="state"] .page-select-wrap .page-select:hover {
+  opacity: 1;
 }
-.scene[data-scene="state"] .page-select-wrap .page-select:active > button.solid,
-.scene[data-scene="state"] .page-select-wrap .page-select.active > button.solid {
-  transform: perspective(500px) rotate3d(0, 1, 0, 30deg);
-}
-.scene[data-scene="state"] .page-select-wrap .page-select:nth-child(1),
-.scene[data-scene="state"] .page-select-wrap .page-select:nth-child(5) {
-  left: 30px;
-}
-.scene[data-scene="state"] .page-select-wrap .page-select:nth-child(2),
-.scene[data-scene="state"] .page-select-wrap .page-select:nth-child(4) {
-  left: 15px;
-}
-.scene[data-scene="state"] .page-select-wrap .page-select:nth-child(3) {
-  left: 10px;
+.scene[data-scene="state"] .page-select-wrap .page-select:active,
+.scene[data-scene="state"] .page-select-wrap .page-select.active {
+  -webkit-transform: translateX(10%);
+  -ms-transform: translateX(10%);
+  transform: translateX(10%);
+  opacity: 1;
 }
 .scene[data-scene="state"] .page {
   position: absolute;
@@ -3539,7 +3553,7 @@ input {
   margin: auto;
   left: 100px;
   bottom: auto;
-  top: 20px;
+  top: 10px;
   text-align: center;
 }
 .scene[data-scene="state"] .page[data-page="item"] .kind-wrap .item-kind-select {
@@ -3565,23 +3579,29 @@ input {
 }
 .scene[data-scene="state"] .page[data-page="item"] .items-wrap,
 .scene[data-scene="state"] .page[data-page="item"] .desc-wrap {
-  background-color: rgba(70, 130, 180, 0.25);
-  border-radius: 10px;
-  border: #4682b4 1px solid;
-  position: absolute;
   top: 120px;
   bottom: 30px;
 }
+.scene[data-scene="state"] .page[data-page="item"] .items-frame {
+  position: absolute;
+  left: 180px;
+  bottom: 20px;
+}
+.scene[data-scene="state"] .page[data-page="item"] .items-frame > .bg {
+  width: 500px;
+}
 .scene[data-scene="state"] .page[data-page="item"] .items-wrap {
-  left: 209px;
+  position: absolute;
+  left: 49px;
   width: 448px;
+  top: 72px;
   padding: 13px;
 }
 .scene[data-scene="state"] .page[data-page="item"] .items-wrap .item-wrap {
-  margin: 2px 5px ;
+  margin: 7px 15px;
   display: inline-block;
   position: relative;
-  background-image: url("../res/UI/item_bg.jpg");
+  background-image: url("../res/UI/item_bg.svg");
   background-repeat: no-repeat;
   background-size: cover;
   width: 95px;
@@ -3596,10 +3616,12 @@ input {
   margin: auto;
   width: 50%;
   height: 50%;
+  top: 20%;
+  bottom: auto;
   display: block;
 }
 .scene[data-scene="state"] .page[data-page="item"] .items-wrap .item-wrap label {
-  color: white;
+  color: #A1E0E7;
   font-weight: normal;
   position: absolute;
   left: 0;
@@ -3610,35 +3632,54 @@ input {
 }
 .scene[data-scene="state"] .page[data-page="item"] .items-wrap .item-wrap label.name {
   top: auto;
-  bottom: 3px;
+  bottom: 10%;
   font-size: 14px;
   text-align: center;
 }
 .scene[data-scene="state"] .page[data-page="item"] .items-wrap .item-wrap label.cnt {
   left: auto;
   bottom: auto;
-  right: 5px;
-  top: 2px;
+  right: 10%;
+  top: 10%;
 }
-.scene[data-scene="state"] .page[data-page="item"] .desc-wrap {
+.scene[data-scene="state"] .page[data-page="item"] .items-desc-frame {
+  position: absolute;
   right: 20px;
   width: 250px;
-  padding: 10px;
-  color: #131e2f;
+  padding: 0px;
   color: white;
+  bottom: 22px;
+  top: 105px;
+  box-sizing: border-box;
 }
-.scene[data-scene="state"] .page[data-page="item"] .desc-wrap .icon-wrap {
+.scene[data-scene="state"] .page[data-page="item"] .items-desc-frame > .bg {
+  height: 100%;
+  width: 100%;
+  opacity: 0.7;
+}
+.scene[data-scene="state"] .page[data-page="item"] .items-desc-frame .desc-wrap {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+  left: 15px;
+  right: 15px;
+  top: 15px;
+}
+.scene[data-scene="state"] .page[data-page="item"] .items-desc-frame .desc-wrap .icon-wrap {
   padding-top: 5px;
   text-align: center;
 }
-.scene[data-scene="state"] .page[data-page="item"] .desc-wrap .icon-wrap img {
+.scene[data-scene="state"] .page[data-page="item"] .items-desc-frame .desc-wrap .icon-wrap img {
   width: 80px;
   display: inline-block;
 }
-.scene[data-scene="state"] .page[data-page="item"] .desc-wrap .tag {
+.scene[data-scene="state"] .page[data-page="item"] .items-desc-frame .desc-wrap .tag {
   font-weight: normal;
 }
-.scene[data-scene="state"] .page[data-page="item"] .desc-wrap p {
+.scene[data-scene="state"] .page[data-page="item"] .items-desc-frame .desc-wrap p {
   text-indent: 2em;
   margin-top: 0;
   margin-bottom: 5px;
@@ -3647,4 +3688,163 @@ input {
   background-image: url("../res/Background/home.jpg");
   background-repeat: no-repeat;
   background-size: cover;
+}
+.scene[data-scene="home"] .basic {
+  padding: 3px 7px 4px 7px;
+  border-radius: 5px;
+  display: inline-block;
+  font-size: 0;
+  color: white;
+  background-color: steelblue;
+}
+.scene[data-scene="home"] .basic .key {
+  display: inline-block;
+  padding: 5px 10px 5px 5px;
+  font-size: 18px;
+}
+.scene[data-scene="home"] .basic .value {
+  display: inline-block;
+  text-align: center;
+  border-radius: 4px;
+  font-size: 18px;
+  color: black;
+  background-color: white;
+  padding: 3px 0px;
+  width: 100px;
+}
+.scene[data-scene="home"] .basic.name {
+  position: absolute;
+  top: 15px;
+  left: 15px;
+}
+.scene[data-scene="home"] .basic.power {
+  position: absolute;
+  top: 70px;
+  left: 15px;
+}
+.scene[data-scene="home"] .basic.power .value {
+  width: 150px;
+  background-color: white;
+  color: black;
+  position: relative;
+}
+.scene[data-scene="home"] .basic.power .value > span {
+  border-radius: 4px;
+}
+.scene[data-scene="home"] .basic.power .value > .bg {
+  background-color: white;
+}
+.scene[data-scene="home"] .basic.power .value > .fill {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+  transition: 0.2s width linear;
+  right: auto;
+  background-color: #449d44;
+  width: 100%;
+}
+.scene[data-scene="home"] .basic.power .value > .text {
+  position: relative;
+  color: white;
+  text-shadow: 1px 1px 1px black, -1px 1px 1px black, 1px -1px 1px black, -1px -1px 1px black;
+}
+.scene[data-scene="home"] .basic.term {
+  position: absolute;
+  top: 90px;
+  right: 15px;
+  background-color: #6f5499;
+}
+.scene[data-scene="home"] .basic.month {
+  position: absolute;
+  top: 145px;
+  right: 15px;
+  background-color: #6f5499;
+}
+.scene[data-scene="home"] .settings {
+  background-image: url("../res/UI/blue_settings.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  width: 50px;
+  height: 50px;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+}
+.scene[data-scene="home"] .action-panel {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+  top: auto;
+  bottom: 10px;
+  left: 30px;
+  right: 30px;
+  border-radius: 10px;
+  height: 150px;
+  background-color: rgba(255, 255, 255, 0.8);
+  border: 6px solid steelblue;
+}
+.scene[data-scene="home"] .action-panel .action {
+  display: inline-block;
+  text-align: center;
+  margin: 20px;
+  width: 70px;
+}
+.scene[data-scene="home"] .action-panel .action img {
+  height: 100%;
+  width: 100%;
+}
+.scene[data-scene="home"] .action-panel .action[data-action="状态"] {
+  float: right;
+}
+.scene[data-scene="home"] .power-wrap {
+  position: absolute;
+  top: 80px;
+  left: 15px;
+}
+.scene[data-scene="home"] .power-wrap img {
+  display: block;
+}
+.scene[data-scene="home"] .power-wrap .icon {
+  display: inline-block;
+}
+.scene[data-scene="home"] .power-wrap .icon img {
+  width: 70px;
+}
+.scene[data-scene="home"] .power-wrap .progress-wrap {
+  position: relative;
+  display: inline-block;
+  width: 200px;
+  height: 30px;
+  left: 80px;
+  position: absolute;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+}
+.scene[data-scene="home"] .power-wrap .progress-wrap > img {
+  height: 100%;
+  width: 100%;
+}
+.scene[data-scene="home"] .power-wrap .progress-wrap .pro {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+  top: 31%;
+  bottom: 28%;
+  left: 4.3%;
+  right: 4.7%;
+}
+.scene[data-scene="home"] .power-wrap .progress-wrap .pro > img {
+  height: 100%;
+  width: 100%;
 }
