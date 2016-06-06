@@ -10,11 +10,15 @@
     color: white;
     background-color: @color;
     .key {
+        vertical-align: middle;
         display: inline-block;
-        padding: 5px 10px 5px 5px;
+        padding: 6px 10px 5px 5px;
         font-size: 18px;
     }
     .value {
+        height: 30px;
+        vertical-align: middle;
+        overflow: hidden;
         display: inline-block;
         text-align: center;
         border-radius: 4px;
@@ -58,34 +62,59 @@
             }
         }
     }
-    &.term{
+    &.term {
         position: absolute;
-        top: 90px;
-        right: 15px;
+        top: 125px;
+        left: 15px;
         background-color: @purple;
     }
-    &.month{
+    &.month {
         position: absolute;
-        top: 145px;
-        right: 15px;
-         background-color: @purple;
+        top: 180px;
+        left: 15px;
+        background-color: @purple;
+        .value{
+            
+        }
+        .rotate{
+            display: inline-block;
+            transition: 0.5s transform ease-out;
+            &.upon{
+                .transform(translateY(-25px));
+                &.active{
+                   .transform(translateY(0px)); 
+                }
+            }
+            &.below{
+                .transform(translateY(-25px));
+                &.active{
+                   .transform(translateY(0px)); 
+                }
+            }
+        }
     }
 }
 
 .settings {
-    .common-bg("UI/blue_settings.png");
-    .square(50px);
+    .common-bg("icon/cogwheel3.svg");
+    .square(40px);
+//    border:3px solid @blue;
+    .round;
     position: absolute;
-    top: 10px;
-    right: 10px;
+    left: 218px;
+    top: 15px;
+    transition: 0.2s transform ease-out;
+    &:hover{
+        .transform(rotate(10deg))
+    }
 }
 
 .action-panel {
     .abs-fill;
     top: auto;
-    bottom: 10px;
-    left: 30px;
-    right: 30px;
+    bottom: 15px;
+    left: 15px;
+    right: 15px;
     border-radius: 10px;
     height: 150px;
     background-color: rgba(255, 255, 255, 0.8);
@@ -96,10 +125,10 @@
         text-align: center;
         margin: 20px;
         width: 70px;
-        &.disabled{
+        &.disabled {
             opacity: 0.7;
         }
-        &:hover{
+        &:hover {
             transition: 0.1s transform linear;
             .transform(scale(1.1));
         }
@@ -111,24 +140,24 @@
         }
     }
 }
-.action-show{
+
+.action-show {
     background-color: white;
-    .round(100px);    
+    .round(100px);
     .abs-fill;
     text-align: center;
-    border:5px solid @blue;
+    border: 5px solid @blue;
     transition: 0.1s opacity linear;
-    &.ng-hide{
-        opacity: 0;        
+    &.ng-hide {
+        opacity: 0;
     }
-    img{
+    img {
         .abs-fill;
-        
         display: inline-block;
-        
-//        .horizontal-center;
+        //        .horizontal-center;
     }
 }
+
 //.power-wrap {
 //    position: absolute;
 //    top: 80px;

@@ -9,6 +9,8 @@ define(["res", "system-common"], function (res, common) {
             道德:0,
             秩序:0,
         },
+        power: 8,
+        powerMax:10,
         basic: {
             name: "李厷叺",
             title: "麻瓜",
@@ -46,7 +48,7 @@ define(["res", "system-common"], function (res, common) {
 
         },
         components: {},
-        power: 8,
+        
     }
     for (var i in res.pp) {
         v_init.amity[i] = 0;

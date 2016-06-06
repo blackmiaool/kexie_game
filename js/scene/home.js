@@ -54,10 +54,10 @@ function (sp, rsp, $timeout) {
         }
 
         function doAction(action) {
-            if(v.power<action.consume){
-                return ;
+            if (v.power < action.consume) {
+                return;
             }
-            setMonkey(action);            
+            setMonkey(action);
             switch (action.name) {
             case "状态":
                 scene.go("state");
@@ -65,12 +65,30 @@ function (sp, rsp, $timeout) {
             case "上课":
                 showMonkey(action);
                 costPower(action);
+                break;
+            case "休息":
+                showMonkey(action);
+                restorePower(10);
+                endTurn();
+                break;
             }
+
 
         }
 
+        function endTurn() {
+            sp.ending=true;
+        }
+
+        function restorePower(value) {
+            v.power += value;
+            if (v.power > v.powerMax) {
+                v.power = v.powerMax;
+            }
+        }
+
         function costPower(action) {
-            v.power-=action.consume;
+            v.power -= action.consume;
         }
 
         function showMonkey(action) {
@@ -83,11 +101,11 @@ function (sp, rsp, $timeout) {
 
         function setMonkey(action) {
             console.log(action);
-            if (action.consume) {
-                sp.monkey = common.resPath + `monkey/${action.icon}.gif`;
-            } else {
-                sp.monkey = "";
-            }
+            //            if (action.consume) {
+            sp.monkey = common.resPath + `monkey/${action.icon}.gif`;
+            //            } else {
+            //                sp.monkey = "";
+            //            }
         }
         _.extend(sp, {
             v,
@@ -97,7 +115,8 @@ function (sp, rsp, $timeout) {
             getMonth,
             doAction,
             monkey,
-            showMonkey: false
+            showMonkey: false,
+            ending:false
         });
 }])
 module.filter('term', function () {
