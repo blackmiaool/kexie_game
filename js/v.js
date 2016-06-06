@@ -46,7 +46,7 @@ define(["res", "system-common"], function (res, common) {
 
         },
         components: {},
-        actionPoints: 8,
+        power: 8,
     }
     for (var i in res.pp) {
         v_init.amity[i] = 0;

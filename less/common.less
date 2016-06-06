@@ -104,7 +104,6 @@
     width: @size;
     height: @size;
 }
-
 .common-square(@size) {
     width: @size;
     height: @size;
@@ -114,7 +113,14 @@
     background-repeat: no-repeat;
     background-size: cover;
 }
+
 .round {
+    
+    border-radius: 10000px;
+    overflow: hidden;
+}
+.round(@size) {
+    .square(@size);
     border-radius: 10000px;
     overflow: hidden;
 }

@@ -76,8 +76,8 @@
                     <span class="key"><span class="glyphicon glyphicon-fire"></span> 体力</span>
                 <span class="value">
                         <span class="bg"></span>
-                <span class="fill" ng-style="{width:v.actionPoints*10+'%'}"></span>
-                <span class="text" ng-bind="v.actionPoints"></span>
+                <span class="fill" ng-style="{width:v.power*10+'%'}"></span>
+                <span class="text" ng-bind="v.power"></span>
                 </span>
                 </span>
                 
@@ -93,13 +93,15 @@
                 
                 <div class="settings"></div>
                 <div class="action-panel">
-                    <div ng-mouseover="hover(action)" ng-click="doAction(action)" ng-repeat="action in actions" class="action clickable" data-action="{{::action.name}}">
+                    <div ng-click="doAction(action)" ng-repeat="action in actions" class="action clickable" data-action="{{::action.name}}" ng-class="{disabled:v.power<action.consume}">
             
                         <img draggable="false" ng-src="{{::getActionIcon(action.icon)}}">
             
                         <label ng-bind="::action.name"></label>
                     </div>
-                    <img ng-src="{{monkey}}" alt="" class="monkey">
+                </div>
+                <div class="action-show" ng-show="showMonkey">
+                    <img ng-src="{{monkey}}" class="monkey">
                 </div>
                 <!--
                 <div class="power-wrap">
@@ -243,9 +245,13 @@
                         <img draggable="false" ng-src="{{res.img.items_frame}}" class="bg">
                         <div class="items-wrap">
                             <div ng-click="selectItem(item)" ng-repeat="item in items" ng-if="currentItemKind==item.kind" class="item-wrap clickable">
-                                <label class="cnt" ng-bind="item.cnt"></label>
+                                <div class="item-body-wrap">
+                                    <img draggable="false" ng-src="{{::getIconUrl(item,'blue')}}.svg" class="item-icon">
+                                    <label class="cnt" ng-bind="item.cnt"></label>
+                                </div>
+                    
                                 <label class="name" ng-bind="item.name"></label>
-                                <img draggable="false" ng-src="{{::getIconUrl(item,'blue')}}.svg" alt="">
+                    
                             </div>
                     
                         </div>

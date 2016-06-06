@@ -25,19 +25,23 @@ let actions = [{
     consume: 5
 }, {
     name: "购物",
-    icon: "market"
+    icon: "market",
+    consume: 0
 }, {
     name: "休息",
-    icon: "bed"
+    icon: "bed",
+    consume: 0
 }, {
     name: "状态",
-    icon: "resume"
+    icon: "resume",
+    consume: 0
 }, ]
 
 scene.register(sceneThis);
-module.controller("home-controller", ["$scope", "$rootScope",
-function (sp, rsp) {
+module.controller("home-controller", ["$scope", "$rootScope", "$timeout",
+function (sp, rsp, $timeout) {
         let monkey;
+
         function getActionIcon(name) {
             return `${common.resPath}icon/${name}.svg`;
         }
@@ -50,16 +54,40 @@ function (sp, rsp) {
         }
 
         function doAction(action) {
+            if(v.power<action.consume){
+                return ;
+            }
+            setMonkey(action);            
             switch (action.name) {
             case "状态":
                 scene.go("state");
                 break;
+            case "上课":
+                showMonkey(action);
+                costPower(action);
             }
+
         }
 
-        function hover(action) {
+        function costPower(action) {
+            v.power-=action.consume;
+        }
+
+        function showMonkey(action) {
+            setMonkey(action)
+            sp.showMonkey = true;
+            $timeout(function () {
+                sp.showMonkey = false;
+            }, 1000)
+        }
+
+        function setMonkey(action) {
             console.log(action);
-            sp.monkey=common.resPath+`monkey/${action.icon}.gif`;
+            if (action.consume) {
+                sp.monkey = common.resPath + `monkey/${action.icon}.gif`;
+            } else {
+                sp.monkey = "";
+            }
         }
         _.extend(sp, {
             v,
@@ -69,7 +97,7 @@ function (sp, rsp) {
             getMonth,
             doAction,
             monkey,
-            hover
+            showMonkey: false
         });
 }])
 module.filter('term', function () {

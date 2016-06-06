@@ -5,7 +5,7 @@
     padding: 3px 7px 4px 7px;
     border-radius: 5px;
     display: inline-block;
-    @color: steelblue;
+    @color: @blue;
     font-size: 0;
     color: white;
     background-color: @color;
@@ -46,7 +46,7 @@
             }
             >.fill {
                 .abs-fill;
-                transition: 0.2s width linear;
+                transition: 1s width linear;
                 right: auto;
                 background-color: #449d44;
                 width: 100%;
@@ -89,13 +89,20 @@
     border-radius: 10px;
     height: 150px;
     background-color: rgba(255, 255, 255, 0.8);
-    border: 6px solid steelblue;
+    border: 6px solid @blue;
     //    padding: 20px;
     .action {
         display: inline-block;
         text-align: center;
         margin: 20px;
         width: 70px;
+        &.disabled{
+            opacity: 0.7;
+        }
+        &:hover{
+            transition: 0.1s transform linear;
+            .transform(scale(1.1));
+        }
         img {
             .fill;
         }
@@ -104,39 +111,56 @@
         }
     }
 }
-
-.power-wrap {
-    position: absolute;
-    top: 80px;
-    left: 15px;
-    img {
-        display: block;
+.action-show{
+    background-color: white;
+    .round(100px);    
+    .abs-fill;
+    text-align: center;
+    border:5px solid @blue;
+    transition: 0.1s opacity linear;
+    &.ng-hide{
+        opacity: 0;        
     }
-    .icon {
+    img{
+        .abs-fill;
+        
         display: inline-block;
-        img {
-            width: 70px;
-        }
-    }
-    .progress-wrap {
-        position: relative;
-        display: inline-block;
-        width: 200px;
-        height: 30px;
-        left: 80px;
-        .vertical-center;
-        >img {
-            .fill;
-        }
-        .pro {
-            .abs-fill;
-            top: 31%;
-            bottom: 28%;
-            left: 4.3%;
-            right: 4.7%;
-            >img {
-                .fill;
-            }
-        }
+        
+//        .horizontal-center;
     }
 }
+//.power-wrap {
+//    position: absolute;
+//    top: 80px;
+//    left: 15px;
+//    img {
+//        display: block;
+//    }
+//    .icon {
+//        display: inline-block;
+//        img {
+//            width: 70px;
+//        }
+//    }
+//    .progress-wrap {
+//        position: relative;
+//        display: inline-block;
+//        width: 200px;
+//        height: 30px;
+//        left: 80px;
+//        .vertical-center;
+//        >img {
+//            .fill;
+//        }
+//        .pro {
+//            .abs-fill;
+//            top: 31%;
+//            bottom: 28%;
+//            left: 4.3%;
+//            right: 4.7%;
+//            >img {
+//                .fill;
+//            }
+//        }
+//    }
+//}

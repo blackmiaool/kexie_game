@@ -3601,23 +3601,28 @@ input {
   margin: 7px 15px;
   display: inline-block;
   position: relative;
+  height: 95px;
+  width: 64px;
+  text-align: center;
+}
+.scene[data-scene="state"] .page[data-page="item"] .items-wrap .item-wrap .item-body-wrap {
+  width: 64px;
+  height: 64px;
   background-image: url("../res/UI/item_bg.svg");
   background-repeat: no-repeat;
   background-size: cover;
-  width: 95px;
-  height: 95px;
+  display: inline-block;
+  position: relative;
 }
-.scene[data-scene="state"] .page[data-page="item"] .items-wrap .item-wrap img {
+.scene[data-scene="state"] .page[data-page="item"] .items-wrap .item-wrap .item-body-wrap img.item-icon {
   position: absolute;
   left: 0;
   right: 0;
   top: 0;
   bottom: 0;
   margin: auto;
-  width: 50%;
-  height: 50%;
-  top: 20%;
-  bottom: auto;
+  width: 55%;
+  height: 55%;
   display: block;
 }
 .scene[data-scene="state"] .page[data-page="item"] .items-wrap .item-wrap label {
@@ -3631,16 +3636,17 @@ input {
   margin: auto;
 }
 .scene[data-scene="state"] .page[data-page="item"] .items-wrap .item-wrap label.name {
-  top: auto;
-  bottom: 10%;
+  bottom: auto;
+  top: 70%;
   font-size: 14px;
   text-align: center;
 }
 .scene[data-scene="state"] .page[data-page="item"] .items-wrap .item-wrap label.cnt {
+  font-size: 13px;
   left: auto;
   bottom: auto;
-  right: 10%;
-  top: 10%;
+  right: 7%;
+  top: 7%;
 }
 .scene[data-scene="state"] .page[data-page="item"] .items-desc-frame {
   position: absolute;
@@ -3695,7 +3701,7 @@ input {
   display: inline-block;
   font-size: 0;
   color: white;
-  background-color: steelblue;
+  background-color: #337ab7;
 }
 .scene[data-scene="home"] .basic .key {
   display: inline-block;
@@ -3741,7 +3747,7 @@ input {
   top: 0;
   bottom: 0;
   margin: auto;
-  transition: 0.2s width linear;
+  transition: 1s width linear;
   right: auto;
   background-color: #449d44;
   width: 100%;
@@ -3787,13 +3793,22 @@ input {
   border-radius: 10px;
   height: 150px;
   background-color: rgba(255, 255, 255, 0.8);
-  border: 6px solid steelblue;
+  border: 6px solid #337ab7;
 }
 .scene[data-scene="home"] .action-panel .action {
   display: inline-block;
   text-align: center;
   margin: 20px;
   width: 70px;
+}
+.scene[data-scene="home"] .action-panel .action.disabled {
+  opacity: 0.7;
+}
+.scene[data-scene="home"] .action-panel .action:hover {
+  transition: 0.1s transform linear;
+  -webkit-transform: scale(1.1);
+  -ms-transform: scale(1.1);
+  transform: scale(1.1);
 }
 .scene[data-scene="home"] .action-panel .action img {
   height: 100%;
@@ -3802,49 +3817,31 @@ input {
 .scene[data-scene="home"] .action-panel .action[data-action="状态"] {
   float: right;
 }
-.scene[data-scene="home"] .power-wrap {
-  position: absolute;
-  top: 80px;
-  left: 15px;
-}
-.scene[data-scene="home"] .power-wrap img {
-  display: block;
-}
-.scene[data-scene="home"] .power-wrap .icon {
-  display: inline-block;
-}
-.scene[data-scene="home"] .power-wrap .icon img {
-  width: 70px;
-}
-.scene[data-scene="home"] .power-wrap .progress-wrap {
-  position: relative;
-  display: inline-block;
-  width: 200px;
-  height: 30px;
-  left: 80px;
-  position: absolute;
-  top: 50%;
-  -webkit-transform: translateY(-50%);
-  -ms-transform: translateY(-50%);
-  transform: translateY(-50%);
-}
-.scene[data-scene="home"] .power-wrap .progress-wrap > img {
-  height: 100%;
-  width: 100%;
-}
-.scene[data-scene="home"] .power-wrap .progress-wrap .pro {
+.scene[data-scene="home"] .action-show {
+  background-color: white;
+  width: 100px;
+  height: 100px;
+  border-radius: 10000px;
+  overflow: hidden;
   position: absolute;
   left: 0;
   right: 0;
   top: 0;
   bottom: 0;
   margin: auto;
-  top: 31%;
-  bottom: 28%;
-  left: 4.3%;
-  right: 4.7%;
+  text-align: center;
+  border: 5px solid #337ab7;
+  transition: 0.1s opacity linear;
 }
-.scene[data-scene="home"] .power-wrap .progress-wrap .pro > img {
-  height: 100%;
-  width: 100%;
+.scene[data-scene="home"] .action-show.ng-hide {
+  opacity: 0;
+}
+.scene[data-scene="home"] .action-show img {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+  display: inline-block;
 }

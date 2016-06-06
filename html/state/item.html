@@ -9,9 +9,13 @@
     <img draggable="false" ng-src="{{res.img.items_frame}}" class="bg">
     <div class="items-wrap">
         <div ng-click="selectItem(item)" ng-repeat="item in items" ng-if="currentItemKind==item.kind" class="item-wrap clickable">
-            <label class="cnt" ng-bind="item.cnt"></label>
+            <div class="item-body-wrap">
+                <img draggable="false" ng-src="{{::getIconUrl(item,'blue')}}.svg" class="item-icon">
+                <label class="cnt" ng-bind="item.cnt"></label>
+            </div>
+
             <label class="name" ng-bind="item.name"></label>
-            <img draggable="false" ng-src="{{::getIconUrl(item,'blue')}}.svg" alt="">
+
         </div>
 
     </div>
