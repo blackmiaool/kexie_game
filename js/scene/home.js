@@ -53,11 +53,37 @@ function (sp, rsp, $timeout) {
             return monthStr + partStr;
         }
 
+        function goClass() {
+            let action;
+            actions.every(function (v, i) {
+                if (v.name == "上课") {
+                    action = v;
+                    return false;
+                } else {
+                    return true;
+                }
+            })
+
+            showMonkey(action);
+            costPower(action);
+            actionBack();
+        }
+
         function doAction(action) {
-            if(sp.actionLocking){
+            if (typeof action == "string") {
+                actions.every(function (v, i) {
+                    if (v.name == action) {
+                        action = v;
+                        return false;
+                    } else {
+                        return true;
+                    }
+                })
+            }
+            if (sp.actionLocking) {
                 return;
             }
-            sp.actionLocking=true;
+            sp.actionLocking = true;
             if (v.power < action.consume) {
                 return;
             }
@@ -68,8 +94,9 @@ function (sp, rsp, $timeout) {
                 unlockAction(true);
                 break;
             case "上课":
-                showMonkey(action);
-                costPower(action);
+                sp.actionPanelActive = true;
+                //                showMonkey(action);
+                //                costPower(action);
                 unlockAction();
                 break;
             case "休息":
@@ -82,11 +109,18 @@ function (sp, rsp, $timeout) {
 
 
         }
-        function unlockAction(immediate){
+
+        function actionBack() {
+            sp.actionPanelActive = false;
+            unlockAction(true);
+        }
+
+        function unlockAction(immediate) {
             $timeout(function () {
                 sp.actionLocking = false;
-            }, !immediate&&1100||0)
+            }, !immediate && 1100 || 0)
         }
+
         function endTurn() {
             sp.ending = true;
             $timeout(function () {
@@ -99,7 +133,7 @@ function (sp, rsp, $timeout) {
             $timeout(function () {
                 sp.endingTransition = true;
             }, 800)
-            
+
         }
 
         function restorePower(value) {
@@ -134,6 +168,7 @@ function (sp, rsp, $timeout) {
             ending: false,
             endingTransition: true,
             actionLocking: false,
+            actionPanelActive: false,
             v,
             res,
             actions,
@@ -141,6 +176,8 @@ function (sp, rsp, $timeout) {
             getMonth,
             doAction,
             monkey,
+            actionBack,
+            goClass,
         });
 }])
 module.filter('term', function () {

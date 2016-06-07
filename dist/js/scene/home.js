@@ -55,7 +55,33 @@ define(["require", "system-scene", "system-sys", "angular", "system-dbg", "v", "
             return monthStr + partStr;
         }
 
+        function goClass() {
+            var action = void 0;
+            actions.every(function (v, i) {
+                if (v.name == "上课") {
+                    action = v;
+                    return false;
+                } else {
+                    return true;
+                }
+            });
+
+            showMonkey(action);
+            costPower(action);
+            actionBack();
+        }
+
         function doAction(action) {
+            if (typeof action == "string") {
+                actions.every(function (v, i) {
+                    if (v.name == action) {
+                        action = v;
+                        return false;
+                    } else {
+                        return true;
+                    }
+                });
+            }
             if (sp.actionLocking) {
                 return;
             }
@@ -70,8 +96,9 @@ define(["require", "system-scene", "system-sys", "angular", "system-dbg", "v", "
                     unlockAction(true);
                     break;
                 case "上课":
-                    showMonkey(action);
-                    costPower(action);
+                    sp.actionPanelActive = true;
+                    //                showMonkey(action);
+                    //                costPower(action);
                     unlockAction();
                     break;
                 case "休息":
@@ -82,11 +109,18 @@ define(["require", "system-scene", "system-sys", "angular", "system-dbg", "v", "
                     break;
             }
         }
+
+        function actionBack() {
+            sp.actionPanelActive = false;
+            unlockAction(true);
+        }
+
         function unlockAction(immediate) {
             $timeout(function () {
                 sp.actionLocking = false;
             }, !immediate && 1100 || 0);
         }
+
         function endTurn() {
             sp.ending = true;
             $timeout(function () {
@@ -133,13 +167,16 @@ define(["require", "system-scene", "system-sys", "angular", "system-dbg", "v", "
             ending: false,
             endingTransition: true,
             actionLocking: false,
+            actionPanelActive: false,
             v: v,
             res: res,
             actions: actions,
             getActionIcon: getActionIcon,
             getMonth: getMonth,
             doAction: doAction,
-            monkey: monkey
+            monkey: monkey,
+            actionBack: actionBack,
+            goClass: goClass
         });
     }]);
     module.filter('term', function () {

@@ -100,7 +100,20 @@
             
                 </div>
                 <div class="action-panel">
-                    <div class="actions-frame">
+                    <div class="actions-frame class-detail" ng-class="{active:actionPanelActive}">
+                        <div ng-click="actionBack()" class="action clickable action-back" data-action="{{::action.name}}">
+            
+                            <img draggable="false" ng-src="{{::getActionIcon('arrows')}}">
+            
+            <!--                <label>返回</label>-->
+                        </div>
+                        <div class="study-info">
+                            <div>距期中考试还剩: 4回合</div>
+                            <div>当前学习情况: 应该能及格</div>
+                        </div>
+                        <button ng-click="goClass()" class="btn btn-primary btn-lg go-class">去上课</button>
+                    </div>
+                    <div class="actions-frame" ng-class="{active:actionPanelActive}">
                         <div ng-click="doAction(action)" ng-repeat="action in actions" class="action clickable" data-action="{{::action.name}}" ng-class="{disabled:v.power<action.consume}">
             
                             <img draggable="false" ng-src="{{::getActionIcon(action.icon)}}">
@@ -108,7 +121,6 @@
                             <label ng-bind="::action.name"></label>
                         </div>
                     </div>
-            
                 </div>
                 <div class="action-show" ng-show="showMonkey">
                     <img ng-src="{{monkey}}" class="monkey">

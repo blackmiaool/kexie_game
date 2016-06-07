@@ -112,15 +112,42 @@
 
 .action-panel {
     .abs-fill;
+    @height: 135px;
     top: auto;
     bottom: 15px;
     left: 15px;
     right: 15px;
     border-radius: 10px;
-    height: 143px;
+    height: @height;
     background-color: rgba(255, 255, 255, 0.8);
     border: 6px solid @blue;
-    //    padding: 20px;
+    box-sizing: content-box;
+    overflow: hidden;
+    .actions-frame {
+        height: @height;
+        transition: 0.3s transform ease-out;
+        &.active {
+            .transform(translateY(100%));
+        }
+        &.class-detail {
+            position: absolute;
+            width: 100%;
+            bottom: @height + 0px;
+            .study-info {
+                font-size: 18px;
+                margin-top: 34px;
+                margin-left: 500px;
+                div {
+                    margin-bottom: 15px;
+                }
+            }
+            .go-class {
+                .vertical-center;
+                position: absolute;
+                left: 330px;
+            }
+        }
+    }
     .action {
         display: inline-block;
         text-align: center;
@@ -138,6 +165,12 @@
         }
         &[data-action="状态"] {
             float: right;
+        }
+        &.action-back {
+            .abs-fill;
+            right: auto;
+            left: 30px;
+            height: 50px;
         }
     }
 }

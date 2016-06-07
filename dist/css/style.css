@@ -3830,9 +3830,41 @@ input {
   left: 15px;
   right: 15px;
   border-radius: 10px;
-  height: 143px;
+  height: 135px;
   background-color: rgba(255, 255, 255, 0.8);
   border: 6px solid #337ab7;
+  box-sizing: content-box;
+  overflow: hidden;
+}
+.scene[data-scene="home"] .action-panel .actions-frame {
+  height: 135px;
+  transition: 0.3s transform ease-out;
+}
+.scene[data-scene="home"] .action-panel .actions-frame.active {
+  -webkit-transform: translateY(100%);
+  -ms-transform: translateY(100%);
+  transform: translateY(100%);
+}
+.scene[data-scene="home"] .action-panel .actions-frame.class-detail {
+  position: absolute;
+  width: 100%;
+  bottom: 135px;
+}
+.scene[data-scene="home"] .action-panel .actions-frame.class-detail .study-info {
+  font-size: 18px;
+  margin-top: 34px;
+  margin-left: 500px;
+}
+.scene[data-scene="home"] .action-panel .actions-frame.class-detail .study-info div {
+  margin-bottom: 15px;
+}
+.scene[data-scene="home"] .action-panel .actions-frame.class-detail .go-class {
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+  position: absolute;
+  left: 330px;
 }
 .scene[data-scene="home"] .action-panel .action {
   display: inline-block;
@@ -3855,6 +3887,17 @@ input {
 }
 .scene[data-scene="home"] .action-panel .action[data-action="状态"] {
   float: right;
+}
+.scene[data-scene="home"] .action-panel .action.action-back {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+  right: auto;
+  left: 30px;
+  height: 50px;
 }
 .scene[data-scene="home"] .action-show {
   background-color: white;
