@@ -48,10 +48,10 @@ define(["require", "system-scene", "system-sys", "angular", "system-dbg", "v", "
             return common.resPath + "icon/" + name + ".svg";
         }
 
-        function getMonth(month, part) {
-            var monthStr = month - 1 + "月";
+        function getMonth(part) {
+            var monthStr = parseInt((part + 27) / 3) % 12 + 1 + "月";
             var pStr = ["上旬", "中旬", "下旬"];
-            var partStr = pStr[part];
+            var partStr = pStr[part % 3];
             return monthStr + partStr;
         }
 
@@ -78,6 +78,16 @@ define(["require", "system-scene", "system-sys", "angular", "system-dbg", "v", "
 
         function endTurn() {
             sp.ending = true;
+            $timeout(function () {
+                sp.endingTransition = false;
+            }, 600);
+            $timeout(function () {
+                v.time.part++;
+                sp.ending = false;
+            }, 650);
+            $timeout(function () {
+                sp.endingTransition = true;
+            }, 800);
         }
 
         function restorePower(value) {
@@ -116,7 +126,8 @@ define(["require", "system-scene", "system-sys", "angular", "system-dbg", "v", "
             doAction: doAction,
             monkey: monkey,
             showMonkey: false,
-            ending: false
+            ending: false,
+            endingTransition: true
         });
     }]);
     module.filter('term', function () {

@@ -73,22 +73,23 @@
         top: 180px;
         left: 15px;
         background-color: @purple;
-        .value{
-            
-        }
-        .rotate{
+        .value {}
+        .rotate {
             display: inline-block;
-            transition: 0.5s transform ease-out;
-            &.upon{
-                .transform(translateY(-25px));
-                &.active{
-                   .transform(translateY(0px)); 
+            line-height: 24px;
+            &.transition {
+                transition: 0.5s transform ease-out;
+            }
+            &.upon {
+                .transform(translateY(-24px));
+                &.active {
+                    .transform(translateY(0px));
                 }
             }
-            &.below{
-                .transform(translateY(-25px));
-                &.active{
-                   .transform(translateY(0px)); 
+            &.below {
+                .transform(translateY(-24px));
+                &.active {
+                    .transform(translateY(0px));
                 }
             }
         }
@@ -98,13 +99,13 @@
 .settings {
     .common-bg("icon/cogwheel3.svg");
     .square(40px);
-//    border:3px solid @blue;
+    //    border:3px solid @blue;
     .round;
     position: absolute;
     left: 218px;
     top: 15px;
     transition: 0.2s transform ease-out;
-    &:hover{
+    &:hover {
         .transform(rotate(10deg))
     }
 }

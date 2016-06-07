@@ -3775,12 +3775,15 @@ input {
 }
 .scene[data-scene="home"] .basic.month .rotate {
   display: inline-block;
+  line-height: 24px;
+}
+.scene[data-scene="home"] .basic.month .rotate.transition {
   transition: 0.5s transform ease-out;
 }
 .scene[data-scene="home"] .basic.month .rotate.upon {
-  -webkit-transform: translateY(-25px);
-  -ms-transform: translateY(-25px);
-  transform: translateY(-25px);
+  -webkit-transform: translateY(-24px);
+  -ms-transform: translateY(-24px);
+  transform: translateY(-24px);
 }
 .scene[data-scene="home"] .basic.month .rotate.upon.active {
   -webkit-transform: translateY(0px);
@@ -3788,9 +3791,9 @@ input {
   transform: translateY(0px);
 }
 .scene[data-scene="home"] .basic.month .rotate.below {
-  -webkit-transform: translateY(-25px);
-  -ms-transform: translateY(-25px);
-  transform: translateY(-25px);
+  -webkit-transform: translateY(-24px);
+  -ms-transform: translateY(-24px);
+  transform: translateY(-24px);
 }
 .scene[data-scene="home"] .basic.month .rotate.below.active {
   -webkit-transform: translateY(0px);

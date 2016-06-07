@@ -46,10 +46,10 @@ function (sp, rsp, $timeout) {
             return `${common.resPath}icon/${name}.svg`;
         }
 
-        function getMonth(month, part) {
-            let monthStr = month - 1 + "月";
+        function getMonth(part) {
+            let monthStr = parseInt((part+27)/3)%12+1+ "月";
             const pStr = ["上旬", "中旬", "下旬"]
-            let partStr = pStr[part];
+            let partStr = pStr[part%3];
             return monthStr + partStr;
         }
 
@@ -78,6 +78,16 @@ function (sp, rsp, $timeout) {
 
         function endTurn() {
             sp.ending=true;
+            $timeout(function(){
+                sp.endingTransition=false;
+            },600)
+            $timeout(function(){
+                v.time.part++;                
+                sp.ending=false;
+            },650)
+            $timeout(function(){
+                sp.endingTransition=true;
+            },800)
         }
 
         function restorePower(value) {
@@ -116,7 +126,8 @@ function (sp, rsp, $timeout) {
             doAction,
             monkey,
             showMonkey: false,
-            ending:false
+            ending:false,
+            endingTransition:true,
         });
 }])
 module.filter('term', function () {
