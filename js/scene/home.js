@@ -47,13 +47,17 @@ function (sp, rsp, $timeout) {
         }
 
         function getMonth(part) {
-            let monthStr = parseInt((part+27)/3)%12+1+ "月";
+            let monthStr = parseInt((part + 27) / 3) % 12 + 1 + "月";
             const pStr = ["上旬", "中旬", "下旬"]
-            let partStr = pStr[part%3];
+            let partStr = pStr[part % 3];
             return monthStr + partStr;
         }
 
         function doAction(action) {
+            if(sp.actionLocking){
+                return;
+            }
+            sp.actionLocking=true;
             if (v.power < action.consume) {
                 return;
             }
@@ -61,33 +65,41 @@ function (sp, rsp, $timeout) {
             switch (action.name) {
             case "状态":
                 scene.go("state");
+                unlockAction(true);
                 break;
             case "上课":
                 showMonkey(action);
                 costPower(action);
+                unlockAction();
                 break;
             case "休息":
                 showMonkey(action);
                 restorePower(10);
                 endTurn();
+                unlockAction();
                 break;
             }
 
 
         }
-
+        function unlockAction(immediate){
+            $timeout(function () {
+                sp.actionLocking = false;
+            }, !immediate&&1100||0)
+        }
         function endTurn() {
-            sp.ending=true;
-            $timeout(function(){
-                sp.endingTransition=false;
-            },600)
-            $timeout(function(){
-                v.time.part++;                
-                sp.ending=false;
-            },650)
-            $timeout(function(){
-                sp.endingTransition=true;
-            },800)
+            sp.ending = true;
+            $timeout(function () {
+                sp.endingTransition = false;
+            }, 600)
+            $timeout(function () {
+                v.time.part++;
+                sp.ending = false;
+            }, 650)
+            $timeout(function () {
+                sp.endingTransition = true;
+            }, 800)
+            
         }
 
         function restorePower(value) {
@@ -118,6 +130,10 @@ function (sp, rsp, $timeout) {
             //            }
         }
         _.extend(sp, {
+            showMonkey: false,
+            ending: false,
+            endingTransition: true,
+            actionLocking: false,
             v,
             res,
             actions,
@@ -125,9 +141,6 @@ function (sp, rsp, $timeout) {
             getMonth,
             doAction,
             monkey,
-            showMonkey: false,
-            ending:false,
-            endingTransition:true,
         });
 }])
 module.filter('term', function () {

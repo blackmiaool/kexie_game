@@ -20,23 +20,26 @@
     <span class="basic month">
         <span class="key">
             <span class="glyphicon glyphicon-stats"></span> 月份
-        </span>
-        <span class="value">
+    </span>
+    <span class="value">
             <span class="rotate upon" ng-bind="getMonth(v.time.part+1)" ng-class="{active:ending,transition:endingTransition}"></span>
-            <span class="rotate below " ng-bind="getMonth(v.time.part)" ng-class="{active:ending,transition:endingTransition}"></span>
-        </span>
+    <span class="rotate below " ng-bind="getMonth(v.time.part)" ng-class="{active:ending,transition:endingTransition}"></span>
+    </span>
     </span>
 
     <div class="settings clickable">
 
     </div>
     <div class="action-panel">
-        <div ng-click="doAction(action)" ng-repeat="action in actions" class="action clickable" data-action="{{::action.name}}" ng-class="{disabled:v.power<action.consume}">
+        <div class="actions-frame">
+            <div ng-click="doAction(action)" ng-repeat="action in actions" class="action clickable" data-action="{{::action.name}}" ng-class="{disabled:v.power<action.consume}">
 
-            <img draggable="false" ng-src="{{::getActionIcon(action.icon)}}">
+                <img draggable="false" ng-src="{{::getActionIcon(action.icon)}}">
 
-            <label ng-bind="::action.name"></label>
+                <label ng-bind="::action.name"></label>
+            </div>
         </div>
+
     </div>
     <div class="action-show" ng-show="showMonkey">
         <img ng-src="{{monkey}}" class="monkey">

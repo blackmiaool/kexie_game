@@ -56,6 +56,10 @@ define(["require", "system-scene", "system-sys", "angular", "system-dbg", "v", "
         }
 
         function doAction(action) {
+            if (sp.actionLocking) {
+                return;
+            }
+            sp.actionLocking = true;
             if (v.power < action.consume) {
                 return;
             }
@@ -63,19 +67,26 @@ define(["require", "system-scene", "system-sys", "angular", "system-dbg", "v", "
             switch (action.name) {
                 case "状态":
                     scene.go("state");
+                    unlockAction(true);
                     break;
                 case "上课":
                     showMonkey(action);
                     costPower(action);
+                    unlockAction();
                     break;
                 case "休息":
                     showMonkey(action);
                     restorePower(10);
                     endTurn();
+                    unlockAction();
                     break;
             }
         }
-
+        function unlockAction(immediate) {
+            $timeout(function () {
+                sp.actionLocking = false;
+            }, !immediate && 1100 || 0);
+        }
         function endTurn() {
             sp.ending = true;
             $timeout(function () {
@@ -118,16 +129,17 @@ define(["require", "system-scene", "system-sys", "angular", "system-dbg", "v", "
             //            }
         }
         _.extend(sp, {
+            showMonkey: false,
+            ending: false,
+            endingTransition: true,
+            actionLocking: false,
             v: v,
             res: res,
             actions: actions,
             getActionIcon: getActionIcon,
             getMonth: getMonth,
             doAction: doAction,
-            monkey: monkey,
-            showMonkey: false,
-            ending: false,
-            endingTransition: true
+            monkey: monkey
         });
     }]);
     module.filter('term', function () {
