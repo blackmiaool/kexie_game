@@ -97,9 +97,13 @@ define(["require", "system-scene", "system-sys", "angular", "system-dbg", "v", "
                     break;
                 case "上课":
                     sp.actionPanelActive = true;
+                    sp.actionPanel = "上课";
                     //                showMonkey(action);
                     //                costPower(action);
                     unlockAction();
+                    break;
+                case "学习":
+                    sp.actionPanel = "学习";
                     break;
                 case "休息":
                     showMonkey(action);
@@ -112,6 +116,7 @@ define(["require", "system-scene", "system-sys", "angular", "system-dbg", "v", "
 
         function actionBack() {
             sp.actionPanelActive = false;
+            sp.actionPanel = "";
             unlockAction(true);
         }
 

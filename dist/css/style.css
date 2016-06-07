@@ -3845,7 +3845,7 @@ input {
   -ms-transform: translateY(100%);
   transform: translateY(100%);
 }
-.scene[data-scene="home"] .action-panel .actions-frame.class-detail {
+.scene[data-scene="home"] .action-panel .actions-frame.action-top-frame {
   position: absolute;
   width: 100%;
   bottom: 135px;

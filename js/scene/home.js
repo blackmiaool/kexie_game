@@ -95,9 +95,13 @@ function (sp, rsp, $timeout) {
                 break;
             case "上课":
                 sp.actionPanelActive = true;
+                sp.actionPanel="上课";
                 //                showMonkey(action);
                 //                costPower(action);
                 unlockAction();
+                break;
+            case "学习":
+                sp.actionPanel="学习";
                 break;
             case "休息":
                 showMonkey(action);
@@ -112,6 +116,7 @@ function (sp, rsp, $timeout) {
 
         function actionBack() {
             sp.actionPanelActive = false;
+            sp.actionPanel="";
             unlockAction(true);
         }
 
