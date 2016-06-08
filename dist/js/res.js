@@ -215,41 +215,6 @@ define(["system-common"], function (common) {
 
     var res_json_data = {
         "item": [{
-            "name": "烙铁",
-            "kind": "仪器",
-            "icon": "iron-soldering",
-            "price": "20",
-            "brief": "最基础的工具，新手工程师家中常备",
-            "comment": "通电数分钟后用手握住它的金属部分可以起到提神的作用"
-        }, {
-            "name": "低端示波器",
-            "kind": "仪器",
-            "icon": "oscilloscope",
-            "price": "500",
-            "brief": "低端调试仪器，可以增加少许的调试速度",
-            "comment": "学校的旧实验室有一堆这种东西"
-        }, {
-            "name": "中端示波器",
-            "kind": "仪器",
-            "icon": "oscilloscope",
-            "price": "1000",
-            "brief": "中端调试仪器，可以增加一定的调试速度",
-            "comment": "好一点的实验室才有的好东西"
-        }, {
-            "name": "高端示波器",
-            "kind": "仪器",
-            "icon": "oscilloscope",
-            "price": "2000",
-            "brief": "高端调试仪器，可以增加大量的调试速度",
-            "comment": "高级实验室和校队才有的稀有仪器"
-        }, {
-            "name": "机械基础工具",
-            "kind": "仪器",
-            "icon": "tool",
-            "price": "200",
-            "brief": "最基础的机械工具套装",
-            "comment": "看起来像是工具,但是往往会变成消耗品"
-        }, {
             "name": "低端单片机",
             "kind": "IC",
             "icon": "computer",
@@ -355,20 +320,6 @@ define(["system-common"], function (common) {
             "brief": "机械设备的基础单位",
             "comment": "不知从哪里拆下来的"
         }, {
-            "name": "电钻",
-            "kind": "仪器",
-            "icon": "drill-tool",
-            "price": "200",
-            "brief": "基础机械工具，用于打孔",
-            "comment": "不使用它有助于提高周围人对你的友好度"
-        }, {
-            "name": "电锯",
-            "kind": "仪器",
-            "icon": "saw-hand-drawn-electrical-cutting-tool",
-            "price": "300",
-            "brief": "基础机械工具，用于切割，噪音较大",
-            "comment": "僵尸入侵时它可以帮助你活下去"
-        }, {
             "name": "浪神炮伪",
             "kind": "伪神器",
             "icon": "gods-shield",
@@ -411,15 +362,179 @@ define(["system-common"], function (common) {
             "brief": "浪神粉丝的芳心，使用后效率降低50%",
             "comment": "浪神殿"
         }],
+        "device": [{
+            "name": "烙铁",
+            "kind": "焊接工具",
+            "icon": "iron-soldering",
+            "price": "20",
+            "brief": "最基础的工具，新手工程师家中常备,通电数分钟后用手握住它的金属部分可以起到提神的作用"
+        }, {
+            "name": "焊台",
+            "kind": "焊接工具",
+            "icon": "iron-soldering",
+            "price": "100",
+            "brief": "最基础的工具，新手工程师家中常备",
+            "comment": "通电数分钟后用手握住它的金属部分可以起到提神的作用"
+        }, {
+            "name": "低端示波器",
+            "kind": "示波器",
+            "icon": "oscilloscope",
+            "price": "500",
+            "brief": "低端调试仪器，可以增加少许的调试速度",
+            "comment": "学校的旧实验室有一堆这种东西"
+        }, {
+            "name": "中端示波器",
+            "kind": "示波器",
+            "icon": "oscilloscope",
+            "price": "1000",
+            "brief": "中端调试仪器，可以增加一定的调试速度",
+            "comment": "好一点的实验室才有的好东西"
+        }, {
+            "name": "高端示波器",
+            "kind": "示波器",
+            "icon": "oscilloscope",
+            "price": "4000",
+            "brief": "高端调试仪器，可以增加大量的调试速度",
+            "comment": "高级实验室和校队才有的稀有仪器"
+        }, {
+            "name": "基础工具套装",
+            "kind": "工具套装",
+            "icon": "tool",
+            "price": "200",
+            "brief": "最基础的机械工具套装",
+            "comment": "看起来像是工具,但是往往会变成消耗品"
+        }, {
+            "name": "高级工具套装",
+            "kind": "工具套装",
+            "icon": "tool",
+            "price": "1000",
+            "brief": "非常全的机械工具套装",
+            "comment": "买来之后搬家会很痛苦"
+        }, {
+            "name": "低端逻辑分析仪",
+            "kind": "逻辑分析仪",
+            "icon": "tool",
+            "price": "25",
+            "brief": "数字逻辑调试工具",
+            "comment": "虽然便宜但是好用"
+        }, {
+            "name": "高端逻辑分析仪",
+            "kind": "逻辑分析仪",
+            "icon": "tool",
+            "price": "200",
+            "brief": "高级数字逻辑调试工具，用于调试高速数字信号",
+            "comment": "满眼都是线"
+        }, {
+            "name": "手钻",
+            "kind": "电钻",
+            "icon": "tool",
+            "price": "50",
+            "brief": "手持打孔工具",
+            "comment": "不使用它有助于提高周围人对你的友好度"
+        }, {
+            "name": "台钻",
+            "kind": "电钻",
+            "icon": "tool",
+            "price": "300",
+            "brief": "手持打孔工具",
+            "comment": "滋~滋~~滋~~~"
+        }, {
+            "name": "木工锯",
+            "kind": "锯子",
+            "icon": "saw-hand-drawn-electrical-cutting-tool",
+            "price": "30",
+            "brief": "切割工具",
+            "comment": "看起来很安全"
+        }, {
+            "name": "电锯",
+            "kind": "锯子",
+            "icon": "saw-hand-drawn-electrical-cutting-tool",
+            "price": "200",
+            "brief": "切割工具,噪音较大",
+            "comment": "如果僵尸入侵...."
+        }, {
+            "name": "学生电源",
+            "kind": "电源",
+            "icon": "tool",
+            "price": "200",
+            "brief": "供电仪器",
+            "comment": "为什么没有杜邦线输出接口?"
+        }, {
+            "name": "高级电源",
+            "kind": "电源",
+            "icon": "tool",
+            "price": "1000",
+            "brief": "供电仪器",
+            "comment": "很好很强大!"
+        }, {
+            "name": "低端函数发生器",
+            "kind": "函数发生器",
+            "icon": "tool",
+            "price": "700",
+            "brief": "输出指定波形",
+            "comment": "好多按钮和选项"
+        }, {
+            "name": "高端函数发生器",
+            "kind": "函数发生器",
+            "icon": "tool",
+            "price": "2000",
+            "brief": "输出更宽泛的指定波形",
+            "comment": "给你你想要的"
+        }, {
+            "name": "手持万用表",
+            "kind": "表",
+            "icon": "tool",
+            "price": "100",
+            "brief": "测量电阻电压电流",
+            "comment": "总是缺电池"
+        }, {
+            "name": "台式万用表",
+            "kind": "表",
+            "icon": "tool",
+            "price": "2000",
+            "brief": "测量电阻电压电流",
+            "comment": "给你看你想要的"
+        }, {
+            "name": "频谱仪",
+            "kind": "频谱仪",
+            "icon": "tool",
+            "price": "2500",
+            "brief": "显示频谱",
+            "comment": "无"
+        }, {
+            "name": "电子负载",
+            "kind": "负载",
+            "icon": "tool",
+            "price": "500",
+            "brief": "做电源必备",
+            "comment": "无"
+        }, {
+            "name": "高级电子负载",
+            "kind": "负载",
+            "icon": "tool",
+            "price": "2000",
+            "brief": "做电源必备",
+            "comment": "无"
+        }],
         "combine": [{
             "name": "单片机流水灯",
             "material": "低端单片机*1+LED*8+电路基础元件*1",
-            "instrument": "烙铁",
+            "instrument": "表?",
             "date": "10"
         }, {
-            "name": "单片机闹钟",
+            "name": "闹钟",
             "material": "低端单片机*1+数码管*8+电路基础元件*1",
-            "instrument": "烙铁",
+            "instrument": "表?",
+            "date": "9"
+        }, {
+            "name": "巡线车",
+            "material": "中端单片机*1+LED*16+电路基础元件*3+机械元件*10",
+            "instrument": "表!电钻!锯子!工具套装!逻辑分析仪?",
+            "date": "9"
+        }, {
+            "name": "飞思卡尔智能车",
+            "material": "中端单片机*1+LED*16+电路基础元件*6+机械元件*3",
+            "instrument": "表!电钻!锯子?工具套装!逻辑分析仪?",
             "date": "9"
         }, {
             "name": "女朋友（残、伪）",
