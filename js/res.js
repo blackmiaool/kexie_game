@@ -283,6 +283,8 @@ define(["system-common"], function (common) {
                     skills[d[i].name] = {};
                     skills[d[i].name].name = d[i].name;
                     skills[d[i].name].level = 0;
+                    skills[d[i].name].icon = d[i].icon;
+                    skills[d[i].name].des = d[i].des;
                 }
                 for (var i in d) {
                     var skill_this = skills[d[i].name];
@@ -291,7 +293,7 @@ define(["system-common"], function (common) {
                         var preArr = d[i].pre.split(",");
                         for (var j in preArr) {
                             let skill=skills[preArr[j].split("v")[0]];
-                            let level=preArr[j].split("v")[1];
+                            let level=preArr[j].split("v")[1]*1;
                             if (preArr[j] != "none") {
                                 skill_this.pre.push({skill,level})
                             }
@@ -328,9 +330,9 @@ define(["system-common"], function (common) {
             }],
         }]
     }
-    for (var i in res.pp) {
-        res[i] = res.pp[i].half
-    }
+//    for (var i in res.pp) {
+//        res[i] = res.pp[i].half
+//    }
 
 
     var get_save_text = function (id) {

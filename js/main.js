@@ -56,12 +56,29 @@
 
 
 
-    requirejs(["jquery", "system-sys", "angular", 'angular-module', "system-scene", "res",'angular-animate', "plot"], function ($, sys, angular, module, scene,res) {
+    requirejs(["jquery", "system-sys", "angular", 'angular-module', "system-scene", "res", 'angular-animate', "plot"], function ($, sys, angular, module, scene, res) {
         $("#game-first-tip").remove();
 
         module.controller("root_controller", ["$rootScope", "$scope", function (rsp, sp) {
-            sp.img=res.img;       
+          
             sys.$rootScope = angular.element("body").scope().$parent.$root;
+
+            function getPre(skill) {
+                let preText = "";
+                skill.pre.forEach(function (v, i) {
+                    if (i > 0)
+                        preText += " , ";
+                    preText += v.skill.name + "Lv" + v.level;
+                })
+                if(!preText){
+                    preText="无";
+                }
+                return preText;
+            }
+            _.extend(sp, {
+                img:res.img,
+                getPre,
+            });
 
     }]);
         sys.sceneLoaded = function () {

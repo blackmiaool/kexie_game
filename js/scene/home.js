@@ -53,6 +53,19 @@ function (sp, rsp, $timeout) {
             return monthStr + partStr;
         }
 
+        function getAction(name) {
+            let action;
+            actions.every(function (v, i) {
+                if (v.name == name) {
+                    action = v;
+                    return false;
+                } else {
+                    return true;
+                }
+            })
+            return action;
+        }
+
         function goClass() {
             let action;
             actions.every(function (v, i) {
@@ -69,23 +82,16 @@ function (sp, rsp, $timeout) {
             actionBack();
         }
 
-        function doAction(action) {
+        function doAction(action, ...args) {
             if (typeof action == "string") {
-                actions.every(function (v, i) {
-                    if (v.name == action) {
-                        action = v;
-                        return false;
-                    } else {
-                        return true;
-                    }
-                })
+                action = getAction(action);
             }
             if (sp.actionLocking) {
                 return;
             }
             sp.actionLocking = true;
             if (v.power < action.consume) {
-                return;
+                return false;
             }
             setMonkey(action);
             switch (action.name) {
@@ -94,15 +100,22 @@ function (sp, rsp, $timeout) {
                 unlockAction(true);
                 break;
             case "上课":
-                sp.actionPanelActive = true;
-                sp.actionPanel="上课";
+                sp.actionPanel = "上课";
                 //                showMonkey(action);
                 //                costPower(action);
                 unlockAction();
                 break;
             case "学习":
-                sp.actionPanel="学习";
-                break;
+                sp.actionPanel = "学习";
+                if (args.length) {
+                    costPower(action);
+                    showMonkey(action);
+                    unlockAction();
+                } else {
+                    unlockAction(true);
+                }
+
+                return true;
             case "休息":
                 showMonkey(action);
                 restorePower(10);
@@ -115,8 +128,7 @@ function (sp, rsp, $timeout) {
         }
 
         function actionBack() {
-            sp.actionPanelActive = false;
-            sp.actionPanel="";
+            sp.actionPanel = "";
             unlockAction(true);
         }
 
@@ -153,27 +165,92 @@ function (sp, rsp, $timeout) {
         }
 
         function showMonkey(action) {
-            setMonkey(action)
+            setMonkey(action);
             sp.showMonkey = true;
             $timeout(function () {
                 sp.showMonkey = false;
-            }, 1000)
+            }, 1000);
         }
 
         function setMonkey(action) {
-            console.log(action);
+            //            console.log(action);
             //            if (action.consume) {
             sp.monkey = common.resPath + `monkey/${action.icon}.gif`;
             //            } else {
             //                sp.monkey = "";
             //            }
         }
+        //        console.log(res.skills)
+
+        function isSkillPreSatisfied(skill) {
+            for (let pre of skill.pre) {
+                if (v.skill[pre.skill.name].level < pre.level) {
+                    return false;
+                }
+            }
+            return true;
+        }
+
+        function getSkillIcon(skill) {
+            if (v.skill[skill.name].satisfied&&v.power>=getAction("学习").consume) {
+                return `${common.resPath}skills/${skill.icon}.jpg`;
+            } else {
+                return `${common.resPath}skills/${skill.icon}-off.jpg`;
+            }
+        }
+
+        function hoverSkill(skill) {
+            sp.selectingSkill = skill;
+        }
+
+        function stopHoverSkill() {
+            sp.selectingSkill = undefined;
+        }
+
+        function upgradeSkill(skill) {
+            if (v.skill[skill.name].level < 10) {
+
+                if (doAction("学习", skill)) {
+                    v.skill[skill.name].level++;
+                }
+
+                //                setMonkey("学习");
+                //                sp.showMonkey = true;
+                //                $timeout(function () {
+                //                    sp.showMonkey = false;
+                //                }, 1000);
+            }
+
+        }
+
+        function getSkillBg(skill) {
+            let color = "green";
+            if (skill.pre.length != 0 && !v.skill[skill.name].satisfied) {
+
+                color = "grey";
+
+            } else if (v.skill[skill.name].level >= 10) {
+                color = "yellow";
+            }
+            return `${common.resPath}skills/icon-over-${color}.gif`;
+        }
+
+        function updateSkill() {
+            for (var i in v.skill) {
+                v.skill[i].satisfied = isSkillPreSatisfied(res.skills[i]);
+            }
+        }
+        updateSkill();
+        sp.$watch('v.skill', function (newValue, oldValue) {
+            updateSkill();
+        }, true);
         _.extend(sp, {
             showMonkey: false,
             ending: false,
             endingTransition: true,
             actionLocking: false,
-            actionPanelActive: false,
+            actionPanel: "学习",
+            skills: res.skills,
             v,
             res,
             actions,
@@ -183,6 +260,11 @@ function (sp, rsp, $timeout) {
             monkey,
             actionBack,
             goClass,
+            getSkillIcon,
+            getSkillBg,
+            upgradeSkill,
+            hoverSkill,
+            stopHoverSkill,
         });
 }])
 module.filter('term', function () {

@@ -49,6 +49,11 @@ define(["res", "system-common"], function (res, common) {
         components: {}
 
     };
+    for (var i in res.skills) {
+        v_init.skill[i] = {
+            level: 0
+        };
+    }
     for (var i in res.pp) {
         v_init.amity[i] = 0;
     }

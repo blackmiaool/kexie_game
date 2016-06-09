@@ -31,20 +31,34 @@
 
     </div>
     <div class="action-panel">
-        <div class="actions-frame action-top-frame" ng-class="{active:actionPanel=='学习'}">
+        <div class="actions-frame action-top-frame skill-select" ng-class="{active:actionPanel=='学习'}">
             <div ng-click="actionBack()" class="action clickable action-back" data-action="{{::action.name}}">
 
                 <img draggable="false" ng-src="{{::getActionIcon('arrows')}}">
 
-<!--                <label>返回</label>-->
             </div>
+            <div class="skills-wrap">
+                <div class="skill-page">
+                    <div ng-repeat="skill in skills" ng-click="upgradeSkill(skill)" ng-mouseenter="hoverSkill(skill)"  ng-mouseleave="stopHoverSkill()" class="skill-wrap">
+                        <div class="skill">
+                           <img draggable="false" ng-src="{{getSkillIcon(skill)}}" alt="" class="skill-icon">
+                            <img draggable="false" ng-src="{{getSkillBg(skill)}}" alt="" class="skill-bg">             
+                            <label class="level" ng-bind="v.skill[skill.name].level"></label>                                           
+                        </div>
+                        <label  ng-show="v.skill[skill.name].satisfied" class="name" ng-bind="skill.name"></label>
+                    </div>
+                </div>
+            </div>
+<!--
+            <div class="skill-change-page">
+
+            </div>
+-->
         </div>
         <div class="actions-frame class-detail action-top-frame" ng-class="{active:actionPanel=='上课'}">
             <div ng-click="actionBack()" class="action clickable action-back" data-action="{{::action.name}}">
 
                 <img draggable="false" ng-src="{{::getActionIcon('arrows')}}">
-
-<!--                <label>返回</label>-->
             </div>
             <div class="study-info">
                 <div>距期中考试还剩: 4回合</div>
@@ -60,6 +74,22 @@
                 <label ng-bind="::action.name"></label>
             </div>
         </div>
+    </div>
+    <div class="skill-detail" ng-if="selectingSkill">
+        <h5 class="title" ng-bind="selectingSkill.name"></h5>
+        <div class="skill-section">
+            <label class="key">等级: </label>
+            <p class="value" ng-bind="v.skill[selectingSkill.name].level"></p>
+        </div>
+        <div class="skill-section">
+            <label class="key">前置: </label>
+            <p class="value" ng-bind="getPre(selectingSkill)"></p>
+        </div>
+        <div class="skill-section">
+            <label class="key">功能: </label>
+            <p class="value" ng-bind="selectingSkill.des"></p>
+        </div>
+        
     </div>
     <div class="action-show" ng-show="showMonkey">
         <img ng-src="{{monkey}}" class="monkey">

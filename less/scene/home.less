@@ -124,6 +124,7 @@
     box-sizing: content-box;
     overflow: hidden;
     .actions-frame {
+        overflow: hidden;
         height: @height;
         transition: 0.3s transform ease-out;
         &.active {
@@ -148,6 +149,68 @@
                 position: absolute;
                 left: 330px;
             }
+        }
+        &.skill-select {
+            .skills-wrap {
+                position: absolute;
+                left: 116px;
+                overflow: auto;
+                top: 0;
+                bottom: 0;
+                padding: 10px 0;
+                //                top: 10px;
+                //                bottom: 10px;
+                //                right: 91px;
+                .skill-page {
+                    height: 100%;
+                    .skill-wrap {
+                        display: inline-block;
+                        //                        margin-right: 20px;
+                        text-align: center;
+//                        margin-bottom: 5px;
+                        padding-bottom: 5px;
+                        height: 90px;
+                        width: 116px;
+                        vertical-align: middle;
+                        .skill {
+                            display: inline-block;
+                            position: relative;
+                            height: 52px;
+                            width: 48px;
+                            .skill-icon {
+                                position: absolute;
+                                top: 3px;
+                                left: 3px;
+                            }
+                            .skill-bg {
+                                position: absolute;
+                                top: 0;
+                                left: 0;
+                                z-index: 1;
+                            }
+                            .level {
+                                color: white;
+                                position: absolute;
+                                left: 63%;
+                                z-index: 1;
+                                bottom: -3%;
+                                font-size: 13px;
+                                width: 26px;
+                                text-align: center;
+                                font-weight: normal;
+                                margin-bottom: 0;
+                            }
+                        }
+                        .name {
+                            position: relative;
+                            top: -3px;
+                            display: block;
+                            font-weight: normal;
+                        }
+                    }
+                }
+            }
+            .skill-change-page {}
         }
     }
     .action {
@@ -192,6 +255,50 @@
         display: inline-block;
         //        .horizontal-center;
     }
+}
+
+.skill-detail {
+    .abs-fill;
+    bottom: auto;
+    top: auto;
+//    height: 300px;
+    width: 300px;
+    background-color:rgba(51, 122, 183,0.8);
+//    border: 4px @blue solid;
+//    border-radius: 10px;
+
+    padding: 15px;
+    padding-bottom: 0;
+    color: white;
+    .title {
+        text-align: center;
+        margin-top: 0;
+        font-size: 16px;
+        margin-bottom: 5px;
+        line-height: 18px;
+    }
+    .key{
+        margin-bottom: 0;
+    }
+    .value{
+        margin-top: 0;
+        margin-bottom: 20px;
+        text-indent: 2em;
+    }
+//    transition: 0.5s linear all;
+//    &.ng-enter {
+//        
+//        opacity: 0;
+//    }
+//    &.ng-enter.ng-enter-active {
+//        opacity: 1;
+//    }
+//    &.ng-leave.active{
+//        opacity: 0;
+//    }
+//    &.ng-leave{
+//        opacity: 0;
+//    }
 }
 
 //.power-wrap {
