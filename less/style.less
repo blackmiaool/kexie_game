@@ -51,6 +51,7 @@ input {
     width: 960px;
     height: 540px;
     display: none;
+    overflow: hidden;
     .abs-fill;
     &.active {
         display: block;
@@ -70,5 +71,8 @@ input {
     }
     &[data-scene="home"] {
         @import "scene/home.less";
+    }
+    &[data-scene="bigmap"] {
+        @import "scene/bigmap.less";
     }
 }

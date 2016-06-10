@@ -1,10 +1,9 @@
-<div ng-controller="bigmap_controller">
-    <img src="res/System/bigmap.jpg" style="height:540px;">
-    <button ng-click="enter(value.text)" ng-repeat="value in btns" class="btn" ng-class="value.class" ng-style="value" style="position:absolute;">
-        <span class="glyphicon glyphicon-{{value.icon}}"></span>&nbsp;{{value.text}}
+<div ng-controller="bigmap_controller" class="top">
+    <img class="big-bg" src="res/System/bigmap.jpg" style="height:540px;" ng-class="{active:active}">
+    <button ng-click="enter(value.text)" ng-repeat="(name,value) in spots" class="btn clickable" ng-class="value.class" ng-style="value" style="position:absolute;">
+        <span class="glyphicon glyphicon-{{value.icon}}"></span>&nbsp;<span ng-bind="name"></span>
     </button>
-    <button ng-click="go_back()" class="btn btn-primary btn-lg" style="position:absolute;bottom:10px;left:10px;">
-        <span class="glyphicon glyphicon-home"></span>&nbsp;回家
+    <button ng-click="goBack()" class="btn btn-primary btn-lg clickable" style="position:absolute;bottom:10px;left:10px;">
+        <span class="glyphicon glyphicon-home"></span>&nbsp;返回
     </button>
-<!--    <label class="move-point">剩余行动点:&nbsp;<font>{{get_left_points()}}</font></label>-->
 </div>

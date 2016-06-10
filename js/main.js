@@ -56,11 +56,11 @@
 
 
 
-    requirejs(["jquery", "system-sys", "angular", 'angular-module', "system-scene", "res", 'angular-animate', "plot"], function ($, sys, angular, module, scene, res) {
+    requirejs(["jquery", "system-sys", "angular", 'angular-module', "system-scene", "res", "system-common", 'angular-animate', "plot"], function ($, sys, angular, module, scene, res, common) {
         $("#game-first-tip").remove();
 
         module.controller("root_controller", ["$rootScope", "$scope", function (rsp, sp) {
-          
+
             sys.$rootScope = angular.element("body").scope().$parent.$root;
 
             function getPre(skill) {
@@ -70,14 +70,19 @@
                         preText += " , ";
                     preText += v.skill.name + "Lv" + v.level;
                 })
-                if(!preText){
-                    preText="无";
+                if (!preText) {
+                    preText = "无";
                 }
                 return preText;
             }
+
+            function getItemIconUrl(item, color) {
+                return `${common.resPath}icon/item/${color}/${item.icon}`;
+            }
             _.extend(sp, {
-                img:res.img,
+                img: res.img,
                 getPre,
+                getItemIconUrl,
             });
 
     }]);

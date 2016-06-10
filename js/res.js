@@ -237,7 +237,7 @@ define(["system-common"], function (common) {
 //                window.items = {};
                     res.items=items;
                 for (var i in d) {
-                    d[i].cnt = 0;
+//                    d[i].cnt = 0;
                     d[i].price = parseInt(d[i].price)
                     items[d[i].name] = d[i];
                 }

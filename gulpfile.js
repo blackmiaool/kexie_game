@@ -26,7 +26,8 @@ var treeify = require('file-tree-sync');
 
 var plotTree = treeify(path.join(__dirname, 'js', "plot"), ['.*']);
 var sceneTree = treeify(path.join(__dirname, 'js', "scene"), ['.*']);
-var imgTree = treeify(path.join(__dirname, 'res'), ['.*','.jpg','.png','svg']);
+var imgTree = treeify(path.join(__dirname, 'res'), ['.*', '.jpg', '.png', 'svg']);
+
 function get_browserify_params() {
     return {
         insertGlobals: true,
@@ -51,21 +52,30 @@ gulp.task('html', function () {
         .pipe(cached("html"))
         .pipe(gulp.dest('dist/')).pipe(livereload());
 })
-
+var less = require('gulp-less');
 gulp.task('less', function () {
-    var less = require('gulp-less');
+    
     var e = less({
         paths: [path.join(__dirname, 'less')]
     });
-    e.on('error', function (ee) {
-        gutil.log(ee);
-        e.end();
-    });
+
+    function swallowError(error) {
+
+        // If you want details of the error in the console
+        console.log(error.toString())
+
+        this.emit('end')
+    }
+        e.on('error', function (ee) {
+//            gutil.log(ee);
+            e.end();
+        });
 
 
     return gulp.src('less/style.less')
         .pipe(e)
         .pipe(cached("less"))
+        .on('error', swallowError)
         .pipe(gulp.dest('dist/css')).pipe(livereload());
 });
 gulp.task('mv-dist-js', function () {

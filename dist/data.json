@@ -5,147 +5,168 @@
         "icon": "computer",
         "price": "3",
         "brief": "性能很弱的单片机，可以用于制作简陋的电路系统",
-        "comment": "郭天祥为它代言"
+        "comment": "郭天祥为它代言",
+        "buyable": "1"
     }, {
         "name": "中端单片机",
         "kind": "IC",
         "icon": "computer",
         "price": "15",
         "brief": "性能一般的单片机，可以用于制作一般的电路系统",
-        "comment": "意法公司代表性作品,在21种情况下会下载失败"
+        "comment": "意法公司代表性作品,在21种情况下会下载失败",
+        "buyable": "1"
     }, {
         "name": "高端单片机",
         "kind": "IC",
         "icon": "computer",
         "price": "50",
         "brief": "性能强劲的单片机，可以用于制作复杂的电路系统",
-        "comment": "有时候买开发板还不如买个手机"
+        "comment": "有时候买开发板还不如买个手机",
+        "buyable": "0"
     }, {
         "name": "五5伍",
         "kind": "IC",
         "icon": "computer",
         "price": "2",
         "brief": "常用数字芯片，用于产生基础的数字信号",
-        "comment": "听说可以用来设计500种电路"
+        "comment": "听说可以用来设计500种电路",
+        "buyable": "1"
     }, {
         "name": "锁存器",
         "kind": "IC",
         "icon": "computer",
         "price": "2",
         "brief": "郭天祥最喜欢的芯片",
-        "comment": "德律商店"
+        "comment": "德律商店",
+        "buyable": "1"
     }, {
         "name": "FPGA",
         "kind": "IC",
         "icon": "computer",
         "price": "30",
         "brief": "高级可编程数字芯片，常被单片机奴役，可用于制作单片机",
-        "comment": "德律商店"
+        "comment": "德律商店",
+        "buyable": "1"
     }, {
         "name": "CPLD",
         "kind": "IC",
         "icon": "computer",
         "price": "15",
         "brief": "廉价可编程数字芯片",
-        "comment": "德律商店"
+        "comment": "德律商店",
+        "buyable": "1"
     }, {
         "name": "普通电池",
         "kind": "基础器件",
         "icon": "battery",
         "price": "2",
         "brief": "给电路板供电用的一次性器件",
-        "comment": "德律商店"
+        "comment": "德律商店",
+        "buyable": "1"
     }, {
         "name": "锂电池",
         "kind": "基础器件",
         "icon": "battery",
         "price": "30",
         "brief": "给电路板供电用的器件，可重复使用",
-        "comment": "德律商店"
+        "comment": "德律商店",
+        "buyable": "1"
     }, {
         "name": "电路基础元件",
         "kind": "基础器件",
         "icon": "resistance",
         "price": "10",
         "brief": "最基础的电路元件套装，包括焊锡、排针、杜邦线、电阻、电容等器件",
-        "comment": "德律商店"
+        "comment": "德律商店",
+        "buyable": "1"
     }, {
         "name": "LED",
         "kind": "基础器件",
         "icon": "led",
         "price": "1",
         "brief": "电子设计基础材料，用于进行焊接",
-        "comment": "德律商店"
+        "comment": "德律商店",
+        "buyable": "1"
     }, {
         "name": "数码管",
         "kind": "基础器件",
         "icon": "digital-display",
         "price": "10",
         "brief": "可以显示出数字或字幕的元件，常用作显示设备",
-        "comment": "为了显示几个数字去驱动这东西?"
+        "comment": "为了显示几个数字去驱动这东西?",
+        "buyable": "1"
     }, {
         "name": "舵机",
         "kind": "机械",
         "icon": "motor",
         "price": "30",
         "brief": "机电的基础元件，通过输入占空比进行转动",
-        "comment": "舵机才是极客的浪漫!"
+        "comment": "舵机才是极客的浪漫!",
+        "buyable": "1"
     }, {
         "name": "振动电机",
         "kind": "机械",
         "icon": "motor",
         "price": "5",
         "brief": "可以让系统产生震动的电机",
-        "comment": "请勿配合电池使用"
+        "comment": "请勿配合电池使用",
+        "buyable": "1"
     }, {
         "name": "机械元件",
         "kind": "机械",
         "icon": "gears",
         "price": "10",
         "brief": "机械设备的基础单位",
-        "comment": "不知从哪里拆下来的"
+        "comment": "不知从哪里拆下来的",
+        "buyable": "1"
     }, {
         "name": "浪磁炮伪",
         "kind": "伪神器",
         "icon": "gods-shield",
         "price": "5000",
         "brief": "浪神用过的武器的仿制版，毁灭比赛中的一个队伍",
-        "comment": "浪神殿"
+        "comment": "浪神殿",
+        "buyable": "0"
     }, {
         "name": "浪磁炮",
         "kind": "神器",
         "icon": "gods-shield",
         "price": "10000",
         "brief": "浪神用过的武器，毁灭比赛中所有其他队伍",
-        "comment": "浪神殿"
+        "comment": "浪神殿",
+        "buyable": "0"
     }, {
         "name": "浪经",
         "kind": "神器",
         "icon": "gods-shield",
         "price": "2000",
         "brief": "浪神说过的话语，阅读后可提高一定的知识属性（数字、模拟）",
-        "comment": "浪神殿"
+        "comment": "浪神殿",
+        "buyable": "0"
     }, {
         "name": "浪布丁",
         "kind": "神器",
         "icon": "gods-shield",
         "price": "2000",
         "brief": "浪神制作的布丁，随机技能等级提升1",
-        "comment": "浪神殿"
+        "comment": "浪神殿",
+        "buyable": "0"
     }, {
         "name": "浪手帕",
         "kind": "神器",
         "icon": "gods-shield",
         "price": "6000",
         "brief": "浪神偶然得到的手帕，100%成功率招募本级同学或高一级的学长作为队友",
-        "comment": "浪神殿"
+        "comment": "浪神殿",
+        "buyable": "0"
     }, {
         "name": "浪粉丝芳心",
         "kind": "伪神器",
         "icon": "gods-shield",
         "price": "10000",
         "brief": "浪神粉丝的芳心，使用后效率降低50%",
-        "comment": "浪神殿"
+        "comment": "浪神殿",
+        "buyable": "0"
     }],
     "device": [{
         "name": "烙铁",

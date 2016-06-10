@@ -850,6 +850,72 @@ fieldset[disabled] .btn-primary.active {
   color: #337ab7;
   background-color: #fff;
 }
+.btn-weird {
+  color: #fff;
+  background-color: #6f5499;
+  border-color: #634b89;
+}
+.btn-weird:focus,
+.btn-weird.focus {
+  color: #fff;
+  background-color: #574278;
+  border-color: #271e36;
+}
+.btn-weird:hover {
+  color: #fff;
+  background-color: #574278;
+  border-color: #463561;
+}
+.btn-weird:active,
+.btn-weird.active,
+.open > .dropdown-toggle.btn-weird {
+  color: #fff;
+  background-color: #574278;
+  border-color: #463561;
+}
+.btn-weird:active:hover,
+.btn-weird.active:hover,
+.open > .dropdown-toggle.btn-weird:hover,
+.btn-weird:active:focus,
+.btn-weird.active:focus,
+.open > .dropdown-toggle.btn-weird:focus,
+.btn-weird:active.focus,
+.btn-weird.active.focus,
+.open > .dropdown-toggle.btn-weird.focus {
+  color: #fff;
+  background-color: #463561;
+  border-color: #271e36;
+}
+.btn-weird:active,
+.btn-weird.active,
+.open > .dropdown-toggle.btn-weird {
+  background-image: none;
+}
+.btn-weird.disabled,
+.btn-weird[disabled],
+fieldset[disabled] .btn-weird,
+.btn-weird.disabled:hover,
+.btn-weird[disabled]:hover,
+fieldset[disabled] .btn-weird:hover,
+.btn-weird.disabled:focus,
+.btn-weird[disabled]:focus,
+fieldset[disabled] .btn-weird:focus,
+.btn-weird.disabled.focus,
+.btn-weird[disabled].focus,
+fieldset[disabled] .btn-weird.focus,
+.btn-weird.disabled:active,
+.btn-weird[disabled]:active,
+fieldset[disabled] .btn-weird:active,
+.btn-weird.disabled.active,
+.btn-weird[disabled].active,
+fieldset[disabled] .btn-weird.active {
+  background-color: #6f5499;
+  border-color: #634b89;
+}
+.btn-weird .badge {
+  color: #6f5499;
+  background-color: #fff;
+}
 .btn-success {
   color: #fff;
   background-color: #5cb85c;
@@ -2894,6 +2960,13 @@ table th[class*="col-"] {
 .pointer-cursor {
   cursor: url("../res/cursor/link.cur"), pointer;
 }
+img {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  -o-user-select: none;
+  user-select: none;
+}
 .clickable {
   cursor: url("../res/cursor/link.cur"), pointer;
   -webkit-user-select: none;
@@ -3059,6 +3132,7 @@ input {
   width: 960px;
   height: 540px;
   display: none;
+  overflow: hidden;
   position: absolute;
   left: 0;
   right: 0;
@@ -3836,10 +3910,67 @@ input {
   box-sizing: content-box;
   overflow: hidden;
 }
+.scene[data-scene="home"] .action-panel > .corner {
+  position: absolute;
+  zoom: 0.4;
+}
+.scene[data-scene="home"] .action-panel > .corner.left-top {
+  left: 0;
+  top: 0;
+}
+.scene[data-scene="home"] .action-panel > .corner.left-bottom {
+  left: 0;
+  bottom: 0;
+  -webkit-transform: rotate(-90deg);
+  -ms-transform: rotate(-90deg);
+  transform: rotate(-90deg);
+}
+.scene[data-scene="home"] .action-panel > .corner.right-top {
+  right: 0;
+  top: 0;
+  -webkit-transform: scaleX(-1);
+  -ms-transform: scaleX(-1);
+  transform: scaleX(-1);
+}
+.scene[data-scene="home"] .action-panel > .corner.right-bottom {
+  right: 0;
+  bottom: 0;
+  -webkit-transform: rotate(180deg);
+  -ms-transform: rotate(180deg);
+  transform: rotate(180deg);
+}
+.scene[data-scene="home"] .action-panel > .border {
+  position: absolute;
+  zoom: 0.4;
+}
+.scene[data-scene="home"] .action-panel > .border.top {
+  top: 0;
+  width: 90%;
+  height: 61px;
+  margin-left: 224px;
+}
+.scene[data-scene="home"] .action-panel > .border.bottom {
+  bottom: 0;
+  width: 90%;
+  height: 61px;
+  margin-left: 224px;
+  -webkit-transform: scaleY(-1);
+  -ms-transform: scaleY(-1);
+  transform: scaleY(-1);
+}
+.scene[data-scene="home"] .action-panel .panel-bg {
+  position: absolute;
+  left: 20px;
+  top: 20px;
+  bottom: 20px;
+  right: 20px;
+  background-color: #1f1916;
+}
 .scene[data-scene="home"] .action-panel .actions-frame {
   overflow: hidden;
   height: 135px;
   transition: 0.3s transform ease-out;
+  position: relative;
 }
 .scene[data-scene="home"] .action-panel .actions-frame.active {
   -webkit-transform: translateY(100%);
@@ -4011,4 +4142,258 @@ input {
   margin-top: 0;
   margin-bottom: 20px;
   text-indent: 2em;
+}
+.scene[data-scene="home"] .shop-wrap {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+}
+.scene[data-scene="home"] .shop-mask {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+  z-index: 100;
+  background-color: rgba(0, 0, 0, 0);
+  transition: 0.3s background-color ease-out;
+}
+.scene[data-scene="home"] .shop-mask.active {
+  background-color: rgba(0, 0, 0, 0.3);
+}
+.scene[data-scene="home"] .shop-panel {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+  z-index: 101;
+  border: 5px solid #1f2639;
+  border-radius: 10px;
+  background-color: #3a4d6b;
+  text-align: center;
+  box-shadow: 5px 5px 3px rgba(0, 0, 0, 0.5);
+  width: 700px;
+  height: 480px;
+  -webkit-transition: 0.3s transform ease-out;
+  -o-transition: 0.3s transform ease-out;
+  transition: 0.3s transform ease-out;
+  -webkit-transform: translateY(-30px);
+  -ms-transform: translateY(-30px);
+  transform: translateY(-30px);
+}
+.scene[data-scene="home"] .shop-panel.active {
+  -webkit-transform: translateY(0px);
+  -ms-transform: translateY(0px);
+  transform: translateY(0px);
+}
+.scene[data-scene="home"] .shop-panel .items-money-sum,
+.scene[data-scene="home"] .shop-panel .have-money {
+  position: absolute;
+  color: white;
+}
+.scene[data-scene="home"] .shop-panel .items-money-sum {
+  bottom: 20px;
+  left: 230px;
+}
+.scene[data-scene="home"] .shop-panel .have-money {
+  bottom: 20px;
+  left: 30px;
+}
+.scene[data-scene="home"] .shop-panel .close {
+  background-image: url("../res/UI/Button_Circular_Small_Background.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  display: inline-block;
+  background-size: contain;
+  position: absolute;
+  right: -25px;
+  top: -25px;
+  z-index: 1;
+  width: 60px;
+  height: 60px;
+}
+.scene[data-scene="home"] .shop-panel .close img {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+  padding-top: 1px;
+  width: 23px;
+  display: block;
+}
+.scene[data-scene="home"] .shop-panel .checkout {
+  background-image: url("../res/UI/Button_Rectangular_Red.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-size: contain;
+  width: 127.88732394px;
+  line-height: 40px;
+  color: #e7c7b2;
+  font-weight: bold;
+  height: 40px;
+  text-align: center;
+  position: absolute;
+  right: 25px;
+  bottom: 10px;
+}
+.scene[data-scene="home"] .shop-panel .checkout img {
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+  display: none;
+  width: 97%;
+  height: 85%;
+  position: absolute;
+}
+.scene[data-scene="home"] .shop-panel .checkout:active:not(.poor) img {
+  display: block;
+}
+.scene[data-scene="home"] .shop-panel .center-panel {
+  position: absolute;
+  left: 30px;
+  right: 30px;
+  top: 30px;
+  bottom: 60px;
+  border: 4px #337ab7 solid;
+  border-radius: 10px;
+  background-color: #1f3644;
+  color: white;
+  text-align: left;
+}
+.scene[data-scene="home"] .shop-panel .center-panel .page-select > button {
+  position: absolute;
+  top: -3px;
+  padding: 0 10px;
+  word-break: break-all;
+  white-space: pre-wrap;
+  outline: none;
+  -webkit-transform: translateY(-100%);
+  -ms-transform: translateY(-100%);
+  transform: translateY(-100%);
+}
+.scene[data-scene="home"] .shop-panel .center-panel .page-select > button.active {
+  background-color: #337ab7;
+  color: white;
+}
+.scene[data-scene="home"] .shop-panel .center-panel .page-select > button[data-page="器件"] {
+  left: 10px;
+}
+.scene[data-scene="home"] .shop-panel .center-panel .page-select > button[data-page="仪器"] {
+  left: 70px;
+}
+.scene[data-scene="home"] .shop-panel .center-panel .list {
+  overflow: auto;
+  width: 60%;
+  height: 100%;
+}
+.scene[data-scene="home"] .shop-panel .center-panel .list::-webkit-scrollbar {
+  width: 5px;
+}
+.scene[data-scene="home"] .shop-panel .center-panel .list::-webkit-scrollbar-thumb {
+  border-radius: 5px;
+  background: #337ab7;
+  border: 0px solid #fff;
+}
+.scene[data-scene="home"] .shop-panel .center-panel .list table {
+  width: 98%;
+}
+.scene[data-scene="home"] .shop-panel .center-panel .list .item-line:hover {
+  background-color: rgba(0, 0, 0, 0.2);
+}
+.scene[data-scene="home"] .shop-panel .center-panel .list th.name {
+  width: 100px;
+}
+.scene[data-scene="home"] .shop-panel .center-panel .list th.price {
+  width: 80px;
+  text-align: right;
+}
+.scene[data-scene="home"] .shop-panel .center-panel .list td.price {
+  text-align: right;
+}
+.scene[data-scene="home"] .shop-panel .center-panel .list th.cnt {
+  text-align: center;
+}
+.scene[data-scene="home"] .shop-panel .center-panel .list th.have {
+  text-align: center;
+}
+.scene[data-scene="home"] .shop-panel .center-panel .list th.price {
+  text-align: right;
+}
+.scene[data-scene="home"] .shop-panel .center-panel .list td.cnt {
+  width: 130px;
+  text-align: center;
+}
+.scene[data-scene="home"] .shop-panel .center-panel .list td.cnt button {
+  width: 25px;
+  height: 25px;
+  text-align: center;
+  padding: 0;
+  padding-top: 3px;
+  margin: 0;
+  outline: none;
+}
+.scene[data-scene="home"] .shop-panel .center-panel .list td.cnt button span {
+  line-height: 14px;
+  width: 13px;
+  height: 13px;
+  text-align: center;
+}
+.scene[data-scene="home"] .shop-panel .center-panel .list td.cnt .value {
+  display: inline-block;
+  width: 40px;
+  text-align: center;
+}
+.scene[data-scene="home"] .shop-panel .center-panel .list td.have {
+  text-align: center;
+}
+.scene[data-scene="home"] .shop-panel .center-panel .items-desc-frame {
+  width: 40%;
+  position: absolute;
+  right: 0;
+  top: 0;
+  padding: 10px;
+  padding-top: 20px;
+  font-size: 14px;
+}
+.scene[data-scene="home"] .shop-panel .center-panel .items-desc-frame .tag {
+  margin-bottom: 5px;
+}
+.scene[data-scene="home"] .shop-panel .center-panel .items-desc-frame .value {
+  margin-top: 0;
+  margin-bottom: 10px;
+}
+.scene[data-scene="home"] .shop-panel .center-panel .items-desc-frame .icon-wrap {
+  text-align: center;
+}
+.scene[data-scene="home"] .shop-panel .center-panel .items-desc-frame .icon-wrap .icon {
+  width: 100px;
+}
+.scene[data-scene="home"] .shop-panel .bg {
+  height: 100%;
+  width: 100%;
+}
+.scene[data-scene="home"] .mask {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+.scene[data-scene="bigmap"] .big-bg {
+  transition: 0.3s opacity linear;
+}
+.scene[data-scene="bigmap"] .big-bg.active {
+  opacity: 0.7;
 }

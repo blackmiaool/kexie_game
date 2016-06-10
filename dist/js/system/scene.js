@@ -42,13 +42,19 @@ define(["system-sys", "system-dbg"], function (sys, dbg) {
 
                 console.error("bad target");
             }
-
+        var pre = void 0;
         function callEnter(args) {
             setTimeout(function () {
                 if (target.enter) {
                     target.enter.apply(target, args);
                 }
-                sys.$rootScope.$emit(target.id + "_enter", args);
+                if (pre) {
+                    if (pre.leave) {
+                        pre.leave();
+                    }
+                    sys.$rootScope.$emit(pre.id + "-leave");
+                }
+                sys.$rootScope.$emit(target.id + "-enter", args);
             }, sceneFadeTime);
         }
 
@@ -57,14 +63,21 @@ define(["system-sys", "system-dbg"], function (sys, dbg) {
 
             if (currentScene.id) {
                 currentScene.$dom.fadeOut(sceneFadeTime).inactive();
+                if (currentScene.preLeave) {
+                    currentScene.preLeave();
+                }
+                pre = currentScene;
+                sys.$rootScope.$emit(pre.id + "-preLeave");
             }
             target.$dom.show().fadeIn(sceneFadeTime).active();
+
             currentScene = target;
 
             if (target.preEnter) {
                 target.preEnter.apply(target, args);
             }
             sys.$rootScope.$emit(target.id + "-preEnter", args);
+
             callEnter(args);
         } else {
             callEnter(args);

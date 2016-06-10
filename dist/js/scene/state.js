@@ -24,7 +24,7 @@ define(["require", "system-scene", "system-sys", "angular", "system-dbg", "v", "
         经历:模仿
         设备:总结出关键设备  
     */
-    console.log(common);
+
     var itemKinds = [{
         name: "基础器件",
         icon: common.resPath + "icon/settings"
@@ -166,12 +166,8 @@ define(["require", "system-scene", "system-sys", "angular", "system-dbg", "v", "
         function selectItem(item) {
             sp.selectingItem = item;
         }
-        function getIconUrl(item, color) {
-            return common.resPath + "icon/item/" + color + "/" + item.icon;
-        }
 
         _.extend(sp, {
-            getIconUrl: getIconUrl,
             itemKinds: itemKinds,
             setItemKind: setItemKind,
             getLast: getLast,
