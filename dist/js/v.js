@@ -46,6 +46,7 @@ define(["res", "system-common"], function (res, common) {
         amity: {},
         skill: {},
         item: {},
+        device: {},
         components: {}
 
     };
@@ -59,6 +60,9 @@ define(["res", "system-common"], function (res, common) {
     }
     for (var i in res.items) {
         v_init.item[i] = { cnt: 0 };
+    }
+    for (var i in res.devices) {
+        v_init.device[i] = { cnt: 0 };
     }
     var v = common.clone(v_init);
 

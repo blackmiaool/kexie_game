@@ -44,23 +44,24 @@ define(["system-common"], function (common) {
             shopt_btn: g("UI/shop_btn.png"),
             shopt_btn2: g("UI/shop_btn2.png"),
             //ui:
-            blue_btn:g("UI/blue_btn.png"),
-            power_icon:g("UI/power_icon.png"),
-            progress_frame:g("UI/progress_frame.png"),
-            progress_content:g("UI/progress_content.png"),
+            blue_btn: g("UI/blue_btn.png"),
+            power_icon: g("UI/power_icon.png"),
+            progress_frame: g("UI/progress_frame.png"),
+            progress_content: g("UI/progress_content.png"),
+            red_panel_corner: g("UI/red_panel_corner_big.png"),
             //state
-            state_back:g("UI/back.png"),
-            state_analog:g("UI/analog3.png"),
-            state_digital:g("UI/digital1.png"),
-            items_frame:g("UI/items_frame.png"),
-            items_desc_frame:g("UI/item_desc_bg.png"),
+            state_back: g("UI/back.png"),
+            state_analog: g("UI/analog3.png"),
+            state_digital: g("UI/digital1.png"),
+            items_frame: g("UI/items_frame.png"),
+            items_desc_frame: g("UI/item_desc_bg.png"),
         },
         pp: {
             what: {
                 name: "???",
                 half: g("Half/touming.png"),
                 color: color(255, 255, 255),
-                
+
             },
             you: {
                 name: "你",
@@ -86,7 +87,7 @@ define(["system-common"], function (common) {
                 效率: 90,
                 体力: 85,
                 节操: 100,
-                identity:"teammate",
+                identity: "teammate",
             },
             chenguo: {
                 name: "陈过",
@@ -101,7 +102,7 @@ define(["system-common"], function (common) {
                 效率: 70,
                 体力: 50,
                 节操: 60,
-                identity:"teammate",
+                identity: "teammate",
             },
             lizhao: {
                 name: "李照",
@@ -115,7 +116,7 @@ define(["system-common"], function (common) {
                 效率: 60,
                 体力: 90,
                 节操: 90,
-                identity:"teammate",
+                identity: "teammate",
             },
             gaoxiangchen: {
                 name: "高向晨",
@@ -130,7 +131,7 @@ define(["system-common"], function (common) {
                 效率: 80,
                 体力: 20,
                 节操: 10,
-                identity:"teammate",
+                identity: "teammate",
             },
             tanchengzi: {
                 name: "谭橙子",
@@ -144,7 +145,7 @@ define(["system-common"], function (common) {
                 效率: 80,
                 体力: 80,
                 节操: 15,
-                identity:"teammate",
+                identity: "teammate",
             },
             tanjinchuan: {
                 name: "谭劲船",
@@ -158,7 +159,7 @@ define(["system-common"], function (common) {
                 效率: 60,
                 体力: 80,
                 节操: 5,
-                identity:"teammate",
+                identity: "teammate",
             },
             delv: {
                 name: "德律",
@@ -182,7 +183,7 @@ define(["system-common"], function (common) {
                 效率: 50,
                 体力: 70,
                 节操: 25,
-                identity:"teammate",
+                identity: "teammate",
             },
             zhongren: {
                 name: "众人",
@@ -193,19 +194,19 @@ define(["system-common"], function (common) {
                 name: "陈囧",
                 half: g("Half/chenjiong.png"),
                 color: color(255, 255, 255),
-                identity:"teammate",
+                identity: "teammate",
             },
             wangyixie: {
                 name: "王一血",
                 half: g("Half/wangyixie.png"),
                 color: color(255, 255, 255),
-                identity:"teammate",
+                identity: "teammate",
             },
             ouyangyang: {
                 name: "欧洋洋",
                 half: g("Half/ouyangyang.png"),
                 color: color(255, 255, 255),
-                identity:"teammate",
+                identity: "teammate",
             },
 
         },
@@ -228,26 +229,35 @@ define(["system-common"], function (common) {
     function res_data_handle(data) {
 
         for (var table_name in data) {
-            let d=data[table_name];
-//            console.log(table_name)
-//            window[table_name] = data[table_name];
+            let d = data[table_name];
+            //            console.log(table_name)
+            //            window[table_name] = data[table_name];
             switch (table_name) {
             case "item":
-                let items={};
-//                window.items = {};
-                    res.items=items;
+                let items = {};
+                //                window.items = {};
+                res.items = items;
                 for (var i in d) {
-//                    d[i].cnt = 0;
+                    //                    d[i].cnt = 0;
                     d[i].price = parseInt(d[i].price)
                     items[d[i].name] = d[i];
                 }
                 break;
-            case "combine":
-                    let combines={};
-//                window.combines = {};
-                    res.combines=combines;
+            case "device":
+                let devices = {};
+                res.devices = devices;
                 for (var i in d) {
-                    let v=d[i];
+                    //                    d[i].cnt = 0;
+                    d[i].price = parseInt(d[i].price)
+                    devices[d[i].name] = d[i];
+                }
+                break;
+            case "combine":
+                let combines = {};
+                //                window.combines = {};
+                res.combines = combines;
+                for (var i in d) {
+                    let v = d[i];
                     //replace
                     v.material = md_trim(v.material);
                     v.material = v.material.split("+")
@@ -276,9 +286,9 @@ define(["system-common"], function (common) {
 
                 break;
             case "skill":
-//                window.skills = {};
-                let skills={};
-                res.skills=skills;
+                //                window.skills = {};
+                let skills = {};
+                res.skills = skills;
                 for (var i in d) {
                     skills[d[i].name] = {};
                     skills[d[i].name].name = d[i].name;
@@ -292,10 +302,12 @@ define(["system-common"], function (common) {
                     if (d[i].pre != "none") {
                         var preArr = d[i].pre.split(",");
                         for (var j in preArr) {
-                            let skill=skills[preArr[j].split("v")[0]];
-                            let level=preArr[j].split("v")[1]*1;
+                            let skill = skills[preArr[j].split("v")[0]];
+                            let level = preArr[j].split("v")[1] * 1;
                             if (preArr[j] != "none") {
-                                skill_this.pre.push({skill,level})
+                                skill_this.pre.push({
+                                    skill, level
+                                })
                             }
                         }
                     }
@@ -330,9 +342,9 @@ define(["system-common"], function (common) {
             }],
         }]
     }
-//    for (var i in res.pp) {
-//        res[i] = res.pp[i].half
-//    }
+    //    for (var i in res.pp) {
+    //        res[i] = res.pp[i].half
+    //    }
 
 
     var get_save_text = function (id) {

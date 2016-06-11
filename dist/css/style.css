@@ -2952,13 +2952,13 @@ table th[class*="col-"] {
   zoom: 1;
 }
 .normal-pointer {
-  cursor: url("../res/cursor/normal.cur"), auto;
+  cursor: url("../res/cursor/normal.cur"), auto !important;
 }
 .text-pointer {
-  cursor: url("../res/cursor/text.cur"), auto;
+  cursor: url("../res/cursor/text.cur"), auto !important;
 }
 .pointer-cursor {
-  cursor: url("../res/cursor/link.cur"), pointer;
+  cursor: url("../res/cursor/link.cur"), pointer !important;
 }
 img {
   -webkit-user-select: none;
@@ -2968,7 +2968,7 @@ img {
   user-select: none;
 }
 .clickable {
-  cursor: url("../res/cursor/link.cur"), pointer;
+  cursor: url("../res/cursor/link.cur"), pointer !important;
   -webkit-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
@@ -2977,7 +2977,7 @@ img {
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
 .clickable > * {
-  cursor: url("../res/cursor/link.cur"), pointer;
+  cursor: url("../res/cursor/link.cur"), pointer !important;
   -webkit-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
@@ -2988,7 +2988,7 @@ img {
 .clickable:focus,
 .clickable:hover,
 .clickable:visited {
-  cursor: url("../res/cursor/link.cur"), pointer;
+  cursor: url("../res/cursor/link.cur"), pointer !important;
 }
 .unselectable {
   -webkit-user-select: none;
@@ -3066,6 +3066,42 @@ img {
   border-radius: 10px;
   border: #4682b4 1px solid;
 }
+.red-panel-corner {
+  background-image: url("../res/UI/red_panel_corner_big.png");
+  background-repeat: no-repeat;
+  position: absolute;
+  width: 50%;
+  height: 50%;
+}
+.red-panel-corner.red-panel-corner1 {
+  top: 0;
+  left: 0;
+  background-position: left top;
+}
+.red-panel-corner.red-panel-corner2 {
+  top: 0;
+  right: 0;
+  -webkit-transform: scaleX(-1);
+  -ms-transform: scaleX(-1);
+  transform: scaleX(-1);
+  background-position: left top;
+}
+.red-panel-corner.red-panel-corner3 {
+  bottom: 0;
+  right: 0;
+  -webkit-transform: rotate(180deg);
+  -ms-transform: rotate(180deg);
+  transform: rotate(180deg);
+  background-position: left top;
+}
+.red-panel-corner.red-panel-corner4 {
+  bottom: 0;
+  left: 0;
+  -webkit-transform: rotate(180deg) scaleX(-1);
+  -ms-transform: rotate(180deg) scaleX(-1);
+  transform: rotate(180deg) scaleX(-1);
+  background-position: left top;
+}
 html,
 body {
   margin: 0;
@@ -3084,7 +3120,7 @@ body {
   box-sizing: border-box;
   font-family: punctuation, "PingFangSC-Regular", "Microsoft Yahei", "sans-serif";
   -webkit-font-smoothing: subpixel-antialiased;
-  cursor: url("../res/cursor/normal.cur"), auto;
+  cursor: url("../res/cursor/normal.cur"), auto !important;
 }
 h1,
 h2,
@@ -3092,14 +3128,14 @@ h3,
 h4,
 h5,
 h6 {
-  cursor: url("../res/cursor/text.cur"), auto;
+  cursor: url("../res/cursor/text.cur"), auto !important;
 }
 button,
 a {
-  cursor: url("../res/cursor/link.cur"), pointer;
+  cursor: url("../res/cursor/link.cur"), pointer !important;
 }
 button {
-  cursor: url("../res/cursor/link.cur"), pointer;
+  cursor: url("../res/cursor/link.cur"), pointer !important;
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
   -webkit-user-select: none;
   -moz-user-select: none;
@@ -3108,7 +3144,7 @@ button {
   user-select: none;
 }
 button > * {
-  cursor: url("../res/cursor/link.cur"), pointer;
+  cursor: url("../res/cursor/link.cur"), pointer !important;
   -webkit-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
@@ -3119,7 +3155,7 @@ button:active,
 button:focus,
 button:hover,
 button:visited {
-  cursor: url("../res/cursor/link.cur"), pointer;
+  cursor: url("../res/cursor/link.cur"), pointer !important;
 }
 input {
   height: 30px;
@@ -4178,7 +4214,7 @@ input {
   background-color: #3a4d6b;
   text-align: center;
   box-shadow: 5px 5px 3px rgba(0, 0, 0, 0.5);
-  width: 700px;
+  width: 770px;
   height: 480px;
   -webkit-transition: 0.3s transform ease-out;
   -o-transition: 0.3s transform ease-out;
@@ -4311,10 +4347,10 @@ input {
   background-color: rgba(0, 0, 0, 0.2);
 }
 .scene[data-scene="home"] .shop-panel .center-panel .list th.name {
-  width: 100px;
+  width: 120px;
 }
 .scene[data-scene="home"] .shop-panel .center-panel .list th.price {
-  width: 80px;
+  width: 70px;
   text-align: right;
 }
 .scene[data-scene="home"] .shop-panel .center-panel .list td.price {
@@ -4324,6 +4360,7 @@ input {
   text-align: center;
 }
 .scene[data-scene="home"] .shop-panel .center-panel .list th.have {
+  width: 35px;
   text-align: center;
 }
 .scene[data-scene="home"] .shop-panel .center-panel .list th.price {
@@ -4369,6 +4406,7 @@ input {
   margin-bottom: 5px;
 }
 .scene[data-scene="home"] .shop-panel .center-panel .items-desc-frame .value {
+  text-indent: 2em;
   margin-top: 0;
   margin-bottom: 10px;
 }

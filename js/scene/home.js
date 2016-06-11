@@ -292,39 +292,67 @@ function (sp, rsp, $timeout) {
         })
 }]);
 let cartItems = {};
-
+let cartDevices = {};
 for (var i in res.items) {
     cartItems[i] = 0;
+}
+for (var i in res.devices) {
+    cartDevices[i] = 0;
 }
 module.controller("store-controller", ["$scope", "$rootScope", "$timeout", function (sp, rsp, $timeout) {
     function minusItem(item) {
         cartItems[item.name]--;
-        if (cartItems[item.name] < 0) {
-            cartItems[item.name] = 0;
-        }
     }
 
     function addItem(item) {
         cartItems[item.name]++;
     }
 
-    function hoverItem(item) {
-        console.log(23)
+    function hoverItem(item) {        
         sp.selectingItem = item;
     }
-    sp.$watch("cartItems", function (newV) {
+
+    function updateItemsSum(newV) {
         sp.priceSum = 0;
-        console.log(newV)
         for (let i in newV) {
             sp.priceSum += newV[i] * calcPrice(priceLine[res.items[i].kind], newV[i] || 1, res.items[i].price)
         }
-        let sum=sp.priceSum;
-        if(sum-parseInt(sum)>0.5){
-            sum=sum+0.5;
+        let sum = sp.priceSum;
+        if (sum - parseInt(sum) > 0.5) {
+            sum = sum + 0.5;
         }
         sp.priceSum = parseInt(sum.toString());
-        sp.poor=sp.priceSum>v.basic.money;
+        sp.poor = sp.priceSum > v.basic.money;
+    }
+    sp.$watch("cartItems", function (newV) {
+        updateItemsSum(newV);
     }, true);
+
+    function updateDevicesSum(newV) {
+        sp.priceSum = 0;
+        for (let i in newV) {
+            if (newV[i]) {
+                sp.priceSum += res.devices[i].price;
+            }
+        }
+        let sum = sp.priceSum;
+        if (sum - parseInt(sum) > 0.5) {
+            sum = sum + 0.5;
+        }
+        sp.priceSum = parseInt(sum.toString());
+        sp.poor = sp.priceSum > v.basic.money;
+    }
+    sp.$watch("cartDevices", function (newV) {
+        updateDevicesSum(newV);
+
+    }, true);
+    sp.$watch("currentPage", function (newV) {
+        if (newV == "器件") {
+            updateItemsSum(cartItems);
+        } else if (newV == "仪器") {
+            updateDevicesSum(cartDevices);
+        }
+    })
 
     function openStore() {
         sp.show = true;
@@ -343,36 +371,60 @@ module.controller("store-controller", ["$scope", "$rootScope", "$timeout", funct
             sp.active = false;
         }, 300)
 
-    } 
+    }
 
     function checkout() {
-        if(sp.priceSum<=v.basic.money){
-            v.basic.money-=sp.priceSum;
-        }else{
+        if (sp.priceSum <= v.basic.money) {
+            v.basic.money -= sp.priceSum;
+        } else {
             return;
         }
-        for(var i in sp.cartItems){
-            if(sp.cartItems[i]){
-                v.item[i].cnt+=sp.cartItems[i];
-                sp.cartItems[i]=0;
+        if (sp.currentPage == "器件") {
+            for (var i in sp.cartItems) {
+                if (sp.cartItems[i]) {
+                    v.item[i].cnt += sp.cartItems[i];
+                    sp.cartItems[i] = 0;
+                }
+
             }
-          
+        }else if (sp.currentPage == "仪器") {
+            for (var i in sp.cartDevices) {
+                if (sp.cartDevices[i]) {
+                    v.device[i].cnt += sp.cartDevices[i];
+                    sp.cartDevices[i] = 0;
+                }
+
+            }
         }
+
     }
-    function setPage(page){
-        sp.currentPage=page;
+
+    function setPage(page) {
+        sp.currentPage = page;
     }
+
+    function minusDevice(device) {
+        cartDevices[device.name]--;
+    }
+
+    function addDevice(device) {
+        cartDevices[device.name]++;
+    }
+
     _.extend(sp, {
         priceSum: 0,
         show: true,
         active: true,
-        poor:false,
-        pages:["器件","仪器"],
-        currentPage:"器件",
+        poor: false,
+        pages: ["器件", "仪器"],
+        currentPage: "仪器",
         cartItems,
+        cartDevices,
         minusItem,
+        minusDevice,
         checkout,
         addItem,
+        addDevice,
         hoverItem,
         closeStore,
         setPage,

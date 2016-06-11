@@ -79,13 +79,18 @@
             function getItemIconUrl(item, color) {
                 return `${common.resPath}icon/item/${color}/${item.icon}`;
             }
+            function getRes(str){
+                return common.g(str);
+            }
             _.extend(sp, {
                 img: res.img,
                 getPre,
                 getItemIconUrl,
+                getRes,
             });
 
     }]);
+
         sys.sceneLoaded = function () {
             angular.bootstrap("body", ['home-app']);
             scene.go("preload");

@@ -2,11 +2,14 @@
     <div class="shop-mask" ng-class="{hide:!show,active:active}">
 
     </div>
+    
+    
+    
     <div class="shop-panel" ng-class="{hide:!show,active:active}">
         <div class="close" ng-click="closeStore()">
-            <img draggable="false" src="/res/UI/Decline.png" alt="">
+            <img class="unselectable" draggable="false" src="res/UI/Decline.png" alt="">
         </div>
-        <div class="checkout clickable" ng-click="checkout()" ng-class="{poor:poor}"><img draggable="false" src="/res/UI/Button_Rectangular_Press.png" alt=""><span ng-bind="priceSum<=v.basic.money?'结算':'穷鬼'">结算</span></div>
+        <div class="checkout clickable" ng-click="checkout()" ng-class="{poor:poor}"><img draggable="false" src="res/UI/Button_Rectangular_Press.png" alt=""><span ng-bind="priceSum<=v.basic.money?'结算':'穷鬼'">结算</span></div>
         <div class="have-money">
             <span class="glyphicon glyphicon-credit-card"></span> 持有金钱: <span class="money" ng-bind="v.basic.money+'元'"></span>
         </div>
@@ -18,7 +21,7 @@
             <div class="page-select">
                 <button ng-repeat="page in pages" class="btn item clickable" ng-class="{active:currentPage==page}" ng-click="setPage(page)" data-page="{{::page}}" ng-bind="page"></button>
             </div>
-            <div class="items-desc-frame">
+            <div class="items-desc-frame" >
                 <div class="desc-wrap">
                     <div ng-if="selectingItem" class="desc-wrap1">
                         <div class="icon-wrap">
@@ -27,8 +30,10 @@
 
                         <label class="tag name">名称:</label>
                         <p class="value name" ng-bind="selectingItem.name"></p>
-                        <label class="tag price">原价:</label>
-                        <p class="value price" ng-bind="selectingItem.price"></p>
+                        
+                        <label ng-if="currentPage=='器件'" class="tag price">原价:</label>
+                        <label ng-if="currentPage=='仪器'" class="tag price">售价:</label>
+                        <p class="value price" ng-bind="selectingItem.price+'元'"></p>
                         <label class="tag brief">简介:</label>
                         <p class="value brief" ng-bind="selectingItem.brief"></p>
                         <label class="tag comment">备注:</label>
@@ -36,7 +41,7 @@
                     </div>
                 </div>
             </div>
-            <div class="list">
+            <div class="list"  ng-show="currentPage=='器件'">
                 <table class="unselectable">
                     <thead>
                         <tr>
@@ -52,11 +57,37 @@
                             <td ng-bind="item.name"></td>
                             <td class="price" ng-bind="item.price|storePrice:cartItems[item.name]:item.kind"></td>
                             <td class="cnt">
-                                <button ng-click="minusItem(item)" class="btn btn-weird clickable"><span class="glyphicon glyphicon-minus"></span></button>
+                                <button ng-click="minusItem(item)" class="btn btn-weird clickable" ng-disabled="cartItems[item.name]<1"><span class="glyphicon glyphicon-minus"></span></button>
                                 <span class="value" ng-bind="cartItems[item.name]"></span>
                                 <button ng-click="addItem(item)" class="btn btn-weird clickable"><span class="glyphicon glyphicon-plus"></span></button>
                             </td>
                             <td class="have" ng-bind="v.item[item.name].cnt"></td>
+
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="list"  ng-show="currentPage=='仪器'">
+                <table class="unselectable">
+                    <thead>
+                        <tr>
+                            <th class="name">名称</th>
+                            <th class="price">售价</th>
+                            <th class="cnt">购买</th>
+                            <th class="have">持有</th>
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="item-line" ng-mouseenter="hoverItem(device)" ng-repeat="device in res.devices" ng-if="device.buyable=='1'">
+                            <td ng-bind="device.name"></td>
+                            <td class="price" ng-bind="device.price"></td>
+                            <td class="cnt">
+                                <button ng-click="minusDevice(device)" class="btn btn-weird clickable" ng-disabled="cartDevices[device.name]<1"><span class="glyphicon glyphicon-minus"></span></button>
+                                <span class="value" ng-bind="cartDevices[device.name]"></span>
+                                <button ng-click="addDevice(device)" class="btn btn-weird clickable" ng-disabled="cartDevices[device.name]>0||v.device[device.name].cnt>0"><span class="glyphicon glyphicon-plus"></span></button>
+                            </td>
+                            <td class="have" ng-bind="v.device[device.name].cnt"></td>
 
                         </tr>
                     </tbody>

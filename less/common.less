@@ -11,31 +11,45 @@
 @import "bootstrap/tables.less";
 @import "prefix.less";
 @import "btn.less";
-.normal-pointer{
-    cursor: url("@{res-folder}/cursor/normal.cur"),auto;
+.normal-pointer {
+    cursor: url("@{res-folder}/cursor/normal.cur"),
+    auto !important;
 }
-.text-pointer{
-    cursor: url("@{res-folder}/cursor/text.cur"),auto;
+
+.text-pointer {
+    cursor: url("@{res-folder}/cursor/text.cur"),
+    auto !important;
 }
-.pointer-cursor{
-    cursor: url("@{res-folder}/cursor/link.cur"),pointer;
-//    cursor:pointer; 
+
+.pointer-cursor {
+    cursor: url("@{res-folder}/cursor/link.cur"),
+    pointer !important;
+    //    cursor:pointer; 
 }
-img{
+
+img {
     .unselectable;
 }
+
 .clickable {
     .pointer-cursor;
     .unselectable;
-    >*{
+    >* {
         .pointer-cursor;
         .unselectable;
     }
-    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
-    &:active,&:focus,&:hover,&:visited{
+    -webkit-tap-highlight-color: rgba(0,
+    0,
+    0,
+    0);
+    &:active,
+    &:focus,
+    &:hover,
+    &:visited {
         .pointer-cursor;
     }
 }
+
 .unselectable {
     -webkit-user-select: none;
     -moz-user-select: none;
@@ -106,21 +120,23 @@ img{
     width: @size;
     height: @size;
 }
+
 .common-square(@size) {
     width: @size;
     height: @size;
 }
-.common-bg(@location){
+
+.common-bg(@location) {
     background-image: url("@{res-folder}/@{location}");
     background-repeat: no-repeat;
     background-size: cover;
 }
 
 .round {
-    
     border-radius: 10000px;
     overflow: hidden;
 }
+
 .round(@size) {
     .square(@size);
     border-radius: 10000px;
@@ -138,8 +154,40 @@ img{
     left: 50%;
     .transform(translateX(-50%));
 }
-.blue-panel{
+
+.blue-panel {
     background-color: rgba(70, 130, 180, 0.25);
     border-radius: 10px;
-    border:rgb(70, 130, 180) 1px solid;
+    border: rgb(70, 130, 180) 1px solid;
+}
+
+.red-panel-corner {
+    background-image: url("@{res-folder}/UI/red_panel_corner_big.png");
+    background-repeat: no-repeat;
+    position: absolute;
+    width: 50%;
+    height: 50%;
+    &.red-panel-corner1 {
+        top: 0;
+        left: 0;
+        background-position: left top;
+    }
+    &.red-panel-corner2 {
+        top: 0;
+        right: 0;
+        .transform(scaleX(-1));
+        background-position: left top;
+    }
+    &.red-panel-corner3 {
+        bottom: 0;
+        right: 0;
+        .transform(rotate(180deg));
+        background-position: left top;
+    }
+    &.red-panel-corner4 {
+        bottom: 0;
+        left: 0;
+        .transform(rotate(180deg) scaleX(-1));
+        background-position: left top;
+    }
 }

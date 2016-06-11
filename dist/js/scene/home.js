@@ -306,16 +306,16 @@ define(["require", "system-scene", "system-sys", "angular", "system-dbg", "v", "
         });
     }]);
     var cartItems = {};
-
+    var cartDevices = {};
     for (var i in res.items) {
         cartItems[i] = 0;
+    }
+    for (var i in res.devices) {
+        cartDevices[i] = 0;
     }
     module.controller("store-controller", ["$scope", "$rootScope", "$timeout", function (sp, rsp, $timeout) {
         function minusItem(item) {
             cartItems[item.name]--;
-            if (cartItems[item.name] < 0) {
-                cartItems[item.name] = 0;
-            }
         }
 
         function addItem(item) {
@@ -323,12 +323,11 @@ define(["require", "system-scene", "system-sys", "angular", "system-dbg", "v", "
         }
 
         function hoverItem(item) {
-            console.log(23);
             sp.selectingItem = item;
         }
-        sp.$watch("cartItems", function (newV) {
+
+        function updateItemsSum(newV) {
             sp.priceSum = 0;
-            console.log(newV);
             for (var _i in newV) {
                 sp.priceSum += newV[_i] * calcPrice(priceLine[res.items[_i].kind], newV[_i] || 1, res.items[_i].price);
             }
@@ -338,7 +337,35 @@ define(["require", "system-scene", "system-sys", "angular", "system-dbg", "v", "
             }
             sp.priceSum = parseInt(sum.toString());
             sp.poor = sp.priceSum > v.basic.money;
+        }
+        sp.$watch("cartItems", function (newV) {
+            updateItemsSum(newV);
         }, true);
+
+        function updateDevicesSum(newV) {
+            sp.priceSum = 0;
+            for (var _i2 in newV) {
+                if (newV[_i2]) {
+                    sp.priceSum += res.devices[_i2].price;
+                }
+            }
+            var sum = sp.priceSum;
+            if (sum - parseInt(sum) > 0.5) {
+                sum = sum + 0.5;
+            }
+            sp.priceSum = parseInt(sum.toString());
+            sp.poor = sp.priceSum > v.basic.money;
+        }
+        sp.$watch("cartDevices", function (newV) {
+            updateDevicesSum(newV);
+        }, true);
+        sp.$watch("currentPage", function (newV) {
+            if (newV == "器件") {
+                updateItemsSum(cartItems);
+            } else if (newV == "仪器") {
+                updateDevicesSum(cartDevices);
+            }
+        });
 
         function openStore() {
             sp.show = true;
@@ -364,27 +391,49 @@ define(["require", "system-scene", "system-sys", "angular", "system-dbg", "v", "
             } else {
                 return;
             }
-            for (var i in sp.cartItems) {
-                if (sp.cartItems[i]) {
-                    v.item[i].cnt += sp.cartItems[i];
-                    sp.cartItems[i] = 0;
+            if (sp.currentPage == "器件") {
+                for (var i in sp.cartItems) {
+                    if (sp.cartItems[i]) {
+                        v.item[i].cnt += sp.cartItems[i];
+                        sp.cartItems[i] = 0;
+                    }
+                }
+            } else if (sp.currentPage == "仪器") {
+                for (var i in sp.cartDevices) {
+                    if (sp.cartDevices[i]) {
+                        v.device[i].cnt += sp.cartDevices[i];
+                        sp.cartDevices[i] = 0;
+                    }
                 }
             }
         }
+
         function setPage(page) {
             sp.currentPage = page;
         }
+
+        function minusDevice(device) {
+            cartDevices[device.name]--;
+        }
+
+        function addDevice(device) {
+            cartDevices[device.name]++;
+        }
+
         _.extend(sp, {
             priceSum: 0,
             show: true,
             active: true,
             poor: false,
             pages: ["器件", "仪器"],
-            currentPage: "器件",
+            currentPage: "仪器",
             cartItems: cartItems,
+            cartDevices: cartDevices,
             minusItem: minusItem,
+            minusDevice: minusDevice,
             checkout: checkout,
             addItem: addItem,
+            addDevice: addDevice,
             hoverItem: hoverItem,
             closeStore: closeStore,
             setPage: setPage
