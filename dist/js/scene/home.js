@@ -107,10 +107,7 @@ define(["require", "system-scene", "system-sys", "angular", "system-dbg", "v", "
             }
             setMonkey(action);
             switch (action.name) {
-                case "状态":
-                    scene.go("state");
-                    unlockAction(true);
-                    break;
+
                 case "上课":
                     sp.actionPanel = "上课";
                     //                showMonkey(action);
@@ -128,11 +125,9 @@ define(["require", "system-scene", "system-sys", "angular", "system-dbg", "v", "
                     }
 
                     return true;
-                case "休息":
-                    showMonkey(action);
-                    restorePower(10);
-                    endTurn();
+                case "制作":
                     unlockAction();
+                    scene.go("make");
                     break;
                 case "闲逛":
                     unlockAction();
@@ -141,6 +136,16 @@ define(["require", "system-scene", "system-sys", "angular", "system-dbg", "v", "
                 case "购物":
                     rsp.$emit("openStore");
                     console.log(234);
+                    unlockAction(true);
+                    break;
+                case "休息":
+                    showMonkey(action);
+                    restorePower(10);
+                    endTurn();
+                    unlockAction();
+                    break;
+                case "状态":
+                    scene.go("state");
                     unlockAction(true);
                     break;
             }
@@ -422,11 +427,11 @@ define(["require", "system-scene", "system-sys", "angular", "system-dbg", "v", "
 
         _.extend(sp, {
             priceSum: 0,
-            show: true,
-            active: true,
+            show: false,
+            active: false,
             poor: false,
             pages: ["器件", "仪器"],
-            currentPage: "仪器",
+            currentPage: "器件",
             cartItems: cartItems,
             cartDevices: cartDevices,
             minusItem: minusItem,

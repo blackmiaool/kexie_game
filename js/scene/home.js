@@ -107,10 +107,7 @@ function (sp, rsp, $timeout) {
             }
             setMonkey(action);
             switch (action.name) {
-            case "状态":
-                scene.go("state");
-                unlockAction(true);
-                break;
+
             case "上课":
                 sp.actionPanel = "上课";
                 //                showMonkey(action);
@@ -128,11 +125,9 @@ function (sp, rsp, $timeout) {
                 }
 
                 return true;
-            case "休息":
-                showMonkey(action);
-                restorePower(10);
-                endTurn();
+            case "制作":
                 unlockAction();
+                scene.go("make");
                 break;
             case "闲逛":
                 unlockAction();
@@ -141,6 +136,16 @@ function (sp, rsp, $timeout) {
             case "购物":
                 rsp.$emit("openStore");
                 console.log(234)
+                unlockAction(true);
+                break;
+            case "休息":
+                showMonkey(action);
+                restorePower(10);
+                endTurn();
+                unlockAction();
+                break;
+            case "状态":
+                scene.go("state");
                 unlockAction(true);
                 break;
             }
@@ -308,7 +313,7 @@ module.controller("store-controller", ["$scope", "$rootScope", "$timeout", funct
         cartItems[item.name]++;
     }
 
-    function hoverItem(item) {        
+    function hoverItem(item) {
         sp.selectingItem = item;
     }
 
@@ -387,7 +392,7 @@ module.controller("store-controller", ["$scope", "$rootScope", "$timeout", funct
                 }
 
             }
-        }else if (sp.currentPage == "仪器") {
+        } else if (sp.currentPage == "仪器") {
             for (var i in sp.cartDevices) {
                 if (sp.cartDevices[i]) {
                     v.device[i].cnt += sp.cartDevices[i];
@@ -413,11 +418,11 @@ module.controller("store-controller", ["$scope", "$rootScope", "$timeout", funct
 
     _.extend(sp, {
         priceSum: 0,
-        show: true,
-        active: true,
+        show: false,
+        active: false,
         poor: false,
         pages: ["器件", "仪器"],
-        currentPage: "仪器",
+        currentPage: "器件",
         cartItems,
         cartDevices,
         minusItem,
