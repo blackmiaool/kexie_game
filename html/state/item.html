@@ -6,11 +6,11 @@
 
 </div>
 <div class="items-frame">
-    <img draggable="false" ng-src="{{res.img.items_frame}}" class="bg">
+    <img draggable="false" ng-src="{{img.items_frame}}" class="bg">
     <div class="items-wrap">
         <div ng-click="selectItem(item)" ng-repeat="item in items" ng-if="currentItemKind==item.kind" class="item-wrap clickable">
             <div class="item-body-wrap">
-                <img draggable="false" ng-src="{{::getIconUrl(item,'blue')}}.svg" class="item-icon">
+                <img draggable="false" ng-src="{{::getItemIconUrl(item,'blue')}}.svg" class="item-icon">
                 <label class="cnt" ng-bind="item.cnt"></label>
             </div>
 

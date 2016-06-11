@@ -84,6 +84,7 @@
             }
             _.extend(sp, {
                 img: res.img,
+                res,
                 getPre,
                 getItemIconUrl,
                 getRes,

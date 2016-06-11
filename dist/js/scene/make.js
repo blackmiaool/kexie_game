@@ -16,7 +16,9 @@ define(["require", "system-scene", "system-sys", "angular", "system-dbg", "v", "
     function preEnter() {}
     function init() {}
 
-    module.controller("make_controller", ["$scope", "$rootScope", "$timeout", function (sp, rsp, $timeout) {}]);
+    module.controller("make_controller", ["$scope", "$rootScope", "$timeout", function (sp, rsp, $timeout) {
+        console.log();
+    }]);
 
     scene.register(sceneThis);
     return exports;

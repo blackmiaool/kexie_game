@@ -49,6 +49,8 @@ define(["system-common"], function (common) {
             progress_frame: g("UI/progress_frame.png"),
             progress_content: g("UI/progress_content.png"),
             red_panel_corner: g("UI/red_panel_corner_big.png"),
+            red_header: g("UI/red_header.png"),
+            red_item_bg: g("UI/red_item_bg.png"),
             //state
             state_back: g("UI/back.png"),
             state_analog: g("UI/analog3.png"),
@@ -252,10 +254,11 @@ define(["system-common"], function (common) {
                     devices[d[i].name] = d[i];
                 }
                 break;
-            case "combine":
-                let combines = {};
+            case "products":
+                let products = {};
                 //                window.combines = {};
-                res.combines = combines;
+                res.products = products;
+
                 for (var i in d) {
                     let v = d[i];
                     //replace
@@ -279,10 +282,11 @@ define(["system-common"], function (common) {
                     v.instrument = v.instrument.split("+");
                     v.product = [];
                     for (var i in d) {
-                        combines[d[i].name] = d[i]
+                        products[d[i].name] = d[i]
                     }
 
                 }
+                console.log(products)
 
                 break;
             case "skill":

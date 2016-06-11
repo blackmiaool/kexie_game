@@ -49,7 +49,7 @@ name | kind| icon | price | brief |comment|buyable
 电子负载|负载|tool|500|做电源必备|无|1
 高级电子负载|负载|tool|2000|做电源必备|无|1
 
-###### combine
+###### products
 name | material| instrument | date 
 -----|---------|------------|-----
 单片机流水灯|低端单片机*1+LED*8+电路基础元件*1|表?|10

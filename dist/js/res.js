@@ -51,6 +51,8 @@ define(["system-common"], function (common) {
             progress_frame: g("UI/progress_frame.png"),
             progress_content: g("UI/progress_content.png"),
             red_panel_corner: g("UI/red_panel_corner_big.png"),
+            red_header: g("UI/red_header.png"),
+            red_item_bg: g("UI/red_item_bg.png"),
             //state
             state_back: g("UI/back.png"),
             state_analog: g("UI/analog3.png"),
@@ -561,7 +563,7 @@ define(["system-common"], function (common) {
             "comment": "无",
             "buyable": "1"
         }],
-        "combine": [{
+        "products": [{
             "name": "单片机流水灯",
             "material": "低端单片机*1+LED*8+电路基础元件*1",
             "instrument": "表?",
@@ -747,10 +749,11 @@ define(["system-common"], function (common) {
                         devices[d[i].name] = d[i];
                     }
                     break;
-                case "combine":
-                    var combines = {};
+                case "products":
+                    var products = {};
                     //                window.combines = {};
-                    res.combines = combines;
+                    res.products = products;
+
                     for (var i in d) {
                         var _v = d[i];
                         //replace
@@ -774,9 +777,10 @@ define(["system-common"], function (common) {
                         _v.instrument = _v.instrument.split("+");
                         _v.product = [];
                         for (var i in d) {
-                            combines[d[i].name] = d[i];
+                            products[d[i].name] = d[i];
                         }
                     }
+                    console.log(products);
 
                     break;
                 case "skill":

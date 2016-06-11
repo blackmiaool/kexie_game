@@ -1,2 +1,55 @@
 @import "common.less";
 @import "variables.less";
+.common-bg("Background/make.png");
+.select-target {
+    .abs-fill;
+    height: 500px;
+    width: 400px;
+    .panel-content-wrap> {
+        .abs-fill;
+    }
+    .panel-content-wrap>header {
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: -20px;
+        width: 400px;
+        margin: auto;
+        img.header {
+            width: 100%;
+        }
+        h3.header {
+            .abs-fill;
+            top: 30px;
+            text-align: center;
+            font-size: 28px;
+            //            color:#c54d21;
+            color: #dec7aa;
+            //            text-shadow: 0px -1px 0px #dec7aa;            
+        }
+    }
+    .panel-content-wrap>main {
+        .abs-fill;
+        top: 90px;
+        left: 45px;
+        right: 45px;
+        overflow: auto;
+        .product {
+            position: relative;
+            &:hover {
+                h5 {
+                    color: #dec7aa;}
+            }
+            img {
+                width: 100%;
+            }
+            h5 {
+                .abs-fill;
+                .vertical-center;
+                text-align: center;
+                font-size: 18px;
+                color: #6f6362;
+            }
+        }
+    }
+}

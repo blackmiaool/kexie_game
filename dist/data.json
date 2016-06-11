@@ -345,7 +345,7 @@
         "comment": "无",
         "buyable": "1"
     }],
-    "combine": [{
+    "products": [{
         "name": "单片机流水灯",
         "material": "低端单片机*1+LED*8+电路基础元件*1",
         "instrument": "表?",

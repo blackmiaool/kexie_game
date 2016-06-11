@@ -66,10 +66,10 @@ gulp.task('less', function () {
 
         this.emit('end')
     }
-        e.on('error', function (ee) {
-//            gutil.log(ee);
-            e.end();
-        });
+//        e.on('error', function (ee) {
+////            gutil.log(ee);
+//            e.end();
+//        });
 
 
     return gulp.src('less/style.less')
