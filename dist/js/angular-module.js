@@ -5,7 +5,13 @@ define(["angular"], function (angular) {
         return {
             restrict: 'A',
             transclude: true,
-            template: '               \n                <div class="red-panel-corner red-panel-corner1">\n    </div>\n    <div class="red-panel-corner red-panel-corner2">\n    </div>\n    <div class="red-panel-corner red-panel-corner3">\n    </div>\n    <div class="red-panel-corner red-panel-corner4">\n    </div> \n                <div class="panel-content-wrap" ng-transclude="string">\n                   \n</div>'
+            link: function link(scope, element, attrs, ctrls, $transclude) {
+
+                $transclude(function (clone, scope) {
+                    element.append(clone);
+                });
+            },
+            template: '               \n                <div class="red-panel-corner red-panel-corner1">\n    </div>\n    <div class="red-panel-corner red-panel-corner2">\n    </div>\n    <div class="red-panel-corner red-panel-corner3">\n    </div>\n    <div class="red-panel-corner red-panel-corner4">\n    </div>'
         };
     });
 });

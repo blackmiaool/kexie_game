@@ -16,7 +16,7 @@ function preEnter() {
     preload_set(0, resSum)
     if (dbg.imdeveloper) {
         setTimeout(function(){
-            scene.go("make");
+            scene.go("home");
         })
         return;
     }

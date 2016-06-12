@@ -3067,7 +3067,7 @@ img {
   border: #4682b4 1px solid;
 }
 .red-panel-corner {
-  background-image: url("../res/UI/red_panel_corner_big.png");
+  background-image: url("../res/UI/red/red_panel_corner_big.png");
   background-repeat: no-repeat;
   position: absolute;
   width: 50%;
@@ -4242,7 +4242,7 @@ input {
   left: 30px;
 }
 .scene[data-scene="home"] .shop-panel .close {
-  background-image: url("../res/UI/Button_Circular_Small_Background.png");
+  background-image: url("../res/UI/red/Button_Circular_Small_Background.png");
   background-repeat: no-repeat;
   background-size: cover;
   display: inline-block;
@@ -4266,7 +4266,7 @@ input {
   display: block;
 }
 .scene[data-scene="home"] .shop-panel .checkout {
-  background-image: url("../res/UI/Button_Rectangular_Red.png");
+  background-image: url("../res/UI/red/Button_Rectangular_Red.png");
   background-repeat: no-repeat;
   background-size: cover;
   background-size: contain;
@@ -4448,28 +4448,19 @@ input {
   bottom: 0;
   margin: auto;
   height: 500px;
-  width: 400px;
+  width: 350px;
 }
-.scene[data-scene="make"] .select-target .panel-content-wrap {
-  position: absolute;
-  left: 0;
-  right: 0;
-  top: 0;
-  bottom: 0;
-  margin: auto;
-}
-.scene[data-scene="make"] .select-target .panel-content-wrap > header {
+.scene[data-scene="make"] .select-target header {
   position: absolute;
   left: 0;
   right: 0;
   top: -20px;
-  width: 400px;
   margin: auto;
 }
-.scene[data-scene="make"] .select-target .panel-content-wrap > header img.header {
+.scene[data-scene="make"] .select-target header img.header {
   width: 100%;
 }
-.scene[data-scene="make"] .select-target .panel-content-wrap > header h3.header {
+.scene[data-scene="make"] .select-target header h3.header {
   position: absolute;
   left: 0;
   right: 0;
@@ -4479,9 +4470,10 @@ input {
   top: 30px;
   text-align: center;
   font-size: 28px;
+  line-height: 28px;
   color: #dec7aa;
 }
-.scene[data-scene="make"] .select-target .panel-content-wrap > main {
+.scene[data-scene="make"] .select-target main {
   position: absolute;
   left: 0;
   right: 0;
@@ -4489,20 +4481,35 @@ input {
   bottom: 0;
   margin: auto;
   top: 90px;
-  left: 45px;
-  right: 45px;
+  left: 40px;
+  right: 40px;
   overflow: auto;
+  bottom: 35px;
 }
-.scene[data-scene="make"] .select-target .panel-content-wrap > main .product {
+.scene[data-scene="make"] .select-target main::-webkit-scrollbar {
+  width: 7px;
+  background-image: url("../res/UI/red/Slider_Horizontal_Background.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  overflow: visible;
+}
+.scene[data-scene="make"] .select-target main::-webkit-scrollbar-thumb {
+  background-color: #413838;
+  background-size: contain;
+  height: 40px !important;
+  width: 20px !important;
+}
+.scene[data-scene="make"] .select-target main .product {
   position: relative;
+  text-align: center;
 }
-.scene[data-scene="make"] .select-target .panel-content-wrap > main .product:hover h5 {
+.scene[data-scene="make"] .select-target main .product:hover h5 {
   color: #dec7aa;
 }
-.scene[data-scene="make"] .select-target .panel-content-wrap > main .product img {
-  width: 100%;
+.scene[data-scene="make"] .select-target main .product img {
+  width: 90%;
 }
-.scene[data-scene="make"] .select-target .panel-content-wrap > main .product h5 {
+.scene[data-scene="make"] .select-target main .product h5 {
   left: 0;
   right: 0;
   top: 0;
@@ -4515,5 +4522,6 @@ input {
   transform: translateY(-50%);
   text-align: center;
   font-size: 18px;
+  line-height: 18px;
   color: #6f6362;
 }

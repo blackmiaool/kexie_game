@@ -4,16 +4,12 @@
 .select-target {
     .abs-fill;
     height: 500px;
-    width: 400px;
-    .panel-content-wrap> {
-        .abs-fill;
-    }
-    .panel-content-wrap>header {
+    width: 350px;
+    header {
         position: absolute;
         left: 0;
         right: 0;
         top: -20px;
-        width: 400px;
         margin: auto;
         img.header {
             width: 100%;
@@ -23,31 +19,51 @@
             top: 30px;
             text-align: center;
             font-size: 28px;
+            line-height: 28px;
             //            color:#c54d21;
             color: #dec7aa;
-            //            text-shadow: 0px -1px 0px #dec7aa;            
+//                        text-shadow: 0px -1px 0px black;            
+        }
+        &:hover{
+//            .transform(rotate3d(1, 0, 0, 60deg));
         }
     }
-    .panel-content-wrap>main {
+    main {
         .abs-fill;
         top: 90px;
-        left: 45px;
-        right: 45px;
+        left: 40px;
+        right: 40px;
         overflow: auto;
+        bottom: 35px;
+        &::-webkit-scrollbar {
+            width: 7px;
+            .common-bg("UI/red/Slider_Horizontal_Background.png");
+            overflow: visible;
+        }
+        &::-webkit-scrollbar-thumb {
+//            .common-bg("UI/Slider_Horizontal_Thumb.png");
+            background-color: #413838;
+            background-size: contain;
+            height: 40px !important;
+            width: 20px !important;
+        }   
         .product {
             position: relative;
+            text-align: center;
             &:hover {
                 h5 {
-                    color: #dec7aa;}
+                    color: #dec7aa;
+                }
             }
             img {
-                width: 100%;
+                width: 90%;
             }
             h5 {
                 .abs-fill;
                 .vertical-center;
                 text-align: center;
                 font-size: 18px;
+                line-height: 18px;
                 color: #6f6362;
             }
         }

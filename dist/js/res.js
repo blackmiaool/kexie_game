@@ -50,9 +50,9 @@ define(["system-common"], function (common) {
             power_icon: g("UI/power_icon.png"),
             progress_frame: g("UI/progress_frame.png"),
             progress_content: g("UI/progress_content.png"),
-            red_panel_corner: g("UI/red_panel_corner_big.png"),
-            red_header: g("UI/red_header.png"),
-            red_item_bg: g("UI/red_item_bg.png"),
+            red_panel_corner: g("UI/red/red_panel_corner_big.png"),
+            red_header: g("UI/red/red_header.png"),
+            red_item_bg: g("UI/red/red_item_bg.png"),
             //state
             state_back: g("UI/back.png"),
             state_analog: g("UI/analog3.png"),
@@ -565,6 +565,36 @@ define(["system-common"], function (common) {
         }],
         "products": [{
             "name": "单片机流水灯",
+            "material": "低端单片机*1+LED*8+电路基础元件*1",
+            "instrument": "表?",
+            "date": "10"
+        }, {
+            "name": "单片机流水灯1",
+            "material": "低端单片机*1+LED*8+电路基础元件*1",
+            "instrument": "表?",
+            "date": "10"
+        }, {
+            "name": "单片机流水灯2",
+            "material": "低端单片机*1+LED*8+电路基础元件*1",
+            "instrument": "表?",
+            "date": "10"
+        }, {
+            "name": "单片机流水灯3",
+            "material": "低端单片机*1+LED*8+电路基础元件*1",
+            "instrument": "表?",
+            "date": "10"
+        }, {
+            "name": "单片机流水灯4",
+            "material": "低端单片机*1+LED*8+电路基础元件*1",
+            "instrument": "表?",
+            "date": "10"
+        }, {
+            "name": "单片机流水灯5",
+            "material": "低端单片机*1+LED*8+电路基础元件*1",
+            "instrument": "表?",
+            "date": "10"
+        }, {
+            "name": "单片机流水灯6",
             "material": "低端单片机*1+LED*8+电路基础元件*1",
             "instrument": "表?",
             "date": "10"

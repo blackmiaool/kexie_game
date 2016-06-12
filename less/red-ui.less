@@ -1,0 +1,31 @@
+@import "common.less";
+.red-panel-corner {
+    background-image: url("@{res-folder}/UI/red/red_panel_corner_big.png");
+    background-repeat: no-repeat;
+    position: absolute;
+    width: 50%;
+    height: 50%;
+    &.red-panel-corner1 {
+        top: 0;
+        left: 0;
+        background-position: left top;
+    }
+    &.red-panel-corner2 {
+        top: 0;
+        right: 0;
+        .transform(scaleX(-1));
+        background-position: left top;
+    }
+    &.red-panel-corner3 {
+        bottom: 0;
+        right: 0;
+        .transform(rotate(180deg));
+        background-position: left top;
+    }
+    &.red-panel-corner4 {
+        bottom: 0;
+        left: 0;
+        .transform(rotate(180deg) scaleX(-1));
+        background-position: left top;
+    }
+}

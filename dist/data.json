@@ -351,6 +351,36 @@
         "instrument": "表?",
         "date": "10"
     }, {
+        "name": "单片机流水灯1",
+        "material": "低端单片机*1+LED*8+电路基础元件*1",
+        "instrument": "表?",
+        "date": "10"
+    }, {
+        "name": "单片机流水灯2",
+        "material": "低端单片机*1+LED*8+电路基础元件*1",
+        "instrument": "表?",
+        "date": "10"
+    }, {
+        "name": "单片机流水灯3",
+        "material": "低端单片机*1+LED*8+电路基础元件*1",
+        "instrument": "表?",
+        "date": "10"
+    }, {
+        "name": "单片机流水灯4",
+        "material": "低端单片机*1+LED*8+电路基础元件*1",
+        "instrument": "表?",
+        "date": "10"
+    }, {
+        "name": "单片机流水灯5",
+        "material": "低端单片机*1+LED*8+电路基础元件*1",
+        "instrument": "表?",
+        "date": "10"
+    }, {
+        "name": "单片机流水灯6",
+        "material": "低端单片机*1+LED*8+电路基础元件*1",
+        "instrument": "表?",
+        "date": "10"
+    }, {
         "name": "闹钟",
         "material": "低端单片机*1+数码管*8+电路基础元件*1",
         "instrument": "表?",

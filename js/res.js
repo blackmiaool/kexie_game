@@ -48,9 +48,9 @@ define(["system-common"], function (common) {
             power_icon: g("UI/power_icon.png"),
             progress_frame: g("UI/progress_frame.png"),
             progress_content: g("UI/progress_content.png"),
-            red_panel_corner: g("UI/red_panel_corner_big.png"),
-            red_header: g("UI/red_header.png"),
-            red_item_bg: g("UI/red_item_bg.png"),
+            red_panel_corner: g("UI/red/red_panel_corner_big.png"),
+            red_header: g("UI/red/red_header.png"),
+            red_item_bg: g("UI/red/red_item_bg.png"),
             //state
             state_back: g("UI/back.png"),
             state_analog: g("UI/analog3.png"),

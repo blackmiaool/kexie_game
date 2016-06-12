@@ -7,9 +7,9 @@
     
     <div class="shop-panel" ng-class="{hide:!show,active:active}">
         <div class="close" ng-click="closeStore()">
-            <img class="unselectable" draggable="false" src="res/UI/Decline.png" alt="">
+            <img class="unselectable" draggable="false" src="res/UI/red/Decline.png" alt="">
         </div>
-        <div class="checkout clickable" ng-click="checkout()" ng-class="{poor:poor}"><img draggable="false" src="res/UI/Button_Rectangular_Press.png" alt=""><span ng-bind="priceSum<=v.basic.money?'结算':'穷鬼'">结算</span></div>
+        <div class="checkout clickable" ng-click="checkout()" ng-class="{poor:poor}"><img draggable="false" src="res/UI/red/Button_Rectangular_Press.png" alt=""><span ng-bind="priceSum<=v.basic.money?'结算':'穷鬼'">结算</span></div>
         <div class="have-money">
             <span class="glyphicon glyphicon-credit-card"></span> 持有金钱: <span class="money" ng-bind="v.basic.money+'元'"></span>
         </div>
@@ -96,7 +96,6 @@
 
         </div>
     </div>
+</div>
 
-    <!--<img src="/res/UI/Window_Background.png" alt="" class="bg">-->
-    <!--  
-    </div>
+    
