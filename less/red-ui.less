@@ -1,6 +1,8 @@
 @import "common.less";
+@path: "@{res-folder}/UI/red";
+@icon-path: "@{res-folder}/UI/red/icon";
 .red-panel-corner {
-    background-image: url("@{res-folder}/UI/red/red_panel_corner_big.png");
+    background-image: url("@{path}/red_panel_corner_big.png");
     background-repeat: no-repeat;
     position: absolute;
     width: 50%;
@@ -27,5 +29,108 @@
         left: 0;
         .transform(rotate(180deg) scaleX(-1));
         background-position: left top;
+    }
+}
+
+.red-scroll-shadow-wrap {
+    &:after {
+        content: "";
+        background: linear-gradient(to bottom, rgb(30, 24, 21), transparent);
+        height: 13px;
+        position: absolute;
+        top: 0px;
+        right: 10px;
+        left: 0;
+        z-index: 1;
+    }
+    .red-scroll {
+        .abs-fill;
+        padding-top: 10px;
+    }
+}
+
+.red-scroll {
+    overflow: auto;
+    &::-webkit-scrollbar {
+        width: 8px;
+        border-radius: 100px;
+        background-color: darken(rgb(26, 21, 18), 5%);
+        overflow: visible;
+    }
+    &::-webkit-scrollbar-thumb {
+        border-radius: 100px;
+        box-shadow: inset 0 0 3px rgb(0, 0, 0, 0.5);
+        background-color: #413838;
+    }
+}
+
+.red-top-shadow {}
+
+.red-icon {
+    .square(80px);
+    .common-bg("@{path}/Button_Circular_Small_Background.png");
+    &:after {
+        opacity: 0;
+        .abs-fill;
+        .square(68%);
+        content: "";
+        .common-bg("@{path}/Button_Circular_Small_Press.png");
+        transition: 0.05s opacity linear;
+    }
+    &:active {
+        &:after {
+            opacity: 1;
+        }
+    }
+    &:before {
+        .abs-fill;
+        .square(40%);
+        background-position: center;
+        background-size: contain;
+        content: "";
+    }
+    .set-icon(@icon) {
+        &[data-icon="@{icon}"] {
+            &:before {
+                .common-bg("@{icon-path}/@{icon}.png");
+            }
+        }
+    }
+    .set-icon("left");
+    .set-icon("home");
+    .set-icon("close");
+}
+
+.red-red-btn {
+    .common-bg("@{path}/Button_Rectangular_Red.png");
+    @height: 57px;
+    line-height: @height;
+    height: @height;
+    width: 183px;
+    margin: auto;
+    background-position: center;
+    text-align: center;
+    color: #e1c3a9;
+    font-size: 20px;
+    font-weight: bold;
+    position: relative;
+    .clickable;
+    
+    &:after{
+        transition: 0.05s opacity linear;
+        content: "";
+        .abs-fill;
+        top:5px;
+        left: 5px;
+        bottom: 5px;
+        right: 5px;        
+        background-color: rgba(48,17,11,0.34); 
+        box-shadow: inset 0 0 20px rgba(0,0,0,0.7);
+        opacity: 0;
+    }
+    &:active{
+        &:after{
+            opacity: 1;
+        }
     }
 }

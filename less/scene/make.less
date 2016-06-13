@@ -5,48 +5,57 @@
     .abs-fill;
     height: 500px;
     width: 350px;
+    .go-back {
+        position: absolute;
+        right: 0;
+        bottom: 0;
+        .transform(translate(23%, 23%));
+    }
     header {
         position: absolute;
         left: 0;
         right: 0;
         top: -20px;
-        margin: auto;
+        margin: auto;        
         img.header {
             width: 100%;
         }
-        h3.header {
-            .abs-fill;
-            top: 30px;
+        span.header {
+            
+//            .abs-fill;
+//            top: 20px;
+            .vertical-center;
+            top: 43%;
+            left: 0;
+            right: 0;
+            bottom: auto;
             text-align: center;
-            font-size: 28px;
-            line-height: 28px;
-            //            color:#c54d21;
             color: #dec7aa;
-//                        text-shadow: 0px -1px 0px black;            
+            .pure-line(28px);
+            &.little {
+                .pure-line(20px);
+                
+            }
         }
-        &:hover{
-//            .transform(rotate3d(1, 0, 0, 60deg));
-        }
+        &:hover {}
     }
     main {
         .abs-fill;
-        top: 90px;
+        top: 69px;
         left: 40px;
         right: 40px;
-        overflow: auto;
         bottom: 35px;
-        &::-webkit-scrollbar {
-            width: 7px;
-            .common-bg("UI/red/Slider_Horizontal_Background.png");
-            overflow: visible;
+        overflow: hidden;
+        .page {
+            .abs-fill;
+            transition: 0.3s transform ease-out;
+            &.left {
+                .transform(translateX(-100%));
+            }
+            &.right {
+                .transform(translateX(100%));
+            }
         }
-        &::-webkit-scrollbar-thumb {
-//            .common-bg("UI/Slider_Horizontal_Thumb.png");
-            background-color: #413838;
-            background-size: contain;
-            height: 40px !important;
-            width: 20px !important;
-        }   
         .product {
             position: relative;
             text-align: center;

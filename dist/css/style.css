@@ -3102,6 +3102,149 @@ img {
   transform: rotate(180deg) scaleX(-1);
   background-position: left top;
 }
+.red-scroll-shadow-wrap:after {
+  content: "";
+  background: linear-gradient(to bottom, #1e1815, transparent);
+  height: 13px;
+  position: absolute;
+  top: 0px;
+  right: 10px;
+  left: 0;
+  z-index: 1;
+}
+.red-scroll-shadow-wrap .red-scroll {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+  padding-top: 10px;
+}
+.red-scroll {
+  overflow: auto;
+}
+.red-scroll::-webkit-scrollbar {
+  width: 8px;
+  border-radius: 100px;
+  background-color: #0b0908;
+  overflow: visible;
+}
+.red-scroll::-webkit-scrollbar-thumb {
+  border-radius: 100px;
+  box-shadow: inset 0 0 3px #000000;
+  background-color: #413838;
+}
+.red-icon {
+  width: 80px;
+  height: 80px;
+  background-image: url("../res/UI/red/Button_Circular_Small_Background.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.red-icon:after {
+  opacity: 0;
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+  width: 68%;
+  height: 68%;
+  content: "";
+  background-image: url("../res/UI/red/Button_Circular_Small_Press.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  transition: 0.05s opacity linear;
+}
+.red-icon:active:after {
+  opacity: 1;
+}
+.red-icon:before {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+  width: 40%;
+  height: 40%;
+  background-position: center;
+  background-size: contain;
+  content: "";
+}
+.red-icon[data-icon="left"]:before {
+  background-image: url("../res/UI/red/icon/left.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.red-icon[data-icon="home"]:before {
+  background-image: url("../res/UI/red/icon/home.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.red-icon[data-icon="close"]:before {
+  background-image: url("../res/UI/red/icon/close.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.red-red-btn {
+  background-image: url("../res/UI/red/Button_Rectangular_Red.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  line-height: 57px;
+  height: 57px;
+  width: 183px;
+  margin: auto;
+  background-position: center;
+  text-align: center;
+  color: #e1c3a9;
+  font-size: 20px;
+  font-weight: bold;
+  position: relative;
+  cursor: url("../res/cursor/link.cur"), pointer !important;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  -o-user-select: none;
+  user-select: none;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+.red-red-btn > * {
+  cursor: url("../res/cursor/link.cur"), pointer !important;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  -o-user-select: none;
+  user-select: none;
+}
+.red-red-btn:active,
+.red-red-btn:focus,
+.red-red-btn:hover,
+.red-red-btn:visited {
+  cursor: url("../res/cursor/link.cur"), pointer !important;
+}
+.red-red-btn:after {
+  transition: 0.05s opacity linear;
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+  top: 5px;
+  left: 5px;
+  bottom: 5px;
+  right: 5px;
+  background-color: rgba(48, 17, 11, 0.34);
+  box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.7);
+  opacity: 0;
+}
+.red-red-btn:active:after {
+  opacity: 1;
+}
 html,
 body {
   margin: 0;
@@ -4242,9 +4385,6 @@ input {
   left: 30px;
 }
 .scene[data-scene="home"] .shop-panel .close {
-  background-image: url("../res/UI/red/Button_Circular_Small_Background.png");
-  background-repeat: no-repeat;
-  background-size: cover;
   display: inline-block;
   background-size: contain;
   position: absolute;
@@ -4253,17 +4393,6 @@ input {
   z-index: 1;
   width: 60px;
   height: 60px;
-}
-.scene[data-scene="home"] .shop-panel .close img {
-  position: absolute;
-  left: 0;
-  right: 0;
-  top: 0;
-  bottom: 0;
-  margin: auto;
-  padding-top: 1px;
-  width: 23px;
-  display: block;
 }
 .scene[data-scene="home"] .shop-panel .checkout {
   background-image: url("../res/UI/red/Button_Rectangular_Red.png");
@@ -4450,6 +4579,14 @@ input {
   height: 500px;
   width: 350px;
 }
+.scene[data-scene="make"] .select-target .go-back {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  -webkit-transform: translate(23%, 23%);
+  -ms-transform: translate(23%, 23%);
+  transform: translate(23%, 23%);
+}
 .scene[data-scene="make"] .select-target header {
   position: absolute;
   left: 0;
@@ -4460,18 +4597,26 @@ input {
 .scene[data-scene="make"] .select-target header img.header {
   width: 100%;
 }
-.scene[data-scene="make"] .select-target header h3.header {
+.scene[data-scene="make"] .select-target header span.header {
   position: absolute;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+  top: 43%;
   left: 0;
   right: 0;
-  top: 0;
-  bottom: 0;
-  margin: auto;
-  top: 30px;
+  bottom: auto;
   text-align: center;
+  color: #dec7aa;
   font-size: 28px;
   line-height: 28px;
-  color: #dec7aa;
+  height: 28px;
+}
+.scene[data-scene="make"] .select-target header span.header.little {
+  font-size: 20px;
+  line-height: 20px;
+  height: 20px;
 }
 .scene[data-scene="make"] .select-target main {
   position: absolute;
@@ -4480,24 +4625,30 @@ input {
   top: 0;
   bottom: 0;
   margin: auto;
-  top: 90px;
+  top: 69px;
   left: 40px;
   right: 40px;
-  overflow: auto;
   bottom: 35px;
+  overflow: hidden;
 }
-.scene[data-scene="make"] .select-target main::-webkit-scrollbar {
-  width: 7px;
-  background-image: url("../res/UI/red/Slider_Horizontal_Background.png");
-  background-repeat: no-repeat;
-  background-size: cover;
-  overflow: visible;
+.scene[data-scene="make"] .select-target main .page {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+  transition: 0.3s transform ease-out;
 }
-.scene[data-scene="make"] .select-target main::-webkit-scrollbar-thumb {
-  background-color: #413838;
-  background-size: contain;
-  height: 40px !important;
-  width: 20px !important;
+.scene[data-scene="make"] .select-target main .page.left {
+  -webkit-transform: translateX(-100%);
+  -ms-transform: translateX(-100%);
+  transform: translateX(-100%);
+}
+.scene[data-scene="make"] .select-target main .page.right {
+  -webkit-transform: translateX(100%);
+  -ms-transform: translateX(100%);
+  transform: translateX(100%);
 }
 .scene[data-scene="make"] .select-target main .product {
   position: relative;

@@ -18,7 +18,7 @@ define(["require", "system-scene", "system-sys", "angular", "system-dbg", "v", "
         preload_set(0, resSum);
         if (dbg.imdeveloper) {
             setTimeout(function () {
-                scene.go("home");
+                scene.go("make");
             });
             return;
         }
