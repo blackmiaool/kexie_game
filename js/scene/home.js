@@ -234,7 +234,6 @@ function (sp, rsp, $timeout) {
             endingTransition: true,
             actionLocking: false,
             actionPanel: "",
-            v,
             res,
             actions,
             getActionIcon,

@@ -386,6 +386,74 @@ define(["system-common"], function (common) {
             "comment": "浪神殿",
             "buyable": "0"
         }],
+        "products": [{
+            "name": "单片机流水灯",
+            "material": "低端单片机*1+LED*8+电路基础元件*1",
+            "instrument": "万用表,逻辑分析仪",
+            "difficulty": "3",
+            "skill": "c语言v1"
+        }, {
+            "name": "硬件流水灯",
+            "material": "五5伍*1+LED*8+电路基础元件*1",
+            "instrument": "万用表",
+            "difficulty": "2",
+            "skill": "电路分析v1"
+        }, {
+            "name": "单片机流水灯1",
+            "material": "低端单片机*1+LED*8+电路基础元件*1",
+            "instrument": "表?",
+            "difficulty": "10"
+        }, {
+            "name": "单片机流水灯2",
+            "material": "低端单片机*1+LED*8+电路基础元件*1",
+            "instrument": "表?",
+            "difficulty": "10"
+        }, {
+            "name": "单片机流水灯3",
+            "material": "低端单片机*1+LED*8+电路基础元件*1",
+            "instrument": "表?",
+            "difficulty": "10"
+        }, {
+            "name": "单片机流水灯4",
+            "material": "低端单片机*1+LED*8+电路基础元件*1",
+            "instrument": "表?",
+            "difficulty": "10"
+        }, {
+            "name": "单片机流水灯5",
+            "material": "低端单片机*1+LED*8+电路基础元件*1",
+            "instrument": "表?",
+            "difficulty": "10"
+        }, {
+            "name": "单片机流水灯6",
+            "material": "低端单片机*1+LED*8+电路基础元件*1",
+            "instrument": "表?",
+            "difficulty": "10"
+        }, {
+            "name": "闹钟",
+            "material": "低端单片机*1+数码管*8+电路基础元件*1",
+            "instrument": "表?",
+            "difficulty": "9"
+        }, {
+            "name": "巡线车",
+            "material": "中端单片机*1+LED*16+电路基础元件*3+机械元件*10",
+            "instrument": "表!电钻!锯子!工具套装!逻辑分析仪?",
+            "difficulty": "9"
+        }, {
+            "name": "飞思卡尔智能车",
+            "material": "中端单片机*1+LED*16+电路基础元件*6+机械元件*3",
+            "instrument": "表!电钻!锯子?工具套装!逻辑分析仪?",
+            "difficulty": "9"
+        }, {
+            "name": "女朋友（残、伪）",
+            "material": "机械元件*10+舵机*8+高端单片机*2",
+            "instrument": "烙铁+电钻+电锯+机械基础工具",
+            "difficulty": "30"
+        }, {
+            "name": "男朋友（残、伪）",
+            "material": "机械元件*2+振动电机*1+普通电池*1",
+            "instrument": "烙铁+电锯+机械基础工具",
+            "difficulty": "25"
+        }],
         "device": [{
             "name": "烙铁",
             "kind": "焊接工具",
@@ -562,67 +630,6 @@ define(["system-common"], function (common) {
             "brief": "做电源必备",
             "comment": "无",
             "buyable": "1"
-        }],
-        "products": [{
-            "name": "单片机流水灯",
-            "material": "低端单片机*1+LED*8+电路基础元件*1",
-            "instrument": "表?",
-            "date": "10"
-        }, {
-            "name": "单片机流水灯1",
-            "material": "低端单片机*1+LED*8+电路基础元件*1",
-            "instrument": "表?",
-            "date": "10"
-        }, {
-            "name": "单片机流水灯2",
-            "material": "低端单片机*1+LED*8+电路基础元件*1",
-            "instrument": "表?",
-            "date": "10"
-        }, {
-            "name": "单片机流水灯3",
-            "material": "低端单片机*1+LED*8+电路基础元件*1",
-            "instrument": "表?",
-            "date": "10"
-        }, {
-            "name": "单片机流水灯4",
-            "material": "低端单片机*1+LED*8+电路基础元件*1",
-            "instrument": "表?",
-            "date": "10"
-        }, {
-            "name": "单片机流水灯5",
-            "material": "低端单片机*1+LED*8+电路基础元件*1",
-            "instrument": "表?",
-            "date": "10"
-        }, {
-            "name": "单片机流水灯6",
-            "material": "低端单片机*1+LED*8+电路基础元件*1",
-            "instrument": "表?",
-            "date": "10"
-        }, {
-            "name": "闹钟",
-            "material": "低端单片机*1+数码管*8+电路基础元件*1",
-            "instrument": "表?",
-            "date": "9"
-        }, {
-            "name": "巡线车",
-            "material": "中端单片机*1+LED*16+电路基础元件*3+机械元件*10",
-            "instrument": "表!电钻!锯子!工具套装!逻辑分析仪?",
-            "date": "9"
-        }, {
-            "name": "飞思卡尔智能车",
-            "material": "中端单片机*1+LED*16+电路基础元件*6+机械元件*3",
-            "instrument": "表!电钻!锯子?工具套装!逻辑分析仪?",
-            "date": "9"
-        }, {
-            "name": "女朋友（残、伪）",
-            "material": "机械元件*10+舵机*8+高端单片机*2",
-            "instrument": "烙铁+电钻+电锯+机械基础工具",
-            "date": "30"
-        }, {
-            "name": "男朋友（残、伪）",
-            "material": "机械元件*2+振动电机*1+普通电池*1",
-            "instrument": "烙铁+电锯+机械基础工具",
-            "date": "25"
         }],
         "skill": [{
             "name": "论文",

@@ -56,7 +56,7 @@
 
 
 
-    requirejs(["jquery", "system-sys", "angular", 'angular-module', "system-scene", "res", "system-common", 'angular-animate', "plot"], function ($, sys, angular, module, scene, res, common) {
+    requirejs(["jquery", "system-sys", "angular", 'angular-module', "system-scene", "res", "system-common",'v' ,'angular-animate', "plot"], function ($, sys, angular, module, scene, res, common,v) {
         $("#game-first-tip").remove();
 
         module.controller("root_controller", ["$rootScope", "$scope", function (rsp, sp) {
@@ -83,6 +83,7 @@
                 return common.g(str);
             }
             _.extend(sp, {
+                v,
                 img: res.img,
                 res,
                 getPre,

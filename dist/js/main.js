@@ -49,7 +49,7 @@ var gulpConfig = { plots: [{ "name": "kexie_first.js", "fullpath": "/home/blackm
 
     requirejs.config(config);
 
-    requirejs(["jquery", "system-sys", "angular", 'angular-module', "system-scene", "res", "system-common", 'angular-animate', "plot"], function ($, sys, angular, module, scene, res, common) {
+    requirejs(["jquery", "system-sys", "angular", 'angular-module', "system-scene", "res", "system-common", 'v', 'angular-animate', "plot"], function ($, sys, angular, module, scene, res, common, v) {
         $("#game-first-tip").remove();
 
         module.controller("root_controller", ["$rootScope", "$scope", function (rsp, sp) {
@@ -75,6 +75,7 @@ var gulpConfig = { plots: [{ "name": "kexie_first.js", "fullpath": "/home/blackm
                 return common.g(str);
             }
             _.extend(sp, {
+                v: v,
                 img: res.img,
                 res: res,
                 getPre: getPre,

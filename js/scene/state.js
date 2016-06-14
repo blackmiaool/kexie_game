@@ -74,10 +74,8 @@ module.controller("state-controller", ["$scope", function (sp) {
     
     _.extend(sp, {
         pages,
-        v,
         setPage,
         back,
-        res,
     });
 }])
 module.filter('skillLevel', function () {

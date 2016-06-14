@@ -425,16 +425,13 @@
                     </header>
                     <main class="red-scroll-shadow-wrap">
                         <div class="red-scroll page" data-page="0" ng-class="{left:productSelectPageIndex>0,center:productSelectPageIndex==0,right:productSelectPageIndex<0}">
-                            <div class="red-red-btn">开个新坑</div>
-                            <div ng-click="selectProductKind(product)" ng-repeat="product in res.products" class="product clickable">
-                                <img ng-src="{{::img.red_item_bg}}" class="bg">
-                                <h5 ng-bind="product.name"></h5>
+                            
+                            <div ng-click="selectProductKind(product)" ng-repeat="product in res.products" class="red-normal-item product clickable bold" ng-bind="product.name">
                             </div>
                         </div>
                         <div class="red-scroll page" data-page="1" ng-class="{left:productSelectPageIndex>1,center:productSelectPageIndex==1,right:productSelectPageIndex<1}">
-                            <div ng-repeat="product in res.products" class="product clickable">
-                                <img ng-src="{{::img.red_item_bg}}" class="bg">
-                                <h5 ng-bind="product.name"></h5>
+                           <div class="red-red-btn start-new-product">开个新坑</div>
+                            <div ng-repeat="work in v.work[selectingProductKind]" class="red-normal-item work clickable" ng-bind="work | workPrefix">
                             </div>
                         </div>
                     </main>

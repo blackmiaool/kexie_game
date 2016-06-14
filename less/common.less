@@ -142,7 +142,13 @@ img {
     border-radius: 10000px;
     overflow: hidden;
 }
-
+.square-crop(@size){
+    position: absolute;
+    top: @size;
+    right: @size;
+    bottom: @size;
+    left: @size;
+}
 .vertical-center {
     position: absolute;
     top: 50%;
@@ -164,4 +170,7 @@ img {
     font-size: @size;
     line-height: @size;
     height: @size;
+}
+.bold{
+    font-weight: bold;
 }

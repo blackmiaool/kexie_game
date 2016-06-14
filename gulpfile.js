@@ -44,7 +44,7 @@ function get_babel_params() {
     }
 }
 gulp.task('html', function () {
-    return gulp.src(['html/index.html'])
+    return gulp.src(['html/index.html','html/editor.html'])
         .pipe(injectfile({
             pattern: '<!--\\sinject:<filename>-->',
             recursive: true

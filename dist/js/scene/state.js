@@ -72,10 +72,8 @@ define(["require", "system-scene", "system-sys", "angular", "system-dbg", "v", "
 
         _.extend(sp, {
             pages: pages,
-            v: v,
             setPage: setPage,
-            back: back,
-            res: res
+            back: back
         });
     }]);
     module.filter('skillLevel', function () {

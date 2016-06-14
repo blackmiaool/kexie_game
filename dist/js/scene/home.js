@@ -251,7 +251,6 @@ define(["require", "system-scene", "system-sys", "angular", "system-dbg", "v", "
             endingTransition: true,
             actionLocking: false,
             actionPanel: "",
-            v: v,
             res: res,
             actions: actions,
             getActionIcon: getActionIcon,
