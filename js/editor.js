@@ -1,6 +1,59 @@
-let tables =
-    <!-- inject: ../dist/data.json--> ;
-    console.log(tables)
+let dataRaw =
+    `
+<!-- inject: ../data.csv-->  
+`;
+let lines = dataRaw.split("\n").filter(function (v, i) {
+    return Boolean(v);
+})
+console.log(dataRaw)
+let tables = {};
+let headerMap = {};
+//console.log(lines);
+let state = "waitName";
+let currentTableName;
+let headerMatch = /###### (\S+?),+/;
+for (var i = 0; i < lines.length; i++) {
+    let line = lines[i];
+    let match;
+    switch (state) {
+    case "waitName":
+        match = line.match(headerMatch);
+        if (match) {
+            currentTableName = match[1];
+            tables[currentTableName] = [];
+            state = "waitHeader";
+        }
+        break;
+    case "waitHeader":
+        let headers = line.split(/,/).filter(function (v, i) {
+            return Boolean(v);
+        });
+        console.log(headers);
+        headerMap[currentTableName] = headers;
+        console.log(headers);
+        state = "waitBody";
+        break;
+    case "waitBody":
+        match = line.match(headerMatch);
+        if (match) {
+            i--;
+            state = "waitName";
+        } else {
+            let tds = line.replace(/"(\S+?),(\S+?)"/, `$1{{{$2`).split(",");
+            let tr = {};
+            if(!tds[0]&&!tds[1]){
+                continue;
+            }
+            headerMap[currentTableName].forEach(function (v, i) {
+                tr[v] = tds[i]
+            })
+            tables[currentTableName].push(tr);
+            //            console.log(tables)
+        }
+        break;
+    }
+}
+console.log(tables)
 var rootModule = angular.module("main", ["contenteditable", "ngAnimate"]);
 
 let tableHeaders = {};
@@ -247,14 +300,14 @@ rootModule.controller("mainController", ["$scope", "$http", function (sp, $http)
                     }
                     return true;
                 });
-                let tableName = "###### " + i+",".repeat(keys.length-1);
-                result += tableName+"\n";
+                let tableName = "###### " + i + ",".repeat(keys.length - 1);
+                result += tableName + "\n";
                 let headerStr = keys.join(",");
-                result += headerStr+"\n";
+                result += headerStr + "\n";
                 result += table.reduce(function (pre, v, i) {
                     let arr = [];
                     keys.forEach(function (vv, ii) {
-                        arr.push("\""+v[vv]+"\"");
+                        arr.push("\"" + v[vv] + "\"");
                     });
 
                     return pre += arr.join(",") + "\n";
