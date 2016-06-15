@@ -4,7 +4,7 @@
         "kind": "IC",
         "icon": "computer",
         "price": "3",
-        "brief": "性能很弱的单片机，可以用于制作简陋的电路系统",
+        "brief": "性能很弱的单片机，   可以用于制作简陋的电路系统",
         "comment": "郭天祥为它代言",
         "buyable": "1"
     }, {
@@ -249,169 +249,147 @@
         "icon": "iron-soldering",
         "price": "100",
         "brief": "最基础的工具，新手工程师家中常备",
-        "comment": "通电数分钟后用手握住它的金属部分可以起到提神的作用",
-        "buyable": "1"
+        "comment": "通电数分钟后用手握住它的金属部分可以起到提神的作用"
     }, {
         "name": "低端示波器",
         "kind": "示",
         "icon": "1波器",
         "price": "oscilloscope",
         "brief": "500",
-        "comment": "低端调试仪器，可以增加少许的调试速度",
-        "buyable": "学校的旧实验室有一堆这种东西",
-        "undefined": "1"
+        "comment": "低端调试仪器，可以增加少许的调试速度"
     }, {
         "name": "中端示波器",
         "kind": "示波器",
         "icon": "oscilloscope",
         "price": "1000",
         "brief": "中端调试仪器，可以增加一定的调试速度",
-        "comment": "好一点的实验室才有的好东西",
-        "buyable": "1"
+        "comment": "好一点的实验室才有的好东西"
     }, {
         "name": "高端示波器",
         "kind": "示波器",
         "icon": "oscilloscope",
         "price": "4000",
         "brief": "高端调试仪器，可以增加大量的调试速度",
-        "comment": "高级实验室和校队才有的稀有仪器",
-        "buyable": "1"
+        "comment": "高级实验室和校队才有的稀有仪器"
     }, {
         "name": "基础工具套装",
         "kind": "工具套装",
         "icon": "tool",
         "price": "200",
         "brief": "最基础的机械工具套装",
-        "comment": "看起来像是工具,但是往往会变成消耗品",
-        "buyable": "1"
+        "comment": "看起来像是工具,但是往往会变成消耗品"
     }, {
         "name": "高级工具套装",
         "kind": "工具套装",
         "icon": "tool",
         "price": "1000",
         "brief": "非常全的机械工具套装",
-        "comment": "买来之后搬家会很痛苦",
-        "buyable": "1"
+        "comment": "买来之后搬家会很痛苦"
     }, {
         "name": "低端逻辑分析仪",
         "kind": "逻辑分析仪",
         "icon": "tool",
         "price": "25",
         "brief": "数字逻辑调试工具",
-        "comment": "虽然便宜但是好用",
-        "buyable": "1"
+        "comment": "虽然便宜但是好用"
     }, {
         "name": "高端逻辑分析仪",
         "kind": "逻辑分析仪",
         "icon": "tool",
         "price": "200",
         "brief": "高级数字逻辑调试工具，用于调试高速数字信号",
-        "comment": "满眼都是线",
-        "buyable": "1"
+        "comment": "满眼都是线"
     }, {
         "name": "手钻",
         "kind": "电钻",
         "icon": "tool",
         "price": "50",
         "brief": "手持打孔工具",
-        "comment": "不使用它有助于提高周围人对你的友好度",
-        "buyable": "1"
+        "comment": "不使用它有助于提高周围人对你的友好度"
     }, {
         "name": "台钻",
         "kind": "电钻",
         "icon": "tool",
         "price": "300",
         "brief": "手持打孔工具",
-        "comment": "滋~滋~~滋~~~",
-        "buyable": "1"
+        "comment": "滋~滋~~滋~~~"
     }, {
         "name": "木工锯",
         "kind": "锯子",
         "icon": "saw-hand-drawn-electrical-cutting-tool",
         "price": "30",
         "brief": "切割工具",
-        "comment": "看起来很安全",
-        "buyable": "1"
+        "comment": "看起来很安全"
     }, {
         "name": "电锯",
         "kind": "锯子",
         "icon": "saw-hand-drawn-electrical-cutting-tool",
         "price": "200",
         "brief": "切割工具,噪音较大",
-        "comment": "如果僵尸入侵....",
-        "buyable": "1"
+        "comment": "如果僵尸入侵...."
     }, {
         "name": "学生电源",
         "kind": "电源",
         "icon": "tool",
         "price": "200",
         "brief": "供电仪器",
-        "comment": "为什么没有杜邦线输出接口?",
-        "buyable": "1"
+        "comment": "为什么没有杜邦线输出接口?"
     }, {
         "name": "高级电源",
         "kind": "电源",
         "icon": "tool",
         "price": "1000",
         "brief": "供电仪器",
-        "comment": "很好很强大!",
-        "buyable": "1"
+        "comment": "很好很强大!"
     }, {
         "name": "低端函数发生器",
         "kind": "函数发生器",
         "icon": "tool",
         "price": "700",
         "brief": "输出指定波形",
-        "comment": "好多按钮和选项",
-        "buyable": "1"
+        "comment": "好多按钮和选项"
     }, {
         "name": "高端函数发生器",
         "kind": "函数发生器",
         "icon": "tool",
         "price": "2000",
         "brief": "输出更宽泛的指定波形",
-        "comment": "给你你想要的",
-        "buyable": "1"
+        "comment": "给你你想要的"
     }, {
         "name": "手持万用表",
         "kind": "表",
         "icon": "tool",
         "price": "100",
         "brief": "测量电阻电压电流",
-        "comment": "总是缺电池",
-        "buyable": "1"
+        "comment": "总是缺电池"
     }, {
         "name": "台式万用表",
         "kind": "表",
         "icon": "tool",
         "price": "2000",
         "brief": "测量电阻电压电流",
-        "comment": "给你看你想要的",
-        "buyable": "1"
+        "comment": "给你看你想要的"
     }, {
         "name": "频谱仪",
         "kind": "频谱仪",
         "icon": "tool",
         "price": "2500",
         "brief": "显示频谱",
-        "comment": "无",
-        "buyable": "1"
+        "comment": "无"
     }, {
         "name": "电子负载",
         "kind": "负载",
         "icon": "tool",
         "price": "500",
         "brief": "做电源必备",
-        "comment": "无",
-        "buyable": "1"
+        "comment": "无"
     }, {
         "name": "高级电子负载",
         "kind": "负载",
         "icon": "tool",
         "price": "2000",
         "brief": "做电源必备",
-        "comment": "无",
-        "buyable": "1"
+        "comment": "无"
     }],
     "skill": [{
         "name": "论文",

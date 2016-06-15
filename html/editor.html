@@ -23,16 +23,18 @@
 <body ng-app="main" ng-controller="mainController">
     <div id="editor-wrap">
        <textarea ng-bind="tables|json" readonly cols="30" rows="10"></textarea>
+       <textarea ng-bind="tables|md" readonly cols="120" rows="10"></textarea>
+       <h5>上下方向键换行 alt+d清除格子</h5>
         <div ng-repeat="(tableName,table) in tables" class="table-wrap">
-            <table class="table table-striped table-hover">
+            <table data-table="{{tableName}}" class="table table-striped table-hover">
                 <thead>
                     <tr>
                         <th ng-repeat="(key,value) in table[0]" ng-bind="key"  context-menu="headerOptions"></th>   
                     </tr>
                 </thead>
                 <tbody>
-                    <tr ng-repeat="(li,obj) in table">
-                        <td contenteditable="" ng-repeat="(k,v) in obj" ng-model="obj[k]"></td>
+                    <tr ng-repeat="(li,obj) in table track by obj.name ">
+                        <td ng-keydown="onKeyDown($event,$index,$parent.$index,tableName,k)" contenteditable="" ng-repeat="(k,v) in obj" ng-model="obj[k]" data-column="{{$index}}"  data-row="{{$parent.$index}}"></td>
                     </tr>
                 </tbody>
             </table>
