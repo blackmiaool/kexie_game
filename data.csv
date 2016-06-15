@@ -1,6 +1,6 @@
 ###### item,,,,,,
 name,kind,icon,price,brief,comment,buyable
-"低端单,片机",IC,computer,3,性能很弱的单片机，   可以用于制作简陋的电路系统,郭天祥为它代言,1
+低端单片机,IC,computer,3,性能很弱的单片机，   可以用于制作简陋的电路系统,郭天祥为它代言,1
 中端单片机,IC,computer,15,性能一般的单片机，可以用于制作一般的电路系统,"意法公司代表性作品,在21种情况下会下载失败",1
 高端单片机,IC,computer,50,性能强劲的单片机，可以用于制作复杂的电路系统,有时候买开发板还不如买个手机,0
 五5伍,IC,computer,2,常用数字芯片，用于产生基础的数字信号,听说可以用来设计500种电路,1
@@ -68,7 +68,7 @@ name,kind,icon,price,brief,comment,
 ,,,,,,
 ###### skill,,,,,,
 name,icon,pre,des,,,
-论文,mindmastery,none,使用文字与图片解释你的作品,,,
+论文,mindmastery,none,使用文字与图片解释你的作品4ww,,,
 线性代数,magicabsorption,none,基础数学技能，矩阵处理相关,,,
 微积分,spellimpact,none,基础数学技能，数据处理相关,,,
 C语言,focusmagic,none,基础编程技能，单片机编程必备,,,

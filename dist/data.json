@@ -4,7 +4,7 @@
         "kind": "IC",
         "icon": "computer",
         "price": "3",
-        "brief": "性能很弱的单片机，   可以用于制作简陋的电路系统",
+        "brief": "性能很弱的单片机，可以用于制作简陋的电路系统",
         "comment": "郭天祥为它代言",
         "buyable": "1"
     }, {
@@ -184,65 +184,76 @@
         "name": "单片机流水灯1",
         "material": "低端单片机*1+LED*8+电路基础元件*1",
         "instrument": "表?",
-        "difficulty": "10"
+        "difficulty": "10",
+        "skill": "undefined"
     }, {
         "name": "单片机流水灯2",
         "material": "低端单片机*1+LED*8+电路基础元件*1",
         "instrument": "表?",
-        "difficulty": "10"
+        "difficulty": "10",
+        "skill": "undefined"
     }, {
         "name": "单片机流水灯3",
         "material": "低端单片机*1+LED*8+电路基础元件*1",
         "instrument": "表?",
-        "difficulty": "10"
+        "difficulty": "10",
+        "skill": "undefined"
     }, {
         "name": "单片机流水灯4",
         "material": "低端单片机*1+LED*8+电路基础元件*1",
         "instrument": "表?",
-        "difficulty": "10"
+        "difficulty": "10",
+        "skill": "undefined"
     }, {
         "name": "单片机流水灯5",
         "material": "低端单片机*1+LED*8+电路基础元件*1",
         "instrument": "表?",
-        "difficulty": "10"
+        "difficulty": "10",
+        "skill": "undefined"
     }, {
         "name": "单片机流水灯6",
         "material": "低端单片机*1+LED*8+电路基础元件*1",
         "instrument": "表?",
-        "difficulty": "10"
+        "difficulty": "10",
+        "skill": "undefined"
     }, {
         "name": "闹钟",
         "material": "低端单片机*1+数码管*8+电路基础元件*1",
         "instrument": "表?",
-        "difficulty": "9"
+        "difficulty": "9",
+        "skill": "undefined"
     }, {
         "name": "巡线车",
         "material": "中端单片机*1+LED*16+电路基础元件*3+机械元件*10",
         "instrument": "表!电钻!锯子!工具套装!逻辑分析仪?",
-        "difficulty": "9"
+        "difficulty": "9",
+        "skill": "undefined"
     }, {
         "name": "飞思卡尔智能车",
         "material": "中端单片机*1+LED*16+电路基础元件*6+机械元件*3",
         "instrument": "表!电钻!锯子?工具套装!逻辑分析仪?",
-        "difficulty": "9"
+        "difficulty": "9",
+        "skill": "undefined"
     }, {
         "name": "女朋友（残、伪）",
         "material": "机械元件*10+舵机*8+高端单片机*2",
         "instrument": "烙铁+电钻+电锯+机械基础工具",
-        "difficulty": "30"
+        "difficulty": "30",
+        "skill": "undefined"
     }, {
         "name": "男朋友（残、伪）",
         "material": "机械元件*2+振动电机*1+普通电池*1",
         "instrument": "烙铁+电锯+机械基础工具",
-        "difficulty": "25"
+        "difficulty": "25",
+        "skill": "undefined"
     }],
     "device": [{
         "name": "烙铁",
         "kind": "焊接工具",
         "icon": "iron-soldering",
         "price": "20",
-        "brief": "最基础的工具，新手工程师家中常备,通电数分钟后用手握住它的金属部分可以起到提神的作用",
-        "comment": "1"
+        "brief": "最基础的工具，新手工程师家中常备",
+        "comment": "通电数分钟后用手握住它的金属部分可以起到提神的作用"
     }, {
         "name": "焊台",
         "kind": "焊接工具",
@@ -252,11 +263,10 @@
         "comment": "通电数分钟后用手握住它的金属部分可以起到提神的作用"
     }, {
         "name": "低端示波器",
-        "kind": "示",
-        "icon": "1波器",
-        "price": "oscilloscope",
-        "brief": "500",
-        "comment": "低端调试仪器，可以增加少许的调试速度"
+        "kind": "示波器",
+        "icon": "oscilloscope",
+        "price": "低端调试仪器，可以增加少许的调试速度",
+        "brief": "学校的旧实验室有一堆这种东西"
     }, {
         "name": "中端示波器",
         "kind": "示波器",
@@ -395,7 +405,7 @@
         "name": "论文",
         "icon": "mindmastery",
         "pre": "none",
-        "des": "使用文字与图片解释你的作品"
+        "des": "使用文字与图片解释你的作品4ww"
     }, {
         "name": "线性代数",
         "icon": "magicabsorption",

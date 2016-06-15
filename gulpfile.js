@@ -21,7 +21,7 @@ var headerfooter = require('gulp-header-footer');
 var merge = require('merge-stream');
 var yield_prefix = require('gulp-yield-prefix');
 var babel = require('gulp-babel');
-
+let handle = require('./data-handle.js');
 var treeify = require('file-tree-sync');
 
 var plotTree = treeify(path.join(__dirname, 'js', "plot"), ['.*']);
@@ -44,7 +44,7 @@ function get_babel_params() {
     }
 }
 gulp.task('html', function () {
-    return gulp.src(['html/index.html','html/editor.html'])
+    return gulp.src(['html/index.html', 'html/editor.html'])
         .pipe(injectfile({
             pattern: '<!--\\sinject:<filename>-->',
             recursive: true
@@ -54,7 +54,7 @@ gulp.task('html', function () {
 })
 var less = require('gulp-less');
 gulp.task('less', function () {
-    
+
     var e = less({
         paths: [path.join(__dirname, 'less')]
     });
@@ -66,10 +66,10 @@ gulp.task('less', function () {
 
         this.emit('end')
     }
-//        e.on('error', function (ee) {
-////            gutil.log(ee);
-//            e.end();
-//        });
+    //        e.on('error', function (ee) {
+    ////            gutil.log(ee);
+    //            e.end();
+    //        });
 
 
     return gulp.src('less/style.less')
@@ -151,7 +151,7 @@ gulp.task("scenes", function () {
         .pipe(babel_pipe)
         .pipe(gulp.dest('dist/js')).pipe(livereload());
 })
-gulp.task('es6', ["md"], function () {
+gulp.task('es6', ["csv"], function () {
     var babel_pipe = babel(get_babel_params());
     babel_pipe.on('error', function (ee) {
         gutil.log(ee);
@@ -174,7 +174,19 @@ gulp.task('es6', ["md"], function () {
         .pipe(gulp.dest('dist/js'))
         .pipe(livereload());
 });
-
+gulp.task('csv', function () {
+    var beautify = require('gulp-beautify');
+    gulp.src("*.csv")
+        .pipe(cached("csv2"))
+        .pipe(handle.gulpCsvToMarkdownTable())
+        .pipe(rename("README.md"))
+        .pipe(gulp.dest("."));
+    return gulp.src("*.csv")
+        .pipe(cached("csv"))
+        .pipe(handle.gulpCsvToJson())
+        .pipe(beautify())
+        .pipe(gulp.dest("dist/"))
+});
 gulp.task('md', function () {
     var beautify = require('gulp-beautify');
     return gulp.src('README.md')
@@ -192,14 +204,16 @@ gulp.task('mv-res', function () {
 })
 gulp.task('default', function () {
 
-    gulp.start(["mv-dist", "mv-res", "less", "html", 'md', "es6", "plots", "scenes"]);
+    gulp.start(["mv-dist", "mv-res", "less", "html", "es6", "plots", "scenes"]);
 
 });
 gulp.task('reload', function () {
 
-    gulp.src("").pipe(livereload());
+    gulp.src("")
+        .pipe(livereload());
 
 });
+
 livereload.listen();
 gulp.watch('less/**/*.less', ['less']);
 gulp.watch(['js/**/*.js', "!js/scene/*.js", "!js/plot/*.js"], ['es6']);
@@ -208,4 +222,5 @@ gulp.watch("js/scene/*.js", ['scenes']);
 gulp.watch('index.html', ['reload']);
 gulp.watch('html/**/*.html', ['html']);
 gulp.watch('res/**/*.*', ['mv-res', 'reload'])
-gulp.watch('README.md', ['es6']);
+//gulp.watch('README.md', ['es6']);
+gulp.watch('*.csv', ['es6']);
