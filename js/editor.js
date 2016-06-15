@@ -1,7 +1,4 @@
-let dataRaw =
-    `
-<!-- inject: ../data.csv-->  
-`;
+let dataRaw =0;
 let lines = dataRaw.split("\n").filter(function (v, i) {
     return Boolean(v);
 })
