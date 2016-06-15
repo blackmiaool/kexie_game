@@ -39,7 +39,29 @@ function registerHotKey() {
 
 }
 
-function handleHotKey(e,...args) {
+function getCursortPosition(ctrl) { //获取光标位置函数 
+    var CaretPos = 0;
+    // IE Support 
+    if (document.selection) {
+        ctrl.focus();
+        var Sel = document.selection.createRange();
+        Sel.moveStart('character', -ctrl.value.length);
+        CaretPos = Sel.text.length;
+    }
+    // Firefox support 
+    else if (ctrl.selectionStart || ctrl.selectionStart == '0')
+        CaretPos = ctrl.selectionStart;
+    else {
+        console.log("not support")
+    }
+    return (CaretPos);
+}
+setTimeout(function () {
+    console.dir($(":focus")[0]);
+    console.log(getCursortPosition($(":focus")[0]));
+}, 1000)
+
+function handleHotKey(e, ...args) {
     let normal = specialKeys[e.keyCode];
     let modifiers = ["ctrl", "alt", "shift", "meta"];
     let ret = false;
@@ -48,23 +70,25 @@ function handleHotKey(e,...args) {
             let cb = hotKeyMap[v][normal];
             console.log(cb);
             if (cb) {
-                ret = Boolean(cb(...args,normal, v));
+                ret = Boolean(cb(...args, normal, v));
             }
         }
     });
     //    console.log(!ret,hotKeyMap[normal])
-    if (!ret && hotKeyMap[normal]&& typeof hotKeyMap[normal]!="object") {
-        return Boolean(hotKeyMap[normal](...args,normal));
+    if (!ret && hotKeyMap[normal] && typeof hotKeyMap[normal] != "object") {
+        return Boolean(hotKeyMap[normal](...args, normal));
     }
     return ret;
 }
-function clearTd(column, row, tableName,columnName){
-//    $(`table[data-table='${tableName}'] td[data-column='${column}'][data-row='${row}']`).empty().trigger("keydown");
-    console.log(tableName,row,columnName)
-    tables[tableName][row][columnName]="none";
+
+function clearTd(column, row, tableName, columnName) {
+    //    $(`table[data-table='${tableName}'] td[data-column='${column}'][data-row='${row}']`).empty().trigger("keydown");
+    console.log(tableName, row, columnName)
+    tables[tableName][row][columnName] = " ";
     return true;
 }
-function changeRow(column, row, tableName,columnName,dir) {
+
+function changeRow(column, row, tableName, columnName, dir) {
     let newRow;
     if (dir == "down") {
         newRow = row + 1;
@@ -75,14 +99,15 @@ function changeRow(column, row, tableName,columnName,dir) {
     return true;
 
 }
-function newLine(column, row, tableName,columnName){
-    let newLine={};
-    
-    for(var i in tables[tableName][0]){
-        newLine[i]=" ";
+
+function newLine(column, row, tableName, columnName) {
+    let newLine = {};
+
+    for (var i in tables[tableName][0]) {
+        newLine[i] = " ";
     }
-    newLine.name=tables[tableName].length+1;
-    tables[tableName].splice(row+1,0,newLine);
+    newLine.name = tables[tableName].length + 1;
+    tables[tableName].splice(row + 1, 0, newLine);
     return true;
 }
 rootModule.controller("mainController", ["$scope", "$http", function (sp, $http) {
@@ -91,13 +116,13 @@ rootModule.controller("mainController", ["$scope", "$http", function (sp, $http)
         }, true)
         registerHotKey("up", changeRow);
         registerHotKey("down", changeRow);
-        registerHotKey("alt","d", clearTd);
-        registerHotKey("ctrl","enter", newLine);
+        registerHotKey("alt", "d", clearTd);
+        registerHotKey("ctrl", "enter", newLine);
         console.log(hotKeyMap)
 
-        function onKeyDown(e, column, row, tableName,columnName) {
+        function onKeyDown(e, column, row, tableName, columnName) {
             console.log(e)
-            if (handleHotKey(e, column, row, tableName,columnName)) {
+            if (handleHotKey(e, column, row, tableName, columnName)) {
                 e.preventDefault();
             }
         }
@@ -177,6 +202,69 @@ rootModule.controller("mainController", ["$scope", "$http", function (sp, $http)
             return result;
         }
     })
+    .filter("md", function () {
+        return function (tables) {
+            let result = "";
+            angular.forEach(function (v, k) {
+
+            })
+            for (var i in tables) {
+                let table = tables[i];
+                let keys = _.keys(table[0]);
+                keys = keys.filter(function (v, i) {
+                    if (v[0] == "$") {
+                        return false;
+                    }
+                    return true;
+                });
+                let tableName = "###### " + i;
+                let headerStr = keys.join("|");
+                let spliterStr = "---|".repeat(keys.length - 1) + "---";
+
+                result += [tableName, headerStr, spliterStr, ].join("\n") + "\n";
+                result += table.reduce(function (pre, v, i) {
+                    let arr = [];
+                    keys.forEach(function (vv, ii) {
+                        arr.push(v[vv]);
+                    });
+
+                    return pre += arr.join("|") + "\n";
+                }, "");
+                result += "\n\n";
+            }
+            return result;
+        }
+    })
+    .filter("csv", function () {
+        return function (tables) {
+            let result = "";
+            for (var i in tables) {
+                let table = tables[i];
+                let keys = _.keys(table[0]);
+                keys = keys.filter(function (v, i) {
+                    if (v[0] == "$") {
+                        return false;
+                    }
+                    return true;
+                });
+                let tableName = "###### " + i+",".repeat(keys.length-1);
+                result += tableName+"\n";
+                let headerStr = keys.join(",");
+                result += headerStr+"\n";
+                result += table.reduce(function (pre, v, i) {
+                    let arr = [];
+                    keys.forEach(function (vv, ii) {
+                        arr.push("\""+v[vv]+"\"");
+                    });
+
+                    return pre += arr.join(",") + "\n";
+                }, "");
+                result += "\n\n";
+            }
+            return result;
+        }
+    })
+
 
 let specialKeys = {
     8: "backspace",
@@ -245,8 +333,8 @@ let specialKeys = {
     221: "]",
     222: "'"
 };
-for(var i=65;i<65+26;i++){
-    specialKeys[i]=String.fromCharCode(i).toLowerCase();
+for (var i = 65; i < 65 + 26; i++) {
+    specialKeys[i] = String.fromCharCode(i).toLowerCase();
 }
 //let specialKeys={};
 //for(var i in specialKeysRaw){

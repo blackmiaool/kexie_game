@@ -554,6 +554,27 @@ function registerHotKey() {
     }
 }
 
+function getCursortPosition(ctrl) {
+    //获取光标位置函数
+    var CaretPos = 0;
+    // IE Support
+    if (document.selection) {
+        ctrl.focus();
+        var Sel = document.selection.createRange();
+        Sel.moveStart('character', -ctrl.value.length);
+        CaretPos = Sel.text.length;
+    }
+    // Firefox support
+    else if (ctrl.selectionStart || ctrl.selectionStart == '0') CaretPos = ctrl.selectionStart;else {
+            console.log("not support");
+        }
+    return CaretPos;
+}
+setTimeout(function () {
+    console.dir($(":focus")[0]);
+    console.log(getCursortPosition($(":focus")[0]));
+}, 1000);
+
 function handleHotKey(e) {
     for (var _len = arguments.length, args = Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
         args[_key - 1] = arguments[_key];
@@ -577,12 +598,14 @@ function handleHotKey(e) {
     }
     return ret;
 }
+
 function clearTd(column, row, tableName, columnName) {
     //    $(`table[data-table='${tableName}'] td[data-column='${column}'][data-row='${row}']`).empty().trigger("keydown");
     console.log(tableName, row, columnName);
-    tables[tableName][row][columnName] = "none";
+    tables[tableName][row][columnName] = " ";
     return true;
 }
+
 function changeRow(column, row, tableName, columnName, dir) {
     var newRow = void 0;
     if (dir == "down") {
@@ -593,6 +616,7 @@ function changeRow(column, row, tableName, columnName, dir) {
     $("table[data-table='" + tableName + "'] td[data-column='" + column + "'][data-row='" + newRow + "']").focus();
     return true;
 }
+
 function newLine(column, row, tableName, columnName) {
     var newLine = {};
 
@@ -689,6 +713,74 @@ rootModule.controller("mainController", ["$scope", "$http", function (sp, $http)
 
         for (var i in tables) {
             _loop();
+        }
+        return result;
+    };
+}).filter("md", function () {
+    return function (tables) {
+        var result = "";
+        angular.forEach(function (v, k) {});
+
+        var _loop2 = function _loop2() {
+            var table = tables[i];
+            var keys = _.keys(table[0]);
+            keys = keys.filter(function (v, i) {
+                if (v[0] == "$") {
+                    return false;
+                }
+                return true;
+            });
+            var tableName = "###### " + i;
+            var headerStr = keys.join("|");
+            var spliterStr = "---|".repeat(keys.length - 1) + "---";
+
+            result += [tableName, headerStr, spliterStr].join("\n") + "\n";
+            result += table.reduce(function (pre, v, i) {
+                var arr = [];
+                keys.forEach(function (vv, ii) {
+                    arr.push(v[vv]);
+                });
+
+                return pre += arr.join("|") + "\n";
+            }, "");
+            result += "\n\n";
+        };
+
+        for (var i in tables) {
+            _loop2();
+        }
+        return result;
+    };
+}).filter("csv", function () {
+    return function (tables) {
+        var result = "";
+
+        var _loop3 = function _loop3() {
+            var table = tables[i];
+            var keys = _.keys(table[0]);
+            keys = keys.filter(function (v, i) {
+                if (v[0] == "$") {
+                    return false;
+                }
+                return true;
+            });
+            var tableName = "###### " + i + ",".repeat(keys.length - 1);
+            result += tableName + "\n";
+            var headerStr = keys.join(",");
+            result += headerStr + "\n";
+            result += table.reduce(function (pre, v, i) {
+                var arr = [];
+                keys.forEach(function (vv, ii) {
+                    arr.push("\"" + v[vv] + "\"");
+                });
+
+                return pre += arr.join(",") + "\n";
+            }, "");
+            result += "\n\n";
+        };
+
+        for (var i in tables) {
+            _loop3();
         }
         return result;
     };

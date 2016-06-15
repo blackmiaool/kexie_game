@@ -23,7 +23,7 @@
 <body ng-app="main" ng-controller="mainController">
     <div id="editor-wrap">
        <textarea ng-bind="tables|json" readonly cols="30" rows="10"></textarea>
-       <textarea ng-bind="tables|md" readonly cols="120" rows="10"></textarea>
+       <textarea ng-bind="tables|csv" readonly cols="120" rows="10"></textarea>
        <h5>上下方向键换行 alt+d清除格子</h5>
         <div ng-repeat="(tableName,table) in tables" class="table-wrap">
             <table data-table="{{tableName}}" class="table table-striped table-hover">
