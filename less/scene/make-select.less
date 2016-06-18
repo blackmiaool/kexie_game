@@ -1,0 +1,69 @@
+@import "common.less";
+@import "variables.less";
+.bg("Background/make.png");
+.select-target {
+    .abs-fill;
+    height: 500px;
+    width: 333px;
+    .go-back {
+        position: absolute;
+        right: -11px;
+        bottom: -6px;
+        .transform(translate(23%, 23%));
+    }
+    header {
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: -20px;
+        margin: auto;        
+        img.header {
+            width: 100%;
+        }
+        span.header {
+            
+//            .abs-fill;
+//            top: 20px;
+            .vertical-center;
+            top: 43%;
+            left: 0;
+            right: 0;
+            bottom: auto;
+            text-align: center;
+            color: #dec7aa;
+            .pure-line(28px);
+            &.little {
+                .pure-line(20px);
+                
+            }
+        }
+        &:hover {}
+    }
+    main {
+        .abs-fill;
+        top: 69px;
+        left: 40px;
+        right: 40px;
+        bottom: 35px;
+        overflow: hidden;
+        .page {
+            .abs-fill;
+            transition: 0.3s transform ease-out;
+            &.left {
+                .transform(translateX(-100%));
+            }
+            &.right {
+                .transform(translateX(100%));
+            }
+        }
+        .start-new-product{
+            margin-bottom: 5px;
+        }
+        .product {
+            
+        }
+        .work{
+            font-size: 14px;
+        }
+    }
+}

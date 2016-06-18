@@ -223,7 +223,7 @@ define(["system-common"], function (common) {
 
         res_data_handle(res_json_data);
 
-
+console.log(res_json_data)
     function md_trim(str) {
         return str.replace(/(^\s+)|(\s+$)/g, "");
     }
@@ -234,7 +234,17 @@ define(["system-common"], function (common) {
             let d = data[table_name];
             //            console.log(table_name)
             //            window[table_name] = data[table_name];
-            switch (table_name) {
+            console.log(table_name);
+            switch (table_name) {                    
+            case "goodness":
+                    console.log(234)
+                let goodness=[];
+                res.goodness=goodness;
+                d.forEach(function(v,i){
+                    goodness[v.name]=v;
+                })
+                console.log(goodness);
+                break;
             case "item":
                 let items = {};
                 //                window.items = {};
@@ -262,6 +272,7 @@ define(["system-common"], function (common) {
                 for (var i in d) {
                     let v = d[i];
                     //replace
+                    console.log(v, v.material);
                     v.material = md_trim(v.material);
                     v.material = v.material.split("+")
                     var material = v.material;

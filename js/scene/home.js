@@ -127,7 +127,7 @@ function (sp, rsp, $timeout) {
                 return true;
             case "制作":
                 unlockAction();
-                scene.go("make");
+                scene.go("make-select");
                 break;
             case "闲逛":
                 unlockAction();

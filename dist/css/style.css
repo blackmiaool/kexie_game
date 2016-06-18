@@ -3141,9 +3141,9 @@ img {
 .red-icon {
   width: 80px;
   height: 80px;
-  background-image: url("../res/UI/red/Button_Circular_Small_Background.png");
+  background-image: url("../res/UI/red/btn_circle_red.png");
   background-repeat: no-repeat;
-  background-size: cover;
+  background-size: contain;
 }
 .red-icon:after {
   opacity: 0;
@@ -3158,7 +3158,7 @@ img {
   content: "";
   background-image: url("../res/UI/red/Button_Circular_Small_Press.png");
   background-repeat: no-repeat;
-  background-size: cover;
+  background-size: contain;
   transition: 0.05s opacity linear;
 }
 .red-icon:active:after {
@@ -3180,22 +3180,22 @@ img {
 .red-icon[data-icon="left"]:before {
   background-image: url("../res/UI/red/icon/left.png");
   background-repeat: no-repeat;
-  background-size: cover;
+  background-size: contain;
 }
 .red-icon[data-icon="home"]:before {
   background-image: url("../res/UI/red/icon/home.png");
   background-repeat: no-repeat;
-  background-size: cover;
+  background-size: contain;
 }
 .red-icon[data-icon="close"]:before {
   background-image: url("../res/UI/red/icon/close.png");
   background-repeat: no-repeat;
-  background-size: cover;
+  background-size: contain;
 }
 .red-normal-item {
   background-image: url("../res/UI/red/red_item_bg.png");
   background-repeat: no-repeat;
-  background-size: cover;
+  background-size: contain;
   cursor: url("../res/cursor/link.cur"), pointer !important;
   -webkit-user-select: none;
   -moz-user-select: none;
@@ -3248,7 +3248,7 @@ img {
 .red-red-btn {
   background-image: url("../res/UI/red/Button_Rectangular_Red.png");
   background-repeat: no-repeat;
-  background-size: cover;
+  background-size: contain;
   line-height: 57px;
   height: 57px;
   width: 183px;
@@ -3377,12 +3377,15 @@ input {
 .scene[data-scene="cover"] {
   background: url("../res/Background/cover.jpg");
   text-align: center;
+  background-position: bottom;
+  background-size: cover;
 }
 .scene[data-scene="cover"] .logo-title {
   font-size: 43px;
   color: white;
   margin-top: 100px;
   margin-bottom: 80px;
+  text-shadow: 1px 1px 3px black;
 }
 .scene[data-scene="cover"] .btns {
   display: inline-block;
@@ -3547,7 +3550,7 @@ input {
 .scene[data-scene="state"] > .wrap > .back {
   background-image: url("../res/UI/blue_back_left.png");
   background-repeat: no-repeat;
-  background-size: cover;
+  background-size: contain;
   width: 50px;
   height: 50px;
   position: absolute;
@@ -3914,7 +3917,7 @@ input {
   height: 64px;
   background-image: url("../res/UI/item_bg.svg");
   background-repeat: no-repeat;
-  background-size: cover;
+  background-size: contain;
   display: inline-block;
   position: relative;
 }
@@ -3997,7 +4000,7 @@ input {
 .scene[data-scene="home"] {
   background-image: url("../res/Background/home.jpg");
   background-repeat: no-repeat;
-  background-size: cover;
+  background-size: contain;
 }
 .scene[data-scene="home"] .basic {
   padding: 3px 7px 4px 7px;
@@ -4107,7 +4110,7 @@ input {
 .scene[data-scene="home"] .settings {
   background-image: url("../res/icon/cogwheel3.svg");
   background-repeat: no-repeat;
-  background-size: cover;
+  background-size: contain;
   width: 40px;
   height: 40px;
   border-radius: 10000px;
@@ -4448,7 +4451,6 @@ input {
 .scene[data-scene="home"] .shop-panel .checkout {
   background-image: url("../res/UI/red/Button_Rectangular_Red.png");
   background-repeat: no-repeat;
-  background-size: cover;
   background-size: contain;
   width: 127.88732394px;
   line-height: 40px;
@@ -4615,12 +4617,12 @@ input {
 .scene[data-scene="bigmap"] .big-bg.active {
   opacity: 0.7;
 }
-.scene[data-scene="make"] {
+.scene[data-scene="make-select"] {
   background-image: url("../res/Background/make.png");
   background-repeat: no-repeat;
-  background-size: cover;
+  background-size: contain;
 }
-.scene[data-scene="make"] .select-target {
+.scene[data-scene="make-select"] .select-target {
   position: absolute;
   left: 0;
   right: 0;
@@ -4628,27 +4630,27 @@ input {
   bottom: 0;
   margin: auto;
   height: 500px;
-  width: 350px;
+  width: 333px;
 }
-.scene[data-scene="make"] .select-target .go-back {
+.scene[data-scene="make-select"] .select-target .go-back {
   position: absolute;
-  right: 0;
-  bottom: 0;
+  right: -11px;
+  bottom: -6px;
   -webkit-transform: translate(23%, 23%);
   -ms-transform: translate(23%, 23%);
   transform: translate(23%, 23%);
 }
-.scene[data-scene="make"] .select-target header {
+.scene[data-scene="make-select"] .select-target header {
   position: absolute;
   left: 0;
   right: 0;
   top: -20px;
   margin: auto;
 }
-.scene[data-scene="make"] .select-target header img.header {
+.scene[data-scene="make-select"] .select-target header img.header {
   width: 100%;
 }
-.scene[data-scene="make"] .select-target header span.header {
+.scene[data-scene="make-select"] .select-target header span.header {
   position: absolute;
   top: 50%;
   -webkit-transform: translateY(-50%);
@@ -4664,12 +4666,12 @@ input {
   line-height: 28px;
   height: 28px;
 }
-.scene[data-scene="make"] .select-target header span.header.little {
+.scene[data-scene="make-select"] .select-target header span.header.little {
   font-size: 20px;
   line-height: 20px;
   height: 20px;
 }
-.scene[data-scene="make"] .select-target main {
+.scene[data-scene="make-select"] .select-target main {
   position: absolute;
   left: 0;
   right: 0;
@@ -4682,7 +4684,7 @@ input {
   bottom: 35px;
   overflow: hidden;
 }
-.scene[data-scene="make"] .select-target main .page {
+.scene[data-scene="make-select"] .select-target main .page {
   position: absolute;
   left: 0;
   right: 0;
@@ -4691,21 +4693,43 @@ input {
   margin: auto;
   transition: 0.3s transform ease-out;
 }
-.scene[data-scene="make"] .select-target main .page.left {
+.scene[data-scene="make-select"] .select-target main .page.left {
   -webkit-transform: translateX(-100%);
   -ms-transform: translateX(-100%);
   transform: translateX(-100%);
 }
-.scene[data-scene="make"] .select-target main .page.right {
+.scene[data-scene="make-select"] .select-target main .page.right {
   -webkit-transform: translateX(100%);
   -ms-transform: translateX(100%);
   transform: translateX(100%);
 }
-.scene[data-scene="make"] .select-target main .start-new-product {
+.scene[data-scene="make-select"] .select-target main .start-new-product {
   margin-bottom: 5px;
 }
-.scene[data-scene="make"] .select-target main .work {
+.scene[data-scene="make-select"] .select-target main .work {
   font-size: 14px;
+}
+.scene[data-scene="character"] {
+  background: url("../res/Background/make.png");
+  text-align: center;
+  background-position: bottom;
+  background-size: cover;
+}
+.scene[data-scene="character"] .settings-wrap {
+  display: inline-block;
+  position: absolute;
+  left: 10px;
+  top: 5px;
+  text-align: left;
+  padding: 17px;
+}
+.scene[data-scene="character"] .settings-wrap .title {
+  color: white;
+}
+.scene[data-scene="character"] .settings-wrap .settings-content-wrap {
+  height: 230px;
+  width: 400px;
+  position: relative;
 }
 #editor-wrap {
   background-color: white;

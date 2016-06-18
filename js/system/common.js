@@ -1,20 +1,31 @@
 define(function () {
-    let resPath="/res/";
+    let resPath = "/res/";
+    let v;
     var exports = {
         resPath,
-        color: (r, g, b) => {
-            return "rgb(" + r + "," + g + "," + b + ")"
-        },
-        find_index: (array, key, value) => {
-            for (var i in array) {
-                if (array[i][key] == value) {
-                    return i;
-                }
-            }
-        },
+        color,
+        find_index,
         clone,
         load_object,
         save_object,
+        g,
+        setV,
+        getUid,
+        local
+    }
+
+    function find_index(array, key, value) {
+        for (var i in array) {
+            if (array[i][key] == value) {
+                return i;
+            }
+        }
+    }
+
+    function color(r, g, b) {
+
+        return `rgb(${r},${g},${b})`;
+
     }
 
     function clone(myObj) {
@@ -25,7 +36,8 @@ define(function () {
             myNewObj[i] = clone(myObj[i]);
         return myNewObj;
     }
-    exports.g = function (str) {
+
+    function g(str) {
         return resPath + str
     }
 
@@ -37,8 +49,15 @@ define(function () {
     function load_object(key) {
         return JSON.parse(localStorage.getItem(key))
     }
-    exports.local = {
-        
+    function setV(thisv){
+        v=thisv;
+    }
+    function getUid() {
+        v.uid++;
+        return v.uid;
+    }
+    let local = {
+
         set: (a, b) => {
             if (typeof (b) == "object")
 
@@ -49,7 +68,7 @@ define(function () {
         get: (a) => {
             var item = localStorage.getItem(a);
             var ret = item;
-        
+
             if (item) {
                 try {
                     ret = JSON.parse(item);
@@ -67,4 +86,3 @@ define(function () {
     return exports;
 
 })
-

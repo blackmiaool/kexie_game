@@ -68,13 +68,13 @@
 
 .red-icon {
     .square(80px);
-    .common-bg("@{path}/Button_Circular_Small_Background.png");
+    .bg("@{path}/btn_circle_red.png");
     &:after {
         opacity: 0;
         .abs-fill;
         .square(68%);
         content: "";
-        .common-bg("@{path}/Button_Circular_Small_Press.png");
+        .bg("@{path}/Button_Circular_Small_Press.png");
         transition: 0.05s opacity linear;
     }
     &:active {
@@ -92,7 +92,7 @@
     .set-icon(@icon) {
         &[data-icon="@{icon}"] {
             &:before {
-                .common-bg("@{icon-path}/@{icon}.png");
+                .bg("@{icon-path}/@{icon}.png");
             }
         }
     }
@@ -102,7 +102,7 @@
 }
 
 .red-normal-item {
-    .common-bg("@{path}/red_item_bg.png");
+    .bg("@{path}/red_item_bg.png");
     .clickable;
     @height: 41px;
     line-height: @height;
@@ -134,7 +134,7 @@
 }
 
 .red-red-btn {
-    .common-bg("@{path}/Button_Rectangular_Red.png");
+    .bg("@{path}/Button_Rectangular_Red.png");
     @height: 57px;
     line-height: @height;
     height: @height;

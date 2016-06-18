@@ -222,7 +222,7 @@ define(["system-common"], function (common) {
             "kind": "IC",
             "icon": "computer",
             "price": "3",
-            "brief": "性能很弱的单片机，可以用于制作简陋的电路系统",
+            "brief": "性能很弱的单片机，   可以用于制作简陋的电路系统",
             "comment": "郭天祥为它代言",
             "buyable": "1"
         }, {
@@ -263,7 +263,7 @@ define(["system-common"], function (common) {
             "icon": "computer",
             "price": "15",
             "brief": "廉价可编程数字芯片",
-            "comment": "Shutupandtakemymoney!",
+            "comment": "Shut up and take my money!",
             "buyable": "1"
         }, {
             "name": "普通电池",
@@ -377,8 +377,6 @@ define(["system-common"], function (common) {
             "brief": "浪神粉丝的芳心，使用后效率降低50%",
             "comment": "浪神殿",
             "buyable": "0"
-        }, {
-            "name": "0"
         }],
         "products": [{
             "name": "单片机流水灯",
@@ -477,8 +475,9 @@ define(["system-common"], function (common) {
             "name": "低端示波器",
             "kind": "示波器",
             "icon": "oscilloscope",
-            "price": "低端调试仪器，可以增加少许的调试速度",
-            "brief": "学校的旧实验室有一堆这种东西"
+            "price": "500",
+            "brief": "低端调试仪器，可以增加少许的调试速度",
+            "comment": "学校的旧实验室有一堆这种东西"
         }, {
             "name": "中端示波器",
             "kind": "示波器",
@@ -618,7 +617,7 @@ define(["system-common"], function (common) {
             "icon": "mindmastery",
             "pre": "none",
             "difficulty": "2",
-            "des": "使用文字与图片解释你的作品4ww"
+            "des": "使用文字与图片解释你的作品"
         }, {
             "name": "线性代数",
             "icon": "magicabsorption",
@@ -646,122 +645,165 @@ define(["system-common"], function (common) {
         }, {
             "name": "模拟电路",
             "icon": "criticalmass",
-            "pre": "微积分v2,电路分析v5",
+            "pre": "微积分,电路分析",
             "difficulty": "3",
             "des": "中级电子技能，电子设计核心技能，用于分析与设计三极管与MOS管相关电路"
         }, {
             "name": "PPT",
             "icon": "arcaneconcentration",
-            "pre": "论文v3",
+            "pre": "论文",
             "difficulty": "3",
             "des": "使用文字与图片与效果展示你的作品或想法"
         }, {
             "name": "信号与系统",
             "icon": "magicattunement",
-            "pre": "线性代数v2,微积分v5",
+            "pre": "线性代数,微积分",
             "difficulty": "4",
             "des": "通信相关核心技能，用于对信号进行简单分析"
         }, {
             "name": "数字电路",
             "icon": "spellpower",
-            "pre": "电路分析v3",
+            "pre": "电路分析",
             "difficulty": "3",
             "des": "中级电子技能，电子设计核心技能，用于分析与设计数字芯片相关电路"
         }, {
             "name": "单片机原理",
             "icon": "firepower",
-            "pre": "电路分析v2,C语言v4",
+            "pre": "电路分析,C语言",
             "difficulty": "3",
             "des": "中高级电子技能，嵌入式的重要基础，用于理解单片机的原理"
         }, {
             "name": "数据结构与算法",
             "icon": "presenceofmind",
-            "pre": "C语言v5",
+            "pre": "C语言",
             "difficulty": "3",
             "des": "中级编程技能，笔试面试的重要部分，用于组织数据，减少计算所需空间与时间"
         }, {
             "name": "演讲",
             "icon": "burnout",
-            "pre": "PPTv2",
+            "pre": "PPT",
             "difficulty": "4",
             "des": "使用口才与PPT结合来展示你的作品或想法"
         }, {
             "name": "其他语言",
             "icon": "prismaticcloak",
-            "pre": "C语言v2",
+            "pre": "C语言",
             "difficulty": "4",
             "des": "中高级编程技能，常用于APP与web编程"
         }, {
             "name": "数字信号处理",
             "icon": "arcticwinds",
-            "pre": "信号与系统v5",
+            "pre": "信号与系统",
             "difficulty": "5",
             "des": "通信相关核心技能，用于处理数字信号"
         }, {
             "name": "电磁场与电磁波",
             "icon": "arcanepower",
-            "pre": "信号与系统v7,模拟电路v5",
+            "pre": "信号与系统,模拟电路",
             "difficulty": "5",
             "des": "高级电子技能，用于分析电磁波"
         }, {
             "name": "开关电源",
             "icon": "missilebarrage",
-            "pre": "模拟电路v7",
+            "pre": "模拟电路",
             "difficulty": "5",
             "des": "高级电子技能，用于制作开关电源"
         }, {
             "name": "接口技术",
             "icon": "arcticreach",
-            "pre": "数字电路v4",
+            "pre": "数字电路",
             "difficulty": "4",
             "des": "嵌入式相关核心技能，用于编写单片机片上外设与板上外设的驱动"
         }, {
             "name": "自动控制",
             "icon": "arcanepotency",
-            "pre": "数据结构与算法v5",
+            "pre": "数据结构与算法",
             "difficulty": "5",
             "des": "用于优化设备的控制算法"
         }, {
             "name": "上位机软件",
             "icon": "arcaneflows",
-            "pre": "数据结构与算法v3",
-            "difficulty": "6",
+            "pre": "数据结构与算法",
+            "difficulty": "5",
             "des": "用于对设备进行分析与控制"
         }, {
             "name": "图像识别",
             "icon": "arcanemind",
-            "pre": "数字信号处理v3,数据结构与算法v7",
+            "pre": "数字信号处理,数据结构与算法",
             "difficulty": "6",
             "des": "高级数学技能，用于识别图像"
         }, {
             "name": "传销",
             "icon": "arcanemeditation",
-            "pre": "演讲v10",
+            "pre": "演讲",
             "difficulty": "5",
             "des": "使用口才与其他资料影响别人的想法"
         }, {
             "name": "射频电路",
             "icon": "arcaneempowerment",
-            "pre": "电磁场与电磁波v3",
+            "pre": "电磁场与电磁波",
             "difficulty": "5",
             "des": "高级电子技能，用于分析与设计射频电路"
         }, {
             "name": "FPGA与CPLD",
             "icon": "arcanepower",
-            "pre": "接口技术v5",
+            "pre": "接口技术",
             "difficulty": "4",
             "des": "高级嵌入式技能，用于设计数字可编程电路与仿真ASIC"
         }, {
             "name": "嵌入式",
             "icon": "incanter'sabsorption",
-            "pre": "接口技术v3,单片机原理v5,数据结构与算法v3",
+            "pre": "接口技术,单片机原理,数据结构与算法",
             "difficulty": "5",
             "des": "高级技能，用于设计嵌入式相关电路与软件"
+        }],
+        "goodness": [{
+            "name": "富二代",
+            "summary": "每月生活费++",
+            "contradiction": "穷二代"
+        }, {
+            "name": "电二代",
+            "summary": "基础电路技能++",
+            "contradiction": "穷二代"
+        }, {
+            "name": "学霸",
+            "summary": "上课效率++",
+            "contradiction": "学渣,智商正常"
+        }, {
+            "name": "情圣",
+            "summary": "友好度提升效率++",
+            "contradiction": "自闭症"
+        }, {
+            "name": "天才",
+            "summary": "学习技能所需体力--",
+            "contradiction": "智商正常"
+        }, {
+            "name": "交际花",
+            "summary": "闲逛所需体力--",
+            "contradiction": "自闭症"
+        }],
+        "weakness": [{
+            "name": "穷二代",
+            "summary": "每月生活费--",
+            "contradiction": "富二代"
+        }, {
+            "name": "学渣",
+            "summary": "上课效率--",
+            "contradiction": "学霸"
+        }, {
+            "name": "智商正常",
+            "summary": "学习技能所需体力++",
+            "contradiction": "天才,学神"
+        }, {
+            "name": "自闭症",
+            "summary": "闲逛所需体力++",
+            "contradiction": "交际花,情圣"
         }]
     };
 
     res_data_handle(res_json_data);
 
+    console.log(res_json_data);
     function md_trim(str) {
         return str.replace(/(^\s+)|(\s+$)/g, "");
     }
@@ -772,7 +814,17 @@ define(["system-common"], function (common) {
             var d = data[table_name];
             //            console.log(table_name)
             //            window[table_name] = data[table_name];
+            console.log(table_name);
             switch (table_name) {
+                case "goodness":
+                    console.log(234);
+                    var goodness = [];
+                    res.goodness = goodness;
+                    d.forEach(function (v, i) {
+                        goodness[v.name] = v;
+                    });
+                    console.log(goodness);
+                    break;
                 case "item":
                     var items = {};
                     //                window.items = {};
@@ -800,6 +852,7 @@ define(["system-common"], function (common) {
                     for (var i in d) {
                         var _v = d[i];
                         //replace
+                        console.log(_v, _v.material);
                         _v.material = md_trim(_v.material);
                         _v.material = _v.material.split("+");
                         var material = _v.material;

@@ -1,0 +1,31 @@
+<div ng-controller="make_controller" class="make-wrap">
+    <!--    库存作品 体力 返回 当前制作 强化方向 每次强化选择花费的体力?小游戏?如何决定强化策略? 相关技能 哪些影响? 相关材料 失败率? 相关仪器 额外的仪器带来额外的收益?熟练度? 腐烂? 先完成基础部分搭建然后选择强化方向? 面板: 选择产品 制造详情 当前制作 产品:一开始有一段固定条,表示基础部分.开工前可以选择基础部分的方向(创新\性能\稳定).开工后-->
+
+    <div red-panel class="select-target">
+        <header>
+            <img ng-src="{{::img.red_header}}" class="header">
+            <span class="header unselectable" ng-bind="selectingProductKind||'制作'" ng-class="{little:selectingProductKind}"></span>
+        </header>
+        <main class="red-scroll-shadow-wrap">
+            <div class="red-scroll page" data-page="0" ng-class="{left:productSelectPageIndex>0,center:productSelectPageIndex==0,right:productSelectPageIndex<0}">
+                
+                <div ng-click="selectProductKind(product)" ng-repeat="product in res.products" class="red-normal-item product clickable bold" ng-bind="product.name">
+                </div>
+            </div>
+            <div class="red-scroll page" data-page="1" ng-class="{left:productSelectPageIndex>1,center:productSelectPageIndex==1,right:productSelectPageIndex<1}">
+               <div class="red-red-btn start-new-product">开个新坑</div>
+                <div ng-repeat="work in v.work[selectingProductKind]" class="red-normal-item work clickable" ng-bind="work | workPrefix">
+                </div>
+            </div>
+        </main>
+        <div ng-if="productSelectPageIndex==0" class="red-icon go-back " data-icon="home" ng-click="goHome()"></div>
+        <div ng-if="productSelectPageIndex==1" class="red-icon go-back " data-icon="left"  ng-click="productSelectPrevPage()"></div>
+    </div>
+    <main>
+        <div class="make-progress"></div>
+
+    </main>
+
+
+
+</div>

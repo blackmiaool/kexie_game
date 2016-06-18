@@ -8,6 +8,7 @@ const PLUGIN_NAME = 'gulp-handle-my-data';
 function md_trim(str) {
     return str.replace(/(^\s+)|(\s+$)/g, "");
 }
+var csv = require('csv');
 
 function handle(text, anchor) {
     var lines = text.split("\n");
@@ -119,7 +120,7 @@ function json2table(dataRaw) {
         });
         let tableName = "###### " + i;
         let headerStr = keys.join("|");
-        let spliterStr = "---|".repeat(keys.length - 1) + "---";
+        let spliterStr = "---|".repeat(keys.length - 1>0?keys.length - 1:1) + "---";
 
         result += [tableName, headerStr, spliterStr, ].join("\n") + "\n";
         result += table.reduce(function (pre, v, i) {
@@ -157,13 +158,13 @@ function gulpCsvToMarkdownTable() {
 
     });
 }
-
+var parse = require('csv-parse/lib/sync');
 function csv2table(dataRaw, outputObj = false) {
     let tables = {};
     let headerMap = {};
     let state = "waitName";
     let currentTableName;
-    let headerMatch = /###### (\S+?),+/;
+    let headerMatch = /###### (\S+?)"*,+/;
     let lines = dataRaw.split("\n").filter(function (v, i) {
         return Boolean(v);
     })
@@ -182,7 +183,9 @@ function csv2table(dataRaw, outputObj = false) {
         case "waitHeader":
             let headers = line.split(/,/).filter(function (v, i) {
                 return Boolean(v);
-            });
+            }).map(function(v,i){
+                return v.replace(/"/g,"");
+            })
             headerMap[currentTableName] = headers;
             state = "waitBody";
             break;
@@ -192,45 +195,20 @@ function csv2table(dataRaw, outputObj = false) {
                 i--;
                 state = "waitName";
             } else {
-//                line = ("," + line + ",").replace(/\s/g, "");
-                let tds;
-                line = line.split(/(?:"([^"]*)"|([^,]*))(?:[,])/g);
-//                console.log(line);
-                tds=line.filter(function(v){
-                    return Boolean(v)&&typeof(v)=="string";
-                })
-//                console.log(parts)
-//                    .replace(/""/g, "{{{")
-//                    .replace(/"\S+?"/g, function (str) {
-//                        parts.push(str);
-//                        return `}${parts.length-1}}`;
-//                    })
-//                    .split(",");
-//                line.shift().map(function(v,i){
-//                    if
-//                   return  
-//                })
-                   
-
-
-                
-                    //                let tds = 
-                    //                    line.replace(/"(\S+?),(\S+?)"/g, `$1{{{$2`)
-                    //                    .replace(/"(\S+?),(\S+?)"/g, `$1{{{$2`)
-                    //                    .replace(/"(\S+?),(\S+?)"/g, `$1{{{$2`)
-                    //                .replace(/"(\S+?),(\S+?)"/g, `$1{{{$2`)
-                    //                    .split(",");
-//                return;
-                let tr = {};
-                if (!tds[0] && !tds[1]) {
+                if(line.replace(/[,\s]/g,"").length==0){
                     continue;
                 }
-                headerMap[currentTableName].forEach(function (v, i) {
-                    if(!tds[i])
-                        return;
-                    tr[v] = tds[i].replace(/""/g, "\"").replace(/\s+/g, "").replace(/^"(\S+?)"$/,"$1");
-                })
-                tables[currentTableName].push(tr);
+                line=line.replace(/,*$/g,""); console.log(line.replace(/[,\s]/g,"").length,line.replace(/[,\s]/g,""))
+                try{
+                    line=parse(line,{delimiter:",",columns:headerMap[currentTableName]});
+                }catch(e){
+                    console.log(e);
+                    continue;
+                }
+                
+                console.log(line.toString(),line)
+             
+                tables[currentTableName].push(line[0]);
                 //            console.log(tables)
             }
             break;

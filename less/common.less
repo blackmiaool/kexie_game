@@ -125,11 +125,10 @@ img {
     width: @size;
     height: @size;
 }
-
-.common-bg(@location) {
+.bg(@location) {
     background-image: url("@{res-folder}/@{location}");
     background-repeat: no-repeat;
-    background-size: cover;
+    background-size: contain;
 }
 
 .round {

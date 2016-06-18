@@ -64,6 +64,6 @@ define(["res", "system-common"], function (res, common) {
     }
     var v = common.clone(v_init);
 
-
+    common.setV(v);
     return v;
 })

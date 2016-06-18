@@ -7,9 +7,7 @@
     let scenePaths = gulpConfig.scenes.map(function (v, i) {
         return v.name.split(".")[0];
     });
-    //    console.log(scenePaths)
-    //    let plotPaths=["start","kexie_first","nature_test","xuanjianghui"];
-    //    let scenePaths= ["preload", "cover","chat"];
+
     var config = {
         baseUrl: "js",
         paths: {
@@ -56,7 +54,7 @@
 
 
 
-    requirejs(["jquery", "system-sys", "angular", 'angular-module', "system-scene", "res", "system-common",'v' ,'angular-animate', "plot"], function ($, sys, angular, module, scene, res, common,v) {
+    requirejs(["jquery", "system-sys", "angular", 'angular-module', "system-scene", "res", "system-common", 'v', 'angular-animate', "plot"], function ($, sys, angular, module, scene, res, common, v) {
         $("#game-first-tip").remove();
 
         module.controller("root_controller", ["$rootScope", "$scope", function (rsp, sp) {
@@ -79,16 +77,17 @@
             function getItemIconUrl(item, color) {
                 return `${common.resPath}icon/item/${color}/${item.icon}`;
             }
-            function getRes(str){
+
+            function getRes(str) {
                 return common.g(str);
             }
             _.extend(sp, {
                 v,
                 img: res.img,
-                res,
-                getPre,
-                getItemIconUrl,
-                getRes,
+                    res,
+                    getPre,
+                    getItemIconUrl,
+                    getRes,
             });
 
     }]);

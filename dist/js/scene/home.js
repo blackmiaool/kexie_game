@@ -127,7 +127,7 @@ define(["require", "system-scene", "system-sys", "angular", "system-dbg", "v", "
                     return true;
                 case "制作":
                     unlockAction();
-                    scene.go("make");
+                    scene.go("make-select");
                     break;
                 case "闲逛":
                     unlockAction();

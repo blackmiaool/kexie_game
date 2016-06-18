@@ -15,8 +15,8 @@ function preEnter() {
     let resSum = 0;
     preload_set(0, resSum)
     if (dbg.imdeveloper) {
-        setTimeout(function(){
-            scene.go("make");
+        setTimeout(function(){            
+            scene.go("character"); 
         })
         return;
     }
