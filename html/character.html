@@ -1,6 +1,61 @@
-<div class="settings-wrap">
-    <label for="" class="title">优势</label>
-    <div red-panel  class="settings-content-wrap">
-        <div class="item"></div>
+<div class="scene-wrap" ng-controller="character_controller">
+    <div class="settings-wrap goodness">
+        <label for="" class="title">优势</label>
+        <div red-panel class="settings-content-wrap">
+            <button ng-mouseenter="setHovering(item)" ng-mouseleave="setHovering()" ng-mousedown="selectItem(item)" ng-repeat="item in res.goodness" ng-class="{disabled:checkDisabled(item)}" class="item deep-btn blue" ng-style='{visibility:item.selecting?"hidden":"visible"}'>
+                <span ng-bind="::item.name"></span>
+                <span ng-bind="item.cost" class="cost"></span>
+            </button>
+        </div>
+    </div>
+    <div class="settings-wrap goodness-selecting">
+        <label for="" class="title">已选优势</label>
+        <div red-panel class="settings-content-wrap">
+            <button ng-mouseenter="setHovering(item)" ng-mouseleave="setHovering()" ng-mousedown="deSelectItem(item)" ng-repeat="item in res.goodness|toArray |filter:{selecting:true}| orderBy:'index'"class="item deep-btn blue">
+                <span ng-bind="::item.name"></span>
+                <span ng-bind="item.cost" class="cost"></span>
+            </button>
+        </div>
+    </div>
+
+
+
+    <div class="settings-wrap weakness">
+        <label for="" class="title">劣势</label>
+        <div red-panel class="settings-content-wrap">
+            <button ng-mouseenter="setHovering(item)" ng-mouseleave="setHovering()" ng-class="{disabled:checkDisabled(item)}" ng-mousedown="selectItem(item)" ng-repeat="item in res.weakness" class="item deep-btn orange" ng-style='{visibility:item.selecting?"hidden":"visible"}'>
+                <span ng-bind="::item.name"></span>
+                <span ng-bind="-item.cost" class="cost"></span>
+            </button>
+        </div>
+    </div>
+    <div class="settings-wrap weakness-selecting">
+        <label for="" class="title">已选劣势</label>
+        <div red-panel class="settings-content-wrap">
+            <button ng-mouseenter="setHovering(item)" ng-mouseleave="setHovering()" ng-mousedown="deSelectItem(item)" ng-repeat="item in res.weakness|toArray |filter:{selecting:true} | orderBy:'index'" class="item deep-btn orange">
+                <span ng-bind="::item.name"></span>
+                <span ng-bind="-item.cost" class="cost"></span>
+            </button>
+        </div>
+    </div>
+
+
+
+
+    <div class="center-area transfrom-center">
+        <div>点数已用:<span ng-bind="usedPoints"></span></div>
+        <div class="points-remain">点数剩余:<span ng-bind="remainPoints"></span></div>
+        <div class="btn-wrap">
+            <button ng-class="{disabled:remainPoints<0}" class="red-icon green" data-icon="accept"></button>
+            <div class="tip">开始游戏</div>
+        </div>
+        <div class="btn-wrap">
+            <button ng-click="random()" class="red-icon yellow" data-icon="hammer"></button>
+            <div class="tip">随机</div>
+        </div>
+    </div>
+    <div class="hover-card" ng-show="hovering">
+        <div class="summary" ng-bind="hovering.summary"></div>
+        <div class="effect" ng-bind="hovering.effect"></div>
     </div>
 </div>

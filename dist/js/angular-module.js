@@ -21,5 +21,12 @@ define(["angular"], function (angular) {
             workPrefix += work.name;
             return workPrefix;
         };
+    }).filter('toArray', function () {
+        return function (obj) {
+
+            return Object.keys(obj).map(function (key) {
+                return obj[key];
+            });
+        };
     });
 });

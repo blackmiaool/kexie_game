@@ -5,8 +5,8 @@
     background-image: url("@{path}/red_panel_corner_big.png");
     background-repeat: no-repeat;
     position: absolute;
-    width: 50%;
-    height: 50%;
+    width: 50.01%;
+    height: 50.01%;
     &.red-panel-corner1 {
         top: 0;
         left: 0;
@@ -68,14 +68,24 @@
 
 .red-icon {
     .square(80px);
-    .bg("@{path}/btn_circle_red.png");
-    &:after {
-        opacity: 0;
+    position: relative;    
+    background-size: contain;
+    background-repeat: no-repeat;    
+    background-image: url("@{path}/btn_circle_red.png");  
+    background-color: transparent;
+    border: none;
+    outline: none;
+    padding: 0;
+    &.disabled{
+        opacity: 0.4;
+    }
+    &:after {        
         .abs-fill;
         .square(68%);
-        content: "";
         .bg("@{path}/Button_Circular_Small_Press.png");
-        transition: 0.05s opacity linear;
+        content: "";
+        opacity: 0;        
+//        transition: 0.15s opacity linear;
     }
     &:active {
         &:after {
@@ -85,20 +95,33 @@
     &:before {
         .abs-fill;
         .square(40%);
-        background-position: center;
-        background-size: contain;
         content: "";
+        background-position: center;
+        background-size: contain;        
+        background-repeat: no-repeat;
     }
     .set-icon(@icon) {
         &[data-icon="@{icon}"] {
             &:before {
-                .bg("@{icon-path}/@{icon}.png");
+                background-image: url("@{icon-path}/@{icon}.png");   
             }
         }
     }
     .set-icon("left");
     .set-icon("home");
     .set-icon("close");
+    .set-icon("accept");
+    .set-icon("hammer");
+    
+    .set-color(@color) {
+        &.@{color} {            
+            background-image: url("@{path}/btn_circle_@{color}.png");
+        }
+    }
+    .set-color(blue);
+    .set-color(red);
+    .set-color(green);
+    .set-color(yellow);
 }
 
 .red-normal-item {
@@ -116,7 +139,7 @@
     //    font-weight: bold;
     position: relative;
     &:after {
-        transition: 0.05s opacity linear;
+//        transition: 0.05s opacity linear;
         content: "";
         .square-crop(3px);
         background-color: rgba(30, 24, 21, 0.34);
@@ -133,31 +156,69 @@
     }
 }
 
-.red-red-btn {
-    .bg("@{path}/Button_Rectangular_Red.png");
-    @height: 57px;
-    line-height: @height;
-    height: @height;
-    width: 183px;
+.deep-btn {
+    .clickable;
+    .bg("@{path}/btn_rect_red.png");
+    @normal-height: 37px;
+    line-height: @normal-height;
+    height:@normal-height;
+    width: 120px;
+    font-size: 15px;
     margin: auto;
     background-position: center;
     text-align: center;
     color: #e1c3a9;
-    font-size: 20px;
-    font-weight: bold;
     position: relative;
-    .clickable;
+    background-color: transparent;
+    border: none;
+    outline: none;
+    padding: 0;
+    &.disabled{
+        opacity: 0.4;
+    }
     &:after {
-        transition: 0.05s opacity linear;
+//        transition: 0.05s opacity linear;
         content: "";
-        .square-crop(5px);
+        .square-crop(3px);
         background-color: rgba(48, 17, 11, 0.34);
         box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.7);
         opacity: 0;
     }
-    &:active {
+    &:not(.disabled):active {
         &:after {
             opacity: 1;
         }
     }
+    
+    
+
+    .set-size(@size,@height){
+        &.@{size}{
+            line-height: @height;
+            height: @height;
+            font-size: 14px/@normal-height*@height;
+            width:110px/@normal-height*@height;
+        }        
+    }
+    .set-size(lg,57px);
+    .set-size(sm,32px);
+    .set-size(xs,24px);
+    .set-color(@color) {
+        &.@{color} {
+            & {
+                background-image: url("@{path}/btn_rect_@{color}.png");
+            }
+        }
+    }
+    .set-color(@color,@font-color) {
+        .set-color(@color);
+        &.@{color} {
+            color: @font-color;
+        }
+    }
+    .set-color(red);
+    .set-color(purple);
+    .set-color(orange);
+    .set-color(green);
+    .set-color(blue);
 }

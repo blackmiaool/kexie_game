@@ -223,7 +223,8 @@ define(["system-common"], function (common) {
 
         res_data_handle(res_json_data);
 
-console.log(res_json_data)
+//console.log(res_json_data)
+    console.log(res)
     function md_trim(str) {
         return str.replace(/(^\s+)|(\s+$)/g, "");
     }
@@ -235,20 +236,20 @@ console.log(res_json_data)
 
             switch (table_name) {                    
             case "goodness":
-                let goodness=[];
-                res.goodness=goodness;
-                d.forEach(function(v,i){
-                    goodness[v.name]=v;
-                })
-               
-                break;
             case "weakness":
-                let weakness=[];
-                res.weakness=weakness;
+                let someness={};
                 d.forEach(function(v,i){
-                    weakness[v.name]=v;
+                    someness[v.name]=v;
+                    someness[v.name].cost=parseInt(v.cost);
+                    let contradiction=someness[v.name].contradiction;
+                    if(contradiction=="none"){
+                        contradiction=[];
+                    }else{
+                        contradiction=contradiction.split(",");
+                    }
+                    someness[v.name].contradiction=contradiction;
                 })
-               
+                res[table_name]=someness;
                 break;
             case "item":
                 let items = {};

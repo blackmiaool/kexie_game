@@ -3047,6 +3047,14 @@ img {
   border-radius: 10000px;
   overflow: hidden;
 }
+.transfrom-center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+}
 .vertical-center {
   position: absolute;
   top: 50%;
@@ -3073,8 +3081,8 @@ img {
   background-image: url("../res/UI/red/red_panel_corner_big.png");
   background-repeat: no-repeat;
   position: absolute;
-  width: 50%;
-  height: 50%;
+  width: 50.01%;
+  height: 50.01%;
 }
 .red-panel-corner.red-panel-corner1 {
   top: 0;
@@ -3141,12 +3149,19 @@ img {
 .red-icon {
   width: 80px;
   height: 80px;
-  background-image: url("../res/UI/red/btn_circle_red.png");
-  background-repeat: no-repeat;
+  position: relative;
   background-size: contain;
+  background-repeat: no-repeat;
+  background-image: url("../res/UI/red/btn_circle_red.png");
+  background-color: transparent;
+  border: none;
+  outline: none;
+  padding: 0;
+}
+.red-icon.disabled {
+  opacity: 0.4;
 }
 .red-icon:after {
-  opacity: 0;
   position: absolute;
   left: 0;
   right: 0;
@@ -3155,11 +3170,11 @@ img {
   margin: auto;
   width: 68%;
   height: 68%;
-  content: "";
   background-image: url("../res/UI/red/Button_Circular_Small_Press.png");
   background-repeat: no-repeat;
   background-size: contain;
-  transition: 0.05s opacity linear;
+  content: "";
+  opacity: 0;
 }
 .red-icon:active:after {
   opacity: 1;
@@ -3173,24 +3188,37 @@ img {
   margin: auto;
   width: 40%;
   height: 40%;
+  content: "";
   background-position: center;
   background-size: contain;
-  content: "";
+  background-repeat: no-repeat;
 }
 .red-icon[data-icon="left"]:before {
   background-image: url("../res/UI/red/icon/left.png");
-  background-repeat: no-repeat;
-  background-size: contain;
 }
 .red-icon[data-icon="home"]:before {
   background-image: url("../res/UI/red/icon/home.png");
-  background-repeat: no-repeat;
-  background-size: contain;
 }
 .red-icon[data-icon="close"]:before {
   background-image: url("../res/UI/red/icon/close.png");
-  background-repeat: no-repeat;
-  background-size: contain;
+}
+.red-icon[data-icon="accept"]:before {
+  background-image: url("../res/UI/red/icon/accept.png");
+}
+.red-icon[data-icon="hammer"]:before {
+  background-image: url("../res/UI/red/icon/hammer.png");
+}
+.red-icon.blue {
+  background-image: url("../res/UI/red/btn_circle_blue.png");
+}
+.red-icon.red {
+  background-image: url("../res/UI/red/btn_circle_red.png");
+}
+.red-icon.green {
+  background-image: url("../res/UI/red/btn_circle_green.png");
+}
+.red-icon.yellow {
+  background-image: url("../res/UI/red/btn_circle_yellow.png");
 }
 .red-normal-item {
   background-image: url("../res/UI/red/red_item_bg.png");
@@ -3228,7 +3256,6 @@ img {
   cursor: url("../res/cursor/link.cur"), pointer !important;
 }
 .red-normal-item:after {
-  transition: 0.05s opacity linear;
   content: "";
   position: absolute;
   top: 3px;
@@ -3245,20 +3272,7 @@ img {
 .red-normal-item:hover {
   color: #dec7aa;
 }
-.red-red-btn {
-  background-image: url("../res/UI/red/Button_Rectangular_Red.png");
-  background-repeat: no-repeat;
-  background-size: contain;
-  line-height: 57px;
-  height: 57px;
-  width: 183px;
-  margin: auto;
-  background-position: center;
-  text-align: center;
-  color: #e1c3a9;
-  font-size: 20px;
-  font-weight: bold;
-  position: relative;
+.deep-btn {
   cursor: url("../res/cursor/link.cur"), pointer !important;
   -webkit-user-select: none;
   -moz-user-select: none;
@@ -3266,8 +3280,24 @@ img {
   -o-user-select: none;
   user-select: none;
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  background-image: url("../res/UI/red/btn_rect_red.png");
+  background-repeat: no-repeat;
+  background-size: contain;
+  line-height: 37px;
+  height: 37px;
+  width: 120px;
+  font-size: 15px;
+  margin: auto;
+  background-position: center;
+  text-align: center;
+  color: #e1c3a9;
+  position: relative;
+  background-color: transparent;
+  border: none;
+  outline: none;
+  padding: 0;
 }
-.red-red-btn > * {
+.deep-btn > * {
   cursor: url("../res/cursor/link.cur"), pointer !important;
   -webkit-user-select: none;
   -moz-user-select: none;
@@ -3275,26 +3305,61 @@ img {
   -o-user-select: none;
   user-select: none;
 }
-.red-red-btn:active,
-.red-red-btn:focus,
-.red-red-btn:hover,
-.red-red-btn:visited {
+.deep-btn:active,
+.deep-btn:focus,
+.deep-btn:hover,
+.deep-btn:visited {
   cursor: url("../res/cursor/link.cur"), pointer !important;
 }
-.red-red-btn:after {
-  transition: 0.05s opacity linear;
+.deep-btn.disabled {
+  opacity: 0.4;
+}
+.deep-btn:after {
   content: "";
   position: absolute;
-  top: 5px;
-  right: 5px;
-  bottom: 5px;
-  left: 5px;
+  top: 3px;
+  right: 3px;
+  bottom: 3px;
+  left: 3px;
   background-color: rgba(48, 17, 11, 0.34);
   box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.7);
   opacity: 0;
 }
-.red-red-btn:active:after {
+.deep-btn:not(.disabled):active:after {
   opacity: 1;
+}
+.deep-btn.lg {
+  line-height: 57px;
+  height: 57px;
+  font-size: 21.56756757px;
+  width: 169.45945946px;
+}
+.deep-btn.sm {
+  line-height: 32px;
+  height: 32px;
+  font-size: 12.10810811px;
+  width: 95.13513514px;
+}
+.deep-btn.xs {
+  line-height: 24px;
+  height: 24px;
+  font-size: 9.08108108px;
+  width: 71.35135135px;
+}
+.deep-btn.red {
+  background-image: url("../res/UI/red/btn_rect_red.png");
+}
+.deep-btn.purple {
+  background-image: url("../res/UI/red/btn_rect_purple.png");
+}
+.deep-btn.orange {
+  background-image: url("../res/UI/red/btn_rect_orange.png");
+}
+.deep-btn.green {
+  background-image: url("../res/UI/red/btn_rect_green.png");
+}
+.deep-btn.blue {
+  background-image: url("../res/UI/red/btn_rect_blue.png");
 }
 html,
 body {
@@ -4001,6 +4066,7 @@ input {
   background-image: url("../res/Background/home.jpg");
   background-repeat: no-repeat;
   background-size: contain;
+  background-size: cover;
 }
 .scene[data-scene="home"] .basic {
   padding: 3px 7px 4px 7px;
@@ -4711,25 +4777,96 @@ input {
 }
 .scene[data-scene="character"] {
   background: url("../res/Background/make.png");
-  text-align: center;
   background-position: bottom;
   background-size: cover;
 }
+.scene[data-scene="character"] .scene-wrap {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+}
+.scene[data-scene="character"] .center-area {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  -o-user-select: none;
+  user-select: none;
+  color: wheat;
+  text-align: center;
+}
+.scene[data-scene="character"] .center-area .btn-wrap {
+  margin-bottom: 10px;
+}
+.scene[data-scene="character"] .center-area .btn-wrap .tip {
+  margin-top: -5px;
+}
+.scene[data-scene="character"] .center-area .points-remain {
+  margin-bottom: 10px;
+}
 .scene[data-scene="character"] .settings-wrap {
   display: inline-block;
-  position: absolute;
-  left: 10px;
-  top: 5px;
-  text-align: left;
-  padding: 17px;
 }
 .scene[data-scene="character"] .settings-wrap .title {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  -o-user-select: none;
+  user-select: none;
   color: white;
+  margin-left: 5px;
+  margin-bottom: 2px;
+  color: wheat;
 }
 .scene[data-scene="character"] .settings-wrap .settings-content-wrap {
   height: 230px;
-  width: 400px;
+  width: 402px;
   position: relative;
+  padding: 17px;
+}
+.scene[data-scene="character"] .settings-wrap .settings-content-wrap .item {
+  margin-left: 2px;
+  margin-top: 2px;
+}
+.scene[data-scene="character"] .settings-wrap .settings-content-wrap .item .cost {
+  font-size: 10px;
+  line-height: 10px;
+  height: 10px;
+  position: absolute;
+  bottom: 6px;
+  right: 8px;
+}
+.scene[data-scene="character"] .settings-wrap.goodness {
+  position: absolute;
+  left: 15px;
+  top: 5px;
+}
+.scene[data-scene="character"] .settings-wrap.goodness-selecting {
+  position: absolute;
+  right: 15px;
+  top: 5px;
+}
+.scene[data-scene="character"] .settings-wrap.weakness {
+  position: absolute;
+  left: 15px;
+  bottom: 5px;
+}
+.scene[data-scene="character"] .settings-wrap.weakness-selecting {
+  position: absolute;
+  right: 15px;
+  bottom: 5px;
+}
+.scene[data-scene="character"] .hover-card {
+  position: fixed;
+  width: 200px;
+  font-size: 12px;
+  color: wheat;
+  background-color: rgba(0, 0, 0, 0.7);
+}
+.scene[data-scene="character"] .hover-card .summary {
+  margin-bottom: 10px;
 }
 #editor-wrap {
   background-color: white;

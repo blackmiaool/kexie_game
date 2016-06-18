@@ -28,8 +28,16 @@ define(["angular"], function (angular) {
                     workPrefix += work.prefix.feature + "之";
                 if (work.prefix.basic)
                     workPrefix += work.prefix.basic + "的";
-                workPrefix+=work.name;
+                workPrefix += work.name;
                 return workPrefix;
             }
         })
+        .filter('toArray', function () {
+            return function (obj ) {
+
+                return Object.keys(obj).map(function (key) {
+                    return obj[key];
+                });
+            };
+        });
 });

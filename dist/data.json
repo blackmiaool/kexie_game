@@ -541,80 +541,118 @@
     }],
     "goodness": [{
         "name": "数学竞赛选手",
-        "summary": "数学相关技能初始等级++",
-        "contradiction": "none"
+        "effect": "数学相关技能初始等级++",
+        "contradiction": "none",
+        "cost": "1",
+        "summary": "在高中学习了过多的数学知识"
     }, {
         "name": "物理竞赛选手",
-        "summary": "电路分析与微积分等级++",
-        "contradiction": "none"
+        "effect": "电路分析与微积分等级++",
+        "contradiction": "none",
+        "cost": "1",
+        "summary": "在高中学习了过多的数学和物理知识"
     }, {
-        "name": "计算机竞赛选手",
-        "summary": "编程相关技能等级++",
-        "contradiction": "none"
+        "name": "信息竞赛选手",
+        "effect": "编程相关技能等级++",
+        "contradiction": "none",
+        "cost": "1",
+        "summary": "在高中学习了过多的计算机知识"
     }, {
         "name": "富二代",
-        "summary": "每月生活费++",
-        "contradiction": "穷二代"
+        "effect": "每月生活费++",
+        "contradiction": "穷二代",
+        "cost": "2",
+        "summary": "投胎技能等级过高"
     }, {
         "name": "同性恋",
-        "summary": "每回合恢复体力++",
-        "contradiction": "none"
+        "effect": "每回合恢复体力++",
+        "contradiction": "none",
+        "cost": "1",
+        "summary": "每天都可以和喜欢的人在一起"
     }, {
         "name": "电二代",
-        "summary": "基础电路技能++",
-        "contradiction": "穷二代"
+        "effect": "基础电路技能++",
+        "contradiction": "穷二代",
+        "cost": "1",
+        "summary": "父母是电子工程师,教过你不少知识"
     }, {
         "name": "学霸",
-        "summary": "上课效率++",
-        "contradiction": "学渣,智商正常"
+        "effect": "上课效率++",
+        "contradiction": "学渣,智商正常",
+        "cost": "2",
+        "summary": "高考发挥失常才来到这里"
     }, {
         "name": "女生",
-        "summary": "所有男性初始友好度++",
-        "contradiction": "none"
+        "effect": "所有男性初始友好度++",
+        "contradiction": "none",
+        "cost": "2",
+        "summary": "毕竟大熊猫"
     }, {
-        "name": "情圣",
-        "summary": "友好度提升效率++",
-        "contradiction": "自闭症"
+        "name": "八面玲珑",
+        "effect": "友好度提升效率++",
+        "contradiction": "自闭症",
+        "cost": "1",
+        "summary": "(说服)请相信我"
     }, {
         "name": "天才",
-        "summary": "学习技能所需体力--",
-        "contradiction": "智商正常"
+        "effect": "学习技能所需体力--",
+        "contradiction": "智商正常",
+        "cost": "2",
+        "summary": "“这次考试但愿能及格”(边拿奖学金边说)"
     }, {
         "name": "交际花",
-        "summary": "闲逛所需体力--",
-        "contradiction": "自闭症"
+        "effect": "闲逛所需体力--",
+        "contradiction": "自闭症",
+        "cost": "1",
+        "summary": "“你有什么任务给我做吗?”"
     }],
     "weakness": [{
         "name": "穷二代",
-        "summary": "每月生活费--",
-        "contradiction": "富二代"
+        "effect": "每月生活费--",
+        "contradiction": "富二代",
+        "cost": "-2",
+        "summary": "投胎技能等级过低"
     }, {
         "name": "异地恋",
-        "summary": "每月生活费--",
-        "contradiction": "none"
+        "effect": "每月生活费--",
+        "contradiction": "none",
+        "cost": "-1",
+        "summary": "经常打电话,时不时见个面"
     }, {
         "name": "手办爱好者",
-        "summary": "每月生活费--",
-        "contradiction": "none"
+        "effect": "每月生活费--",
+        "contradiction": "none",
+        "cost": "-1",
+        "summary": "“国产的都是垃圾”"
     }, {
         "name": "学渣",
-        "summary": "上课效率--",
-        "contradiction": "学霸"
+        "effect": "上课效率--",
+        "contradiction": "学霸",
+        "cost": "-2",
+        "summary": "高考超长发挥才来到这里"
     }, {
         "name": "网瘾青年",
-        "summary": "每回合恢复体力--",
-        "contradiction": "none"
+        "effect": "每回合恢复体力--",
+        "contradiction": "none",
+        "cost": "-2",
+        "summary": "“为了部落!”"
     }, {
         "name": "学生会成员",
-        "summary": "每回合恢复体力--",
-        "contradiction": "none"
+        "effect": "每回合恢复体力--",
+        "contradiction": "none",
+        "cost": "-1",
+        "summary": "老师叫你去搬椅子"
     }, {
         "name": "智商正常",
-        "summary": "学习技能所需体力++",
-        "contradiction": "天才,学神"
+        "effect": "学习技能所需体力++",
+        "contradiction": "天才",
+        "cost": "-2",
+        "summary": "往往会成为主角"
     }, {
         "name": "自闭症",
-        "summary": "闲逛所需体力++",
-        "contradiction": "交际花,情圣"
+        "effect": "闲逛所需体力++",
+        "contradiction": "交际花,八面玲珑",
+        "cost": "-2",
+        "summary": "三人行,则我就不说话"
     }]
 }
