@@ -540,9 +540,25 @@
         "des": "高级技能，用于设计嵌入式相关电路与软件"
     }],
     "goodness": [{
+        "name": "数学竞赛选手",
+        "summary": "数学相关技能初始等级++",
+        "contradiction": "none"
+    }, {
+        "name": "物理竞赛选手",
+        "summary": "电路分析与微积分等级++",
+        "contradiction": "none"
+    }, {
+        "name": "计算机竞赛选手",
+        "summary": "编程相关技能等级++",
+        "contradiction": "none"
+    }, {
         "name": "富二代",
         "summary": "每月生活费++",
         "contradiction": "穷二代"
+    }, {
+        "name": "同性恋",
+        "summary": "每回合恢复体力++",
+        "contradiction": "none"
     }, {
         "name": "电二代",
         "summary": "基础电路技能++",
@@ -551,6 +567,10 @@
         "name": "学霸",
         "summary": "上课效率++",
         "contradiction": "学渣,智商正常"
+    }, {
+        "name": "女生",
+        "summary": "所有男性初始友好度++",
+        "contradiction": "none"
     }, {
         "name": "情圣",
         "summary": "友好度提升效率++",
@@ -569,9 +589,25 @@
         "summary": "每月生活费--",
         "contradiction": "富二代"
     }, {
+        "name": "异地恋",
+        "summary": "每月生活费--",
+        "contradiction": "none"
+    }, {
+        "name": "手办爱好者",
+        "summary": "每月生活费--",
+        "contradiction": "none"
+    }, {
         "name": "学渣",
         "summary": "上课效率--",
         "contradiction": "学霸"
+    }, {
+        "name": "网瘾青年",
+        "summary": "每回合恢复体力--",
+        "contradiction": "none"
+    }, {
+        "name": "学生会成员",
+        "summary": "每回合恢复体力--",
+        "contradiction": "none"
     }, {
         "name": "智商正常",
         "summary": "学习技能所需体力++",

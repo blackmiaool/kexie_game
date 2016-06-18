@@ -198,15 +198,16 @@ function csv2table(dataRaw, outputObj = false) {
                 if(line.replace(/[,\s]/g,"").length==0){
                     continue;
                 }
-                line=line.replace(/,*$/g,""); console.log(line.replace(/[,\s]/g,"").length,line.replace(/[,\s]/g,""))
+                line=line.replace(/,*$/g,""); 
                 try{
                     line=parse(line,{delimiter:",",columns:headerMap[currentTableName]});
                 }catch(e){
                     console.log(e);
+                    console.log(line);
                     continue;
                 }
                 
-                console.log(line.toString(),line)
+          
              
                 tables[currentTableName].push(line[0]);
                 //            console.log(tables)

@@ -232,18 +232,23 @@ console.log(res_json_data)
 
         for (var table_name in data) {
             let d = data[table_name];
-            //            console.log(table_name)
-            //            window[table_name] = data[table_name];
-            console.log(table_name);
+
             switch (table_name) {                    
             case "goodness":
-                    console.log(234)
                 let goodness=[];
                 res.goodness=goodness;
                 d.forEach(function(v,i){
                     goodness[v.name]=v;
                 })
-                console.log(goodness);
+               
+                break;
+            case "weakness":
+                let weakness=[];
+                res.weakness=weakness;
+                d.forEach(function(v,i){
+                    weakness[v.name]=v;
+                })
+               
                 break;
             case "item":
                 let items = {};
@@ -272,7 +277,7 @@ console.log(res_json_data)
                 for (var i in d) {
                     let v = d[i];
                     //replace
-                    console.log(v, v.material);
+                    
                     v.material = md_trim(v.material);
                     v.material = v.material.split("+")
                     var material = v.material;
@@ -297,7 +302,7 @@ console.log(res_json_data)
                     }
 
                 }
-                console.log(products)
+              
 
                 break;
             case "skill":

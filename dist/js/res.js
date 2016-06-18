@@ -758,9 +758,25 @@ define(["system-common"], function (common) {
             "des": "高级技能，用于设计嵌入式相关电路与软件"
         }],
         "goodness": [{
+            "name": "数学竞赛选手",
+            "summary": "数学相关技能初始等级++",
+            "contradiction": "none"
+        }, {
+            "name": "物理竞赛选手",
+            "summary": "电路分析与微积分等级++",
+            "contradiction": "none"
+        }, {
+            "name": "计算机竞赛选手",
+            "summary": "编程相关技能等级++",
+            "contradiction": "none"
+        }, {
             "name": "富二代",
             "summary": "每月生活费++",
             "contradiction": "穷二代"
+        }, {
+            "name": "同性恋",
+            "summary": "每回合恢复体力++",
+            "contradiction": "none"
         }, {
             "name": "电二代",
             "summary": "基础电路技能++",
@@ -769,6 +785,10 @@ define(["system-common"], function (common) {
             "name": "学霸",
             "summary": "上课效率++",
             "contradiction": "学渣,智商正常"
+        }, {
+            "name": "女生",
+            "summary": "所有男性初始友好度++",
+            "contradiction": "none"
         }, {
             "name": "情圣",
             "summary": "友好度提升效率++",
@@ -787,9 +807,25 @@ define(["system-common"], function (common) {
             "summary": "每月生活费--",
             "contradiction": "富二代"
         }, {
+            "name": "异地恋",
+            "summary": "每月生活费--",
+            "contradiction": "none"
+        }, {
+            "name": "手办爱好者",
+            "summary": "每月生活费--",
+            "contradiction": "none"
+        }, {
             "name": "学渣",
             "summary": "上课效率--",
             "contradiction": "学霸"
+        }, {
+            "name": "网瘾青年",
+            "summary": "每回合恢复体力--",
+            "contradiction": "none"
+        }, {
+            "name": "学生会成员",
+            "summary": "每回合恢复体力--",
+            "contradiction": "none"
         }, {
             "name": "智商正常",
             "summary": "学习技能所需体力++",
@@ -812,18 +848,23 @@ define(["system-common"], function (common) {
 
         for (var table_name in data) {
             var d = data[table_name];
-            //            console.log(table_name)
-            //            window[table_name] = data[table_name];
-            console.log(table_name);
+
             switch (table_name) {
                 case "goodness":
-                    console.log(234);
                     var goodness = [];
                     res.goodness = goodness;
                     d.forEach(function (v, i) {
                         goodness[v.name] = v;
                     });
-                    console.log(goodness);
+
+                    break;
+                case "weakness":
+                    var weakness = [];
+                    res.weakness = weakness;
+                    d.forEach(function (v, i) {
+                        weakness[v.name] = v;
+                    });
+
                     break;
                 case "item":
                     var items = {};
@@ -852,7 +893,7 @@ define(["system-common"], function (common) {
                     for (var i in d) {
                         var _v = d[i];
                         //replace
-                        console.log(_v, _v.material);
+
                         _v.material = md_trim(_v.material);
                         _v.material = _v.material.split("+");
                         var material = _v.material;
@@ -876,7 +917,6 @@ define(["system-common"], function (common) {
                             products[d[i].name] = d[i];
                         }
                     }
-                    console.log(products);
 
                     break;
                 case "skill":
