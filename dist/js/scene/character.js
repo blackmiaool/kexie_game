@@ -126,7 +126,7 @@ define(["require", "system-scene", "system-sys", "angular", "system-dbg", "v", "
             sp.hovering = item;
         }
         var $card = void 0;
-        var $wrap = $(".scene[data-scene='character'");
+        var $wrap = $(".scene[data-scene='character']");
         var $cardWrap = $(".hover-card-wrap");
         $wrap.on("mousemove", function (e) {
             $card = $cardWrap.children();
