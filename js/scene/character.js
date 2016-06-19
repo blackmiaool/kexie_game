@@ -128,7 +128,7 @@ module.controller("character_controller", ["$scope", "$rootScope", function (sp,
         sp.hovering=item;
     }
     let $card;
-    let $wrap=$(".scene[data-scene='character'");
+    let $wrap=$(".scene[data-scene='character']");
     let $cardWrap=$(".hover-card-wrap");
     $wrap.on("mousemove",function(e){
         $card=$cardWrap.children();
