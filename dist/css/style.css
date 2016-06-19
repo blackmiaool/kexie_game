@@ -3355,6 +3355,28 @@ img {
 .deep-btn.blue {
   background-image: url("../res/UI/red/btn_rect_blue.png");
 }
+.deep-slot {
+  background-image: url("../res/UI/red/slot.png");
+  background-repeat: no-repeat;
+  background-size: contain;
+  height: 30px;
+  width: 90px;
+  line-height: 31px;
+  text-align: center;
+  font-size: 15px;
+  background-position: center center;
+}
+.deep-little-box {
+  height: 40px;
+  width: 77.89473684px;
+  line-height: 40px;
+  text-align: center;
+  font-size: 17px;
+  background-image: url("../res/UI/red/little_box.png");
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center center;
+}
 html,
 body {
   margin: 0;
@@ -4774,14 +4796,6 @@ input {
   background-position: bottom;
   background-size: cover;
 }
-.scene[data-scene="character"] .scene-wrap {
-  position: absolute;
-  left: 0;
-  right: 0;
-  top: 0;
-  bottom: 0;
-  margin: auto;
-}
 .scene[data-scene="character"] .center-area {
   -webkit-user-select: none;
   -moz-user-select: none;
@@ -4813,6 +4827,9 @@ input {
   margin-left: 5px;
   margin-bottom: 2px;
   color: wheat;
+  position: relative;
+  bottom: -12px;
+  left: 2px;
 }
 .scene[data-scene="character"] .settings-wrap .settings-content-wrap {
   height: 230px;

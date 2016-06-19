@@ -222,3 +222,23 @@
     .set-color(green);
     .set-color(blue);
 }
+.deep-slot{
+    .bg("@{path}/slot.png");
+    @height:30px;
+    height: @height;
+    width:@height * 312 / 104;
+    line-height: @height + 1px;
+    text-align: center;
+    font-size: 15px;    
+    background-position: center center;
+}
+.deep-little-box{
+    @height:40px;
+    height: @height;
+    width:@height * 148 / 76;
+    line-height: @height;
+    text-align: center;
+    font-size: 17px;
+    .bg("@{path}/little_box.png");
+    background-position: center center;
+}
