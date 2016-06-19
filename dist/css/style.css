@@ -4829,7 +4829,7 @@ input {
   color: wheat;
   position: relative;
   bottom: -12px;
-  left: 2px;
+  left: 12px;
 }
 .scene[data-scene="character"] .settings-wrap .settings-content-wrap {
   height: 230px;
