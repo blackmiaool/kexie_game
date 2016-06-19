@@ -76,7 +76,7 @@ define(["system-sys", "system-dbg"], function (sys, dbg) {
     }
 
     function getScene(id) {
-        return $(`#wrap>.scene[data-scene="${id}`);
+        return $(`#wrap>.scene[data-scene="${id}"]`);
     }
     let exports = {
         go,
