@@ -102,7 +102,7 @@ define(["require", "system-scene", "system-sys", "angular", "system-dbg", "v", "
 
                 selectItem(item);
                 len++;
-                console.log(len, _index);
+                //            console.log(len, index)
             }
             len = 0;
             while (len < 100) {
@@ -119,23 +119,30 @@ define(["require", "system-scene", "system-sys", "angular", "system-dbg", "v", "
                 deSelectItem(_item);
 
                 len++;
-                console.log(len, _index2);
+                //            console.log(len, index)
             }
         }
         function setHovering(item) {
             sp.hovering = item;
         }
-        var $card = $(".hover-card");
+        var $card = void 0;
         var $wrap = $(".scene-wrap");
+        var $cardWrap = $(".hover-card-wrap");
         $wrap.on("mousemove", function (e) {
-            //        let x=e.clientX*100/$wrap.width();
-            //        let y=e.clientY*100/$wrap.height();
-            //        console.log(e)
-            //        console.log(x,y)
+            $card = $cardWrap.children();
             $card.css("left", e.clientX + 40 + "px");
             $card.css("top", e.clientY + 2 + "px");
-            //        console.log(e.clientY,$wrap.height())
         });
+        var costs = [[], [1], [1, 2], [1, 2, 3], [1, 2, 3, 4]];
+        function start() {
+            allPairs.forEach(function (vv, i) {
+                if (vv[1].selecting) {
+                    v.character[vv[0]] = 1;
+                }
+            });
+            console.log(v);
+            scene.go("chat");
+        }
         _.extend(sp, {
             selectItem: selectItem,
             deSelectItem: deSelectItem,
@@ -143,7 +150,9 @@ define(["require", "system-scene", "system-sys", "angular", "system-dbg", "v", "
             getRemainPoints: getRemainPoints,
             checkDisabled: checkDisabled,
             random: random,
-            setHovering: setHovering
+            setHovering: setHovering,
+            costs: costs,
+            start: start
         });
     }]);
 

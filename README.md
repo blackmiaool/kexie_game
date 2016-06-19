@@ -31,7 +31,7 @@ name|material|instrument|difficulty|skill
 单片机流水灯1|低端单片机*1+LED*8+电路基础元件*1|表?|10|undefined
 单片机流水灯2|低端单片机*1+LED*8+电路基础元件*1|表?|10|undefined
 单片机流水灯3|低端单片机*1+LED*8+电路基础元件*1|表?|10|undefined
-单片机流水灯4|低端单片机*1+LED*8+电路基础元件*1|表?|10|undefined
+单片机流水灯43|低端单片机*1+LED*8+电路基础元件*1|表?|10|undefined
 单片机流水灯5|低端单片机*1+LED*8+电路基础元件*1|表?|10|undefined
 单片机流水灯6|低端单片机*1+LED*8+电路基础元件*1|表?|10|undefined
 闹钟|低端单片机*1+数码管*8+电路基础元件*1|表?|9|undefined

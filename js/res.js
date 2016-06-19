@@ -51,12 +51,15 @@ define(["system-common"], function (common) {
             red_panel_corner: g("UI/red/red_panel_corner_big.png"),
             red_header: g("UI/red/red_header.png"),
             red_item_bg: g("UI/red/red_item_bg.png"),
+            little_star:g("UI/red/little_star.png"),
+            
+            
             //state
             state_back: g("UI/back.png"),
             state_analog: g("UI/analog3.png"),
             state_digital: g("UI/digital1.png"),
             items_frame: g("UI/items_frame.png"),
-            items_desc_frame: g("UI/item_desc_bg.png"),
+            items_desc_frame: g("UI/item_desc_bg.png"),            
         },
         pp: {
             what: {

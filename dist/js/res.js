@@ -53,6 +53,8 @@ define(["system-common"], function (common) {
             red_panel_corner: g("UI/red/red_panel_corner_big.png"),
             red_header: g("UI/red/red_header.png"),
             red_item_bg: g("UI/red/red_item_bg.png"),
+            little_star: g("UI/red/little_star.png"),
+
             //state
             state_back: g("UI/back.png"),
             state_analog: g("UI/analog3.png"),
@@ -409,7 +411,7 @@ define(["system-common"], function (common) {
             "difficulty": "10",
             "skill": "undefined"
         }, {
-            "name": "单片机流水灯4",
+            "name": "单片机流水灯43",
             "material": "低端单片机*1+LED*8+电路基础元件*1",
             "instrument": "表?",
             "difficulty": "10",

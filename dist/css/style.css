@@ -3081,8 +3081,8 @@ img {
   background-image: url("../res/UI/red/red_panel_corner_big.png");
   background-repeat: no-repeat;
   position: absolute;
-  width: 50.01%;
-  height: 50.01%;
+  width: 50%;
+  height: 50%;
 }
 .red-panel-corner.red-panel-corner1 {
   top: 0;
@@ -3091,27 +3091,21 @@ img {
 }
 .red-panel-corner.red-panel-corner2 {
   top: 0;
-  right: 0;
-  -webkit-transform: scaleX(-1);
-  -ms-transform: scaleX(-1);
-  transform: scaleX(-1);
-  background-position: left top;
+  left: 50%;
+  background-image: url("../res/UI/red/red_panel_corner_big2.png");
+  background-position: right top;
 }
 .red-panel-corner.red-panel-corner3 {
   bottom: 0;
   right: 0;
-  -webkit-transform: rotate(180deg);
-  -ms-transform: rotate(180deg);
-  transform: rotate(180deg);
-  background-position: left top;
+  background-image: url("../res/UI/red/red_panel_corner_big3.png");
+  background-position: right bottom;
 }
 .red-panel-corner.red-panel-corner4 {
   bottom: 0;
   left: 0;
-  -webkit-transform: rotate(180deg) scaleX(-1);
-  -ms-transform: rotate(180deg) scaleX(-1);
-  transform: rotate(180deg) scaleX(-1);
-  background-position: left top;
+  background-image: url("../res/UI/red/red_panel_corner_big4.png");
+  background-position: left bottom;
 }
 .red-scroll-shadow-wrap:after {
   content: "";
@@ -4837,6 +4831,9 @@ input {
   position: absolute;
   bottom: 6px;
   right: 8px;
+}
+.scene[data-scene="character"] .settings-wrap .settings-content-wrap .item .cost img {
+  width: 9px;
 }
 .scene[data-scene="character"] .settings-wrap.goodness {
   position: absolute;

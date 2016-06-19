@@ -103,7 +103,7 @@ module.controller("character_controller", ["$scope", "$rootScope", function (sp,
 
             selectItem(item);
             len++;
-            console.log(len, index)
+//            console.log(len, index)
         }
         len = 0;
         while (len < 100) {
@@ -120,24 +120,31 @@ module.controller("character_controller", ["$scope", "$rootScope", function (sp,
             deSelectItem(item);
 
             len++;
-            console.log(len, index)
+//            console.log(len, index)
         }
 
     }
     function setHovering(item){
         sp.hovering=item;
     }
-    let $card=$(".hover-card");
+    let $card;
     let $wrap=$(".scene-wrap");
+    let $cardWrap=$(".hover-card-wrap");
     $wrap.on("mousemove",function(e){
-//        let x=e.clientX*100/$wrap.width();
-//        let y=e.clientY*100/$wrap.height();
-//        console.log(e)
-//        console.log(x,y)
+        $card=$cardWrap.children();
         $card.css("left",e.clientX+40+"px");
         $card.css("top",e.clientY+2+"px");  
-//        console.log(e.clientY,$wrap.height())
     })
+    let costs=[[],[1],[1,2],[1,2,3],[1,2,3,4]];
+    function start(){
+        allPairs.forEach(function(vv,i){
+            if(vv[1].selecting){
+                v.character[vv[0]]=1;
+            }
+        });
+        console.log(v);
+        scene.go("chat");
+    }
     _.extend(sp, {
         selectItem,
         deSelectItem,
@@ -145,7 +152,9 @@ module.controller("character_controller", ["$scope", "$rootScope", function (sp,
         getRemainPoints,
         checkDisabled,
         random,
-        setHovering,        
+        setHovering,
+        costs,
+        start,
     })
 }]);
 

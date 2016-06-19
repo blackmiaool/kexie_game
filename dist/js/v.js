@@ -47,7 +47,8 @@ define(["res", "system-common"], function (res, common) {
         skill: {},
         item: {},
         device: {},
-        components: {}
+        components: {},
+        character: {}
 
     };
     for (var i in res.skills) {
