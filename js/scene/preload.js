@@ -16,7 +16,7 @@ function preEnter() {
     preload_set(0, resSum)
     if (dbg.imdeveloper) {
         setTimeout(function(){            
-            scene.go("character"); 
+            scene.go("make","硬件流水灯"); 
         })
         return;
     }

@@ -1,30 +1,47 @@
 @import "common.less";
 @path: "@{res-folder}/UI/red";
 @icon-path: "@{res-folder}/UI/red/icon";
-.red-panel-corner {
+.deep-header{
+    background-image: url("@{path}/red_header.png");
+    background-repeat: no-repeat;    
+    background-size: contain;
+    @height:100px;
+    height:@height;
+    width: @height *632px/176px;
+    margin: auto;
+    text-align: center;
+    .transform(translateY(-35%));
+    >.deep-header-text{
+        color: wheat;
+        font-size: 22px;
+        line-height:@height *1.8/2;
+    }
+}
+.deep-panel-corner {
     background-image: url("@{path}/red_panel_corner_big.png");
     background-repeat: no-repeat;
     position: absolute;
     width: 50%;
     height: 50%;
-    &.red-panel-corner1 {
+    z-index: -1;
+    &.deep-panel-corner1 {
         top: 0;
         left: 0;
         background-position: left top;
     }
-    &.red-panel-corner2 {
+    &.deep-panel-corner2 {
         top: 0;
         left: 50%;
         background-image: url("@{path}/red_panel_corner_big2.png");
         background-position: right top;
     }
-    &.red-panel-corner3 {
+    &.deep-panel-corner3 {
         bottom: 0;
         right: 0;
         background-image: url("@{path}/red_panel_corner_big3.png");
         background-position: right bottom;
     }
-    &.red-panel-corner4 {
+    &.deep-panel-corner4 {
         bottom: 0;
         left: 0;
         background-image: url("@{path}/red_panel_corner_big4.png");
@@ -107,11 +124,20 @@
             }
         }
     }
-    .set-icon("left");
-    .set-icon("home");
-    .set-icon("close");
-    .set-icon("accept");
-    .set-icon("hammer");
+    .set-icon(accept);
+    .set-icon(apps);
+    .set-icon(close);
+    .set-icon(down);
+    .set-icon(hammer);
+    .set-icon(home);
+    .set-icon(left);
+    .set-icon(plus);
+    .set-icon(profile);
+    .set-icon(right);
+    .set-icon(rows);
+    .set-icon(settings);
+    .set-icon(star);
+    .set-icon(up);
     
     .set-color(@color) {
         &.@{color} {            
@@ -150,6 +176,9 @@
         &:after {
             opacity: 1;
         }
+    }
+    &.solid{
+        color: #dec7aa;
     }
     &:hover {
         color: #dec7aa;

@@ -1,6 +1,6 @@
 define(["angular"], function (angular) {
     return angular.module('home-app', ['ngAnimate'])
-        .directive('redPanel', function () {
+        .directive('deepPanel', function () {
             return {
                 restrict: 'A',
                 transclude: true,
@@ -11,14 +11,27 @@ define(["angular"], function (angular) {
                     });
                 },
                 template: `               
-                <div class="red-panel-corner red-panel-corner1">
+                <div class="deep-panel-corner deep-panel-corner1">
     </div>
-    <div class="red-panel-corner red-panel-corner2">
+    <div class="deep-panel-corner deep-panel-corner2">
     </div>
-    <div class="red-panel-corner red-panel-corner3">
+    <div class="deep-panel-corner deep-panel-corner3">
     </div>
-    <div class="red-panel-corner red-panel-corner4">
+    <div class="deep-panel-corner deep-panel-corner4">
     </div>`
+            };
+        })
+        .directive('deepHeader', function () {
+            return {
+                restrict: 'A',
+                compile: function (element, attrs) {
+                    element.addClass("deep-header");
+                    let content = attrs["deepContent"];
+                    let $content=element.find(".deep-header-text");
+                    $content.text(attrs.deepHeader);
+                },
+                template: `
+                <span class="deep-header-text unselectable" ng-class="{little:selectingProductKind}"></span>`
             };
         })
         .filter("workPrefix", function () {
@@ -33,7 +46,7 @@ define(["angular"], function (angular) {
             }
         })
         .filter('toArray', function () {
-            return function (obj ) {
+            return function (obj) {
 
                 return Object.keys(obj).map(function (key) {
                     return obj[key];

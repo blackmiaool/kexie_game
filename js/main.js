@@ -75,11 +75,14 @@
             }
 
             function getItemIconUrl(item, color) {
-                return `${common.resPath}icon/item/${color}/${item.icon}`;
+                return `${common.resPath}icon/item/${color}/${item.icon}`;                 
             }
 
             function getRes(str) {
                 return common.g(str);
+            }
+            function goScene(str,...args){
+                scene.go(str,...args);
             }
             _.extend(sp, {
                 v,
@@ -88,13 +91,17 @@
                     getPre,
                     getItemIconUrl,
                     getRes,
+                    goScene,
             });
 
     }]);
 
         sys.sceneLoaded = function () {
             angular.bootstrap("body", ['home-app']);
-            scene.go("preload");
+            setTimeout(function(){
+            scene.go("preload");    
+            })
+            
         }
     });
 })()

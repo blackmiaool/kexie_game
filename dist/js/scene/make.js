@@ -1,5 +1,7 @@
 "use strict";
 
+var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"]) _i["return"](); } finally { if (_d) throw _e; } } return _arr; } return function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { return sliceIterator(arr, i); } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } }; }();
+
 define(["require", "system-scene", "system-sys", "angular", "system-dbg", "v", "res", "angular-module", "plot", "system-common"], function (require, scene, sys, angular, dbg, v, res, module, plot, common) {
     var exports = {};
     var sceneId = "make";
@@ -16,6 +18,46 @@ define(["require", "system-scene", "system-sys", "angular", "system-dbg", "v", "
     function preEnter() {}
 
     function init() {}
+
+    //let working=v.work["硬件流水灯"][0];
+    //console.log(working)
+    module.controller("make_controller", ["$scope", "$rootScope", "$timeout", function (sp, rsp, $timeout) {
+        rsp.$on("make-preEnter", function (e, _ref) {
+            var _ref2 = _slicedToArray(_ref, 2);
+
+            var kind = _ref2[0];
+            var id = _ref2[1];
+
+            if (!kind) {
+                console.error("Miss 'kind' paramater");
+                return;
+            }
+            if (id) {
+                sp.working = v.work[kind][id];
+            } else {
+
+                var working = {
+                    id: common.getUid(),
+                    name: kind,
+                    kind: kind,
+                    prefix: {},
+                    state: "raw",
+                    process: {
+                        basic: 3,
+                        basicMax: 10
+                    },
+                    property: [{
+                        kind: "lucky",
+                        value: "3"
+                    }]
+                };
+                sp.working = working;
+            }
+            console.log(sp.working, sp);
+        });
+
+        _.extend(sp, {});
+    }]);
 
     scene.register(sceneThis);
     return exports;

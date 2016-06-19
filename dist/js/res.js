@@ -880,7 +880,7 @@ define(["system-common"], function (common) {
     res_data_handle(res_json_data);
 
     //console.log(res_json_data)
-    console.log(res);
+    //    console.log(res)
     function md_trim(str) {
         return str.replace(/(^\s+)|(\s+$)/g, "");
     }

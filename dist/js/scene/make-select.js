@@ -17,7 +17,7 @@ define(["require", "system-scene", "system-sys", "angular", "system-dbg", "v", "
 
     function init() {}
 
-    module.controller("make_controller", ["$scope", "$rootScope", "$timeout", function (sp, rsp, $timeout) {
+    module.controller("make_select_controller", ["$scope", "$rootScope", "$timeout", function (sp, rsp, $timeout) {
         function selectProductKind(product) {
             sp.productSelectPageIndex = 1;
             sp.selectingProductKind = product.name;

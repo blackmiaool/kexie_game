@@ -42,15 +42,72 @@
             <!-- inject2: state.html-->
         </div>
         <div class="scene" data-scene="make-select">
-            <!-- inject2: make-select.html-->
-        </div>
-        <div class="scene" data-scene="make">
+            <div ng-controller="make_select_controller" class="make-wrap">
+                
             
+                <div deep-panel class="select-target">
+                    <header>
+                        <img draggable="false" ng-src="{{::img.red_header}}" class="header">
+                        <span class="header unselectable" ng-bind="selectingProductKind||'制作'" ng-class="{little:selectingProductKind}"></span>
+                    </header>
+                    <main class="red-scroll-shadow-wrap">
+                        <div class="red-scroll page" data-page="0" ng-class="{left:productSelectPageIndex>0,center:productSelectPageIndex==0,right:productSelectPageIndex<0}">
+                            
+                            <div ng-click="selectProductKind(product)" ng-repeat="product in res.products" class="red-normal-item product clickable bold" ng-bind="product.name">
+                            </div>
+                        </div>
+                        <div class="red-scroll page" data-page="1" ng-class="{left:productSelectPageIndex>1,center:productSelectPageIndex==1,right:productSelectPageIndex<1}">
+                           <div ng-click="goScene('make',selectingProductKind)" data-deep-btn="blue" class="deep-btn start-new-product">开个新坑</div> 
+                            <div ng-click="goScene('make',selectingProductKind,work.id)" ng-repeat="work in v.work[selectingProductKind]" class="red-normal-item work clickable" ng-bind="work | workPrefix">
+                            </div>
+                        </div>
+                    </main>
+                    <div ng-if="productSelectPageIndex==0" class="red-icon go-back " data-icon="home" ng-click="goHome()"></div>
+                    <div ng-if="productSelectPageIndex==1" class="red-icon go-back " data-icon="left"  ng-click="productSelectPrevPage()"></div>
+                </div>
+                <main>
+                    <div class="make-progress"></div>
+            
+                </main>
+            
+            
+            
+            </div>
         </div>
-        <div class="scene" data-scene="character"  ng-controller="character_controller">
+        <div class="scene" data-scene="make" ng-controller="make_controller">
+            <div class="left top-block">
+                <button ng-click="goScene('home')" class="red-icon go-home" data-icon="home"></button>
+                <button ng-click="goScene('state')" class="red-icon go-state yellow" data-icon="profile"></button>
+                <div class="info-block">
+                    <header>当前制作</header>
+                    <main class="red-normal-item solid" ng-bind="working.kind"></main>        
+                </div>
+                <div class="info-block">
+                    <header>体力</header>
+                    <main class="red-normal-item solid" ng-bind="v.power"></main>        
+                </div>
+                <div class="btn-wrap">
+                <button ng-click="goScene('make-select')" class="deep-btn orange lg change-target">更换制作物品</button>    
+                </div>
+                
+                <br>
+                
+            </div>
+            <div class="center top-block" deep-panel>
+                <header deep-header="工作台">
+                
+                </header>
+            </div>
+            <div class="right top-block"  deep-panel></div>
+            <!--
+                    <img draggable="false" ng-src="{{::img.red_header}}" class="header">
+                        <span class="header unselectable" ng-bind="selectingProductKind||'制作'" ng-class="{little:selectingProductKind}"></span>-->
+            <!--  强化方向 每次强化选择花费的体力?小游戏?如何决定强化策略? 相关技能 哪些影响? 相关材料 失败率? 相关仪器 额外的仪器带来额外的收益?熟练度? 腐烂? 先完成基础部分搭建然后选择强化方向? 面板: 选择产品 制造详情 当前制作 产品:一开始有一段固定条,表示基础部分.开工前可以选择基础部分的方向(创新\性能\稳定).开工后-->
+        </div>
+        <div class="scene" data-scene="character" ng-controller="character_controller">
             <div class="settings-wrap goodness">
                 <label for="" class="title deep-slot">优势</label>
-                <div red-panel class="settings-content-wrap">
+                <div deep-panel class="settings-content-wrap">
                     <button ng-mouseenter="setHovering(item)" ng-mouseleave="setHovering()" ng-mousedown="selectItem(item)" ng-repeat="item in res.goodness" ng-class="{disabled:checkDisabled(item)}" class="item deep-btn blue" ng-style='{visibility:item.selecting?"hidden":"visible"}'>
                         <span ng-bind="::item.name"></span>
                         <div class="cost">
@@ -61,7 +118,7 @@
             </div>
             <div class="settings-wrap goodness-selecting">
                 <label for="" class="title deep-slot">已选优势</label>
-                <div red-panel class="settings-content-wrap">
+                <div deep-panel class="settings-content-wrap">
                     <button ng-mouseenter="setHovering(item)" ng-mouseleave="setHovering()" ng-mousedown="deSelectItem(item)" ng-repeat="item in res.goodness|toArray |filter:{selecting:true}| orderBy:'index'" class="item deep-btn blue">
                         <span ng-bind="::item.name"></span>
                         <div class="cost">
@@ -75,7 +132,7 @@
             
             <div class="settings-wrap weakness">
                 <label for="" class="title deep-slot">劣势</label> 
-                <div red-panel class="settings-content-wrap">
+                <div deep-panel class="settings-content-wrap">
                     <button ng-mouseenter="setHovering(item)" ng-mouseleave="setHovering()" ng-class="{disabled:checkDisabled(item)}" ng-mousedown="selectItem(item)" ng-repeat="item in res.weakness" class="item deep-btn orange" ng-style='{visibility:item.selecting?"hidden":"visible"}'>
                         <span ng-bind="::item.name"></span>
                         <div class="cost">
@@ -86,7 +143,7 @@
             </div>
             <div class="settings-wrap weakness-selecting">
                 <label for="" class="title deep-slot">已选劣势</label>
-                <div red-panel class="settings-content-wrap">
+                <div deep-panel class="settings-content-wrap">
                     <button ng-mouseenter="setHovering(item)" ng-mouseleave="setHovering()" ng-mousedown="deSelectItem(item)" ng-repeat="item in res.weakness|toArray |filter:{selecting:true} | orderBy:'index'" class="item deep-btn orange">
                         <span ng-bind="::item.name"></span>
                         <div class="cost">
@@ -120,6 +177,7 @@
         </div>
     </div>
     <script data-main="js/main" src="js/require.js"></script>
+    <script src="http://192.168.199.128:35729/livereload.js?ext=Chrome&extver=2.1.0"></script> 
 </body>
 
 </html>

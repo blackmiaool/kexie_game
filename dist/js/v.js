@@ -11,6 +11,7 @@ define(["res", "system-common"], function (res, common) {
             道德: 0,
             秩序: 0
         },
+        uid: 0, //unique id
         power: 8,
         powerMax: 10,
         basic: {
@@ -51,6 +52,33 @@ define(["res", "system-common"], function (res, common) {
         character: {}
 
     };
+    var works = {
+        硬件流水灯: {
+            0: {
+                id: common.getUid(),
+                name: "硬件流水灯",
+                prefix: {
+                    feature: "幸运",
+                    basic: "未完成"
+                },
+                process: {
+                    basic: 3,
+                    basicMax: 10,
+                    capability: 0,
+                    capabilityMax: 5,
+                    innovation: 0,
+                    innovationMax: 3,
+                    stability: 0,
+                    stabilityMax: 10
+                },
+                property: [{
+                    kind: "lucky",
+                    value: "3"
+                }]
+            }
+        }
+    };
+    v_init.work = works;
     for (var i in res.skills) {
         v_init.skill[i] = {
             level: 0
@@ -60,10 +88,14 @@ define(["res", "system-common"], function (res, common) {
         v_init.amity[i] = 0;
     }
     for (var i in res.items) {
-        v_init.item[i] = { cnt: 0 };
+        v_init.item[i] = {
+            cnt: 0
+        };
     }
     for (var i in res.devices) {
-        v_init.device[i] = { cnt: 0 };
+        v_init.device[i] = {
+            cnt: 0
+        };
     }
     var v = common.clone(v_init);
 

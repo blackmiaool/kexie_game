@@ -1,7 +1,7 @@
 define(["system-sys", "system-dbg"], function (sys, dbg) {
     requirejs(requirejs.cfg.scenePaths, function () {
         sys.sceneLoaded();
-    }); 
+    });
     let sceneChanging = false;
     let scenes = {};
     let currentScene = {};
@@ -32,42 +32,54 @@ define(["system-sys", "system-dbg"], function (sys, dbg) {
             console.error("bad target");
         }
         let pre;
+
         function callEnter(args) {
             setTimeout(function () {
                 if (target.enter) {
                     target.enter.apply(target, args);
                 }
-                if(pre){
-                    if(pre.leave){
+                if (pre) {
+                    if (pre.leave) {
                         pre.leave();
                     }
-                    sys.$rootScope.$emit(pre.id + "-leave");
+                    sys.$rootScope.$apply(function () {
+                        sys.$rootScope.$emit(pre.id + "-leave");
+                    })
+
                 }
-                sys.$rootScope.$emit(target.id + "-enter", args);
-                
+                sys.$rootScope.$apply(function () {
+                    sys.$rootScope.$emit(target.id + "-enter", args);
+                })
+
+
             }, sceneFadeTime);
         }
 
         if (target.id) {
             console.info("out", currentScene.id, "in", target.id, args);
 
-            if (currentScene.id) {                
+            if (currentScene.id) {
                 currentScene.$dom.fadeOut(sceneFadeTime).inactive();
-                if(currentScene.preLeave){
+                if (currentScene.preLeave) {
                     currentScene.preLeave();
                 }
-                pre=currentScene;
-                sys.$rootScope.$emit(pre.id + "-preLeave");
-            }            
+                pre = currentScene;
+                sys.$rootScope.$apply(function () {
+                    sys.$rootScope.$emit(pre.id + "-preLeave");
+                })
+
+            }
             target.$dom.show().fadeIn(sceneFadeTime).active();
-            
+
             currentScene = target;
 
             if (target.preEnter) {
                 target.preEnter.apply(target, args);
             }
-            sys.$rootScope.$emit(target.id + "-preEnter", args);
-            
+            sys.$rootScope.$apply(function () {
+                sys.$rootScope.$emit(target.id + "-preEnter", args);
+            })
+
             callEnter(args);
         } else {
             callEnter(args);

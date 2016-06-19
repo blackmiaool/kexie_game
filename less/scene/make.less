@@ -1,2 +1,63 @@
 @import "common.less";
 @import "variables.less";
+background: url("@{res-folder}/Background/make.png");
+background-position: bottom;
+background-size: cover;
+&>.top-block {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    display: inline-block;
+    
+}
+
+&>.left {
+    left: 0%;
+    width: 25%;
+    padding-top: 40px;
+    //    text-align: center;
+    .go-home {
+        position: absolute;
+        left: 20px;
+        bottom: 10px;
+    }
+    .go-state {
+        position: absolute;
+        left: 110px;
+        bottom: 10px;
+    }
+    .info-block {
+        color: wheat;
+        header{
+            margin-left: 10px;
+        }
+        margin-bottom: 15px;
+    }
+    .btn-wrap {
+        text-align: center;
+        .change-target {
+            margin: auto;
+        }
+    }
+}
+
+&>.center {
+    left: 25%;
+    width: 50%;
+    top: 40px;
+    header {
+        //        img.header{
+        //            display: inline-block;
+        //            width: 100%;
+        //        }
+        //        span.header{
+        //            position: absolute;
+        //        }
+    }
+}
+
+&>.right {
+    left: 75%;
+    width: 25%;
+    top: 40px;
+}

@@ -36,16 +36,17 @@
             <!-- inject2: state.html-->
         </div>
         <div class="scene" data-scene="make-select">
-            <!-- inject2: make-select.html-->
+            <!-- inject: make-select.html-->
         </div>
-        <div class="scene" data-scene="make">
+        <div class="scene" data-scene="make" ng-controller="make_controller">
             <!-- inject: make.html-->
         </div>
-        <div class="scene" data-scene="character"  ng-controller="character_controller">
+        <div class="scene" data-scene="character" ng-controller="character_controller">
             <!-- inject: character.html-->
         </div>
     </div>
     <script data-main="js/main" src="js/require.js"></script>
+    <script src="http://192.168.199.128:35729/livereload.js?ext=Chrome&extver=2.1.0"></script> 
 </body>
 
 </html>

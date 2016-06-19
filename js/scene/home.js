@@ -134,8 +134,7 @@ function (sp, rsp, $timeout) {
                 scene.go("bigmap");
                 break;
             case "购物":
-                rsp.$emit("openStore");
-                console.log(234)
+                rsp.$emit("openStore");             
                 unlockAction(true);
                 break;
             case "休息":

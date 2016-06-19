@@ -135,7 +135,6 @@ define(["require", "system-scene", "system-sys", "angular", "system-dbg", "v", "
                     break;
                 case "购物":
                     rsp.$emit("openStore");
-                    console.log(234);
                     unlockAction(true);
                     break;
                 case "休息":

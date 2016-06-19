@@ -56,8 +56,12 @@ define(function () {
         v = thisv;
     }
     function getUid() {
-        v.uid++;
-        return v.uid;
+        if (v) {
+            v.uid++;
+            return v.uid;
+        } else {
+            return 0;
+        }
     }
     var local = {
 

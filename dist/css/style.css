@@ -3077,31 +3077,49 @@ img {
 .bold {
   font-weight: bold;
 }
-.red-panel-corner {
+.deep-header {
+  background-image: url("../res/UI/red/red_header.png");
+  background-repeat: no-repeat;
+  background-size: contain;
+  height: 100px;
+  width: 359.09090909px;
+  margin: auto;
+  text-align: center;
+  -webkit-transform: translateY(-35%);
+  -ms-transform: translateY(-35%);
+  transform: translateY(-35%);
+}
+.deep-header > .deep-header-text {
+  color: wheat;
+  font-size: 22px;
+  line-height: 90px;
+}
+.deep-panel-corner {
   background-image: url("../res/UI/red/red_panel_corner_big.png");
   background-repeat: no-repeat;
   position: absolute;
   width: 50%;
   height: 50%;
+  z-index: -1;
 }
-.red-panel-corner.red-panel-corner1 {
+.deep-panel-corner.deep-panel-corner1 {
   top: 0;
   left: 0;
   background-position: left top;
 }
-.red-panel-corner.red-panel-corner2 {
+.deep-panel-corner.deep-panel-corner2 {
   top: 0;
   left: 50%;
   background-image: url("../res/UI/red/red_panel_corner_big2.png");
   background-position: right top;
 }
-.red-panel-corner.red-panel-corner3 {
+.deep-panel-corner.deep-panel-corner3 {
   bottom: 0;
   right: 0;
   background-image: url("../res/UI/red/red_panel_corner_big3.png");
   background-position: right bottom;
 }
-.red-panel-corner.red-panel-corner4 {
+.deep-panel-corner.deep-panel-corner4 {
   bottom: 0;
   left: 0;
   background-image: url("../res/UI/red/red_panel_corner_big4.png");
@@ -3187,20 +3205,47 @@ img {
   background-size: contain;
   background-repeat: no-repeat;
 }
-.red-icon[data-icon="left"]:before {
-  background-image: url("../res/UI/red/icon/left.png");
+.red-icon[data-icon="accept"]:before {
+  background-image: url("../res/UI/red/icon/accept.png");
 }
-.red-icon[data-icon="home"]:before {
-  background-image: url("../res/UI/red/icon/home.png");
+.red-icon[data-icon="apps"]:before {
+  background-image: url("../res/UI/red/icon/apps.png");
 }
 .red-icon[data-icon="close"]:before {
   background-image: url("../res/UI/red/icon/close.png");
 }
-.red-icon[data-icon="accept"]:before {
-  background-image: url("../res/UI/red/icon/accept.png");
+.red-icon[data-icon="down"]:before {
+  background-image: url("../res/UI/red/icon/down.png");
 }
 .red-icon[data-icon="hammer"]:before {
   background-image: url("../res/UI/red/icon/hammer.png");
+}
+.red-icon[data-icon="home"]:before {
+  background-image: url("../res/UI/red/icon/home.png");
+}
+.red-icon[data-icon="left"]:before {
+  background-image: url("../res/UI/red/icon/left.png");
+}
+.red-icon[data-icon="plus"]:before {
+  background-image: url("../res/UI/red/icon/plus.png");
+}
+.red-icon[data-icon="profile"]:before {
+  background-image: url("../res/UI/red/icon/profile.png");
+}
+.red-icon[data-icon="right"]:before {
+  background-image: url("../res/UI/red/icon/right.png");
+}
+.red-icon[data-icon="rows"]:before {
+  background-image: url("../res/UI/red/icon/rows.png");
+}
+.red-icon[data-icon="settings"]:before {
+  background-image: url("../res/UI/red/icon/settings.png");
+}
+.red-icon[data-icon="star"]:before {
+  background-image: url("../res/UI/red/icon/star.png");
+}
+.red-icon[data-icon="up"]:before {
+  background-image: url("../res/UI/red/icon/up.png");
 }
 .red-icon.blue {
   background-image: url("../res/UI/red/btn_circle_blue.png");
@@ -3262,6 +3307,9 @@ img {
 }
 .red-normal-item:active:after {
   opacity: 1;
+}
+.red-normal-item.solid {
+  color: #dec7aa;
 }
 .red-normal-item:hover {
   color: #dec7aa;
@@ -4703,6 +4751,7 @@ input {
   background-image: url("../res/Background/make.png");
   background-repeat: no-repeat;
   background-size: contain;
+  background-size: cover;
 }
 .scene[data-scene="make-select"] .select-target {
   position: absolute;
@@ -4790,6 +4839,55 @@ input {
 }
 .scene[data-scene="make-select"] .select-target main .work {
   font-size: 14px;
+}
+.scene[data-scene="make"] {
+  background: url("../res/Background/make.png");
+  background-position: bottom;
+  background-size: cover;
+}
+.scene[data-scene="make"] > .top-block {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  display: inline-block;
+}
+.scene[data-scene="make"] > .left {
+  left: 0%;
+  width: 25%;
+  padding-top: 40px;
+}
+.scene[data-scene="make"] > .left .go-home {
+  position: absolute;
+  left: 20px;
+  bottom: 10px;
+}
+.scene[data-scene="make"] > .left .go-state {
+  position: absolute;
+  left: 110px;
+  bottom: 10px;
+}
+.scene[data-scene="make"] > .left .info-block {
+  color: wheat;
+  margin-bottom: 15px;
+}
+.scene[data-scene="make"] > .left .info-block header {
+  margin-left: 10px;
+}
+.scene[data-scene="make"] > .left .btn-wrap {
+  text-align: center;
+}
+.scene[data-scene="make"] > .left .btn-wrap .change-target {
+  margin: auto;
+}
+.scene[data-scene="make"] > .center {
+  left: 25%;
+  width: 50%;
+  top: 40px;
+}
+.scene[data-scene="make"] > .right {
+  left: 75%;
+  width: 25%;
+  top: 40px;
 }
 .scene[data-scene="character"] {
   background: url("../res/Background/make.png");

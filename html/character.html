@@ -1,6 +1,6 @@
 <div class="settings-wrap goodness">
     <label for="" class="title deep-slot">优势</label>
-    <div red-panel class="settings-content-wrap">
+    <div deep-panel class="settings-content-wrap">
         <button ng-mouseenter="setHovering(item)" ng-mouseleave="setHovering()" ng-mousedown="selectItem(item)" ng-repeat="item in res.goodness" ng-class="{disabled:checkDisabled(item)}" class="item deep-btn blue" ng-style='{visibility:item.selecting?"hidden":"visible"}'>
             <span ng-bind="::item.name"></span>
             <div class="cost">
@@ -11,7 +11,7 @@
 </div>
 <div class="settings-wrap goodness-selecting">
     <label for="" class="title deep-slot">已选优势</label>
-    <div red-panel class="settings-content-wrap">
+    <div deep-panel class="settings-content-wrap">
         <button ng-mouseenter="setHovering(item)" ng-mouseleave="setHovering()" ng-mousedown="deSelectItem(item)" ng-repeat="item in res.goodness|toArray |filter:{selecting:true}| orderBy:'index'" class="item deep-btn blue">
             <span ng-bind="::item.name"></span>
             <div class="cost">
@@ -25,7 +25,7 @@
 
 <div class="settings-wrap weakness">
     <label for="" class="title deep-slot">劣势</label> 
-    <div red-panel class="settings-content-wrap">
+    <div deep-panel class="settings-content-wrap">
         <button ng-mouseenter="setHovering(item)" ng-mouseleave="setHovering()" ng-class="{disabled:checkDisabled(item)}" ng-mousedown="selectItem(item)" ng-repeat="item in res.weakness" class="item deep-btn orange" ng-style='{visibility:item.selecting?"hidden":"visible"}'>
             <span ng-bind="::item.name"></span>
             <div class="cost">
@@ -36,7 +36,7 @@
 </div>
 <div class="settings-wrap weakness-selecting">
     <label for="" class="title deep-slot">已选劣势</label>
-    <div red-panel class="settings-content-wrap">
+    <div deep-panel class="settings-content-wrap">
         <button ng-mouseenter="setHovering(item)" ng-mouseleave="setHovering()" ng-mousedown="deSelectItem(item)" ng-repeat="item in res.weakness|toArray |filter:{selecting:true} | orderBy:'index'" class="item deep-btn orange">
             <span ng-bind="::item.name"></span>
             <div class="cost">
