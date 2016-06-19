@@ -3,7 +3,7 @@
 var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol ? "symbol" : typeof obj; };
 
 define(function () {
-    var resPath = "/res/";
+    var resPath = "res/";
     var v = void 0;
     var exports = {
         resPath: resPath,

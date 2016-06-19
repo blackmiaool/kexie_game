@@ -1,5 +1,5 @@
 define(function () {
-    let resPath = "/res/";
+    let resPath = "res/";
     let v;
     var exports = {
         resPath,
