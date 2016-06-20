@@ -3211,20 +3211,71 @@ img {
 .red-icon[data-icon="apps"]:before {
   background-image: url("../res/UI/red/icon/apps.png");
 }
+.red-icon[data-icon="armor"]:before {
+  background-image: url("../res/UI/red/icon/armor.png");
+}
+.red-icon[data-icon="bulls"]:before {
+  background-image: url("../res/UI/red/icon/bulls.png");
+}
+.red-icon[data-icon="chat"]:before {
+  background-image: url("../res/UI/red/icon/chat.png");
+}
+.red-icon[data-icon="chest"]:before {
+  background-image: url("../res/UI/red/icon/chest.png");
+}
 .red-icon[data-icon="close"]:before {
   background-image: url("../res/UI/red/icon/close.png");
+}
+.red-icon[data-icon="crosshair"]:before {
+  background-image: url("../res/UI/red/icon/crosshair.png");
+}
+.red-icon[data-icon="crystal"]:before {
+  background-image: url("../res/UI/red/icon/crystal.png");
+}
+.red-icon[data-icon="cup"]:before {
+  background-image: url("../res/UI/red/icon/cup.png");
 }
 .red-icon[data-icon="down"]:before {
   background-image: url("../res/UI/red/icon/down.png");
 }
+.red-icon[data-icon="flag"]:before {
+  background-image: url("../res/UI/red/icon/flag.png");
+}
 .red-icon[data-icon="hammer"]:before {
   background-image: url("../res/UI/red/icon/hammer.png");
+}
+.red-icon[data-icon="heart"]:before {
+  background-image: url("../res/UI/red/icon/heart.png");
 }
 .red-icon[data-icon="home"]:before {
   background-image: url("../res/UI/red/icon/home.png");
 }
+.red-icon[data-icon="layout"]:before {
+  background-image: url("../res/UI/red/icon/layout.png");
+}
 .red-icon[data-icon="left"]:before {
   background-image: url("../res/UI/red/icon/left.png");
+}
+.red-icon[data-icon="letter"]:before {
+  background-image: url("../res/UI/red/icon/letter.png");
+}
+.red-icon[data-icon="lightning"]:before {
+  background-image: url("../res/UI/red/icon/lightning.png");
+}
+.red-icon[data-icon="lock"]:before {
+  background-image: url("../res/UI/red/icon/lock.png");
+}
+.red-icon[data-icon="network"]:before {
+  background-image: url("../res/UI/red/icon/network.png");
+}
+.red-icon[data-icon="pause"]:before {
+  background-image: url("../res/UI/red/icon/pause.png");
+}
+.red-icon[data-icon="planet"]:before {
+  background-image: url("../res/UI/red/icon/planet.png");
+}
+.red-icon[data-icon="play"]:before {
+  background-image: url("../res/UI/red/icon/play.png");
 }
 .red-icon[data-icon="plus"]:before {
   background-image: url("../res/UI/red/icon/plus.png");
@@ -3232,8 +3283,20 @@ img {
 .red-icon[data-icon="profile"]:before {
   background-image: url("../res/UI/red/icon/profile.png");
 }
+.red-icon[data-icon="puzzle"]:before {
+  background-image: url("../res/UI/red/icon/puzzle.png");
+}
+.red-icon[data-icon="replay"]:before {
+  background-image: url("../res/UI/red/icon/replay.png");
+}
 .red-icon[data-icon="right"]:before {
   background-image: url("../res/UI/red/icon/right.png");
+}
+.red-icon[data-icon="rocket"]:before {
+  background-image: url("../res/UI/red/icon/rocket.png");
+}
+.red-icon[data-icon="rockets"]:before {
+  background-image: url("../res/UI/red/icon/rockets.png");
 }
 .red-icon[data-icon="rows"]:before {
   background-image: url("../res/UI/red/icon/rows.png");
@@ -3241,8 +3304,20 @@ img {
 .red-icon[data-icon="settings"]:before {
   background-image: url("../res/UI/red/icon/settings.png");
 }
+.red-icon[data-icon="share"]:before {
+  background-image: url("../res/UI/red/icon/share.png");
+}
+.red-icon[data-icon="shield"]:before {
+  background-image: url("../res/UI/red/icon/shield.png");
+}
 .red-icon[data-icon="star"]:before {
   background-image: url("../res/UI/red/icon/star.png");
+}
+.red-icon[data-icon="timeer"]:before {
+  background-image: url("../res/UI/red/icon/timeer.png");
+}
+.red-icon[data-icon="tune"]:before {
+  background-image: url("../res/UI/red/icon/tune.png");
 }
 .red-icon[data-icon="up"]:before {
   background-image: url("../res/UI/red/icon/up.png");
@@ -3404,12 +3479,12 @@ img {
   background-image: url("../res/UI/red/btn_rect_blue.png");
 }
 .deep-slot {
-  background-image: url("../res/UI/red/slot.png");
+  background-image: url("../res/UI/red/slot2.png");
   background-repeat: no-repeat;
   background-size: contain;
-  height: 30px;
-  width: 90px;
-  line-height: 31px;
+  height: 38px;
+  width: 90.47619048px;
+  line-height: 39px;
   text-align: center;
   font-size: 15px;
   background-position: center center;
@@ -4855,8 +4930,10 @@ input {
   left: 0%;
   width: 25%;
   padding-top: 40px;
+  padding-left: 10px;
+  padding-right: 10px;
 }
-.scene[data-scene="make"] > .left .go-home {
+.scene[data-scene="make"] > .left .go-back {
   position: absolute;
   left: 20px;
   bottom: 10px;
@@ -4873,6 +4950,10 @@ input {
 .scene[data-scene="make"] > .left .info-block header {
   margin-left: 10px;
 }
+.scene[data-scene="make"] > .left .info-block main {
+  width: 100%;
+  font-size: 15px;
+}
 .scene[data-scene="make"] > .left .btn-wrap {
   text-align: center;
 }
@@ -4888,6 +4969,8 @@ input {
   left: 75%;
   width: 25%;
   top: 40px;
+  padding: 17px 22px;
+  color: wheat;
 }
 .scene[data-scene="character"] {
   background: url("../res/Background/make.png");
@@ -4926,7 +5009,7 @@ input {
   margin-bottom: 2px;
   color: wheat;
   position: relative;
-  bottom: -12px;
+  bottom: -17px;
   left: 12px;
 }
 .scene[data-scene="character"] .settings-wrap .settings-content-wrap {
@@ -4934,6 +5017,7 @@ input {
   width: 402px;
   position: relative;
   padding: 17px;
+  z-index: 1;
 }
 .scene[data-scene="character"] .settings-wrap .settings-content-wrap .item {
   margin-left: 2px;
@@ -4971,6 +5055,7 @@ input {
   bottom: 5px;
 }
 .scene[data-scene="character"] .hover-card {
+  z-index: 1000;
   position: fixed;
   width: 200px;
   font-size: 12px;

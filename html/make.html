@@ -1,27 +1,49 @@
 <div class="left top-block">
-    <button ng-click="goScene('home')" class="red-icon go-home" data-icon="home"></button>
+    <button ng-click="goScene('home')" class="red-icon go-back" data-icon="left"></button>
     <button ng-click="goScene('state')" class="red-icon go-state yellow" data-icon="profile"></button>
     <div class="info-block">
         <header>当前制作</header>
-        <main class="red-normal-item solid" ng-bind="working.kind"></main>        
+        <main class="red-normal-item solid" ng-bind="working.kind">
+            
+        </main>
     </div>
     <div class="info-block">
         <header>体力</header>
-        <main class="red-normal-item solid" ng-bind="v.power"></main>        
+        <main class="red-normal-item solid" ng-bind="v.power"></main>
     </div>
     <div class="btn-wrap">
-    <button ng-click="goScene('make-select')" class="deep-btn orange lg change-target">更换制作物品</button>    
+        <button ng-click="goScene('make-select')" class="deep-btn orange lg change-target">更换制作物品</button>
     </div>
-    
+
     <br>
-    
+
 </div>
 <div class="center top-block" deep-panel>
     <header deep-header="工作台">
-    
+
     </header>
 </div>
-<div class="right top-block"  deep-panel></div>
+<div class="right top-block" deep-panel>
+    <div class="section">
+        <header>相关技能</header>
+        <main>
+            <div ng-repeat="skill in res.products[working.kind].skill" class="skill">
+              <span ng-bind="skill"></span>  
+            </div>
+            <div ng-repeat="extSkill in res.products[working.kind].skill" class="skill">
+              <span ng-bind="skill"></span>  
+            </div>
+        </main>
+    </div>
+    <div class="section">
+        <header>相关仪器</header>
+        <main>
+            <div ng-repeat="instrument in res.products[working.kind].instrument" class="instrument">
+              <span ng-bind="instrument"></span>  
+            </div>
+        </main>
+    </div>
+</div>
 <!--
         <img draggable="false" ng-src="{{::img.red_header}}" class="header">
             <span class="header unselectable" ng-bind="selectingProductKind||'制作'" ng-class="{little:selectingProductKind}"></span>-->

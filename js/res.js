@@ -51,15 +51,15 @@ define(["system-common"], function (common) {
             red_panel_corner: g("UI/red/red_panel_corner_big.png"),
             red_header: g("UI/red/red_header.png"),
             red_item_bg: g("UI/red/red_item_bg.png"),
-            little_star:g("UI/red/little_star.png"),
-            
-            
+            little_star: g("UI/red/little_star.png"),
+
+
             //state
             state_back: g("UI/back.png"),
             state_analog: g("UI/analog3.png"),
             state_digital: g("UI/digital1.png"),
             items_frame: g("UI/items_frame.png"),
-            items_desc_frame: g("UI/item_desc_bg.png"),            
+            items_desc_frame: g("UI/item_desc_bg.png"),
         },
         pp: {
             what: {
@@ -226,8 +226,8 @@ define(["system-common"], function (common) {
 
         res_data_handle(res_json_data);
 
-//console.log(res_json_data)
-//    console.log(res) 
+    //console.log(res_json_data)
+    //    console.log(res) 
     function md_trim(str) {
         return str.replace(/(^\s+)|(\s+$)/g, "");
     }
@@ -237,22 +237,22 @@ define(["system-common"], function (common) {
         for (var table_name in data) {
             let d = data[table_name];
 
-            switch (table_name) {                    
+            switch (table_name) {
             case "goodness":
             case "weakness":
-                let someness={};
-                d.forEach(function(v,i){
-                    someness[v.name]=v;
-                    someness[v.name].cost=parseInt(v.cost);
-                    let contradiction=someness[v.name].contradiction;
-                    if(contradiction=="none"){
-                        contradiction=[];
-                    }else{
-                        contradiction=contradiction.split(",");
+                let someness = {};
+                d.forEach(function (v, i) {
+                    someness[v.name] = v;
+                    someness[v.name].cost = parseInt(v.cost);
+                    let contradiction = someness[v.name].contradiction;
+                    if (contradiction == "none") {
+                        contradiction = [];
+                    } else {
+                        contradiction = contradiction.split(",");
                     }
-                    someness[v.name].contradiction=contradiction;
+                    someness[v.name].contradiction = contradiction;
                 })
-                res[table_name]=someness;
+                res[table_name] = someness;
                 break;
             case "item":
                 let items = {};
@@ -281,9 +281,11 @@ define(["system-common"], function (common) {
                 for (var i in d) {
                     let v = d[i];
                     //replace
-                    
+
                     v.material = md_trim(v.material);
                     v.material = v.material.split("+")
+                    v.skill = v.skill.split(",");
+                    v.extSkill = v.extSkill.split(",");
                     var material = v.material;
                     for (var j in material) {
                         var materials = material[j].split("*")
@@ -298,15 +300,33 @@ define(["system-common"], function (common) {
                             cnt: materials[1]
                         };
                     }
+                    let instrumentStr = v.instrument;
+                    v.instrument = instrumentStr.match(/[^!\?]+!/g);
+                    if (v.instrument) {
+                        v.instrument=v.instrument.map(function (v, i) {
+                            return v.replace(/[!\?]/g, "");
+                        });
+                    } else {
+                        v.instrument = [];
+                    }
 
-                    v.instrument = v.instrument.split("+");
+                    v.optionalInstrument = instrumentStr.match(/[^!\?]+\?/g);
+                    if (v.optionalInstrument) {
+                        v.optionalInstrument=v.optionalInstrument.map(function (v, i) {
+                            return v.replace(/[!\?]/g, "");
+                        });
+                    } else {
+                        v.optionalInstrument = [];
+                    }
+
+                    //                    v.instrument = v.instrument.split("+");
                     v.product = [];
                     for (var i in d) {
                         products[d[i].name] = d[i]
                     }
 
                 }
-              
+
 
                 break;
             case "skill":

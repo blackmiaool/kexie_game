@@ -383,81 +383,17 @@ define(["system-common"], function (common) {
         "products": [{
             "name": "单片机流水灯",
             "material": "低端单片机*1+LED*8+电路基础元件*1",
-            "instrument": "万用表,逻辑分析仪",
+            "instrument": "万用表!逻辑分析仪?",
             "difficulty": "3",
-            "skill": "c语言v1"
+            "skill": "c语言v1,电路分析",
+            "extSkill": "数字电路,单片机原理,电路分析"
         }, {
             "name": "硬件流水灯",
             "material": "五5伍*1+LED*8+电路基础元件*1",
-            "instrument": "万用表",
+            "instrument": "万用表!",
             "difficulty": "2",
-            "skill": "电路分析v1"
-        }, {
-            "name": "单片机流水灯1",
-            "material": "低端单片机*1+LED*8+电路基础元件*1",
-            "instrument": "表?",
-            "difficulty": "10",
-            "skill": "undefined"
-        }, {
-            "name": "单片机流水灯2",
-            "material": "低端单片机*1+LED*8+电路基础元件*1",
-            "instrument": "表?",
-            "difficulty": "10",
-            "skill": "undefined"
-        }, {
-            "name": "单片机流水灯3",
-            "material": "低端单片机*1+LED*8+电路基础元件*1",
-            "instrument": "表?",
-            "difficulty": "10",
-            "skill": "undefined"
-        }, {
-            "name": "单片机流水灯43",
-            "material": "低端单片机*1+LED*8+电路基础元件*1",
-            "instrument": "表?",
-            "difficulty": "10",
-            "skill": "undefined"
-        }, {
-            "name": "单片机流水灯5",
-            "material": "低端单片机*1+LED*8+电路基础元件*1",
-            "instrument": "表?",
-            "difficulty": "10",
-            "skill": "undefined"
-        }, {
-            "name": "单片机流水灯6",
-            "material": "低端单片机*1+LED*8+电路基础元件*1",
-            "instrument": "表?",
-            "difficulty": "10",
-            "skill": "undefined"
-        }, {
-            "name": "闹钟",
-            "material": "低端单片机*1+数码管*8+电路基础元件*1",
-            "instrument": "表?",
-            "difficulty": "9",
-            "skill": "undefined"
-        }, {
-            "name": "巡线车",
-            "material": "中端单片机*1+LED*16+电路基础元件*3+机械元件*10",
-            "instrument": "表!电钻!锯子!工具套装!逻辑分析仪?",
-            "difficulty": "9",
-            "skill": "undefined"
-        }, {
-            "name": "飞思卡尔智能车",
-            "material": "中端单片机*1+LED*16+电路基础元件*6+机械元件*3",
-            "instrument": "表!电钻!锯子?工具套装!逻辑分析仪?",
-            "difficulty": "9",
-            "skill": "undefined"
-        }, {
-            "name": "女朋友（残、伪）",
-            "material": "机械元件*10+舵机*8+高端单片机*2",
-            "instrument": "烙铁+电钻+电锯+机械基础工具",
-            "difficulty": "30",
-            "skill": "undefined"
-        }, {
-            "name": "男朋友（残、伪）",
-            "material": "机械元件*2+振动电机*1+普通电池*1",
-            "instrument": "烙铁+电锯+机械基础工具",
-            "difficulty": "25",
-            "skill": "undefined"
+            "skill": "电路分析v1",
+            "extSkill": "模拟电路"
         }],
         "device": [{
             "name": "烙铁",
@@ -937,6 +873,8 @@ define(["system-common"], function (common) {
 
                         _v.material = md_trim(_v.material);
                         _v.material = _v.material.split("+");
+                        _v.skill = _v.skill.split(",");
+                        _v.extSkill = _v.extSkill.split(",");
                         var material = _v.material;
                         for (var j in material) {
                             var materials = material[j].split("*");
@@ -951,8 +889,26 @@ define(["system-common"], function (common) {
                                 cnt: materials[1]
                             };
                         }
+                        var instrumentStr = _v.instrument;
+                        _v.instrument = instrumentStr.match(/[^!\?]+!/g);
+                        if (_v.instrument) {
+                            _v.instrument = _v.instrument.map(function (v, i) {
+                                return v.replace(/[!\?]/g, "");
+                            });
+                        } else {
+                            _v.instrument = [];
+                        }
 
-                        _v.instrument = _v.instrument.split("+");
+                        _v.optionalInstrument = instrumentStr.match(/[^!\?]+\?/g);
+                        if (_v.optionalInstrument) {
+                            _v.optionalInstrument = _v.optionalInstrument.map(function (v, i) {
+                                return v.replace(/[!\?]/g, "");
+                            });
+                        } else {
+                            _v.optionalInstrument = [];
+                        }
+
+                        //                    v.instrument = v.instrument.split("+");
                         _v.product = [];
                         for (var i in d) {
                             products[d[i].name] = d[i];

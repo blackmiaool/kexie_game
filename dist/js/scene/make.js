@@ -21,6 +21,7 @@ define(["require", "system-scene", "system-sys", "angular", "system-dbg", "v", "
 
     //let working=v.work["硬件流水灯"][0];
     //console.log(working)
+    console.log(res);
     module.controller("make_controller", ["$scope", "$rootScope", "$timeout", function (sp, rsp, $timeout) {
         rsp.$on("make-preEnter", function (e, _ref) {
             var _ref2 = _slicedToArray(_ref, 2);

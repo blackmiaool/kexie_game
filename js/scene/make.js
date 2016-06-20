@@ -21,6 +21,7 @@ function init() {
 
 //let working=v.work["硬件流水灯"][0];
 //console.log(working)
+console.log(res)
 module.controller("make_controller", ["$scope", "$rootScope", "$timeout", function (sp, rsp, $timeout) {
     rsp.$on("make-preEnter", function (e, [kind, id]) {
         if (!kind) {
