@@ -1,5 +1,7 @@
 "use strict";
 
+var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"]) _i["return"](); } finally { if (_d) throw _e; } } return _arr; } return function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { return sliceIterator(arr, i); } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } }; }();
+
 define(["system-common"], function (common) {
     var g = common.g;
     var color = common.color;
@@ -390,10 +392,10 @@ define(["system-common"], function (common) {
         }, {
             "name": "硬件流水灯",
             "material": "五5伍*1+LED*8+电路基础元件*1",
-            "instrument": "万用表!",
+            "instrument": "万用表!示波器?",
             "difficulty": "2",
             "skill": "电路分析v1",
-            "extSkill": "模拟电路"
+            "extSkill": "数据结构与算法"
         }],
         "device": [{
             "name": "烙铁",
@@ -874,7 +876,27 @@ define(["system-common"], function (common) {
                         _v.material = md_trim(_v.material);
                         _v.material = _v.material.split("+");
                         _v.skill = _v.skill.split(",");
+                        _v.skill = _v.skill.map(function (v, i) {
+                            var _v$split = v.split("v");
+
+                            var _v$split2 = _slicedToArray(_v$split, 2);
+
+                            var name = _v$split2[0];
+                            var level = _v$split2[1];
+
+                            return { name: name, level: level };
+                        });
                         _v.extSkill = _v.extSkill.split(",");
+                        _v.extSkill = _v.extSkill.map(function (v, i) {
+                            var _v$split3 = v.split("v");
+
+                            var _v$split4 = _slicedToArray(_v$split3, 2);
+
+                            var name = _v$split4[0];
+                            var level = _v$split4[1];
+
+                            return { name: name, level: level };
+                        });
                         var material = _v.material;
                         for (var j in material) {
                             var materials = material[j].split("*");
@@ -899,13 +921,13 @@ define(["system-common"], function (common) {
                             _v.instrument = [];
                         }
 
-                        _v.optionalInstrument = instrumentStr.match(/[^!\?]+\?/g);
-                        if (_v.optionalInstrument) {
-                            _v.optionalInstrument = _v.optionalInstrument.map(function (v, i) {
+                        _v.extInstrument = instrumentStr.match(/[^!\?]+\?/g);
+                        if (_v.extInstrument) {
+                            _v.extInstrument = _v.extInstrument.map(function (v, i) {
                                 return v.replace(/[!\?]/g, "");
                             });
                         } else {
-                            _v.optionalInstrument = [];
+                            _v.extInstrument = [];
                         }
 
                         //                    v.instrument = v.instrument.split("+");

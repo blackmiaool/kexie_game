@@ -4447,49 +4447,6 @@ input {
 .scene[data-scene="home"] .action-panel .actions-frame.skill-select .skills-wrap .skill-page {
   height: 100%;
 }
-.scene[data-scene="home"] .action-panel .actions-frame.skill-select .skills-wrap .skill-page .skill-wrap {
-  display: inline-block;
-  text-align: center;
-  padding-bottom: 5px;
-  height: 90px;
-  width: 116px;
-  vertical-align: middle;
-}
-.scene[data-scene="home"] .action-panel .actions-frame.skill-select .skills-wrap .skill-page .skill-wrap .skill {
-  display: inline-block;
-  position: relative;
-  height: 52px;
-  width: 48px;
-}
-.scene[data-scene="home"] .action-panel .actions-frame.skill-select .skills-wrap .skill-page .skill-wrap .skill .skill-icon {
-  position: absolute;
-  top: 3px;
-  left: 3px;
-}
-.scene[data-scene="home"] .action-panel .actions-frame.skill-select .skills-wrap .skill-page .skill-wrap .skill .skill-bg {
-  position: absolute;
-  top: 0;
-  left: 0;
-  z-index: 1;
-}
-.scene[data-scene="home"] .action-panel .actions-frame.skill-select .skills-wrap .skill-page .skill-wrap .skill .level {
-  color: white;
-  position: absolute;
-  left: 63%;
-  z-index: 1;
-  bottom: -3%;
-  font-size: 13px;
-  width: 26px;
-  text-align: center;
-  font-weight: normal;
-  margin-bottom: 0;
-}
-.scene[data-scene="home"] .action-panel .actions-frame.skill-select .skills-wrap .skill-page .skill-wrap .name {
-  position: relative;
-  top: -3px;
-  display: block;
-  font-weight: normal;
-}
 .scene[data-scene="home"] .action-panel .action {
   display: inline-block;
   text-align: center;
@@ -4972,6 +4929,13 @@ input {
   padding: 17px 22px;
   color: wheat;
 }
+.scene[data-scene="make"] > .right .skill-wrap {
+  width: 71px;
+  height: auto;
+}
+.scene[data-scene="make"] > .right .skill-wrap .name {
+  font-size: 10px;
+}
 .scene[data-scene="character"] {
   background: url("../res/Background/make.png");
   background-position: bottom;
@@ -5071,4 +5035,47 @@ input {
 #editor-wrap .table-wrap {
   width: 100%;
   overflow-x: auto;
+}
+.skill-wrap {
+  display: inline-block;
+  text-align: center;
+  padding-bottom: 5px;
+  height: 90px;
+  width: 116px;
+  vertical-align: middle;
+}
+.skill-wrap .skill {
+  display: inline-block;
+  position: relative;
+  height: 52px;
+  width: 48px;
+}
+.skill-wrap .skill .skill-icon {
+  position: absolute;
+  top: 3px;
+  left: 3px;
+}
+.skill-wrap .skill .skill-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1;
+}
+.skill-wrap .skill .level {
+  color: white;
+  position: absolute;
+  left: 63%;
+  z-index: 1;
+  bottom: -3%;
+  font-size: 13px;
+  width: 26px;
+  text-align: center;
+  font-weight: normal;
+  margin-bottom: 0;
+}
+.skill-wrap .name {
+  position: relative;
+  top: -3px;
+  display: block;
+  font-weight: normal;
 }

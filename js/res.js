@@ -285,7 +285,15 @@ define(["system-common"], function (common) {
                     v.material = md_trim(v.material);
                     v.material = v.material.split("+")
                     v.skill = v.skill.split(",");
+                    v.skill=v.skill.map(function(v,i){
+                        let [name,level]=v.split("v");                        
+                        return {name,level}
+                    })
                     v.extSkill = v.extSkill.split(",");
+                    v.extSkill=v.extSkill.map(function(v,i){
+                        let [name,level]=v.split("v");                        
+                        return {name,level}
+                    })
                     var material = v.material;
                     for (var j in material) {
                         var materials = material[j].split("*")
@@ -310,13 +318,13 @@ define(["system-common"], function (common) {
                         v.instrument = [];
                     }
 
-                    v.optionalInstrument = instrumentStr.match(/[^!\?]+\?/g);
-                    if (v.optionalInstrument) {
-                        v.optionalInstrument=v.optionalInstrument.map(function (v, i) {
+                    v.extInstrument = instrumentStr.match(/[^!\?]+\?/g);
+                    if (v.extInstrument) { 
+                        v.extInstrument=v.extInstrument.map(function (v, i) {
                             return v.replace(/[!\?]/g, "");
                         });
                     } else {
-                        v.optionalInstrument = [];
+                        v.extInstrument = [];
                     }
 
                     //                    v.instrument = v.instrument.split("+");

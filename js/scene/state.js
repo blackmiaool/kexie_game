@@ -8,7 +8,7 @@ let sceneThis = {
 };
 let $$ = $dom.find.bind($dom);
 
-window.dd={scene,common,v,res}
+window.dd={scene,common,v,res,go:scene.go}
 
 scene.register(sceneThis);
 /*

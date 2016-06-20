@@ -58,6 +58,7 @@ function getAction(name) {
     })
     return action;
 }
+window.getAction=getAction;
 scene.register(sceneThis);
 
 module.controller("home-controller", ["$scope", "$rootScope", "$timeout",
@@ -265,33 +266,16 @@ function (sp, rsp, $timeout) {
             sp.$parent.selectingSkill = undefined;
         }
 
-        function getSkillIcon(skill) {
-            if (v.skill[skill.name].satisfied && v.power >= getAction("学习").consume) {
-                return `${common.resPath}skills/${skill.icon}.jpg`;
-            } else {
-                return `${common.resPath}skills/${skill.icon}-off.jpg`;
-            }
-        }
 
-        function getSkillBg(skill) {
-            let color = "green";
-            if (skill.pre.length != 0 && !v.skill[skill.name].satisfied) {
 
-                color = "grey";
 
-            } else if (v.skill[skill.name].level >= 10) {
-                color = "yellow";
-            }
-            return `${common.resPath}skills/icon-over-${color}.gif`;
-        }
 
         _.extend(sp, {
             skills: res.skills,
             upgradeSkill,
             hoverSkill,
             stopHoverSkill,
-            getSkillIcon,
-            getSkillBg,
+      
         })
 }]);
 let cartItems = {};

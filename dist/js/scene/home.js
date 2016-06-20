@@ -61,6 +61,7 @@ define(["require", "system-scene", "system-sys", "angular", "system-dbg", "v", "
         });
         return action;
     }
+    window.getAction = getAction;
     scene.register(sceneThis);
 
     module.controller("home-controller", ["$scope", "$rootScope", "$timeout", function (sp, rsp, $timeout) {
@@ -280,32 +281,12 @@ define(["require", "system-scene", "system-sys", "angular", "system-dbg", "v", "
             sp.$parent.selectingSkill = undefined;
         }
 
-        function getSkillIcon(skill) {
-            if (v.skill[skill.name].satisfied && v.power >= getAction("学习").consume) {
-                return common.resPath + "skills/" + skill.icon + ".jpg";
-            } else {
-                return common.resPath + "skills/" + skill.icon + "-off.jpg";
-            }
-        }
-
-        function getSkillBg(skill) {
-            var color = "green";
-            if (skill.pre.length != 0 && !v.skill[skill.name].satisfied) {
-
-                color = "grey";
-            } else if (v.skill[skill.name].level >= 10) {
-                color = "yellow";
-            }
-            return common.resPath + "skills/icon-over-" + color + ".gif";
-        }
-
         _.extend(sp, {
             skills: res.skills,
             upgradeSkill: upgradeSkill,
             hoverSkill: hoverSkill,
-            stopHoverSkill: stopHoverSkill,
-            getSkillIcon: getSkillIcon,
-            getSkillBg: getSkillBg
+            stopHoverSkill: stopHoverSkill
+
         });
     }]);
     var cartItems = {};

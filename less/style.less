@@ -1,7 +1,6 @@
 @import "common.less";
 @import "variables.less";
 @import "red-ui.less";
-
 html,
 body {
     margin: 0;
@@ -29,6 +28,7 @@ h5,
 h6 {
     .text-pointer;
 }
+
 button,
 a {
     .pointer-cursor;
@@ -85,7 +85,53 @@ input {
         @import "scene/character.less";
     }
 }
-#editor-wrap{
+
+#editor-wrap {
     @import "editor.less";
-    
+}
+
+.skill-wrap {
+    display: inline-block;
+    //                        margin-right: 20px;
+    text-align: center;
+    //                        margin-bottom: 5px;
+    padding-bottom: 5px;
+    height: 90px;
+    width: 116px;
+    vertical-align: middle;
+    .skill {
+        display: inline-block;
+        position: relative;
+        height: 52px;
+        width: 48px;
+        .skill-icon {
+            position: absolute;
+            top: 3px;
+            left: 3px;
+        }
+        .skill-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: 1;
+        }
+        .level {
+            color: white;
+            position: absolute;
+            left: 63%;
+            z-index: 1;
+            bottom: -3%;
+            font-size: 13px;
+            width: 26px;
+            text-align: center;
+            font-weight: normal;
+            margin-bottom: 0;
+        }
+    }
+    .name {
+        position: relative;
+        top: -3px;
+        display: block;
+        font-weight: normal;
+    }
 }

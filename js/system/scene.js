@@ -42,14 +42,28 @@ define(["system-sys", "system-dbg"], function (sys, dbg) {
                     if (pre.leave) {
                         pre.leave();
                     }
-                    sys.$rootScope.$apply(function () {
+                    if (sys.$rootScope.$$phase) {
+                        doLeave();
+                    } else {
+                        sys.$rootScope.$apply(doLeave);
+                    }
+
+                    function doLeave() {
                         sys.$rootScope.$emit(pre.id + "-leave");
-                    })
+                    }
+
 
                 }
-                sys.$rootScope.$apply(function () {
+                if (sys.$rootScope.$$phase) {
+                    doEnter();
+                } else {
+                    sys.$rootScope.$apply(doEnter);
+                }
+
+                function doEnter() {
                     sys.$rootScope.$emit(target.id + "-enter", args);
-                })
+                }
+
 
 
             }, sceneFadeTime);
@@ -64,9 +78,16 @@ define(["system-sys", "system-dbg"], function (sys, dbg) {
                     currentScene.preLeave();
                 }
                 pre = currentScene;
-                sys.$rootScope.$apply(function () {
+                if (sys.$rootScope.$$phase) {
+                    doPreLeave();
+                } else {
+                    sys.$rootScope.$apply(doPreLeave);
+                }
+
+                function doPreLeave() {
                     sys.$rootScope.$emit(pre.id + "-preLeave");
-                })
+                }
+
 
             }
             target.$dom.show().fadeIn(sceneFadeTime).active();
@@ -76,10 +97,15 @@ define(["system-sys", "system-dbg"], function (sys, dbg) {
             if (target.preEnter) {
                 target.preEnter.apply(target, args);
             }
-            sys.$rootScope.$apply(function () {
-                sys.$rootScope.$emit(target.id + "-preEnter", args);
-            })
+            if (sys.$rootScope.$$phase) {
+                doPreEnter();
+            } else {
+                sys.$rootScope.$apply(doPreEnter);
+            }
 
+            function doPreEnter() {
+                sys.$rootScope.$emit(target.id + "-preEnter", args);
+            }           
             callEnter(args);
         } else {
             callEnter(args);

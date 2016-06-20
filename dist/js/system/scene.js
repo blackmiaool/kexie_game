@@ -50,31 +50,53 @@ define(["system-sys", "system-dbg"], function (sys, dbg) {
                     target.enter.apply(target, args);
                 }
                 if (pre) {
+                    var doLeave = function doLeave() {
+                        sys.$rootScope.$emit(pre.id + "-leave");
+                    };
+
                     if (pre.leave) {
                         pre.leave();
                     }
-                    sys.$rootScope.$apply(function () {
-                        sys.$rootScope.$emit(pre.id + "-leave");
-                    });
+                    if (sys.$rootScope.$$phase) {
+                        doLeave();
+                    } else {
+                        sys.$rootScope.$apply(doLeave);
+                    }
                 }
-                sys.$rootScope.$apply(function () {
+                if (sys.$rootScope.$$phase) {
+                    doEnter();
+                } else {
+                    sys.$rootScope.$apply(doEnter);
+                }
+
+                function doEnter() {
                     sys.$rootScope.$emit(target.id + "-enter", args);
-                });
+                }
             }, sceneFadeTime);
         }
 
         if (target.id) {
+            var doPreEnter = function doPreEnter() {
+                sys.$rootScope.$emit(target.id + "-preEnter", args);
+            };
+
             console.info("out", currentScene.id, "in", target.id, args);
 
             if (currentScene.id) {
+                var doPreLeave = function doPreLeave() {
+                    sys.$rootScope.$emit(pre.id + "-preLeave");
+                };
+
                 currentScene.$dom.fadeOut(sceneFadeTime).inactive();
                 if (currentScene.preLeave) {
                     currentScene.preLeave();
                 }
                 pre = currentScene;
-                sys.$rootScope.$apply(function () {
-                    sys.$rootScope.$emit(pre.id + "-preLeave");
-                });
+                if (sys.$rootScope.$$phase) {
+                    doPreLeave();
+                } else {
+                    sys.$rootScope.$apply(doPreLeave);
+                }
             }
             target.$dom.show().fadeIn(sceneFadeTime).active();
 
@@ -83,9 +105,11 @@ define(["system-sys", "system-dbg"], function (sys, dbg) {
             if (target.preEnter) {
                 target.preEnter.apply(target, args);
             }
-            sys.$rootScope.$apply(function () {
-                sys.$rootScope.$emit(target.id + "-preEnter", args);
-            });
+            if (sys.$rootScope.$$phase) {
+                doPreEnter();
+            } else {
+                sys.$rootScope.$apply(doPreEnter);
+            }
 
             callEnter(args);
         } else {

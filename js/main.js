@@ -75,14 +75,43 @@
             }
 
             function getItemIconUrl(item, color) {
-                return `${common.resPath}icon/item/${color}/${item.icon}`;                 
+                return `${common.resPath}icon/item/${color}/${item.icon}`;
             }
 
             function getRes(str) {
                 return common.g(str);
             }
-            function goScene(str,...args){
-                scene.go(str,...args);
+
+            function goScene(str, ...args) {
+                scene.go(str, ...args);
+            }
+
+            function getSkillIcon(skill) {
+               
+                if(typeof skill==="string"){
+                    skill=res.skills[skill];
+                }
+               
+                if (v.skill[skill.name].satisfied && v.power >= getAction("学习").consume) {
+                    return `${common.resPath}skills/${skill.icon}.jpg`;
+                } else {
+                    return `${common.resPath}skills/${skill.icon}-off.jpg`;
+                }
+            }
+
+            function getSkillBg(skill) {
+                if(typeof skill==="string"){
+                    skill=res.skills[skill];
+                }
+                let color = "green";
+                if (skill.pre.length != 0 && !v.skill[skill.name].satisfied) {
+
+                    color = "grey";
+
+                } else if (v.skill[skill.name].level >= 10) {
+                    color = "yellow";
+                }
+                return `${common.resPath}skills/icon-over-${color}.gif`;
             }
             _.extend(sp, {
                 v,
@@ -92,16 +121,18 @@
                     getItemIconUrl,
                     getRes,
                     goScene,
+                    getSkillIcon,
+                    getSkillBg,
             });
 
     }]);
 
         sys.sceneLoaded = function () {
             angular.bootstrap("body", ['home-app']);
-            setTimeout(function(){
-            scene.go("preload");    
+            setTimeout(function () {
+                scene.go("preload");
             })
-            
+
         }
     });
 })()

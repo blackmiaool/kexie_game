@@ -11,7 +11,7 @@ define(["require", "system-scene", "system-sys", "angular", "system-dbg", "v", "
     };
     var $$ = $dom.find.bind($dom);
 
-    window.dd = { scene: scene, common: common, v: v, res: res };
+    window.dd = { scene: scene, common: common, v: v, res: res, go: scene.go };
 
     scene.register(sceneThis);
     /*
