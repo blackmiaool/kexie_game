@@ -3078,7 +3078,7 @@ img {
   font-weight: bold;
 }
 .deep-header {
-  background-image: url("../res/UI/red/red_header.png");
+  background-image: url("../res/deep_ui/red_header.png");
   background-repeat: no-repeat;
   background-size: contain;
   height: 100px;
@@ -3095,7 +3095,7 @@ img {
   line-height: 90px;
 }
 .deep-panel-corner {
-  background-image: url("../res/UI/red/red_panel_corner_big.png");
+  background-image: url("../res/deep_ui/red_panel_corner_big.png");
   background-repeat: no-repeat;
   position: absolute;
   width: 50%;
@@ -3110,19 +3110,19 @@ img {
 .deep-panel-corner.deep-panel-corner2 {
   top: 0;
   left: 50%;
-  background-image: url("../res/UI/red/red_panel_corner_big2.png");
+  background-image: url("../res/deep_ui/red_panel_corner_big2.png");
   background-position: right top;
 }
 .deep-panel-corner.deep-panel-corner3 {
   bottom: 0;
   right: 0;
-  background-image: url("../res/UI/red/red_panel_corner_big3.png");
+  background-image: url("../res/deep_ui/red_panel_corner_big3.png");
   background-position: right bottom;
 }
 .deep-panel-corner.deep-panel-corner4 {
   bottom: 0;
   left: 0;
-  background-image: url("../res/UI/red/red_panel_corner_big4.png");
+  background-image: url("../res/deep_ui/red_panel_corner_big4.png");
   background-position: left bottom;
 }
 .red-scroll-shadow-wrap:after {
@@ -3164,7 +3164,7 @@ img {
   position: relative;
   background-size: contain;
   background-repeat: no-repeat;
-  background-image: url("../res/UI/red/btn_circle_red.png");
+  background-image: url("../res/deep_ui/btn_circle_red.png");
   background-color: transparent;
   border: none;
   outline: none;
@@ -3182,7 +3182,7 @@ img {
   margin: auto;
   width: 68%;
   height: 68%;
-  background-image: url("../res/UI/red/Button_Circular_Small_Press.png");
+  background-image: url("../res/deep_ui/Button_Circular_Small_Press.png");
   background-repeat: no-repeat;
   background-size: contain;
   content: "";
@@ -3206,136 +3206,136 @@ img {
   background-repeat: no-repeat;
 }
 .red-icon[data-icon="accept"]:before {
-  background-image: url("../res/UI/red/icon/accept.png");
+  background-image: url("../res/deep_ui/icon/accept.png");
 }
 .red-icon[data-icon="apps"]:before {
-  background-image: url("../res/UI/red/icon/apps.png");
+  background-image: url("../res/deep_ui/icon/apps.png");
 }
 .red-icon[data-icon="armor"]:before {
-  background-image: url("../res/UI/red/icon/armor.png");
+  background-image: url("../res/deep_ui/icon/armor.png");
 }
 .red-icon[data-icon="bulls"]:before {
-  background-image: url("../res/UI/red/icon/bulls.png");
+  background-image: url("../res/deep_ui/icon/bulls.png");
 }
 .red-icon[data-icon="chat"]:before {
-  background-image: url("../res/UI/red/icon/chat.png");
+  background-image: url("../res/deep_ui/icon/chat.png");
 }
 .red-icon[data-icon="chest"]:before {
-  background-image: url("../res/UI/red/icon/chest.png");
+  background-image: url("../res/deep_ui/icon/chest.png");
 }
 .red-icon[data-icon="close"]:before {
-  background-image: url("../res/UI/red/icon/close.png");
+  background-image: url("../res/deep_ui/icon/close.png");
 }
 .red-icon[data-icon="crosshair"]:before {
-  background-image: url("../res/UI/red/icon/crosshair.png");
+  background-image: url("../res/deep_ui/icon/crosshair.png");
 }
 .red-icon[data-icon="crystal"]:before {
-  background-image: url("../res/UI/red/icon/crystal.png");
+  background-image: url("../res/deep_ui/icon/crystal.png");
 }
 .red-icon[data-icon="cup"]:before {
-  background-image: url("../res/UI/red/icon/cup.png");
+  background-image: url("../res/deep_ui/icon/cup.png");
 }
 .red-icon[data-icon="down"]:before {
-  background-image: url("../res/UI/red/icon/down.png");
+  background-image: url("../res/deep_ui/icon/down.png");
 }
 .red-icon[data-icon="flag"]:before {
-  background-image: url("../res/UI/red/icon/flag.png");
+  background-image: url("../res/deep_ui/icon/flag.png");
 }
 .red-icon[data-icon="hammer"]:before {
-  background-image: url("../res/UI/red/icon/hammer.png");
+  background-image: url("../res/deep_ui/icon/hammer.png");
 }
 .red-icon[data-icon="heart"]:before {
-  background-image: url("../res/UI/red/icon/heart.png");
+  background-image: url("../res/deep_ui/icon/heart.png");
 }
 .red-icon[data-icon="home"]:before {
-  background-image: url("../res/UI/red/icon/home.png");
+  background-image: url("../res/deep_ui/icon/home.png");
 }
 .red-icon[data-icon="layout"]:before {
-  background-image: url("../res/UI/red/icon/layout.png");
+  background-image: url("../res/deep_ui/icon/layout.png");
 }
 .red-icon[data-icon="left"]:before {
-  background-image: url("../res/UI/red/icon/left.png");
+  background-image: url("../res/deep_ui/icon/left.png");
 }
 .red-icon[data-icon="letter"]:before {
-  background-image: url("../res/UI/red/icon/letter.png");
+  background-image: url("../res/deep_ui/icon/letter.png");
 }
 .red-icon[data-icon="lightning"]:before {
-  background-image: url("../res/UI/red/icon/lightning.png");
+  background-image: url("../res/deep_ui/icon/lightning.png");
 }
 .red-icon[data-icon="lock"]:before {
-  background-image: url("../res/UI/red/icon/lock.png");
+  background-image: url("../res/deep_ui/icon/lock.png");
 }
 .red-icon[data-icon="network"]:before {
-  background-image: url("../res/UI/red/icon/network.png");
+  background-image: url("../res/deep_ui/icon/network.png");
 }
 .red-icon[data-icon="pause"]:before {
-  background-image: url("../res/UI/red/icon/pause.png");
+  background-image: url("../res/deep_ui/icon/pause.png");
 }
 .red-icon[data-icon="planet"]:before {
-  background-image: url("../res/UI/red/icon/planet.png");
+  background-image: url("../res/deep_ui/icon/planet.png");
 }
 .red-icon[data-icon="play"]:before {
-  background-image: url("../res/UI/red/icon/play.png");
+  background-image: url("../res/deep_ui/icon/play.png");
 }
 .red-icon[data-icon="plus"]:before {
-  background-image: url("../res/UI/red/icon/plus.png");
+  background-image: url("../res/deep_ui/icon/plus.png");
 }
 .red-icon[data-icon="profile"]:before {
-  background-image: url("../res/UI/red/icon/profile.png");
+  background-image: url("../res/deep_ui/icon/profile.png");
 }
 .red-icon[data-icon="puzzle"]:before {
-  background-image: url("../res/UI/red/icon/puzzle.png");
+  background-image: url("../res/deep_ui/icon/puzzle.png");
 }
 .red-icon[data-icon="replay"]:before {
-  background-image: url("../res/UI/red/icon/replay.png");
+  background-image: url("../res/deep_ui/icon/replay.png");
 }
 .red-icon[data-icon="right"]:before {
-  background-image: url("../res/UI/red/icon/right.png");
+  background-image: url("../res/deep_ui/icon/right.png");
 }
 .red-icon[data-icon="rocket"]:before {
-  background-image: url("../res/UI/red/icon/rocket.png");
+  background-image: url("../res/deep_ui/icon/rocket.png");
 }
 .red-icon[data-icon="rockets"]:before {
-  background-image: url("../res/UI/red/icon/rockets.png");
+  background-image: url("../res/deep_ui/icon/rockets.png");
 }
 .red-icon[data-icon="rows"]:before {
-  background-image: url("../res/UI/red/icon/rows.png");
+  background-image: url("../res/deep_ui/icon/rows.png");
 }
 .red-icon[data-icon="settings"]:before {
-  background-image: url("../res/UI/red/icon/settings.png");
+  background-image: url("../res/deep_ui/icon/settings.png");
 }
 .red-icon[data-icon="share"]:before {
-  background-image: url("../res/UI/red/icon/share.png");
+  background-image: url("../res/deep_ui/icon/share.png");
 }
 .red-icon[data-icon="shield"]:before {
-  background-image: url("../res/UI/red/icon/shield.png");
+  background-image: url("../res/deep_ui/icon/shield.png");
 }
 .red-icon[data-icon="star"]:before {
-  background-image: url("../res/UI/red/icon/star.png");
+  background-image: url("../res/deep_ui/icon/star.png");
 }
 .red-icon[data-icon="timeer"]:before {
-  background-image: url("../res/UI/red/icon/timeer.png");
+  background-image: url("../res/deep_ui/icon/timeer.png");
 }
 .red-icon[data-icon="tune"]:before {
-  background-image: url("../res/UI/red/icon/tune.png");
+  background-image: url("../res/deep_ui/icon/tune.png");
 }
 .red-icon[data-icon="up"]:before {
-  background-image: url("../res/UI/red/icon/up.png");
+  background-image: url("../res/deep_ui/icon/up.png");
 }
 .red-icon.blue {
-  background-image: url("../res/UI/red/btn_circle_blue.png");
+  background-image: url("../res/deep_ui/btn_circle_blue.png");
 }
 .red-icon.red {
-  background-image: url("../res/UI/red/btn_circle_red.png");
+  background-image: url("../res/deep_ui/btn_circle_red.png");
 }
 .red-icon.green {
-  background-image: url("../res/UI/red/btn_circle_green.png");
+  background-image: url("../res/deep_ui/btn_circle_green.png");
 }
 .red-icon.yellow {
-  background-image: url("../res/UI/red/btn_circle_yellow.png");
+  background-image: url("../res/deep_ui/btn_circle_yellow.png");
 }
 .red-normal-item {
-  background-image: url("../res/UI/red/red_item_bg.png");
+  background-image: url("../res/deep_ui/red_item_bg.png");
   background-repeat: no-repeat;
   background-size: contain;
   cursor: url("../res/cursor/link.cur"), pointer !important;
@@ -3397,7 +3397,7 @@ img {
   -o-user-select: none;
   user-select: none;
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
-  background-image: url("../res/UI/red/btn_rect_red.png");
+  background-image: url("../res/deep_ui/btn_rect_red.png");
   background-repeat: no-repeat;
   background-size: contain;
   line-height: 37px;
@@ -3464,22 +3464,22 @@ img {
   width: 71.35135135px;
 }
 .deep-btn.red {
-  background-image: url("../res/UI/red/btn_rect_red.png");
+  background-image: url("../res/deep_ui/btn_rect_red.png");
 }
 .deep-btn.purple {
-  background-image: url("../res/UI/red/btn_rect_purple.png");
+  background-image: url("../res/deep_ui/btn_rect_purple.png");
 }
 .deep-btn.orange {
-  background-image: url("../res/UI/red/btn_rect_orange.png");
+  background-image: url("../res/deep_ui/btn_rect_orange.png");
 }
 .deep-btn.green {
-  background-image: url("../res/UI/red/btn_rect_green.png");
+  background-image: url("../res/deep_ui/btn_rect_green.png");
 }
 .deep-btn.blue {
-  background-image: url("../res/UI/red/btn_rect_blue.png");
+  background-image: url("../res/deep_ui/btn_rect_blue.png");
 }
 .deep-slot {
-  background-image: url("../res/UI/red/slot2.png");
+  background-image: url("../res/deep_ui/slot2.png");
   background-repeat: no-repeat;
   background-size: contain;
   height: 38px;
@@ -3495,10 +3495,31 @@ img {
   line-height: 40px;
   text-align: center;
   font-size: 17px;
-  background-image: url("../res/UI/red/little_box.png");
+  background-image: url("../res/deep_ui/little_box.png");
   background-repeat: no-repeat;
   background-size: contain;
   background-position: center center;
+}
+.deep-item-icon {
+  height: 60px;
+  width: 60px;
+  text-align: center;
+  background-image: url("../res/deep_ui/item_icon.png");
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center center;
+  position: relative;
+}
+.deep-item-icon > img,
+.deep-item-icon > div {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+  max-height: 50%;
+  max-width: 50%;
 }
 html,
 body {
@@ -3560,19 +3581,28 @@ input {
   border-radius: 3px;
   border: 1px solid #aaa;
 }
-.scene {
-  border-radius: 7px;
-  z-index: 0;
+.scene-wrap {
   width: 960px;
   height: 540px;
-  display: none;
-  overflow: hidden;
   position: absolute;
   left: 0;
   right: 0;
   top: 0;
   bottom: 0;
   margin: auto;
+  overflow: visible;
+}
+.scene {
+  border-radius: 7px;
+  z-index: 0;
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+  display: none;
+  overflow: hidden;
 }
 .scene.active {
   display: block;
@@ -4611,32 +4641,9 @@ input {
   height: 60px;
 }
 .scene[data-scene="home"] .shop-panel .checkout {
-  background-image: url("../res/UI/red/Button_Rectangular_Red.png");
-  background-repeat: no-repeat;
-  background-size: contain;
-  width: 127.88732394px;
-  line-height: 40px;
-  color: #e7c7b2;
-  font-weight: bold;
-  height: 40px;
-  text-align: center;
   position: absolute;
   right: 25px;
   bottom: 10px;
-}
-.scene[data-scene="home"] .shop-panel .checkout img {
-  left: 0;
-  right: 0;
-  top: 0;
-  bottom: 0;
-  margin: auto;
-  display: none;
-  width: 97%;
-  height: 85%;
-  position: absolute;
-}
-.scene[data-scene="home"] .shop-panel .checkout:active:not(.poor) img {
-  display: block;
 }
 .scene[data-scene="home"] .shop-panel .center-panel {
   position: absolute;

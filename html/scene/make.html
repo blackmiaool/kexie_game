@@ -58,6 +58,9 @@
             </div>
             <div ng-repeat="extInstrument in res.products[working.kind].extInstrument" class="ext-instrument">
                 <span ng-bind="extInstrument"></span>
+                <div class="deep-item-icon">
+                    <img ng-src="{{getItemIconUrl(extInstrument,'white')}}.svg" alt="">
+                </div>
             </div>
         </main>
     </div>

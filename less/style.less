@@ -44,15 +44,18 @@ input {
     border-radius: 3px;
     border: 1px solid #aaa;
 }
-
+.scene-wrap{
+    width: 960px;
+    height: 540px;
+    .abs-fill;
+    overflow: visible;
+}
 .scene {
     border-radius: 7px;
     z-index: 0;
-    width: 960px;
-    height: 540px;
-    display: none;
-    overflow: hidden;
     .abs-fill;
+    display: none;
+    overflow: hidden;    
     &.active {
         display: block;
         z-index: 1;

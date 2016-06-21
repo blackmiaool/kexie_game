@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <title>科协浮生记</title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -14,39 +15,41 @@
 
 <body ng-controller="root_controller" ng-cloak>
     <div id="wrap">
-        <div class="scene" data-scene="bigmap">
-            <!-- inject2: bigmap.html-->
-        </div>
-        <div class="scene" data-scene="chat">
-            <!-- inject2: chat.html-->
-        </div>
-        <div class="scene" data-scene="cover">
-            <!-- inject2: cover.html-->
-        </div>
-        <div class="scene" data-scene="preload">
-            <!-- inject: preload.html-->
-        </div>
-        <div class="scene" data-scene="home">
-            <!-- inject: home.html-->
-        </div>
-        <div class="scene" data-scene="save">
-            <!-- inject2: save.html-->
-        </div>
-        <div class="scene" data-scene="state">
-            <!-- inject2: state.html-->
-        </div>
-        <div class="scene" data-scene="make-select">
-            <!-- inject: make-select.html-->
-        </div>
-        <div class="scene" data-scene="make" ng-controller="make_controller">
-            <!-- inject: make.html-->
-        </div>
-        <div class="scene" data-scene="character" ng-controller="character_controller">
-            <!-- inject: character.html-->
+        <div class="scene-wrap">
+            <div class="scene" data-scene="bigmap">
+                <!-- inject2: scene/bigmap.html-->
+            </div>
+            <div class="scene" data-scene="chat">
+                <!-- inject2: scene/chat.html-->
+            </div>
+            <div class="scene" data-scene="cover">
+                <!-- inject2: scene/cover.html-->
+            </div>
+            <div class="scene" data-scene="preload">
+                <!-- inject: scene/preload.html-->
+            </div>
+            <div class="scene" data-scene="home">
+                <!-- inject: scene/home.html-->
+            </div>
+            <div class="scene" data-scene="save">
+                <!-- inject2: scene/save.html-->
+            </div>
+            <div class="scene" data-scene="state">
+                <!-- inject2: scene/state.html-->
+            </div>
+            <div class="scene" data-scene="make-select">
+                <!-- inject: scene/make-select.html-->
+            </div>
+            <div class="scene" data-scene="make" ng-controller="make_controller">
+                <!-- inject: scene/make.html-->
+            </div>
+            <div class="scene" data-scene="character" ng-controller="character_controller">
+                <!-- inject: scene/character.html-->
+            </div>
         </div>
     </div>
     <script data-main="js/main" src="js/require.js"></script>
-    <script src="http://192.168.199.128:35729/livereload.js?ext=Chrome&extver=2.1.0"></script> 
+    <script src="http://192.168.199.128:35729/livereload.js?ext=Chrome&extver=2.1.0"></script>
 </body>
 
 </html>

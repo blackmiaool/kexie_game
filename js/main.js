@@ -75,6 +75,11 @@
             }
 
             function getItemIconUrl(item, color) {
+                console.log(item)
+                if(typeof item==="string"){
+                    item=res.devices[item];
+                }
+                console.log(item)
                 return `${common.resPath}icon/item/${color}/${item.icon}`;
             }
 
@@ -110,9 +115,9 @@
 
                 } else if (v.skill[skill.name].level >= 10) {
                     color = "yellow";
-                }
+                } 
                 return `${common.resPath}skills/icon-over-${color}.gif`;
-            }
+            } 
             _.extend(sp, {
                 v,
                 img: res.img,

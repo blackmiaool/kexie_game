@@ -1,6 +1,6 @@
 @import "common.less";
-@path: "@{res-folder}/UI/red";
-@icon-path: "@{res-folder}/UI/red/icon";
+@path: "@{res-folder}/deep_ui";
+@icon-path: "@{res-folder}/deep_ui/icon";
 .deep-header{
     background-image: url("@{path}/red_header.png");
     background-repeat: no-repeat;    
@@ -295,4 +295,18 @@
     font-size: 17px;
     .bg("@{path}/little_box.png");
     background-position: center center;
+}
+.deep-item-icon{
+    @height:60px;
+    height: @height;
+    width:@height;
+    text-align: center;
+    .bg("@{path}/item_icon.png");
+    background-position: center center;
+    position: relative;
+    &>img,&>div{
+        .abs-fill;
+        max-height: 50%;
+        max-width: 50%;
+    }
 }

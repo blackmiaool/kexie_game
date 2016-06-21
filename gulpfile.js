@@ -158,12 +158,11 @@ gulp.task('es6', ["csv"], function () {
         babel_pipe.end();
     });
     return gulp.src(['js/**/*.js', "!js/scene/*.js", "!js/plot/*.js"])
-
     .pipe(injectfile({
             pattern: '<!--\\sinject:<filename>-->'
         }))
         .pipe(headerfooter({
-            header: `let gulpConfig={plots:${JSON.stringify(plotTree)},scenes:${JSON.stringify(sceneTree)},imgs:${JSON.stringify(imgTree)}};\n`,
+            header: `let gulpConfig={plots:${JSON.stringify(plotTree)},scenes:${JSON.stringify(sceneTree)}};\n`,
             footer: ``,
             filter: function (file) {
                 return file.path.split("/").pop().split("\\").pop() == "main.js"
