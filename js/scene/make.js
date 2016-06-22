@@ -49,8 +49,7 @@ module.controller("make_controller", ["$scope", "$rootScope", "$timeout", functi
                     }],
             };
             sp.working = working;
-        }
-        console.log(sp.working, sp)
+        }        
     });
 
     _.extend(sp, {

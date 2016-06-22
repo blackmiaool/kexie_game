@@ -75,11 +75,11 @@
             }
 
             function getItemIconUrl(item, color) {
-                console.log(item)
-                if(typeof item==="string"){
-                    item=res.devices[item];
+               
+                if (typeof item === "string") {
+                    item = res.devices[item];
                 }
-                console.log(item)
+               
                 return `${common.resPath}icon/item/${color}/${item.icon}`;
             }
 
@@ -92,11 +92,11 @@
             }
 
             function getSkillIcon(skill) {
-               
-                if(typeof skill==="string"){
-                    skill=res.skills[skill];
+
+                if (typeof skill === "string") {
+                    skill = res.skills[skill];
                 }
-               
+
                 if (v.skill[skill.name].satisfied && v.power >= getAction("学习").consume) {
                     return `${common.resPath}skills/${skill.icon}.jpg`;
                 } else {
@@ -105,8 +105,8 @@
             }
 
             function getSkillBg(skill) {
-                if(typeof skill==="string"){
-                    skill=res.skills[skill];
+                if (typeof skill === "string") {
+                    skill = res.skills[skill];
                 }
                 let color = "green";
                 if (skill.pre.length != 0 && !v.skill[skill.name].satisfied) {
@@ -115,19 +115,40 @@
 
                 } else if (v.skill[skill.name].level >= 10) {
                     color = "yellow";
-                } 
+                }
                 return `${common.resPath}skills/icon-over-${color}.gif`;
-            } 
+            }
+
+            function openDebugPanel() {
+                sp.showDebug=!sp.showDebug;
+                console.log(scenePaths);
+                console.log(sp.currentScene)
+            }
+            function debugScene(sceneName){
+                localStorage.setItem("debug-scene",sceneName);
+                sp.goScene(sceneName);
+                sp.showDebug=!sp.showDebug;
+            }    
+            let scenes={};
+            scenePaths.forEach(function(v,i){
+                scenes[v]=false;
+            })
+            $(".scene-wrap").show();
+            sys.$rootScope.scenes=scenes;
             _.extend(sp, {
-                v,
                 img: res.img,
-                    res,
-                    getPre,
-                    getItemIconUrl,
-                    getRes,
-                    goScene,
-                    getSkillIcon,
-                    getSkillBg,
+                v,
+                res,
+//                scenes,
+                scenePaths,
+                getPre,
+                getItemIconUrl,
+                getRes,
+                goScene,
+                getSkillIcon,
+                getSkillBg,
+                openDebugPanel,
+                debugScene,
             });
 
     }]);

@@ -11,12 +11,14 @@ let $$=$dom.find.bind($dom);
 
 function preEnter() {
     let preload_bar = $("#preload_progress_bar");
-
     let resSum = 0;
     preload_set(0, resSum)
     if (dbg.imdeveloper) {
-        setTimeout(function(){            
-            scene.go("make","硬件流水灯"); 
+        setTimeout(function(){ 
+            let debuggingScene=localStorage.getItem("debug-scene");
+            if(debuggingScene){
+                scene.go(debuggingScene,"硬件流水灯"); 
+            }            
         })
         return;
     }

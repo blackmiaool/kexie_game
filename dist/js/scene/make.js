@@ -54,7 +54,6 @@ define(["require", "system-scene", "system-sys", "angular", "system-dbg", "v", "
                 };
                 sp.working = working;
             }
-            console.log(sp.working, sp);
         });
 
         _.extend(sp, {});

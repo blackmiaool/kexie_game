@@ -10,7 +10,6 @@ body {
 
 #wrap {
     .abs-fill;
-    //    min-height: 400px
 }
 
 * {
@@ -44,22 +43,47 @@ input {
     border-radius: 3px;
     border: 1px solid #aaa;
 }
-.scene-wrap{
+
+.scene-wrap {
+    .abs-fill;
     width: 960px;
     height: 540px;
-    .abs-fill;
     overflow: visible;
+    >.debug {
+        position: absolute;
+        left: 0;
+        top: -40px;
+        opacity: 0.03;
+    }
+    >.debug-panel {
+        position: absolute;
+        z-index: 100;
+        .go-scene {
+            display: block;
+        }
+    }
 }
+
 .scene {
     border-radius: 7px;
     z-index: 0;
     .abs-fill;
-    display: none;
-    overflow: hidden;    
-    &.active {
-        display: block;
-        z-index: 1;
+//    display: none;
+    overflow: hidden;
+    opacity: 1;
+    transition: 0s all linear;
+    &.ng-enter-active{
+//        display: block;
+//        z-index: 1;
+        opacity: 1;
     }
+    &.ng-leave{                
+        opacity: 0;
+    }
+//    &.active {
+//        display: block;
+//        z-index: 1;
+//    }
     &[data-scene="cover"] {
         @import "scene/cover.less";
     }

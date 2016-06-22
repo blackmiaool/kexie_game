@@ -15,36 +15,40 @@
 
 <body ng-controller="root_controller" ng-cloak>
     <div id="wrap">
-        <div class="scene-wrap">
-            <div class="scene" data-scene="bigmap">
-                <!-- inject2: scene/bigmap.html-->
+        <div class="scene-wrap hide" >
+            <div class="scene" data-scene="bigmap" ng-if="scenes['bigmap']">
+                <!-- inject: scene/bigmap.html-->
             </div>
-            <div class="scene" data-scene="chat">
-                <!-- inject2: scene/chat.html-->
+            <div class="scene" data-scene="chat" ng-if="scenes['chat']">
+                <!-- inject: scene/chat.html-->
             </div>
-            <div class="scene" data-scene="cover">
-                <!-- inject2: scene/cover.html-->
+            <div class="scene" data-scene="cover" ng-if="scenes['cover']">
+                <!-- inject: scene/cover.html-->
             </div>
-            <div class="scene" data-scene="preload">
+            <div class="scene hide" data-scene="preload" ng-if="scenes['preload']">
                 <!-- inject: scene/preload.html-->
             </div>
-            <div class="scene" data-scene="home">
+            <div class="scene" data-scene="home" ng-if="scenes['home']">
                 <!-- inject: scene/home.html-->
             </div>
-            <div class="scene" data-scene="save">
-                <!-- inject2: scene/save.html-->
+            <div class="scene" data-scene="save" ng-if="scenes['save']">
+                <!-- inject: scene/save.html-->
             </div>
-            <div class="scene" data-scene="state">
-                <!-- inject2: scene/state.html-->
+            <div class="scene" data-scene="state" ng-if="scenes['state']">
+                <!-- inject: scene/state.html-->
             </div>
-            <div class="scene" data-scene="make-select">
+            <div class="scene" data-scene="make-select" ng-if="scenes['make-select']">
                 <!-- inject: scene/make-select.html-->
             </div>
-            <div class="scene" data-scene="make" ng-controller="make_controller">
+            <div class="scene" data-scene="make" ng-controller="make_controller" ng-if="scenes['make']">
                 <!-- inject: scene/make.html-->
             </div>
-            <div class="scene" data-scene="character" ng-controller="character_controller">
+            <div class="scene" data-scene="character" ng-controller="character_controller" ng-if="scenes['character']">
                 <!-- inject: scene/character.html-->
+            </div>
+            <button ng-click="openDebugPanel()" class="debug btn btn-primary">调试</button>
+            <div class="debug-panel" ng-if="showDebug">
+                <button ng-repeat="sceneName in scenePaths" class="go-scene btn btn-primary" ng-bind="sceneName" ng-click="debugScene(sceneName)"></button>
             </div>
         </div>
     </div>

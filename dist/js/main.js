@@ -67,11 +67,11 @@ var gulpConfig = { plots: [{ "name": "kexie_first.js", "fullpath": "/home/blackm
             }
 
             function getItemIconUrl(item, color) {
-                console.log(item);
+
                 if (typeof item === "string") {
                     item = res.devices[item];
                 }
-                console.log(item);
+
                 return common.resPath + "icon/item/" + color + "/" + item.icon;
             }
 
@@ -113,16 +113,37 @@ var gulpConfig = { plots: [{ "name": "kexie_first.js", "fullpath": "/home/blackm
                 }
                 return common.resPath + "skills/icon-over-" + color + ".gif";
             }
+
+            function openDebugPanel() {
+                sp.showDebug = !sp.showDebug;
+                console.log(scenePaths);
+                console.log(sp.currentScene);
+            }
+            function debugScene(sceneName) {
+                localStorage.setItem("debug-scene", sceneName);
+                sp.goScene(sceneName);
+                sp.showDebug = !sp.showDebug;
+            }
+            var scenes = {};
+            scenePaths.forEach(function (v, i) {
+                scenes[v] = false;
+            });
+            $(".scene-wrap").show();
+            sys.$rootScope.scenes = scenes;
             _.extend(sp, {
-                v: v,
                 img: res.img,
+                v: v,
                 res: res,
+                //                scenes,
+                scenePaths: scenePaths,
                 getPre: getPre,
                 getItemIconUrl: getItemIconUrl,
                 getRes: getRes,
                 goScene: goScene,
                 getSkillIcon: getSkillIcon,
-                getSkillBg: getSkillBg
+                getSkillBg: getSkillBg,
+                openDebugPanel: openDebugPanel,
+                debugScene: debugScene
             });
         }]);
 

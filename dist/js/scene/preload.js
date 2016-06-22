@@ -13,12 +13,14 @@ define(["require", "system-scene", "system-sys", "angular", "system-dbg", "v", "
 
     function preEnter() {
         var preload_bar = $("#preload_progress_bar");
-
         var resSum = 0;
         preload_set(0, resSum);
         if (dbg.imdeveloper) {
             setTimeout(function () {
-                scene.go("make", "硬件流水灯");
+                var debuggingScene = localStorage.getItem("debug-scene");
+                if (debuggingScene) {
+                    scene.go(debuggingScene, "硬件流水灯");
+                }
             });
             return;
         }

@@ -3583,15 +3583,28 @@ input {
   border: 1px solid #aaa;
 }
 .scene-wrap {
-  width: 960px;
-  height: 540px;
   position: absolute;
   left: 0;
   right: 0;
   top: 0;
   bottom: 0;
   margin: auto;
+  width: 960px;
+  height: 540px;
   overflow: visible;
+}
+.scene-wrap > .debug {
+  position: absolute;
+  left: 0;
+  top: -40px;
+  opacity: 0.03;
+}
+.scene-wrap > .debug-panel {
+  position: absolute;
+  z-index: 100;
+}
+.scene-wrap > .debug-panel .go-scene {
+  display: block;
 }
 .scene {
   border-radius: 7px;
@@ -3602,12 +3615,15 @@ input {
   top: 0;
   bottom: 0;
   margin: auto;
-  display: none;
   overflow: hidden;
+  opacity: 1;
+  transition: 0s all linear;
 }
-.scene.active {
-  display: block;
-  z-index: 1;
+.scene.ng-enter-active {
+  opacity: 1;
+}
+.scene.ng-leave {
+  opacity: 0;
 }
 .scene[data-scene="cover"] {
   background: url("../res/Background/cover.jpg");
@@ -4856,13 +4872,10 @@ input {
 }
 .scene[data-scene="make-select"] .select-target header {
   position: absolute;
-  left: 0;
-  right: 0;
-  top: -20px;
+  left: -100px;
+  right: -100px;
+  top: 10px;
   margin: auto;
-}
-.scene[data-scene="make-select"] .select-target header img.header {
-  width: 100%;
 }
 .scene[data-scene="make-select"] .select-target header span.header {
   position: absolute;
