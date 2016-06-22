@@ -362,15 +362,27 @@
                             <div ng-repeat="skill in res.products[working.kind].skill" class="skill">
                 
                                 <div ng-mouseenter="hoverSkill(skill)" ng-mouseleave="stopHoverSkill()" class="skill-wrap">
+                                    <div class="deep-item-icon">
+                                        <img draggable="false" ng-src="{{getSkillIcon(skill.name)}}" alt="" class="skill-icon">
+                                    </div>
+                                    <!--
                                     <div class="skill">
                                         <img draggable="false" ng-src="{{getSkillIcon(skill.name)}}" alt="" class="skill-icon">
                                         <img draggable="false" ng-src="{{getSkillBg(skill.name)}}" alt="" class="skill-bg">
                                         <label class="level" ng-bind="v.skill[skill.name].level"></label>
                                     </div>
+                -->
                                     <label class="name" ng-bind="skill.name"></label>
                                 </div>
                             </div>
                             <div ng-repeat="skill in res.products[working.kind].extSkill" class="skill">
+                                <div ng-mouseenter="hoverSkill(skill)" ng-mouseleave="stopHoverSkill()" class="skill-wrap">
+                                    <div class="deep-item-icon">
+                                        <img draggable="false" ng-src="{{getSkillIcon(skill.name)}}" alt="" class="skill-icon">
+                                    </div>
+                                    <label class="name" ng-bind="skill.name"></label>
+                                </div>
+                                <!--
                                 <div ng-mouseenter="hoverSkill(skill)" ng-mouseleave="stopHoverSkill()" class="skill-wrap">
                                     <div class="skill">
                                         <img draggable="false" ng-src="{{getSkillIcon(skill.name)}}" alt="" class="skill-icon">
@@ -379,6 +391,7 @@
                                     </div>
                                     <label class="name" ng-bind="skill.name"></label>
                                 </div>
+                -->
                             </div>
                         </main>
                     </div>
@@ -386,13 +399,22 @@
                         <header>相关仪器</header>
                         <main>
                             <div ng-repeat="instrument in res.products[working.kind].instrument" class="instrument">
-                                <span ng-bind="instrument"></span>
-                            </div>
-                            <div ng-repeat="extInstrument in res.products[working.kind].extInstrument" class="ext-instrument">
-                                <span ng-bind="extInstrument"></span>
-                                <div class="deep-item-icon">
-                                    <img ng-src="{{getItemIconUrl(extInstrument,'white')}}.svg" alt="">
+                                <div class="left-header">
+                                    <div class="deep-item-icon item-icon">
+                                        <img ng-src="{{getItemIconUrl(instrument,'wheat')}}.svg" alt="">
+                                    </div>
+                                    <span ng-bind="instrument" class="name"></span>
                                 </div>
+                
+                            </div>
+                            <div ng-repeat="instrument in res.products[working.kind].extInstrument" class="ext-instrument">
+                                <div class="left-header">
+                                    <div class="deep-item-icon  item-icon">
+                                        <img ng-src="{{getItemIconUrl(instrument,'wheat')}}.svg" alt="">
+                                    </div>
+                                    <span ng-bind="instrument" class="name"></span>
+                                </div>
+                
                             </div>
                         </main>
                     </div>

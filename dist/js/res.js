@@ -55,7 +55,7 @@ define(["system-common"], function (common) {
             //            red_panel_corner: g("UI/red/red_panel_corner_big.png"),
             //            red_header: g("UI/red/red_header.png"),
             //            red_item_bg: g("UI/red/red_item_bg.png"),
-            little_star: g("UI/red/little_star.png"),
+            little_star: g("deep_ui/little_star.png"),
 
             //state
             state_back: g("UI/back.png"),
@@ -385,14 +385,14 @@ define(["system-common"], function (common) {
         "products": [{
             "name": "单片机流水灯",
             "material": "低端单片机*1+LED*8+电路基础元件*1",
-            "instrument": "万用表!逻辑分析仪?",
+            "instrument": "手持万用表!逻辑分析仪?",
             "difficulty": "3",
             "skill": "c语言v1,电路分析",
             "extSkill": "数字电路,单片机原理,电路分析"
         }, {
             "name": "硬件流水灯",
             "material": "五5伍*1+LED*8+电路基础元件*1",
-            "instrument": "万用表!低端示波器?",
+            "instrument": "手持万用表!低端示波器?",
             "difficulty": "2",
             "skill": "电路分析v1",
             "extSkill": "数据结构与算法"

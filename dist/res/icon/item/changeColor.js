@@ -10,6 +10,9 @@ if(!colorName){
 let color;
 if(colorName=="blue"){
   color="#A1E0E7";
+}
+else if(colorName=="wheat"){
+  color="#F5DEB3";
 }else{
   color=colorName;
 }

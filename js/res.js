@@ -51,7 +51,7 @@ define(["system-common"], function (common) {
 //            red_panel_corner: g("UI/red/red_panel_corner_big.png"),
 //            red_header: g("UI/red/red_header.png"),
 //            red_item_bg: g("UI/red/red_item_bg.png"),
-            little_star: g("UI/red/little_star.png"),
+            little_star: g("deep_ui/little_star.png"),
 
 
             //state

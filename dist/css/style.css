@@ -3503,23 +3503,24 @@ img {
 .deep-item-icon {
   height: 60px;
   width: 60px;
-  text-align: center;
   background-image: url("../res/deep_ui/item_icon.png");
   background-repeat: no-repeat;
   background-size: contain;
+  display: inline-block;
+  text-align: center;
   background-position: center center;
   position: relative;
 }
 .deep-item-icon > img,
 .deep-item-icon > div {
   position: absolute;
-  left: 0;
-  right: 0;
-  top: 0;
-  bottom: 0;
-  margin: auto;
-  max-height: 50%;
-  max-width: 50%;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  max-height: 55%;
+  max-width: 55%;
 }
 html,
 body {
@@ -4360,6 +4361,49 @@ input {
   -ms-transform: rotate(10deg);
   transform: rotate(10deg);
 }
+.scene[data-scene="home"] .skill-wrap {
+  display: inline-block;
+  text-align: center;
+  padding-bottom: 5px;
+  height: 90px;
+  width: 116px;
+  vertical-align: middle;
+}
+.scene[data-scene="home"] .skill-wrap .skill {
+  display: inline-block;
+  position: relative;
+  height: 52px;
+  width: 48px;
+}
+.scene[data-scene="home"] .skill-wrap .skill .skill-icon {
+  position: absolute;
+  top: 3px;
+  left: 3px;
+}
+.scene[data-scene="home"] .skill-wrap .skill .skill-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1;
+}
+.scene[data-scene="home"] .skill-wrap .skill .level {
+  color: white;
+  position: absolute;
+  left: 63%;
+  z-index: 1;
+  bottom: -3%;
+  font-size: 13px;
+  width: 26px;
+  text-align: center;
+  font-weight: normal;
+  margin-bottom: 0;
+}
+.scene[data-scene="home"] .skill-wrap .name {
+  position: relative;
+  top: -3px;
+  display: block;
+  font-weight: normal;
+}
 .scene[data-scene="home"] .action-panel {
   position: absolute;
   left: 0;
@@ -4936,12 +4980,57 @@ input {
   padding: 17px 22px;
   color: wheat;
 }
+.scene[data-scene="make"] > .right > .section {
+  padding-top: 5px;
+}
+.scene[data-scene="make"] > .right > .section > header {
+  display: block;
+  text-align: center;
+  font-size: 14px;
+  line-height: 14px;
+  height: 14px;
+  position: relative;
+  margin-bottom: 5px;
+}
+.scene[data-scene="make"] > .right > .section > header:after,
+.scene[data-scene="make"] > .right > .section > header:before {
+  width: 33%;
+  height: 1px;
+  background-color: wheat;
+  content: "";
+  top: 0;
+  bottom: 0;
+  margin: auto;
+  position: absolute;
+  opacity: 0.4;
+}
+.scene[data-scene="make"] > .right > .section > header:after {
+  left: 0;
+}
+.scene[data-scene="make"] > .right > .section > header:before {
+  right: 0;
+}
 .scene[data-scene="make"] > .right .skill-wrap {
-  width: 71px;
+  width: 72px;
   height: auto;
+  text-align: center;
 }
 .scene[data-scene="make"] > .right .skill-wrap .name {
+  position: relative;
+  top: -7px;
   font-size: 10px;
+}
+.scene[data-scene="make"] > .right .instrument,
+.scene[data-scene="make"] > .right .ext-instrument {
+  margin-bottom: 10px;
+  margin-left: 6px;
+}
+.scene[data-scene="make"] > .right .instrument .name,
+.scene[data-scene="make"] > .right .ext-instrument .name {
+  font-size: 12px;
+}
+.scene[data-scene="make"] > .right .left-header .item-icon {
+  display: block;
 }
 .scene[data-scene="character"] {
   background: url("../res/Background/make.png");
@@ -5042,47 +5131,4 @@ input {
 #editor-wrap .table-wrap {
   width: 100%;
   overflow-x: auto;
-}
-.skill-wrap {
-  display: inline-block;
-  text-align: center;
-  padding-bottom: 5px;
-  height: 90px;
-  width: 116px;
-  vertical-align: middle;
-}
-.skill-wrap .skill {
-  display: inline-block;
-  position: relative;
-  height: 52px;
-  width: 48px;
-}
-.skill-wrap .skill .skill-icon {
-  position: absolute;
-  top: 3px;
-  left: 3px;
-}
-.skill-wrap .skill .skill-bg {
-  position: absolute;
-  top: 0;
-  left: 0;
-  z-index: 1;
-}
-.skill-wrap .skill .level {
-  color: white;
-  position: absolute;
-  left: 63%;
-  z-index: 1;
-  bottom: -3%;
-  font-size: 13px;
-  width: 26px;
-  text-align: center;
-  font-weight: normal;
-  margin-bottom: 0;
-}
-.skill-wrap .name {
-  position: relative;
-  top: -3px;
-  display: block;
-  font-weight: normal;
 }
