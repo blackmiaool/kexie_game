@@ -3522,6 +3522,36 @@ img {
   max-height: 55%;
   max-width: 55%;
 }
+.deep-dbline-header {
+  font-size: 14px;
+  line-height: 14px;
+  height: 14px;
+  display: block;
+  margin-bottom: 5px;
+  margin: auto;
+  text-align: center;
+  position: relative;
+  color: wheat;
+}
+.deep-dbline-header:before {
+  width: 100%;
+  height: 1px;
+  background-color: wheat;
+  content: "";
+  top: 0;
+  bottom: 0;
+  margin: auto;
+  position: absolute;
+  opacity: 0.4;
+}
+.deep-dbline-header:before {
+  right: 0;
+}
+.deep-dbline-header > .deep-content {
+  padding: 0 10px;
+  position: relative;
+  background-color: #1f1916;
+}
 html,
 body {
   margin: 0;
@@ -4877,26 +4907,8 @@ input {
   top: 10px;
   margin: auto;
 }
-.scene[data-scene="make-select"] .select-target header span.header {
-  position: absolute;
-  top: 50%;
-  -webkit-transform: translateY(-50%);
-  -ms-transform: translateY(-50%);
-  transform: translateY(-50%);
-  top: 43%;
-  left: 0;
-  right: 0;
-  bottom: auto;
-  text-align: center;
-  color: #dec7aa;
-  font-size: 28px;
-  line-height: 28px;
-  height: 28px;
-}
-.scene[data-scene="make-select"] .select-target header span.header.little {
-  font-size: 20px;
-  line-height: 20px;
-  height: 20px;
+.scene[data-scene="make-select"] .select-target header.little > span {
+  font-size: 16px;
 }
 .scene[data-scene="make-select"] .select-target main {
   position: absolute;
@@ -4981,11 +4993,6 @@ input {
 .scene[data-scene="make"] > .left .btn-wrap .change-target {
   margin: auto;
 }
-.scene[data-scene="make"] > .center {
-  left: 25%;
-  width: 50%;
-  top: 40px;
-}
 .scene[data-scene="make"] > .right {
   left: 75%;
   width: 25%;
@@ -4994,34 +5001,10 @@ input {
   color: wheat;
 }
 .scene[data-scene="make"] > .right > .section {
-  padding-top: 5px;
+  padding-top: 10px;
 }
 .scene[data-scene="make"] > .right > .section > header {
-  display: block;
-  text-align: center;
-  font-size: 14px;
-  line-height: 14px;
-  height: 14px;
-  position: relative;
   margin-bottom: 5px;
-}
-.scene[data-scene="make"] > .right > .section > header:after,
-.scene[data-scene="make"] > .right > .section > header:before {
-  width: 33%;
-  height: 1px;
-  background-color: wheat;
-  content: "";
-  top: 0;
-  bottom: 0;
-  margin: auto;
-  position: absolute;
-  opacity: 0.4;
-}
-.scene[data-scene="make"] > .right > .section > header:after {
-  left: 0;
-}
-.scene[data-scene="make"] > .right > .section > header:before {
-  right: 0;
 }
 .scene[data-scene="make"] > .right .skill-wrap {
   width: 72px;
@@ -5044,6 +5027,25 @@ input {
 }
 .scene[data-scene="make"] > .right .left-header .item-icon {
   display: block;
+}
+.scene[data-scene="make"] > .center {
+  left: 25%;
+  width: 50%;
+  top: 40px;
+}
+.scene[data-scene="make"] > .center main {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  bottom: 20px;
+  left: 20px;
+  top: 60px;
+}
+.scene[data-scene="make"] > .center main > .main-content.ready-to-make {
+  text-align: center;
+}
+.scene[data-scene="make"] > .center main > .main-content.ready-to-make button.start-build {
+  margin-bottom: 10px;
 }
 .scene[data-scene="character"] {
   background: url("../res/Background/make.png");

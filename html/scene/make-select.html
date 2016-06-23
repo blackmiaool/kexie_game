@@ -2,8 +2,7 @@
     
 
     <div deep-panel class="select-target">
-        <header class="deep-header">           
-            <span class="header unselectable" ng-bind="selectingProductKind||'制作'" ng-class="{little:selectingProductKind}"></span>
+        <header deep-header="{{selectingProductKind||'制作'}}" ng-class="{little:selectingProductKind}" class="header">            
         </header>
         <main class="red-scroll-shadow-wrap">
             <div class="red-scroll page" data-page="0" ng-class="{left:productSelectPageIndex>0,center:productSelectPageIndex==0,right:productSelectPageIndex<0}">

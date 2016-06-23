@@ -467,8 +467,7 @@
                     
                 
                     <div deep-panel class="select-target">
-                        <header class="deep-header">           
-                            <span class="header unselectable" ng-bind="selectingProductKind||'制作'" ng-class="{little:selectingProductKind}"></span>
+                        <header deep-header="{{selectingProductKind||'制作'}}" ng-class="{little:selectingProductKind}" class="header">            
                         </header>
                         <main class="red-scroll-shadow-wrap">
                             <div class="red-scroll page" data-page="0" ng-class="{left:productSelectPageIndex>0,center:productSelectPageIndex==0,right:productSelectPageIndex<0}">
@@ -517,12 +516,26 @@
                 </div>
                 <div class="center top-block" deep-panel>
                     <header deep-header="工作台">
-                
                     </header>
+                    <main>
+                        <div class="main-content ready-to-make">
+                            <button class="deep-btn blue lg start-build">搭建框架</button>
+                            <header class="deep-dbline-header">
+                                <span class="deep-content">
+                                消耗材料
+                                </span>
+                            </header>
+                        </div>
+                
+                    </main>
+                
+                
                 </div>
                 <div class="right top-block" deep-panel>
                     <div class="section">
-                        <header>相关技能</header>
+                        <header class="deep-dbline-header">
+                            <span class="deep-content">相关技能</span>
+                        </header>
                         <main>
                             <div ng-repeat="skill in res.products[working.kind].skill" class="skill">
                 
@@ -561,7 +574,9 @@
                         </main>
                     </div>
                     <div class="section">
-                        <header>相关仪器</header>
+                        <header class="deep-dbline-header">
+                            <span class="deep-content">相关仪器</span>
+                        </header>
                         <main>
                             <div ng-repeat="instrument in res.products[working.kind].instrument" class="instrument">
                                 <div class="left-header">

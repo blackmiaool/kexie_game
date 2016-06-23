@@ -8,7 +8,6 @@ background-size: cover;
     top: 0;
     bottom: 0;
     display: inline-block;
-    
 }
 
 &>.left {
@@ -30,10 +29,10 @@ background-size: cover;
     }
     .info-block {
         color: wheat;
-        header{
+        header {
             margin-left: 10px;
         }
-        main{
+        main {
             width: 100%;
             font-size: 15px;
         }
@@ -47,20 +46,6 @@ background-size: cover;
     }
 }
 
-&>.center {
-    left: 25%;
-    width: 50%;
-    top: 40px;
-    header {
-        //        img.header{
-        //            display: inline-block;
-        //            width: 100%;
-        //        }
-        //        span.header{
-        //            position: absolute;
-        //        }
-    }
-}
 
 &>.right {
     left: 75%;
@@ -68,57 +53,65 @@ background-size: cover;
     top: 40px;
     padding: 17px 22px;
     color: wheat;
-    &>.section{
-        padding-top: 5px;
-        &>header{
-            display: block;
-            text-align: center;
-            .pure-line(14px);            
-            position: relative;
-            &:after,&:before{
-                width: 33%;
-                height: 1px;
-                background-color: wheat;
-                content:"";
-                top: 0;
-                bottom: 0;
-                margin: auto;                
-                position: absolute;
-                opacity: 0.4;
-            }
-            &:after{
-                left: 0;
-            }
-            &:before{
-                right: 0;
-            }
+    &>.section {
+        padding-top: 10px;
+        &>header {            
             margin-bottom: 5px;
         }
-        
     }
-    .skill-wrap{
+    .skill-wrap {
         width: 72px;
         height: auto;
         text-align: center;
-        .skill-icon{
-            
-        }
-        .name{
+        .skill-icon {}
+        .name {
             position: relative;
             top: -7px;
             font-size: 10px;
         }
     }
-    .instrument,.ext-instrument{
-        .name{
+    .instrument,
+    .ext-instrument {
+        .name {
             font-size: 12px;
         }
         margin-bottom: 10px;
         margin-left: 6px;
     }
-    .left-header{
-        .item-icon{
+    .left-header {
+        .item-icon {
             display: block;
         }
     }
 }
+
+
+
+
+&>.center {
+    left: 25%;
+    width: 50%;
+    top: 40px;
+    main {
+        .square-crop(20px);
+        top:60px;
+        >.main-content {
+            &.ready-to-make {
+                text-align: center;
+                button.start-build{
+                    margin-bottom: 10px;
+                }
+            }            
+        }
+    }
+}
+
+
+
+
+
+
+
+
+
+
