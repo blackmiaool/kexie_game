@@ -72,7 +72,7 @@ gulp.task('less', function () {
     //        });
 
 
-    return gulp.src('less/style.less')
+    return gulp.src(['less/style.less','less/deep-ui.less'])
         .pipe(e)
         .pipe(cached("less"))
         .on('error', swallowError)

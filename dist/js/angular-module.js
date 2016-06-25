@@ -24,6 +24,17 @@ define(["angular"], function (angular) {
             },
             template: '\n                <span class="deep-header-text unselectable" ng-class="{little:selectingProductKind}"></span>'
         };
+    }).directive('deepItemIcon', function () {
+        return {
+            restrict: 'A',
+            compile: function compile(element, attrs) {
+                element.addClass("deep-header");
+                var content = attrs["deepContent"];
+                var $content = element.find(".deep-header-text");
+                $content.text(attrs.deepHeader);
+            },
+            template: '\n                <span class="deep-header-text unselectable" ng-class="{little:selectingProductKind}"></span>'
+        };
     }).filter("workPrefix", function () {
         return function (work) {
             var workPrefix = "";

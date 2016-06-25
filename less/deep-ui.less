@@ -1,4 +1,4 @@
-@import "common.less";
+@import "mixin.less";
 @path: "@{res-folder}/deep_ui";
 @icon-path: "@{res-folder}/deep_ui/icon";
 @deep-bg:#1f1916;
@@ -307,7 +307,21 @@
     background-position: center center;
     position: relative;
     &>img,&>div{
-//        .abs-fill;
+        .transfrom-center;
+        max-height: 55%;
+        max-width: 55%;
+    }
+}
+.deep-item-icon-with-cnt{
+    @height:60px;
+    height: @height;
+    width:@height *279/194;
+    .bg("@{path}/item_icon.png");
+    display: inline-block;
+    text-align: center;    
+    background-position: center center;
+    position: relative;
+    &>img,&>div{
         .transfrom-center;
         max-height: 55%;
         max-width: 55%;

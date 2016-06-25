@@ -174,6 +174,83 @@
         "difficulty": "2",
         "skill": "电路分析v1",
         "extSkill": "数据结构与算法"
+    }, {
+        "name": "单片机流水灯1",
+        "material": "低端单片机*1+LED*8+电路基础元件*1",
+        "instrument": "表?",
+        "difficulty": "10",
+        "skill": "undefined",
+        "extSkill": "none"
+    }, {
+        "name": "单片机流水灯2",
+        "material": "低端单片机*1+LED*8+电路基础元件*1",
+        "instrument": "表?",
+        "difficulty": "10",
+        "skill": "undefined",
+        "extSkill": "none"
+    }, {
+        "name": "单片机流水灯3",
+        "material": "低端单片机*1+LED*8+电路基础元件*1",
+        "instrument": "表?",
+        "difficulty": "10",
+        "skill": "undefined",
+        "extSkill": "none"
+    }, {
+        "name": "单片机流水灯43",
+        "material": "低端单片机*1+LED*8+电路基础元件*1",
+        "instrument": "表?",
+        "difficulty": "10",
+        "skill": "undefined",
+        "extSkill": "none"
+    }, {
+        "name": "单片机流水灯5",
+        "material": "低端单片机*1+LED*8+电路基础元件*1",
+        "instrument": "表?",
+        "difficulty": "10",
+        "skill": "undefined",
+        "extSkill": "none"
+    }, {
+        "name": "单片机流水灯6",
+        "material": "低端单片机*1+LED*8+电路基础元件*1",
+        "instrument": "表?",
+        "difficulty": "10",
+        "skill": "undefined",
+        "extSkill": "none"
+    }, {
+        "name": "闹钟",
+        "material": "低端单片机*1+数码管*8+电路基础元件*1",
+        "instrument": "表?",
+        "difficulty": "9",
+        "skill": "undefined",
+        "extSkill": "none"
+    }, {
+        "name": "巡线车",
+        "material": "中端单片机*1+LED*16+电路基础元件*3+机械元件*10",
+        "instrument": "表!电钻!锯子!工具套装!逻辑分析仪?",
+        "difficulty": "9",
+        "skill": "undefined",
+        "extSkill": "none"
+    }, {
+        "name": "飞思卡尔智能车",
+        "material": "中端单片机*1+LED*16+电路基础元件*6+机械元件*3",
+        "instrument": "表!电钻!锯子?工具套装!逻辑分析仪?",
+        "difficulty": "9",
+        "skill": "undefined",
+        "extSkill": "none"
+    }, {
+        "name": "女朋友（残、伪）",
+        "material": "机械元件*10+舵机*8+高端单片机*2",
+        "instrument": "烙铁+电钻+电锯+机械基础工具",
+        "difficulty": "30",
+        "skill": "undefined",
+        "extSkill": "none"
+    }, {
+        "name": "男朋友（残、伪）",
+        "material": "机械元件*2+振动电机*1+普通电池*1",
+        "instrument": "烙铁+电锯+机械基础工具",
+        "difficulty": "25",
+        "skill": "undefined",
+        "extSkill": "none"
     }],
     "device": [{
         "name": "烙铁",
@@ -599,7 +676,7 @@
         "effect": "每回合恢复体力--",
         "contradiction": "none",
         "cost": "-1",
-        "summary": "老师叫你去搬椅子"
+        "summary": "会长叫你去搬椅子"
     }, {
         "name": "智商正常",
         "effect": "学习技能所需体力++",
@@ -612,5 +689,36 @@
         "contradiction": "交际花,八面玲珑",
         "cost": "-2",
         "summary": "三人行,则我就不说话"
+    }, {
+        "name": "入P积极分子",
+        "effect": "无法进入浪神殿",
+        "contradiction": "",
+        "cost": "-3",
+        "summary": "对不起,我不拜浪神"
+    }],
+    "characterCombine": [{
+        "name": "你很聪明但是",
+        "condition": "天才+学渣"
+    }, {
+        "name": "竞赛狂人",
+        "condition": "数学竞赛选手+物理竞赛选手+信息竞赛选手"
+    }, {
+        "name": "情圣",
+        "condition": "异地恋+八面玲珑+交际花"
+    }, {
+        "name": "白马王子",
+        "condition": "富二代+学霸+八面玲珑"
+    }, {
+        "name": "那个谁",
+        "condition": "物理竞赛选手+穷二代+学渣+自闭症"
+    }, {
+        "name": "现充",
+        "condition": "(同性恋||异地恋)+学生会成员-手办爱好者"
+    }, {
+        "name": "月光族",
+        "condition": "穷二代,异地恋,手办爱好者"
+    }, {
+        "name": "主角",
+        "condition": "富二代+电二代+八面玲珑+智商正常"
     }]
 }
