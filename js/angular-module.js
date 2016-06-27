@@ -27,26 +27,44 @@ define(["angular"], function (angular) {
                 compile: function (element, attrs) {
                     element.addClass("deep-header");
                     let content = attrs["deepContent"];
-                    let $content=element.find(".deep-header-text");
+                    let $content = element.find(".deep-header-text");
                     $content.text(attrs.deepHeader);
                 },
                 template: `
                 <span class="deep-header-text unselectable" ng-class="{little:selectingProductKind}"></span>`
             };
         })
-        .directive('deepItemIcon', function () {
+        .directive('deepItemIcon', ["$parse", function ($parse) {
             return {
                 restrict: 'A',
-                compile: function (element, attrs) {
-                    element.addClass("deep-header");
-                    let content = attrs["deepContent"];
-                    let $content=element.find(".deep-header-text");
-                    $content.text(attrs.deepHeader);
+                compile: function (element, attrs) {                    
+                    let cnt = attrs["deepCnt"];
+                    let name = attrs["deepName"];
+                    let judge = attrs["deepJudge"];
+                    if (cnt) {
+                        element.addClass("deep-item-icon-with-cnt");
+                        let $cnt=element.find(".deep-cnt");
+                        $cnt.text(cnt)
+                        if (judge) {
+                            $cnt.attr("ng-class",`{"deep-danger":!(${judge}),"deep-success":${judge}}`)
+                        }
+                    } else {
+                        element.addClass("deep-item-icon");
+                    }
+
+                    if (name) {
+                        element.find(".deep-name").text(name)
+                    }
+                    console.log(attrs.deepItemIcon);
+                    element.find("img").attr("ng-src", attrs.deepItemIcon);
                 },
-                template: `
-                <span class="deep-header-text unselectable" ng-class="{little:selectingProductKind}"></span>`
+                template: `                 
+                    <img draggable="false" class="skill-icon">
+                    <span class="deep-cnt"></span>
+                    <span class="deep-name"></span>
+                `
             };
-        })
+        }])
         .filter("workPrefix", function () {
             return function (work) {
                 let workPrefix = "";

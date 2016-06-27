@@ -66,13 +66,13 @@ var gulpConfig = { plots: [{ "name": "kexie_first.js", "fullpath": "/home/blackm
                 return preText;
             }
 
-            function getItemIconUrl(item, color) {
+            function getItemIcon(item, color) {
 
                 if (typeof item === "string") {
                     item = res.devices[item];
                 }
 
-                return common.resPath + "icon/item/" + color + "/" + item.icon;
+                return common.resPath + "icon/item/" + color + "/" + item.icon + ".svg";
             }
 
             function getRes(str) {
@@ -137,7 +137,7 @@ var gulpConfig = { plots: [{ "name": "kexie_first.js", "fullpath": "/home/blackm
                 //                scenes,
                 scenePaths: scenePaths,
                 getPre: getPre,
-                getItemIconUrl: getItemIconUrl,
+                getItemIcon: getItemIcon,
                 getRes: getRes,
                 goScene: goScene,
                 getSkillIcon: getSkillIcon,

@@ -55,8 +55,30 @@ define(["require", "system-scene", "system-sys", "angular", "system-dbg", "v", "
                 sp.working = working;
             }
         });
+        $timeout(function () {
+            v.item["五5伍"].cnt = 10;
+            v.item["LED"].cnt = 11;
+            v.item["电路基础元件"].cnt = 12;
+        }, 1000);
+        function checkMaterial() {
+            if (!sp.working) return false;
+            console.log(sp.working);
 
-        _.extend(sp, {});
+            var satisfy = !res.products[sp.working.kind].material.some(function (vv, i) {
+                if (vv.cnt > v.item[vv.name].cnt) {
+                    return true;
+                }
+            });
+            return satisfy;
+        }
+        function print() {
+            console.log(arguments);
+            return true;
+        }
+        _.extend(sp, {
+            checkMaterial: checkMaterial,
+            print: print
+        });
     }]);
 
     scene.register(sceneThis);

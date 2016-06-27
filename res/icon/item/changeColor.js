@@ -28,7 +28,10 @@ files.forEach(function(v,i){
         return;
     let fileName=path.join(__dirname, v);
     let content=fs.readFileSync(fileName).toString();
-    if(content.match(/style="/)){
+    if(content.match(/stroke="/)&&fileName.match(/stroke/)){
+	content=content.replace(/stroke="([\s\S]+?)"/g,function(s,s1){return `stroke="${color}"`});
+    }
+    else if(content.match(/style="/)){
         content=content.replace(/style="([\s\S]+?)"/g,function(s,s1){return `style="${s1};fill:${color};"`});
     }else{
         content=content.replace(/<svg version=/g,`<svg style="fill: ${color}" version=`);
@@ -36,3 +39,10 @@ files.forEach(function(v,i){
     
     fs.writeFileSync(path.join(__dirname, colorName,v),content);
 })
+
+
+
+
+
+
+

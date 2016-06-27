@@ -66,7 +66,7 @@
     }, {
         "name": "电路基础元件",
         "kind": "基础器件",
-        "icon": "resistance",
+        "icon": "resistance_stroke",
         "price": "10",
         "brief": "最基础的电路元件套装，包括焊锡、排针、杜邦线、电阻、电容等器件",
         "comment": "德律商店",

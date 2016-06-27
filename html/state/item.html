@@ -10,7 +10,7 @@
     <div class="items-wrap">
         <div ng-click="selectItem(item)" ng-repeat="item in items" ng-if="currentItemKind==item.kind" class="item-wrap clickable">
             <div class="item-body-wrap">
-                <img draggable="false" ng-src="{{::getItemIconUrl(item,'blue')}}.svg" class="item-icon">
+                <img draggable="false" ng-src="{{::getItemIcon(item,'blue')}}" class="item-icon">
                 <label class="cnt" ng-bind="item.cnt"></label>
             </div>
 
@@ -27,7 +27,7 @@
     <div class="desc-wrap">
         <div ng-if="selectingItem" class="desc-wrap1">
             <div class="icon-wrap">
-                <img draggable="false" ng-src="{{getItemIconUrl(selectingItem,'white')}}.svg" alt="">
+                <img draggable="false" ng-src="{{getItemIcon(selectingItem,'white')}}" alt="">
             </div>
 
             <label class="tag name">名称:</label>

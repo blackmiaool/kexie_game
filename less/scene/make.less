@@ -3,6 +3,31 @@
 background: url("@{res-folder}/Background/make.png");
 background-position: bottom;
 background-size: cover;
+color:wheat;
+&>.center {
+    left: 25%;
+    width: 50%;
+    top: 40px !important;
+    >main {
+        .square-crop(23px);
+        top: 60px;
+        >.main-content {
+            &[data-phase="ready-to-make"] {
+                >header {
+                    margin-top: 20px;
+                }
+                text-align: center;
+                button.start-build {
+                    margin-bottom: 10px;
+                }
+                .item {
+                    margin: 10px;
+                }
+            }
+        }
+    }
+}
+
 &>.top-block {
     position: absolute;
     top: 0;
@@ -46,7 +71,6 @@ background-size: cover;
     }
 }
 
-
 &>.right {
     left: 75%;
     width: 25%;
@@ -55,7 +79,7 @@ background-size: cover;
     color: wheat;
     &>.section {
         padding-top: 10px;
-        &>header {            
+        &>header {
             margin-bottom: 5px;
         }
     }
@@ -84,34 +108,3 @@ background-size: cover;
         }
     }
 }
-
-
-
-
-&>.center {
-    left: 25%;
-    width: 50%;
-    top: 40px;
-    main {
-        .square-crop(23px);
-        top:60px;
-        >.main-content {
-            &.ready-to-make {
-                text-align: center;
-                button.start-build{
-                    margin-bottom: 10px;
-                }
-            }            
-        }
-    }
-}
-
-
-
-
-
-
-
-
-
-

@@ -1,3 +1,24 @@
+<div class="center top-block" deep-panel>
+    <header deep-header="工作台">
+    </header>
+    <main>
+        <div class="main-content" data-phase="ready-to-make">
+            <button ng-class="{'disabled':!checkMaterial()}" class="deep-btn blue lg start-build">搭建框架</button>
+            <header class="deep-dbline-header">
+                <span class="deep-content">
+                消耗材料
+                </span>
+            </header>
+            <main>
+                <div ng-show="print(m.cnt,v.item[m.name].cnt)" class="item" deep-item-icon="{{getItemIcon(res.items[m.name],'wheat')}}" ng-repeat="m in res.products[working.kind].material" deep-cnt="{{v.item[m.name].cnt+'/'+m.cnt}}" deep-name="{{m.name}}" class="material" deep-judge="m.cnt<=v.item[m.name].cnt">
+                 
+                </div>
+            </main>
+        </div>
+
+    </main>
+</div>
+
 <div class="left top-block">
     <button ng-click="goScene('home')" class="red-icon go-back" data-icon="left"></button>
     <button ng-click="goScene('state')" class="red-icon go-state yellow" data-icon="profile"></button>
@@ -14,27 +35,8 @@
     <div class="btn-wrap">
         <button ng-click="goScene('make-select')" class="deep-btn orange lg change-target">更换制作物品</button>
     </div>
-
-    <br>
-
 </div>
-<div class="center top-block" deep-panel>
-    <header deep-header="工作台">
-    </header>
-    <main>
-        <div class="main-content ready-to-make">
-            <button class="deep-btn blue lg start-build">搭建框架</button>
-            <header class="deep-dbline-header">
-                <span class="deep-content">
-                消耗材料
-                </span>
-            </header>
-        </div>
 
-    </main>
-
-
-</div>
 <div class="right top-block" deep-panel>
     <div class="section">
         <header class="deep-dbline-header">
@@ -85,7 +87,7 @@
             <div ng-repeat="instrument in res.products[working.kind].instrument" class="instrument">
                 <div class="left-header">
                     <div class="deep-item-icon item-icon">
-                        <img ng-src="{{getItemIconUrl(instrument,'wheat')}}.svg" alt="">
+                        <img ng-src="{{getItemIcon(instrument,'wheat')}}" alt="">
                     </div>
                     <span ng-bind="instrument" class="name"></span>
                 </div>
@@ -94,7 +96,7 @@
             <div ng-repeat="instrument in res.products[working.kind].extInstrument" class="ext-instrument">
                 <div class="left-header">
                     <div class="deep-item-icon  item-icon">
-                        <img ng-src="{{getItemIconUrl(instrument,'wheat')}}.svg" alt="">
+                        <img ng-src="{{getItemIcon(instrument,'wheat')}}" alt="">
                     </div>
                     <span ng-bind="instrument" class="name"></span>
                 </div>

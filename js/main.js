@@ -74,13 +74,13 @@
                 return preText;
             }
 
-            function getItemIconUrl(item, color) {
+            function getItemIcon(item, color) {
                
                 if (typeof item === "string") {
                     item = res.devices[item];
                 }
                
-                return `${common.resPath}icon/item/${color}/${item.icon}`;
+                return `${common.resPath}icon/item/${color}/${item.icon}.svg`;
             }
 
             function getRes(str) {
@@ -142,7 +142,7 @@
 //                scenes,
                 scenePaths,
                 getPre,
-                getItemIconUrl,
+                getItemIcon,
                 getRes,
                 goScene,
                 getSkillIcon,
