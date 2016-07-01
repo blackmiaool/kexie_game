@@ -4,16 +4,38 @@
     <main>
         <div class="main-content" data-phase="ready-to-make">
             <button ng-class="{'disabled':!checkMaterial()}" class="deep-btn blue lg start-build">搭建框架</button>
-            <header class="deep-dbline-header">
-                <span class="deep-content">
+            <section>
+                <header class="deep-dbline-header">
+                    <span class="deep-content">
                 消耗材料
                 </span>
-            </header>
-            <main>
-                <div ng-show="print(m.cnt,v.item[m.name].cnt)" class="item" deep-item-icon="{{getItemIcon(res.items[m.name],'wheat')}}" ng-repeat="m in res.products[working.kind].material" deep-cnt="{{v.item[m.name].cnt+'/'+m.cnt}}" deep-name="{{m.name}}" class="material" deep-judge="m.cnt<=v.item[m.name].cnt">
-                 
-                </div>
-            </main>
+                </header>
+                <main>
+                    <div ng-show2="print(m.cnt,v.item[m.name].cnt)" class="item" deep-item-icon="{{getItemIcon(res.items[m.name],'wheat')}}" ng-repeat="m in res.products[working.kind].material" deep-cnt="{{v.item[m.name].cnt+'/'+m.cnt}}" deep-name="{{m.name}}" class="material" deep-judge="m.cnt<=v.item[m.name].cnt">
+
+                    </div>
+                </main>
+            </section>
+            <section>
+                <header class="deep-dbline-header">
+                    <span class="deep-content">
+                消耗体力
+                </span>
+                </header>
+                <main>
+                </main>
+            </section>
+            <section class="extension">
+                <header class="deep-dbline-header">
+                    <span class="deep-content">
+                扩展方向
+                    </span>
+                </header>
+                <main>
+                
+                <label ng-repeat="(name,dir) in extensions" deep-select="extensions[name]" >{{name}}</label>
+                </main>
+            </section>
         </div>
 
     </main>

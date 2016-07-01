@@ -1,4 +1,4 @@
-<div ng-controller="state-controller" class="wrap">
+<div ng-controller="StateController" class="wrap">
     <div ng-click="back()" draggable="false" title="返回" class="back">    </div>
     <div class="page-select-wrap" ng-init="currentPage='物品'">
 
@@ -10,20 +10,20 @@
         </div>
     </div>
 
-    <div ng-controller="status-controller" class="page" data-page="status" ng-show="currentPage=='状态'">
+    <div ng-controller="StatusController" class="page" data-page="status" ng-show="currentPage=='状态'">
        <!-- inject: state/status.html-->        
     </div>
-    <div ng-controller="skill-controller" class="page" data-page="skill" ng-show="currentPage=='技能'">
+    <div ng-controller="SkillController" class="page" data-page="skill" ng-show="currentPage=='技能'">
         <!-- inject: state/skill.html--> 
 
     </div>
-    <div ng-controller="people-controller" class="page" data-page="people" ng-show="currentPage=='朋友'">
+    <div ng-controller="PeopleController" class="page" data-page="people" ng-show="currentPage=='朋友'">
         <!-- inject: state/people.html-->
     </div>
-    <div ng-controller="item-controller" class="page" data-page="item" ng-show="currentPage=='物品'">
+    <div ng-controller="ItemController" class="page" data-page="item" ng-show="currentPage=='物品'">
         <!-- inject: state/item.html-->
     </div>
-    <div ng-controller="story-controller" class="page" data-page="story" ng-show="currentPage=='经历'">
+    <div ng-controller="StoryController" class="page" data-page="story" ng-show="currentPage=='经历'">
         <!-- inject: state/story.html-->
     </div>
 

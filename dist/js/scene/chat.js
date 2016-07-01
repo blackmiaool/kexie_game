@@ -14,7 +14,7 @@ define(["require", "system-scene", "system-sys", "angular", "system-dbg", "v", "
 
     function init() {
 
-        module.controller("chat_controller", function ($scope) {
+        module.controller("ChatController", function ($scope) {
 
             //                console.log(plot);
             //                plot.init();

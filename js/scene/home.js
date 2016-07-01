@@ -61,7 +61,7 @@ function getAction(name) {
 window.getAction=getAction;
 scene.register(sceneThis);
 
-module.controller("home-controller", ["$scope", "$rootScope", "$timeout",
+module.controller("HomeController", ["$scope", "$rootScope", "$timeout",
 function (sp, rsp, $timeout) {
         let monkey;
 
@@ -245,7 +245,7 @@ function (sp, rsp, $timeout) {
 
         });
 }]);
-module.controller("home-skill-controller", ["$scope", "$rootScope", "$timeout",
+module.controller("HomeSkillController", ["$scope", "$rootScope", "$timeout",
 function (sp, rsp, $timeout) {
 
         function upgradeSkill(skill) {
@@ -286,7 +286,7 @@ for (var i in res.items) {
 for (var i in res.devices) {
     cartDevices[i] = 0;
 }
-module.controller("store-controller", ["$scope", "$rootScope", "$timeout", function (sp, rsp, $timeout) {
+module.controller("StoreController", ["$scope", "$rootScope", "$timeout", function (sp, rsp, $timeout) {
     function minusItem(item) {
         cartItems[item.name]--;
     }

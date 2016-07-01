@@ -4510,6 +4510,12 @@ input {
 .scene[data-scene="make"] > .center > main > .main-content[data-phase="ready-to-make"] .item {
   margin: 10px;
 }
+.scene[data-scene="make"] > .center > main > .main-content[data-phase="ready-to-make"] section {
+  margin-bottom: 15px;
+}
+.scene[data-scene="make"] > .center > main > .main-content[data-phase="ready-to-make"] section.extension label {
+  margin: 10px;
+}
 .scene[data-scene="make"] > .top-block {
   position: absolute;
   top: 0;

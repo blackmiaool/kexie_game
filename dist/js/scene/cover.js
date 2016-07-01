@@ -13,7 +13,7 @@ define(["require", "system-scene", "system-sys", "angular", "system-dbg", "v", "
     var $$ = $dom.find.bind($dom);
 
     function init() {
-        module.controller("cover_controller", function ($scope) {
+        module.controller("CoverController", function ($scope) {
             $scope.start = function () {
                 scene.go("chat", "cover");
             };

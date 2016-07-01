@@ -98,7 +98,7 @@ let spots = {
 
 }
 
-module.controller("bigmap_controller", ["$scope", "$rootScope", function (sp, rsp) {
+module.controller("BigmapController", ["$scope", "$rootScope", function (sp, rsp) {
     rsp.$on("bigmap-enter", function (e, data) {
         sp.active = true;
     })

@@ -14,7 +14,7 @@
     <h5 id="game-first-tip" style="text-align:center;">服务器连接成功，正在拉取JS与CSS~</h5>
 </head>
 
-<body ng-controller="root_controller" ng-cloak>
+<body ng-controller="RootController" ng-cloak>
     <div id="wrap">
         <div class="scene-wrap hide" >
             <div class="scene" data-scene="bigmap" ng-if="scenes['bigmap']">
@@ -41,10 +41,10 @@
             <div class="scene" data-scene="make-select" ng-if="scenes['make-select']">
                 <!-- inject: scene/make-select.html-->
             </div>
-            <div class="scene" data-scene="make" ng-controller="make_controller" ng-if="scenes['make']">
+            <div class="scene" data-scene="make" ng-controller="MakeController" ng-if="scenes['make']">
                 <!-- inject: scene/make.html-->
             </div>
-            <div class="scene" data-scene="character" ng-controller="character_controller" ng-if="scenes['character']">
+            <div class="scene" data-scene="character" ng-controller="CharacterController" ng-if="scenes['character']">
                 <!-- inject: scene/character.html-->
             </div>
             <button ng-click="openDebugPanel()" class="debug btn btn-primary">调试</button>
@@ -54,7 +54,7 @@
         </div>
     </div>
     <script data-main="js/main" src="js/require.js"></script>
-    <script src="http://192.168.199.128:35729/livereload.js?ext=Chrome&extver=2.1.0"></script>
+    <script src="http://localhost:35729/livereload.js?ext=Chrome&extver=2.1.0"></script>
 </body>
 
 </html>

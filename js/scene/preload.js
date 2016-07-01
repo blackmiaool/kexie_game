@@ -18,7 +18,9 @@ function preEnter() {
             let debuggingScene=localStorage.getItem("debug-scene");
             if(debuggingScene){
                 scene.go(debuggingScene,"硬件流水灯"); 
-            }            
+            }else{
+                scene.go("home"); 
+            }           
         })
         return;
     }

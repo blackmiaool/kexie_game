@@ -13,7 +13,7 @@ function init() {
 
 }
 const initPoints = 3;
-module.controller("character_controller", ["$scope", "$rootScope", function (sp, rsp) {
+module.controller("CharacterController", ["$scope", "$rootScope", function (sp, rsp) {
     let index = 0;
 
     function selectItem(item) {

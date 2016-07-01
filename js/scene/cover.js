@@ -10,7 +10,7 @@ let sceneThis = {
 let $$ = $dom.find.bind($dom);
 
 function init() {
-    module.controller("cover_controller", function ($scope) {
+    module.controller("CoverController", function ($scope) {
         $scope.start = function () {
             scene.go("chat", "cover");
         }

@@ -1,4 +1,4 @@
-<div ng-controller="bigmap_controller" class="top">
+<div ng-controller="BigmapController" class="top">
     <img class="big-bg" src="res/System/bigmap.jpg" style="height:540px;" ng-class="{active:active}">
     <button ng-click="enter(value.text)" ng-repeat="(name,value) in spots" class="btn clickable" ng-class="value.class" ng-style="value" style="position:absolute;">
         <span class="glyphicon glyphicon-{{value.icon}}"></span>&nbsp;<span ng-bind="name"></span>

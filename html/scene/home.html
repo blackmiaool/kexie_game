@@ -1,4 +1,4 @@
-<div ng-controller="home-controller" class="home-wrap">
+<div ng-controller="HomeController" class="home-wrap">
     <span class="basic name">
         <span class="key"><span class="glyphicon glyphicon-user"></span> 姓名</span>
         <span class="value" ng-bind="v.basic.name"></span>
@@ -44,7 +44,7 @@
         <div class="panel-bg"></div>
 -->
 
-        <div ng-controller="home-skill-controller" class="actions-frame action-top-frame skill-select" ng-class="{active:actionPanel=='学习'}">
+        <div ng-controller="HomeSkillController" class="actions-frame action-top-frame skill-select" ng-class="{active:actionPanel=='学习'}">
             <div ng-click="actionBack()" class="action clickable action-back" data-action="{{::action.name}}">
 
                 <img draggable="false" ng-src="{{::getActionIcon('arrows')}}">

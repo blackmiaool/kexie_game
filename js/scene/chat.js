@@ -13,7 +13,7 @@ let $$ = $dom.find.bind($dom);
 function init() {
 
 
-    module.controller("chat_controller", function ($scope) {
+    module.controller("ChatController", function ($scope) {
 
         //                console.log(plot);
         //                plot.init(); 

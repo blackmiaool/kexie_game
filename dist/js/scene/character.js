@@ -14,7 +14,7 @@ define(["require", "system-scene", "system-sys", "angular", "system-dbg", "v", "
 
     function init() {}
     var initPoints = 3;
-    module.controller("character_controller", ["$scope", "$rootScope", function (sp, rsp) {
+    module.controller("CharacterController", ["$scope", "$rootScope", function (sp, rsp) {
         var index = 0;
 
         function selectItem(item) {

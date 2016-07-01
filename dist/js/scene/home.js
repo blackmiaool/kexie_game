@@ -64,7 +64,7 @@ define(["require", "system-scene", "system-sys", "angular", "system-dbg", "v", "
     window.getAction = getAction;
     scene.register(sceneThis);
 
-    module.controller("home-controller", ["$scope", "$rootScope", "$timeout", function (sp, rsp, $timeout) {
+    module.controller("HomeController", ["$scope", "$rootScope", "$timeout", function (sp, rsp, $timeout) {
         var monkey = void 0;
 
         function getActionIcon(name) {
@@ -262,7 +262,7 @@ define(["require", "system-scene", "system-sys", "angular", "system-dbg", "v", "
 
         });
     }]);
-    module.controller("home-skill-controller", ["$scope", "$rootScope", "$timeout", function (sp, rsp, $timeout) {
+    module.controller("HomeSkillController", ["$scope", "$rootScope", "$timeout", function (sp, rsp, $timeout) {
 
         function upgradeSkill(skill) {
             if (v.skill[skill.name].level < 10) {
@@ -297,7 +297,7 @@ define(["require", "system-scene", "system-sys", "angular", "system-dbg", "v", "
     for (var i in res.devices) {
         cartDevices[i] = 0;
     }
-    module.controller("store-controller", ["$scope", "$rootScope", "$timeout", function (sp, rsp, $timeout) {
+    module.controller("StoreController", ["$scope", "$rootScope", "$timeout", function (sp, rsp, $timeout) {
         function minusItem(item) {
             cartItems[item.name]--;
         }

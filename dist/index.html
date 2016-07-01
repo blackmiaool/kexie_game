@@ -14,11 +14,11 @@
     <h5 id="game-first-tip" style="text-align:center;">服务器连接成功，正在拉取JS与CSS~</h5>
 </head>
 
-<body ng-controller="root_controller" ng-cloak>
+<body ng-controller="RootController" ng-cloak>
     <div id="wrap">
         <div class="scene-wrap hide" >
             <div class="scene" data-scene="bigmap" ng-if="scenes['bigmap']">
-                <div ng-controller="bigmap_controller" class="top">
+                <div ng-controller="BigmapController" class="top">
                     <img class="big-bg" src="res/System/bigmap.jpg" style="height:540px;" ng-class="{active:active}">
                     <button ng-click="enter(value.text)" ng-repeat="(name,value) in spots" class="btn clickable" ng-class="value.class" ng-style="value" style="position:absolute;">
                         <span class="glyphicon glyphicon-{{value.icon}}"></span>&nbsp;<span ng-bind="name"></span>
@@ -29,7 +29,7 @@
                 </div>
             </div>
             <div class="scene" data-scene="chat" ng-if="scenes['chat']">
-                <div class="chat-wrap"  ng-controller="chat_controller">
+                <div class="chat-wrap"  ng-controller="ChatController">
                 
                     <div class="bg" ondragstart="return false;">
                 
@@ -54,7 +54,7 @@
                 </div>
             </div>
             <div class="scene" data-scene="cover" ng-if="scenes['cover']">
-                <div ng-controller="cover_controller">
+                <div ng-controller="CoverController">
                     <h1 class='logo-title'>科协<span class="float">浮生</span>记<img src="res/monkey/running.gif"/></h1>
                 
                     <div class="btns">
@@ -78,7 +78,7 @@
                 </div>
             </div>
             <div class="scene" data-scene="home" ng-if="scenes['home']">
-                <div ng-controller="home-controller" class="home-wrap">
+                <div ng-controller="HomeController" class="home-wrap">
                     <span class="basic name">
                         <span class="key"><span class="glyphicon glyphicon-user"></span> 姓名</span>
                         <span class="value" ng-bind="v.basic.name"></span>
@@ -124,7 +124,7 @@
                         <div class="panel-bg"></div>
                 -->
                 
-                        <div ng-controller="home-skill-controller" class="actions-frame action-top-frame skill-select" ng-class="{active:actionPanel=='学习'}">
+                        <div ng-controller="HomeSkillController" class="actions-frame action-top-frame skill-select" ng-class="{active:actionPanel=='学习'}">
                             <div ng-click="actionBack()" class="action clickable action-back" data-action="{{::action.name}}">
                 
                                 <img draggable="false" ng-src="{{::getActionIcon('arrows')}}">
@@ -184,7 +184,7 @@
                         </div>
                 
                     </div>
-                    <div ng-controller="store-controller" class="shop-wrap"  ng-class="{hide:!show}">
+                    <div ng-controller="StoreController" class="shop-wrap"  ng-class="{hide:!show}">
                         <div class="shop-mask" ng-class="{hide:!show,active:active}">
                     
                         </div>
@@ -341,7 +341,7 @@
                 </div>
             </div>
             <div class="scene" data-scene="state" ng-if="scenes['state']">
-                <div ng-controller="state-controller" class="wrap">
+                <div ng-controller="StateController" class="wrap">
                     <div ng-click="back()" draggable="false" title="返回" class="back">    </div>
                     <div class="page-select-wrap" ng-init="currentPage='物品'">
                 
@@ -353,7 +353,7 @@
                         </div>
                     </div>
                 
-                    <div ng-controller="status-controller" class="page" data-page="status" ng-show="currentPage=='状态'">
+                    <div ng-controller="StatusController" class="page" data-page="status" ng-show="currentPage=='状态'">
                        <div class="money" ng-bind="'金钱: '+v.basic.money"></div>
                                <div class="analog" title="模拟电路能力"><img ng-src="{{img.state_analog}}" alt=""><span class="value">234</span></div>
                                <div class="digital" title="数字电路能力"><span class="value">666</span><img ng-src="{{img.state_digital}}" alt=""> </div>
@@ -378,7 +378,7 @@
                                    </span>
                                </div>        
                     </div>
-                    <div ng-controller="skill-controller" class="page" data-page="skill" ng-show="currentPage=='技能'">
+                    <div ng-controller="SkillController" class="page" data-page="skill" ng-show="currentPage=='技能'">
                         <div class="table-wrap highlight">
                             <table class="table">
                                 <thead>
@@ -401,7 +401,7 @@
                         </div> 
                 
                     </div>
-                    <div ng-controller="people-controller" class="page" data-page="people" ng-show="currentPage=='朋友'">
+                    <div ng-controller="PeopleController" class="page" data-page="people" ng-show="currentPage=='朋友'">
                         <div class="desc-wrap">
                             <img ng-src="{{currentP.half}}" alt="" class="currentP">
                         </div>
@@ -411,7 +411,7 @@
                             </div>
                         </div>
                     </div>
-                    <div ng-controller="item-controller" class="page" data-page="item" ng-show="currentPage=='物品'">
+                    <div ng-controller="ItemController" class="page" data-page="item" ng-show="currentPage=='物品'">
                         <div class="kind-wrap">
                             <div ng-click="setItemKind(kind.name)" ng-repeat="kind in itemKinds" class="item-kind-select clickable" ng-class="{active:currentItemKind==kind.name}">
                                 <img draggable="false" ng-src="{{::kind.icon}}.svg" alt="">
@@ -456,7 +456,7 @@
                             </div>
                         </div>
                     </div>
-                    <div ng-controller="story-controller" class="page" data-page="story" ng-show="currentPage=='经历'">
+                    <div ng-controller="StoryController" class="page" data-page="story" ng-show="currentPage=='经历'">
                         
                     </div>
                 
@@ -464,7 +464,7 @@
                 </div>
             </div>
             <div class="scene" data-scene="make-select" ng-if="scenes['make-select']">
-                <div ng-controller="make_select_controller" class="make-wrap">
+                <div ng-controller="MakeSelectController" class="make-wrap">
                     
                 
                     <div deep-panel class="select-target">
@@ -494,23 +494,45 @@
                 
                 </div>
             </div>
-            <div class="scene" data-scene="make" ng-controller="make_controller" ng-if="scenes['make']">
+            <div class="scene" data-scene="make" ng-controller="MakeController" ng-if="scenes['make']">
                 <div class="center top-block" deep-panel>
                     <header deep-header="工作台">
                     </header>
                     <main>
                         <div class="main-content" data-phase="ready-to-make">
                             <button ng-class="{'disabled':!checkMaterial()}" class="deep-btn blue lg start-build">搭建框架</button>
-                            <header class="deep-dbline-header">
-                                <span class="deep-content">
+                            <section>
+                                <header class="deep-dbline-header">
+                                    <span class="deep-content">
                                 消耗材料
                                 </span>
-                            </header>
-                            <main>
-                                <div ng-show="print(m.cnt,v.item[m.name].cnt)" class="item" deep-item-icon="{{getItemIcon(res.items[m.name],'wheat')}}" ng-repeat="m in res.products[working.kind].material" deep-cnt="{{v.item[m.name].cnt+'/'+m.cnt}}" deep-name="{{m.name}}" class="material" deep-judge="m.cnt<=v.item[m.name].cnt">
-                                 
-                                </div>
-                            </main>
+                                </header>
+                                <main>
+                                    <div ng-show2="print(m.cnt,v.item[m.name].cnt)" class="item" deep-item-icon="{{getItemIcon(res.items[m.name],'wheat')}}" ng-repeat="m in res.products[working.kind].material" deep-cnt="{{v.item[m.name].cnt+'/'+m.cnt}}" deep-name="{{m.name}}" class="material" deep-judge="m.cnt<=v.item[m.name].cnt">
+                
+                                    </div>
+                                </main>
+                            </section>
+                            <section>
+                                <header class="deep-dbline-header">
+                                    <span class="deep-content">
+                                消耗体力
+                                </span>
+                                </header>
+                                <main>
+                                </main>
+                            </section>
+                            <section class="extension">
+                                <header class="deep-dbline-header">
+                                    <span class="deep-content">
+                                扩展方向
+                                    </span>
+                                </header>
+                                <main>
+                                
+                                <label ng-repeat="(name,dir) in extensions" deep-select="extensions[name]" >{{name}}</label>
+                                </main>
+                            </section>
                         </div>
                 
                     </main>
@@ -607,7 +629,7 @@
                             <span class="header unselectable" ng-bind="selectingProductKind||'制作'" ng-class="{little:selectingProductKind}"></span>-->
                 <!--  强化方向 每次强化选择花费的体力?小游戏?如何决定强化策略? 相关技能 哪些影响? 相关材料 失败率? 相关仪器 额外的仪器带来额外的收益?熟练度? 腐烂? 先完成基础部分搭建然后选择强化方向? 面板: 选择产品 制造详情 当前制作 产品:一开始有一段固定条,表示基础部分.开工前可以选择基础部分的方向(创新\性能\稳定).开工后-->
             </div>
-            <div class="scene" data-scene="character" ng-controller="character_controller" ng-if="scenes['character']">
+            <div class="scene" data-scene="character" ng-controller="CharacterController" ng-if="scenes['character']">
                 <div class="settings-wrap goodness">
                     <label for="" class="title deep-slot">优势</label>
                     <div deep-panel class="settings-content-wrap">
@@ -685,7 +707,7 @@
         </div>
     </div>
     <script data-main="js/main" src="js/require.js"></script>
-    <script src="http://192.168.199.128:35729/livereload.js?ext=Chrome&extver=2.1.0"></script>
+    <script src="http://localhost:35729/livereload.js?ext=Chrome&extver=2.1.0"></script>
 </body>
 
 </html>

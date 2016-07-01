@@ -22,7 +22,13 @@ define(["require", "system-scene", "system-sys", "angular", "system-dbg", "v", "
     //let working=v.work["硬件流水灯"][0];
     //console.log(working)
     console.log(res);
-    module.controller("make_controller", ["$scope", "$rootScope", "$timeout", function (sp, rsp, $timeout) {
+    module.controller("MakeController", ["$scope", "$rootScope", "$timeout", function (sp, rsp, $timeout) {
+        var extendDirs = ["性能", "稳定", "创新"];
+        var extensions = { 性能: false, 稳定: false, 创新: false };
+        sp.extensions = extensions;
+        sp.$watch("extensions", function (v) {
+            console.log(v);
+        }, true);
         rsp.$on("make-preEnter", function (e, _ref) {
             var _ref2 = _slicedToArray(_ref, 2);
 
@@ -62,7 +68,6 @@ define(["require", "system-scene", "system-sys", "angular", "system-dbg", "v", "
         }, 1000);
         function checkMaterial() {
             if (!sp.working) return false;
-            console.log(sp.working);
 
             var satisfy = !res.products[sp.working.kind].material.some(function (vv, i) {
                 if (vv.cnt > v.item[vv.name].cnt) {
@@ -77,7 +82,9 @@ define(["require", "system-scene", "system-sys", "angular", "system-dbg", "v", "
         }
         _.extend(sp, {
             checkMaterial: checkMaterial,
-            print: print
+            print: print,
+            extendDirs: extendDirs
+
         });
     }]);
 

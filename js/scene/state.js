@@ -64,7 +64,7 @@ const pages = [
 //            class: "ym-success",
 //        },
     ];
-module.controller("state-controller", ["$scope", function (sp) {
+module.controller("StateController", ["$scope", function (sp) {
     function setPage(name) {
         sp.currentPage = name;
     }
@@ -94,14 +94,12 @@ module.filter('skillLevel', function () {
     };
     return filter;
 });
-//module.controller("status-controller", ["$scope", "$rootScope", function (sp, rsp) {
-//
-//                                       }])
-module.controller("status-controller", ["$scope", "$rootScope",
+
+module.controller("StatusController", ["$scope", "$rootScope",
 function (sp, rsp) {
 
 }])
-module.controller("skill-controller", ["$scope", "$rootScope",
+module.controller("SkillController", ["$scope", "$rootScope",
 function (sp, rsp) {
         function getSkillName(skill) {
             let show = true;
@@ -134,7 +132,7 @@ function (sp, rsp) {
             getPre,
         });
 }])
-module.controller("people-controller", ["$scope", "$rootScope",
+module.controller("PeopleController", ["$scope", "$rootScope",
 function (sp, rsp) {
         function setP(pp) {
             console.log(pp);
@@ -146,11 +144,11 @@ function (sp, rsp) {
             setP,
         });
 }])
-module.controller("story-controller", ["$scope", "$rootScope",
+module.controller("StoryController", ["$scope", "$rootScope",
 function (sp, rsp) {
         _.extend(sp, {});
 }])
-module.controller("item-controller", ["$scope", "$rootScope",
+module.controller("ItemController", ["$scope", "$rootScope",
 function (sp, rsp) {
         function setItemKind(kind) {
             sp.currentItemKind = kind;

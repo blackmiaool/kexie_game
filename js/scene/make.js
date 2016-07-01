@@ -22,7 +22,13 @@ function init() {
 //let working=v.work["硬件流水灯"][0];
 //console.log(working)
 console.log(res)
-module.controller("make_controller", ["$scope", "$rootScope", "$timeout", function (sp, rsp, $timeout) {
+module.controller("MakeController", ["$scope", "$rootScope", "$timeout", function (sp, rsp, $timeout) {
+    let extendDirs=["性能","稳定","创新"];
+    let extensions={性能:false,稳定:false,创新:false};
+    sp.extensions=extensions;
+    sp.$watch("extensions",function(v){
+        console.log(v);
+    },true)
     rsp.$on("make-preEnter", function (e, [kind, id]) {
         if (!kind) {
             console.error("Miss 'kind' paramater");
@@ -59,7 +65,6 @@ module.controller("make_controller", ["$scope", "$rootScope", "$timeout", functi
     function checkMaterial(){
         if(!sp.working)
             return false;
-        console.log(sp.working)
         
         let satisfy=!res.products[sp.working.kind].material.some(function(vv,i){
             if(vv.cnt>v.item[vv.name].cnt){
@@ -76,6 +81,8 @@ module.controller("make_controller", ["$scope", "$rootScope", "$timeout", functi
     _.extend(sp, {
         checkMaterial,
         print,
+        extendDirs,
+       
     })
 
 }])

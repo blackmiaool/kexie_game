@@ -62,7 +62,7 @@ define(["require", "system-scene", "system-sys", "angular", "system-dbg", "v", "
     //            name: "设备",
     //            class: "ym-success",
     //        },
-    module.controller("state-controller", ["$scope", function (sp) {
+    module.controller("StateController", ["$scope", function (sp) {
         function setPage(name) {
             sp.currentPage = name;
         }
@@ -92,11 +92,9 @@ define(["require", "system-scene", "system-sys", "angular", "system-dbg", "v", "
         };
         return filter;
     });
-    //module.controller("status-controller", ["$scope", "$rootScope", function (sp, rsp) {
-    //
-    //                                       }])
-    module.controller("status-controller", ["$scope", "$rootScope", function (sp, rsp) {}]);
-    module.controller("skill-controller", ["$scope", "$rootScope", function (sp, rsp) {
+
+    module.controller("StatusController", ["$scope", "$rootScope", function (sp, rsp) {}]);
+    module.controller("SkillController", ["$scope", "$rootScope", function (sp, rsp) {
         function getSkillName(skill) {
             var show = true;
             //        console.log(skill);
@@ -126,7 +124,7 @@ define(["require", "system-scene", "system-sys", "angular", "system-dbg", "v", "
             getPre: getPre
         });
     }]);
-    module.controller("people-controller", ["$scope", "$rootScope", function (sp, rsp) {
+    module.controller("PeopleController", ["$scope", "$rootScope", function (sp, rsp) {
         function setP(pp) {
             console.log(pp);
             sp.currentP = pp;
@@ -137,10 +135,10 @@ define(["require", "system-scene", "system-sys", "angular", "system-dbg", "v", "
             setP: setP
         });
     }]);
-    module.controller("story-controller", ["$scope", "$rootScope", function (sp, rsp) {
+    module.controller("StoryController", ["$scope", "$rootScope", function (sp, rsp) {
         _.extend(sp, {});
     }]);
-    module.controller("item-controller", ["$scope", "$rootScope", function (sp, rsp) {
+    module.controller("ItemController", ["$scope", "$rootScope", function (sp, rsp) {
         function setItemKind(kind) {
             sp.currentItemKind = kind;
         }

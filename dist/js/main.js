@@ -47,112 +47,123 @@ var gulpConfig = { plots: [{ "name": "kexie_first.js", "fullpath": "/home/blackm
 
     requirejs.config(config);
 
-    requirejs(["jquery", "system-sys", "angular", 'angular-module', "system-scene", "res", "system-common", 'v', 'angular-animate', "plot"], function ($, sys, angular, module, scene, res, common, v) {
+    requirejs(["jquery", "system-sys", "angular", 'angular-module', "system-scene", "res", "system-common", 'v', 'angular-animate', "plot", "deep-ui"], function ($, sys, angular, module, scene, res, common, v) {
         $("#game-first-tip").remove();
+        var rootPromise = new Promise(function (resolve, reject) {
+            module.controller("RootController", ["$rootScope", "$scope", function (rsp, sp) {
+                console.log("set root");
 
-        module.controller("root_controller", ["$rootScope", "$scope", function (rsp, sp) {
+                sys.$rootScope = angular.element("body").scope().$parent.$root;
+                resolve();
 
-            sys.$rootScope = angular.element("body").scope().$parent.$root;
+                function getPre(skill) {
+                    var preText = "";
+                    skill.pre.forEach(function (v, i) {
+                        if (i > 0) preText += " , ";
+                        preText += v.skill.name + "Lv" + v.level;
+                    });
+                    if (!preText) {
+                        preText = "无";
+                    }
+                    return preText;
+                }
 
-            function getPre(skill) {
-                var preText = "";
-                skill.pre.forEach(function (v, i) {
-                    if (i > 0) preText += " , ";
-                    preText += v.skill.name + "Lv" + v.level;
+                function getItemIcon(item, color) {
+
+                    if (typeof item === "string") {
+                        item = res.devices[item];
+                    }
+
+                    return common.resPath + "icon/item/" + color + "/" + item.icon + ".svg";
+                }
+
+                function getRes(str) {
+                    return common.g(str);
+                }
+
+                function goScene(str) {
+                    for (var _len = arguments.length, args = Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
+                        args[_key - 1] = arguments[_key];
+                    }
+
+                    scene.go.apply(scene, [str].concat(args));
+                }
+
+                function getSkillIcon(skill) {
+
+                    if (typeof skill === "string") {
+                        skill = res.skills[skill];
+                    }
+
+                    if (v.skill[skill.name].satisfied && v.power >= getAction("学习").consume) {
+                        return common.resPath + "skills/" + skill.icon + ".jpg";
+                    } else {
+                        return common.resPath + "skills/" + skill.icon + "-off.jpg";
+                    }
+                }
+
+                function getSkillBg(skill) {
+                    if (typeof skill === "string") {
+                        skill = res.skills[skill];
+                    }
+                    var color = "green";
+                    if (skill.pre.length != 0 && !v.skill[skill.name].satisfied) {
+
+                        color = "grey";
+                    } else if (v.skill[skill.name].level >= 10) {
+                        color = "yellow";
+                    }
+                    return common.resPath + "skills/icon-over-" + color + ".gif";
+                }
+
+                function openDebugPanel() {
+                    sp.showDebug = !sp.showDebug;
+                    console.log(scenePaths);
+                    console.log(sp.currentScene);
+                }
+
+                function debugScene(sceneName) {
+                    localStorage.setItem("debug-scene", sceneName);
+                    sp.goScene(sceneName);
+                    sp.showDebug = !sp.showDebug;
+                }
+                var scenes = {};
+                scenePaths.forEach(function (v, i) {
+                    scenes[v] = false;
                 });
-                if (!preText) {
-                    preText = "无";
-                }
-                return preText;
-            }
-
-            function getItemIcon(item, color) {
-
-                if (typeof item === "string") {
-                    item = res.devices[item];
-                }
-
-                return common.resPath + "icon/item/" + color + "/" + item.icon + ".svg";
-            }
-
-            function getRes(str) {
-                return common.g(str);
-            }
-
-            function goScene(str) {
-                for (var _len = arguments.length, args = Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
-                    args[_key - 1] = arguments[_key];
-                }
-
-                scene.go.apply(scene, [str].concat(args));
-            }
-
-            function getSkillIcon(skill) {
-
-                if (typeof skill === "string") {
-                    skill = res.skills[skill];
-                }
-
-                if (v.skill[skill.name].satisfied && v.power >= getAction("学习").consume) {
-                    return common.resPath + "skills/" + skill.icon + ".jpg";
-                } else {
-                    return common.resPath + "skills/" + skill.icon + "-off.jpg";
-                }
-            }
-
-            function getSkillBg(skill) {
-                if (typeof skill === "string") {
-                    skill = res.skills[skill];
-                }
-                var color = "green";
-                if (skill.pre.length != 0 && !v.skill[skill.name].satisfied) {
-
-                    color = "grey";
-                } else if (v.skill[skill.name].level >= 10) {
-                    color = "yellow";
-                }
-                return common.resPath + "skills/icon-over-" + color + ".gif";
-            }
-
-            function openDebugPanel() {
-                sp.showDebug = !sp.showDebug;
-                console.log(scenePaths);
-                console.log(sp.currentScene);
-            }
-            function debugScene(sceneName) {
-                localStorage.setItem("debug-scene", sceneName);
-                sp.goScene(sceneName);
-                sp.showDebug = !sp.showDebug;
-            }
-            var scenes = {};
-            scenePaths.forEach(function (v, i) {
-                scenes[v] = false;
-            });
-            $(".scene-wrap").show();
-            sys.$rootScope.scenes = scenes;
-            _.extend(sp, {
-                img: res.img,
-                v: v,
-                res: res,
-                //                scenes,
-                scenePaths: scenePaths,
-                getPre: getPre,
-                getItemIcon: getItemIcon,
-                getRes: getRes,
-                goScene: goScene,
-                getSkillIcon: getSkillIcon,
-                getSkillBg: getSkillBg,
-                openDebugPanel: openDebugPanel,
-                debugScene: debugScene
-            });
-        }]);
-
-        sys.sceneLoaded = function () {
-            angular.bootstrap("body", ['home-app']);
+                $(".scene-wrap").show();
+                sys.$rootScope.scenes = scenes;
+                _.extend(sp, {
+                    img: res.img,
+                    v: v,
+                    res: res,
+                    //                scenes,
+                    scenePaths: scenePaths,
+                    getPre: getPre,
+                    getItemIcon: getItemIcon,
+                    getRes: getRes,
+                    goScene: goScene,
+                    getSkillIcon: getSkillIcon,
+                    getSkillBg: getSkillBg,
+                    openDebugPanel: openDebugPanel,
+                    debugScene: debugScene
+                });
+            }]);
+        });
+        console.log(1);
+        var scenePromise = new Promise(function (resolve, reject) {
+            console.log(2);
+            sys.sceneLoaded = function () {
+                angular.bootstrap("body", ['homeApp']);
+                resolve();
+            };
+        });
+        console.log(3);
+        rootPromise.then(scenePromise).then(function () {
             setTimeout(function () {
                 scene.go("preload");
             });
-        };
+        });
     });
 })();
 
