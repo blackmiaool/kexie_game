@@ -1,5 +1,11 @@
+let resPath="res/deep_ui"
 define(["angular-module"], function (module) {
-    return module.directive('deepPanel', function () {
+    return module
+        .factory('deepData', ["$rootScope",function (rsp) {
+            rsp.deepPath=resPath; 
+          return '';
+        }]) 
+        .directive('deepPanel', ["deepData",function () {
             return {
                 restrict: 'A',
                 transclude: true,
@@ -19,7 +25,7 @@ define(["angular-module"], function (module) {
     <div class="deep-panel-corner deep-panel-corner4">
     </div>`
             };
-        })
+        }])
         .directive('deepHeader', function () {
             return {
                 restrict: 'A',
@@ -54,7 +60,7 @@ define(["angular-module"], function (module) {
                     if (name) {
                         element.find(".deep-name").text(name)
                     }
-                    console.log(attrs.deepItemIcon);
+//                    console.log(attrs.deepItemIcon);
                     element.find("img").attr("ng-src", attrs.deepItemIcon);
                 },
                 template: `                 
@@ -68,15 +74,28 @@ define(["angular-module"], function (module) {
             return {
                 restrict: 'A',
                 compile: function (element, attrs) {
-                    console.log(attrs);
+//                    console.log(attrs);
                     let model =attrs["deepSelect"];
-                    console.warn(model);
                     element.find("input").attr("ng-model",model);
                     element.addClass("deep-select").addClass("unselectable");
                 },
                 transclude: true,
                 template: `                 
                     <input type="checkbox"><span class="deep-checkbox"></span><span class="ng-transclude"></span>
+                `
+            };
+        })
+        .directive('deepDblineHeader',function(){
+            return {
+                restrict: 'A',
+                compile: function (element, attrs) {
+//                    console.log(attrs);
+                    let $$=element.find.bind(element);
+                    let text =attrs["deepDblineHeader"];
+                    $$(".deep-content").text(text);
+                },
+                template: `                 
+                    <span class="deep-content"></span>
                 `
             };
         })

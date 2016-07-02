@@ -1,8 +1,9 @@
-@import "mixin.less";
-@res-folder: "../res";
+@res-folder: "../res";//mannul set
+
 @path: "@{res-folder}/deep_ui";
 @icon-path: "@{res-folder}/deep_ui/icon";
 @deep-bg: #1f1916;
+@import "mixin.less";
 .deep-header {
     background-image: url("@{path}/red_header.png");
     background-repeat: no-repeat;
@@ -358,12 +359,13 @@
     }
 }
 
-.deep-dbline-header {
+[deep-dbline-header] {
+    
     .pure-line(14px);
     display: block;
-    text-align: center;
-    margin-bottom: 5px;
+    text-align: center;    
     margin: auto;
+    margin-bottom: 10px;
     text-align: center;
     position: relative;
     color: wheat;
@@ -417,4 +419,34 @@
             .bg("@{path}/checkbox_mark.png");
         }
     }
+}
+.deep-health,.deep-power{
+    @height:40px;
+    @rate:@height/20px;
+    height: @height;    
+    width: 100%;
+    position: relative;
+    border-style: solid;
+    border-width: @rate*20px @rate*11.5px @rate*0px @rate*3.5px;
+.border-image(url("@{path}/UnitFrame_HealthBar_Background.png") 102 52 0 15 fill stretch);
+    &>.deep-health-fill,&>.deep-power-fill {
+        position: absolute;
+        left: @rate*0.3px;
+        top: -@height + 3px*@rate;
+        bottom: @rate*3px;
+        right: @rate*-9px;
+        display: flex;
+        flex-direction: row;
+        border-style: solid;
+        width: 0%;
+        border-width: @rate*14px @rate*11px 0px @rate*2.7px;
+        .border-image(url("@{path}/UnitFrame_HealthBar_Fill_Tiled.png") 68 47 0 10 fill stretch); 
+    } 
+}
+.deep-power{
+
+.border-image(url("@{path}/UnitFrame_HealthBar_Background.png") 102 52 0 15 fill stretch);
+    &>.deep-power-fill {
+        .border-image(url("@{path}/UnitFrame_PowerBar_Fill_Tiled.png") 68 47 0 10 fill stretch); 
+    } 
 }

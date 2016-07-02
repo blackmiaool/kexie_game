@@ -155,10 +155,9 @@
                 });
 
     }]);
-        })
-        console.log(1)
+        })     
         let scenePromise = new Promise(function (resolve, reject) {
-            console.log(2)
+
             sys.sceneLoaded = function () {
                 angular.bootstrap("body", ['homeApp']);
                 resolve();
@@ -166,7 +165,7 @@
 
             }
         })
-        console.log(3)
+
         rootPromise.then(scenePromise).then(function () {
             setTimeout(function () {
                 scene.go("preload");

@@ -1,7 +1,11 @@
-'use strict';
+"use strict";
 
+var resPath = "res/deep_ui";
 define(["angular-module"], function (module) {
-    return module.directive('deepPanel', function () {
+    return module.factory('deepData', ["$rootScope", function (rsp) {
+        rsp.deepPath = resPath;
+        return '';
+    }]).directive('deepPanel', ["deepData", function () {
         return {
             restrict: 'A',
             transclude: true,
@@ -11,9 +15,9 @@ define(["angular-module"], function (module) {
                     element.append(clone);
                 });
             },
-            template: '               \n                <div class="deep-panel-corner deep-panel-corner1">\n    </div>\n    <div class="deep-panel-corner deep-panel-corner2">\n    </div>\n    <div class="deep-panel-corner deep-panel-corner3">\n    </div>\n    <div class="deep-panel-corner deep-panel-corner4">\n    </div>'
+            template: "               \n                <div class=\"deep-panel-corner deep-panel-corner1\">\n    </div>\n    <div class=\"deep-panel-corner deep-panel-corner2\">\n    </div>\n    <div class=\"deep-panel-corner deep-panel-corner3\">\n    </div>\n    <div class=\"deep-panel-corner deep-panel-corner4\">\n    </div>"
         };
-    }).directive('deepHeader', function () {
+    }]).directive('deepHeader', function () {
         return {
             restrict: 'A',
             compile: function compile(element, attrs) {
@@ -22,7 +26,7 @@ define(["angular-module"], function (module) {
                 var $content = element.find(".deep-header-text");
                 $content.text(attrs.deepHeader);
             },
-            template: '\n                <span class="deep-header-text unselectable" ng-class="{little:selectingProductKind}"></span>'
+            template: "\n                <span class=\"deep-header-text unselectable\" ng-class=\"{little:selectingProductKind}\"></span>"
         };
     }).directive('deepItemIcon', function () {
         return {
@@ -36,7 +40,7 @@ define(["angular-module"], function (module) {
                     var $cnt = element.find(".deep-cnt");
                     $cnt.text(cnt);
                     if (judge) {
-                        $cnt.attr("ng-class", '{"deep-danger":!(' + judge + '),"deep-success":' + judge + '}');
+                        $cnt.attr("ng-class", "{\"deep-danger\":!(" + judge + "),\"deep-success\":" + judge + "}");
                     }
                 } else {
                     element.addClass("deep-item-icon");
@@ -45,23 +49,33 @@ define(["angular-module"], function (module) {
                 if (name) {
                     element.find(".deep-name").text(name);
                 }
-                console.log(attrs.deepItemIcon);
+                //                    console.log(attrs.deepItemIcon);
                 element.find("img").attr("ng-src", attrs.deepItemIcon);
             },
-            template: '                 \n                    <img draggable="false" class="skill-icon">\n                    <span class="deep-cnt"></span>\n                    <span class="deep-name"></span>\n                '
+            template: "                 \n                    <img draggable=\"false\" class=\"skill-icon\">\n                    <span class=\"deep-cnt\"></span>\n                    <span class=\"deep-name\"></span>\n                "
         };
     }).directive('deepSelect', function () {
         return {
             restrict: 'A',
             compile: function compile(element, attrs) {
-                console.log(attrs);
+                //                    console.log(attrs);
                 var model = attrs["deepSelect"];
-                console.warn(model);
                 element.find("input").attr("ng-model", model);
                 element.addClass("deep-select").addClass("unselectable");
             },
             transclude: true,
-            template: '                 \n                    <input type="checkbox"><span class="deep-checkbox"></span><span class="ng-transclude"></span>\n                '
+            template: "                 \n                    <input type=\"checkbox\"><span class=\"deep-checkbox\"></span><span class=\"ng-transclude\"></span>\n                "
+        };
+    }).directive('deepDblineHeader', function () {
+        return {
+            restrict: 'A',
+            compile: function compile(element, attrs) {
+                //                    console.log(attrs);
+                var $$ = element.find.bind(element);
+                var text = attrs["deepDblineHeader"];
+                $$(".deep-content").text(text);
+            },
+            template: "                 \n                    <span class=\"deep-content\"></span>\n                "
         };
     });
 });

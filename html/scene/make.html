@@ -5,11 +5,7 @@
         <div class="main-content" data-phase="ready-to-make">
             <button ng-class="{'disabled':!checkMaterial()}" class="deep-btn blue lg start-build">搭建框架</button>
             <section>
-                <header class="deep-dbline-header">
-                    <span class="deep-content">
-                消耗材料
-                </span>
-                </header>
+                <header deep-dbline-header="消耗材料"></header>
                 <main>
                     <div ng-show2="print(m.cnt,v.item[m.name].cnt)" class="item" deep-item-icon="{{getItemIcon(res.items[m.name],'wheat')}}" ng-repeat="m in res.products[working.kind].material" deep-cnt="{{v.item[m.name].cnt+'/'+m.cnt}}" deep-name="{{m.name}}" class="material" deep-judge="m.cnt<=v.item[m.name].cnt">
 
@@ -17,23 +13,17 @@
                 </main>
             </section>
             <section>
-                <header class="deep-dbline-header">
-                    <span class="deep-content">
-                消耗体力
-                </span>
-                </header>
+                <header deep-dbline-header="消耗体力"></header>
                 <main>
+                <span ng-bind="powerConsume"></span>
                 </main>
             </section>
             <section class="extension">
-                <header class="deep-dbline-header">
-                    <span class="deep-content">
-                扩展方向
-                    </span>
+                <header deep-dbline-header="扩展方向">
                 </header>
                 <main>
-                
-                <label ng-repeat="(name,dir) in extensions" deep-select="extensions[name]" >{{name}}</label>
+
+                    <label ng-repeat="(name,dir) in extensions" deep-select="extensions[name]">{{name}}</label>
                 </main>
             </section>
         </div>
@@ -52,18 +42,19 @@
     </div>
     <div class="info-block">
         <header>体力</header>
-        <main class="red-normal-item solid" ng-bind="v.power"></main>
+        <main class="deep-power">
+            <div class="deep-power-fill"></div>
+        </main>
     </div>
     <div class="btn-wrap">
-        <button ng-click="goScene('make-select')" class="deep-btn orange lg change-target">更换制作物品</button>
+        <button ng-click="goScene('make-select')" class="deep-btn green lg change-target">选择制作物品</button>
+        <button ng-click="goScene('make-select')" class="deep-btn orange lg disslove">分解</button>
     </div>
 </div>
 
 <div class="right top-block" deep-panel>
     <div class="section">
-        <header class="deep-dbline-header">
-            <span class="deep-content">相关技能</span>
-        </header>
+        <header deep-dbline-header="相关技能"></header>
         <main>
             <div ng-repeat="skill in res.products[working.kind].skill" class="skill">
 
@@ -102,9 +93,7 @@
         </main>
     </div>
     <div class="section">
-        <header class="deep-dbline-header">
-            <span class="deep-content">相关仪器</span>
-        </header>
+        <header deep-dbline-header="相关仪器"></header>
         <main>
             <div ng-repeat="instrument in res.products[working.kind].instrument" class="instrument">
                 <div class="left-header">

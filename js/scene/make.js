@@ -25,10 +25,21 @@ console.log(res)
 module.controller("MakeController", ["$scope", "$rootScope", "$timeout", function (sp, rsp, $timeout) {
     let extendDirs=["性能","稳定","创新"];
     let extensions={性能:false,稳定:false,创新:false};
+    let diffculty;
     sp.extensions=extensions;
     sp.$watch("extensions",function(v){
-        console.log(v);
-    },true)
+        let powerConsume=diffculty;
+        if(v["性能"]){
+            powerConsume*=1.5;
+        }
+        if(v["稳定"]){
+            powerConsume*=1.5;
+        }
+        if(v["创新"]){
+            powerConsume*=1.5;
+        }
+        sp.powerConsume=Math.ceil(powerConsume);
+    },true);
     rsp.$on("make-preEnter", function (e, [kind, id]) {
         if (!kind) {
             console.error("Miss 'kind' paramater");
@@ -55,7 +66,9 @@ module.controller("MakeController", ["$scope", "$rootScope", "$timeout", functio
                     }],
             };
             sp.working = working;
-        }        
+        }  
+        diffculty=res.products[sp.working.kind].difficulty;
+        sp.powerConsume=diffculty;
     });
     $timeout(function(){
         v.item["五5伍"].cnt=10;
@@ -82,7 +95,6 @@ module.controller("MakeController", ["$scope", "$rootScope", "$timeout", functio
         checkMaterial,
         print,
         extendDirs,
-       
     })
 
 }])

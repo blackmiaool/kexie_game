@@ -4553,8 +4553,9 @@ input {
 .scene[data-scene="make"] > .left .btn-wrap {
   text-align: center;
 }
-.scene[data-scene="make"] > .left .btn-wrap .change-target {
+.scene[data-scene="make"] > .left .btn-wrap button {
   margin: auto;
+  margin-bottom: 10px;
 }
 .scene[data-scene="make"] > .right {
   left: 75%;

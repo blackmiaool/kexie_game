@@ -25,9 +25,20 @@ define(["require", "system-scene", "system-sys", "angular", "system-dbg", "v", "
     module.controller("MakeController", ["$scope", "$rootScope", "$timeout", function (sp, rsp, $timeout) {
         var extendDirs = ["性能", "稳定", "创新"];
         var extensions = { 性能: false, 稳定: false, 创新: false };
+        var diffculty = void 0;
         sp.extensions = extensions;
         sp.$watch("extensions", function (v) {
-            console.log(v);
+            var powerConsume = diffculty;
+            if (v["性能"]) {
+                powerConsume *= 1.5;
+            }
+            if (v["稳定"]) {
+                powerConsume *= 1.5;
+            }
+            if (v["创新"]) {
+                powerConsume *= 1.5;
+            }
+            sp.powerConsume = Math.ceil(powerConsume);
         }, true);
         rsp.$on("make-preEnter", function (e, _ref) {
             var _ref2 = _slicedToArray(_ref, 2);
@@ -60,6 +71,8 @@ define(["require", "system-scene", "system-sys", "angular", "system-dbg", "v", "
                 };
                 sp.working = working;
             }
+            diffculty = res.products[sp.working.kind].difficulty;
+            sp.powerConsume = diffculty;
         });
         $timeout(function () {
             v.item["五5伍"].cnt = 10;
@@ -84,7 +97,6 @@ define(["require", "system-scene", "system-sys", "angular", "system-dbg", "v", "
             checkMaterial: checkMaterial,
             print: print,
             extendDirs: extendDirs
-
         });
     }]);
 
