@@ -127,6 +127,13 @@ var gulpConfig = { plots: [{ "name": "kexie_first.js", "fullpath": "/home/blackm
                     sp.goScene(sceneName);
                     sp.showDebug = !sp.showDebug;
                 }
+                function clearHovering() {
+                    console.log(123);
+                    delete rsp.hoveringKind;
+                    delete rsp.hovering;
+                }
+                rsp.clearHovering = clearHovering;
+                console.log(rsp);
                 var scenes = {};
                 scenePaths.forEach(function (v, i) {
                     scenes[v] = false;

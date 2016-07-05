@@ -68,22 +68,22 @@ input {
     border-radius: 7px;
     z-index: 0;
     .abs-fill;
-//    display: none;
+    //    display: none;
     overflow: hidden;
     opacity: 1;
     transition: 0s all linear;
-    &.ng-enter-active{
-//        display: block;
-//        z-index: 1;
+    &.ng-enter-active {
+        //        display: block;
+        //        z-index: 1;
         opacity: 1;
     }
-    &.ng-leave{                
+    &.ng-leave {
         opacity: 0;
     }
-//    &.active {
-//        display: block;
-//        z-index: 1;
-//    }
+    //    &.active {
+    //        display: block;
+    //        z-index: 1;
+    //    }
     &[data-scene="cover"] {
         @import "scene/cover.less";
     }
@@ -110,6 +110,22 @@ input {
     }
     &[data-scene="character"] {
         @import "scene/character.less";
+    }
+}
+
+.hover-card-wrap {
+    position: absolute;
+    &[hover-card="character"] {
+        .hover-card {
+            z-index: 1000;
+            width: 200px;
+            font-size: 12px;
+            color: wheat;
+            background-color: rgba(0, 0, 0, 0.7);
+            .summary {
+                margin-bottom: 10px;
+            }
+        }
     }
 }
 

@@ -2,9 +2,11 @@
 
 var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol ? "symbol" : typeof obj; };
 
-define(function () {
+define(["jquery"], function () {
     var resPath = "res/";
     var v = void 0;
+    var sx = 960;
+    var sy = 540;
     var exports = {
         resPath: resPath,
         color: color,
@@ -15,9 +17,16 @@ define(function () {
         g: g,
         setV: setV,
         getUid: getUid,
-        local: local
+        local: local,
+        sx: sx,
+        sy: sy
     };
-
+    $.fn.transform = function (v) {
+        this.css("-webkit-transform", v);
+        this.css("-ms-transform", v);
+        this.css("-o-transform", v);
+        this.css("transform", v);
+    };
     function find_index(array, key, value) {
         for (var i in array) {
             if (array[i][key] == value) {

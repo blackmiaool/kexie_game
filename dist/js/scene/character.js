@@ -25,11 +25,13 @@ define(["require", "system-scene", "system-sys", "angular", "system-dbg", "v", "
             item.selecting = true;
             item.index = index;
             index++;
+            sp.clearHovering();
+            console.log(sp);
             updatePoints();
         }
 
         function deSelectItem(item) {
-
+            sp.clearHovering();
             item.selecting = false;
             updatePoints();
         }
@@ -123,16 +125,22 @@ define(["require", "system-scene", "system-sys", "angular", "system-dbg", "v", "
             }
         }
         function setHovering(item) {
-            sp.hovering = item;
+            //        sp.hovering=item;
         }
         var $card = void 0;
         var $wrap = $(".scene[data-scene='character']");
         var $cardWrap = $(".hover-card-wrap");
-        $wrap.on("mousemove", function (e) {
-            $card = $cardWrap.children();
-            $card.css("left", e.clientX + 40 + "px");
-            $card.css("top", e.clientY + 2 + "px");
-        });
+        //    $wrap.on("mousemove",function(e){
+        //        $card=$cardWrap.children();
+        //        if(e.clientX+$card.width()<common.sx){
+        //            $card.css("left",e.clientX+40+"px");
+        //            $card.transform("translateX(0)");
+        //        }else {
+        //            $card.css("left",e.clientX+"px");  
+        //            $card.transform("translateX(-100%)");
+        //        }       
+        //        $card.css("top",e.clientY+2+"px"); 
+        //    })
         var costs = [[], [1], [1, 2], [1, 2, 3], [1, 2, 3, 4]];
         function start() {
             allPairs.forEach(function (vv, i) {

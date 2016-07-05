@@ -1,6 +1,8 @@
-define(function () {
+define(["jquery"],function () {
     let resPath = "res/";
     let v;
+    let sx= 960;
+    let sy= 540;
     var exports = {
         resPath,
         color,
@@ -11,9 +13,16 @@ define(function () {
         g,
         setV,
         getUid,
-        local
+        local,
+        sx,
+        sy,
     }
-
+    $.fn.transform=function(v){
+        this.css("-webkit-transform",v);
+        this.css("-ms-transform",v);
+        this.css("-o-transform",v);
+        this.css("transform",v);
+    }
     function find_index(array, key, value) {
         for (var i in array) {
             if (array[i][key] == value) {

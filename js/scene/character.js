@@ -24,12 +24,14 @@ module.controller("CharacterController", ["$scope", "$rootScope", function (sp, 
         item.selecting = true;
         item.index = index;
         index++;
+        sp.clearHovering();
+        console.log(sp);
         updatePoints();
 
     }
 
     function deSelectItem(item) {
-
+        sp.clearHovering();
         item.selecting = false;
         updatePoints();
     }
@@ -125,16 +127,22 @@ module.controller("CharacterController", ["$scope", "$rootScope", function (sp, 
 
     }
     function setHovering(item){
-        sp.hovering=item;
+//        sp.hovering=item;
     }
     let $card;
     let $wrap=$(".scene[data-scene='character']");
     let $cardWrap=$(".hover-card-wrap");
-    $wrap.on("mousemove",function(e){
-        $card=$cardWrap.children();
-        $card.css("left",e.clientX+40+"px");
-        $card.css("top",e.clientY+2+"px");  
-    })
+//    $wrap.on("mousemove",function(e){
+//        $card=$cardWrap.children();
+//        if(e.clientX+$card.width()<common.sx){
+//            $card.css("left",e.clientX+40+"px"); 
+//            $card.transform("translateX(0)");
+//        }else {
+//            $card.css("left",e.clientX+"px");   
+//            $card.transform("translateX(-100%)");
+//        }        
+//        $card.css("top",e.clientY+2+"px");  
+//    })
     let costs=[[],[1],[1,2],[1,2,3],[1,2,3,4]];
     function start(){
         allPairs.forEach(function(vv,i){

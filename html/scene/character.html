@@ -1,7 +1,7 @@
 <div class="settings-wrap goodness">
     <label for="" class="title deep-slot">优势</label>
     <div deep-panel class="settings-content-wrap">
-        <button ng-mouseenter="setHovering(item)" ng-mouseleave="setHovering()" ng-mousedown="selectItem(item)" ng-repeat="item in res.goodness" ng-class="{disabled:checkDisabled(item)}" class="item deep-btn blue" ng-style='{visibility:item.selecting?"hidden":"visible"}'>
+        <button hover-item="item" hover-kind="character" ng-mousedown="selectItem(item)" ng-repeat="item in res.goodness" ng-class="{disabled:checkDisabled(item)}" class="item deep-btn blue" ng-style='{visibility:item.selecting?"hidden":"visible"}'>
             <span ng-bind="::item.name"></span>
             <div class="cost">
                 <img ng-repeat="i in costs[item.cost]" ng-src="{{::res.img.little_star}}" alt="">
@@ -12,7 +12,7 @@
 <div class="settings-wrap goodness-selecting">
     <label for="" class="title deep-slot">已选优势</label>
     <div deep-panel class="settings-content-wrap">
-        <button ng-mouseenter="setHovering(item)" ng-mouseleave="setHovering()" ng-mousedown="deSelectItem(item)" ng-repeat="item in res.goodness|toArray |filter:{selecting:true}| orderBy:'index'" class="item deep-btn blue">
+        <button hover-item="item" hover-kind="character"  ng-mousedown="deSelectItem(item)" ng-repeat="item in res.goodness|toArray |filter:{selecting:true}| orderBy:'index'" class="item deep-btn blue">
             <span ng-bind="::item.name"></span>
             <div class="cost">
                 <img ng-repeat="i in costs[item.cost]" ng-src="{{::res.img.little_star}}" alt="">
@@ -26,7 +26,7 @@
 <div class="settings-wrap weakness">
     <label for="" class="title deep-slot">劣势</label> 
     <div deep-panel class="settings-content-wrap">
-        <button ng-mouseenter="setHovering(item)" ng-mouseleave="setHovering()" ng-class="{disabled:checkDisabled(item)}" ng-mousedown="selectItem(item)" ng-repeat="item in res.weakness" class="item deep-btn orange" ng-style='{visibility:item.selecting?"hidden":"visible"}'>
+        <button hover-item="item" hover-kind="character"  ng-class="{disabled:checkDisabled(item)}" ng-mousedown="selectItem(item)" ng-repeat="item in res.weakness" class="item deep-btn orange" ng-style='{visibility:item.selecting?"hidden":"visible"}'>
             <span ng-bind="::item.name"></span>
             <div class="cost">
                 <img ng-repeat="i in costs[-item.cost]" ng-src="{{::res.img.little_star}}" alt="">
@@ -37,7 +37,7 @@
 <div class="settings-wrap weakness-selecting">
     <label for="" class="title deep-slot">已选劣势</label>
     <div deep-panel class="settings-content-wrap">
-        <button ng-mouseenter="setHovering(item)" ng-mouseleave="setHovering()" ng-mousedown="deSelectItem(item)" ng-repeat="item in res.weakness|toArray |filter:{selecting:true} | orderBy:'index'" class="item deep-btn orange">
+        <button hover-item="item" hover-kind="character"  ng-mousedown="deSelectItem(item)" ng-repeat="item in res.weakness|toArray |filter:{selecting:true} | orderBy:'index'" class="item deep-btn orange">
             <span ng-bind="::item.name"></span>
             <div class="cost">
                 <img ng-repeat="i in costs[-item.cost]" ng-src="{{::res.img.little_star}}" alt="">
@@ -59,11 +59,5 @@
     <div class="btn-wrap">
         <button ng-click="random()" class="red-icon yellow" data-icon="hammer"></button>
         <div class="tip">随机</div>
-    </div>
-</div>
-<div class="hover-card-wrap">
-    <div class="hover-card" ng-if="hovering">
-        <div class="summary" ng-bind="hovering.summary"></div>
-        <div class="effect" ng-bind="hovering.effect"></div>
     </div>
 </div>

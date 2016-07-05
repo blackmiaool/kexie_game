@@ -4674,15 +4674,17 @@ input {
   right: 15px;
   bottom: 5px;
 }
-.scene[data-scene="character"] .hover-card {
+.hover-card-wrap {
+  position: absolute;
+}
+.hover-card-wrap[hover-card="character"] .hover-card {
   z-index: 1000;
-  position: fixed;
   width: 200px;
   font-size: 12px;
   color: wheat;
   background-color: rgba(0, 0, 0, 0.7);
 }
-.scene[data-scene="character"] .hover-card .summary {
+.hover-card-wrap[hover-card="character"] .hover-card .summary {
   margin-bottom: 10px;
 }
 #editor-wrap {
