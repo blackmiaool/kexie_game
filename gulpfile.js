@@ -25,8 +25,12 @@ let handle = require('./data-handle.js');
 var treeify = require('file-tree-sync');
 
 var plotTree = treeify(path.join(__dirname, 'js', "plot"), ['.*']);
-var sceneTree = treeify(path.join(__dirname, 'js', "scene"), ['.*']);
+var sceneTree = treeify(path.join(__dirname, "scene"), ['.*']);
 var imgTree = treeify(path.join(__dirname, 'res'), ['.*', '.jpg', '.png', 'svg']);
+let sceneArray=sceneTree.map((v, i) => v.name);
+let scenePathArray = sceneArray.map((v, i) => {
+        return `scene/${v}/${v}.js`;
+    });
 
 function get_browserify_params() {
     return {
@@ -44,7 +48,18 @@ function get_babel_params() {
     }
 }
 gulp.task('html', function () {
+    let controllerMap={
+        make:"MakeController",
+        character:"CharacterController",
+    }
+    let sceneStr=sceneArray.reduce(function(p,v){
+        let controller=controllerMap[v]?`ng-controller="${controllerMap[v]}"`:"";
+        return p+`<div class="scene" data-scene="${v}" ng-if="scenes['${v}']" ${controller}>\n
+                <!-- inject: ../scene/${v}/${v}.html-->
+            </div>\n`
+    },"");
     return gulp.src(['html/index.html', 'html/editor.html'])
+        .pipe(replace(`<!--injectScene-->`,sceneStr))
         .pipe(injectfile({
             pattern: '<!--\\sinject:<filename>-->',
             recursive: true
@@ -70,10 +85,14 @@ gulp.task('less', function () {
     ////            gutil.log(ee);
     //            e.end();
     //        });
-
-
-    return gulp.src(['less/style.less','less/deep-ui.less'])
-        .pipe(e)
+    let sceneStr=sceneArray.reduce(function(p,v){
+        return p+`&[data-scene="${v}"] {
+        @import "scene/${v}/${v}.less";
+    }\n`;
+    },"")
+    return gulp.src(['less/style.less', 'less/deep-ui.less'])
+        .pipe(replace('//injectSceneFiles', sceneStr))
+        .pipe(e)        
         .pipe(cached("less"))
         .on('error', swallowError)
         .pipe(gulp.dest('dist/css')).pipe(livereload());
@@ -128,9 +147,8 @@ gulp.task("scenes", function () {
         gutil.log(ee);
         babel_pipe.end();
     });
-    return gulp.src('js/scene/*.js', {
-            base: 'js'
-        })
+
+    return gulp.src(scenePathArray)
         .pipe(headerfooter({
             //            header: `define(["require","sys","angular","v","common","res","dbg"],function* (require,sys,angular,v,common,res,dbg){`,
             header: `define(["require","system-scene","system-sys","angular","system-dbg","v","res","angular-module","plot","system-common"],function (require,scene,sys,angular,dbg,v,res,module,plot,common){`,
@@ -149,7 +167,7 @@ gulp.task("scenes", function () {
             pattern: '<!--\\sinject:<filename>-->'
         }))
         .pipe(babel_pipe)
-        .pipe(gulp.dest('dist/js')).pipe(livereload());
+        .pipe(gulp.dest('dist/js/scene')).pipe(livereload());
 })
 gulp.task('es6', ["csv"], function () {
     var babel_pipe = babel(get_babel_params());
@@ -157,8 +175,9 @@ gulp.task('es6', ["csv"], function () {
         gutil.log(ee);
         babel_pipe.end();
     });
-    return gulp.src(['js/**/*.js', "!js/scene/*.js", "!js/plot/*.js"])
-    .pipe(injectfile({
+
+    return gulp.src(['js/**/*.js', "!js/plot/*.js"])
+        .pipe(injectfile({
             pattern: '<!--\\sinject:<filename>-->'
         }))
         .pipe(headerfooter({
@@ -221,5 +240,5 @@ gulp.watch("js/scene/*.js", ['scenes']);
 gulp.watch('index.html', ['reload']);
 gulp.watch('html/**/*.html', ['html']);
 gulp.watch('res/**/*.*', ['mv-res', 'reload'])
-//gulp.watch('README.md', ['es6']);
+    //gulp.watch('README.md', ['es6']);
 gulp.watch('*.csv', ['es6']);

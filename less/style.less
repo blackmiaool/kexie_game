@@ -73,44 +73,12 @@ input {
     opacity: 1;
     transition: 0s all linear;
     &.ng-enter-active {
-        //        display: block;
-        //        z-index: 1;
         opacity: 1;
     }
     &.ng-leave {
         opacity: 0;
     }
-    //    &.active {
-    //        display: block;
-    //        z-index: 1;
-    //    }
-    &[data-scene="cover"] {
-        @import "scene/cover.less";
-    }
-    &[data-scene="preload"] {
-        @import "scene/preload.less";
-    }
-    &[data-scene="chat"] {
-        @import "scene/chat.less";
-    }
-    &[data-scene="state"] {
-        @import "scene/state.less";
-    }
-    &[data-scene="home"] {
-        @import "scene/home.less";
-    }
-    &[data-scene="bigmap"] {
-        @import "scene/bigmap.less";
-    }
-    &[data-scene="make-select"] {
-        @import "scene/make-select.less";
-    }
-    &[data-scene="make"] {
-        @import "scene/make.less";
-    }
-    &[data-scene="character"] {
-        @import "scene/character.less";
-    }
+    //injectSceneFiles
 }
 .hover-item{
     

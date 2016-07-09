@@ -1,0 +1,452 @@
+@res-folder: "../res";//mannul set
+
+@path: "@{res-folder}/deep_ui";
+@icon-path: "@{res-folder}/deep_ui/icon";
+@deep-bg: #1f1916;
+@import "mixin.less";
+.deep-header {
+    background-image: url("@{path}/red_header.png");
+    background-repeat: no-repeat;
+    background-size: contain;
+    @height: 100px;
+    height: @height;
+    width: @height *632px/176px;
+    margin: auto;
+    text-align: center;
+    .transform(translateY(-35%));
+    >.deep-header-text {
+        color: wheat;
+        font-size: 22px;
+        line-height: @height *1.8/2;
+    }
+}
+
+.deep-panel-corner {
+    background-image: url("@{path}/red_panel_corner_big.png");
+    background-repeat: no-repeat;
+    position: absolute;
+    width: 50%;
+    height: 50%;
+    z-index: -1;
+    &.deep-panel-corner1 {
+        top: 0;
+        left: 0;
+        background-position: left top;
+    }
+    &.deep-panel-corner2 {
+        top: 0;
+        left: 50%;
+        background-image: url("@{path}/red_panel_corner_big2.png");
+        background-position: right top;
+    }
+    &.deep-panel-corner3 {
+        bottom: 0;
+        right: 0;
+        background-image: url("@{path}/red_panel_corner_big3.png");
+        background-position: right bottom;
+    }
+    &.deep-panel-corner4 {
+        bottom: 0;
+        left: 0;
+        background-image: url("@{path}/red_panel_corner_big4.png");
+        background-position: left bottom;
+    }
+}
+
+.red-scroll-shadow-wrap {
+    &:after {
+        content: "";
+        background: linear-gradient(to bottom, rgb(30, 24, 21), transparent);
+        height: 13px;
+        position: absolute;
+        top: 0px;
+        right: 10px;
+        left: 0;
+        z-index: 1;
+    }
+    .red-scroll {
+        .abs-fill;
+        padding-top: 10px;
+    }
+}
+
+.red-scroll {
+    overflow: auto;
+    &::-webkit-scrollbar {
+        width: 8px;
+        border-radius: 100px;
+        background-color: darken(rgb(26, 21, 18), 5%);
+        overflow: visible;
+    }
+    &::-webkit-scrollbar-thumb {
+        border-radius: 100px;
+        box-shadow: inset 0 0 3px rgb(0, 0, 0, 0.5);
+        background-color: #413838;
+    }
+}
+
+.red-top-shadow {}
+
+.red-icon {
+    .square(80px);
+    position: relative;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-image: url("@{path}/btn_circle_red.png");
+    background-color: transparent;
+    border: none;
+    outline: none;
+    padding: 0;
+    &.disabled {
+        opacity: 0.4;
+    }
+    &:after {
+        .abs-fill;
+        .square(68%);
+        .bg("@{path}/Button_Circular_Small_Press.png");
+        content: "";
+        opacity: 0;
+        //        transition: 0.15s opacity linear;
+    }
+    &:active {
+        &:after {
+            opacity: 1;
+        }
+    }
+    &:before {
+        .abs-fill;
+        .square(40%);
+        content: "";
+        background-position: center;
+        background-size: contain;
+        background-repeat: no-repeat;
+    }
+    .set-icon(@icon) {
+        &[data-icon="@{icon}"] {
+            &:before {
+                background-image: url("@{icon-path}/@{icon}.png");
+            }
+        }
+    }
+    .set-icon(accept);
+    .set-icon(apps);
+    .set-icon(armor);
+    .set-icon(bulls);
+    .set-icon(chat);
+    .set-icon(chest);
+    .set-icon(close);
+    .set-icon(crosshair);
+    .set-icon(crystal);
+    .set-icon(cup);
+    .set-icon(down);
+    .set-icon(flag);
+    .set-icon(hammer);
+    .set-icon(heart);
+    .set-icon(home);
+    .set-icon(layout);
+    .set-icon(left);
+    .set-icon(letter);
+    .set-icon(lightning);
+    .set-icon(lock);
+    .set-icon(network);
+    .set-icon(pause);
+    .set-icon(planet);
+    .set-icon(play);
+    .set-icon(plus);
+    .set-icon(profile);
+    .set-icon(puzzle);
+    .set-icon(replay);
+    .set-icon(right);
+    .set-icon(rocket);
+    .set-icon(rockets);
+    .set-icon(rows);
+    .set-icon(settings);
+    .set-icon(share);
+    .set-icon(shield);
+    .set-icon(star);
+    .set-icon(timeer);
+    .set-icon(tune);
+    .set-icon(up);
+    .set-color(@color) {
+        &.@{color}{
+            background-image: url("@{path}/btn_circle_@{color}.png");
+        }
+    }
+    .set-color(blue);
+    .set-color(red);
+    .set-color(green);
+    .set-color(yellow);
+}
+
+.red-normal-item {
+    .bg("@{path}/red_item_bg.png");
+    .clickable;
+    @height: 41px;
+    line-height: @height;
+    height: @height;
+    width: 236px;
+    margin: auto;
+    background-position: center;
+    text-align: center;
+    color: #6f6362;
+    font-size: 18px;
+    //    font-weight: bold;
+    position: relative;
+    &:after {
+        //        transition: 0.05s opacity linear;
+        content: "";
+        .square-crop(3px);
+        background-color: rgba(30, 24, 21, 0.34);
+        box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.7);
+        opacity: 0;
+    }
+    &:active {
+        &:after {
+            opacity: 1;
+        }
+    }
+    &.solid {
+        color: #dec7aa;
+    }
+    &:hover {
+        color: #dec7aa;
+    }
+}
+
+.deep-btn {
+    .clickable;
+    .bg("@{path}/btn_rect_red.png");
+    @normal-height: 37px;
+    line-height: @normal-height;
+    height: @normal-height;
+    width: 120px;
+    font-size: 15px;
+    margin: auto;
+    background-position: center;
+    text-align: center;
+    color: #e1c3a9;
+    position: relative;
+    background-color: transparent;
+    border: none;
+    outline: none;
+    padding: 0;
+    &.disabled {
+        opacity: 0.4;
+    }
+    &:after {
+        //        transition: 0.05s opacity linear;
+        content: "";
+        .square-crop(3px);
+        background-color: rgba(48, 17, 11, 0.34);
+        box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.7);
+        opacity: 0;
+    }
+    &:not(.disabled):active {
+        &:after {
+            opacity: 1;
+        }
+    }
+    .set-size(@size,
+    @height) {
+        &.@{size}{
+            line-height: @height;
+            height: @height;
+            font-size: 13px/@normal-height*@height;
+            width: 110px/@normal-height*@height;
+        }
+    }
+    .set-size(lg,
+    57px);
+    .set-size(sm,
+    32px);
+    .set-size(xs,
+    24px);
+    .set-color(@color) {
+        &.@{color}{
+            & {
+                background-image: url("@{path}/btn_rect_@{color}.png");
+            }
+        }
+    }
+    .set-color(@color,
+    @font-color) {
+        .set-color(@color);
+        &.@{color}{
+            color: @font-color;
+        }
+    }
+    .set-color(red);
+    .set-color(purple);
+    .set-color(orange);
+    .set-color(green);
+    .set-color(blue);
+}
+
+.deep-slot {
+    .bg("@{path}/slot2.png");
+    @height: 38px;
+    height: @height;
+    width: @height * 300 / 126;
+    line-height: @height + 1px;
+    text-align: center;
+    font-size: 15px;
+    background-position: center center;
+}
+
+.deep-little-box {
+    @height: 40px;
+    height: @height;
+    width: @height * 148 / 76;
+    line-height: @height;
+    text-align: center;
+    font-size: 17px;
+    .bg("@{path}/little_box.png");
+    background-position: center center;
+}
+
+.deep-item-icon {
+    @height: 60px;
+    height: @height;
+    width: @height;
+    .bg("@{path}/item_icon.png");
+    display: inline-block;
+    text-align: center;
+    background-position: center center;
+    position: relative;
+    &>img,
+    &>div {
+        .transfrom-center;
+        max-height: 55%;
+        max-width: 55%;
+    }
+}
+
+.deep-item-icon-with-cnt {
+    @height: 60px;
+    height: @height *279/194;
+    width: @height ;
+    .bg("@{path}/item_icon_with_cnt.png");
+    display: inline-block;
+    text-align: center;
+    background-position: center center;
+    position: relative;
+    &>img {
+        //        .transfrom-center;
+        margin-top: 12px;
+        max-height: 50%;
+        max-width: 50%;
+    }
+    >.deep-cnt{
+        .abs-fill;
+        bottom: 11px;
+        top: auto;
+        .pure-line(14px);
+        &.deep-danger{
+            color:rgb(180,65,47);
+        }
+        &.deep-success{
+            color:#319075;
+        }
+    }
+    >.deep-name {
+        font-size: 12px;
+        position: absolute;
+        left: -9px;
+        right: -9px;
+        margin: auto;
+        bottom: -14px;
+        white-space: nowrap;
+    }
+}
+
+[deep-dbline-header] {
+    
+    .pure-line(14px);
+    display: block;
+    text-align: center;    
+    margin: auto;
+    margin-bottom: 10px;
+    text-align: center;
+    position: relative;
+    color: wheat;
+    &:before {
+        width: 100%;
+        height: 1px;
+        background-color: wheat;
+        content: "";
+        top: 0;
+        bottom: 0;
+        margin: auto;
+        position: absolute;
+        opacity: 0.4;
+    }
+    &:before {
+        right: 0;
+    }
+    >.deep-content {
+//        margin-right: 61.8%;
+//        .transform(translateX(-50%));
+        padding: 0 10px;
+        position: relative;
+        background-color: @deep-bg;
+    }
+}
+.deep-select{
+    .pure-line(14px);
+    margin: 7px;
+    display: block;
+    font-weight: normal;
+    &>input[type="checkbox"]{
+        display: none;
+    }
+    .deep-checkbox{
+        .square(15px);
+        .bg("@{path}/checkbox_bg.png");
+        display: inline-block;
+        position: relative;
+        vertical-align: middle;        
+        margin-right: 4px;
+    }
+    [type="checkbox"]:checked + .deep-checkbox{
+        &:before{
+            content: "";
+            .square(9px);
+            margin: 3px;
+//            .square(15px);
+            .abs-fill;
+            display: block;
+            vertical-align: middle;
+            .bg("@{path}/checkbox_mark.png");
+        }
+    }
+}
+.deep-health,.deep-power{
+    @height:40px;
+    @rate:@height/20px;
+    height: @height;    
+    width: 100%;
+    position: relative;
+    border-style: solid;
+    border-width: @rate*20px @rate*11.5px @rate*0px @rate*3.5px;
+.border-image(url("@{path}/UnitFrame_HealthBar_Background.png") 102 52 0 15 fill stretch);
+    &>.deep-health-fill,&>.deep-power-fill {
+        position: absolute;
+        left: @rate*0.3px;
+        top: -@height + 3px*@rate;
+        bottom: @rate*3px;
+        right: @rate*-9px;
+        display: flex;
+        flex-direction: row;
+        border-style: solid;
+        width: 0%;
+        border-width: @rate*14px @rate*11px 0px @rate*2.7px;
+        .border-image(url("@{path}/UnitFrame_HealthBar_Fill_Tiled.png") 68 47 0 10 fill stretch); 
+    } 
+}
+.deep-power{
+
+.border-image(url("@{path}/UnitFrame_HealthBar_Background.png") 102 52 0 15 fill stretch);
+    &>.deep-power-fill {
+        .border-image(url("@{path}/UnitFrame_PowerBar_Fill_Tiled.png") 68 47 0 10 fill stretch); 
+    } 
+}

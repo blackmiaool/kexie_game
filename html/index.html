@@ -17,70 +17,10 @@
 <body ng-controller="RootController" ng-cloak>
     <div id="wrap">
         <div class="scene-wrap hide" >
-            <div class="scene" data-scene="bigmap" ng-if="scenes['bigmap']">
-                <!-- inject: scene/bigmap.html-->
-            </div>
-            <div class="scene" data-scene="chat" ng-if="scenes['chat']">
-                <!-- inject: scene/chat.html-->
-            </div>
-            <div class="scene" data-scene="cover" ng-if="scenes['cover']">
-                <!-- inject: scene/cover.html-->
-            </div>
-            <div class="scene hide" data-scene="preload" ng-if="scenes['preload']">
-                <!-- inject: scene/preload.html-->
-            </div>
-            <div class="scene" data-scene="home" ng-if="scenes['home']">
-                <!-- inject: scene/home.html-->
-            </div>
-            <div class="scene" data-scene="save" ng-if="scenes['save']">
-                <!-- inject: scene/save.html-->
-            </div>
-            <div class="scene" data-scene="state" ng-if="scenes['state']">
-                <!-- inject: scene/state.html-->
-            </div>
-            <div class="scene" data-scene="make-select" ng-if="scenes['make-select']">
-                <!-- inject: scene/make-select.html-->
-            </div>
-            <div class="scene" data-scene="make" ng-controller="MakeController" ng-if="scenes['make']">
-                <!-- inject: scene/make.html-->
-            </div>
-            <div class="scene" data-scene="character" ng-controller="CharacterController" ng-if="scenes['character']">
-                <!-- inject: scene/character.html-->
-            </div>
-            <button ng-click="openDebugPanel()" class="debug btn btn-primary">调试</button>
-            <div class="debug-panel" ng-if="showDebug">
-                <button ng-repeat="sceneName in scenePaths" class="go-scene btn btn-primary" ng-bind="sceneName" ng-click="debugScene(sceneName)"></button>
-            </div>
-            <div class="hover-card-wrap" hover-card="character">
-                <div class="hover-card">
-                    <div class="summary" ng-bind="hovering.summary"></div>
-                    <div class="effect" ng-bind="hovering.effect"></div>
-                </div>
-            </div>
-            <div class="hover-card-wrap" hover-card="item" >
-                <div class="hover-card">
-                    <div class="row name hide">
-                        <label class="key">名称:</label>
-                        <p class="value" ng-bind="hovering.name"></p>
-                    </div>
-                    <div class="row kind">
-                        <label class="key">类型:</label>
-                        <p class="value" ng-bind="res.items[hovering.name].kind"></p>
-                    </div>
-                    <div class="row has">
-                        <label class="key">持有数:</label>
-                        <p class="value" ng-bind="v.item[hovering.name].cnt"></p>
-                    </div>
-                    <div class="row brief">
-                        <label class="key">简介:</label>
-                        <p class="value" ng-bind="res.items[hovering.name].brief"></p>
-                    </div>                    
-                    <div class="rwo comment">
-                        <label class="key">备注:</label>
-                        <p class="value" ng-bind="res.items[hovering.name].comment"></p>
-                    </div>
-                </div>
-            </div>
+            <!--injectScene-->           
+            <!-- inject: debug.html-->
+            <!-- inject: character.html-->
+            <!-- inject: item.html-->            
         </div>
     </div>
     <script data-main="js/main" src="js/require.js"></script>

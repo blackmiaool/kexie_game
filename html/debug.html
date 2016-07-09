@@ -1,0 +1,4 @@
+<button ng-click="openDebugPanel()" class="debug btn btn-primary">调试</button>
+            <div class="debug-panel" ng-if="showDebug">
+                <button ng-repeat="sceneName in scenePaths" class="go-scene btn btn-primary" ng-bind="sceneName" ng-click="debugScene(sceneName)"></button>
+            </div>

@@ -17,7 +17,8 @@
 <body ng-controller="RootController" ng-cloak>
     <div id="wrap">
         <div class="scene-wrap hide" >
-            <div class="scene" data-scene="bigmap" ng-if="scenes['bigmap']">
+            <div class="scene" data-scene="bigmap" ng-if="scenes['bigmap']" >
+
                 <div ng-controller="BigmapController" class="top">
                     <img class="big-bg" src="res/System/bigmap.jpg" style="height:540px;" ng-class="{active:active}">
                     <button ng-click="enter(value.text)" ng-repeat="(name,value) in spots" class="btn clickable" ng-class="value.class" ng-style="value" style="position:absolute;">
@@ -28,7 +29,75 @@
                     </button>
                 </div>
             </div>
-            <div class="scene" data-scene="chat" ng-if="scenes['chat']">
+<div class="scene" data-scene="character" ng-if="scenes['character']" ng-controller="CharacterController">
+
+                <div class="settings-wrap goodness">
+                    <label for="" class="title deep-slot">优势</label>
+                    <div deep-panel class="settings-content-wrap">
+                        <button hover-item="item" hover-kind="character" ng-mousedown="selectItem(item)" ng-repeat="item in res.goodness" ng-class="{disabled:checkDisabled(item)}" class="item deep-btn blue" ng-style='{visibility:item.selecting?"hidden":"visible"}'>
+                            <span ng-bind="::item.name"></span>
+                            <div class="cost">
+                                <img ng-repeat="i in costs[item.cost]" ng-src="{{::res.img.little_star}}" alt="">
+                            </div>
+                        </button>
+                    </div>
+                </div>
+                <div class="settings-wrap goodness-selecting">
+                    <label for="" class="title deep-slot">已选优势</label>
+                    <div deep-panel class="settings-content-wrap">
+                        <button hover-item="item" hover-kind="character"  ng-mousedown="deSelectItem(item)" ng-repeat="item in res.goodness|toArray |filter:{selecting:true}| orderBy:'index'" class="item deep-btn blue">
+                            <span ng-bind="::item.name"></span>
+                            <div class="cost">
+                                <img ng-repeat="i in costs[item.cost]" ng-src="{{::res.img.little_star}}" alt="">
+                            </div>
+                        </button>
+                    </div>
+                </div>
+                
+                
+                
+                <div class="settings-wrap weakness">
+                    <label for="" class="title deep-slot">劣势</label> 
+                    <div deep-panel class="settings-content-wrap">
+                        <button hover-item="item" hover-kind="character"  ng-class="{disabled:checkDisabled(item)}" ng-mousedown="selectItem(item)" ng-repeat="item in res.weakness" class="item deep-btn orange" ng-style='{visibility:item.selecting?"hidden":"visible"}'>
+                            <span ng-bind="::item.name"></span>
+                            <div class="cost">
+                                <img ng-repeat="i in costs[-item.cost]" ng-src="{{::res.img.little_star}}" alt="">
+                            </div>
+                        </button>
+                    </div>
+                </div>
+                <div class="settings-wrap weakness-selecting">
+                    <label for="" class="title deep-slot">已选劣势</label>
+                    <div deep-panel class="settings-content-wrap">
+                        <button hover-item="item" hover-kind="character"  ng-mousedown="deSelectItem(item)" ng-repeat="item in res.weakness|toArray |filter:{selecting:true} | orderBy:'index'" class="item deep-btn orange">
+                            <span ng-bind="::item.name"></span>
+                            <div class="cost">
+                                <img ng-repeat="i in costs[-item.cost]" ng-src="{{::res.img.little_star}}" alt="">
+                            </div>
+                        </button>
+                    </div>
+                </div>
+                
+                
+                
+                
+                <div class="center-area transfrom-center">
+                    <div>点数已用:<span ng-bind="usedPoints"></span></div>
+                    <div class="points-remain">点数剩余:<span ng-bind="remainPoints"></span></div>
+                    <div class="btn-wrap">
+                        <button ng-click="start()" ng-class="{disabled:remainPoints<0}" class="red-icon green" data-icon="accept"></button>
+                        <div class="tip">开始游戏</div>
+                    </div>
+                    <div class="btn-wrap">
+                        <button ng-click="random()" class="red-icon yellow" data-icon="hammer"></button>
+                        <div class="tip">随机</div>
+                    </div>
+                </div>
+                
+            </div>
+<div class="scene" data-scene="chat" ng-if="scenes['chat']" >
+
                 <div class="chat-wrap"  ng-controller="ChatController">
                 
                     <div class="bg" ondragstart="return false;">
@@ -53,7 +122,8 @@
                     </div>
                 </div>
             </div>
-            <div class="scene" data-scene="cover" ng-if="scenes['cover']">
+<div class="scene" data-scene="cover" ng-if="scenes['cover']" >
+
                 <div ng-controller="CoverController">
                     <h1 class='logo-title'>科协<span class="float">浮生</span>记<img src="res/monkey/running.gif"/></h1>
                 
@@ -68,16 +138,8 @@
                 
                 </div>
             </div>
-            <div class="scene hide" data-scene="preload" ng-if="scenes['preload']">
-                <div class="wrap">
-                    <img src="res/System/loading.gif" alt="" class="loading-img">
-                    <div class="progress" style="width:960px;">
-                        <div id="preload_progress_bar" min-width="2em" class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 0%;">
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="scene" data-scene="home" ng-if="scenes['home']">
+<div class="scene" data-scene="home" ng-if="scenes['home']" >
+
                 <div ng-controller="HomeController" class="home-wrap">
                     <span class="basic name">
                         <span class="key"><span class="glyphicon glyphicon-user"></span> 姓名</span>
@@ -333,168 +395,8 @@
                     <!--    <div class="mask"></div>-->
                 </div>
             </div>
-            <div class="scene" data-scene="save" ng-if="scenes['save']">
-                <div  class="wrap">
-                    <h1 class="back" ng-click="go_back()">返回游戏</h1>
-                    <h1 class="title" ng-bind="title"></h1>
-                    <button ng-repeat="btn in buttons track by $index" ng-click="handle($index)" class="button button-3d button-inverse button-save" style="top: {{80+70*$index}}px; " ng-bind="btn.title"></button>
-                </div>
-            </div>
-            <div class="scene" data-scene="state" ng-if="scenes['state']">
-                <div ng-controller="StateController" class="wrap">
-                    <div ng-click="back()" draggable="false" title="返回" class="back">    </div>
-                    <div class="page-select-wrap" ng-init="currentPage='物品'">
-                
-                        <div ng-repeat="page in pages" class="page-select" ng-class="{active:currentPage==page.name}"  ng-click="setPage(page.name)">
-                            <img ng-src="{{::res.img.blue_btn}}" alt="" class="bg">
-                            <div ng-click="setPage(page.name)" class="select solid {{page.class}} unselectable"  ng-bind="::page.name">
-                                <button class="cover" ng-click="setPage(page.name)"></button>
-                            </div>
-                        </div>
-                    </div>
-                
-                    <div ng-controller="StatusController" class="page" data-page="status" ng-show="currentPage=='状态'">
-                       <div class="money" ng-bind="'金钱: '+v.basic.money"></div>
-                               <div class="analog" title="模拟电路能力"><img ng-src="{{img.state_analog}}" alt=""><span class="value">234</span></div>
-                               <div class="digital" title="数字电路能力"><span class="value">666</span><img ng-src="{{img.state_digital}}" alt=""> </div>
-                               <div class="basic-wrap">
-                                   <span class="basic">
-                                   <span class="key"><span class="glyphicon glyphicon-user"></span> 姓名</span>
-                                   <span class="value" ng-bind="v.basic.name"></span>
-                                   </span>
-                                   <span class="basic">
-                                   <span class="key"><span class="glyphicon glyphicon-star"></span> 职位</span>
-                                   <span class="value" ng-bind="v.basic.title"></span>
-                                   </span>
-                                   <span class="basic">
-                                   <span class="key"><span class="glyphicon glyphicon-king"></span> 阵营</span>
-                                   <span class="value">绝对中立</span>
-                                   </span>
-                               </div>
-                               <div class="props-wrap">
-                                   <span class="prop" ng-repeat="key in ['焊接','论文','声望','道德','秩序']">
-                               <span class="key"><span class="glyphicon" ng-class="{'glyphicon-save':key=='焊接','glyphicon-file':key=='论文','glyphicon-fire':key=='声望','glyphicon-heart':key=='道德','glyphicon-leaf':key=='秩序'}"></span> <span ng-bind="key"></span></span>
-                                   <span class="value" ng-bind="v.prop[key]"></span>
-                                   </span>
-                               </div>        
-                    </div>
-                    <div ng-controller="SkillController" class="page" data-page="skill" ng-show="currentPage=='技能'">
-                        <div class="table-wrap highlight">
-                            <table class="table">
-                                <thead>
-                                    <tr>
-                                        <th>技能</th>
-                                        <td>等级</td>
-                                        <td>依赖</td>
-                                        <!--                        <td>操作</td>-->
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr ng-repeat="v in skills" title="{{::v.des}}">
-                                        <th ng-bind="::getSkillName(v)"></th>
-                                        <td ng-bind="v.level+' ('+(v.level | skillLevel)+')'"></td>
-                                        <td ng-bind="::getPre(v)"></td>
-                                        <!--                        <td><button class="ym-button ym-black">升级</button></td>-->
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div> 
-                
-                    </div>
-                    <div ng-controller="PeopleController" class="page" data-page="people" ng-show="currentPage=='朋友'">
-                        <div class="desc-wrap">
-                            <img ng-src="{{currentP.half}}" alt="" class="currentP">
-                        </div>
-                        <div class="select">
-                            <div ng-show="p.identity=='teammate'" ng-click="setP(p)" ng-repeat="p in pp" class="pp-select clickable">
-                                <img ng-src="{{p.half}}" alt="" class="head clickable">
-                            </div>
-                        </div>
-                    </div>
-                    <div ng-controller="ItemController" class="page" data-page="item" ng-show="currentPage=='物品'">
-                        <div class="kind-wrap">
-                            <div ng-click="setItemKind(kind.name)" ng-repeat="kind in itemKinds" class="item-kind-select clickable" ng-class="{active:currentItemKind==kind.name}">
-                                <img draggable="false" ng-src="{{::kind.icon}}.svg" alt="">
-                                <div class="name" ng-bind="::kind.name"></div>
-                            </div>
-                        
-                        </div>
-                        <div class="items-frame">
-                            <img draggable="false" ng-src="{{img.items_frame}}" class="bg">
-                            <div class="items-wrap">
-                                <div ng-click="selectItem(item)" ng-repeat="item in items" ng-if="currentItemKind==item.kind" class="item-wrap clickable">
-                                    <div class="item-body-wrap">
-                                        <img draggable="false" ng-src="{{::getItemIcon(item,'blue')}}" class="item-icon">
-                                        <label class="cnt" ng-bind="item.cnt"></label>
-                                    </div>
-                        
-                                    <label class="name" ng-bind="item.name"></label>
-                        
-                                </div>
-                        
-                            </div>
-                        </div>
-                        
-                        <!--item_desc_bg.png-->
-                        <div class="items-desc-frame">
-                            <img draggable="false" ng-src="{{res.img.items_desc_frame}}" class="bg">
-                            <div class="desc-wrap">
-                                <div ng-if="selectingItem" class="desc-wrap1">
-                                    <div class="icon-wrap">
-                                        <img draggable="false" ng-src="{{getItemIcon(selectingItem,'white')}}" alt="">
-                                    </div>
-                        
-                                    <label class="tag name">名称:</label>
-                                    <p class="value name" ng-bind="selectingItem.name"></p>
-                                    <label class="tag cnt">数量:</label>
-                                    <p class="value cnt" ng-bind="selectingItem.cnt"></p>
-                                    <label class="tag brief">简介:</label>
-                                    <p class="value brief" ng-bind="selectingItem.brief"></p>
-                                    <label class="tag comment">备注:</label>
-                                    <p class="value comment" ng-bind="selectingItem.comment"></p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div ng-controller="StoryController" class="page" data-page="story" ng-show="currentPage=='经历'">
-                        
-                    </div>
-                
-                
-                </div>
-            </div>
-            <div class="scene" data-scene="make-select" ng-if="scenes['make-select']">
-                <div ng-controller="MakeSelectController" class="make-wrap">
-                    
-                
-                    <div deep-panel class="select-target">
-                        <header deep-header="{{selectingProductKind||'制作'}}" ng-class="{little:selectingProductKind}" class="header">            
-                        </header>
-                        <main class="red-scroll-shadow-wrap">
-                            <div class="red-scroll page" data-page="0" ng-class="{left:productSelectPageIndex>0,center:productSelectPageIndex==0,right:productSelectPageIndex<0}">
-                                
-                                <div ng-click="selectProductKind(product)" ng-repeat="product in res.products" class="red-normal-item product clickable bold" ng-bind="product.name">
-                                </div>
-                            </div>
-                            <div class="red-scroll page" data-page="1" ng-class="{left:productSelectPageIndex>1,center:productSelectPageIndex==1,right:productSelectPageIndex<1}">
-                               <div ng-click="goScene('make',selectingProductKind)" data-deep-btn="blue" class="deep-btn start-new-product">开个新坑</div> 
-                                <div ng-click="goScene('make',selectingProductKind,work.id)" ng-repeat="work in v.work[selectingProductKind]" class="red-normal-item work clickable" ng-bind="work | workPrefix">
-                                </div>
-                            </div>
-                        </main>
-                        <div ng-if="productSelectPageIndex==0" class="red-icon go-back " data-icon="home" ng-click="goHome()"></div>
-                        <div ng-if="productSelectPageIndex==1" class="red-icon go-back " data-icon="left"  ng-click="productSelectPrevPage()"></div>
-                    </div>
-                    <main>
-                        <div class="make-progress"></div>
-                
-                    </main>
-                
-                
-                
-                </div>
-            </div>
-            <div class="scene" data-scene="make" ng-controller="MakeController" ng-if="scenes['make']">
+<div class="scene" data-scene="make" ng-if="scenes['make']" ng-controller="MakeController">
+
                 <div class="center top-block" deep-panel>
                     <header deep-header="工作台">
                     </header>
@@ -620,106 +522,187 @@
                             <span class="header unselectable" ng-bind="selectingProductKind||'制作'" ng-class="{little:selectingProductKind}"></span>-->
                 <!--  强化方向 每次强化选择花费的体力?小游戏?如何决定强化策略? 相关技能 哪些影响? 相关材料 失败率? 相关仪器 额外的仪器带来额外的收益?熟练度? 腐烂? 先完成基础部分搭建然后选择强化方向? 面板: 选择产品 制造详情 当前制作 产品:一开始有一段固定条,表示基础部分.开工前可以选择基础部分的方向(创新\性能\稳定).开工后-->
             </div>
-            <div class="scene" data-scene="character" ng-controller="CharacterController" ng-if="scenes['character']">
-                <div class="settings-wrap goodness">
-                    <label for="" class="title deep-slot">优势</label>
-                    <div deep-panel class="settings-content-wrap">
-                        <button hover-item="item" hover-kind="character" ng-mousedown="selectItem(item)" ng-repeat="item in res.goodness" ng-class="{disabled:checkDisabled(item)}" class="item deep-btn blue" ng-style='{visibility:item.selecting?"hidden":"visible"}'>
-                            <span ng-bind="::item.name"></span>
-                            <div class="cost">
-                                <img ng-repeat="i in costs[item.cost]" ng-src="{{::res.img.little_star}}" alt="">
+<div class="scene" data-scene="make-select" ng-if="scenes['make-select']" >
+
+                <div ng-controller="MakeSelectController" class="make-wrap">
+                    
+                
+                    <div deep-panel class="select-target">
+                        <header deep-header="{{selectingProductKind||'制作'}}" ng-class="{little:selectingProductKind}" class="header">            
+                        </header>
+                        <main class="red-scroll-shadow-wrap">
+                            <div class="red-scroll page" data-page="0" ng-class="{left:productSelectPageIndex>0,center:productSelectPageIndex==0,right:productSelectPageIndex<0}">
+                                
+                                <div ng-click="selectProductKind(product)" ng-repeat="product in res.products" class="red-normal-item product clickable bold" ng-bind="product.name">
+                                </div>
                             </div>
-                        </button>
-                    </div>
-                </div>
-                <div class="settings-wrap goodness-selecting">
-                    <label for="" class="title deep-slot">已选优势</label>
-                    <div deep-panel class="settings-content-wrap">
-                        <button hover-item="item" hover-kind="character"  ng-mousedown="deSelectItem(item)" ng-repeat="item in res.goodness|toArray |filter:{selecting:true}| orderBy:'index'" class="item deep-btn blue">
-                            <span ng-bind="::item.name"></span>
-                            <div class="cost">
-                                <img ng-repeat="i in costs[item.cost]" ng-src="{{::res.img.little_star}}" alt="">
+                            <div class="red-scroll page" data-page="1" ng-class="{left:productSelectPageIndex>1,center:productSelectPageIndex==1,right:productSelectPageIndex<1}">
+                               <div ng-click="goScene('make',selectingProductKind)" data-deep-btn="blue" class="deep-btn start-new-product">开个新坑</div> 
+                                <div ng-click="goScene('make',selectingProductKind,work.id)" ng-repeat="work in v.work[selectingProductKind]" class="red-normal-item work clickable" ng-bind="work | workPrefix">
+                                </div>
                             </div>
-                        </button>
+                        </main>
+                        <div ng-if="productSelectPageIndex==0" class="red-icon go-back " data-icon="home" ng-click="goHome()"></div>
+                        <div ng-if="productSelectPageIndex==1" class="red-icon go-back " data-icon="left"  ng-click="productSelectPrevPage()"></div>
                     </div>
+                    <main>
+                        <div class="make-progress"></div>
+                
+                    </main>
+                
+                
+                
                 </div>
-                
-                
-                
-                <div class="settings-wrap weakness">
-                    <label for="" class="title deep-slot">劣势</label> 
-                    <div deep-panel class="settings-content-wrap">
-                        <button hover-item="item" hover-kind="character"  ng-class="{disabled:checkDisabled(item)}" ng-mousedown="selectItem(item)" ng-repeat="item in res.weakness" class="item deep-btn orange" ng-style='{visibility:item.selecting?"hidden":"visible"}'>
-                            <span ng-bind="::item.name"></span>
-                            <div class="cost">
-                                <img ng-repeat="i in costs[-item.cost]" ng-src="{{::res.img.little_star}}" alt="">
-                            </div>
-                        </button>
-                    </div>
-                </div>
-                <div class="settings-wrap weakness-selecting">
-                    <label for="" class="title deep-slot">已选劣势</label>
-                    <div deep-panel class="settings-content-wrap">
-                        <button hover-item="item" hover-kind="character"  ng-mousedown="deSelectItem(item)" ng-repeat="item in res.weakness|toArray |filter:{selecting:true} | orderBy:'index'" class="item deep-btn orange">
-                            <span ng-bind="::item.name"></span>
-                            <div class="cost">
-                                <img ng-repeat="i in costs[-item.cost]" ng-src="{{::res.img.little_star}}" alt="">
-                            </div>
-                        </button>
-                    </div>
-                </div>
-                
-                
-                
-                
-                <div class="center-area transfrom-center">
-                    <div>点数已用:<span ng-bind="usedPoints"></span></div>
-                    <div class="points-remain">点数剩余:<span ng-bind="remainPoints"></span></div>
-                    <div class="btn-wrap">
-                        <button ng-click="start()" ng-class="{disabled:remainPoints<0}" class="red-icon green" data-icon="accept"></button>
-                        <div class="tip">开始游戏</div>
-                    </div>
-                    <div class="btn-wrap">
-                        <button ng-click="random()" class="red-icon yellow" data-icon="hammer"></button>
-                        <div class="tip">随机</div>
-                    </div>
-                </div>
-                
             </div>
+<div class="scene" data-scene="preload" ng-if="scenes['preload']" >
+
+                <div class="wrap">
+                    <img src="res/System/loading.gif" alt="" class="loading-img">
+                    <div class="progress" style="width:960px;">
+                        <div id="preload_progress_bar" min-width="2em" class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 0%;">
+                        </div>
+                    </div>
+                </div>
+            </div>
+<div class="scene" data-scene="save" ng-if="scenes['save']" >
+
+                <div  class="wrap">
+                    <h1 class="back" ng-click="go_back()">返回游戏</h1>
+                    <h1 class="title" ng-bind="title"></h1>
+                    <button ng-repeat="btn in buttons track by $index" ng-click="handle($index)" class="button button-3d button-inverse button-save" style="top: {{80+70*$index}}px; " ng-bind="btn.title"></button>
+                </div>
+            </div>
+<div class="scene" data-scene="state" ng-if="scenes['state']" >
+
+                <div ng-controller="StateController" class="wrap">
+                    <div ng-click="back()" draggable="false" title="返回" class="back">    </div>
+                    <div class="page-select-wrap" ng-init="currentPage='物品'">
+                
+                        <div ng-repeat="page in pages" class="page-select" ng-class="{active:currentPage==page.name}"  ng-click="setPage(page.name)">
+                            <img ng-src="{{::res.img.blue_btn}}" alt="" class="bg">
+                            <div ng-click="setPage(page.name)" class="select solid {{page.class}} unselectable"  ng-bind="::page.name">
+                                <button class="cover" ng-click="setPage(page.name)"></button>
+                            </div>
+                        </div>
+                    </div>
+                
+                    <div ng-controller="StatusController" class="page" data-page="status" ng-show="currentPage=='状态'">
+                       <div class="money" ng-bind="'金钱: '+v.basic.money"></div>
+                               <div class="analog" title="模拟电路能力"><img ng-src="{{img.state_analog}}" alt=""><span class="value">234</span></div>
+                               <div class="digital" title="数字电路能力"><span class="value">666</span><img ng-src="{{img.state_digital}}" alt=""> </div>
+                               <div class="basic-wrap">
+                                   <span class="basic">
+                                   <span class="key"><span class="glyphicon glyphicon-user"></span> 姓名</span>
+                                   <span class="value" ng-bind="v.basic.name"></span>
+                                   </span>
+                                   <span class="basic">
+                                   <span class="key"><span class="glyphicon glyphicon-star"></span> 职位</span>
+                                   <span class="value" ng-bind="v.basic.title"></span>
+                                   </span>
+                                   <span class="basic">
+                                   <span class="key"><span class="glyphicon glyphicon-king"></span> 阵营</span>
+                                   <span class="value">绝对中立</span>
+                                   </span>
+                               </div>
+                               <div class="props-wrap">
+                                   <span class="prop" ng-repeat="key in ['焊接','论文','声望','道德','秩序']">
+                               <span class="key"><span class="glyphicon" ng-class="{'glyphicon-save':key=='焊接','glyphicon-file':key=='论文','glyphicon-fire':key=='声望','glyphicon-heart':key=='道德','glyphicon-leaf':key=='秩序'}"></span> <span ng-bind="key"></span></span>
+                                   <span class="value" ng-bind="v.prop[key]"></span>
+                                   </span>
+                               </div>        
+                    </div>
+                    <div ng-controller="SkillController" class="page" data-page="skill" ng-show="currentPage=='技能'">
+                        <div class="table-wrap highlight">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th>技能</th>
+                                        <td>等级</td>
+                                        <td>依赖</td>
+                                        <!--                        <td>操作</td>-->
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr ng-repeat="v in skills" title="{{::v.des}}">
+                                        <th ng-bind="::getSkillName(v)"></th>
+                                        <td ng-bind="v.level+' ('+(v.level | skillLevel)+')'"></td>
+                                        <td ng-bind="::getPre(v)"></td>
+                                        <!--                        <td><button class="ym-button ym-black">升级</button></td>-->
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div> 
+                
+                    </div>
+                    <div ng-controller="PeopleController" class="page" data-page="people" ng-show="currentPage=='朋友'">
+                        <div class="desc-wrap">
+                            <img ng-src="{{currentP.half}}" alt="" class="currentP">
+                        </div>
+                        <div class="select">
+                            <div ng-show="p.identity=='teammate'" ng-click="setP(p)" ng-repeat="p in pp" class="pp-select clickable">
+                                <img ng-src="{{p.half}}" alt="" class="head clickable">
+                            </div>
+                        </div>
+                    </div>
+                    <div ng-controller="ItemController" class="page" data-page="item" ng-show="currentPage=='物品'">
+                        <div class="kind-wrap">
+                            <div ng-click="setItemKind(kind.name)" ng-repeat="kind in itemKinds" class="item-kind-select clickable" ng-class="{active:currentItemKind==kind.name}">
+                                <img draggable="false" ng-src="{{::kind.icon}}.svg" alt="">
+                                <div class="name" ng-bind="::kind.name"></div>
+                            </div>
+                        
+                        </div>
+                        <div class="items-frame">
+                            <img draggable="false" ng-src="{{img.items_frame}}" class="bg">
+                            <div class="items-wrap">
+                                <div ng-click="selectItem(item)" ng-repeat="item in items" ng-if="currentItemKind==item.kind" class="item-wrap clickable">
+                                    <div class="item-body-wrap">
+                                        <img draggable="false" ng-src="{{::getItemIcon(item,'blue')}}" class="item-icon">
+                                        <label class="cnt" ng-bind="item.cnt"></label>
+                                    </div>
+                        
+                                    <label class="name" ng-bind="item.name"></label>
+                        
+                                </div>
+                        
+                            </div>
+                        </div>
+                        
+                        <!--item_desc_bg.png-->
+                        <div class="items-desc-frame">
+                            <img draggable="false" ng-src="{{res.img.items_desc_frame}}" class="bg">
+                            <div class="desc-wrap">
+                                <div ng-if="selectingItem" class="desc-wrap1">
+                                    <div class="icon-wrap">
+                                        <img draggable="false" ng-src="{{getItemIcon(selectingItem,'white')}}" alt="">
+                                    </div>
+                        
+                                    <label class="tag name">名称:</label>
+                                    <p class="value name" ng-bind="selectingItem.name"></p>
+                                    <label class="tag cnt">数量:</label>
+                                    <p class="value cnt" ng-bind="selectingItem.cnt"></p>
+                                    <label class="tag brief">简介:</label>
+                                    <p class="value brief" ng-bind="selectingItem.brief"></p>
+                                    <label class="tag comment">备注:</label>
+                                    <p class="value comment" ng-bind="selectingItem.comment"></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div ng-controller="StoryController" class="page" data-page="story" ng-show="currentPage=='经历'">
+                        
+                    </div>
+                
+                
+                </div>
+            </div>
+           
             <button ng-click="openDebugPanel()" class="debug btn btn-primary">调试</button>
-            <div class="debug-panel" ng-if="showDebug">
-                <button ng-repeat="sceneName in scenePaths" class="go-scene btn btn-primary" ng-bind="sceneName" ng-click="debugScene(sceneName)"></button>
-            </div>
-            <div class="hover-card-wrap" hover-card="character">
-                <div class="hover-card">
-                    <div class="summary" ng-bind="hovering.summary"></div>
-                    <div class="effect" ng-bind="hovering.effect"></div>
-                </div>
-            </div>
-            <div class="hover-card-wrap" hover-card="item" >
-                <div class="hover-card">
-                    <div class="row name hide">
-                        <label class="key">名称:</label>
-                        <p class="value" ng-bind="hovering.name"></p>
-                    </div>
-                    <div class="row kind">
-                        <label class="key">类型:</label>
-                        <p class="value" ng-bind="res.items[hovering.name].kind"></p>
-                    </div>
-                    <div class="row has">
-                        <label class="key">持有数:</label>
-                        <p class="value" ng-bind="v.item[hovering.name].cnt"></p>
-                    </div>
-                    <div class="row brief">
-                        <label class="key">简介:</label>
-                        <p class="value" ng-bind="res.items[hovering.name].brief"></p>
-                    </div>                    
-                    <div class="rwo comment">
-                        <label class="key">备注:</label>
-                        <p class="value" ng-bind="res.items[hovering.name].comment"></p>
-                    </div>
-                </div>
-            </div>
+                        <div class="debug-panel" ng-if="showDebug">
+                            <button ng-repeat="sceneName in scenePaths" class="go-scene btn btn-primary" ng-bind="sceneName" ng-click="debugScene(sceneName)"></button>
+                        </div>
+            
+                        
         </div>
     </div>
     <script data-main="js/main" src="js/require.js"></script>

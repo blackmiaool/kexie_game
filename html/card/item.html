@@ -1,0 +1,24 @@
+<div class="hover-card-wrap" hover-card="item" >
+                <div class="hover-card">
+                    <div class="row name hide">
+                        <label class="key">名称:</label>
+                        <p class="value" ng-bind="hovering.name"></p>
+                    </div>
+                    <div class="row kind">
+                        <label class="key">类型:</label>
+                        <p class="value" ng-bind="res.items[hovering.name].kind"></p>
+                    </div>
+                    <div class="row has">
+                        <label class="key">持有数:</label>
+                        <p class="value" ng-bind="v.item[hovering.name].cnt"></p>
+                    </div>
+                    <div class="row brief">
+                        <label class="key">简介:</label>
+                        <p class="value" ng-bind="res.items[hovering.name].brief"></p>
+                    </div>                    
+                    <div class="rwo comment">
+                        <label class="key">备注:</label>
+                        <p class="value" ng-bind="res.items[hovering.name].comment"></p>
+                    </div>
+                </div>
+            </div>

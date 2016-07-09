@@ -3186,69 +3186,93 @@ input {
 .scene.ng-leave {
   opacity: 0;
 }
-.scene[data-scene="cover"] {
-  background: url("../res/Background/cover.jpg");
-  text-align: center;
+.scene[data-scene="bigmap"] .big-bg {
+  transition: 0.3s opacity linear;
+}
+.scene[data-scene="bigmap"] .big-bg.active {
+  opacity: 0.7;
+}
+.scene[data-scene="character"] {
+  background: url("../res/Background/make.png");
   background-position: bottom;
   background-size: cover;
 }
-.scene[data-scene="cover"] .logo-title {
-  font-size: 43px;
-  color: white;
-  margin-top: 100px;
-  margin-bottom: 80px;
-  text-shadow: 1px 1px 3px black;
+.scene[data-scene="character"] .center-area {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  -o-user-select: none;
+  user-select: none;
+  color: wheat;
+  text-align: center;
 }
-.scene[data-scene="cover"] .btns {
+.scene[data-scene="character"] .center-area .btn-wrap {
+  margin-bottom: 10px;
+}
+.scene[data-scene="character"] .center-area .btn-wrap .tip {
+  margin-top: -5px;
+}
+.scene[data-scene="character"] .center-area .points-remain {
+  margin-bottom: 10px;
+}
+.scene[data-scene="character"] .settings-wrap {
   display: inline-block;
 }
-.scene[data-scene="cover"] .btn {
-  margin-bottom: 40px;
-  display: block;
-  text-align: center;
+.scene[data-scene="character"] .settings-wrap .title {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  -o-user-select: none;
+  user-select: none;
+  color: white;
+  margin-left: 5px;
+  margin-bottom: 2px;
+  color: wheat;
   position: relative;
+  bottom: -17px;
+  left: 12px;
 }
-.scene[data-scene="cover"] .btn:before {
-  content: "";
-  width: 23px;
-  height: 56px;
+.scene[data-scene="character"] .settings-wrap .settings-content-wrap {
+  height: 230px;
+  width: 402px;
+  position: relative;
+  padding: 17px;
+  z-index: 1;
+}
+.scene[data-scene="character"] .settings-wrap .settings-content-wrap .item {
+  margin-left: 2px;
+  margin-top: 2px;
+}
+.scene[data-scene="character"] .settings-wrap .settings-content-wrap .item .cost {
+  font-size: 10px;
+  line-height: 10px;
+  height: 10px;
   position: absolute;
-  top: 0;
-  bottom: 0;
-  left: -40px;
-  background-size: contain;
-  opacity: 0;
-  -webkit-transition: 0.2s ease-out all;
-  -o-transition: 0.2s ease-out all;
-  transition: 0.2s ease-out all;
+  bottom: 6px;
+  right: 8px;
 }
-.scene[data-scene="cover"] .btn:hover:before {
-  -webkit-transform: translateX(10px);
-  -ms-transform: translateX(10px);
-  transform: translateX(10px);
-  opacity: 1;
+.scene[data-scene="character"] .settings-wrap .settings-content-wrap .item .cost img {
+  width: 9px;
 }
-.scene[data-scene="cover"] .btn:nth-child(1):hover:before {
-  background: url("../res/pixel/me.gif") no-repeat;
-}
-.scene[data-scene="cover"] .btn:nth-child(2):hover:before {
-  background: url("../res/pixel/chenjiong.gif") no-repeat;
-}
-.scene[data-scene="cover"] .btn:nth-child(3):hover:before {
-  background: url("../res/pixel/zhangfuai.gif") no-repeat;
-}
-.scene[data-scene="preload"] {
-  text-align: center;
-}
-.scene[data-scene="preload"] .wrap {
+.scene[data-scene="character"] .settings-wrap.goodness {
   position: absolute;
-  top: 50%;
-  -webkit-transform: translateY(-50%);
-  -ms-transform: translateY(-50%);
-  transform: translateY(-50%);
+  left: 15px;
+  top: 5px;
 }
-.scene[data-scene="preload"] .wrap .loading-img {
-  width: 20px;
+.scene[data-scene="character"] .settings-wrap.goodness-selecting {
+  position: absolute;
+  right: 15px;
+  top: 5px;
+}
+.scene[data-scene="character"] .settings-wrap.weakness {
+  position: absolute;
+  left: 15px;
+  bottom: 5px;
+}
+.scene[data-scene="character"] .settings-wrap.weakness-selecting {
+  position: absolute;
+  right: 15px;
+  bottom: 5px;
 }
 .scene[data-scene="chat"] .chat-wrap {
   position: absolute;
@@ -3351,463 +3375,56 @@ input {
   width: 100%;
   background-size: cover;
 }
-.scene[data-scene="state"] > .wrap {
-  position: absolute;
-  left: 0;
-  right: 0;
-  top: 0;
-  bottom: 0;
-  margin: auto;
-}
-.scene[data-scene="state"] > .wrap > .back {
-  background-image: url("../res/UI/blue_back_left.png");
-  background-repeat: no-repeat;
-  background-size: contain;
-  width: 50px;
-  height: 50px;
-  position: absolute;
-  left: 10px;
-  top: 10px;
-  z-index: 1;
-  transition: 0.05s transform linear;
-}
-.scene[data-scene="state"] > .wrap > .back:hover {
-  -webkit-transform: scale(1.1);
-  -ms-transform: scale(1.1);
-  transform: scale(1.1);
-}
-.scene[data-scene="state"] .page-select-wrap {
-  position: absolute;
-  z-index: 1;
-  -webkit-transform: translateY(-50%);
-  -ms-transform: translateY(-50%);
-  transform: translateY(-50%);
-  top: 50%;
-  left: 15px;
-  height: 350px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-}
-.scene[data-scene="state"] .page-select-wrap .page-select {
-  width: 105px;
-  height: 46px;
-  opacity: 0.6;
-  position: relative;
-  outline: none;
-  transition: all 0.1s linear;
-}
-.scene[data-scene="state"] .page-select-wrap .page-select > .bg {
-  height: 100%;
-  width: 100%;
-}
-.scene[data-scene="state"] .page-select-wrap .page-select > .cover {
-  position: absolute;
-  left: 0;
-  right: 0;
-  top: 0;
-  bottom: 0;
-  margin: auto;
-  width: 100%;
-  opacity: 0;
-}
-.scene[data-scene="state"] .page-select-wrap .page-select > .select {
-  position: absolute;
-  left: 0;
-  right: 0;
-  top: 0;
-  bottom: 0;
-  margin: auto;
+.scene[data-scene="cover"] {
+  background: url("../res/Background/cover.jpg");
   text-align: center;
-  margin-top: 12px;
-  color: #A1E0E7;
-}
-.scene[data-scene="state"] .page-select-wrap .page-select:hover {
-  opacity: 1;
-}
-.scene[data-scene="state"] .page-select-wrap .page-select:active,
-.scene[data-scene="state"] .page-select-wrap .page-select.active {
-  -webkit-transform: translateX(10%);
-  -ms-transform: translateX(10%);
-  transform: translateX(10%);
-  opacity: 1;
-}
-.scene[data-scene="state"] .page {
-  position: absolute;
-  left: 0;
-  right: 0;
-  top: 0;
-  bottom: 0;
-  margin: auto;
-  transition: 0.15s opacity linear;
-  opacity: 1;
+  background-position: bottom;
   background-size: cover;
 }
-.scene[data-scene="state"] .page.ng-hide {
-  opacity: 0;
-}
-.scene[data-scene="state"] .page[data-page="status"] {
-  background-image: url("../res/Background/state/state.jpg");
-}
-.scene[data-scene="state"] .page[data-page="status"] .user-name,
-.scene[data-scene="state"] .page[data-page="status"] .job {
-  background-color: #6f5499;
+.scene[data-scene="cover"] .logo-title {
+  font-size: 43px;
   color: white;
-  position: absolute;
-  right: 20px;
-  top: 10px;
-  padding: 5px 15px;
-  font-size: 20px;
+  margin-top: 100px;
+  margin-bottom: 80px;
+  text-shadow: 1px 1px 3px black;
+}
+.scene[data-scene="cover"] .btns {
   display: inline-block;
-  vertical-align: middle;
 }
-.scene[data-scene="state"] .page[data-page="status"] .job {
-  right: 20px;
-  top: 60px;
-}
-.scene[data-scene="state"] .page[data-page="status"] .money {
-  position: absolute;
-  left: 50%;
-  -webkit-transform: translateX(-50%);
-  -ms-transform: translateX(-50%);
-  transform: translateX(-50%);
-  bottom: 10px;
-  font-size: 20px;
-  color: white;
-  background-image: linear-gradient(#5c5b5b, #353535);
-  background-color: #5c5b5b;
-  border: 1px solid rgba(0, 0, 0, 0.5);
-  border-radius: 4px;
-  box-shadow: inset 0px 1px rgba(255, 255, 255, 0.24), 0px 1px 5px rgba(0, 0, 0, 0.6);
-  padding: 5px 15px;
-}
-.scene[data-scene="state"] .page[data-page="status"] .analog,
-.scene[data-scene="state"] .page[data-page="status"] .digital {
-  position: absolute;
-  top: 50%;
-  -webkit-transform: translateY(-50%);
-  -ms-transform: translateY(-50%);
-  transform: translateY(-50%);
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  -o-user-select: none;
-  user-select: none;
-  font-size: 23px;
-  color: white;
-  transition: font-size 0.1s linear;
-  text-align: center;
-  text-shadow: 1px 1px 1px black;
-}
-.scene[data-scene="state"] .page[data-page="status"] .analog:hover,
-.scene[data-scene="state"] .page[data-page="status"] .digital:hover {
-  text-shadow: 1px 1px 1px black, -1px -1px 1px black;
-}
-.scene[data-scene="state"] .page[data-page="status"] .analog img,
-.scene[data-scene="state"] .page[data-page="status"] .digital img {
-  width: 60px;
+.scene[data-scene="cover"] .btn {
+  margin-bottom: 40px;
   display: block;
-  margin: 10px;
-}
-.scene[data-scene="state"] .page[data-page="status"] .analog {
-  color: black;
-  text-shadow: 1px 1px 1px white;
-  left: 30%;
-  top: 47%;
-}
-.scene[data-scene="state"] .page[data-page="status"] .analog:hover {
-  text-shadow: 1px 1px 1px white, -1px -1px 1px white;
-}
-.scene[data-scene="state"] .page[data-page="status"] .digital {
-  left: 61%;
-  top: 55%;
-}
-.scene[data-scene="state"] .page[data-page="status"] .props-wrap {
-  position: absolute;
-  right: 100px;
-  top: 220px;
-  display: flex;
-  flex-direction: column;
-}
-.scene[data-scene="state"] .page[data-page="status"] .props-wrap .prop {
-  margin-bottom: 20px;
-}
-.scene[data-scene="state"] .page[data-page="status"] .prop {
-  padding: 3px 7px 4px 7px;
-  border-radius: 5px;
-  display: inline-block;
-  font-size: 0;
-  color: white;
-  background-color: steelblue;
-}
-.scene[data-scene="state"] .page[data-page="status"] .prop .key {
-  display: inline-block;
-  padding: 5px 10px 5px 5px;
-  font-size: 18px;
-}
-.scene[data-scene="state"] .page[data-page="status"] .prop .value {
-  display: inline-block;
   text-align: center;
-  border-radius: 4px;
-  font-size: 18px;
-  color: black;
-  background-color: white;
-  padding: 3px 0px;
-  width: 60px;
-}
-.scene[data-scene="state"] .page[data-page="status"] .basic-wrap {
-  position: absolute;
-  right: 60px;
-  top: 30px;
-  display: flex;
-  flex-direction: column;
-}
-.scene[data-scene="state"] .page[data-page="status"] .basic-wrap .basic {
-  margin-bottom: 15px;
-}
-.scene[data-scene="state"] .page[data-page="status"] .basic {
-  padding: 3px 7px 4px 7px;
-  border-radius: 5px;
-  display: inline-block;
-  font-size: 0;
-  color: white;
-  background-color: #6f5499;
-}
-.scene[data-scene="state"] .page[data-page="status"] .basic .key {
-  display: inline-block;
-  padding: 5px 10px 5px 5px;
-  font-size: 18px;
-}
-.scene[data-scene="state"] .page[data-page="status"] .basic .value {
-  display: inline-block;
-  text-align: center;
-  border-radius: 4px;
-  font-size: 18px;
-  color: black;
-  background-color: white;
-  padding: 3px 0px;
-  width: 100px;
-}
-.scene[data-scene="state"] .page[data-page="skill"] {
-  background-image: url("../res/Background/state/skill_bg.jpg");
-}
-.scene[data-scene="state"] .page[data-page="skill"] .highlight {
-  overflow: auto;
-  padding: 9px 14px;
-  margin-bottom: 14px;
-  background-color: rgba(255, 255, 255, 0.3);
-  border: 1px solid #e1e1e8;
-  border-radius: 4px;
-  position: absolute;
-  left: 0;
-  right: 0;
-  top: 0;
-  bottom: 0;
-  margin: auto;
-  left: 200px;
-  top: 20px;
-  bottom: 20px;
-  right: 30px;
-}
-.scene[data-scene="state"] .page[data-page="skill"] .highlight table {
-  color: white;
-}
-.scene[data-scene="state"] .page[data-page="people"] {
-  background-image: url("../res/Background/state/people_bg2.jpg");
-}
-.scene[data-scene="state"] .page[data-page="people"] > .desc-wrap,
-.scene[data-scene="state"] .page[data-page="people"] > .select {
-  position: absolute;
-  background-color: rgba(70, 130, 180, 0.25);
-  border-radius: 10px;
-  border: #4682b4 1px solid;
-}
-.scene[data-scene="state"] .page[data-page="people"] > .desc-wrap {
-  left: 200px;
-  width: 550px;
-  top: 50px;
-  bottom: 50px;
-}
-.scene[data-scene="state"] .page[data-page="people"] > .desc-wrap .currentP {
-  position: absolute;
-  bottom: 0;
-  left: 50px;
-  height: 384px;
-}
-.scene[data-scene="state"] .page[data-page="people"] > .select {
-  width: 160px;
-  right: 30px;
-  top: 50px;
-  bottom: 50px;
-  padding: 10px;
-  overflow: auto;
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-}
-.scene[data-scene="state"] .page[data-page="people"] > .select .pp-select {
-  justify-content: space-around;
-  width: 58px;
-  height: 58px;
-  display: inline-block;
-  margin: 5px;
-  border: 1px solid black;
   position: relative;
-  overflow: hidden;
-  padding-top: 5px;
 }
-.scene[data-scene="state"] .page[data-page="people"] > .select .pp-select img {
-  width: 100%;
-  pointer-events: none;
-}
-.scene[data-scene="state"] .page[data-page="item"] {
-  background-image: url("../res/Background/state/item.jpg");
-}
-.scene[data-scene="state"] .page[data-page="item"] .kind-wrap {
+.scene[data-scene="cover"] .btn:before {
+  content: "";
+  width: 23px;
+  height: 56px;
   position: absolute;
-  left: 0;
-  right: 0;
   top: 0;
   bottom: 0;
-  margin: auto;
-  left: 100px;
-  bottom: auto;
-  top: 10px;
-  text-align: center;
+  left: -40px;
+  background-size: contain;
+  opacity: 0;
+  -webkit-transition: 0.2s ease-out all;
+  -o-transition: 0.2s ease-out all;
+  transition: 0.2s ease-out all;
 }
-.scene[data-scene="state"] .page[data-page="item"] .kind-wrap .item-kind-select {
-  display: inline-block;
-  margin: 0px 15px;
-  opacity: 0.5;
-  transition: opacity 0.1s linear;
-}
-.scene[data-scene="state"] .page[data-page="item"] .kind-wrap .item-kind-select:hover {
-  opacity: 0.7;
-}
-.scene[data-scene="state"] .page[data-page="item"] .kind-wrap .item-kind-select.active {
+.scene[data-scene="cover"] .btn:hover:before {
+  -webkit-transform: translateX(10px);
+  -ms-transform: translateX(10px);
+  transform: translateX(10px);
   opacity: 1;
 }
-.scene[data-scene="state"] .page[data-page="item"] .kind-wrap .item-kind-select img {
-  height: 65px;
-  vertical-align: middle;
+.scene[data-scene="cover"] .btn:nth-child(1):hover:before {
+  background: url("../res/pixel/me.gif") no-repeat;
 }
-.scene[data-scene="state"] .page[data-page="item"] .kind-wrap .item-kind-select .name {
-  vertical-align: middle;
-  width: 17px;
-  display: inline-block;
+.scene[data-scene="cover"] .btn:nth-child(2):hover:before {
+  background: url("../res/pixel/chenjiong.gif") no-repeat;
 }
-.scene[data-scene="state"] .page[data-page="item"] .items-wrap,
-.scene[data-scene="state"] .page[data-page="item"] .desc-wrap {
-  top: 120px;
-  bottom: 30px;
-}
-.scene[data-scene="state"] .page[data-page="item"] .items-frame {
-  position: absolute;
-  left: 180px;
-  bottom: 20px;
-}
-.scene[data-scene="state"] .page[data-page="item"] .items-frame > .bg {
-  width: 500px;
-}
-.scene[data-scene="state"] .page[data-page="item"] .items-wrap {
-  position: absolute;
-  left: 49px;
-  width: 448px;
-  top: 72px;
-  padding: 13px;
-}
-.scene[data-scene="state"] .page[data-page="item"] .items-wrap .item-wrap {
-  margin: 7px 15px;
-  display: inline-block;
-  position: relative;
-  height: 95px;
-  width: 64px;
-  text-align: center;
-}
-.scene[data-scene="state"] .page[data-page="item"] .items-wrap .item-wrap .item-body-wrap {
-  width: 64px;
-  height: 64px;
-  background-image: url("../res/UI/item_bg.svg");
-  background-repeat: no-repeat;
-  background-size: contain;
-  display: inline-block;
-  position: relative;
-}
-.scene[data-scene="state"] .page[data-page="item"] .items-wrap .item-wrap .item-body-wrap img.item-icon {
-  position: absolute;
-  left: 0;
-  right: 0;
-  top: 0;
-  bottom: 0;
-  margin: auto;
-  width: 55%;
-  height: 55%;
-  display: block;
-}
-.scene[data-scene="state"] .page[data-page="item"] .items-wrap .item-wrap label {
-  color: #A1E0E7;
-  font-weight: normal;
-  position: absolute;
-  left: 0;
-  right: 0;
-  top: 0;
-  bottom: 0;
-  margin: auto;
-}
-.scene[data-scene="state"] .page[data-page="item"] .items-wrap .item-wrap label.name {
-  bottom: auto;
-  top: 70%;
-  font-size: 14px;
-  text-align: center;
-}
-.scene[data-scene="state"] .page[data-page="item"] .items-wrap .item-wrap label.cnt {
-  font-size: 13px;
-  left: auto;
-  bottom: auto;
-  right: 7%;
-  top: 7%;
-}
-.scene[data-scene="state"] .page[data-page="item"] .items-desc-frame {
-  position: absolute;
-  right: 20px;
-  width: 250px;
-  padding: 0px;
-  color: white;
-  bottom: 22px;
-  top: 105px;
-  box-sizing: border-box;
-}
-.scene[data-scene="state"] .page[data-page="item"] .items-desc-frame > .bg {
-  height: 100%;
-  width: 100%;
-  opacity: 0.7;
-}
-.scene[data-scene="state"] .page[data-page="item"] .items-desc-frame .desc-wrap {
-  position: absolute;
-  left: 0;
-  right: 0;
-  top: 0;
-  bottom: 0;
-  margin: auto;
-  left: 15px;
-  right: 15px;
-  top: 15px;
-}
-.scene[data-scene="state"] .page[data-page="item"] .items-desc-frame .desc-wrap .icon-wrap {
-  padding-top: 5px;
-  text-align: center;
-}
-.scene[data-scene="state"] .page[data-page="item"] .items-desc-frame .desc-wrap .icon-wrap img {
-  width: 80px;
-  display: inline-block;
-}
-.scene[data-scene="state"] .page[data-page="item"] .items-desc-frame .desc-wrap .tag {
-  font-weight: normal;
-}
-.scene[data-scene="state"] .page[data-page="item"] .items-desc-frame .desc-wrap p {
-  text-indent: 2em;
-  margin-top: 0;
-  margin-bottom: 5px;
+.scene[data-scene="cover"] .btn:nth-child(3):hover:before {
+  background: url("../res/pixel/zhangfuai.gif") no-repeat;
 }
 .scene[data-scene="home"] {
   background-image: url("../res/Background/home.jpg");
@@ -4401,84 +4018,6 @@ input {
   margin: auto;
   background-color: rgba(0, 0, 0, 0.5);
 }
-.scene[data-scene="bigmap"] .big-bg {
-  transition: 0.3s opacity linear;
-}
-.scene[data-scene="bigmap"] .big-bg.active {
-  opacity: 0.7;
-}
-.scene[data-scene="make-select"] {
-  background-image: url("../res/Background/make.png");
-  background-repeat: no-repeat;
-  background-size: contain;
-  background-size: cover;
-}
-.scene[data-scene="make-select"] .select-target {
-  position: absolute;
-  left: 0;
-  right: 0;
-  top: 0;
-  bottom: 0;
-  margin: auto;
-  height: 500px;
-  width: 333px;
-}
-.scene[data-scene="make-select"] .select-target .go-back {
-  position: absolute;
-  right: -11px;
-  bottom: -6px;
-  -webkit-transform: translate(23%, 23%);
-  -ms-transform: translate(23%, 23%);
-  transform: translate(23%, 23%);
-}
-.scene[data-scene="make-select"] .select-target header {
-  position: absolute;
-  left: -100px;
-  right: -100px;
-  top: 10px;
-  margin: auto;
-}
-.scene[data-scene="make-select"] .select-target header.little > span {
-  font-size: 16px;
-}
-.scene[data-scene="make-select"] .select-target main {
-  position: absolute;
-  left: 0;
-  right: 0;
-  top: 0;
-  bottom: 0;
-  margin: auto;
-  top: 69px;
-  left: 40px;
-  right: 40px;
-  bottom: 35px;
-  overflow: hidden;
-}
-.scene[data-scene="make-select"] .select-target main .page {
-  position: absolute;
-  left: 0;
-  right: 0;
-  top: 0;
-  bottom: 0;
-  margin: auto;
-  transition: 0.3s transform ease-out;
-}
-.scene[data-scene="make-select"] .select-target main .page.left {
-  -webkit-transform: translateX(-100%);
-  -ms-transform: translateX(-100%);
-  transform: translateX(-100%);
-}
-.scene[data-scene="make-select"] .select-target main .page.right {
-  -webkit-transform: translateX(100%);
-  -ms-transform: translateX(100%);
-  transform: translateX(100%);
-}
-.scene[data-scene="make-select"] .select-target main .start-new-product {
-  margin-bottom: 5px;
-}
-.scene[data-scene="make-select"] .select-target main .work {
-  font-size: 14px;
-}
 .scene[data-scene="make"] {
   background: url("../res/Background/make.png");
   background-position: bottom;
@@ -4592,87 +4131,548 @@ input {
 .scene[data-scene="make"] > .right .left-header .item-icon {
   display: block;
 }
-.scene[data-scene="character"] {
-  background: url("../res/Background/make.png");
-  background-position: bottom;
+.scene[data-scene="make-select"] {
+  background-image: url("../res/Background/make.png");
+  background-repeat: no-repeat;
+  background-size: contain;
   background-size: cover;
 }
-.scene[data-scene="character"] .center-area {
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  -o-user-select: none;
-  user-select: none;
-  color: wheat;
+.scene[data-scene="make-select"] .select-target {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+  height: 500px;
+  width: 333px;
+}
+.scene[data-scene="make-select"] .select-target .go-back {
+  position: absolute;
+  right: -11px;
+  bottom: -6px;
+  -webkit-transform: translate(23%, 23%);
+  -ms-transform: translate(23%, 23%);
+  transform: translate(23%, 23%);
+}
+.scene[data-scene="make-select"] .select-target header {
+  position: absolute;
+  left: -100px;
+  right: -100px;
+  top: 10px;
+  margin: auto;
+}
+.scene[data-scene="make-select"] .select-target header.little > span {
+  font-size: 16px;
+}
+.scene[data-scene="make-select"] .select-target main {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+  top: 69px;
+  left: 40px;
+  right: 40px;
+  bottom: 35px;
+  overflow: hidden;
+}
+.scene[data-scene="make-select"] .select-target main .page {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+  transition: 0.3s transform ease-out;
+}
+.scene[data-scene="make-select"] .select-target main .page.left {
+  -webkit-transform: translateX(-100%);
+  -ms-transform: translateX(-100%);
+  transform: translateX(-100%);
+}
+.scene[data-scene="make-select"] .select-target main .page.right {
+  -webkit-transform: translateX(100%);
+  -ms-transform: translateX(100%);
+  transform: translateX(100%);
+}
+.scene[data-scene="make-select"] .select-target main .start-new-product {
+  margin-bottom: 5px;
+}
+.scene[data-scene="make-select"] .select-target main .work {
+  font-size: 14px;
+}
+.scene[data-scene="preload"] {
   text-align: center;
 }
-.scene[data-scene="character"] .center-area .btn-wrap {
-  margin-bottom: 10px;
+.scene[data-scene="preload"] .wrap {
+  position: absolute;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
 }
-.scene[data-scene="character"] .center-area .btn-wrap .tip {
-  margin-top: -5px;
+.scene[data-scene="preload"] .wrap .loading-img {
+  width: 20px;
 }
-.scene[data-scene="character"] .center-area .points-remain {
-  margin-bottom: 10px;
+.scene[data-scene="state"] > .wrap {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  margin: auto;
 }
-.scene[data-scene="character"] .settings-wrap {
+.scene[data-scene="state"] > .wrap > .back {
+  background-image: url("../res/UI/blue_back_left.png");
+  background-repeat: no-repeat;
+  background-size: contain;
+  width: 50px;
+  height: 50px;
+  position: absolute;
+  left: 10px;
+  top: 10px;
+  z-index: 1;
+  transition: 0.05s transform linear;
+}
+.scene[data-scene="state"] > .wrap > .back:hover {
+  -webkit-transform: scale(1.1);
+  -ms-transform: scale(1.1);
+  transform: scale(1.1);
+}
+.scene[data-scene="state"] .page-select-wrap {
+  position: absolute;
+  z-index: 1;
+  -webkit-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+  top: 50%;
+  left: 15px;
+  height: 350px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.scene[data-scene="state"] .page-select-wrap .page-select {
+  width: 105px;
+  height: 46px;
+  opacity: 0.6;
+  position: relative;
+  outline: none;
+  transition: all 0.1s linear;
+}
+.scene[data-scene="state"] .page-select-wrap .page-select > .bg {
+  height: 100%;
+  width: 100%;
+}
+.scene[data-scene="state"] .page-select-wrap .page-select > .cover {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+  width: 100%;
+  opacity: 0;
+}
+.scene[data-scene="state"] .page-select-wrap .page-select > .select {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+  text-align: center;
+  margin-top: 12px;
+  color: #A1E0E7;
+}
+.scene[data-scene="state"] .page-select-wrap .page-select:hover {
+  opacity: 1;
+}
+.scene[data-scene="state"] .page-select-wrap .page-select:active,
+.scene[data-scene="state"] .page-select-wrap .page-select.active {
+  -webkit-transform: translateX(10%);
+  -ms-transform: translateX(10%);
+  transform: translateX(10%);
+  opacity: 1;
+}
+.scene[data-scene="state"] .page {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+  transition: 0.15s opacity linear;
+  opacity: 1;
+  background-size: cover;
+}
+.scene[data-scene="state"] .page.ng-hide {
+  opacity: 0;
+}
+.scene[data-scene="state"] .page[data-page="status"] {
+  background-image: url("../res/Background/state/state.jpg");
+}
+.scene[data-scene="state"] .page[data-page="status"] .user-name,
+.scene[data-scene="state"] .page[data-page="status"] .job {
+  background-color: #6f5499;
+  color: white;
+  position: absolute;
+  right: 20px;
+  top: 10px;
+  padding: 5px 15px;
+  font-size: 20px;
   display: inline-block;
+  vertical-align: middle;
 }
-.scene[data-scene="character"] .settings-wrap .title {
+.scene[data-scene="state"] .page[data-page="status"] .job {
+  right: 20px;
+  top: 60px;
+}
+.scene[data-scene="state"] .page[data-page="status"] .money {
+  position: absolute;
+  left: 50%;
+  -webkit-transform: translateX(-50%);
+  -ms-transform: translateX(-50%);
+  transform: translateX(-50%);
+  bottom: 10px;
+  font-size: 20px;
+  color: white;
+  background-image: linear-gradient(#5c5b5b, #353535);
+  background-color: #5c5b5b;
+  border: 1px solid rgba(0, 0, 0, 0.5);
+  border-radius: 4px;
+  box-shadow: inset 0px 1px rgba(255, 255, 255, 0.24), 0px 1px 5px rgba(0, 0, 0, 0.6);
+  padding: 5px 15px;
+}
+.scene[data-scene="state"] .page[data-page="status"] .analog,
+.scene[data-scene="state"] .page[data-page="status"] .digital {
+  position: absolute;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
   -webkit-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
   -o-user-select: none;
   user-select: none;
+  font-size: 23px;
   color: white;
-  margin-left: 5px;
-  margin-bottom: 2px;
-  color: wheat;
+  transition: font-size 0.1s linear;
+  text-align: center;
+  text-shadow: 1px 1px 1px black;
+}
+.scene[data-scene="state"] .page[data-page="status"] .analog:hover,
+.scene[data-scene="state"] .page[data-page="status"] .digital:hover {
+  text-shadow: 1px 1px 1px black, -1px -1px 1px black;
+}
+.scene[data-scene="state"] .page[data-page="status"] .analog img,
+.scene[data-scene="state"] .page[data-page="status"] .digital img {
+  width: 60px;
+  display: block;
+  margin: 10px;
+}
+.scene[data-scene="state"] .page[data-page="status"] .analog {
+  color: black;
+  text-shadow: 1px 1px 1px white;
+  left: 30%;
+  top: 47%;
+}
+.scene[data-scene="state"] .page[data-page="status"] .analog:hover {
+  text-shadow: 1px 1px 1px white, -1px -1px 1px white;
+}
+.scene[data-scene="state"] .page[data-page="status"] .digital {
+  left: 61%;
+  top: 55%;
+}
+.scene[data-scene="state"] .page[data-page="status"] .props-wrap {
+  position: absolute;
+  right: 100px;
+  top: 220px;
+  display: flex;
+  flex-direction: column;
+}
+.scene[data-scene="state"] .page[data-page="status"] .props-wrap .prop {
+  margin-bottom: 20px;
+}
+.scene[data-scene="state"] .page[data-page="status"] .prop {
+  padding: 3px 7px 4px 7px;
+  border-radius: 5px;
+  display: inline-block;
+  font-size: 0;
+  color: white;
+  background-color: steelblue;
+}
+.scene[data-scene="state"] .page[data-page="status"] .prop .key {
+  display: inline-block;
+  padding: 5px 10px 5px 5px;
+  font-size: 18px;
+}
+.scene[data-scene="state"] .page[data-page="status"] .prop .value {
+  display: inline-block;
+  text-align: center;
+  border-radius: 4px;
+  font-size: 18px;
+  color: black;
+  background-color: white;
+  padding: 3px 0px;
+  width: 60px;
+}
+.scene[data-scene="state"] .page[data-page="status"] .basic-wrap {
+  position: absolute;
+  right: 60px;
+  top: 30px;
+  display: flex;
+  flex-direction: column;
+}
+.scene[data-scene="state"] .page[data-page="status"] .basic-wrap .basic {
+  margin-bottom: 15px;
+}
+.scene[data-scene="state"] .page[data-page="status"] .basic {
+  padding: 3px 7px 4px 7px;
+  border-radius: 5px;
+  display: inline-block;
+  font-size: 0;
+  color: white;
+  background-color: #6f5499;
+}
+.scene[data-scene="state"] .page[data-page="status"] .basic .key {
+  display: inline-block;
+  padding: 5px 10px 5px 5px;
+  font-size: 18px;
+}
+.scene[data-scene="state"] .page[data-page="status"] .basic .value {
+  display: inline-block;
+  text-align: center;
+  border-radius: 4px;
+  font-size: 18px;
+  color: black;
+  background-color: white;
+  padding: 3px 0px;
+  width: 100px;
+}
+.scene[data-scene="state"] .page[data-page="skill"] {
+  background-image: url("../res/Background/state/skill_bg.jpg");
+}
+.scene[data-scene="state"] .page[data-page="skill"] .highlight {
+  overflow: auto;
+  padding: 9px 14px;
+  margin-bottom: 14px;
+  background-color: rgba(255, 255, 255, 0.3);
+  border: 1px solid #e1e1e8;
+  border-radius: 4px;
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+  left: 200px;
+  top: 20px;
+  bottom: 20px;
+  right: 30px;
+}
+.scene[data-scene="state"] .page[data-page="skill"] .highlight table {
+  color: white;
+}
+.scene[data-scene="state"] .page[data-page="people"] {
+  background-image: url("../res/Background/state/people_bg2.jpg");
+}
+.scene[data-scene="state"] .page[data-page="people"] > .desc-wrap,
+.scene[data-scene="state"] .page[data-page="people"] > .select {
+  position: absolute;
+  background-color: rgba(70, 130, 180, 0.25);
+  border-radius: 10px;
+  border: #4682b4 1px solid;
+}
+.scene[data-scene="state"] .page[data-page="people"] > .desc-wrap {
+  left: 200px;
+  width: 550px;
+  top: 50px;
+  bottom: 50px;
+}
+.scene[data-scene="state"] .page[data-page="people"] > .desc-wrap .currentP {
+  position: absolute;
+  bottom: 0;
+  left: 50px;
+  height: 384px;
+}
+.scene[data-scene="state"] .page[data-page="people"] > .select {
+  width: 160px;
+  right: 30px;
+  top: 50px;
+  bottom: 50px;
+  padding: 10px;
+  overflow: auto;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+.scene[data-scene="state"] .page[data-page="people"] > .select .pp-select {
+  justify-content: space-around;
+  width: 58px;
+  height: 58px;
+  display: inline-block;
+  margin: 5px;
+  border: 1px solid black;
   position: relative;
-  bottom: -17px;
-  left: 12px;
+  overflow: hidden;
+  padding-top: 5px;
 }
-.scene[data-scene="character"] .settings-wrap .settings-content-wrap {
-  height: 230px;
-  width: 402px;
+.scene[data-scene="state"] .page[data-page="people"] > .select .pp-select img {
+  width: 100%;
+  pointer-events: none;
+}
+.scene[data-scene="state"] .page[data-page="item"] {
+  background-image: url("../res/Background/state/item.jpg");
+}
+.scene[data-scene="state"] .page[data-page="item"] .kind-wrap {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+  left: 100px;
+  bottom: auto;
+  top: 10px;
+  text-align: center;
+}
+.scene[data-scene="state"] .page[data-page="item"] .kind-wrap .item-kind-select {
+  display: inline-block;
+  margin: 0px 15px;
+  opacity: 0.5;
+  transition: opacity 0.1s linear;
+}
+.scene[data-scene="state"] .page[data-page="item"] .kind-wrap .item-kind-select:hover {
+  opacity: 0.7;
+}
+.scene[data-scene="state"] .page[data-page="item"] .kind-wrap .item-kind-select.active {
+  opacity: 1;
+}
+.scene[data-scene="state"] .page[data-page="item"] .kind-wrap .item-kind-select img {
+  height: 65px;
+  vertical-align: middle;
+}
+.scene[data-scene="state"] .page[data-page="item"] .kind-wrap .item-kind-select .name {
+  vertical-align: middle;
+  width: 17px;
+  display: inline-block;
+}
+.scene[data-scene="state"] .page[data-page="item"] .items-wrap,
+.scene[data-scene="state"] .page[data-page="item"] .desc-wrap {
+  top: 120px;
+  bottom: 30px;
+}
+.scene[data-scene="state"] .page[data-page="item"] .items-frame {
+  position: absolute;
+  left: 180px;
+  bottom: 20px;
+}
+.scene[data-scene="state"] .page[data-page="item"] .items-frame > .bg {
+  width: 500px;
+}
+.scene[data-scene="state"] .page[data-page="item"] .items-wrap {
+  position: absolute;
+  left: 49px;
+  width: 448px;
+  top: 72px;
+  padding: 13px;
+}
+.scene[data-scene="state"] .page[data-page="item"] .items-wrap .item-wrap {
+  margin: 7px 15px;
+  display: inline-block;
   position: relative;
-  padding: 17px;
-  z-index: 1;
+  height: 95px;
+  width: 64px;
+  text-align: center;
 }
-.scene[data-scene="character"] .settings-wrap .settings-content-wrap .item {
-  margin-left: 2px;
-  margin-top: 2px;
+.scene[data-scene="state"] .page[data-page="item"] .items-wrap .item-wrap .item-body-wrap {
+  width: 64px;
+  height: 64px;
+  background-image: url("../res/UI/item_bg.svg");
+  background-repeat: no-repeat;
+  background-size: contain;
+  display: inline-block;
+  position: relative;
 }
-.scene[data-scene="character"] .settings-wrap .settings-content-wrap .item .cost {
-  font-size: 10px;
-  line-height: 10px;
-  height: 10px;
+.scene[data-scene="state"] .page[data-page="item"] .items-wrap .item-wrap .item-body-wrap img.item-icon {
   position: absolute;
-  bottom: 6px;
-  right: 8px;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+  width: 55%;
+  height: 55%;
+  display: block;
 }
-.scene[data-scene="character"] .settings-wrap .settings-content-wrap .item .cost img {
-  width: 9px;
-}
-.scene[data-scene="character"] .settings-wrap.goodness {
+.scene[data-scene="state"] .page[data-page="item"] .items-wrap .item-wrap label {
+  color: #A1E0E7;
+  font-weight: normal;
   position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+}
+.scene[data-scene="state"] .page[data-page="item"] .items-wrap .item-wrap label.name {
+  bottom: auto;
+  top: 70%;
+  font-size: 14px;
+  text-align: center;
+}
+.scene[data-scene="state"] .page[data-page="item"] .items-wrap .item-wrap label.cnt {
+  font-size: 13px;
+  left: auto;
+  bottom: auto;
+  right: 7%;
+  top: 7%;
+}
+.scene[data-scene="state"] .page[data-page="item"] .items-desc-frame {
+  position: absolute;
+  right: 20px;
+  width: 250px;
+  padding: 0px;
+  color: white;
+  bottom: 22px;
+  top: 105px;
+  box-sizing: border-box;
+}
+.scene[data-scene="state"] .page[data-page="item"] .items-desc-frame > .bg {
+  height: 100%;
+  width: 100%;
+  opacity: 0.7;
+}
+.scene[data-scene="state"] .page[data-page="item"] .items-desc-frame .desc-wrap {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  margin: auto;
   left: 15px;
-  top: 5px;
-}
-.scene[data-scene="character"] .settings-wrap.goodness-selecting {
-  position: absolute;
   right: 15px;
-  top: 5px;
+  top: 15px;
 }
-.scene[data-scene="character"] .settings-wrap.weakness {
-  position: absolute;
-  left: 15px;
-  bottom: 5px;
+.scene[data-scene="state"] .page[data-page="item"] .items-desc-frame .desc-wrap .icon-wrap {
+  padding-top: 5px;
+  text-align: center;
 }
-.scene[data-scene="character"] .settings-wrap.weakness-selecting {
-  position: absolute;
-  right: 15px;
-  bottom: 5px;
+.scene[data-scene="state"] .page[data-page="item"] .items-desc-frame .desc-wrap .icon-wrap img {
+  width: 80px;
+  display: inline-block;
+}
+.scene[data-scene="state"] .page[data-page="item"] .items-desc-frame .desc-wrap .tag {
+  font-weight: normal;
+}
+.scene[data-scene="state"] .page[data-page="item"] .items-desc-frame .desc-wrap p {
+  text-indent: 2em;
+  margin-top: 0;
+  margin-bottom: 5px;
 }
 .hover-card-wrap {
   position: absolute;
