@@ -128,10 +128,10 @@ var gulpConfig = { plots: [{ "name": "kexie_first.js", "fullpath": "/home/blackm
                     sp.showDebug = !sp.showDebug;
                 }
                 function clearHovering() {
-                    console.log(123);
-                    delete rsp.hoveringKind;
+                    rsp.hoveringKind = "";
                     delete rsp.hovering;
                 }
+                rsp.hoveringKind = "";
                 rsp.clearHovering = clearHovering;
                 console.log(rsp);
                 var scenes = {};

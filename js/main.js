@@ -132,11 +132,11 @@
                     sp.goScene(sceneName);
                     sp.showDebug = !sp.showDebug;
                 }
-                function clearHovering(){
-                    console.log(123)
-                    delete rsp.hoveringKind;
+                function clearHovering(){                   
+                    rsp.hoveringKind="";
                     delete rsp.hovering;
                 }
+                rsp.hoveringKind="";
                 rsp.clearHovering=clearHovering;
                 console.log(rsp);
                 let scenes = {};

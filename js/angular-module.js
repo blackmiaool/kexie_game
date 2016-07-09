@@ -19,32 +19,38 @@ define(["angular","system-common"], function (angular,common) {
                 });
             };
         })
-        .directive('hoverCard', function () {
-            return {
+        .directive('hoverCard', ["$rootScope",function (rsp) {
+            return {               
                 restrict: 'A',
                 compile:function(element,attrs){
-                    element.attr("ng-show",`hoveringKind=='${attrs.hoverCard}'`)
+                    rsp.$watch("hoveringKind",function(v){
+                        if(v==attrs.hoverCard){
+                            element.removeClass("hide");
+                        }else{
+                            element.addClass("hide");
+                        }
+                    })   
                 }
             }
-        })
+        }])
         .directive('hoverItem', ["$parse","$rootScope", function ($parse,rsp) {
             let $sceneWrap = $(".scene-wrap");
             return {
                 restrict: 'A',
                 compile: function (element, attrs) {
                     let $target = $(`[hover-card="${attrs["hoverKind"]}"]`);
+                    
            
-                        //                    element.on("mousemove", function (e) {
-                        //                        console.log(234)
-                        //                        console.log(e);
-                        //                    })
 
                     return function (scope, element) {                        
-                        let value=$(element).attr("hover-item");
-                        let kind=$(element).attr("hover-kind");
+                        let value=element.attr("hover-item");
                         
+                        let kind=element.attr("hover-kind");
+                      
                         element.on("mousemove", function (event) {
-                            let offset1 = $(this).offset();
+                            
+                            let offset1 = $(event.target).offset();
+                            console.log(offset1)
                             let offset2 = $sceneWrap.offset();
                             let x = offset1.left+event.offsetX - offset2.left;
                             let y = offset1.top+event.offsetY - offset2.top;
@@ -69,7 +75,9 @@ define(["angular","system-common"], function (angular,common) {
                         element.on("mouseenter", function (event) {
                             let hovering=$parse(value)(scope);
                             rsp.hovering=hovering;  
+                            
                             rsp.hoveringKind=kind;
+                        
                             rsp.$digest();
                         });
 

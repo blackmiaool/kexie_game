@@ -7,7 +7,7 @@
             <section>
                 <header deep-dbline-header="消耗材料"></header>
                 <main>
-                    <div ng-show2="print(m.cnt,v.item[m.name].cnt)" class="item" deep-item-icon="{{getItemIcon(res.items[m.name],'wheat')}}" ng-repeat="m in res.products[working.kind].material" deep-cnt="{{v.item[m.name].cnt+'/'+m.cnt}}" deep-name="{{m.name}}" class="material" deep-judge="m.cnt<=v.item[m.name].cnt">
+                    <div hover-item="m" hover-kind="item" ng-show2="print(m.cnt,v.item[m.name].cnt)" class="item" deep-item-icon="{{getItemIcon(res.items[m.name],'wheat')}}" ng-repeat="m in res.products[working.kind].material" deep-cnt="{{v.item[m.name].cnt+'/'+m.cnt}}" deep-name="{{m.name}}" class="material" deep-judge="m.cnt<=v.item[m.name].cnt">
 
                     </div>
                 </main>

@@ -504,7 +504,7 @@
                             <section>
                                 <header deep-dbline-header="消耗材料"></header>
                                 <main>
-                                    <div ng-show2="print(m.cnt,v.item[m.name].cnt)" class="item" deep-item-icon="{{getItemIcon(res.items[m.name],'wheat')}}" ng-repeat="m in res.products[working.kind].material" deep-cnt="{{v.item[m.name].cnt+'/'+m.cnt}}" deep-name="{{m.name}}" class="material" deep-judge="m.cnt<=v.item[m.name].cnt">
+                                    <div hover-item="m" hover-kind="item" ng-show2="print(m.cnt,v.item[m.name].cnt)" class="item" deep-item-icon="{{getItemIcon(res.items[m.name],'wheat')}}" ng-repeat="m in res.products[working.kind].material" deep-cnt="{{v.item[m.name].cnt+'/'+m.cnt}}" deep-name="{{m.name}}" class="material" deep-judge="m.cnt<=v.item[m.name].cnt">
                 
                                     </div>
                                 </main>
@@ -694,6 +694,30 @@
                 <div class="hover-card">
                     <div class="summary" ng-bind="hovering.summary"></div>
                     <div class="effect" ng-bind="hovering.effect"></div>
+                </div>
+            </div>
+            <div class="hover-card-wrap" hover-card="item" >
+                <div class="hover-card">
+                    <div class="row name hide">
+                        <label class="key">名称:</label>
+                        <p class="value" ng-bind="hovering.name"></p>
+                    </div>
+                    <div class="row kind">
+                        <label class="key">类型:</label>
+                        <p class="value" ng-bind="res.items[hovering.name].kind"></p>
+                    </div>
+                    <div class="row has">
+                        <label class="key">持有数:</label>
+                        <p class="value" ng-bind="v.item[hovering.name].cnt"></p>
+                    </div>
+                    <div class="row brief">
+                        <label class="key">简介:</label>
+                        <p class="value" ng-bind="res.items[hovering.name].brief"></p>
+                    </div>                    
+                    <div class="rwo comment">
+                        <label class="key">备注:</label>
+                        <p class="value" ng-bind="res.items[hovering.name].comment"></p>
+                    </div>
                 </div>
             </div>
         </div>
