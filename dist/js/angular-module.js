@@ -44,7 +44,6 @@ define(["angular", "system-common"], function (angular, common) {
                     element.on("mousemove", function (event) {
 
                         var offset1 = $(event.target).offset();
-                        console.log(offset1);
                         var offset2 = $sceneWrap.offset();
                         var x = offset1.left + event.offsetX - offset2.left;
                         var y = offset1.top + event.offsetY - offset2.top;

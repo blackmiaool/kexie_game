@@ -51,7 +51,6 @@ var gulpConfig = { plots: [{ "name": "kexie_first.js", "fullpath": "/home/blackm
         $("#game-first-tip").remove();
         var rootPromise = new Promise(function (resolve, reject) {
             module.controller("RootController", ["$rootScope", "$scope", function (rsp, sp) {
-                console.log("set root");
 
                 sys.$rootScope = angular.element("body").scope().$parent.$root;
                 resolve();
@@ -133,7 +132,7 @@ var gulpConfig = { plots: [{ "name": "kexie_first.js", "fullpath": "/home/blackm
                 }
                 rsp.hoveringKind = "";
                 rsp.clearHovering = clearHovering;
-                console.log(rsp);
+
                 var scenes = {};
                 scenePaths.forEach(function (v, i) {
                     scenes[v] = false;

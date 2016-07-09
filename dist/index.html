@@ -443,7 +443,7 @@
                     </div>
                     <div class="info-block">
                         <header>体力</header>
-                        <main class="deep-power">
+                        <main deep-power="v.power" deep-power-max="v.powerMax">
                             <div class="deep-power-fill"></div>
                         </main>
                     </div>
@@ -701,8 +701,36 @@
                         <div class="debug-panel" ng-if="showDebug">
                             <button ng-repeat="sceneName in scenePaths" class="go-scene btn btn-primary" ng-bind="sceneName" ng-click="debugScene(sceneName)"></button>
                         </div>
-            
-                        
+            <div class="hover-card-wrap" hover-card="character">
+                            <div class="hover-card">
+                                <div class="summary" ng-bind="hovering.summary"></div>
+                                <div class="effect" ng-bind="hovering.effect"></div>
+                            </div>
+                        </div>
+            <div class="hover-card-wrap" hover-card="item" >
+                            <div class="hover-card">
+                                <div class="row name hide">
+                                    <label class="key">名称:</label>
+                                    <p class="value" ng-bind="hovering.name"></p>
+                                </div>
+                                <div class="row kind">
+                                    <label class="key">类型:</label>
+                                    <p class="value" ng-bind="res.items[hovering.name].kind"></p>
+                                </div>
+                                <div class="row has">
+                                    <label class="key">持有数:</label>
+                                    <p class="value" ng-bind="v.item[hovering.name].cnt"></p>
+                                </div>
+                                <div class="row brief">
+                                    <label class="key">简介:</label>
+                                    <p class="value" ng-bind="res.items[hovering.name].brief"></p>
+                                </div>                    
+                                <div class="rwo comment">
+                                    <label class="key">备注:</label>
+                                    <p class="value" ng-bind="res.items[hovering.name].comment"></p>
+                                </div>
+                            </div>
+                        </div>            
         </div>
     </div>
     <script data-main="js/main" src="js/require.js"></script>

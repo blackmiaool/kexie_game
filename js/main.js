@@ -58,7 +58,6 @@
         $("#game-first-tip").remove();
         let rootPromise = new Promise(function (resolve, reject) {
             module.controller("RootController", ["$rootScope", "$scope", function (rsp, sp) {
-                console.log("set root")
 
                 sys.$rootScope = angular.element("body").scope().$parent.$root;
                 resolve();
@@ -138,7 +137,7 @@
                 }
                 rsp.hoveringKind="";
                 rsp.clearHovering=clearHovering;
-                console.log(rsp);
+
                 let scenes = {};
                 scenePaths.forEach(function (v, i) {
                     scenes[v] = false;

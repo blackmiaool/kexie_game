@@ -77,5 +77,31 @@ define(["angular-module"], function (module) {
             },
             template: "                 \n                    <span class=\"deep-content\"></span>\n                "
         };
-    });
+    }).directive('deepPower', ["$parse", function ($parse) {
+        return {
+            restrict: 'A',
+            link: function link(scope, element, attrs) {
+                var $$ = element.find.bind(element);
+                var $fill = $$(".deep-power-fill");
+
+                function updateWidth(v) {
+                    if (v == 0) {
+                        $fill.hide();
+                    } else {
+                        $fill.show();
+                        var max = $parse(attrs["deepPowerMax"])(scope);
+                        console.log("v", v, max);
+                        var width = (108 - 5) * v / max + 5 + "%";
+                        $fill.css("width", width);
+                    }
+                }
+
+                element.addClass("deep-power");
+                console.log(attrs);
+                //                    updateWidth($parse(attrs["deepPower"])(scope));
+                scope.$watch(attrs["deepPower"], updateWidth, true);
+            },
+            template: "                 \n                    <span class=\"deep-power-fill\"></span>\n                "
+        };
+    }]);
 });

@@ -234,11 +234,13 @@ gulp.task('reload', function () {
 
 livereload.listen();
 gulp.watch('less/**/*.less', ['less']);
+gulp.watch('scene/**/*.less', ['less']);
 gulp.watch(['js/**/*.js', "!js/scene/*.js", "!js/plot/*.js"], ['es6']);
 gulp.watch("js/plot/*.js", ['plots']);
-gulp.watch("js/scene/*.js", ['scenes']);
+gulp.watch("scene/**/*.js", ['scenes']);
 gulp.watch('index.html', ['reload']);
 gulp.watch('html/**/*.html', ['html']);
+gulp.watch('scene/**/*.html', ['html']);
 gulp.watch('res/**/*.*', ['mv-res', 'reload'])
     //gulp.watch('README.md', ['es6']);
 gulp.watch('*.csv', ['es6']);

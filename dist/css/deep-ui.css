@@ -657,32 +657,32 @@ img {
 .deep-health > .deep-power-fill,
 .deep-power > .deep-power-fill {
   position: absolute;
-  left: 0.6px;
+  left: 0.4px;
   top: -34px;
   bottom: 6px;
   right: -18px;
   display: flex;
   flex-direction: row;
   border-style: solid;
-  width: 0%;
-  border-width: 28px 22px 0px 5.4px;
-  -webkit-border-image: url("../res/deep_ui/UnitFrame_HealthBar_Fill_Tiled.png") 68 47 0 10 fill stretch;
-  -moz-border-image: url("../res/deep_ui/UnitFrame_HealthBar_Fill_Tiled.png") 68 47 0 10 fill stretch;
-  -ms-border-image: url("../res/deep_ui/UnitFrame_HealthBar_Fill_Tiled.png") 68 47 0 10 fill stretch;
-  -o-border-image: url("../res/deep_ui/UnitFrame_HealthBar_Fill_Tiled.png") 68 47 0 10 fill stretch;
-  border-image: url("../res/deep_ui/UnitFrame_HealthBar_Fill_Tiled.png") 68 47 0 10 fill stretch;
+  width: 10px;
+  border-width: 28px 5.4px 0px 5.4px;
+  -webkit-border-image: url("../res/deep_ui/UnitFrame_HealthBar_Fill_Tiled.png") 68 10 0 10 fill stretch;
+  -moz-border-image: url("../res/deep_ui/UnitFrame_HealthBar_Fill_Tiled.png") 68 10 0 10 fill stretch;
+  -ms-border-image: url("../res/deep_ui/UnitFrame_HealthBar_Fill_Tiled.png") 68 10 0 10 fill stretch;
+  -o-border-image: url("../res/deep_ui/UnitFrame_HealthBar_Fill_Tiled.png") 68 10 0 10 fill stretch;
+  border-image: url("../res/deep_ui/UnitFrame_HealthBar_Fill_Tiled.png") 68 10 0 10 fill stretch;
 }
 .deep-power {
-  -webkit-border-image: url("../res/deep_ui/UnitFrame_HealthBar_Background.png") 102 52 0 15 fill stretch;
-  -moz-border-image: url("../res/deep_ui/UnitFrame_HealthBar_Background.png") 102 52 0 15 fill stretch;
-  -ms-border-image: url("../res/deep_ui/UnitFrame_HealthBar_Background.png") 102 52 0 15 fill stretch;
-  -o-border-image: url("../res/deep_ui/UnitFrame_HealthBar_Background.png") 102 52 0 15 fill stretch;
-  border-image: url("../res/deep_ui/UnitFrame_HealthBar_Background.png") 102 52 0 15 fill stretch;
+  -webkit-border-image: url("../res/deep_ui/UnitFrame_PowerBar_Background.png") 102 52 0 15 fill stretch;
+  -moz-border-image: url("../res/deep_ui/UnitFrame_PowerBar_Background.png") 102 52 0 15 fill stretch;
+  -ms-border-image: url("../res/deep_ui/UnitFrame_PowerBar_Background.png") 102 52 0 15 fill stretch;
+  -o-border-image: url("../res/deep_ui/UnitFrame_PowerBar_Background.png") 102 52 0 15 fill stretch;
+  border-image: url("../res/deep_ui/UnitFrame_PowerBar_Background.png") 102 52 0 15 fill stretch;
 }
 .deep-power > .deep-power-fill {
-  -webkit-border-image: url("../res/deep_ui/UnitFrame_PowerBar_Fill_Tiled.png") 68 47 0 10 fill stretch;
-  -moz-border-image: url("../res/deep_ui/UnitFrame_PowerBar_Fill_Tiled.png") 68 47 0 10 fill stretch;
-  -ms-border-image: url("../res/deep_ui/UnitFrame_PowerBar_Fill_Tiled.png") 68 47 0 10 fill stretch;
-  -o-border-image: url("../res/deep_ui/UnitFrame_PowerBar_Fill_Tiled.png") 68 47 0 10 fill stretch;
-  border-image: url("../res/deep_ui/UnitFrame_PowerBar_Fill_Tiled.png") 68 47 0 10 fill stretch;
+  -webkit-border-image: url("../res/deep_ui/UnitFrame_PowerBar_Fill_Tiled.png") 68 10 0 10 fill stretch;
+  -moz-border-image: url("../res/deep_ui/UnitFrame_PowerBar_Fill_Tiled.png") 68 10 0 10 fill stretch;
+  -ms-border-image: url("../res/deep_ui/UnitFrame_PowerBar_Fill_Tiled.png") 68 10 0 10 fill stretch;
+  -o-border-image: url("../res/deep_ui/UnitFrame_PowerBar_Fill_Tiled.png") 68 10 0 10 fill stretch;
+  border-image: url("../res/deep_ui/UnitFrame_PowerBar_Fill_Tiled.png") 68 10 0 10 fill stretch;
 }

@@ -1,11 +1,11 @@
-let resPath="res/deep_ui"
+let resPath = "res/deep_ui"
 define(["angular-module"], function (module) {
     return module
-        .factory('deepData', ["$rootScope",function (rsp) {
-            rsp.deepPath=resPath; 
-          return '';
-        }]) 
-        .directive('deepPanel', ["deepData",function () {
+        .factory('deepData', ["$rootScope", function (rsp) {
+            rsp.deepPath = resPath;
+            return '';
+        }])
+        .directive('deepPanel', ["deepData", function () {
             return {
                 restrict: 'A',
                 transclude: true,
@@ -60,7 +60,7 @@ define(["angular-module"], function (module) {
                     if (name) {
                         element.find(".deep-name").text(name)
                     }
-//                    console.log(attrs.deepItemIcon);
+                    //                    console.log(attrs.deepItemIcon);
                     element.find("img").attr("ng-src", attrs.deepItemIcon);
                 },
                 template: `                 
@@ -74,9 +74,9 @@ define(["angular-module"], function (module) {
             return {
                 restrict: 'A',
                 compile: function (element, attrs) {
-//                    console.log(attrs);
-                    let model =attrs["deepSelect"];
-                    element.find("input").attr("ng-model",model);
+                    //                    console.log(attrs);
+                    let model = attrs["deepSelect"];
+                    element.find("input").attr("ng-model", model);
                     element.addClass("deep-select").addClass("unselectable");
                 },
                 transclude: true,
@@ -85,13 +85,13 @@ define(["angular-module"], function (module) {
                 `
             };
         })
-        .directive('deepDblineHeader',function(){
+        .directive('deepDblineHeader', function () {
             return {
                 restrict: 'A',
                 compile: function (element, attrs) {
-//                    console.log(attrs);
-                    let $$=element.find.bind(element);
-                    let text =attrs["deepDblineHeader"];
+                    //                    console.log(attrs);
+                    let $$ = element.find.bind(element);
+                    let text = attrs["deepDblineHeader"];
                     $$(".deep-content").text(text);
                 },
                 template: `                 
@@ -99,4 +99,34 @@ define(["angular-module"], function (module) {
                 `
             };
         })
+        .directive('deepPower', ["$parse", function ($parse) {
+            return {
+                restrict: 'A',
+                link: function (scope, element, attrs) {
+                    let $$ = element.find.bind(element);
+                    let $fill = $$(".deep-power-fill");
+
+                    function updateWidth(v) {
+                        if (v == 0) {
+                            $fill.hide();
+                        } else {
+                            $fill.show();
+                            let max = $parse(attrs["deepPowerMax"])(scope);
+                            console.log("v", v, max);
+                            let width = (108 - 5) * v / max + 5 + "%";
+                            $fill.css("width", width);
+                        }
+
+                    }
+
+                    element.addClass("deep-power");
+                    console.log(attrs);
+                    //                    updateWidth($parse(attrs["deepPower"])(scope));
+                    scope.$watch(attrs["deepPower"], updateWidth, true);
+                },
+                template: `                 
+                    <span class="deep-power-fill"></span>
+                `
+            };
+        }])
 });
