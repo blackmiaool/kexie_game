@@ -97,8 +97,8 @@ let images = []
 
 
 function developer_set() {
-    v.basic.money = 10000;
-    v.plot.start = true;
+    z.basic.money = 10000;
+    z.plot.start = true;
     //    item[common.find_index(item, "name", "LED")].cnt = 10;
     //    item[common.find_index(item, "name", "低端单片机")].cnt = 10;
     //    item[common.find_index(item, "name", "电路基础元件")].cnt = 10;

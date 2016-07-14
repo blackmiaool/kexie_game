@@ -175,7 +175,7 @@ th(0, 0, 0);
 
 //    if (result == 0) { //daijun 
 //
-//        //        if (v.basic.way == 1 || v.basic.way == 2) { //模拟
+//        //        if (z.basic.way == 1 || z.basic.way == 2) { //模拟
 //        //            tc("刚才宣讲会的时候我就看到你天庭饱满，地阁方圆，是个搞模拟电路的好苗子。", pp.daijun)
 //        //            tc("我来问你几个问题吧。", pp.daijun)
 //        //        } else {
@@ -187,7 +187,7 @@ th(0, 0, 0);
 //    } else if (result == 2) { //tanjinchuan
 //        var people = pp.tanjinchuan;
 //        th(0, people, 0);
-//        if (v.basic.way == 0 || v.basic.way == 1) {
+//        if (z.basic.way == 0 || z.basic.way == 1) {
 //
 //            tc("我看你天庭饱满，地阁方圆，是个搞数字电路的好苗子。", people)
 //            tc("问你几个问题，测试一下你的水平。", people)
@@ -218,7 +218,7 @@ th(0, 0, 0);
 //
 //                tc(people.name +
 //                    "学长好感度+1\n数字电路技能+1", 0, 0, color_award)
-//                v.skill.digital_circuit = v.skill.digital_circuit + 1;
+//                z.skill.digital_circuit = z.skill.digital_circuit + 1;
 //                tc("去和其他人聊聊吧。", people)
 //            } else {
 //
@@ -231,9 +231,9 @@ th(0, 0, 0);
 //    } else if (result == 3) { //tanchengzi
 //        var people = pp.tanchengzi;
 //        th(0, people, 0);
-//        if (v.basic.way == 0 || v.basic.way == 1) {
+//        if (z.basic.way == 0 || z.basic.way == 1) {
 //
-//            if (v.basic.year != 2014) {
+//            if (z.basic.year != 2014) {
 //
 //                tc("你看起来很沮丧啊，就像高考失利才来了这里似的。", people)
 //            } else {
@@ -274,7 +274,7 @@ th(0, 0, 0);
 //
 //
 //                tc(people.name + "学长好感度+1\n数字电路技能+1", 0, 0, color_award);
-//                v.skill.digital_circuit = v.skill.digital_circuit + 1;
+//                z.skill.digital_circuit = z.skill.digital_circuit + 1;
 //
 //
 //

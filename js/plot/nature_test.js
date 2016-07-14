@@ -17,12 +17,12 @@ if (result == 1) {
     console.log(2, typeof (result))
 
     if (result == 1) {
-        v.basic.name = "李厷叺";
+        z.basic.name = "李厷叺";
     } else if (result == 0) {
-        v.basic.name = value;
+        z.basic.name = value;
     } else {
 
-        v.basic.name = "张龙";
+        z.basic.name = "张龙";
     }
 
 
@@ -30,49 +30,49 @@ if (result == 1) {
     tc("你的人生意义是");
     var result = tm("发展科技", "及时行乐", "繁衍")
     if (result == 0) {
-        v.basic.study_abt = v.basic.study_abt + 0.2
+        z.basic.study_abt = z.basic.study_abt + 0.2
     } else if (result == 1) {
-        v.basic.money_abt = v.basic.money_abt + 0.2
+        z.basic.money_abt = z.basic.money_abt + 0.2
     } else {
-        v.basic.work_abt = v.basic.work_abt + 0.2
+        z.basic.work_abt = z.basic.work_abt + 0.2
     }
 
 
     tc("这三样东西，如果要你抛弃一样，你会选择");
     var result = tm("金钱", "智商", "意志力");
     if (result == 0) {
-        v.basic.money_abt = v.basic.money_abt - 0.1
+        z.basic.money_abt = z.basic.money_abt - 0.1
     } else if (result == 1) {
-        v.basic.study_abt = v.basic.study_abt - 0.1
+        z.basic.study_abt = z.basic.study_abt - 0.1
     } else {
-        v.basic.work_abt = v.basic.work_abt - 0.1
+        z.basic.work_abt = z.basic.work_abt - 0.1
     }
 
     tc("在大学里，你觉得这二者哪个更重要？");
     var result = tm("兄弟（姐妹）", "情人（配偶）");
     if (result == 1) {
-        v.basic.work_abt = v.basic.work_abt - 0.1
+        z.basic.work_abt = z.basic.work_abt - 0.1
     }
     tc("你高中除了学习高考知识，还做过")
     var result = tm("OI", "物竞", "数竞", "打工或者创业赚钱", "没做过别的，专心高考")
     if (result == 0) {
-        v.experience.OI = true;
+        z.experience.OI = true;
     } else if (result == 1) {
-        v.experience.phy = true;
+        z.experience.phy = true;
     } else if (result == 2) {
-        v.experience.math = true;
+        z.experience.math = true;
     } else if (result == 3) {
-        v.basic.money = v.basic.money + 4000;
+        z.basic.money = z.basic.money + 4000;
     } else if (result == 4) {
-        v.basic.work_abt = v.basic.work_abt + 0.1;
+        z.basic.work_abt = z.basic.work_abt + 0.1;
         tc("真是诚实的孩子，三把斧头都归你了。");
         tmood(res.img.axe);
     }
     tc("你的性别");
     var result = tm("男", "女");
     if (result == 1) {
-        v.basic.work_abt = v.basic.work_abt - 0.1;
-        v.basic.female = true;
+        z.basic.work_abt = z.basic.work_abt - 0.1;
+        z.basic.female = true;
 
     }
     tc("测试结束。");

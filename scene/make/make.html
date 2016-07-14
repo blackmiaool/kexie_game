@@ -7,7 +7,7 @@
             <section>
                 <header deep-dbline-header="消耗材料"></header>
                 <main>
-                    <div hover-item="m" hover-kind="item" ng-show2="print(m.cnt,v.item[m.name].cnt)" class="item" deep-item-icon="{{getItemIcon(res.items[m.name],'wheat')}}" ng-repeat="m in res.products[working.kind].material" deep-cnt="{{v.item[m.name].cnt+'/'+m.cnt}}" deep-name="{{m.name}}" class="material" deep-judge="m.cnt<=v.item[m.name].cnt">
+                    <div hover-item="m" hover-kind="item" ng-show2="print(m.cnt,z.item[m.name].cnt)" class="item" deep-item-icon="{{getItemIcon(res.items[m.name],'wheat')}}" ng-repeat="m in res.products[working.kind].material" deep-cnt="{{z.item[m.name].cnt+'/'+m.cnt}}" deep-name="{{m.name}}" class="material" deep-judge="m.cnt<=z.item[m.name].cnt">
 
                     </div>
                 </main>
@@ -44,7 +44,7 @@
     </div>
     <div class="info-block">
         <header>体力</header>
-        <main class="deep-power" deep-power="v.power" deep-power-max="v.powerMax">
+        <main class="deep-power" deep-power="z.power" deep-power-max="z.powerMax">
         </main>
     </div>
     <div class="btn-wrap">
@@ -67,7 +67,7 @@
                     <div class="skill">
                         <img draggable="false" ng-src="{{getSkillIcon(skill.name)}}" alt="" class="skill-icon">
                         <img draggable="false" ng-src="{{getSkillBg(skill.name)}}" alt="" class="skill-bg">
-                        <label class="level" ng-bind="v.skill[skill.name].level"></label>
+                        <label class="level" ng-bind="z.skill[skill.name].level"></label>
                     </div>
 -->
                     <label class="name" ng-bind="skill.name"></label>
@@ -85,7 +85,7 @@
                     <div class="skill">
                         <img draggable="false" ng-src="{{getSkillIcon(skill.name)}}" alt="" class="skill-icon">
                         <img draggable="false" ng-src="{{getSkillBg(skill.name)}}" alt="" class="skill-bg">
-                        <label class="level" ng-bind="v.skill[skill.name].level"></label>
+                        <label class="level" ng-bind="z.skill[skill.name].level"></label>
                     </div>
                     <label class="name" ng-bind="skill.name"></label>
                 </div>

@@ -8,9 +8,9 @@
     <div class="shop-panel" ng-class="{hide:!show,active:active}">
         <button class="close red-icon" data-icon="close" ng-click="closeStore()">
         </button>
-        <button class="checkout clickable deep-btn orange" ng-click="checkout()" ng-class="{poor:poor}" ng-bind="priceSum<=v.basic.money?'结算':'穷鬼'"></button>
+        <button class="checkout clickable deep-btn orange" ng-click="checkout()" ng-class="{poor:poor}" ng-bind="priceSum<=z.basic.money?'结算':'穷鬼'"></button>
         <div class="have-money">
-            <span class="glyphicon glyphicon-credit-card"></span> 持有金钱: <span class="money" ng-bind="v.basic.money+'元'"></span>
+            <span class="glyphicon glyphicon-credit-card"></span> 持有金钱: <span class="money" ng-bind="z.basic.money+'元'"></span>
         </div>
         <div class="items-money-sum">
             <span class="glyphicon glyphicon-shopping-cart"></span> 总计: <span class="price-sum" ng-bind="priceSum+'元'"></span>
@@ -60,7 +60,7 @@
                                 <span class="value" ng-bind="cartItems[item.name]"></span>
                                 <button ng-click="addItem(item)" class="btn btn-weird clickable"><span class="glyphicon glyphicon-plus"></span></button>
                             </td>
-                            <td class="have" ng-bind="v.item[item.name].cnt"></td>
+                            <td class="have" ng-bind="z.item[item.name].cnt"></td>
 
                         </tr>
                     </tbody>
@@ -84,9 +84,9 @@
                             <td class="cnt">
                                 <button ng-click="minusDevice(device)" class="btn btn-weird clickable" ng-disabled="cartDevices[device.name]<1"><span class="glyphicon glyphicon-minus"></span></button>
                                 <span class="value" ng-bind="cartDevices[device.name]"></span>
-                                <button ng-click="addDevice(device)" class="btn btn-weird clickable" ng-disabled="cartDevices[device.name]>0||v.device[device.name].cnt>0"><span class="glyphicon glyphicon-plus"></span></button>
+                                <button ng-click="addDevice(device)" class="btn btn-weird clickable" ng-disabled="cartDevices[device.name]>0||z.device[device.name].cnt>0"><span class="glyphicon glyphicon-plus"></span></button>
                             </td>
-                            <td class="have" ng-bind="v.device[device.name].cnt"></td>
+                            <td class="have" ng-bind="z.device[device.name].cnt"></td>
 
                         </tr>
                     </tbody>

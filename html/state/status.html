@@ -1,14 +1,14 @@
-<div class="money" ng-bind="'金钱: '+v.basic.money"></div>
+<div class="money" ng-bind="'金钱: '+z.basic.money"></div>
         <div class="analog" title="模拟电路能力"><img ng-src="{{img.state_analog}}" alt=""><span class="value">234</span></div>
         <div class="digital" title="数字电路能力"><span class="value">666</span><img ng-src="{{img.state_digital}}" alt=""> </div>
         <div class="basic-wrap">
             <span class="basic">
             <span class="key"><span class="glyphicon glyphicon-user"></span> 姓名</span>
-            <span class="value" ng-bind="v.basic.name"></span>
+            <span class="value" ng-bind="z.basic.name"></span>
             </span>
             <span class="basic">
             <span class="key"><span class="glyphicon glyphicon-star"></span> 职位</span>
-            <span class="value" ng-bind="v.basic.title"></span>
+            <span class="value" ng-bind="z.basic.title"></span>
             </span>
             <span class="basic">
             <span class="key"><span class="glyphicon glyphicon-king"></span> 阵营</span>
@@ -18,6 +18,6 @@
         <div class="props-wrap">
             <span class="prop" ng-repeat="key in ['焊接','论文','声望','道德','秩序']">
         <span class="key"><span class="glyphicon" ng-class="{'glyphicon-save':key=='焊接','glyphicon-file':key=='论文','glyphicon-fire':key=='声望','glyphicon-heart':key=='道德','glyphicon-leaf':key=='秩序'}"></span> <span ng-bind="key"></span></span>
-            <span class="value" ng-bind="v.prop[key]"></span>
+            <span class="value" ng-bind="z.prop[key]"></span>
             </span>
         </div>

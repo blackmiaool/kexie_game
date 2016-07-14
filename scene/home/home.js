@@ -103,7 +103,7 @@ function (sp, rsp, $timeout) {
                 return;
             }
             sp.actionLocking = true;
-            if (v.power < action.consume) {
+            if (z.power < action.consume) {
                 return false;
             }
             setMonkey(action);
@@ -170,7 +170,7 @@ function (sp, rsp, $timeout) {
                 sp.endingTransition = false;
             }, 600)
             $timeout(function () {
-                v.time.part++;
+                z.time.part++;
                 sp.ending = false;
             }, 650)
             $timeout(function () {
@@ -180,14 +180,14 @@ function (sp, rsp, $timeout) {
         }
 
         function restorePower(value) {
-            v.power += value;
-            if (v.power > v.powerMax) {
-                v.power = v.powerMax;
+            z.power += value;
+            if (z.power > z.powerMax) {
+                z.power = z.powerMax;
             }
         }
 
         function costPower(action) {
-            v.power -= action.consume;
+            z.power -= action.consume;
         }
 
         function showMonkey(action) {
@@ -210,7 +210,7 @@ function (sp, rsp, $timeout) {
 
         function isSkillPreSatisfied(skill) {
             for (let pre of skill.pre) {
-                if (v.skill[pre.skill.name].level < pre.level) {
+                if (z.skill[pre.skill.name].level < pre.level) {
                     return false;
                 }
             }
@@ -220,12 +220,12 @@ function (sp, rsp, $timeout) {
 
 
         function updateSkill() {
-            for (var i in v.skill) {
-                v.skill[i].satisfied = isSkillPreSatisfied(res.skills[i]);
+            for (var i in z.skill) {
+                z.skill[i].satisfied = isSkillPreSatisfied(res.skills[i]);
             }
         }
         updateSkill();
-        sp.$watch('v.skill', function (newValue, oldValue) {
+        sp.$watch('z.skill', function (newValue, oldValue) {
             updateSkill();
         }, true);
         _.extend(sp, {
@@ -249,10 +249,10 @@ module.controller("HomeSkillController", ["$scope", "$rootScope", "$timeout",
 function (sp, rsp, $timeout) {
 
         function upgradeSkill(skill) {
-            if (v.skill[skill.name].level < 10) {
+            if (z.skill[skill.name].level < 10) {
 
                 if (sp.doAction("学习", skill)) {
-                    v.skill[skill.name].level++;
+                    z.skill[skill.name].level++;
                 }
             }
 
@@ -309,7 +309,7 @@ module.controller("StoreController", ["$scope", "$rootScope", "$timeout", functi
             sum = sum + 0.5;
         }
         sp.priceSum = parseInt(sum.toString());
-        sp.poor = sp.priceSum > v.basic.money;
+        sp.poor = sp.priceSum > z.basic.money;
     }
     sp.$watch("cartItems", function (newV) {
         updateItemsSum(newV);
@@ -327,7 +327,7 @@ module.controller("StoreController", ["$scope", "$rootScope", "$timeout", functi
             sum = sum + 0.5;
         }
         sp.priceSum = parseInt(sum.toString());
-        sp.poor = sp.priceSum > v.basic.money;
+        sp.poor = sp.priceSum > z.basic.money;
     }
     sp.$watch("cartDevices", function (newV) {
         updateDevicesSum(newV);
@@ -361,15 +361,15 @@ module.controller("StoreController", ["$scope", "$rootScope", "$timeout", functi
     }
 
     function checkout() {
-        if (sp.priceSum <= v.basic.money) {
-            v.basic.money -= sp.priceSum;
+        if (sp.priceSum <= z.basic.money) {
+            z.basic.money -= sp.priceSum;
         } else {
             return;
         }
         if (sp.currentPage == "器件") {
             for (var i in sp.cartItems) {
                 if (sp.cartItems[i]) {
-                    v.item[i].cnt += sp.cartItems[i];
+                    z.item[i].cnt += sp.cartItems[i];
                     sp.cartItems[i] = 0;
                 }
 
@@ -377,7 +377,7 @@ module.controller("StoreController", ["$scope", "$rootScope", "$timeout", functi
         } else if (sp.currentPage == "仪器") {
             for (var i in sp.cartDevices) {
                 if (sp.cartDevices[i]) {
-                    v.device[i].cnt += sp.cartDevices[i];
+                    z.device[i].cnt += sp.cartDevices[i];
                     sp.cartDevices[i] = 0;
                 }
 

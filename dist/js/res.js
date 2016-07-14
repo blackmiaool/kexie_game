@@ -1005,8 +1005,8 @@ define(["system-common"], function (common) {
 
                         _v.material = md_trim(_v.material);
                         _v.material = _v.material.split("+");
-                        _v.skill = _v.skill.split(",");
-                        _v.skill = _v.skill.map(function (v, i) {
+                        z.skill = z.skill.split(",");
+                        z.skill = z.skill.map(function (v, i) {
                             var _v$split = v.split("v");
 
                             var _v$split2 = _slicedToArray(_v$split, 2);
@@ -1061,7 +1061,7 @@ define(["system-common"], function (common) {
                         }
 
                         //                    v.instrument = v.instrument.split("+");
-                        _v.product = [];
+                        z.product = [];
                         for (var i in d) {
                             products[d[i].name] = d[i];
                         }
@@ -1131,7 +1131,7 @@ define(["system-common"], function (common) {
     var get_save_text = function get_save_text(id) {};
     var v_update = function v_update(vv) {
         for (i in item) {
-            vv.item[i] = item[i].cnt;
+            vz.item[i] = item[i].cnt;
         }
     };
 

@@ -59,7 +59,7 @@ var gulpConfig = { plots: [{ "name": "kexie_first.js", "fullpath": "C:\\Users\\b
                 var preText = "";
                 skill.pre.forEach(function (v, i) {
                     if (i > 0) preText += " , ";
-                    preText += v.skill.name + "Lv" + v.level;
+                    preText += z.skill.name + "Lv" + v.level;
                 });
                 if (!preText) {
                     preText = "无";
@@ -94,7 +94,7 @@ var gulpConfig = { plots: [{ "name": "kexie_first.js", "fullpath": "C:\\Users\\b
                     skill = res.skills[skill];
                 }
 
-                if (v.skill[skill.name].satisfied && v.power >= getAction("学习").consume) {
+                if (z.skill[skill.name].satisfied && z.power >= getAction("学习").consume) {
                     return common.resPath + "skills/" + skill.icon + ".jpg";
                 } else {
                     return common.resPath + "skills/" + skill.icon + "-off.jpg";
@@ -106,10 +106,10 @@ var gulpConfig = { plots: [{ "name": "kexie_first.js", "fullpath": "C:\\Users\\b
                     skill = res.skills[skill];
                 }
                 var color = "green";
-                if (skill.pre.length != 0 && !v.skill[skill.name].satisfied) {
+                if (skill.pre.length != 0 && !z.skill[skill.name].satisfied) {
 
                     color = "grey";
-                } else if (v.skill[skill.name].level >= 10) {
+                } else if (z.skill[skill.name].level >= 10) {
                     color = "yellow";
                 }
                 return common.resPath + "skills/icon-over-" + color + ".gif";

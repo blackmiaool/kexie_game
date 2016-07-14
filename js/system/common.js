@@ -63,8 +63,8 @@ define(["jquery"],function () {
     }
     function getUid() {
         if(v){
-            v.uid++;
-            return v.uid;
+            z.uid++;
+            return z.uid;
         }else{
             return 0;
         }

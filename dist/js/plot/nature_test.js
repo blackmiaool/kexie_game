@@ -66,12 +66,12 @@ define(["require", "res", "v", "system-sys", "_", "system-plotApi"], function (r
                         console.log(2, typeof result === "undefined" ? "undefined" : _typeof(result));
 
                         if (result == 1) {
-                            v.basic.name = "李厷叺";
+                            z.basic.name = "李厷叺";
                         } else if (result == 0) {
-                            v.basic.name = value;
+                            z.basic.name = value;
                         } else {
 
-                            v.basic.name = "张龙";
+                            z.basic.name = "张龙";
                         }
 
                         _context.next = 31;
@@ -85,11 +85,11 @@ define(["require", "res", "v", "system-sys", "_", "system-plotApi"], function (r
                         result = _context.sent;
 
                         if (result == 0) {
-                            v.basic.study_abt = v.basic.study_abt + 0.2;
+                            z.basic.study_abt = z.basic.study_abt + 0.2;
                         } else if (result == 1) {
-                            v.basic.money_abt = v.basic.money_abt + 0.2;
+                            z.basic.money_abt = z.basic.money_abt + 0.2;
                         } else {
-                            v.basic.work_abt = v.basic.work_abt + 0.2;
+                            z.basic.work_abt = z.basic.work_abt + 0.2;
                         }
 
                         _context.next = 37;
@@ -103,11 +103,11 @@ define(["require", "res", "v", "system-sys", "_", "system-plotApi"], function (r
                         result = _context.sent;
 
                         if (result == 0) {
-                            v.basic.money_abt = v.basic.money_abt - 0.1;
+                            z.basic.money_abt = z.basic.money_abt - 0.1;
                         } else if (result == 1) {
-                            v.basic.study_abt = v.basic.study_abt - 0.1;
+                            z.basic.study_abt = z.basic.study_abt - 0.1;
                         } else {
-                            v.basic.work_abt = v.basic.work_abt - 0.1;
+                            z.basic.work_abt = z.basic.work_abt - 0.1;
                         }
 
                         _context.next = 43;
@@ -121,7 +121,7 @@ define(["require", "res", "v", "system-sys", "_", "system-plotApi"], function (r
                         result = _context.sent;
 
                         if (result == 1) {
-                            v.basic.work_abt = v.basic.work_abt - 0.1;
+                            z.basic.work_abt = z.basic.work_abt - 0.1;
                         }
                         _context.next = 49;
                         return tc("你高中除了学习高考知识，还做过");
@@ -138,7 +138,7 @@ define(["require", "res", "v", "system-sys", "_", "system-plotApi"], function (r
                             break;
                         }
 
-                        v.experience.OI = true;
+                        z.experience.OI = true;
                         _context.next = 74;
                         break;
 
@@ -148,7 +148,7 @@ define(["require", "res", "v", "system-sys", "_", "system-plotApi"], function (r
                             break;
                         }
 
-                        v.experience.phy = true;
+                        z.experience.phy = true;
                         _context.next = 74;
                         break;
 
@@ -158,7 +158,7 @@ define(["require", "res", "v", "system-sys", "_", "system-plotApi"], function (r
                             break;
                         }
 
-                        v.experience.math = true;
+                        z.experience.math = true;
                         _context.next = 74;
                         break;
 
@@ -168,7 +168,7 @@ define(["require", "res", "v", "system-sys", "_", "system-plotApi"], function (r
                             break;
                         }
 
-                        v.basic.money = v.basic.money + 4000;
+                        z.basic.money = z.basic.money + 4000;
                         _context.next = 74;
                         break;
 
@@ -178,7 +178,7 @@ define(["require", "res", "v", "system-sys", "_", "system-plotApi"], function (r
                             break;
                         }
 
-                        v.basic.work_abt = v.basic.work_abt + 0.1;
+                        z.basic.work_abt = z.basic.work_abt + 0.1;
                         _context.next = 72;
                         return tc("真是诚实的孩子，三把斧头都归你了。");
 
@@ -198,8 +198,8 @@ define(["require", "res", "v", "system-sys", "_", "system-plotApi"], function (r
                         result = _context.sent;
 
                         if (result == 1) {
-                            v.basic.work_abt = v.basic.work_abt - 0.1;
-                            v.basic.female = true;
+                            z.basic.work_abt = z.basic.work_abt - 0.1;
+                            z.basic.female = true;
                         }
                         _context.next = 82;
                         return tc("测试结束。");

@@ -2,7 +2,7 @@
     <div class="modal-content">
         <div class="modal-header">
 
-            <h4 class="modal-title" id="myModalLabel" style="text-align:center;">本周课程安排(第{{v.time.week}}周)</h4>
+            <h4 class="modal-title" id="myModalLabel" style="text-align:center;">本周课程安排(第{{z.time.week}}周)</h4>
         </div>
         <div class="modal-body">
             <table class="table table-striped class-design">
@@ -19,7 +19,7 @@
                         <th scope="row">{{index}}</th>
                         <td ng-repeat="period in week_name">
                             <label>
-                                <input ng-if="courses[v.time.term][v.time.week][index][period]" type="checkbox" ng-model="arrange[index][period]" />{{courses[v.time.term][v.time.week][index][period]}}</label>
+                                <input ng-if="courses[z.time.term][z.time.week][index][period]" type="checkbox" ng-model="arrange[index][period]" />{{courses[z.time.term][z.time.week][index][period]}}</label>
                         </td>
 
                     </tr>

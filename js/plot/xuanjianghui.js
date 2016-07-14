@@ -1,4 +1,4 @@
-v.plot.xuanjianghui = true;
+z.plot.xuanjianghui = true;
 ts(img.kexiezhaoxin);
 //tc("都说了在施工，你还点。。。")
 //tm("加入物电科协", "加入微固科协（待施工）", "加入电工科协（待施工）", "加入总会（待施工）");
@@ -33,7 +33,7 @@ tc("坐在教室一隅的你，决定");
             let result = tm("嗯！索尼大法好！", "这是中兴吧？")
             if (result == 0) {
                 tc("嘿嘿，同道中人～", pp.lizhao)
-                v.amity.lizhao = v.amity.lizhao + 1;
+                z.amity.lizhao = z.amity.lizhao + 1;
             } else {
                 tc("。。。", pp.lizhao)
             }
@@ -44,7 +44,7 @@ tc("坐在教室一隅的你，决定");
             let result = tm("据说最近上映了这本书的3D电影啊", "你也喜欢韩寒啊？")
             if (result == 0) {
                 tc("矮呦～同道中人", pp.gaoxiangchen)
-                v.amity.gaoxiangchen = v.amity.gaoxiangchen + 1;
+                z.amity.gaoxiangchen = z.amity.gaoxiangchen + 1;
             } else {
                 tc("韩你妹！别烦我！", pp.gaoxiangchen)
             }
@@ -110,11 +110,11 @@ tcc("选择模拟电路方向的同学用7805做一个5V电源。\n选择数字�
 {
     let result = tm("数字", "模拟", "兼修")
     if (result == 0) {
-        v.basic.way = 0;
+        z.basic.way = 0;
     } else if (result == 1) {
-        v.basic.way = 1;
+        z.basic.way = 1;
     } else {
-        v.basic.way = 2;
+        z.basic.way = 2;
     }
 }
 tcc("宣讲会到此结束，大家各回各家各找各妈吧~")

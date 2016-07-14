@@ -1,5 +1,5 @@
 ts(res.img.uestc);
-tc(v.time.year + "年，9月 成都 郫县 电子神技大学校门口", 0, gap.slow);
+tc(z.time.year + "年，9月 成都 郫县 电子神技大学校门口", 0, gap.slow);
 tc("你望着“电子神技大学”这五个字，心灰意冷。");
 tc("你是一名大一新生，本该考上TOP2的你，高考时发挥失常，不得已而在志愿书上填报了神大。");
 tc("“如果当初没做错那两道题该多好！”你又一次地感叹道。");
@@ -25,7 +25,7 @@ if (result == 1) {
         ts(res.img.luobang);
         tc("你又一次落榜了。");
         tc("无奈之下，你再一次填报了神大。");
-        v.time.year++;
+        z.time.year++;
         setTimeout(function () {
             plot_cb("again")
         });

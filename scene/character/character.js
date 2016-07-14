@@ -147,7 +147,7 @@ module.controller("CharacterController", ["$scope", "$rootScope", function (sp, 
     function start(){
         allPairs.forEach(function(vv,i){
             if(vv[1].selecting){
-                v.character[vv[0]]=1;
+                z.character[vv[0]]=1;
             }
         });
         console.log(v);

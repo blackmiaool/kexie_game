@@ -21,7 +21,7 @@ define(["require", "res", "v", "system-sys", "_", "system-plotApi"], function (r
                         gap = plot.gap;
                         pp = res.pp;
                         tmood = plot.tmood;
-                        v.plot.xuanjianghui = true;
+                        z.plot.xuanjianghui = true;
                         _context.next = 14;
                         return ts(img.kexiezhaoxin);
 
@@ -130,7 +130,7 @@ define(["require", "res", "v", "system-sys", "_", "system-plotApi"], function (r
                         return tc("嘿嘿，同道中人～", pp.lizhao);
 
                     case 60:
-                        v.amity.lizhao = v.amity.lizhao + 1;
+                        z.amity.lizhao = z.amity.lizhao + 1;
                         _context.next = 65;
                         break;
 
@@ -170,7 +170,7 @@ define(["require", "res", "v", "system-sys", "_", "system-plotApi"], function (r
                         return tc("矮呦～同道中人", pp.gaoxiangchen);
 
                     case 79:
-                        v.amity.gaoxiangchen = v.amity.gaoxiangchen + 1;
+                        z.amity.gaoxiangchen = z.amity.gaoxiangchen + 1;
                         _context.next = 84;
                         break;
 
@@ -345,11 +345,11 @@ define(["require", "res", "v", "system-sys", "_", "system-plotApi"], function (r
                         _result6 = _context.sent;
 
                         if (_result6 == 0) {
-                            v.basic.way = 0;
+                            z.basic.way = 0;
                         } else if (_result6 == 1) {
-                            v.basic.way = 1;
+                            z.basic.way = 1;
                         } else {
-                            v.basic.way = 2;
+                            z.basic.way = 2;
                         }
                         _context.next = 168;
                         return tcc("宣讲会到此结束，大家各回各家各找各妈吧~");

@@ -19,7 +19,7 @@ function init() {
 
 }
 
-//let working=v.work["硬件流水灯"][0];
+//let working=z.work["硬件流水灯"][0];
 //console.log(working)
 console.log(res)
 module.controller("MakeController", ["$scope", "$rootScope", "$timeout", function (sp, rsp, $timeout) {
@@ -47,7 +47,7 @@ module.controller("MakeController", ["$scope", "$rootScope", "$timeout", functio
             return;
         }
         if (id) {
-            sp.working = v.work[kind][id];
+            sp.working = z.work[kind][id];
         } else {
 
             let working = {
@@ -72,15 +72,15 @@ module.controller("MakeController", ["$scope", "$rootScope", "$timeout", functio
         sp.powerConsume = diffculty;
     });
     $timeout(function () {
-        v.item["五5伍"].cnt = 10;
-        v.item["LED"].cnt = 11;
-        v.item["电路基础元件"].cnt = 12;
+        z.item["五5伍"].cnt = 10;
+        z.item["LED"].cnt = 11;
+        z.item["电路基础元件"].cnt = 12;
     }, 1000);
 
     function start() {
         if (checkMaterial()) {
             res.products[sp.working.kind].material.forEach(function(vv,i){
-                v.item[vv.name].cnt-=vv.cnt;
+                z.item[vv.name].cnt-=vv.cnt;
             })            
         } else {
             return;
@@ -92,7 +92,7 @@ module.controller("MakeController", ["$scope", "$rootScope", "$timeout", functio
             return false;
 
         let satisfy = !res.products[sp.working.kind].material.some(function (vv, i) {
-            if (vv.cnt > v.item[vv.name].cnt) {
+            if (vv.cnt > z.item[vv.name].cnt) {
                 return true;
             }
         })

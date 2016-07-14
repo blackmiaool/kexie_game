@@ -106,7 +106,7 @@ function (sp, rsp) {
             //        console.log(skill);
             if (skill.pre.length != 0) {
                 skill.pre.forEach(function (v, i) {                    
-                    if (v.skill.level < v.level)
+                    if (z.skill.level < v.level)
                         show = false;
                 })
             }
@@ -122,7 +122,7 @@ function (sp, rsp) {
             skill.pre.forEach(function (v, i) {
                 if (i > 0)
                     preText += " , ";
-                preText += v.skill.name + "Lv" + v.level;
+                preText += z.skill.name + "Lv" + v.level;
             })
             return preText;
         }

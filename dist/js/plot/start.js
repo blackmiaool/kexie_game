@@ -25,7 +25,7 @@ define(["require", "res", "v", "system-sys", "_", "system-plotApi"], function (r
 
                     case 13:
                         _context.next = 15;
-                        return tc(v.time.year + "年，9月 成都 郫县 电子神技大学校门口", 0, gap.slow);
+                        return tc(z.time.year + "年，9月 成都 郫县 电子神技大学校门口", 0, gap.slow);
 
                     case 15:
                         _context.next = 17;
@@ -106,7 +106,7 @@ define(["require", "res", "v", "system-sys", "_", "system-plotApi"], function (r
                         return tc("无奈之下，你再一次填报了神大。");
 
                     case 52:
-                        v.time.year++;
+                        z.time.year++;
                         setTimeout(function () {
                             plot_cb("again");
                         });

@@ -100,7 +100,7 @@ define(["require", "system-scene", "system-sys", "angular", "system-dbg", "v", "
             //        console.log(skill);
             if (skill.pre.length != 0) {
                 skill.pre.forEach(function (v, i) {
-                    if (v.skill.level < v.level) show = false;
+                    if (z.skill.level < v.level) show = false;
                 });
             }
             if (show) {
@@ -114,7 +114,7 @@ define(["require", "system-scene", "system-sys", "angular", "system-dbg", "v", "
             var preText = "";
             skill.pre.forEach(function (v, i) {
                 if (i > 0) preText += " , ";
-                preText += v.skill.name + "Lv" + v.level;
+                preText += z.skill.name + "Lv" + v.level;
             });
             return preText;
         }

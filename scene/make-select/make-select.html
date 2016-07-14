@@ -12,7 +12,7 @@
             </div>
             <div class="red-scroll page" data-page="1" ng-class="{left:productSelectPageIndex>1,center:productSelectPageIndex==1,right:productSelectPageIndex<1}">
                <div ng-click="goScene('make',selectingProductKind)" data-deep-btn="blue" class="deep-btn start-new-product">开个新坑</div> 
-                <div ng-click="goScene('make',selectingProductKind,work.id)" ng-repeat="work in v.work[selectingProductKind]" class="red-normal-item work clickable" ng-bind="work | workPrefix">
+                <div ng-click="goScene('make',selectingProductKind,work.id)" ng-repeat="work in z.work[selectingProductKind]" class="red-normal-item work clickable" ng-bind="work | workPrefix">
                 </div>
             </div>
         </main>
