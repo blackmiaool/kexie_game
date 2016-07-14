@@ -1,6 +1,6 @@
 "use strict";
 
-define(["require", "system-scene", "system-sys", "angular", "system-dbg", "v", "res", "angular-module", "plot", "system-common"], function (require, scene, sys, angular, dbg, v, res, module, plot, common) {
+define(["require", "system-scene", "system-sys", "angular", "system-dbg", "z", "res", "angular-module", "plot", "system-common"], function (require, scene, sys, angular, dbg, z, res, module, plot, common) {
     var exports = {};
     var sceneId = "character";
     var $dom = scene.getScene(sceneId);
@@ -26,7 +26,7 @@ define(["require", "system-scene", "system-sys", "angular", "system-dbg", "v", "
             item.index = index;
             index++;
             sp.clearHovering();
-            console.log(sp);
+
             updatePoints();
         }
 
@@ -145,7 +145,7 @@ define(["require", "system-scene", "system-sys", "angular", "system-dbg", "v", "
         function start() {
             allPairs.forEach(function (vv, i) {
                 if (vv[1].selecting) {
-                    v.character[vv[0]] = 1;
+                    z.character[vv[0]] = 1;
                 }
             });
             console.log(v);

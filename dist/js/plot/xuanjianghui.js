@@ -1,6 +1,6 @@
 "use strict";
 
-define(["require", "res", "v", "system-sys", "_", "system-plotApi"], function (require, res, v, sys, _, plot) {
+define(["require", "res", "z", "system-sys", "_", "system-plotApi"], function (require, res, z, sys, _, plot) {
     return regeneratorRuntime.mark(function _callee(plot_cb) {
         var ts, tc, tcc, tcn, th, tm, tmood, img, gap, pp, result, _result, _result2, _result3, _result4, _result5, _result6;
 

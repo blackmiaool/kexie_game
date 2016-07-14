@@ -1,6 +1,6 @@
 define(["jquery"],function () {
     let resPath = "res/";
-    let v;
+    let z;
     let sx= 960;
     let sy= 540;
     var exports = {
@@ -11,7 +11,7 @@ define(["jquery"],function () {
         load_object,
         save_object,
         g,
-        setV,
+        setZ,
         getUid,
         local,
         sx,
@@ -58,11 +58,11 @@ define(["jquery"],function () {
     function load_object(key) {
         return JSON.parse(localStorage.getItem(key))
     }
-    function setV(thisv){
-        v=thisv;
+    function setZ(thisz){
+        z=thisz;
     }
     function getUid() {
-        if(v){
+        if(z){
             z.uid++;
             return z.uid;
         }else{

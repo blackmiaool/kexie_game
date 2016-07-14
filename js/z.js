@@ -1,5 +1,5 @@
 define(["res", "system-common"], function (res, common) {
-    var v_init = {
+    var z_init = {
         prop: {
             数字: 0,
             模拟: 0,
@@ -78,27 +78,27 @@ define(["res", "system-common"], function (res, common) {
             }
         }
     };
-    v_init.work = works;
+    z_init.work = works;
     for (var i in res.skills) {
-        v_init.skill[i] = {
+        z_init.skill[i] = {
             level: 0
         }
     }
     for (var i in res.pp) {
-        v_init.amity[i] = 0;
+        z_init.amity[i] = 0;
     }
     for (var i in res.items) {
-        v_init.item[i] = {
+        z_init.item[i] = {
             cnt: 0
         };
     }
     for (var i in res.devices) {
-        v_init.device[i] = {
+        z_init.device[i] = {
             cnt: 0
         };
     }
-    var v = common.clone(v_init);
+    var z = common.clone(z_init);
 
-    common.setV(v);
-    return v;
+    common.setZ(z);
+    return z;
 })

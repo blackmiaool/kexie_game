@@ -1,6 +1,6 @@
 "use strict";
 
-define(["require", "system-scene", "system-sys", "angular", "system-dbg", "v", "res", "angular-module", "plot", "system-common"], function (require, scene, sys, angular, dbg, v, res, module, plot, common) {
+define(["require", "system-scene", "system-sys", "angular", "system-dbg", "z", "res", "angular-module", "plot", "system-common"], function (require, scene, sys, angular, dbg, z, res, module, plot, common) {
     var exports = {};
     var sceneId = "state";
     var $dom = scene.getScene(sceneId);
@@ -11,7 +11,7 @@ define(["require", "system-scene", "system-sys", "angular", "system-dbg", "v", "
     };
     var $$ = $dom.find.bind($dom);
 
-    window.dd = { scene: scene, common: common, v: v, res: res, go: scene.go };
+    window.dd = { scene: scene, common: common, z: z, res: res, go: scene.go };
 
     scene.register(sceneThis);
     /*

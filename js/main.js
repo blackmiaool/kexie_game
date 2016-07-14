@@ -54,7 +54,7 @@
 
 
 
-    requirejs(["jquery", "system-sys", "angular", 'angular-module', "system-scene", "res", "system-common", 'v', 'angular-animate', "plot", "deep-ui"].concat(gulpConfig.scenes.map((v) => v.name)), function ($, sys, angular, module, scene, res, common, v) {
+    requirejs(["jquery", "system-sys", "angular", 'angular-module', "system-scene", "res", "system-common", 'z', 'angular-animate', "plot", "deep-ui"].concat(gulpConfig.scenes.map((v) => v.name)), function ($, sys, angular, module, scene, res, common, z) {
         $("#game-first-tip").remove();
         module.controller("RootController", ["$rootScope", "$scope", function (rsp, sp) {
 
@@ -122,7 +122,7 @@
             function openDebugPanel() {
                 sp.showDebug = !sp.showDebug;
                 console.log(scenePaths);
-                console.log(sp.currentScene)
+               
             }
 
             function debugScene(sceneName) {
@@ -146,7 +146,7 @@
             common.$rootScope.scenes = scenes;
             _.extend(sp, {
                 img: res.img,
-                v,
+                z,
                 res,
                 //                scenes,
                 scenePaths,

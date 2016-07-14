@@ -25,7 +25,7 @@ module.controller("CharacterController", ["$scope", "$rootScope", function (sp, 
         item.index = index;
         index++;
         sp.clearHovering();
-        console.log(sp);
+        
         updatePoints();
 
     }

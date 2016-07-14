@@ -4,7 +4,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 
 define(["jquery"], function () {
     var resPath = "res/";
-    var v = void 0;
+    var z = void 0;
     var sx = 960;
     var sy = 540;
     var exports = {
@@ -15,7 +15,7 @@ define(["jquery"], function () {
         load_object: load_object,
         save_object: save_object,
         g: g,
-        setV: setV,
+        setZ: setZ,
         getUid: getUid,
         local: local,
         sx: sx,
@@ -61,11 +61,11 @@ define(["jquery"], function () {
     function load_object(key) {
         return JSON.parse(localStorage.getItem(key));
     }
-    function setV(thisv) {
-        v = thisv;
+    function setZ(thisz) {
+        z = thisz;
     }
     function getUid() {
-        if (v) {
+        if (z) {
             z.uid++;
             return z.uid;
         } else {

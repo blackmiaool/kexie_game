@@ -117,7 +117,7 @@ gulp.task("plots", function () {
         .pipe(cached("plot"))
         .pipe(yield_prefix(["tc", "th", "ts", "tm", "tcc", "tmood", "tcn"]))
         .pipe(headerfooter({
-            header: `define(["require","res","v","system-sys","_","system-plotApi"],function (require,res,v,sys,_,plot){\
+            header: `define(["require","res","z","system-sys","_","system-plotApi"],function (require,res,z,sys,_,plot){\
 return function* (plot_cb){ 
 var ts=plot.ts; 
 var tc=plot.tc; 
@@ -150,8 +150,8 @@ gulp.task("scenes", function () {
 
     return gulp.src(scenePathArray)
         .pipe(headerfooter({
-            //            header: `define(["require","sys","angular","v","common","res","dbg"],function* (require,sys,angular,v,common,res,dbg){`,
-            header: `define(["require","system-scene","system-sys","angular","system-dbg","v","res","angular-module","plot","system-common"],function (require,scene,sys,angular,dbg,v,res,module,plot,common){`,
+            //            header: `define(["require","sys","angular","z","common","res","dbg"],function* (require,sys,angular,z,common,res,dbg){`,
+            header: `define(["require","system-scene","system-sys","angular","system-dbg","z","res","angular-module","plot","system-common"],function (require,scene,sys,angular,dbg,z,res,module,plot,common){`,
             footer: `})`,
             filter: function (file) {
                 var cwd = file.history[0].split("/").pop().split("\\");

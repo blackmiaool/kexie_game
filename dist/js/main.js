@@ -47,9 +47,9 @@ var gulpConfig = { plots: [{ "name": "kexie_first.js", "fullpath": "C:\\Users\\b
 
     requirejs.config(config);
 
-    requirejs(["jquery", "system-sys", "angular", 'angular-module', "system-scene", "res", "system-common", 'v', 'angular-animate', "plot", "deep-ui"].concat(gulpConfig.scenes.map(function (v) {
+    requirejs(["jquery", "system-sys", "angular", 'angular-module', "system-scene", "res", "system-common", 'z', 'angular-animate', "plot", "deep-ui"].concat(gulpConfig.scenes.map(function (v) {
         return v.name;
-    })), function ($, sys, angular, module, scene, res, common, v) {
+    })), function ($, sys, angular, module, scene, res, common, z) {
         $("#game-first-tip").remove();
         module.controller("RootController", ["$rootScope", "$scope", function (rsp, sp) {
 
@@ -118,7 +118,6 @@ var gulpConfig = { plots: [{ "name": "kexie_first.js", "fullpath": "C:\\Users\\b
             function openDebugPanel() {
                 sp.showDebug = !sp.showDebug;
                 console.log(scenePaths);
-                console.log(sp.currentScene);
             }
 
             function debugScene(sceneName) {
@@ -142,7 +141,7 @@ var gulpConfig = { plots: [{ "name": "kexie_first.js", "fullpath": "C:\\Users\\b
             common.$rootScope.scenes = scenes;
             _.extend(sp, {
                 img: res.img,
-                v: v,
+                z: z,
                 res: res,
                 //                scenes,
                 scenePaths: scenePaths,

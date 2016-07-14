@@ -284,8 +284,8 @@ define(["system-common"], function (common) {
 
                     v.material = md_trim(v.material);
                     v.material = v.material.split("+")
-                    z.skill = z.skill.split(",");
-                    z.skill=z.skill.map(function(v,i){
+                    v.skill = v.skill.split(",");
+                    v.skill=v.skill.map(function(v,i){
                         let [name,level]=v.split("v");                        
                         return {name,level}
                     })
@@ -328,7 +328,7 @@ define(["system-common"], function (common) {
                     }
 
                     //                    v.instrument = v.instrument.split("+");
-                    z.product = [];
+                    v.product = [];
                     for (var i in d) {
                         products[d[i].name] = d[i]
                     }
