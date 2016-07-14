@@ -57,7 +57,7 @@ define(["require", "system-scene", "system-sys", "angular", "system-dbg", "v", "
         //        sys.config = data;
         //        config_json_load_fnish = true;
         //    });
-        sys.config = {
+        common.config = {
             "version": "1.0",
             "branch": "物电科协"
         };

@@ -136,7 +136,7 @@ define(["angular", "system-dbg", "system-config", "_"], function (angular, dbg, 
                 evt = (evt) ? evt : window.event
                 if (evt.ctrlKey && evt.keyCode == 66) {
                     console.log("reload plot")
-                    sys.scenes["chat"].reload();
+                    common.scenes["chat"].reload();
                 }
                 if (evt.keyCode) {
                     switch (evt.keyCode) {

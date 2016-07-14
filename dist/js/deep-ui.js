@@ -5,18 +5,6 @@ define(["angular-module"], function (module) {
     return module.factory('deepData', ["$rootScope", function (rsp) {
         rsp.deepPath = resPath;
         return '';
-    }]).directive('deepPanel', ["deepData", function () {
-        return {
-            restrict: 'A',
-            transclude: true,
-            link: function link(scope, element, attrs, ctrls, $transclude) {
-
-                $transclude(function (clone, scope) {
-                    element.append(clone);
-                });
-            },
-            template: "               \n                <div class=\"deep-panel-corner deep-panel-corner1\">\n    </div>\n    <div class=\"deep-panel-corner deep-panel-corner2\">\n    </div>\n    <div class=\"deep-panel-corner deep-panel-corner3\">\n    </div>\n    <div class=\"deep-panel-corner deep-panel-corner4\">\n    </div>"
-        };
     }]).directive('deepHeader', function () {
         return {
             restrict: 'A',
@@ -82,26 +70,29 @@ define(["angular-module"], function (module) {
             restrict: 'A',
             link: function link(scope, element, attrs) {
                 var $$ = element.find.bind(element);
-                var $fill = $$(".deep-power-fill");
-
+                var $fill = $$(".deep-fill");
+                var $text = $$(".deep-text");
                 function updateWidth(v) {
+                    var max = $parse(attrs["deepPowerMax"])(scope);
                     if (v == 0) {
                         $fill.hide();
                     } else {
                         $fill.show();
-                        var max = $parse(attrs["deepPowerMax"])(scope);
+
                         console.log("v", v, max);
                         var width = (108 - 5) * v / max + 5 + "%";
                         $fill.css("width", width);
                     }
+                    console.log($text);
+                    $text.text(v + "/" + max);
                 }
 
-                element.addClass("deep-power");
+                element.addClass("deep-bar");
                 console.log(attrs);
                 //                    updateWidth($parse(attrs["deepPower"])(scope));
                 scope.$watch(attrs["deepPower"], updateWidth, true);
             },
-            template: "                 \n                    <span class=\"deep-power-fill\"></span>\n                "
+            template: "                 \n                    <div class=\"deep-fill\">                        \n                    </div>\n                    <span class=\"deep-text\"></span>\n                "
         };
     }]);
 });

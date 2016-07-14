@@ -20,8 +20,23 @@
         line-height: @height *1.8/2;
     }
 }
-
-.deep-panel-corner {
+[deep-panel]{
+    position: relative;
+    &:before{
+        .abs-fill;
+        content: "";
+        border-style: solid;
+        @scale: 0.6;
+        @gap: 206px;
+        @gapNum: 206;
+        border-width: @gap*@scale;
+        .border-image(url("@{path}/Window_Background.png") @gapNum @gapNum @gapNum @gapNum fill repeat);
+    }
+}
+.deep-panel-bg {
+    
+}
+.deep-panel-corner22 {
     background-image: url("@{path}/red_panel_corner_big.png");
     background-repeat: no-repeat;
     position: absolute;
@@ -420,16 +435,16 @@
         }
     }
 }
-.deep-health,.deep-power{
-    @height:40px;
-    @rate:@height/20px;
-    height: @height;    
+.deep-bar {
+    @height: 40px;
+    @rate: @height/20px;
+    height: @height;
     width: 100%;
     position: relative;
     border-style: solid;
     border-width: @rate*20px @rate*11.5px @rate*0px @rate*3.5px;
-.border-image(url("@{path}/UnitFrame_HealthBar_Background.png") 102 52 0 15 fill stretch);
-    &>.deep-health-fill,&>.deep-power-fill {
+    
+    &>.deep-fill {
         position: absolute;
         left: @rate*0.2px;
         top: -@height + 3px*@rate;
@@ -440,13 +455,23 @@
         border-style: solid;
         width: 10px;
         border-width: @rate*14px @rate*2.7px 0px @rate*2.7px;
-        .border-image(url("@{path}/UnitFrame_HealthBar_Fill_Tiled.png") 68 10 0 10 fill stretch); 
-    } 
-}
-.deep-power{
-
-.border-image(url("@{path}/UnitFrame_PowerBar_Background.png") 102 52 0 15 fill stretch);
-    &>.deep-power-fill {
+    }
+    &>.deep-text {
+        .abs-fill;
+        top: -@height/2;
+        .pure-line(16px);
+        text-align: center;
+        .transform(translateY(-50%));
+        display: inline-block;
+    }
+    &.deep-power{
+        .border-image(url("@{path}/UnitFrame_PowerBar_Background.png") 102 52 0 15 fill stretch);
+        &>.deep-fill {
+                    .border-image(url("@{path}/UnitFrame_PowerBar_Fill_Tiled.png") 68 10 0 10 fill stretch);              
+        }        
+    }
+    &.deep-health{
+        .border-image(url("@{path}/UnitFrame_HealthBar_Background.png") 102 52 0 15 fill stretch);
         .border-image(url("@{path}/UnitFrame_PowerBar_Fill_Tiled.png") 68 10 0 10 fill stretch); 
-    } 
+    }
 }

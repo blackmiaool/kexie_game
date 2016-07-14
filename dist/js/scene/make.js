@@ -23,23 +23,24 @@ define(["require", "system-scene", "system-sys", "angular", "system-dbg", "v", "
     //console.log(working)
     console.log(res);
     module.controller("MakeController", ["$scope", "$rootScope", "$timeout", function (sp, rsp, $timeout) {
-        var extendDirs = ["性能", "稳定", "创新"];
-        var extensions = { 性能: false, 稳定: false, 创新: false };
+        //    let extendDirs=["性能","稳定","创新"];
+        //    let extensions={性能:false,稳定:false,创新:false};
         var diffculty = void 0;
-        sp.extensions = extensions;
-        sp.$watch("extensions", function (v) {
-            var powerConsume = diffculty;
-            if (v["性能"]) {
-                powerConsume *= 1.5;
-            }
-            if (v["稳定"]) {
-                powerConsume *= 1.5;
-            }
-            if (v["创新"]) {
-                powerConsume *= 1.5;
-            }
-            sp.powerConsume = Math.ceil(powerConsume);
-        }, true);
+        //    sp.extensions=extensions;
+
+        //    sp.$watch("extensions",function(v){
+        //        let powerConsume=diffculty;
+        //        if(v["性能"]){
+        //            powerConsume*=1.5;
+        //        }
+        //        if(v["稳定"]){
+        //            powerConsume*=1.5;
+        //        }
+        //        if(v["创新"]){
+        //            powerConsume*=1.5;
+        //        }
+        //        sp.powerConsume=Math.ceil(powerConsume);
+        //    },true);
         rsp.$on("make-preEnter", function (e, _ref) {
             var _ref2 = _slicedToArray(_ref, 2);
 
@@ -79,6 +80,17 @@ define(["require", "system-scene", "system-sys", "angular", "system-dbg", "v", "
             v.item["LED"].cnt = 11;
             v.item["电路基础元件"].cnt = 12;
         }, 1000);
+
+        function start() {
+            if (checkMaterial()) {
+                res.products[sp.working.kind].material.forEach(function (vv, i) {
+                    v.item[vv.name].cnt -= vv.cnt;
+                });
+            } else {
+                return;
+            }
+        }
+
         function checkMaterial() {
             if (!sp.working) return false;
 
@@ -89,6 +101,7 @@ define(["require", "system-scene", "system-sys", "angular", "system-dbg", "v", "
             });
             return satisfy;
         }
+
         function print() {
             console.log(arguments);
             return true;
@@ -96,7 +109,8 @@ define(["require", "system-scene", "system-sys", "angular", "system-dbg", "v", "
         _.extend(sp, {
             checkMaterial: checkMaterial,
             print: print,
-            extendDirs: extendDirs
+            //        extendDirs,
+            start: start
         });
     }]);
 

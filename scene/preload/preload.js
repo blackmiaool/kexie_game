@@ -55,7 +55,7 @@ function preEnter() {
     //        sys.config = data;
     //        config_json_load_fnish = true;
     //    });
-    sys.config =
+    common.config =
         <!-- inject: ../../config.json--> ;
 
 

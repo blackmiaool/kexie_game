@@ -26,8 +26,8 @@ define(["require", "system-sys", "system-common", "system-dbg", "res"], function
         fast: 40,
         slow: 200
     };
-    var sx = sys.sx;
-    var sy = sys.sy;
+    var sx = common.sx;
+    var sy = common.sy;
     var peopleMoveTime = 500;
     var btn_gap = 50;
 

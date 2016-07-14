@@ -5,6 +5,7 @@
         "/bower_components/",
         "/node_modules/",
 	    "/libs/",
-        "res/cursor/"
+        "res/cursor/",
+        "old"
     ]
 }

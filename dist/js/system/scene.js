@@ -2,14 +2,14 @@
 
 var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol ? "symbol" : typeof obj; };
 
-define(["system-sys", "system-dbg"], function (sys, dbg) {
-    requirejs(requirejs.cfg.scenePaths, function () {
-        sys.sceneLoaded();
-    });
+define(["system-dbg", "system-common"], function (dbg, common) {
+    //    requirejs(requirejs.cfg.scenePaths, function () {
+    //        common.sceneLoaded();
+    //    });
     var scenes = {};
     var currentScene = {};
     var sceneFadeTimeRaw = 1000;
-    var sceneFadeTime = dbg.imdeveloper ? 1 : sys.quick ? 1 : sceneFadeTimeRaw;
+    var sceneFadeTime = dbg.imdeveloper ? 1 : common.quick ? 1 : sceneFadeTimeRaw;
 
     function register(_ref) {
         var id = _ref.id;
@@ -38,10 +38,10 @@ define(["system-sys", "system-dbg"], function (sys, dbg) {
 
         if (target.id) {
             var doPreEnter = function doPreEnter() {
-                sys.$rootScope.scenes[target.id] = true;
+                common.$rootScope.scenes[target.id] = true;
                 setTimeout(function () {
                     angularDo(function () {
-                        sys.$rootScope.$emit(target.id + "-preEnter", args);
+                        common.$rootScope.$emit(target.id + "-preEnter", args);
                     });
                 });
             };
@@ -49,7 +49,7 @@ define(["system-sys", "system-dbg"], function (sys, dbg) {
             console.info("out", currentScene.id, "in", target.id, args);
             if (currentScene.id) {
                 var doPreLeave = function doPreLeave() {
-                    sys.$rootScope.$emit(pre.id + "-preLeave", args);
+                    common.$rootScope.$emit(pre.id + "-preLeave", args);
                 };
 
                 currentScene.preLeave && currentScene.preLeave();
@@ -71,10 +71,10 @@ define(["system-sys", "system-dbg"], function (sys, dbg) {
                 args[_key2 - 1] = arguments[_key2];
             }
 
-            if (sys.$rootScope.$$phase) {
+            if (common.$rootScope.$$phase) {
                 func.apply(undefined, args);
             } else {
-                sys.$rootScope.$apply(function () {
+                common.$rootScope.$apply(function () {
                     func.apply(undefined, args);
                 });
             }
@@ -87,10 +87,10 @@ define(["system-sys", "system-dbg"], function (sys, dbg) {
                 }
                 if (pre) {
                     var doLeave = function doLeave() {
-                        sys.$rootScope.$emit(pre.id + "-leave");
+                        common.$rootScope.$emit(pre.id + "-leave");
                         setTimeout(function () {
                             angularDo(function () {
-                                sys.$rootScope.scenes[pre.id] = false;
+                                common.$rootScope.scenes[pre.id] = false;
                             });
                         });
                     };
@@ -100,7 +100,7 @@ define(["system-sys", "system-dbg"], function (sys, dbg) {
                 }
                 angularDo(doEnter);
                 function doEnter() {
-                    sys.$rootScope.$emit(target.id + "-enter", args);
+                    common.$rootScope.$emit(target.id + "-enter", args);
                 }
             }, sceneFadeTime);
         }

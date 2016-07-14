@@ -23,23 +23,24 @@ function init() {
 //console.log(working)
 console.log(res)
 module.controller("MakeController", ["$scope", "$rootScope", "$timeout", function (sp, rsp, $timeout) {
-    let extendDirs=["性能","稳定","创新"];
-    let extensions={性能:false,稳定:false,创新:false};
+    //    let extendDirs=["性能","稳定","创新"];
+    //    let extensions={性能:false,稳定:false,创新:false};
     let diffculty;
-    sp.extensions=extensions;
-    sp.$watch("extensions",function(v){
-        let powerConsume=diffculty;
-        if(v["性能"]){
-            powerConsume*=1.5;
-        }
-        if(v["稳定"]){
-            powerConsume*=1.5;
-        }
-        if(v["创新"]){
-            powerConsume*=1.5;
-        }
-        sp.powerConsume=Math.ceil(powerConsume);
-    },true);
+    //    sp.extensions=extensions;
+
+    //    sp.$watch("extensions",function(v){
+    //        let powerConsume=diffculty;
+    //        if(v["性能"]){
+    //            powerConsume*=1.5;
+    //        }
+    //        if(v["稳定"]){
+    //            powerConsume*=1.5;
+    //        }
+    //        if(v["创新"]){
+    //            powerConsume*=1.5;
+    //        }
+    //        sp.powerConsume=Math.ceil(powerConsume);
+    //    },true);
     rsp.$on("make-preEnter", function (e, [kind, id]) {
         if (!kind) {
             console.error("Miss 'kind' paramater");
@@ -54,7 +55,7 @@ module.controller("MakeController", ["$scope", "$rootScope", "$timeout", functio
                 name: kind,
                 kind,
                 prefix: {},
-                state:"raw",
+                state: "raw",
                 process: {
                     basic: 3,
                     basicMax: 10,
@@ -66,35 +67,48 @@ module.controller("MakeController", ["$scope", "$rootScope", "$timeout", functio
                     }],
             };
             sp.working = working;
-        }  
-        diffculty=res.products[sp.working.kind].difficulty;
-        sp.powerConsume=diffculty;
+        }
+        diffculty = res.products[sp.working.kind].difficulty;
+        sp.powerConsume = diffculty;
     });
-    $timeout(function(){
-        v.item["五5伍"].cnt=10;
-        v.item["LED"].cnt=11;
-        v.item["电路基础元件"].cnt=12;
-    },1000)
-    function checkMaterial(){
-        if(!sp.working)
+    $timeout(function () {
+        v.item["五5伍"].cnt = 10;
+        v.item["LED"].cnt = 11;
+        v.item["电路基础元件"].cnt = 12;
+    }, 1000);
+
+    function start() {
+        if (checkMaterial()) {
+            res.products[sp.working.kind].material.forEach(function(vv,i){
+                v.item[vv.name].cnt-=vv.cnt;
+            })            
+        } else {
+            return;
+        }
+    }
+
+    function checkMaterial() {
+        if (!sp.working)
             return false;
-        
-        let satisfy=!res.products[sp.working.kind].material.some(function(vv,i){
-            if(vv.cnt>v.item[vv.name].cnt){
+
+        let satisfy = !res.products[sp.working.kind].material.some(function (vv, i) {
+            if (vv.cnt > v.item[vv.name].cnt) {
                 return true;
             }
         })
         return satisfy;
-        
+
     }
-    function print(){
+
+    function print() {
         console.log(arguments);
         return true;
     }
     _.extend(sp, {
         checkMaterial,
         print,
-        extendDirs,
+        //        extendDirs,
+        start,
     })
 
 }])

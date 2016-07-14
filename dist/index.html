@@ -402,7 +402,7 @@
                     </header>
                     <main>
                         <div class="main-content" data-phase="ready-to-make">
-                            <button ng-class="{'disabled':!checkMaterial()}" class="deep-btn blue lg start-build">搭建框架</button>
+                            <button ng-click="start()" ng-class="{'disabled':!checkMaterial()}" class="deep-btn blue lg start-build">搭建框架</button>
                             <section>
                                 <header deep-dbline-header="消耗材料"></header>
                                 <main>
@@ -443,8 +443,7 @@
                     </div>
                     <div class="info-block">
                         <header>体力</header>
-                        <main deep-power="v.power" deep-power-max="v.powerMax">
-                            <div class="deep-power-fill"></div>
+                        <main class="deep-power" deep-power="v.power" deep-power-max="v.powerMax">
                         </main>
                     </div>
                     <div class="btn-wrap">
