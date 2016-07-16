@@ -48,27 +48,32 @@ module.controller("MakeController", ["$scope", "$rootScope", "$timeout", functio
         }
         if (id) {
             sp.working = z.work[kind][id];
+            sp.phase = sp.working.phase;
         } else {
+            //
+            //            let working = {
+            //                id: common.getUid(),
+            //                name: kind,
+            //                kind,
+            //                prefix: {},
+            //                state: "raw",
+            //                process: {
+            //                    basic: 3,
+            //                    basicMax: 10,
+            //                },
+            //                phase:"ready-to-make",
+            //                property: [
+            //                    {
+            //                        kind: "lucky",
+            //                        value: "3",
+            //                    }],
+            //            };
+            //            sp.working = working;
+            sp.phase = "empty";
 
-            let working = {
-                id: common.getUid(),
-                name: kind,
-                kind,
-                prefix: {},
-                state: "raw",
-                process: {
-                    basic: 3,
-                    basicMax: 10,
-                },
-                property: [
-                    {
-                        kind: "lucky",
-                        value: "3",
-                    }],
-            };
-            sp.working = working;
         }
-        diffculty = res.products[sp.working.kind].difficulty;
+        sp.workingKind = kind;
+        diffculty = res.products[sp.workingKind].difficulty;
         sp.powerConsume = diffculty;
     });
     $timeout(function () {
@@ -78,24 +83,42 @@ module.controller("MakeController", ["$scope", "$rootScope", "$timeout", functio
     }, 1000);
 
     function start() {
-        if (checkMaterial()) {
-            res.products[sp.working.kind].material.forEach(function(vv,i){
-                z.item[vv.name].cnt-=vv.cnt;
-            })            
+        if (checkMaterial() && z.power > sp.powerConsume) {
+            res.products[sp.workingKind].material.forEach(function (vv, i) {
+                z.item[vv.name].cnt -= vv.cnt;
+            })
+            z.power -= sp.powerConsume;
+            let working = {
+                id: common.getUid(),
+                name: sp.workingKind,
+                kind: sp.workingKind,
+                prefix: {},
+                process: 0,
+                processMax: 20,
+                phase: "making-base",
+            };
+            sp.working = working;
+            sp.working.phase = "making";
+            sp.working[sp.workingKind] = working;
+            sp.phase = "";
+            $timeout(function () {
+                sp.phase = "making";
+            }, 400);
+
         } else {
             return;
         }
     }
 
     function checkMaterial() {
-        if (!sp.working)
+        if (!sp.workingKind)
             return false;
 
-        let satisfy = !res.products[sp.working.kind].material.some(function (vv, i) {
+        let satisfy = !res.products[sp.workingKind].material.some(function (vv, i) {
             if (vv.cnt > z.item[vv.name].cnt) {
                 return true;
             }
-        })
+        });
         return satisfy;
 
     }

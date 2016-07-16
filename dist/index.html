@@ -401,12 +401,12 @@
                     <header deep-header="工作台">
                     </header>
                     <main>
-                        <div class="main-content" data-phase="ready-to-make">
+                        <div ng-show="phase=='empty'" class="main-content" data-phase="ready-to-make">
                             <button ng-click="start()" ng-class="{'disabled':!checkMaterial()}" class="deep-btn blue lg start-build">搭建框架</button>
                             <section>
                                 <header deep-dbline-header="消耗材料"></header>
                                 <main>
-                                    <div hover-item="m" hover-kind="item" ng-show2="print(m.cnt,z.item[m.name].cnt)" class="item" deep-item-icon="{{getItemIcon(res.items[m.name],'wheat')}}" ng-repeat="m in res.products[working.kind].material" deep-cnt="{{z.item[m.name].cnt+'/'+m.cnt}}" deep-name="{{m.name}}" class="material" deep-judge="m.cnt<=z.item[m.name].cnt">
+                                    <div hover-item="m" hover-kind="item" ng-show2="print(m.cnt,z.item[m.name].cnt)" class="item" deep-item-icon="{{getItemIcon(res.items[m.name],'wheat')}}" ng-repeat="m in res.products[workingKind].material" deep-cnt="{{z.item[m.name].cnt+'/'+m.cnt}}" deep-name="{{m.name}}" class="material" deep-judge="m.cnt<=z.item[m.name].cnt">
                 
                                     </div>
                                 </main>
@@ -414,10 +414,10 @@
                             <section>
                                 <header deep-dbline-header="消耗体力"></header>
                                 <main>
-                                <span ng-bind="powerConsume"></span>
+                                    <span ng-bind="powerConsume"></span>
                                 </main>
                             </section>
-                <!--
+                            <!--
                             <section class="extension">
                                 <header deep-dbline-header="扩展方向">
                                 </header>
@@ -428,7 +428,15 @@
                             </section>
                 -->
                         </div>
+                        <div ng-show="phase=='making'" class="main-content" data-phase="ready-to-make">
+                            <div class="state">
+                                <header>评分</header>
+                                <main class="deep-health" deep-power="z.power" deep-max="z.powerMax">
+                                </main>
+                            </div>
+                            <button class="deep-btn green lg">折腾</button>
                 
+                        </div>
                     </main>
                 </div>
                 
@@ -437,13 +445,13 @@
                     <button ng-click="goScene('state')" class="red-icon go-state yellow" data-icon="profile"></button>
                     <div class="info-block">
                         <header>当前制作</header>
-                        <main class="red-normal-item solid" ng-bind="working.kind">
+                        <main class="red-normal-item solid" ng-bind="workingKind">
                 
                         </main>
                     </div>
                     <div class="info-block">
                         <header>体力</header>
-                        <main class="deep-power" deep-power="z.power" deep-power-max="z.powerMax">
+                        <main class="deep-power" deep-power="z.power" deep-max="z.powerMax">
                         </main>
                     </div>
                     <div class="btn-wrap">
@@ -456,7 +464,7 @@
                     <div class="section">
                         <header deep-dbline-header="相关技能"></header>
                         <main>
-                            <div ng-repeat="skill in res.products[working.kind].skill" class="skill">
+                            <div ng-repeat="skill in res.products[workingKind].skill" class="skill">
                 
                                 <div ng-mouseenter="hoverSkill(skill)" ng-mouseleave="stopHoverSkill()" class="skill-wrap">
                                     <div class="deep-item-icon">
@@ -472,7 +480,7 @@
                                     <label class="name" ng-bind="skill.name"></label>
                                 </div>
                             </div>
-                            <div ng-repeat="skill in res.products[working.kind].extSkill" class="skill">
+                            <div ng-repeat="skill in res.products[workingKind].extSkill" class="skill">
                                 <div ng-mouseenter="hoverSkill(skill)" ng-mouseleave="stopHoverSkill()" class="skill-wrap">
                                     <div class="deep-item-icon">
                                         <img draggable="false" ng-src="{{getSkillIcon(skill.name)}}" alt="" class="skill-icon">
@@ -495,7 +503,7 @@
                     <div class="section">
                         <header deep-dbline-header="相关仪器"></header>
                         <main>
-                            <div ng-repeat="instrument in res.products[working.kind].instrument" class="instrument">
+                            <div ng-repeat="instrument in res.products[workingKind].instrument" class="instrument">
                                 <div class="left-header">
                                     <div class="deep-item-icon item-icon">
                                         <img ng-src="{{getItemIcon(instrument,'wheat')}}" alt="">
@@ -504,7 +512,7 @@
                                 </div>
                 
                             </div>
-                            <div ng-repeat="instrument in res.products[working.kind].extInstrument" class="ext-instrument">
+                            <div ng-repeat="instrument in res.products[workingKind].extInstrument" class="ext-instrument">
                                 <div class="left-header">
                                     <div class="deep-item-icon  item-icon">
                                         <img ng-src="{{getItemIcon(instrument,'wheat')}}" alt="">
@@ -733,7 +741,7 @@
         </div>
     </div>
     <script data-main="js/main" src="js/require.js"></script>
-    <script src="http://192.168.199.128:35729/livereload.js?ext=Chrome&extver=2.1.0"></script>
+    <script src="http://192.168.199.128:35728/livereload.js?ext=Chrome&extver=2.1.0"></script>
 </body>
 
 </html>

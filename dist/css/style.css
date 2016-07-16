@@ -3087,6 +3087,12 @@ body {
   padding: 0;
   background-color: black;
 }
+body {
+  box-sizing: border-box;
+  font-family: punctuation, "PingFangSC-Regular", "Microsoft Yahei", "sans-serif";
+  -webkit-font-smoothing: subpixel-antialiased;
+  cursor: url("../res/cursor/normal.cur"), auto !important;
+}
 #wrap {
   position: absolute;
   left: 0;
@@ -3097,9 +3103,6 @@ body {
 }
 * {
   box-sizing: border-box;
-  font-family: punctuation, "PingFangSC-Regular", "Microsoft Yahei", "sans-serif";
-  -webkit-font-smoothing: subpixel-antialiased;
-  cursor: url("../res/cursor/normal.cur"), auto !important;
 }
 h1,
 h2,
@@ -4037,6 +4040,12 @@ input {
   left: 23px;
   top: 60px;
 }
+.scene[data-scene="make"] > .center > main > .main-content {
+  transition: 0.3s all ease-out;
+}
+.scene[data-scene="make"] > .center > main > .main-content.ng-hide.ng-hide-add {
+  opacity: 0;
+}
 .scene[data-scene="make"] > .center > main > .main-content[data-phase="ready-to-make"] {
   text-align: center;
 }
@@ -4070,16 +4079,18 @@ input {
 }
 .scene[data-scene="make"] > .left .go-back {
   position: absolute;
-  left: 20px;
+  left: 30px;
   bottom: 10px;
 }
 .scene[data-scene="make"] > .left .go-state {
   position: absolute;
-  left: 110px;
+  right: 30px;
   bottom: 10px;
 }
+.scene[data-scene="make"] > .left .deep-fill {
+  transition: 0.3s width ease-out;
+}
 .scene[data-scene="make"] > .left .info-block {
-  color: wheat;
   margin-bottom: 15px;
 }
 .scene[data-scene="make"] > .left .info-block header {
@@ -4101,7 +4112,6 @@ input {
   width: 25%;
   top: 40px;
   padding: 17px 22px;
-  color: wheat;
 }
 .scene[data-scene="make"] > .right > .section {
   padding-top: 10px;
@@ -4123,6 +4133,7 @@ input {
 .scene[data-scene="make"] > .right .ext-instrument {
   margin-bottom: 10px;
   margin-left: 6px;
+  position: relative;
 }
 .scene[data-scene="make"] > .right .instrument .name,
 .scene[data-scene="make"] > .right .ext-instrument .name {

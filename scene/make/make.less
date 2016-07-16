@@ -12,6 +12,10 @@ color:wheat;
         .square-crop(23px);
         top: 60px;
         >.main-content {
+            &.ng-hide.ng-hide-add {
+                opacity: 0;
+            }
+            transition: 0.3s all ease-out;
             &[data-phase="ready-to-make"] {
                 >header {
                     margin-top: 20px;
@@ -23,10 +27,10 @@ color:wheat;
                 .item {
                     margin: 10px;
                 }
-                section{
+                section {
                     margin-bottom: 15px;
-                    &.extension{
-                        label{
+                    &.extension {
+                        label {
                             margin: 10px;
                         }
                     }
@@ -52,16 +56,19 @@ color:wheat;
     //    text-align: center;
     .go-back {
         position: absolute;
-        left: 20px;
+        left: 30px;
         bottom: 10px;
     }
     .go-state {
         position: absolute;
-        left: 110px;
+        right: 30px;
         bottom: 10px;
     }
+    .deep-fill {
+        transition: 0.3s width ease-out;
+    }
     .info-block {
-        color: wheat;
+
         header {
             margin-left: 10px;
         }
@@ -74,9 +81,9 @@ color:wheat;
     .btn-wrap {
         text-align: center;
         .change-target {
-//            margin: auto;
+            //            margin: auto;
         }
-        button{
+        button {
             margin: auto;
             margin-bottom: 10px;
         }
@@ -88,7 +95,7 @@ color:wheat;
     width: 25%;
     top: 40px;
     padding: 17px 22px;
-    color: wheat;
+
     &>.section {
         padding-top: 10px;
         &>header {
@@ -113,6 +120,7 @@ color:wheat;
         }
         margin-bottom: 10px;
         margin-left: 6px;
+        position: relative;
     }
     .left-header {
         .item-icon {

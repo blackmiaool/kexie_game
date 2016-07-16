@@ -1,5 +1,4 @@
 @res-folder: "../res";//mannul set
-
 @path: "@{res-folder}/deep_ui";
 @icon-path: "@{res-folder}/deep_ui/icon";
 @deep-bg: #1f1916;
@@ -442,8 +441,8 @@
     width: 100%;
     position: relative;
     border-style: solid;
-    border-width: @rate*20px @rate*11.5px @rate*0px @rate*3.5px;
-    
+    border-width: @rate*20px @rate*3.5px @rate*0px @rate*3.5px;
+    text-align: center;
     &>.deep-fill {
         position: absolute;
         left: @rate*0.2px;
@@ -465,13 +464,17 @@
         display: inline-block;
     }
     &.deep-power{
-        .border-image(url("@{path}/UnitFrame_PowerBar_Background.png") 102 52 0 15 fill stretch);
+        .border-image(url("@{path}/UnitFrame_PowerBar_Background.png") 102 15 0 15 fill stretch);
         &>.deep-fill {
                     .border-image(url("@{path}/UnitFrame_PowerBar_Fill_Tiled.png") 68 10 0 10 fill stretch);              
         }        
     }
     &.deep-health{
-        .border-image(url("@{path}/UnitFrame_HealthBar_Background.png") 102 52 0 15 fill stretch);
-        .border-image(url("@{path}/UnitFrame_PowerBar_Fill_Tiled.png") 68 10 0 10 fill stretch); 
+//        .border-image(url("@{path}/UnitFrame_HealthBar_Background.png") 102 52 0 15 fill stretch);
+        .border-image(url("@{path}/UnitFrame_PowerBar_Background.png") 102 15 0 15 fill stretch);
+//        .border-image(url("@{path}/UnitFrame_PowerBar_Fill_Tiled.png") 68 10 0 10 fill stretch); 
+        &>.deep-fill {
+                    .border-image(url("@{path}/UnitFrame_HealthBar_Fill_Tiled.png") 68 10 0 10 fill stretch);              
+        }
     }
 }

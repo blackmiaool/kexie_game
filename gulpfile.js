@@ -73,18 +73,10 @@ gulp.task('less', function () {
     var e = less({
         paths: [path.join(__dirname, 'less')]
     });
-
-    function swallowError(error) {
-
-        // If you want details of the error in the console
-        console.log(error.toString())
-
-        this.emit('end')
-    }
-    //        e.on('error', function (ee) {
-    ////            gutil.log(ee);
-    //            e.end();
-    //        });
+    e.on('error', function (ee) {
+        gutil.log(ee);
+        this.emit('end');
+    });
     let sceneStr=sceneArray.reduce(function(p,v){
         return p+`&[data-scene="${v}"] {
         @import "scene/${v}/${v}.less";
@@ -94,7 +86,6 @@ gulp.task('less', function () {
         .pipe(replace('//injectSceneFiles', sceneStr))
         .pipe(e)        
         .pipe(cached("less"))
-        .on('error', swallowError)
         .pipe(gulp.dest('dist/css')).pipe(livereload());
 });
 gulp.task('mv-dist-js', function () {
@@ -232,7 +223,7 @@ gulp.task('reload', function () {
 
 });
 
-livereload.listen();
+livereload.listen({port:35728});
 gulp.watch('less/**/*.less', ['less']);
 gulp.watch('scene/**/*.less', ['less']);
 gulp.watch(['js/**/*.js', "!js/scene/*.js", "!js/plot/*.js"], ['es6']);

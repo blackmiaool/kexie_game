@@ -73,22 +73,21 @@ define(["angular-module"], function (module) {
                 var $fill = $$(".deep-fill");
                 var $text = $$(".deep-text");
                 function updateWidth(v) {
-                    var max = $parse(attrs["deepPowerMax"])(scope);
+                    var max = $parse(attrs["deepMax"])(scope);
                     if (v == 0) {
                         $fill.hide();
                     } else {
                         $fill.show();
 
-                        console.log("v", v, max);
                         var width = (108 - 5) * v / max + 5 + "%";
                         $fill.css("width", width);
                     }
-                    console.log($text);
+
                     $text.text(v + "/" + max);
                 }
 
                 element.addClass("deep-bar");
-                console.log(attrs);
+
                 //                    updateWidth($parse(attrs["deepPower"])(scope));
                 scope.$watch(attrs["deepPower"], updateWidth, true);
             },
