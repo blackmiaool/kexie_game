@@ -26,7 +26,7 @@ define(["res", "system-common"], function (res, common) {
             year: 2014,
             term: 1,
             month: 9,
-            part: 2,
+            round: 2,
             week: 1,
             week_day_index: 5,
             day: 1,

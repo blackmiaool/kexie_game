@@ -133,6 +133,15 @@ img {
   -o-border-image: url("../res/deep_ui/Window_Background.png") 206 206 206 206 fill repeat;
   border-image: url("../res/deep_ui/Window_Background.png") 206 206 206 206 fill repeat;
 }
+[deep-panel] > main {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+  padding-top: 70px;
+}
 .deep-panel-corner22 {
   background-image: url("../res/deep_ui/red_panel_corner_big.png");
   background-repeat: no-repeat;
@@ -373,34 +382,50 @@ img {
 .red-icon.yellow {
   background-image: url("../res/deep_ui/btn_circle_yellow.png");
 }
-.red-normal-item {
-  background-image: url("../res/deep_ui/red_item_bg.png");
-  background-repeat: no-repeat;
-  background-size: contain;
+.deep-normal-item {
   -webkit-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
   -o-user-select: none;
   user-select: none;
   -webkit-tap-highlight-color: transparent;
-  line-height: 41px;
-  height: 41px;
-  width: 236px;
+  padding: 10px 14px;
+  border-style: solid;
+  background-color: transparent;
   margin: auto;
   background-position: center;
   text-align: center;
   color: #6f6362;
-  font-size: 18px;
+  font-size: 16px;
   position: relative;
+  border: none;
 }
-.red-normal-item > * {
+.deep-normal-item > * {
   -webkit-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
   -o-user-select: none;
   user-select: none;
 }
-.red-normal-item:after {
+.deep-normal-item > .deep-text {
+  position: relative;
+}
+.deep-normal-item:before {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+  content: "";
+  border-width: 12.6px 9.9px 11.4px 11.7px;
+  -webkit-border-image: url("../res/deep_ui/red_item_bg.png") 42 33 38 39 fill repeat;
+  -moz-border-image: url("../res/deep_ui/red_item_bg.png") 42 33 38 39 fill repeat;
+  -ms-border-image: url("../res/deep_ui/red_item_bg.png") 42 33 38 39 fill repeat;
+  -o-border-image: url("../res/deep_ui/red_item_bg.png") 42 33 38 39 fill repeat;
+  border-image: url("../res/deep_ui/red_item_bg.png") 42 33 38 39 fill repeat;
+}
+.deep-normal-item:after {
   content: "";
   position: absolute;
   top: 3px;
@@ -411,13 +436,13 @@ img {
   box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.7);
   opacity: 0;
 }
-.red-normal-item:active:after {
+.deep-normal-item:active:after {
   opacity: 1;
 }
-.red-normal-item.solid {
+.deep-normal-item.solid {
   color: #dec7aa;
 }
-.red-normal-item:hover {
+.deep-normal-item:hover {
   color: #dec7aa;
 }
 .deep-btn {

@@ -7,20 +7,7 @@ define(["jquery"], function () {
     var z = void 0;
     var sx = 960;
     var sy = 540;
-    var exports = {
-        resPath: resPath,
-        color: color,
-        find_index: find_index,
-        clone: clone,
-        load_object: load_object,
-        save_object: save_object,
-        g: g,
-        setZ: setZ,
-        getUid: getUid,
-        local: local,
-        sx: sx,
-        sy: sy
-    };
+
     $.fn.transform = function (v) {
         this.css("-webkit-transform", v);
         this.css("-ms-transform", v);
@@ -53,13 +40,28 @@ define(["jquery"], function () {
         return resPath + str;
     }
 
-    function save_object(key, obj) {
+    function save(key, value) {
+        if (typeof key != "string" || !value) {
+            console.error("wrong parameter");
+            return;
+        }
         localStorage.removeItem(key);
-        localStorage.setItem(key, JSON.stringify(obj));
+        if ((typeof value === "undefined" ? "undefined" : _typeof(value)) == "object") {
+            localStorage.setItem(key, JSON.stringify(value));
+        } else {
+            localStorage.setItem(key, value);
+        }
     }
 
-    function load_object(key) {
-        return JSON.parse(localStorage.getItem(key));
+    function load(key) {
+        var result = localStorage.getItem(key);
+        try {
+            result = JSON.parse(result);
+        } catch (e) {
+            //Just not object. It's ok.
+        }
+
+        return result;
     }
     function setZ(thisz) {
         z = thisz;
@@ -94,6 +96,20 @@ define(["jquery"], function () {
         rm: function rm(a) {
             localStorage.removeItem(a);
         }
+    };
+    var exports = {
+        resPath: resPath,
+        color: color,
+        find_index: find_index,
+        clone: clone,
+        load: load,
+        save: save,
+        g: g,
+        setZ: setZ,
+        getUid: getUid,
+        local: local,
+        sx: sx,
+        sy: sy
     };
     return exports;
 });

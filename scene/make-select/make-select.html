@@ -7,12 +7,12 @@
         <main class="red-scroll-shadow-wrap">
             <div class="red-scroll page" data-page="0" ng-class="{left:productSelectPageIndex>0,center:productSelectPageIndex==0,right:productSelectPageIndex<0}">
                 
-                <div ng-click="selectProductKind(product)" ng-repeat="product in res.products" class="red-normal-item product clickable bold" ng-bind="product.name">
+                <div ng-click="selectProductKind(product)" ng-repeat="product in res.products" class="deep-normal-item product clickable bold" ng-bind="product.name">
                 </div>
             </div>
             <div class="red-scroll page" data-page="1" ng-class="{left:productSelectPageIndex>1,center:productSelectPageIndex==1,right:productSelectPageIndex<1}">
                <div ng-click="goScene('make',selectingProductKind)" data-deep-btn="blue" class="deep-btn start-new-product">开个新坑</div> 
-                <div ng-click="goScene('make',selectingProductKind,work.id)" ng-repeat="work in z.work[selectingProductKind]" class="red-normal-item work clickable" ng-bind="work | workPrefix">
+                <div ng-click="goScene('make',selectingProductKind,work.id)" ng-repeat="work in z.work[selectingProductKind]" class="deep-normal-item work clickable" ng-bind="work | workPrefix">
                 </div>
             </div>
         </main>

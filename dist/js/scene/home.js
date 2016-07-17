@@ -71,10 +71,10 @@ define(["require", "system-scene", "system-sys", "angular", "system-dbg", "z", "
             return common.resPath + "icon/" + name + ".svg";
         }
 
-        function getMonth(part) {
-            var monthStr = parseInt((part + 27) / 3) % 12 + 1 + "月";
+        function getMonth(round) {
+            var monthStr = parseInt((round + 27) / 3) % 12 + 1 + "月";
             var pStr = ["上旬", "中旬", "下旬"];
-            var partStr = pStr[part % 3];
+            var partStr = pStr[round % 3];
             return monthStr + partStr;
         }
 
@@ -168,7 +168,7 @@ define(["require", "system-scene", "system-sys", "angular", "system-dbg", "z", "
                 sp.endingTransition = false;
             }, 600);
             $timeout(function () {
-                z.time.part++;
+                z.time.round++;
                 sp.ending = false;
             }, 650);
             $timeout(function () {

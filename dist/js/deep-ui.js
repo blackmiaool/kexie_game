@@ -16,6 +16,15 @@ define(["angular-module"], function (module) {
             },
             template: "\n                <span class=\"deep-header-text unselectable\" ng-class=\"{little:selectingProductKind}\"></span>"
         };
+    }).directive("deepNormalItem", function () {
+        return {
+            restrict: 'A',
+            compile: function compile(element, attrs) {
+                var $$ = element.find.bind(element);
+                $$(".deep-text").attr("ng-bind", attrs["deepNormalItem"]);
+            },
+            template: "<div class=\"deep-text\"></div>"
+        };
     }).directive('deepItemIcon', function () {
         return {
             restrict: 'A',
@@ -72,6 +81,7 @@ define(["angular-module"], function (module) {
                 var $$ = element.find.bind(element);
                 var $fill = $$(".deep-fill");
                 var $text = $$(".deep-text");
+
                 function updateWidth(v) {
                     var max = $parse(attrs["deepMax"])(scope);
                     if (v == 0) {

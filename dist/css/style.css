@@ -3103,6 +3103,7 @@ body {
 }
 * {
   box-sizing: border-box;
+  outline: none;
 }
 h1,
 h2,
@@ -4226,6 +4227,30 @@ input {
 }
 .scene[data-scene="preload"] .wrap .loading-img {
   width: 20px;
+}
+.scene[data-scene="save"] {
+  background: url("../res/Background/make.png");
+  background-position: bottom;
+  background-size: cover;
+  color: wheat;
+  text-align: center;
+}
+.scene[data-scene="save"] > .go-back {
+  position: absolute;
+  left: 10px;
+  bottom: 10px;
+}
+.scene[data-scene="save"] .btn-save {
+  display: block;
+  margin-bottom: 10px;
+  min-width: 300px;
+  height: 40px;
+}
+.scene[data-scene="save"] .select-save {
+  width: 40%;
+  height: 87%;
+  margin: auto;
+  margin-top: 45px;
 }
 .scene[data-scene="state"] > .wrap {
   position: absolute;

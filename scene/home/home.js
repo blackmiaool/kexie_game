@@ -69,10 +69,10 @@ function (sp, rsp, $timeout) {
             return `${common.resPath}icon/${name}.svg`;
         }
 
-        function getMonth(part) {
-            let monthStr = parseInt((part + 27) / 3) % 12 + 1 + "月";
+        function getMonth(round) {
+            let monthStr = parseInt((round + 27) / 3) % 12 + 1 + "月";
             const pStr = ["上旬", "中旬", "下旬"]
-            let partStr = pStr[part % 3];
+            let partStr = pStr[round % 3];
             return monthStr + partStr;
         }
 
@@ -170,7 +170,7 @@ function (sp, rsp, $timeout) {
                 sp.endingTransition = false;
             }, 600)
             $timeout(function () {
-                z.time.part++;
+                z.time.round++;
                 sp.ending = false;
             }, 650)
             $timeout(function () {

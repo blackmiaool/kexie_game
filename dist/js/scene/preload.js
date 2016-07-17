@@ -19,7 +19,8 @@ define(["require", "system-scene", "system-sys", "angular", "system-dbg", "z", "
             setTimeout(function () {
                 var debuggingScene = localStorage.getItem("debug-scene");
                 if (debuggingScene) {
-                    scene.go(debuggingScene, "硬件流水灯");
+                    //                scene.go(debuggingScene,"硬件流水灯");
+                    scene.go(debuggingScene, "save");
                 } else {
                     scene.go("home");
                 }

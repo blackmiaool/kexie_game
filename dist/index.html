@@ -164,8 +164,8 @@
                             <span class="glyphicon glyphicon-stats"></span> 月份
                         </span>
                         <span class="value">
-                                <span class="rotate upon" ng-bind="getMonth(z.time.part+1)" ng-class="{active:ending,transition:endingTransition}"></span>
-                        <span class="rotate below " ng-bind="getMonth(z.time.part)" ng-class="{active:ending,transition:endingTransition}"></span>
+                                <span class="rotate upon" ng-bind="getMonth(z.time.round+1)" ng-class="{active:ending,transition:endingTransition}"></span>
+                        <span class="rotate below " ng-bind="getMonth(z.time.round)" ng-class="{active:ending,transition:endingTransition}"></span>
                         </span>
                     </span>
                 
@@ -445,7 +445,7 @@
                     <button ng-click="goScene('state')" class="red-icon go-state yellow" data-icon="profile"></button>
                     <div class="info-block">
                         <header>当前制作</header>
-                        <main class="red-normal-item solid" ng-bind="workingKind">
+                        <main class="deep-normal-item solid" ng-bind="workingKind">
                 
                         </main>
                     </div>
@@ -540,12 +540,12 @@
                         <main class="red-scroll-shadow-wrap">
                             <div class="red-scroll page" data-page="0" ng-class="{left:productSelectPageIndex>0,center:productSelectPageIndex==0,right:productSelectPageIndex<0}">
                                 
-                                <div ng-click="selectProductKind(product)" ng-repeat="product in res.products" class="red-normal-item product clickable bold" ng-bind="product.name">
+                                <div ng-click="selectProductKind(product)" ng-repeat="product in res.products" class="deep-normal-item product clickable bold" ng-bind="product.name">
                                 </div>
                             </div>
                             <div class="red-scroll page" data-page="1" ng-class="{left:productSelectPageIndex>1,center:productSelectPageIndex==1,right:productSelectPageIndex<1}">
                                <div ng-click="goScene('make',selectingProductKind)" data-deep-btn="blue" class="deep-btn start-new-product">开个新坑</div> 
-                                <div ng-click="goScene('make',selectingProductKind,work.id)" ng-repeat="work in z.work[selectingProductKind]" class="red-normal-item work clickable" ng-bind="work | workPrefix">
+                                <div ng-click="goScene('make',selectingProductKind,work.id)" ng-repeat="work in z.work[selectingProductKind]" class="deep-normal-item work clickable" ng-bind="work | workPrefix">
                                 </div>
                             </div>
                         </main>
@@ -571,12 +571,18 @@
                     </div>
                 </div>
             </div>
-<div class="scene" data-scene="save" ng-if="scenes['save']" >
+<div class="scene" data-scene="save" ng-if="scenes['save']" ng-controller="SaveController">
 
-                <div  class="wrap">
-                    <h1 class="back" ng-click="go_back()">返回游戏</h1>
-                    <h1 class="title" ng-bind="title"></h1>
-                    <button ng-repeat="btn in buttons track by $index" ng-click="handle($index)" class="button button-3d button-inverse button-save" style="top: {{80+70*$index}}px; " ng-bind="btn.title"></button>
+                <button ng-click="goScene('home')" class="red-icon go-back" data-icon="left"></button>
+                <div deep-panel class="select-save">
+                    <header deep-header="{{title}}" class="header">
+                    </header>
+                    <main>
+                        <button deep-normal-item="getLabel(save)" ng-repeat="save in saves track by $index" ng-click="handle($index)" class="deep-normal-item  btn-save">
+                            
+                        </button>
+                    </main>
+                    
                 </div>
             </div>
 <div class="scene" data-scene="state" ng-if="scenes['state']" >

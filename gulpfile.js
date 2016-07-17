@@ -51,6 +51,7 @@ gulp.task('html', function () {
     let controllerMap={
         make:"MakeController",
         character:"CharacterController",
+        save:"SaveController",
     }
     let sceneStr=sceneArray.reduce(function(p,v){
         let controller=controllerMap[v]?`ng-controller="${controllerMap[v]}"`:"";

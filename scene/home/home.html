@@ -22,8 +22,8 @@
             <span class="glyphicon glyphicon-stats"></span> 月份
         </span>
         <span class="value">
-                <span class="rotate upon" ng-bind="getMonth(z.time.part+1)" ng-class="{active:ending,transition:endingTransition}"></span>
-        <span class="rotate below " ng-bind="getMonth(z.time.part)" ng-class="{active:ending,transition:endingTransition}"></span>
+                <span class="rotate upon" ng-bind="getMonth(z.time.round+1)" ng-class="{active:ending,transition:endingTransition}"></span>
+        <span class="rotate below " ng-bind="getMonth(z.time.round)" ng-class="{active:ending,transition:endingTransition}"></span>
         </span>
     </span>
 

@@ -1,5 +1,11 @@
-<div  class="wrap">
-    <h1 class="back" ng-click="go_back()">返回游戏</h1>
-    <h1 class="title" ng-bind="title"></h1>
-    <button ng-repeat="btn in buttons track by $index" ng-click="handle($index)" class="button button-3d button-inverse button-save" style="top: {{80+70*$index}}px; " ng-bind="btn.title"></button>
+<button ng-click="goScene('home')" class="red-icon go-back" data-icon="left"></button>
+<div deep-panel class="select-save">
+    <header deep-header="{{title}}" class="header">
+    </header>
+    <main>
+        <button deep-normal-item="getLabel(save)" ng-repeat="save in saves track by $index" ng-click="handle($index)" class="deep-normal-item  btn-save">
+            
+        </button>
+    </main>
+    
 </div>

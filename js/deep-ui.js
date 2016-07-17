@@ -18,6 +18,16 @@ define(["angular-module"], function (module) {
                 <span class="deep-header-text unselectable" ng-class="{little:selectingProductKind}"></span>`
             };
         })
+        .directive("deepNormalItem", function () {
+            return {
+                restrict: 'A',
+                compile: function (element, attrs) {
+                    let $$ = element.find.bind(element);
+                    $$(".deep-text").attr("ng-bind",attrs["deepNormalItem"]);
+                },
+                template: `<div class="deep-text"></div>`
+            };
+        })
         .directive('deepItemIcon', function () {
             return {
                 restrict: 'A',
@@ -84,26 +94,27 @@ define(["angular-module"], function (module) {
                 link: function (scope, element, attrs) {
                     let $$ = element.find.bind(element);
                     let $fill = $$(".deep-fill");
-                    let $text=$$(".deep-text");
+                    let $text = $$(".deep-text");
+
                     function updateWidth(v) {
                         let max = $parse(attrs["deepMax"])(scope);
                         if (v == 0) {
                             $fill.hide();
                         } else {
                             $fill.show();
-                            
-                           
+
+
                             let width = (108 - 5) * v / max + 5 + "%";
                             $fill.css("width", width);
-                            
+
                         }
-              
-                        $text.text(v+"/"+max);
+
+                        $text.text(v + "/" + max);
 
                     }
 
                     element.addClass("deep-bar");
-                    
+
                     //                    updateWidth($parse(attrs["deepPower"])(scope));
                     scope.$watch(attrs["deepPower"], updateWidth, true);
                 },

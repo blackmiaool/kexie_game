@@ -3,20 +3,7 @@ define(["jquery"],function () {
     let z;
     let sx= 960;
     let sy= 540;
-    var exports = {
-        resPath,
-        color,
-        find_index,
-        clone,
-        load_object,
-        save_object,
-        g,
-        setZ,
-        getUid,
-        local,
-        sx,
-        sy,
-    }
+
     $.fn.transform=function(v){
         this.css("-webkit-transform",v);
         this.css("-ms-transform",v);
@@ -50,13 +37,29 @@ define(["jquery"],function () {
         return resPath + str
     }
 
-    function save_object(key, obj) {
+    function save(key, value) {
+        if(typeof key!="string"||!value){
+            console.error("wrong parameter");
+            return ;
+        }
         localStorage.removeItem(key)
-        localStorage.setItem(key, JSON.stringify(obj));
+        if(typeof value=="object"){
+            localStorage.setItem(key, JSON.stringify(value));
+        }else{
+            localStorage.setItem(key, value);    
+        }
+        
     }
 
-    function load_object(key) {
-        return JSON.parse(localStorage.getItem(key))
+    function load(key) {
+        let result=localStorage.getItem(key); 
+        try{
+            result=JSON.parse(result);
+        }catch(e){
+            //Just not object. It's ok.
+        }
+        
+        return result;
     }
     function setZ(thisz){
         z=thisz;
@@ -97,6 +100,20 @@ define(["jquery"],function () {
             localStorage.removeItem(a)
         }
     };
+    var exports = {
+        resPath,
+        color,
+        find_index,
+        clone,
+        load,
+        save,
+        g,
+        setZ,
+        getUid,
+        local,
+        sx,
+        sy,
+    }
     return exports;
 
 })
