@@ -29,24 +29,19 @@
             </section>
 -->
         </div>
-        <div ng-show="phase=='making'" class="main-content" data-phase="ready-to-make">
-            <div class="state">
-                <header>评分</header>
-                <main class="deep-health" deep-power="z.power" deep-max="z.powerMax">
-                </main>
-            </div>
-            <button class="deep-btn green lg">折腾</button>
-
+        <div ng-if="phase=='making'" class="main-content" data-phase="making" ng-controller="GameController">
+        
+        <!-- inject: ../scene/make/game.html-->
         </div>
     </main>
 </div>
 
 <div class="left top-block">
-    <button ng-click="goScene('home')" class="red-icon go-back" data-icon="left"></button>
-    <button ng-click="goScene('state')" class="red-icon go-state yellow" data-icon="profile"></button>
+    <button ng-click="goScene('home')" class="deep-icon go-back" data-icon="left"></button>
+    <button ng-click="goScene('state')" class="deep-icon go-state yellow" data-icon="profile"></button>
     <div class="info-block">
         <header>当前制作</header>
-        <main class="deep-normal-item solid" ng-bind="workingKind">
+        <main deep-normal-item="workingKind" class=" solid">
 
         </main>
     </div>
@@ -69,7 +64,7 @@
 
                 <div ng-mouseenter="hoverSkill(skill)" ng-mouseleave="stopHoverSkill()" class="skill-wrap">
                     <div class="deep-item-icon">
-                        <img draggable="false" ng-src="{{getSkillIcon(skill.name)}}" alt="" class="skill-icon">
+                        <img draggable="false" ng-src="{{getSkillIcon(skill.name)}}" class="skill-icon">
                     </div>
                     <!--
                     <div class="skill">

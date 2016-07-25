@@ -152,7 +152,9 @@ function (sp, rsp, $timeout) {
 
 
         }
-
+        function openSettings(){
+            rsp.$emit("openSettings");  
+        }
         function actionBack() {
             sp.actionPanel = "";
             unlockAction(true);
@@ -242,6 +244,7 @@ function (sp, rsp, $timeout) {
             monkey,
             actionBack,
             goClass,
+            openSettings
 
         });
 }]);
@@ -417,6 +420,30 @@ module.controller("StoreController", ["$scope", "$rootScope", "$timeout", functi
         setPage,
     })
 }]);
+module.controller("SettingsController", ["$scope", "$rootScope", "$timeout", function (sp, rsp, $timeout) {
+    function openSettings() {
+        sp.show = true;
+
+        $timeout(function () {
+            sp.active = true;
+        }, 100)
+    }
+    rsp.$on("openSettings", function () {
+        openSettings();
+    })
+
+    function closeSettings() {
+        sp.show = false;
+        $timeout(function () {
+            sp.active = false;
+        }, 300)
+
+    }
+
+    _.extend(sp,{
+        
+    });
+}])
 let priceLine = {
     IC: [7 / 8, 2],
     基础器件: [13 / 14, 3],

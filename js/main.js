@@ -28,6 +28,9 @@
             "angular-animate": {
                 deps: ["angular"],
             },
+            "jquery.paracurve":{
+                deps: ["jquery"],
+            },
         }
     };
     config.sysPaths.forEach(function (v, i, a) {
@@ -54,7 +57,9 @@
 
 
 
-    requirejs(["jquery", "system-sys", "angular", 'angular-module', "system-scene", "res", "system-common", 'z', 'angular-animate', "plot", "deep-ui"].concat(gulpConfig.scenes.map((v) => v.name)), function ($, sys, angular, module, scene, res, common, z) {
+    requirejs(["jquery", "system-sys", "angular", 'angular-module', "system-scene", "res", "system-common", 'z', 'angular-animate', "plot", "deep-ui","jquery.paracurve"].concat(gulpConfig.scenes.map((v) => v.name)), function ($, sys, angular, module, scene, res, common, z) {
+        console.info("res",res);
+console.info("z",z);
         $("#game-first-tip").remove();
         module.controller("RootController", ["$rootScope", "$scope", function (rsp, sp) {
 
@@ -74,12 +79,10 @@
                 return preText;
             }
 
-            function getItemIcon(item, color) {
-
+            function getItemIcon(item, color="wheat") {
                 if (typeof item === "string") {
                     item = res.devices[item];
                 }
-
                 return `${common.resPath}icon/item/${color}/${item.icon}.svg`;
             }
 
@@ -144,7 +147,7 @@
             })
             $(".scene-wrap").show();
             common.$rootScope.scenes = scenes;
-            _.extend(sp, {
+            _.extend(rsp, {
                 img: res.img,
                 z,
                 res,

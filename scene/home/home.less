@@ -1,5 +1,6 @@
 @import "common.less";
 @import "variables.less";
+@import "shop.less";
 .bg("Background/home.jpg");
 background-size: cover;
 .basic {
@@ -356,7 +357,7 @@ background-size: cover;
     .abs-fill;
 }
 
-.shop-mask {
+.home-mask {
     .abs-fill;
     z-index: 100;
     background-color: rgba(0, 0, 0, 0);
@@ -366,202 +367,17 @@ background-size: cover;
     }
 }
 
-.shop-panel {
-    .abs-fill;
-    z-index: 101;
-    border: 5px solid #1f2639;
-    border-radius: 10px;
-    background-color: rgba(58, 77, 107, 1);
-    text-align: center;
-    box-shadow: 5px 5px 3px rgba(0, 0, 0, 0.5);
-    width: 770px;
-    height: 480px;
-    .transition(0.3s transform ease-out);
-    .transform(translateY(-30px));
-    &.active {
-        .transform(translateY(0px));
-    }
-    .items-money-sum,
-    .have-money {
-        position: absolute;
-        color: white;
-    }
-    .items-money-sum {
-        bottom: 20px;
-        left: 230px;
-    }
-    .have-money {
-        bottom: 20px;
-        left: 30px;
-    }
-    .close {
-//        .bg("UI/red/Button_Circular_Small_Background.png");
-        display: inline-block;
-        background-size: contain;
-        position: absolute;
-        right: -25px;
-        top: -25px;
-        z-index: 1;
-        .square(60px);
-    }
-    .checkout {
-//        .bg("UI/red/Button_Rectangular_Red.png");
-//        img {
-//            .abs-fill;
-//            display: none;
-//            width: 97%;
-//            height: 85%;
-//            position: absolute;
-//        }
-//        &:active:not(.poor) {
-//            img {
-//                display: block;
-//            }
-//        }
-//        background-size: contain;
-//        @height: 40px;
-//        width: @height*454/142;
-//        line-height: @height;
-//        color: #e7c7b2;
-//        font-weight: bold;
-//        height: 40px;
-//        text-align: center;
-        position: absolute;
-        right: 25px;
-        bottom: 10px;
-    }
-    .center-panel {
-        position: absolute;
-        left: 30px;
-        right: 30px;
-        top: 30px;
-        bottom: 60px;
-        border: 4px @blue solid;
-        border-radius: 10px;
-        background-color: rgba(31, 54, 68, 1);
-        color: white;
-        text-align: left;
-        .page-select {
-            >button {
-                //                width: 30px;
-                position: absolute;
-                top: -3px;
-                padding: 0 10px;
-                word-break: break-all;
-                //                height: 60px;   
-                white-space: pre-wrap;
-                outline: none;
-                .transform(translateY(-100%));
-                &.active {
-                    background-color: @blue;
-                    color: white;
-                }
-                &[data-page="器件"] {
-                    left: 10px;
-                }
-                &[data-page="仪器"] {
-                    left: 70px;
-                }
-            }
-        }
-        .list {
-            overflow: auto;
-            width: 60%;
-            height: 100%;
-            &::-webkit-scrollbar {
-                width: 5px;
-            }
-            &::-webkit-scrollbar-thumb {
-                border-radius: 5px;
-                background: darken(@blue, 0%);
-                border: 0px solid #fff;
-            }
-            table {
-                width: 98%;
-                * {}
-            }
-            .item-line {
-                &:hover {
-                    background-color: rgba(0, 0, 0, 0.2);
-                }
-            }
-            th.name {
-                width: 120px;
-            }
-            th.price {
-                width: 70px;
-                text-align: right;
-            }
-            td.price {
-                text-align: right;
-            }
-            th.cnt {
-                text-align: center;
-            }
-            th.have {
-                width: 35px;
-                text-align: center;
-            }
-            th.price {
-                text-align: right;
-            }
-            td.cnt {
-                width: 130px;
-                text-align: center;
-                button {
-                    .square(25px);
-                    text-align: center;
-                    padding: 0;
-                    padding-top: 3px;
-                    margin: 0;
-                    outline: none;
-                    span {
-                        line-height: 14px;
-                        .square(13px);
-                        text-align: center;
-                    }
-                }
-                .value {
-                    display: inline-block;
-                    width: 40px;
-                    text-align: center;
-                }
-            }
-            td.have {
-                text-align: center;
-            }
-        }
-        .items-desc-frame {
-            width: 40%;
-            position: absolute;
-            right: 0;
-            top: 0;
-            padding: 10px;
-            padding-top: 20px;
-            font-size: 14px;
-            .tag {
-                margin-bottom: 5px;
-            }
-            .value {
-                text-indent: 2em;
-                margin-top: 0;
-                margin-bottom: 10px;
-            }
-            .icon-wrap {
-                text-align: center;
-                .icon {
-                    width: 100px;
-                }
-            }
-        }
-    }
-    .bg {
-        height: 100%;
-        width: 100%;
-    }
-}
+
 
 .mask {
     .abs-fill;
     background-color: rgba(0, 0, 0, 0.5);
+}
+
+
+.settings-mask{
+ .abs-fill;   
+    &.active{
+        background-color:  rgba(0, 0, 0, 0.3);
+    }
 }

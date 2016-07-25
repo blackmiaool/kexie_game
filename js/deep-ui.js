@@ -23,6 +23,7 @@ define(["angular-module"], function (module) {
                 restrict: 'A',
                 compile: function (element, attrs) {
                     let $$ = element.find.bind(element);
+                    element.addClass("deep-normal-item");
                     $$(".deep-text").attr("ng-bind",attrs["deepNormalItem"]);
                 },
                 template: `<div class="deep-text"></div>`

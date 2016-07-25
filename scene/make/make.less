@@ -1,5 +1,6 @@
 @import "common.less";
 @import "variables.less";
+@import "game.less";
 background: url("@{res-folder}/Background/make.png");
 background-position: bottom;
 background-size: cover;
@@ -7,35 +8,51 @@ color:wheat;
 &>.center {
     left: 25%;
     width: 50%;
-    top: 40px !important;
+    top: 30px !important;
+    .deep-header{
+        width: 283px;
+            transform: translateY(-27%);
+        >.deep-header-text{
+            line-height: 72px;
+        }
+    }
     >main {
-        .square-crop(23px);
-        top: 60px;
-        >.main-content {
-            &.ng-hide.ng-hide-add {
-                opacity: 0;
+        .crop(23px);
+        top: 0px;
+        padding-top: 10px;
+    }
+    .main-content {
+        &.ng-hide.ng-hide-add {
+            opacity: 0;
+        }
+        transition: 0.3s all ease-out;
+        &[data-phase="ready-to-make"] {
+            >header {
+                margin-top: 20px;
             }
-            transition: 0.3s all ease-out;
-            &[data-phase="ready-to-make"] {
-                >header {
-                    margin-top: 20px;
-                }
-                text-align: center;
-                button.start-build {
-                    margin-bottom: 10px;
-                }
-                .item {
-                    margin: 10px;
-                }
-                section {
-                    margin-bottom: 15px;
-                    &.extension {
-                        label {
-                            margin: 10px;
-                        }
+            text-align: center;
+            button.start-build {
+                margin-bottom: 10px;
+            }
+            .item {
+                margin: 10px;
+                margin-top: 0;
+            }
+            section {
+                margin-bottom: 15px;
+                &.extension {
+                    label {
+                        margin: 10px;
                     }
                 }
             }
+        }
+        &[data-phase="making"] {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            .fill;
         }
     }
 }
@@ -68,7 +85,6 @@ color:wheat;
         transition: 0.3s width ease-out;
     }
     .info-block {
-
         header {
             margin-left: 10px;
         }
@@ -93,9 +109,8 @@ color:wheat;
 &>.right {
     left: 75%;
     width: 25%;
-    top: 40px;
+    top: 30px;
     padding: 17px 22px;
-
     &>.section {
         padding-top: 10px;
         &>header {

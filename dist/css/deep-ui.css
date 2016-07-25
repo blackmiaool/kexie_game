@@ -67,7 +67,7 @@ img {
   border-radius: 10000px;
   overflow: hidden;
 }
-.transfrom-center {
+.transform-center {
   position: absolute;
   top: 50%;
   left: 50%;
@@ -114,10 +114,12 @@ img {
   font-size: 22px;
   line-height: 90px;
 }
-[deep-panel] {
+[deep-panel],
+.deep-panel {
   position: relative;
 }
-[deep-panel]:before {
+[deep-panel]:before,
+.deep-panel:before {
   position: absolute;
   left: 0;
   right: 0;
@@ -126,14 +128,15 @@ img {
   margin: auto;
   content: "";
   border-style: solid;
-  border-width: 123.6px;
+  border-width: 108px;
   -webkit-border-image: url("../res/deep_ui/Window_Background.png") 206 206 206 206 fill repeat;
   -moz-border-image: url("../res/deep_ui/Window_Background.png") 206 206 206 206 fill repeat;
   -ms-border-image: url("../res/deep_ui/Window_Background.png") 206 206 206 206 fill repeat;
   -o-border-image: url("../res/deep_ui/Window_Background.png") 206 206 206 206 fill repeat;
   border-image: url("../res/deep_ui/Window_Background.png") 206 206 206 206 fill repeat;
 }
-[deep-panel] > main {
+[deep-panel] > main,
+.deep-panel > main {
   position: absolute;
   left: 0;
   right: 0;
@@ -142,36 +145,13 @@ img {
   margin: auto;
   padding-top: 70px;
 }
-.deep-panel-corner22 {
-  background-image: url("../res/deep_ui/red_panel_corner_big.png");
-  background-repeat: no-repeat;
-  position: absolute;
-  width: 50%;
-  height: 50%;
-  z-index: -1;
-}
-.deep-panel-corner22.deep-panel-corner1 {
-  top: 0;
-  left: 0;
-  background-position: left top;
-}
-.deep-panel-corner22.deep-panel-corner2 {
-  top: 0;
-  left: 50%;
-  background-image: url("../res/deep_ui/red_panel_corner_big2.png");
-  background-position: right top;
-}
-.deep-panel-corner22.deep-panel-corner3 {
-  bottom: 0;
-  right: 0;
-  background-image: url("../res/deep_ui/red_panel_corner_big3.png");
-  background-position: right bottom;
-}
-.deep-panel-corner22.deep-panel-corner4 {
-  bottom: 0;
-  left: 0;
-  background-image: url("../res/deep_ui/red_panel_corner_big4.png");
-  background-position: left bottom;
+.deep-darken-panel {
+  border-style: solid;
+  border-width: 22px;
+  -moz-border-image: url("../res/deep_ui/darken_panel.png") 23 repeat;
+  -webkit-border-image: url("../res/deep_ui/darken_panel.png") 23 repeat;
+  -o-border-image: url("../res/deep_ui/darken_panel.png") 23 repeat;
+  border-image: url("../res/deep_ui/darken_panel.png") 23 fill repeat;
 }
 .red-scroll-shadow-wrap:after {
   content: "";
@@ -206,7 +186,7 @@ img {
   box-shadow: inset 0 0 3px #000000;
   background-color: #413838;
 }
-.red-icon {
+.deep-icon {
   width: 80px;
   height: 80px;
   position: relative;
@@ -218,10 +198,10 @@ img {
   outline: none;
   padding: 0;
 }
-.red-icon.disabled {
+.deep-icon.disabled {
   opacity: 0.4;
 }
-.red-icon:after {
+.deep-icon:after {
   position: absolute;
   left: 0;
   right: 0;
@@ -236,10 +216,10 @@ img {
   content: "";
   opacity: 0;
 }
-.red-icon:active:after {
+.deep-icon:active:after {
   opacity: 1;
 }
-.red-icon:before {
+.deep-icon:before {
   position: absolute;
   left: 0;
   right: 0;
@@ -253,133 +233,133 @@ img {
   background-size: contain;
   background-repeat: no-repeat;
 }
-.red-icon[data-icon="accept"]:before {
+.deep-icon[data-icon="accept"]:before {
   background-image: url("../res/deep_ui/icon/accept.png");
 }
-.red-icon[data-icon="apps"]:before {
+.deep-icon[data-icon="apps"]:before {
   background-image: url("../res/deep_ui/icon/apps.png");
 }
-.red-icon[data-icon="armor"]:before {
+.deep-icon[data-icon="armor"]:before {
   background-image: url("../res/deep_ui/icon/armor.png");
 }
-.red-icon[data-icon="bulls"]:before {
+.deep-icon[data-icon="bulls"]:before {
   background-image: url("../res/deep_ui/icon/bulls.png");
 }
-.red-icon[data-icon="chat"]:before {
+.deep-icon[data-icon="chat"]:before {
   background-image: url("../res/deep_ui/icon/chat.png");
 }
-.red-icon[data-icon="chest"]:before {
+.deep-icon[data-icon="chest"]:before {
   background-image: url("../res/deep_ui/icon/chest.png");
 }
-.red-icon[data-icon="close"]:before {
+.deep-icon[data-icon="close"]:before {
   background-image: url("../res/deep_ui/icon/close.png");
 }
-.red-icon[data-icon="crosshair"]:before {
+.deep-icon[data-icon="crosshair"]:before {
   background-image: url("../res/deep_ui/icon/crosshair.png");
 }
-.red-icon[data-icon="crystal"]:before {
+.deep-icon[data-icon="crystal"]:before {
   background-image: url("../res/deep_ui/icon/crystal.png");
 }
-.red-icon[data-icon="cup"]:before {
+.deep-icon[data-icon="cup"]:before {
   background-image: url("../res/deep_ui/icon/cup.png");
 }
-.red-icon[data-icon="down"]:before {
+.deep-icon[data-icon="down"]:before {
   background-image: url("../res/deep_ui/icon/down.png");
 }
-.red-icon[data-icon="flag"]:before {
+.deep-icon[data-icon="flag"]:before {
   background-image: url("../res/deep_ui/icon/flag.png");
 }
-.red-icon[data-icon="hammer"]:before {
+.deep-icon[data-icon="hammer"]:before {
   background-image: url("../res/deep_ui/icon/hammer.png");
 }
-.red-icon[data-icon="heart"]:before {
+.deep-icon[data-icon="heart"]:before {
   background-image: url("../res/deep_ui/icon/heart.png");
 }
-.red-icon[data-icon="home"]:before {
+.deep-icon[data-icon="home"]:before {
   background-image: url("../res/deep_ui/icon/home.png");
 }
-.red-icon[data-icon="layout"]:before {
+.deep-icon[data-icon="layout"]:before {
   background-image: url("../res/deep_ui/icon/layout.png");
 }
-.red-icon[data-icon="left"]:before {
+.deep-icon[data-icon="left"]:before {
   background-image: url("../res/deep_ui/icon/left.png");
 }
-.red-icon[data-icon="letter"]:before {
+.deep-icon[data-icon="letter"]:before {
   background-image: url("../res/deep_ui/icon/letter.png");
 }
-.red-icon[data-icon="lightning"]:before {
+.deep-icon[data-icon="lightning"]:before {
   background-image: url("../res/deep_ui/icon/lightning.png");
 }
-.red-icon[data-icon="lock"]:before {
+.deep-icon[data-icon="lock"]:before {
   background-image: url("../res/deep_ui/icon/lock.png");
 }
-.red-icon[data-icon="network"]:before {
+.deep-icon[data-icon="network"]:before {
   background-image: url("../res/deep_ui/icon/network.png");
 }
-.red-icon[data-icon="pause"]:before {
+.deep-icon[data-icon="pause"]:before {
   background-image: url("../res/deep_ui/icon/pause.png");
 }
-.red-icon[data-icon="planet"]:before {
+.deep-icon[data-icon="planet"]:before {
   background-image: url("../res/deep_ui/icon/planet.png");
 }
-.red-icon[data-icon="play"]:before {
+.deep-icon[data-icon="play"]:before {
   background-image: url("../res/deep_ui/icon/play.png");
 }
-.red-icon[data-icon="plus"]:before {
+.deep-icon[data-icon="plus"]:before {
   background-image: url("../res/deep_ui/icon/plus.png");
 }
-.red-icon[data-icon="profile"]:before {
+.deep-icon[data-icon="profile"]:before {
   background-image: url("../res/deep_ui/icon/profile.png");
 }
-.red-icon[data-icon="puzzle"]:before {
+.deep-icon[data-icon="puzzle"]:before {
   background-image: url("../res/deep_ui/icon/puzzle.png");
 }
-.red-icon[data-icon="replay"]:before {
+.deep-icon[data-icon="replay"]:before {
   background-image: url("../res/deep_ui/icon/replay.png");
 }
-.red-icon[data-icon="right"]:before {
+.deep-icon[data-icon="right"]:before {
   background-image: url("../res/deep_ui/icon/right.png");
 }
-.red-icon[data-icon="rocket"]:before {
+.deep-icon[data-icon="rocket"]:before {
   background-image: url("../res/deep_ui/icon/rocket.png");
 }
-.red-icon[data-icon="rockets"]:before {
+.deep-icon[data-icon="rockets"]:before {
   background-image: url("../res/deep_ui/icon/rockets.png");
 }
-.red-icon[data-icon="rows"]:before {
+.deep-icon[data-icon="rows"]:before {
   background-image: url("../res/deep_ui/icon/rows.png");
 }
-.red-icon[data-icon="settings"]:before {
+.deep-icon[data-icon="settings"]:before {
   background-image: url("../res/deep_ui/icon/settings.png");
 }
-.red-icon[data-icon="share"]:before {
+.deep-icon[data-icon="share"]:before {
   background-image: url("../res/deep_ui/icon/share.png");
 }
-.red-icon[data-icon="shield"]:before {
+.deep-icon[data-icon="shield"]:before {
   background-image: url("../res/deep_ui/icon/shield.png");
 }
-.red-icon[data-icon="star"]:before {
+.deep-icon[data-icon="star"]:before {
   background-image: url("../res/deep_ui/icon/star.png");
 }
-.red-icon[data-icon="timeer"]:before {
+.deep-icon[data-icon="timeer"]:before {
   background-image: url("../res/deep_ui/icon/timeer.png");
 }
-.red-icon[data-icon="tune"]:before {
+.deep-icon[data-icon="tune"]:before {
   background-image: url("../res/deep_ui/icon/tune.png");
 }
-.red-icon[data-icon="up"]:before {
+.deep-icon[data-icon="up"]:before {
   background-image: url("../res/deep_ui/icon/up.png");
 }
-.red-icon.blue {
+.deep-icon.blue {
   background-image: url("../res/deep_ui/btn_circle_blue.png");
 }
-.red-icon.red {
+.deep-icon.red {
   background-image: url("../res/deep_ui/btn_circle_red.png");
 }
-.red-icon.green {
+.deep-icon.green {
   background-image: url("../res/deep_ui/btn_circle_green.png");
 }
-.red-icon.yellow {
+.deep-icon.yellow {
   background-image: url("../res/deep_ui/btn_circle_yellow.png");
 }
 .deep-normal-item {
@@ -417,6 +397,7 @@ img {
   top: 0;
   bottom: 0;
   margin: auto;
+  border-style: solid;
   content: "";
   border-width: 12.6px 9.9px 11.4px 11.7px;
   -webkit-border-image: url("../res/deep_ui/red_item_bg.png") 42 33 38 39 fill repeat;
@@ -536,6 +517,9 @@ img {
   text-align: center;
   font-size: 15px;
   background-position: center center;
+  background-color: transparent;
+  color: wheat;
+  border: none;
 }
 .deep-little-box {
   height: 40px;
@@ -710,7 +694,7 @@ img {
   top: 0;
   bottom: 0;
   margin: auto;
-  top: -20px;
+  top: -22px;
   font-size: 16px;
   line-height: 16px;
   height: 16px;
@@ -747,4 +731,16 @@ img {
   -ms-border-image: url("../res/deep_ui/UnitFrame_HealthBar_Fill_Tiled.png") 68 10 0 10 fill stretch;
   -o-border-image: url("../res/deep_ui/UnitFrame_HealthBar_Fill_Tiled.png") 68 10 0 10 fill stretch;
   border-image: url("../res/deep_ui/UnitFrame_HealthBar_Fill_Tiled.png") 68 10 0 10 fill stretch;
+}
+.deep-cnt-btn {
+  background-color: #4d4444;
+  border: none;
+  color: wheat;
+  border-radius: 4px;
+}
+.deep-cnt-btn[disabled] {
+  opacity: 0.5;
+}
+.deep-cnt-btn:active:not([disabled]) {
+  background-color: #3f3838;
 }

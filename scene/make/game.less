@@ -1,0 +1,44 @@
+@import "common.less";
+@import "variables.less";
+.game-wrap {
+    @border: 1px solid darken(wheat, 80%);
+    position: relative;
+    box-sizing: content-box;
+    &.active {
+        .row,
+        .column {
+            opacity: 1;
+        }
+    }
+    .grid {
+        display: inline-block;
+    }
+    .row,
+    .column {
+        opacity: 0;
+        transition: 0.5s opacity ease-out;
+    }
+    .row {
+        border-bottom: @border;
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: auto;
+    }
+    .column {
+        border-left: @border;
+        position: absolute;
+        top: 0;
+        bottom: 0;
+    }
+    .game-item{
+        position: absolute;
+        transition: 0.3s all;
+        &.player{            
+            opacity: 0.5;
+            &.active{
+                opacity: 1;
+            }
+        }
+    }
+}

@@ -3051,7 +3051,7 @@ img {
   border-radius: 10000px;
   overflow: hidden;
 }
-.transfrom-center {
+.transform-center {
   position: absolute;
   top: 50%;
   left: 50%;
@@ -3089,9 +3089,13 @@ body {
 }
 body {
   box-sizing: border-box;
-  font-family: punctuation, "PingFangSC-Regular", "Microsoft Yahei", "sans-serif";
+  font-family: Arial, Verdana, "微软雅黑", "黑体", serif;
   -webkit-font-smoothing: subpixel-antialiased;
+  font-smoothing: subpixel-antialiased;
   cursor: url("../res/cursor/normal.cur"), auto !important;
+}
+button {
+  font-family: Arial, Verdana, "微软雅黑", "黑体", serif;
 }
 #wrap {
   position: absolute;
@@ -3435,6 +3439,214 @@ input {
   background-repeat: no-repeat;
   background-size: contain;
   background-size: cover;
+}
+.scene[data-scene="home"] .shop-panel {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+  z-index: 101;
+  border-radius: 10px;
+  text-align: center;
+  width: 770px;
+  height: 500px;
+  -webkit-transition: 0.3s transform ease-out;
+  -o-transition: 0.3s transform ease-out;
+  transition: 0.3s transform ease-out;
+  -webkit-transform: translateY(-30px);
+  -ms-transform: translateY(-30px);
+  transform: translateY(-30px);
+}
+.scene[data-scene="home"] .shop-panel.active {
+  -webkit-transform: translateY(0px);
+  -ms-transform: translateY(0px);
+  transform: translateY(0px);
+}
+.scene[data-scene="home"] .shop-panel .items-money-sum,
+.scene[data-scene="home"] .shop-panel .have-money {
+  position: absolute;
+  color: wheat;
+}
+.scene[data-scene="home"] .shop-panel .items-money-sum {
+  bottom: 37px;
+  left: 230px;
+}
+.scene[data-scene="home"] .shop-panel .have-money {
+  bottom: 37px;
+  left: 53px;
+}
+.scene[data-scene="home"] .shop-panel .close {
+  display: inline-block;
+  background-size: contain;
+  position: absolute;
+  right: -15px;
+  top: -15px;
+  z-index: 1;
+  width: 60px;
+  height: 60px;
+}
+.scene[data-scene="home"] .shop-panel .dark-scroll::-webkit-scrollbar {
+  width: 5px;
+}
+.scene[data-scene="home"] .shop-panel .dark-scroll::-webkit-scrollbar-thumb {
+  border-radius: 5px;
+  background: #4d4444;
+  border: 0px solid #fff;
+}
+.scene[data-scene="home"] .shop-panel .checkout {
+  position: absolute;
+  right: 39px;
+  bottom: 30px;
+}
+.scene[data-scene="home"] .shop-panel .checkout.poor {
+  opacity: 0.5;
+}
+.scene[data-scene="home"] .shop-panel .page-select {
+  z-index: 1;
+  position: relative;
+}
+.scene[data-scene="home"] .shop-panel .page-select > button {
+  position: absolute;
+  top: 18px;
+  padding: 0 10px;
+  word-break: break-all;
+  white-space: pre-wrap;
+  outline: none;
+  color: #f5deb3;
+  opacity: 0.4;
+  -webkit-transform: translateY(-100%);
+  -ms-transform: translateY(-100%);
+  transform: translateY(-100%);
+}
+.scene[data-scene="home"] .shop-panel .page-select > button.active {
+  z-index: 1;
+  color: wheat;
+  opacity: 1;
+}
+.scene[data-scene="home"] .shop-panel .page-select > button[data-page="器件"] {
+  left: 30px;
+}
+.scene[data-scene="home"] .shop-panel .page-select > button[data-page="仪器"] {
+  left: 90px;
+}
+.scene[data-scene="home"] .shop-panel .center-panel-wrap {
+  position: absolute;
+  left: 30px;
+  right: 30px;
+  top: 50px;
+  bottom: 65px;
+  color: wheat;
+}
+.scene[data-scene="home"] .shop-panel .center-panel-wrap > .bg {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+  pointer-events: none;
+  z-index: 1;
+}
+.scene[data-scene="home"] .shop-panel .center-panel {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  bottom: 20px;
+  left: 20px;
+  z-index: 2;
+  border-radius: 10px;
+  text-align: left;
+}
+.scene[data-scene="home"] .shop-panel .center-panel .list {
+  position: relative;
+  overflow: auto;
+  width: 60%;
+  height: 100%;
+}
+.scene[data-scene="home"] .shop-panel .center-panel .list table {
+  width: 98%;
+}
+.scene[data-scene="home"] .shop-panel .center-panel .list .item-line:hover {
+  background-color: rgba(0, 0, 0, 0.2);
+}
+.scene[data-scene="home"] .shop-panel .center-panel .list th.name {
+  width: 120px;
+}
+.scene[data-scene="home"] .shop-panel .center-panel .list th.price {
+  width: 70px;
+  text-align: right;
+}
+.scene[data-scene="home"] .shop-panel .center-panel .list td.price {
+  text-align: right;
+}
+.scene[data-scene="home"] .shop-panel .center-panel .list th.cnt {
+  text-align: center;
+}
+.scene[data-scene="home"] .shop-panel .center-panel .list th.have {
+  width: 35px;
+  text-align: center;
+}
+.scene[data-scene="home"] .shop-panel .center-panel .list th.price {
+  text-align: right;
+}
+.scene[data-scene="home"] .shop-panel .center-panel .list td.cnt {
+  width: 130px;
+  text-align: center;
+}
+.scene[data-scene="home"] .shop-panel .center-panel .list td.cnt button {
+  width: 25px;
+  height: 25px;
+  text-align: center;
+  padding: 0;
+  padding-top: 3px;
+  margin: 0;
+  outline: none;
+}
+.scene[data-scene="home"] .shop-panel .center-panel .list td.cnt button span {
+  line-height: 14px;
+  width: 13px;
+  height: 13px;
+  text-align: center;
+}
+.scene[data-scene="home"] .shop-panel .center-panel .list td.cnt .value {
+  display: inline-block;
+  width: 40px;
+  text-align: center;
+}
+.scene[data-scene="home"] .shop-panel .center-panel .list td.have {
+  text-align: center;
+}
+.scene[data-scene="home"] .shop-panel .center-panel .items-desc-frame {
+  position: relative;
+  width: 40%;
+  position: absolute;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  padding: 10px;
+  padding-top: 20px;
+  font-size: 14px;
+  overflow: auto;
+}
+.scene[data-scene="home"] .shop-panel .center-panel .items-desc-frame .tag {
+  margin-bottom: 5px;
+}
+.scene[data-scene="home"] .shop-panel .center-panel .items-desc-frame .value {
+  text-indent: 2em;
+  margin-top: 0;
+  margin-bottom: 10px;
+}
+.scene[data-scene="home"] .shop-panel .center-panel .items-desc-frame .icon-wrap {
+  text-align: center;
+}
+.scene[data-scene="home"] .shop-panel .center-panel .items-desc-frame .icon-wrap .icon {
+  width: 100px;
+}
+.scene[data-scene="home"] .shop-panel > .bg {
+  height: 100%;
+  width: 100%;
 }
 .scene[data-scene="home"] .basic {
   padding: 3px 7px 4px 7px;
@@ -3818,7 +4030,7 @@ input {
   bottom: 0;
   margin: auto;
 }
-.scene[data-scene="home"] .shop-mask {
+.scene[data-scene="home"] .home-mask {
   position: absolute;
   left: 0;
   right: 0;
@@ -3829,189 +4041,8 @@ input {
   background-color: rgba(0, 0, 0, 0);
   transition: 0.3s background-color ease-out;
 }
-.scene[data-scene="home"] .shop-mask.active {
+.scene[data-scene="home"] .home-mask.active {
   background-color: rgba(0, 0, 0, 0.3);
-}
-.scene[data-scene="home"] .shop-panel {
-  position: absolute;
-  left: 0;
-  right: 0;
-  top: 0;
-  bottom: 0;
-  margin: auto;
-  z-index: 101;
-  border: 5px solid #1f2639;
-  border-radius: 10px;
-  background-color: #3a4d6b;
-  text-align: center;
-  box-shadow: 5px 5px 3px rgba(0, 0, 0, 0.5);
-  width: 770px;
-  height: 480px;
-  -webkit-transition: 0.3s transform ease-out;
-  -o-transition: 0.3s transform ease-out;
-  transition: 0.3s transform ease-out;
-  -webkit-transform: translateY(-30px);
-  -ms-transform: translateY(-30px);
-  transform: translateY(-30px);
-}
-.scene[data-scene="home"] .shop-panel.active {
-  -webkit-transform: translateY(0px);
-  -ms-transform: translateY(0px);
-  transform: translateY(0px);
-}
-.scene[data-scene="home"] .shop-panel .items-money-sum,
-.scene[data-scene="home"] .shop-panel .have-money {
-  position: absolute;
-  color: white;
-}
-.scene[data-scene="home"] .shop-panel .items-money-sum {
-  bottom: 20px;
-  left: 230px;
-}
-.scene[data-scene="home"] .shop-panel .have-money {
-  bottom: 20px;
-  left: 30px;
-}
-.scene[data-scene="home"] .shop-panel .close {
-  display: inline-block;
-  background-size: contain;
-  position: absolute;
-  right: -25px;
-  top: -25px;
-  z-index: 1;
-  width: 60px;
-  height: 60px;
-}
-.scene[data-scene="home"] .shop-panel .checkout {
-  position: absolute;
-  right: 25px;
-  bottom: 10px;
-}
-.scene[data-scene="home"] .shop-panel .center-panel {
-  position: absolute;
-  left: 30px;
-  right: 30px;
-  top: 30px;
-  bottom: 60px;
-  border: 4px #337ab7 solid;
-  border-radius: 10px;
-  background-color: #1f3644;
-  color: white;
-  text-align: left;
-}
-.scene[data-scene="home"] .shop-panel .center-panel .page-select > button {
-  position: absolute;
-  top: -3px;
-  padding: 0 10px;
-  word-break: break-all;
-  white-space: pre-wrap;
-  outline: none;
-  -webkit-transform: translateY(-100%);
-  -ms-transform: translateY(-100%);
-  transform: translateY(-100%);
-}
-.scene[data-scene="home"] .shop-panel .center-panel .page-select > button.active {
-  background-color: #337ab7;
-  color: white;
-}
-.scene[data-scene="home"] .shop-panel .center-panel .page-select > button[data-page="器件"] {
-  left: 10px;
-}
-.scene[data-scene="home"] .shop-panel .center-panel .page-select > button[data-page="仪器"] {
-  left: 70px;
-}
-.scene[data-scene="home"] .shop-panel .center-panel .list {
-  overflow: auto;
-  width: 60%;
-  height: 100%;
-}
-.scene[data-scene="home"] .shop-panel .center-panel .list::-webkit-scrollbar {
-  width: 5px;
-}
-.scene[data-scene="home"] .shop-panel .center-panel .list::-webkit-scrollbar-thumb {
-  border-radius: 5px;
-  background: #337ab7;
-  border: 0px solid #fff;
-}
-.scene[data-scene="home"] .shop-panel .center-panel .list table {
-  width: 98%;
-}
-.scene[data-scene="home"] .shop-panel .center-panel .list .item-line:hover {
-  background-color: rgba(0, 0, 0, 0.2);
-}
-.scene[data-scene="home"] .shop-panel .center-panel .list th.name {
-  width: 120px;
-}
-.scene[data-scene="home"] .shop-panel .center-panel .list th.price {
-  width: 70px;
-  text-align: right;
-}
-.scene[data-scene="home"] .shop-panel .center-panel .list td.price {
-  text-align: right;
-}
-.scene[data-scene="home"] .shop-panel .center-panel .list th.cnt {
-  text-align: center;
-}
-.scene[data-scene="home"] .shop-panel .center-panel .list th.have {
-  width: 35px;
-  text-align: center;
-}
-.scene[data-scene="home"] .shop-panel .center-panel .list th.price {
-  text-align: right;
-}
-.scene[data-scene="home"] .shop-panel .center-panel .list td.cnt {
-  width: 130px;
-  text-align: center;
-}
-.scene[data-scene="home"] .shop-panel .center-panel .list td.cnt button {
-  width: 25px;
-  height: 25px;
-  text-align: center;
-  padding: 0;
-  padding-top: 3px;
-  margin: 0;
-  outline: none;
-}
-.scene[data-scene="home"] .shop-panel .center-panel .list td.cnt button span {
-  line-height: 14px;
-  width: 13px;
-  height: 13px;
-  text-align: center;
-}
-.scene[data-scene="home"] .shop-panel .center-panel .list td.cnt .value {
-  display: inline-block;
-  width: 40px;
-  text-align: center;
-}
-.scene[data-scene="home"] .shop-panel .center-panel .list td.have {
-  text-align: center;
-}
-.scene[data-scene="home"] .shop-panel .center-panel .items-desc-frame {
-  width: 40%;
-  position: absolute;
-  right: 0;
-  top: 0;
-  padding: 10px;
-  padding-top: 20px;
-  font-size: 14px;
-}
-.scene[data-scene="home"] .shop-panel .center-panel .items-desc-frame .tag {
-  margin-bottom: 5px;
-}
-.scene[data-scene="home"] .shop-panel .center-panel .items-desc-frame .value {
-  text-indent: 2em;
-  margin-top: 0;
-  margin-bottom: 10px;
-}
-.scene[data-scene="home"] .shop-panel .center-panel .items-desc-frame .icon-wrap {
-  text-align: center;
-}
-.scene[data-scene="home"] .shop-panel .center-panel .items-desc-frame .icon-wrap .icon {
-  width: 100px;
-}
-.scene[data-scene="home"] .shop-panel .bg {
-  height: 100%;
-  width: 100%;
 }
 .scene[data-scene="home"] .mask {
   position: absolute;
@@ -4022,16 +4053,73 @@ input {
   margin: auto;
   background-color: rgba(0, 0, 0, 0.5);
 }
+.scene[data-scene="home"] .settings-mask {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+}
+.scene[data-scene="home"] .settings-mask.active {
+  background-color: rgba(0, 0, 0, 0.3);
+}
 .scene[data-scene="make"] {
   background: url("../res/Background/make.png");
   background-position: bottom;
   background-size: cover;
   color: wheat;
 }
+.scene[data-scene="make"] .game-wrap {
+  position: relative;
+  box-sizing: content-box;
+}
+.scene[data-scene="make"] .game-wrap.active .row,
+.scene[data-scene="make"] .game-wrap.active .column {
+  opacity: 1;
+}
+.scene[data-scene="make"] .game-wrap .grid {
+  display: inline-block;
+}
+.scene[data-scene="make"] .game-wrap .row,
+.scene[data-scene="make"] .game-wrap .column {
+  opacity: 0;
+  transition: 0.5s opacity ease-out;
+}
+.scene[data-scene="make"] .game-wrap .row {
+  border-bottom: 1px solid #0e0a02;
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: auto;
+}
+.scene[data-scene="make"] .game-wrap .column {
+  border-left: 1px solid #0e0a02;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+}
+.scene[data-scene="make"] .game-wrap .game-item {
+  position: absolute;
+  transition: 0.3s all;
+}
+.scene[data-scene="make"] .game-wrap .game-item.player {
+  opacity: 0.5;
+}
+.scene[data-scene="make"] .game-wrap .game-item.player.active {
+  opacity: 1;
+}
 .scene[data-scene="make"] > .center {
   left: 25%;
   width: 50%;
-  top: 40px !important;
+  top: 30px !important;
+}
+.scene[data-scene="make"] > .center .deep-header {
+  width: 283px;
+  transform: translateY(-27%);
+}
+.scene[data-scene="make"] > .center .deep-header > .deep-header-text {
+  line-height: 72px;
 }
 .scene[data-scene="make"] > .center > main {
   position: absolute;
@@ -4039,31 +4127,41 @@ input {
   right: 23px;
   bottom: 23px;
   left: 23px;
-  top: 60px;
+  top: 0px;
+  padding-top: 10px;
 }
-.scene[data-scene="make"] > .center > main > .main-content {
+.scene[data-scene="make"] > .center .main-content {
   transition: 0.3s all ease-out;
 }
-.scene[data-scene="make"] > .center > main > .main-content.ng-hide.ng-hide-add {
+.scene[data-scene="make"] > .center .main-content.ng-hide.ng-hide-add {
   opacity: 0;
 }
-.scene[data-scene="make"] > .center > main > .main-content[data-phase="ready-to-make"] {
+.scene[data-scene="make"] > .center .main-content[data-phase="ready-to-make"] {
   text-align: center;
 }
-.scene[data-scene="make"] > .center > main > .main-content[data-phase="ready-to-make"] > header {
+.scene[data-scene="make"] > .center .main-content[data-phase="ready-to-make"] > header {
   margin-top: 20px;
 }
-.scene[data-scene="make"] > .center > main > .main-content[data-phase="ready-to-make"] button.start-build {
+.scene[data-scene="make"] > .center .main-content[data-phase="ready-to-make"] button.start-build {
   margin-bottom: 10px;
 }
-.scene[data-scene="make"] > .center > main > .main-content[data-phase="ready-to-make"] .item {
+.scene[data-scene="make"] > .center .main-content[data-phase="ready-to-make"] .item {
   margin: 10px;
+  margin-top: 0;
 }
-.scene[data-scene="make"] > .center > main > .main-content[data-phase="ready-to-make"] section {
+.scene[data-scene="make"] > .center .main-content[data-phase="ready-to-make"] section {
   margin-bottom: 15px;
 }
-.scene[data-scene="make"] > .center > main > .main-content[data-phase="ready-to-make"] section.extension label {
+.scene[data-scene="make"] > .center .main-content[data-phase="ready-to-make"] section.extension label {
   margin: 10px;
+}
+.scene[data-scene="make"] > .center .main-content[data-phase="making"] {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 100%;
 }
 .scene[data-scene="make"] > .top-block {
   position: absolute;
@@ -4111,7 +4209,7 @@ input {
 .scene[data-scene="make"] > .right {
   left: 75%;
   width: 25%;
-  top: 40px;
+  top: 30px;
   padding: 17px 22px;
 }
 .scene[data-scene="make"] > .right > .section {

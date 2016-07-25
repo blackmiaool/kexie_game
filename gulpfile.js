@@ -141,6 +141,7 @@ gulp.task("scenes", function () {
     });
 
     return gulp.src(scenePathArray)
+        .pipe(cached("scenes"))
         .pipe(headerfooter({
             //            header: `define(["require","sys","angular","z","common","res","dbg"],function* (require,sys,angular,z,common,res,dbg){`,
             header: `define(["require","system-scene","system-sys","angular","system-dbg","z","res","angular-module","plot","system-common"],function (require,scene,sys,angular,dbg,z,res,module,plot,common){`,
@@ -153,8 +154,7 @@ gulp.task("scenes", function () {
                 }
                 return true;
             }
-        }))
-        .pipe(cached("scenes"))
+        }))        
         .pipe(injectfile({
             pattern: '<!--\\sinject:<filename>-->'
         }))

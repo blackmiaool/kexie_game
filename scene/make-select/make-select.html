@@ -7,17 +7,17 @@
         <main class="red-scroll-shadow-wrap">
             <div class="red-scroll page" data-page="0" ng-class="{left:productSelectPageIndex>0,center:productSelectPageIndex==0,right:productSelectPageIndex<0}">
                 
-                <div ng-click="selectProductKind(product)" ng-repeat="product in res.products" class="deep-normal-item product clickable bold" ng-bind="product.name">
+                <div deep-normal-item="product.name" ng-click="selectProductKind(product)" ng-repeat="product in res.products" class=" product clickable bold">
                 </div>
             </div>
             <div class="red-scroll page" data-page="1" ng-class="{left:productSelectPageIndex>1,center:productSelectPageIndex==1,right:productSelectPageIndex<1}">
                <div ng-click="goScene('make',selectingProductKind)" data-deep-btn="blue" class="deep-btn start-new-product">开个新坑</div> 
-                <div ng-click="goScene('make',selectingProductKind,work.id)" ng-repeat="work in z.work[selectingProductKind]" class="deep-normal-item work clickable" ng-bind="work | workPrefix">
+                <div deep-normal-item="work | workPrefix" ng-click="goScene('make',selectingProductKind,work.id)" ng-repeat="work in z.work[selectingProductKind]" class="work clickable">
                 </div>
             </div>
         </main>
-        <div ng-if="productSelectPageIndex==0" class="red-icon go-back " data-icon="home" ng-click="goHome()"></div>
-        <div ng-if="productSelectPageIndex==1" class="red-icon go-back " data-icon="left"  ng-click="productSelectPrevPage()"></div>
+        <div ng-if="productSelectPageIndex==0" class="deep-icon go-back " data-icon="home" ng-click="goHome()"></div>
+        <div ng-if="productSelectPageIndex==1" class="deep-icon go-back " data-icon="left"  ng-click="productSelectPrevPage()"></div>
     </div>
     <main>
         <div class="make-progress"></div>

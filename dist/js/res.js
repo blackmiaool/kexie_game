@@ -381,6 +381,14 @@ define(["system-common"], function (common) {
             "brief": "浪神粉丝的芳心，使用后效率降低50%",
             "comment": "浪神殿",
             "buyable": "0"
+        }, {
+            "name": "浪1100D",
+            "kind": "神器",
+            "icon": "gods-shield",
+            "price": "2500",
+            "brief": "浪神用过的镜头,可以看出万物本质",
+            "comment": "浪神殿",
+            "buyable": "0"
         }],
         "products": [{
             "name": "单片机流水灯",

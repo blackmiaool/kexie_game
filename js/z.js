@@ -18,7 +18,6 @@ define(["res", "system-common"], function (res, common) {
             test: 0,
             money: 1000,
             sex: "male",
-
         },
         time: {
             year: 2014,
@@ -51,34 +50,8 @@ define(["res", "system-common"], function (res, common) {
 
 
     };
-    let works = {
-        硬件流水灯: {
-            0: {
-                id: common.getUid(),
-                name: "硬件流水灯",
-                prefix: {
-                    feature: "幸运",
-                    basic: "未完成",
-                },
-                process: {
-                    basic: 3,
-                    basicMax: 10,
-                    capability: 0,
-                    capabilityMax: 5,
-                    innovation: 0,
-                    innovationMax: 3,
-                    stability: 0,
-                    stabilityMax: 10,
-                },
-                property: [
-                    {
-                        kind: "lucky",
-                        value: "3",
-                    }],
-            }
-        }
-    };
-    z_init.work = works;
+    
+    
     for (var i in res.skills) {
         z_init.skill[i] = {
             level: 0
@@ -98,7 +71,35 @@ define(["res", "system-common"], function (res, common) {
         };
     }
     var z = common.clone(z_init);
-
     common.setZ(z);
+    let works = {
+        硬件流水灯: {
+            1: {
+                id: common.getUid(),
+                name: "硬件流水灯",
+                prefix: {
+                    feature: "幸运",
+                    basic: "未完成",
+                },
+                process: {
+                    basic: 3,
+                    basicMax: 10,
+                    capability: 0,
+                    capabilityMax: 5,
+                    innovation: 0,
+                    innovationMax: 3,
+                    stability: 0,
+                    stabilityMax: 10,
+                },
+                phase:"making",
+                property: [
+                    {
+                        kind: "lucky",
+                        value: "3",
+                    }],
+            }
+        }
+    };
+    z.work = works;
     return z;
 })

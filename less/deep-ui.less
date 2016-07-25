@@ -1,4 +1,4 @@
-@res-folder: "../res";//mannul set
+@res-folder: "../res"; //mannul set
 @path: "@{res-folder}/deep_ui";
 @icon-path: "@{res-folder}/deep_ui/icon";
 @deep-bg: #1f1916;
@@ -19,57 +19,38 @@
         line-height: @height *1.8/2;
     }
 }
-[deep-panel]{
+
+[deep-panel],
+.deep-panel {
     position: relative;
-    &:before{
+    &:before {
         .abs-fill;
         content: "";
         border-style: solid;
         @scale: 0.6;
-        @gap: 206px;
+        @gap: 180px;
         @gapNum: 206;
         border-width: @gap*@scale;
         .border-image(url("@{path}/Window_Background.png") @gapNum @gapNum @gapNum @gapNum fill repeat);
     }
-     >main{
+    >main {
         .abs-fill;
         padding-top: 70px;
     }
 }
-.deep-panel-bg {
-   
+
+.deep-darken-panel {
+    border-style: solid;
+    border-width: 22px;
+    @crop:23;
+    -moz-border-image: url("@{path}/darken_panel.png") @crop repeat;
+    -webkit-border-image: url("@{path}/darken_panel.png") @crop repeat;
+    -o-border-image: url("@{path}/darken_panel.png") @crop repeat;
+    border-image: url("@{path}/darken_panel.png") @crop fill repeat;
 }
-.deep-panel-corner22 {
-    background-image: url("@{path}/red_panel_corner_big.png");
-    background-repeat: no-repeat;
-    position: absolute;
-    width: 50%;
-    height: 50%;
-    z-index: -1;
-    &.deep-panel-corner1 {
-        top: 0;
-        left: 0;
-        background-position: left top;
-    }
-    &.deep-panel-corner2 {
-        top: 0;
-        left: 50%;
-        background-image: url("@{path}/red_panel_corner_big2.png");
-        background-position: right top;
-    }
-    &.deep-panel-corner3 {
-        bottom: 0;
-        right: 0;
-        background-image: url("@{path}/red_panel_corner_big3.png");
-        background-position: right bottom;
-    }
-    &.deep-panel-corner4 {
-        bottom: 0;
-        left: 0;
-        background-image: url("@{path}/red_panel_corner_big4.png");
-        background-position: left bottom;
-    }
-}
+
+.deep-panel-bg {}
+
 
 .red-scroll-shadow-wrap {
     &:after {
@@ -105,7 +86,7 @@
 
 .red-top-shadow {}
 
-.red-icon {
+.deep-icon {
     .square(80px);
     position: relative;
     background-size: contain;
@@ -186,7 +167,7 @@
     .set-icon(tune);
     .set-icon(up);
     .set-color(@color) {
-        &.@{color}{
+        &.@{color} {
             background-image: url("@{path}/btn_circle_@{color}.png");
         }
     }
@@ -198,29 +179,30 @@
 
 .deep-normal-item {
     .clickable;
-    @rate:0.3;
-    padding: 10px 14px;     
+    @rate: 0.3;
+    padding: 10px 14px;
     border-style: solid;
     background-color: transparent;
     margin: auto;
     background-position: center;
     text-align: center;
     color: #6f6362;
-    font-size: 16px;    
+    font-size: 16px;
     position: relative;
     border: none;
-    >.deep-text{
+    >.deep-text {
         position: relative;
     }
-    &:before{
+    &:before {
         .abs-fill;
-        content: "";        
+        border-style: solid;
+        content: "";
         border-width: @rate*42px @rate*33px @rate*38px @rate*39px;
         .border-image( url("@{path}/red_item_bg.png") 42 33 38 39 fill repeat);
     }
     &:after {
         content: "";
-        .square-crop(3px);
+        .crop(3px);
         background-color: rgba(30, 24, 21, 0.34);
         box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.7);
         opacity: 0;
@@ -261,7 +243,7 @@
     &:after {
         //        transition: 0.05s opacity linear;
         content: "";
-        .square-crop(3px);
+        .crop(3px);
         background-color: rgba(48, 17, 11, 0.34);
         box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.7);
         opacity: 0;
@@ -273,7 +255,7 @@
     }
     .set-size(@size,
     @height) {
-        &.@{size}{
+        &.@{size} {
             line-height: @height;
             height: @height;
             font-size: 13px/@normal-height*@height;
@@ -287,7 +269,7 @@
     .set-size(xs,
     24px);
     .set-color(@color) {
-        &.@{color}{
+        &.@{color} {
             & {
                 background-image: url("@{path}/btn_rect_@{color}.png");
             }
@@ -296,7 +278,7 @@
     .set-color(@color,
     @font-color) {
         .set-color(@color);
-        &.@{color}{
+        &.@{color} {
             color: @font-color;
         }
     }
@@ -316,6 +298,9 @@
     text-align: center;
     font-size: 15px;
     background-position: center center;
+    background-color: transparent;
+    color: wheat;
+    border: none;
 }
 
 .deep-little-box {
@@ -340,7 +325,7 @@
     position: relative;
     &>img,
     &>div {
-        .transfrom-center;
+        .transform-center;
         max-height: 55%;
         max-width: 55%;
     }
@@ -356,21 +341,21 @@
     background-position: center center;
     position: relative;
     &>img {
-        //        .transfrom-center;
+        //        .transform-center;
         margin-top: 12px;
         max-height: 50%;
         max-width: 50%;
     }
-    >.deep-cnt{
+    >.deep-cnt {
         .abs-fill;
         bottom: 11px;
         top: auto;
         .pure-line(14px);
-        &.deep-danger{
-            color:rgb(180,65,47);
+        &.deep-danger {
+            color: rgb(180, 65, 47);
         }
-        &.deep-success{
-            color:#319075;
+        &.deep-success {
+            color: #319075;
         }
     }
     >.deep-name {
@@ -385,10 +370,9 @@
 }
 
 [deep-dbline-header] {
-    
     .pure-line(14px);
     display: block;
-    text-align: center;    
+    text-align: center;
     margin: auto;
     margin-bottom: 10px;
     text-align: center;
@@ -409,35 +393,36 @@
         right: 0;
     }
     >.deep-content {
-//        margin-right: 61.8%;
-//        .transform(translateX(-50%));
+        //        margin-right: 61.8%;
+        //        .transform(translateX(-50%));
         padding: 0 10px;
         position: relative;
         background-color: @deep-bg;
     }
 }
-.deep-select{
+
+.deep-select {
     .pure-line(14px);
     margin: 7px;
     display: block;
     font-weight: normal;
-    &>input[type="checkbox"]{
+    &>input[type="checkbox"] {
         display: none;
     }
-    .deep-checkbox{
+    .deep-checkbox {
         .square(15px);
         .bg("@{path}/checkbox_bg.png");
         display: inline-block;
         position: relative;
-        vertical-align: middle;        
+        vertical-align: middle;
         margin-right: 4px;
     }
-    [type="checkbox"]:checked + .deep-checkbox{
-        &:before{
+    [type="checkbox"]:checked+ .deep-checkbox {
+        &:before {
             content: "";
             .square(9px);
             margin: 3px;
-//            .square(15px);
+            //            .square(15px);
             .abs-fill;
             display: block;
             vertical-align: middle;
@@ -445,6 +430,7 @@
         }
     }
 }
+
 .deep-bar {
     @height: 40px;
     @rate: @height/20px;
@@ -468,24 +454,36 @@
     }
     &>.deep-text {
         .abs-fill;
-        top: -@height/2;
+        top: -@height/2 - 2px;
         .pure-line(16px);
         text-align: center;
         .transform(translateY(-50%));
         display: inline-block;
     }
-    &.deep-power{
+    &.deep-power {
         .border-image(url("@{path}/UnitFrame_PowerBar_Background.png") 102 15 0 15 fill stretch);
         &>.deep-fill {
-                    .border-image(url("@{path}/UnitFrame_PowerBar_Fill_Tiled.png") 68 10 0 10 fill stretch);              
-        }        
-    }
-    &.deep-health{
-//        .border-image(url("@{path}/UnitFrame_HealthBar_Background.png") 102 52 0 15 fill stretch);
-        .border-image(url("@{path}/UnitFrame_PowerBar_Background.png") 102 15 0 15 fill stretch);
-//        .border-image(url("@{path}/UnitFrame_PowerBar_Fill_Tiled.png") 68 10 0 10 fill stretch); 
-        &>.deep-fill {
-                    .border-image(url("@{path}/UnitFrame_HealthBar_Fill_Tiled.png") 68 10 0 10 fill stretch);              
+            .border-image(url("@{path}/UnitFrame_PowerBar_Fill_Tiled.png") 68 10 0 10 fill stretch);
         }
+    }
+    &.deep-health {
+        //        .border-image(url("@{path}/UnitFrame_HealthBar_Background.png") 102 52 0 15 fill stretch);
+        .border-image(url("@{path}/UnitFrame_PowerBar_Background.png") 102 15 0 15 fill stretch);
+        //        .border-image(url("@{path}/UnitFrame_PowerBar_Fill_Tiled.png") 68 10 0 10 fill stretch); 
+        &>.deep-fill {
+            .border-image(url("@{path}/UnitFrame_HealthBar_Fill_Tiled.png") 68 10 0 10 fill stretch);
+        }
+    }
+}
+.deep-cnt-btn {
+    background-color: rgb(77,68,68);
+    border: none;
+    color: wheat;
+    border-radius: 4px;
+    &[disabled]{
+        opacity: 0.5;
+    }
+    &:active:not([disabled]){
+        background-color: darken(rgb(77,68,68),5%);
     }
 }

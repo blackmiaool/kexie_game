@@ -150,7 +150,9 @@ define(["require", "system-scene", "system-sys", "angular", "system-dbg", "z", "
                     break;
             }
         }
-
+        function openSettings() {
+            rsp.$emit("openSettings");
+        }
         function actionBack() {
             sp.actionPanel = "";
             unlockAction(true);
@@ -258,7 +260,8 @@ define(["require", "system-scene", "system-sys", "angular", "system-dbg", "z", "
             doAction: doAction,
             monkey: monkey,
             actionBack: actionBack,
-            goClass: goClass
+            goClass: goClass,
+            openSettings: openSettings
 
         });
     }]);
@@ -422,6 +425,27 @@ define(["require", "system-scene", "system-sys", "angular", "system-dbg", "z", "
             closeStore: closeStore,
             setPage: setPage
         });
+    }]);
+    module.controller("SettingsController", ["$scope", "$rootScope", "$timeout", function (sp, rsp, $timeout) {
+        function openSettings() {
+            sp.show = true;
+
+            $timeout(function () {
+                sp.active = true;
+            }, 100);
+        }
+        rsp.$on("openSettings", function () {
+            openSettings();
+        });
+
+        function closeSettings() {
+            sp.show = false;
+            $timeout(function () {
+                sp.active = false;
+            }, 300);
+        }
+
+        _.extend(sp, {});
     }]);
     var priceLine = {
         IC: [7 / 8, 2],
