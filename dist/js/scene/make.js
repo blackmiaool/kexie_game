@@ -23,6 +23,8 @@ define(["require", "system-scene", "system-sys", "angular", "system-dbg", "z", "
     //console.log(working)
 
     module.controller("MakeController", ["$scope", "$rootScope", "$timeout", function (sp, rsp, $timeout) {
+        window.rsp = rsp;
+        window.makesp = sp;
         //    let extendDirs=["性能","稳定","创新"];
         //    let extensions={性能:false,稳定:false,创新:false};
         var diffculty = void 0;
@@ -114,7 +116,8 @@ define(["require", "system-scene", "system-sys", "angular", "system-dbg", "z", "
                 prefix: {},
                 process: 0,
                 processMax: 20,
-                phase: "making"
+                phase: "making",
+                props: [0, 100, 0]
             };
             sp.working = working;
             //        sp.working.phase = "making";
@@ -210,10 +213,15 @@ define(["require", "system-scene", "system-sys", "angular", "system-dbg", "z", "
         function playerMoveEnd(cb) {
             var _this = this;
 
-            itemsRandomMove(items, function () {
-                _this.idle = true;
+            if (z.game.move < 1) {
+                itemsRandomMove(items, function () {
+                    _this.idle = true;
+                    cb && cb();
+                });
+            } else {
+                this.idle = true;
                 cb && cb();
-            });
+            }
         }
         var items = [];
 
@@ -240,6 +248,7 @@ define(["require", "system-scene", "system-sys", "angular", "system-dbg", "z", "
     }
 
     function GameUnit(map, radius) {
+        radius = radius || map.gr;
         this.map = map;
         this.radius = radius;
     }
@@ -330,8 +339,8 @@ define(["require", "system-scene", "system-sys", "angular", "system-dbg", "z", "
     };
 
     function GameItem(map, name) {
+        GameUnit.call(this, map);
         var radius = map.gr;
-        GameUnit.call(this, map, radius);
         var $item = $("<div class=\"deep-item-icon\" style=\"width:" + radius + "px;height:" + radius + "px\">\n                        <img draggable=\"false\" src=\"" + common.$rootScope.getItemIcon(res.items[name]) + "\" class=\"skill-icon\">\n                    </div>");
         GameUnit.prototype.setDom.call(this, $item);
     }
@@ -347,8 +356,23 @@ define(["require", "system-scene", "system-sys", "angular", "system-dbg", "z", "
             }
             return true;
         });
-        this.$dom.remove();
+        this.$dom.css("transition", "none");
+        this.$dom.fadeOut(300, function () {
+            _this3.$dom.remove();
+            console.log("remo");
+        });
+        return true;
     };
+
+    function GameHole(map) {
+        GameUnit.call(this, map);
+        var radius = map.gr;
+        var $item = $("<div class=\"deep-disabled-block\" style=\"width:" + radius + "px;height:" + radius + "px\"></div>");
+        GameUnit.prototype.setDom.call(this, $item);
+    }
+    GameHole.prototype = Object.create(GameUnit.prototype);
+    GameHole.prototype.constructor = GameUnit;
+
     function GamePlayer(map) {
         var radius = map.gr;
         GameUnit.call(this, map, radius);
@@ -376,32 +400,77 @@ define(["require", "system-scene", "system-sys", "angular", "system-dbg", "z", "
             return;
         }
         if (!z.power) {
-            return;
+            //        return;
         }
         if (this.map.isOutside(pos)) {
             return false;
         } else {
-            // actually move       
-            common.$rootScope.$apply(function () {
-                z.power -= 1;
-            });
-            var target = this.map.getData(pos);
-            if (target) {
-                target.collision();
-            }
-            this.setPos(pos);
-            this.$dom.inactive();
-            this.map.idle = false;
-            setTimeout(function () {
-                _this4.map.playerMoveEnd(function () {
-                    _this4.$dom.active();
-                });
-            }, 200);
+            (function () {
+                var consumeMove = function consumeMove() {
+                    common.$rootScope.$apply(function () {
+                        z.game.move -= 1;
+                        z.game.move = beautifyFloat(z.game.move);
+                    });
+                };
+
+                // actually move       
+                var afterMove = function afterMove() {
+                    consumeMove();
+                    _this4.$dom.inactive();
+                    _this4.map.idle = false;
+                    setTimeout(function () {
+                        //                z.power--;
+
+                        _this4.map.playerMoveEnd(function () {
+                            _this4.$dom.active();
+                            common.$rootScope.$apply(function () {
+                                if (z.game.move < 1) {
+                                    z.power -= 1;
+                                    z.game.move += z.game.increase;
+                                    z.game.move = beautifyFloat(z.game.move);
+                                }
+                            });
+                        });
+                    }, 200);
+                };
+
+                var target = _this4.map.getData(pos);
+                if (target) {
+                    var result = target.collision && target.collision();
+                    if (result === true) {
+                        //eat
+                        _this4.setPos(pos);
+                        afterMove();
+                    } else if (result === false) {
+                        //eat without move
+                        afterMove();
+                    } else {//blocked
+
+                    }
+                } else {
+                        _this4.setPos(pos);
+                        afterMove();
+                    }
+            })();
         }
     };
 
+    function beautifyFloat(f) {
+        f *= 10;
+        if (f - parseInt(f) > 0.5) {
+            f = parseInt(f) + 1;
+        } else {
+            f = parseInt(f);
+        }
+        return f / 10;
+    }
+
     function controlPlayer(e) {
         var key = common.code2key[e.keyCode];
+        if (z.game.move < 1) {
+            return;
+        }
+
         if (key == "w") {
             player.move("up");
         } else if (key == "d") {
@@ -424,6 +493,20 @@ define(["require", "system-scene", "system-sys", "angular", "system-dbg", "z", "
         }, 200 * items.length);
     }
     var player = void 0;
+    var productConfig = {
+        "硬件流水灯": {
+            h: 5,
+            w: 5,
+            hole: [[0, 0], [1, 1], [4, 4], [3, 3]],
+            material: {
+                "五5伍": [[0, 2]],
+                "LED": [[1, 3]],
+                "电路基础元件": [[1, 4]]
+            },
+            player: [2, 3]
+        }
+
+    };
     module.controller("GameController", ["$scope", "$rootScope", "$timeout", function (sp, rsp, $timeout) {
         var $gameWrap = $(".main-content[data-phase='making']>.game-wrap");
 
@@ -435,18 +518,24 @@ define(["require", "system-scene", "system-sys", "angular", "system-dbg", "z", "
             });
 
             var working = res.products[kind];
+            var config = productConfig[working.name];
 
-            working.material.forEach(function (v, i) {
-                var item = new GameItem(map, v.name);
-                item.setPos(generateFreeRandomPos(map, working, v));
-                map.registerItem(item);
+            for (var j in config.material) {
+                config.material[j].forEach(function (v, i) {
+                    var item = new GameItem(map, j);
+                    item.setPos(v);
+                    map.registerItem(item);
+                });
+            }
+
+            config.hole.forEach(function (v, i) {
+                var hole = new GameHole(map);
+                hole.setPos(v);
             });
-            player = new GamePlayer(map);
-            player.setPos(generateFreeRandomPos(map, working));
 
-            //        setInterval(function () {
-            //            itemsRandomMove(mapItems);
-            //        }, 2200);
+            player = new GamePlayer(map);
+            player.setPos(config.player);
+
             var columns = map.columns;
             var rows = map.rows;
 

@@ -24,7 +24,7 @@ define(["angular-module"], function (module) {
                 compile: function (element, attrs) {
                     let $$ = element.find.bind(element);
                     element.addClass("deep-normal-item");
-                    $$(".deep-text").attr("ng-bind",attrs["deepNormalItem"]);
+                    $$(".deep-text").attr("ng-bind", attrs["deepNormalItem"]);
                 },
                 template: `<div class="deep-text"></div>`
             };
@@ -92,32 +92,41 @@ define(["angular-module"], function (module) {
         .directive('deepPower', ["$parse", function ($parse) {
             return {
                 restrict: 'A',
-                link: function (scope, element, attrs) {
+                compile: function (element, attrs) {
                     let $$ = element.find.bind(element);
-                    let $fill = $$(".deep-fill");
+                    let text = attrs.deepText;
                     let $text = $$(".deep-text");
+                    if (text) {
+                        $text.html(text);
+                    }
+                    return function (scope, element, attrs) {
+                        let $$ = element.find.bind(element);
+                        let $fill = $$(".deep-fill");
+                        let $text = $$(".deep-text");
 
-                    function updateWidth(v) {
-                        let max = $parse(attrs["deepMax"])(scope);
-                        if (v == 0) {
-                            $fill.hide();
-                        } else {
-                            $fill.show();
+
+                        function updateWidth(v) {
+                            let max = $parse(attrs["deepMax"])(scope);
+                            if (v == 0&&false) {
+                                $fill.hide();
+                            } else {
+                                $fill.show();
 
 
-                            let width = (108 - 5) * v / max + 5 + "%";
-                            $fill.css("width", width);
+                                let width = (100 - 5) * v / max + 5 + "%";
+                                $fill.css("width", width);
+
+                            }
+                            if (!text)
+                                $text.text(v + "/" + max);
 
                         }
 
-                        $text.text(v + "/" + max);
+                        element.addClass("deep-bar");
+                        console.log("t", text)
 
+                        scope.$watch(attrs["deepPower"], updateWidth, true);
                     }
-
-                    element.addClass("deep-bar");
-
-                    //                    updateWidth($parse(attrs["deepPower"])(scope));
-                    scope.$watch(attrs["deepPower"], updateWidth, true);
                 },
                 template: `                 
                     <div class="deep-fill">                        

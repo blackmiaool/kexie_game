@@ -3,6 +3,7 @@
 @icon-path: "@{res-folder}/deep_ui/icon";
 @deep-bg: #1f1916;
 @import "mixin.less";
+
 .deep-header {
     background-image: url("@{path}/red_header.png");
     background-repeat: no-repeat;
@@ -42,7 +43,7 @@
 .deep-darken-panel {
     border-style: solid;
     border-width: 22px;
-    @crop:23;
+    @crop: 23;
     -moz-border-image: url("@{path}/darken_panel.png") @crop repeat;
     -webkit-border-image: url("@{path}/darken_panel.png") @crop repeat;
     -o-border-image: url("@{path}/darken_panel.png") @crop repeat;
@@ -50,7 +51,6 @@
 }
 
 .deep-panel-bg {}
-
 
 .red-scroll-shadow-wrap {
     &:after {
@@ -265,7 +265,7 @@
     .set-size(lg,
     57px);
     .set-size(sm,
-    32px);
+    36px);
     .set-size(xs,
     24px);
     .set-color(@color) {
@@ -432,12 +432,28 @@
 }
 
 .deep-bar {
-    @height: 40px;
+    .deep-bar(40px);
+    &.thin {
+        .deep-bar(15px);
+        &>.deep-text {
+            display: none;
+        }
+    }
+}
+
+.deep-bar(@height) {
     @rate: @height/20px;
     height: @height;
     width: 100%;
     position: relative;
     border-style: solid;
+    //    &.thin{
+    //        @height: 20px;
+    //        border-width: @rate*3.5px @rate*3.5px @rate*0px @rate*3.5px;
+    //        &>.deep-fill {
+    //            border-width: @rate*2.7px @rate*2.7px 0px @rate*2.7px;
+    //        }
+    //    }
     border-width: @rate*20px @rate*3.5px @rate*0px @rate*3.5px;
     text-align: center;
     &>.deep-fill {
@@ -460,30 +476,51 @@
         .transform(translateY(-50%));
         display: inline-block;
     }
-    &.deep-power {
-        .border-image(url("@{path}/UnitFrame_PowerBar_Background.png") 102 15 0 15 fill stretch);
-        &>.deep-fill {
-            .border-image(url("@{path}/UnitFrame_PowerBar_Fill_Tiled.png") 68 10 0 10 fill stretch);
+    .border-image(url("@{path}/UnitFrame_PowerBar_Background.png") 102 15 0 15 fill stretch);
+    .set-color(@color) {
+        &.@{color} {
+            &>.deep-fill {
+                .border-image(url("@{path}/power_bar_@{color}.png") 68 10 0 10 fill stretch);
+            }
         }
     }
-    &.deep-health {
-        //        .border-image(url("@{path}/UnitFrame_HealthBar_Background.png") 102 52 0 15 fill stretch);
-        .border-image(url("@{path}/UnitFrame_PowerBar_Background.png") 102 15 0 15 fill stretch);
-        //        .border-image(url("@{path}/UnitFrame_PowerBar_Fill_Tiled.png") 68 10 0 10 fill stretch); 
-        &>.deep-fill {
-            .border-image(url("@{path}/UnitFrame_HealthBar_Fill_Tiled.png") 68 10 0 10 fill stretch);
-        }
-    }
+    .set-color(blue);    
+    .set-color(darkgreen);
+    .set-color(darkpurple);
+    .set-color(darkred);
+    .set-color(green);
+    .set-color(purple);
+    .set-color(red);
+    .set-color(yellow);
+    
+    
+    
+    //    
+    //    &.deep-power {        
+    //        &>.deep-fill {
+    //            .border-image(url("@{path}/UnitFrame_PowerBar_Fill_Tiled.png") 68 10 0 10 fill stretch);
+    //        }
+    //    }
+    //    &.deep-health {
+    //        &>.deep-fill {
+    //            .border-image(url("@{path}/UnitFrame_HealthBar_Fill_Tiled.png") 68 10 0 10 fill stretch);
+    //        }
+    //    }
 }
+
 .deep-cnt-btn {
-    background-color: rgb(77,68,68);
+    background-color: rgb(77, 68, 68);
     border: none;
     color: wheat;
     border-radius: 4px;
-    &[disabled]{
+    &[disabled] {
         opacity: 0.5;
     }
-    &:active:not([disabled]){
-        background-color: darken(rgb(77,68,68),5%);
+    &:active:not([disabled]) {
+        background-color: darken(rgb(77, 68, 68), 5%);
     }
+}
+
+.deep-disabled-block {
+    .bg("@{path}/block.png");
 }

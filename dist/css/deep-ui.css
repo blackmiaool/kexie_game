@@ -481,10 +481,10 @@ img {
   width: 169.45945946px;
 }
 .deep-btn.sm {
-  line-height: 32px;
-  height: 32px;
-  font-size: 11.24324324px;
-  width: 95.13513514px;
+  line-height: 36px;
+  height: 36px;
+  font-size: 12.64864865px;
+  width: 107.02702703px;
 }
 .deep-btn.xs {
   line-height: 24px;
@@ -674,6 +674,11 @@ img {
   border-style: solid;
   border-width: 40px 7px 0px 7px;
   text-align: center;
+  -webkit-border-image: url("../res/deep_ui/UnitFrame_PowerBar_Background.png") 102 15 0 15 fill stretch;
+  -moz-border-image: url("../res/deep_ui/UnitFrame_PowerBar_Background.png") 102 15 0 15 fill stretch;
+  -ms-border-image: url("../res/deep_ui/UnitFrame_PowerBar_Background.png") 102 15 0 15 fill stretch;
+  -o-border-image: url("../res/deep_ui/UnitFrame_PowerBar_Background.png") 102 15 0 15 fill stretch;
+  border-image: url("../res/deep_ui/UnitFrame_PowerBar_Background.png") 102 15 0 15 fill stretch;
 }
 .deep-bar > .deep-fill {
   position: absolute;
@@ -704,33 +709,162 @@ img {
   transform: translateY(-50%);
   display: inline-block;
 }
-.deep-bar.deep-power {
+.deep-bar.blue > .deep-fill {
+  -webkit-border-image: url("../res/deep_ui/power_bar_blue.png") 68 10 0 10 fill stretch;
+  -moz-border-image: url("../res/deep_ui/power_bar_blue.png") 68 10 0 10 fill stretch;
+  -ms-border-image: url("../res/deep_ui/power_bar_blue.png") 68 10 0 10 fill stretch;
+  -o-border-image: url("../res/deep_ui/power_bar_blue.png") 68 10 0 10 fill stretch;
+  border-image: url("../res/deep_ui/power_bar_blue.png") 68 10 0 10 fill stretch;
+}
+.deep-bar.darkgreen > .deep-fill {
+  -webkit-border-image: url("../res/deep_ui/power_bar_darkgreen.png") 68 10 0 10 fill stretch;
+  -moz-border-image: url("../res/deep_ui/power_bar_darkgreen.png") 68 10 0 10 fill stretch;
+  -ms-border-image: url("../res/deep_ui/power_bar_darkgreen.png") 68 10 0 10 fill stretch;
+  -o-border-image: url("../res/deep_ui/power_bar_darkgreen.png") 68 10 0 10 fill stretch;
+  border-image: url("../res/deep_ui/power_bar_darkgreen.png") 68 10 0 10 fill stretch;
+}
+.deep-bar.darkpurple > .deep-fill {
+  -webkit-border-image: url("../res/deep_ui/power_bar_darkpurple.png") 68 10 0 10 fill stretch;
+  -moz-border-image: url("../res/deep_ui/power_bar_darkpurple.png") 68 10 0 10 fill stretch;
+  -ms-border-image: url("../res/deep_ui/power_bar_darkpurple.png") 68 10 0 10 fill stretch;
+  -o-border-image: url("../res/deep_ui/power_bar_darkpurple.png") 68 10 0 10 fill stretch;
+  border-image: url("../res/deep_ui/power_bar_darkpurple.png") 68 10 0 10 fill stretch;
+}
+.deep-bar.darkred > .deep-fill {
+  -webkit-border-image: url("../res/deep_ui/power_bar_darkred.png") 68 10 0 10 fill stretch;
+  -moz-border-image: url("../res/deep_ui/power_bar_darkred.png") 68 10 0 10 fill stretch;
+  -ms-border-image: url("../res/deep_ui/power_bar_darkred.png") 68 10 0 10 fill stretch;
+  -o-border-image: url("../res/deep_ui/power_bar_darkred.png") 68 10 0 10 fill stretch;
+  border-image: url("../res/deep_ui/power_bar_darkred.png") 68 10 0 10 fill stretch;
+}
+.deep-bar.green > .deep-fill {
+  -webkit-border-image: url("../res/deep_ui/power_bar_green.png") 68 10 0 10 fill stretch;
+  -moz-border-image: url("../res/deep_ui/power_bar_green.png") 68 10 0 10 fill stretch;
+  -ms-border-image: url("../res/deep_ui/power_bar_green.png") 68 10 0 10 fill stretch;
+  -o-border-image: url("../res/deep_ui/power_bar_green.png") 68 10 0 10 fill stretch;
+  border-image: url("../res/deep_ui/power_bar_green.png") 68 10 0 10 fill stretch;
+}
+.deep-bar.purple > .deep-fill {
+  -webkit-border-image: url("../res/deep_ui/power_bar_purple.png") 68 10 0 10 fill stretch;
+  -moz-border-image: url("../res/deep_ui/power_bar_purple.png") 68 10 0 10 fill stretch;
+  -ms-border-image: url("../res/deep_ui/power_bar_purple.png") 68 10 0 10 fill stretch;
+  -o-border-image: url("../res/deep_ui/power_bar_purple.png") 68 10 0 10 fill stretch;
+  border-image: url("../res/deep_ui/power_bar_purple.png") 68 10 0 10 fill stretch;
+}
+.deep-bar.red > .deep-fill {
+  -webkit-border-image: url("../res/deep_ui/power_bar_red.png") 68 10 0 10 fill stretch;
+  -moz-border-image: url("../res/deep_ui/power_bar_red.png") 68 10 0 10 fill stretch;
+  -ms-border-image: url("../res/deep_ui/power_bar_red.png") 68 10 0 10 fill stretch;
+  -o-border-image: url("../res/deep_ui/power_bar_red.png") 68 10 0 10 fill stretch;
+  border-image: url("../res/deep_ui/power_bar_red.png") 68 10 0 10 fill stretch;
+}
+.deep-bar.yellow > .deep-fill {
+  -webkit-border-image: url("../res/deep_ui/power_bar_yellow.png") 68 10 0 10 fill stretch;
+  -moz-border-image: url("../res/deep_ui/power_bar_yellow.png") 68 10 0 10 fill stretch;
+  -ms-border-image: url("../res/deep_ui/power_bar_yellow.png") 68 10 0 10 fill stretch;
+  -o-border-image: url("../res/deep_ui/power_bar_yellow.png") 68 10 0 10 fill stretch;
+  border-image: url("../res/deep_ui/power_bar_yellow.png") 68 10 0 10 fill stretch;
+}
+.deep-bar.thin {
+  height: 15px;
+  width: 100%;
+  position: relative;
+  border-style: solid;
+  border-width: 15px 2.625px 0px 2.625px;
+  text-align: center;
   -webkit-border-image: url("../res/deep_ui/UnitFrame_PowerBar_Background.png") 102 15 0 15 fill stretch;
   -moz-border-image: url("../res/deep_ui/UnitFrame_PowerBar_Background.png") 102 15 0 15 fill stretch;
   -ms-border-image: url("../res/deep_ui/UnitFrame_PowerBar_Background.png") 102 15 0 15 fill stretch;
   -o-border-image: url("../res/deep_ui/UnitFrame_PowerBar_Background.png") 102 15 0 15 fill stretch;
   border-image: url("../res/deep_ui/UnitFrame_PowerBar_Background.png") 102 15 0 15 fill stretch;
 }
-.deep-bar.deep-power > .deep-fill {
-  -webkit-border-image: url("../res/deep_ui/UnitFrame_PowerBar_Fill_Tiled.png") 68 10 0 10 fill stretch;
-  -moz-border-image: url("../res/deep_ui/UnitFrame_PowerBar_Fill_Tiled.png") 68 10 0 10 fill stretch;
-  -ms-border-image: url("../res/deep_ui/UnitFrame_PowerBar_Fill_Tiled.png") 68 10 0 10 fill stretch;
-  -o-border-image: url("../res/deep_ui/UnitFrame_PowerBar_Fill_Tiled.png") 68 10 0 10 fill stretch;
-  border-image: url("../res/deep_ui/UnitFrame_PowerBar_Fill_Tiled.png") 68 10 0 10 fill stretch;
+.deep-bar.thin > .deep-fill {
+  position: absolute;
+  left: 0.15px;
+  top: -12.75px;
+  bottom: 2.25px;
+  right: -6.75px;
+  display: flex;
+  flex-direction: row;
+  border-style: solid;
+  width: 10px;
+  border-width: 10.5px 2.025px 0px 2.025px;
 }
-.deep-bar.deep-health {
-  -webkit-border-image: url("../res/deep_ui/UnitFrame_PowerBar_Background.png") 102 15 0 15 fill stretch;
-  -moz-border-image: url("../res/deep_ui/UnitFrame_PowerBar_Background.png") 102 15 0 15 fill stretch;
-  -ms-border-image: url("../res/deep_ui/UnitFrame_PowerBar_Background.png") 102 15 0 15 fill stretch;
-  -o-border-image: url("../res/deep_ui/UnitFrame_PowerBar_Background.png") 102 15 0 15 fill stretch;
-  border-image: url("../res/deep_ui/UnitFrame_PowerBar_Background.png") 102 15 0 15 fill stretch;
+.deep-bar.thin > .deep-text {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+  top: -9.5px;
+  font-size: 16px;
+  line-height: 16px;
+  height: 16px;
+  text-align: center;
+  -webkit-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+  display: inline-block;
 }
-.deep-bar.deep-health > .deep-fill {
-  -webkit-border-image: url("../res/deep_ui/UnitFrame_HealthBar_Fill_Tiled.png") 68 10 0 10 fill stretch;
-  -moz-border-image: url("../res/deep_ui/UnitFrame_HealthBar_Fill_Tiled.png") 68 10 0 10 fill stretch;
-  -ms-border-image: url("../res/deep_ui/UnitFrame_HealthBar_Fill_Tiled.png") 68 10 0 10 fill stretch;
-  -o-border-image: url("../res/deep_ui/UnitFrame_HealthBar_Fill_Tiled.png") 68 10 0 10 fill stretch;
-  border-image: url("../res/deep_ui/UnitFrame_HealthBar_Fill_Tiled.png") 68 10 0 10 fill stretch;
+.deep-bar.thin.blue > .deep-fill {
+  -webkit-border-image: url("../res/deep_ui/power_bar_blue.png") 68 10 0 10 fill stretch;
+  -moz-border-image: url("../res/deep_ui/power_bar_blue.png") 68 10 0 10 fill stretch;
+  -ms-border-image: url("../res/deep_ui/power_bar_blue.png") 68 10 0 10 fill stretch;
+  -o-border-image: url("../res/deep_ui/power_bar_blue.png") 68 10 0 10 fill stretch;
+  border-image: url("../res/deep_ui/power_bar_blue.png") 68 10 0 10 fill stretch;
+}
+.deep-bar.thin.darkgreen > .deep-fill {
+  -webkit-border-image: url("../res/deep_ui/power_bar_darkgreen.png") 68 10 0 10 fill stretch;
+  -moz-border-image: url("../res/deep_ui/power_bar_darkgreen.png") 68 10 0 10 fill stretch;
+  -ms-border-image: url("../res/deep_ui/power_bar_darkgreen.png") 68 10 0 10 fill stretch;
+  -o-border-image: url("../res/deep_ui/power_bar_darkgreen.png") 68 10 0 10 fill stretch;
+  border-image: url("../res/deep_ui/power_bar_darkgreen.png") 68 10 0 10 fill stretch;
+}
+.deep-bar.thin.darkpurple > .deep-fill {
+  -webkit-border-image: url("../res/deep_ui/power_bar_darkpurple.png") 68 10 0 10 fill stretch;
+  -moz-border-image: url("../res/deep_ui/power_bar_darkpurple.png") 68 10 0 10 fill stretch;
+  -ms-border-image: url("../res/deep_ui/power_bar_darkpurple.png") 68 10 0 10 fill stretch;
+  -o-border-image: url("../res/deep_ui/power_bar_darkpurple.png") 68 10 0 10 fill stretch;
+  border-image: url("../res/deep_ui/power_bar_darkpurple.png") 68 10 0 10 fill stretch;
+}
+.deep-bar.thin.darkred > .deep-fill {
+  -webkit-border-image: url("../res/deep_ui/power_bar_darkred.png") 68 10 0 10 fill stretch;
+  -moz-border-image: url("../res/deep_ui/power_bar_darkred.png") 68 10 0 10 fill stretch;
+  -ms-border-image: url("../res/deep_ui/power_bar_darkred.png") 68 10 0 10 fill stretch;
+  -o-border-image: url("../res/deep_ui/power_bar_darkred.png") 68 10 0 10 fill stretch;
+  border-image: url("../res/deep_ui/power_bar_darkred.png") 68 10 0 10 fill stretch;
+}
+.deep-bar.thin.green > .deep-fill {
+  -webkit-border-image: url("../res/deep_ui/power_bar_green.png") 68 10 0 10 fill stretch;
+  -moz-border-image: url("../res/deep_ui/power_bar_green.png") 68 10 0 10 fill stretch;
+  -ms-border-image: url("../res/deep_ui/power_bar_green.png") 68 10 0 10 fill stretch;
+  -o-border-image: url("../res/deep_ui/power_bar_green.png") 68 10 0 10 fill stretch;
+  border-image: url("../res/deep_ui/power_bar_green.png") 68 10 0 10 fill stretch;
+}
+.deep-bar.thin.purple > .deep-fill {
+  -webkit-border-image: url("../res/deep_ui/power_bar_purple.png") 68 10 0 10 fill stretch;
+  -moz-border-image: url("../res/deep_ui/power_bar_purple.png") 68 10 0 10 fill stretch;
+  -ms-border-image: url("../res/deep_ui/power_bar_purple.png") 68 10 0 10 fill stretch;
+  -o-border-image: url("../res/deep_ui/power_bar_purple.png") 68 10 0 10 fill stretch;
+  border-image: url("../res/deep_ui/power_bar_purple.png") 68 10 0 10 fill stretch;
+}
+.deep-bar.thin.red > .deep-fill {
+  -webkit-border-image: url("../res/deep_ui/power_bar_red.png") 68 10 0 10 fill stretch;
+  -moz-border-image: url("../res/deep_ui/power_bar_red.png") 68 10 0 10 fill stretch;
+  -ms-border-image: url("../res/deep_ui/power_bar_red.png") 68 10 0 10 fill stretch;
+  -o-border-image: url("../res/deep_ui/power_bar_red.png") 68 10 0 10 fill stretch;
+  border-image: url("../res/deep_ui/power_bar_red.png") 68 10 0 10 fill stretch;
+}
+.deep-bar.thin.yellow > .deep-fill {
+  -webkit-border-image: url("../res/deep_ui/power_bar_yellow.png") 68 10 0 10 fill stretch;
+  -moz-border-image: url("../res/deep_ui/power_bar_yellow.png") 68 10 0 10 fill stretch;
+  -ms-border-image: url("../res/deep_ui/power_bar_yellow.png") 68 10 0 10 fill stretch;
+  -o-border-image: url("../res/deep_ui/power_bar_yellow.png") 68 10 0 10 fill stretch;
+  border-image: url("../res/deep_ui/power_bar_yellow.png") 68 10 0 10 fill stretch;
+}
+.deep-bar.thin > .deep-text {
+  display: none;
 }
 .deep-cnt-btn {
   background-color: #4d4444;
@@ -743,4 +877,9 @@ img {
 }
 .deep-cnt-btn:active:not([disabled]) {
   background-color: #3f3838;
+}
+.deep-disabled-block {
+  background-image: url("../res/deep_ui/block.png");
+  background-repeat: no-repeat;
+  background-size: contain;
 }

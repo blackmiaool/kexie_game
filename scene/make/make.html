@@ -47,12 +47,35 @@
     </div>
     <div class="info-block">
         <header>体力</header>
-        <main class="deep-power" deep-power="z.power" deep-max="z.powerMax">
+        <main class="deep-power darkred" deep-power="z.power" deep-max="z.powerMax">
         </main>
     </div>
+    <div class="info-block">
+        <header>行动力</header>
+        <main class="deep-power blue" deep-power="z.game.move" deep-max="3" deep-text="{{z.game.move}}(+{{z.game.increase}})">
+        </main>
+    </div>
+    <div class="info-block">
+        <header>性能</header>
+        <main class="deep-power thin darkgreen" deep-power="working.props[0]" deep-max="100" deep-text="working.props[0]">
+        </main>
+    </div>
+    <div class="info-block">
+        <header>稳定</header>
+        <main class="deep-power thin darkgreen" deep-power="working.props[1]" deep-max="100" deep-text="working.props[1]">
+        </main>
+    </div>
+    <div class="info-block">
+        <header>创新</header>
+        <main class="deep-power thin darkgreen" deep-power="working.props[2]" deep-max="100" deep-text="working.props[2]">
+        </main>
+    </div>
+    
+    
+    
     <div class="btn-wrap">
-        <button ng-click="goScene('make-select')" class="deep-btn green lg change-target">选择制作物品</button>
-        <button ng-click="goScene('make-select')" class="deep-btn orange lg disslove">分解</button>
+        <button ng-click="goScene('make-select')" class="deep-btn green sm change-target">选择制作物品</button>
+        <button ng-click="goScene('make-select')" class="deep-btn orange sm disslove">分解</button>
     </div>
 </div>
 

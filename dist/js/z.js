@@ -48,7 +48,11 @@ define(["res", "system-common"], function (res, common) {
         item: {},
         device: {},
         components: {},
-        character: {}
+        character: {},
+        game: {
+            move: 1,
+            increase: 1.2
+        }
 
     };
 
@@ -92,6 +96,7 @@ define(["res", "system-common"], function (res, common) {
                     stabilityMax: 10
                 },
                 phase: "making",
+                props: [0, 100, 0],
                 property: [{
                     kind: "lucky",
                     value: "3"

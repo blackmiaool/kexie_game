@@ -78,29 +78,36 @@ define(["angular-module"], function (module) {
     }).directive('deepPower', ["$parse", function ($parse) {
         return {
             restrict: 'A',
-            link: function link(scope, element, attrs) {
+            compile: function compile(element, attrs) {
                 var $$ = element.find.bind(element);
-                var $fill = $$(".deep-fill");
+                var text = attrs.deepText;
                 var $text = $$(".deep-text");
+                if (text) {
+                    $text.html(text);
+                }
+                return function (scope, element, attrs) {
+                    var $$ = element.find.bind(element);
+                    var $fill = $$(".deep-fill");
+                    var $text = $$(".deep-text");
 
-                function updateWidth(v) {
-                    var max = $parse(attrs["deepMax"])(scope);
-                    if (v == 0) {
-                        $fill.hide();
-                    } else {
-                        $fill.show();
+                    function updateWidth(v) {
+                        var max = $parse(attrs["deepMax"])(scope);
+                        if (v == 0 && false) {
+                            $fill.hide();
+                        } else {
+                            $fill.show();
 
-                        var width = (108 - 5) * v / max + 5 + "%";
-                        $fill.css("width", width);
+                            var width = (100 - 5) * v / max + 5 + "%";
+                            $fill.css("width", width);
+                        }
+                        if (!text) $text.text(v + "/" + max);
                     }
 
-                    $text.text(v + "/" + max);
-                }
+                    element.addClass("deep-bar");
+                    console.log("t", text);
 
-                element.addClass("deep-bar");
-
-                //                    updateWidth($parse(attrs["deepPower"])(scope));
-                scope.$watch(attrs["deepPower"], updateWidth, true);
+                    scope.$watch(attrs["deepPower"], updateWidth, true);
+                };
             },
             template: "                 \n                    <div class=\"deep-fill\">                        \n                    </div>\n                    <span class=\"deep-text\"></span>\n                "
         };

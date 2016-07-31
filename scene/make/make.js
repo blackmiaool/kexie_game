@@ -23,6 +23,8 @@ function init() {
 //console.log(working)
 
 module.controller("MakeController", ["$scope", "$rootScope", "$timeout", function (sp, rsp, $timeout) {
+    window.rsp=rsp;
+    window.makesp=sp;
     //    let extendDirs=["性能","稳定","创新"];
     //    let extensions={性能:false,稳定:false,创新:false};
     let diffculty;
@@ -106,6 +108,7 @@ module.controller("MakeController", ["$scope", "$rootScope", "$timeout", functio
             process: 0,
             processMax: 20,
             phase: "making",
+            props:[0,100,0],
         };
         sp.working = working;
         //        sp.working.phase = "making";
@@ -190,11 +193,16 @@ function Map(columnNum, rowNum, $gameWrap) {
     }
 
     function playerMoveEnd(cb) {
-        
-        itemsRandomMove(items, () => {
+        if (z.game.move < 1) {
+            itemsRandomMove(items, () => {
+                this.idle = true;
+                cb && cb();
+            });
+        } else {
             this.idle = true;
             cb && cb();
-        });
+        }
+
     }
     let items = [];
 
@@ -221,6 +229,7 @@ function Map(columnNum, rowNum, $gameWrap) {
 }
 
 function GameUnit(map, radius) {
+    radius = radius || map.gr;
     this.map = map;
     this.radius = radius;
 }
@@ -300,8 +309,8 @@ GameUnit.prototype.setDom = function ($dom) {
 }
 
 function GameItem(map, name) {
+    GameUnit.call(this, map);
     let radius = map.gr;
-    GameUnit.call(this, map, radius);
     let $item = $(`<div class="deep-item-icon" style="width:${radius}px;height:${radius}px">
                         <img draggable="false" src="${common.$rootScope.getItemIcon(res.items[name])}" class="skill-icon">
                     </div>`);
@@ -309,18 +318,33 @@ function GameItem(map, name) {
 }
 GameItem.prototype = Object.create(GameUnit.prototype);
 GameItem.prototype.constructor = GameUnit;
-GameItem.prototype.collision=function(){
+GameItem.prototype.collision = function () {
 
-    
-    this.map.items.every((v,i)=>{
-        if(v===this){
-            this.map.items.splice(i,1);
+
+    this.map.items.every((v, i) => {
+        if (v === this) {
+            this.map.items.splice(i, 1);
             return false;
         }
         return true;
-    })
-    this.$dom.remove();
+    });
+    this.$dom.css("transition", "none")
+    this.$dom.fadeOut(300, () => {
+        this.$dom.remove();
+        console.log("remo");
+    });
+    return true;
 }
+
+function GameHole(map) {
+    GameUnit.call(this, map);
+    let radius = map.gr;
+    let $item = $(`<div class="deep-disabled-block" style="width:${radius}px;height:${radius}px"></div>`);
+    GameUnit.prototype.setDom.call(this, $item);
+}
+GameHole.prototype = Object.create(GameUnit.prototype);
+GameHole.prototype.constructor = GameUnit;
+
 function GamePlayer(map) {
     let radius = map.gr;
     GameUnit.call(this, map, radius);
@@ -346,34 +370,81 @@ GamePlayer.prototype.move = function (dir) {
     if (!this.map.idle) {
         return;
     }
-    if(!z.power){
-        return;
+    if (!z.power) {
+        //        return;
     }
     if (this.map.isOutside(pos)) {
         return false;
-    } else {// actually move        
-        common.$rootScope.$apply(function(){
-            z.power-=1;    
-        })
-        let target=this.map.getData(pos);
-        if(target){
-           target.collision(); 
+    } else { // actually move        
+        let afterMove = () => {
+            consumeMove();
+            this.$dom.inactive();
+            this.map.idle = false;
+            setTimeout(() => {
+                //                z.power--;
+
+
+                this.map.playerMoveEnd(() => {
+                    this.$dom.active();
+                    common.$rootScope.$apply(function () {
+                        if (z.game.move < 1) {
+                            z.power -= 1;
+                            z.game.move += z.game.increase;
+                            z.game.move = beautifyFloat(z.game.move);
+                        }
+
+                    })
+
+                });
+            }, 200);
         }
-        this.setPos(pos);
-        this.$dom.inactive();
-        this.map.idle = false;
-        setTimeout(() => {
-            this.map.playerMoveEnd(() => {
-                this.$dom.active();
-            });
-        }, 200);
-        
+
+        function consumeMove() {
+            common.$rootScope.$apply(function () {
+                z.game.move -= 1;
+                z.game.move = beautifyFloat(z.game.move);
+            })
+        }
+        let target = this.map.getData(pos);
+        if (target) {
+            let result = target.collision && target.collision();
+            if (result === true) { //eat
+                this.setPos(pos);
+                afterMove();
+            } else if (result === false) { //eat without move
+                afterMove();
+            } else { //blocked
+                
+            }
+        } else {
+            this.setPos(pos);
+            afterMove();
+        }
+
+
+
+
 
     }
 }
 
+function beautifyFloat(f) {
+    f *= 10;
+    if (f - parseInt(f) > 0.5) {
+        f = parseInt(f) + 1;
+    } else {
+        f = parseInt(f)
+    }
+    return f / 10;
+}
+
 function controlPlayer(e) {
     let key = common.code2key[e.keyCode];
+    if (z.game.move < 1) {
+        return;
+    }
+
+
     if (key == "w") {
         player.move("up");
     } else if (key == "d") {
@@ -396,6 +467,20 @@ function itemsRandomMove(items, cb) {
     }, 200 * items.length)
 }
 let player;
+let productConfig = {
+    "硬件流水灯": {
+        h: 5,
+        w: 5,
+        hole: [[0, 0], [1, 1], [4, 4], [3, 3]],
+        material: {
+            "五5伍": [[0, 2]],
+            "LED": [[1, 3]],
+            "电路基础元件": [[1, 4]]
+        },
+        player: [2, 3],
+    }
+
+}
 module.controller("GameController", ["$scope", "$rootScope", "$timeout", function (sp, rsp, $timeout) {
     let $gameWrap = $(".main-content[data-phase='making']>.game-wrap");
 
@@ -409,18 +494,24 @@ module.controller("GameController", ["$scope", "$rootScope", "$timeout", functio
         })
 
         let working = res.products[kind];
+        let config = productConfig[working.name];
 
-        working.material.forEach(function (v, i) {
-            let item = new GameItem(map, v.name);
-            item.setPos(generateFreeRandomPos(map, working, v));
-            map.registerItem(item);
-        });
+        for (var j in config.material) {
+            config.material[j].forEach(function (v, i) {
+                let item = new GameItem(map, j);
+                item.setPos(v);
+                map.registerItem(item);
+            })
+        }
+
+        config.hole.forEach(function (v, i) {
+            let hole = new GameHole(map);
+            hole.setPos(v);
+        })
+
         player = new GamePlayer(map);
-        player.setPos(generateFreeRandomPos(map, working));
+        player.setPos(config.player);
 
-        //        setInterval(function () {
-        //            itemsRandomMove(mapItems);
-        //        }, 2200);
         let {
             columns, rows
         } = map;
