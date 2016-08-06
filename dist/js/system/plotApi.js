@@ -5,6 +5,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 define(["require", "system-sys", "system-common", "system-dbg", "res"], function (require, sys, common, dbg, res) {
 
     var $dom = $(".scene[data-scene=\"chat\"]");
+    console.log($dom);
     var $$ = $dom.find.bind($dom);
     var $bg = $$(".bg");
     var $chat = $$(".chat-text");
@@ -44,7 +45,8 @@ define(["require", "system-sys", "system-common", "system-dbg", "res"], function
         tcn: tcn,
         gap: gap,
         rand: rand,
-        init: init
+        init: init,
+        emphasize: emphasize
     };
 
     var touched = false;
@@ -75,6 +77,45 @@ define(["require", "system-sys", "system-common", "system-dbg", "res"], function
             }
         }, 100);
     };
+
+    function emphasize(people) {
+        var $emphasize = $$(".emphasize.layer");
+        var $$$ = $emphasize.find.bind($emphasize);
+        var $half = $$$(".big-half");
+        var $descr = $$$(".descr");
+        var $mask = $$$(".panel-wrap .mask");
+
+        $half.attr("src", people.half);
+        $bg.addClass("filter-gray").addClass("ease");
+
+        console.log(arguments);
+        setTimeout(function () {
+            var transTime1 = common.getDuration($half.css("transition-duration"));
+            $half.active();
+            $descr.active();
+            setTimeout(function () {
+                $mask.active();
+            }, transTime1);
+            setTimeout(function () {
+                var transTime2 = common.getDuration($half.css("transition-duration"));
+                $half.addClass("leave");
+                $descr.addClass("leave");
+                setTimeout(function () {
+                    $mask.inactive();
+                    var transTime3 = common.getDuration($bg.css("transition-duration"));
+                    $bg.removeClass("filter-gray");
+                    $half.removeClass("leave").noEase().inactive("leave");
+                    $descr.removeClass("leave").noEase().inactive("leave");
+                    setTimeout(function () {
+                        $bg.removeClass("ease");
+                        $half.ease();
+                        $descr.ease();
+                        plot_core.resume();
+                    }, transTime3);
+                }, transTime2);
+            }, transTime1 + 1500);
+        }, 100);
+    }
 
     function messageCreate(t, $container, $nameImg) {
 

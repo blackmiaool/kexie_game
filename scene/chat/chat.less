@@ -4,13 +4,127 @@
     position: absolute;
     height: 100%;
     width: 100%;
+    >.emphasize {
+        .big-half {
+            position: absolute;
+            right: 1100px;
+            left: auto;
+            bottom: -154px;
+            width: auto;
+            height: 660px;
+            //            transition: right 0.5s ease-out;
+            transition: right 1000ms cubic-bezier(0.260, 0.815, 0.590, 0.995);
+            &.active {
+                right: 57px;
+            }
+            &.leave {
+                right: -557px;
+            }
+        }
+        .descr {
+            position: absolute;
+            width: 70%;
+            bottom: 10%;
+            height: 70px;
+            right: -716px;
+            transition: right 1000ms cubic-bezier(0.260, 0.815, 0.590, 0.995);
+            &.active {
+                right: -40px;
+            }
+            &.leave {
+                right: 1540px;
+            }
+            .panel-wrap {
+                height: 60px;
+            }
+            .panel-mask {
+                .abs-fill;
+                .transform(skewX(44.7deg));
+                overflow: hidden;
+                bottom: 6px;
+                top: 2px;
+                left: 32px;
+                .mask {
+                    position: absolute;
+                    top: 0;
+                    border: 0;
+                    width: 253px;
+                    transform: skewX(-84deg);
+                    background-color: rgba(255, 255, 255, 0.5);
+                    bottom: 0;
+                    left: -530px;
+                    transition: left 500ms;
+                    &.active {
+                        left: 121px;
+                    }
+                    &.leave {
+                        left: -521px;
+                    }
+                }
+            }
+            .panel {
+                height: 100%;
+                //                .abs-fill;
+                //                border: rgb(246, 218, 83) 10px solid;
+                //                position: absolute;
+                //                background-color: rgb(151, 44, 33);
+                //                outline: 4px black solid;                
+                //                .transform(perspective(1000px) rotatex(-66deg));
+                //                .transform(skewX(38deg));
+                //                border-bottom-width: 6px;
+                //                border-top-width: 6px;
+                border-style: solid;
+                @scale: 0.6;
+                border-width: 114px*@scale 0px 0px 118px*@scale;
+                .border-image(url("@{res-folder}/UI/chat_emphasize.png") 114 1 0 118 fill repeat round);
+            }
+            .title {
+                position: absolute;
+                left: 40px;
+                top: -24px;
+                font-size: 20px;
+                font-weight: bold;
+                //                height: 100px;
+                //                width: 100px;
+                .title-bg {
+                    //                    .fill;
+                    background-color: black;
+                }
+                text {
+                    stroke: #444;
+                    stroke-width: 1;
+                    stroke-linejoin: round;
+                }
+            }
+            .content {
+                .transform-center;
+                left: 64%;
+                top: 134%;
+                font-size: 40px;
+                font-family: "chinese";
+                margin: auto;
+                text {
+                    stroke: black;
+                    stroke-width: 1;
+                    stroke-linejoin: round;
+                }
+            }
+        }
+    }
+}
+
+.layer {
+    position: absolute;
+    height: 100%;
+    border: none;
+    width: 100%;
 }
 
 .btn-wrap {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    &.chatting{
+    &.chatting {
         padding-bottom: 180px;
     }
     .chat-btn-group {
@@ -28,18 +142,6 @@
             button.menu_btn {}
         }
     }
-}
-
-.btn-wrap,
-.bg,
-.half-wrap,
-.text-wrap,
-{
-    position: absolute;
-    height: 100%;
-    border: none;
-    width: 100%;
-    /*text-align: center;*/
 }
 
 .text-wrap {
@@ -104,4 +206,8 @@
 .bg {
     width: 100%;
     background-size: cover;
+    &.ease {
+        //        transition: all 0.5s;
+        transition: all 1000ms cubic-bezier(0.260, 0.815, 0.590, 0.995);
+    }
 }

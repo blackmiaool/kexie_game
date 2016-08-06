@@ -8,111 +8,11 @@ define(["angular", "system-dbg", "system-config", "_"], function (angular, dbg, 
     var currentScene = {};
 
 
-    _.extend($.fn, {
-        hide: function () {
-            this.addClass("hide");
-            return this;
-        },
-        show: function () {
-            this.removeClass("hide");
-            return this;
-        },
-        isShown: function () {
-            return !this.hasClass("hide");
-        },
-        toggleShow: function () {
-            if (this.hasClass("hide")) {
-                this.removeClass("hide");
-            } else {
-                this.addClass("hide");
-            }
-        },
-        active: function (state = true) {
-            this.addClass("active");
-            return this;
-        },
-        inactive: function (state = true) {
-
-            this.removeClass("active");
-            return this;
-        },
-        isActive: function () {
-            return this.hasClass("active");
-        },
-        toggleActive: function () {
-            if (this.hasClass("active")) {
-                this.removeClass("active");
-            } else {
-                this.addClass("active");
-            }
-        },
-    })
-
-
-    function changeScene(target, ...args) {
-        if (sceneChanging == true) {
-            return;
-        }
-        if (typeof (target) == "string") {
-
-            target = scenes[target];
-        } else if (typeof (target) == "object") {
-
-            //            target = target;
-        } else {
-
-            console.error("bad target");
-        }
-
-        function call_enter(args) {
-            setTimeout(function () {
-                if (target.enter) {
-                    target.enter.apply(target, args);
-                }
-                exports.$rootScope.$emit(target.id + "_enter", args);
-            }, sceneFadeTime);
-        }
-
-        if (target.id) {
-            console.info("out", currentScene.id, "in", target.id, args)
-            if (currentScene.dom_id) {
-                $("#" + currentScene.dom_id).css("z-index", "0")
-                $("#" + currentScene.dom_id).fadeOut(sceneFadeTime);
-            }
-            $("#" + target.dom_id).css("z-index", "1")
-            $("#" + target.dom_id).fadeIn(sceneFadeTime)
-            currentScene = target;
-
-            if (target.pre_enter) {
-                target.pre_enter.apply(target, args);
-            }
-            exports.$rootScope.$emit(target.id + "_pre_enter", args);
-            call_enter(args);
-        } else {
-            call_enter(args);
-        }
-    }
+    
     var exports = {
         sx: 960,
         sy: 540,
         quick,
-        sceneChanging,
-        Scene: function Scene({
-            id, dom_id, init, pre_enter, enter
-        }) {
-            this.id = id;
-            this.dom_id = dom_id;
-            this.init = init;
-            this.pre_enter = pre_enter;
-            this.enter = enter;
-            scenes[id] = this;
-            if (this.init) {
-                this.init();
-            }
-        },
-        currentScene,
-        scenes,
-        changeScene,
         readTextFile: (file, cb) => {
             var rawFile = new XMLHttpRequest();
             rawFile.open("GET", file.name, true);

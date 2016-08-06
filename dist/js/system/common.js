@@ -2,7 +2,7 @@
 
 var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol ? "symbol" : typeof obj; };
 
-define(["jquery"], function () {
+define(["jquery", "underscore"], function ($, _) {
     var resPath = "res/";
     var z = void 0;
     var sx = 960;
@@ -82,6 +82,7 @@ define(["jquery"], function () {
         var max = arguments.length <= 1 || arguments[1] === undefined ? 1 : arguments[1];
 
         seed += 15958;
+
         function random() {
             var x = Math.sin(seed) * 10000;
             x = Math.abs(x) / 10000;
@@ -187,6 +188,66 @@ define(["jquery"], function () {
     for (var i = 65; i < 65 + 26; i++) {
         code2key[i] = String.fromCharCode(i).toLowerCase();
     }
+    function getDuration(time) {
+        if (time.match(/ms/)) {
+            return parseInt(time);
+        } else {
+            return parseInt(time) * 1000;
+        }
+    }
+    function randomItem(arr) {
+        return arr[_.random(0, arr.length - 1)];
+    }
+    _.extend($.fn, {
+        hide: function hide() {
+            this.addClass("hide");
+            return this;
+        },
+        show: function show() {
+            this.removeClass("hide");
+            return this;
+        },
+        isShown: function isShown() {
+            return !this.hasClass("hide");
+        },
+        toggleShow: function toggleShow() {
+            if (this.hasClass("hide")) {
+                this.removeClass("hide");
+            } else {
+                this.addClass("hide");
+            }
+        },
+        active: function active() {
+            var state = arguments.length <= 0 || arguments[0] === undefined ? true : arguments[0];
+
+            this.addClass("active");
+            return this;
+        },
+        inactive: function inactive() {
+            var state = arguments.length <= 0 || arguments[0] === undefined ? true : arguments[0];
+
+
+            this.removeClass("active");
+            return this;
+        },
+        isActive: function isActive() {
+            return this.hasClass("active");
+        },
+        toggleActive: function toggleActive() {
+            if (this.hasClass("active")) {
+                this.removeClass("active");
+            } else {
+                this.addClass("active");
+            }
+        },
+        noEase: function noEase() {
+            return this.css("transition-duration", "0s");
+        },
+        ease: function ease() {
+            return this.css("transition-duration", "");
+        }
+    });
+
     var exports = {
         resPath: resPath,
         color: color,
@@ -201,7 +262,9 @@ define(["jquery"], function () {
         sx: sx,
         sy: sy,
         seed: seed,
-        code2key: code2key
+        code2key: code2key,
+        getDuration: getDuration,
+        randomItem: randomItem
     };
     return exports;
 });

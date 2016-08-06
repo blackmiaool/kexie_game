@@ -26,6 +26,7 @@ define(["system-sys", "system-plotApi", "exports", "system-scene"], function (sy
     }
 
     function init() {
+        
         plotApi.init();
         plotsPromise.then(function () {
 

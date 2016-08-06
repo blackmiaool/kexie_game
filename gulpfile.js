@@ -52,9 +52,12 @@ gulp.task('html', function () {
         character:"CharacterController",
         save:"SaveController",
     }
+    let notif={
+        chat:true,
+    }
     let sceneStr=sceneArray.reduce(function(p,v){
         let controller=controllerMap[v]?`ng-controller="${controllerMap[v]}"`:"";
-        return p+`<div class="scene" data-scene="${v}" ng-if="scenes['${v}']" ${controller}>\n
+        return p+`<div class="scene" data-scene="${v}" ng-${notif[v]?'show':'if'}="scenes['${v}']" ${controller}>\n
                 <!-- inject: ../scene/${v}/${v}.html-->
             </div>\n`
     },"");
@@ -102,25 +105,24 @@ gulp.task("plots", function () {
         gutil.log(ee);
         babel_pipe.end();
     });
+//    var tcc=plot.tcc; //use same person as last invoke tc
+//var tcn=plot.tcn; //tc without wait touch
+    let api=["tc", "th", "ts", "tm", "tcc", "tmood", "tcn","emphasize"];
+    let apiStr=api.reduce(function(p,v,i){
+        return p+=`let ${v}=plot["${v}"];\n`;
+    },"")
     return gulp.src('js/plot/*.js', {
             base: 'js'
         })
         .pipe(cached("plot"))
-        .pipe(yield_prefix(["tc", "th", "ts", "tm", "tcc", "tmood", "tcn"]))
+        .pipe(yield_prefix(api))
         .pipe(headerfooter({
             header: `define(["require","res","z","system-sys","_","system-plotApi"],function (require,res,z,sys,_,plot){\
 return function* (plot_cb){ 
-var ts=plot.ts; 
-var tc=plot.tc; 
-var tcc=plot.tcc; //use same person as last invoke tc
-var tcn=plot.tcn; //tc without wait touch
-var th=plot.th; 
-var tm=plot.tm; 
-var tmood=plot.tmood; 
+${apiStr} \n
 var img=res.img; 
 var gap=plot.gap; 
-var pp=res.pp; 
-var tmood=plot.tmood; `,
+var pp=res.pp;`,
             footer: `\n setTimeout(function(){plot_cb()},0);\n}})`,
             filter: function (file) {
                 return true;

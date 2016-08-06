@@ -23,8 +23,8 @@ function init() {
 //console.log(working)
 
 module.controller("MakeController", ["$scope", "$rootScope", "$timeout", function (sp, rsp, $timeout) {
-    window.rsp=rsp;
-    window.makesp=sp;
+    window.rsp = rsp;
+    window.makesp = sp;
     //    let extendDirs=["性能","稳定","创新"];
     //    let extensions={性能:false,稳定:false,创新:false};
     let diffculty;
@@ -108,7 +108,7 @@ module.controller("MakeController", ["$scope", "$rootScope", "$timeout", functio
             process: 0,
             processMax: 20,
             phase: "making",
-            props:[0,100,0],
+            props: [0, 100, 0],
         };
         sp.working = working;
         //        sp.working.phase = "making";
@@ -150,14 +150,27 @@ module.controller("MakeController", ["$scope", "$rootScope", "$timeout", functio
 
 }])
 
-function Map(columnNum, rowNum, $gameWrap) {
+function Map(columnNum, rowNum, $gameWrap, working) {
     let column = columnNum;
     let row = rowNum;
     let columns = [];
     let rows = [];
     let data = [];
     let idle = true;
+    let map = this;
+    let step = 0;
+    working.round = 0;
+    updateNextItem();
+    updateNextInnovation();
 
+    function updateNextItem() {
+        working.nextItem = _.random(4, 7);
+    }
+
+    function updateNextInnovation() {
+        working.nextInnovation = _.random(7, 11);
+    }
+    this.working = working;
     for (let i = 0; i < columnNum - 1; i++) {
         columns.push(i);
     }
@@ -193,23 +206,140 @@ function Map(columnNum, rowNum, $gameWrap) {
     }
 
     function playerMoveEnd(cb) {
+        step++;
+
+        addInnovation();
         if (z.game.move < 1) {
+            working.round++;
+            working.nextItem--;
+            working.nextInnovation--;
+            console.log(stars);
+            starsUpdate();
             itemsRandomMove(items, () => {
                 this.idle = true;
                 cb && cb();
             });
+
+
+            if (!working.nextItem) {
+                updateNextItem();
+                addNewItem();
+            }
+            if (!working.nextInnovation) {
+                updateNextInnovation();
+                addInnovation();
+            }
         } else {
             this.idle = true;
             cb && cb();
         }
 
     }
+
+    function starsUpdate() {
+        stars.forEach(function (v, i) {
+            let $$ = v.$dom.find.bind(v.$dom);
+            let $num = $$(".round-num");
+            let round = $num.text();
+            round--;
+            $num.text(round);
+            console.log(round)
+            if (!round) {
+                setTimeout( ()=> {
+                    stars.every( (w, i) =>{
+                        if (w === v) {
+                            v.map.stars.splice(i, 1);
+                            return false;
+                        }else{
+                            return true;
+                        }
+                    })
+                })
+            
+
+                v.$dom.remove();
+                map.data[v.pos[0]][v.pos[1]] = false;
+
+            }
+        })
+    }
+
+    function itemsRandomMove(items, cb) {
+        items.forEach(function (v, i) {
+            setTimeout(function () {
+                v.randomMove();
+            }, 200 * i)
+        })
+        setTimeout(function () {
+            cb && cb();
+        }, 200 * items.length)
+    }
+
+    function addInnovation() {
+        let star = new GameStar(map);
+        star.setPos(getFreeRandomPos());
+    }
+
+    function addNewItem() {
+        let material = productConfig[working.name].material;
+        let materials = _.pairs(material);
+        let item = common.randomItem(materials);
+
+        item = new GameItem(map, item[0]);
+        item.setPos(getFreeRandomPos());
+    }
+
+    function getFreeRandomPos(item, seedAddon = 0) {
+        function getPos(seed) {
+            let x = common.seed(seed[0], map.column - 1);
+            let y = common.seed(seed[1], map.row - 1);
+            return [x, y];
+        }
+
+        function getSeed(working, item) {
+            let ret1 = 0;
+            let ret2 = 0;
+            for (let i = 0; i < working.name.length; i++) {
+                ret1 += working.name.charCodeAt(i);
+            }
+            for (let i = 0; i < item.name.length; i++) {
+                ret2 += item.name.charCodeAt(i);
+            }
+
+            return [ret1 * 10 + ret2, ret2 * 10 + ret1];
+        }
+        let seed
+        if (item) {
+            seed = getSeed(working, item);
+        } else {
+            seed = [_.random(0, 10000), _.random(0, 10000)];
+        }
+
+        seed[0] += seedAddon;
+        seed[1] += seedAddon * 17;
+        let pos;
+        do {
+            pos = getPos(seed);
+            seed[0]++;
+            seed[1]++;
+        } while (map.getData(pos));
+
+
+        return pos;
+    }
+
+
+
     let items = [];
+    let stars = [];
 
     function registerItem(item) {
         items.push(item);
     }
 
+    function registerStar(star) {
+        stars.push(star);
+    }
     _.extend(this, {
         column,
         row,
@@ -223,8 +353,12 @@ function Map(columnNum, rowNum, $gameWrap) {
         $gameWrap,
         idle,
         items,
+        stars,
         registerItem,
+        registerStar,
         playerMoveEnd,
+        getFreeRandomPos,
+
     })
 }
 
@@ -244,38 +378,7 @@ function generateSurroundArr([x, y]) {
     return ret;
 }
 
-function generateFreeRandomPos(map, working, item = {
-    name: "player"
-}) {
-    function getPos(seed) {
-        let x = common.seed(seed[0], map.column - 1);
-        let y = common.seed(seed[1], map.row - 1);
-        return [x, y];
-    }
 
-    function getSeed(working, item) {
-        let ret1 = 0;
-        let ret2 = 0;
-        for (let i = 0; i < working.name.length; i++) {
-            ret1 += working.name.charCodeAt(i);
-        }
-        for (let i = 0; i < item.name.length; i++) {
-            ret2 += item.name.charCodeAt(i);
-        }
-
-        return [ret1 * 10 + ret2, ret2 * 10 + ret1];
-    }
-    let seed = getSeed(working, item);
-    let pos;
-    do {
-        pos = getPos(seed);
-        seed[0]++;
-        seed[1]++;
-    } while (map.getData(pos));
-
-
-    return pos;
-}
 GameUnit.prototype.randomMove = function () {
     let options = generateSurroundArr(this.pos).reduce((pre, v, i) => {
         //            console.log(pre, v,this.map.isEmpty(v), i);
@@ -308,8 +411,25 @@ GameUnit.prototype.setDom = function ($dom) {
     this.map.$gameWrap.append($dom);
 }
 
+function GameStar(map) {
+    GameUnit.call(this, map);
+    map.registerStar(this);
+    let round = _.random(1, 3);
+    let $item = $(`<div class="deep-item-star" 
+                        style="width:${this.radius}px;height:${this.radius}px">
+                        <img draggable="false"
+                            src="${res.img.little_star}" 
+                            class="star-icon">
+                        <span class="round-num">${round}</span>
+                    </div>`);
+    GameUnit.prototype.setDom.call(this, $item);
+}
+GameStar.prototype = Object.create(GameUnit.prototype);
+GameStar.prototype.constructor = GameUnit;
+
 function GameItem(map, name) {
     GameUnit.call(this, map);
+    map.registerItem(this);
     let radius = map.gr;
     let $item = $(`<div class="deep-item-icon" style="width:${radius}px;height:${radius}px">
                         <img draggable="false" src="${common.$rootScope.getItemIcon(res.items[name])}" class="skill-icon">
@@ -331,8 +451,22 @@ GameItem.prototype.collision = function () {
     this.$dom.css("transition", "none")
     this.$dom.fadeOut(300, () => {
         this.$dom.remove();
-        console.log("remo");
+        const removeList = ["width", "height", "left", "top", "transition"];
+        removeList.forEach((v, i) => {
+            this.$dom.css(v, "");
+        });
+        this.$dom.show()
+        let $wrap = $(`<div class="game-item-wrap"></div>`);
+        $wrap.addClass("adding");
+        setTimeout(function () {
+            $wrap.removeClass("adding");
+        }, 100);
+        $wrap.append(this.$dom);
+        $(".item-row").append($wrap);
+
     });
+
+    this.map.working.props[0] = 100 - (100 - this.map.working.props[0]) * 0.85;
     return true;
 }
 
@@ -378,6 +512,7 @@ GamePlayer.prototype.move = function (dir) {
     } else { // actually move        
         let afterMove = () => {
             consumeMove();
+            updateWorking();
             this.$dom.inactive();
             this.map.idle = false;
             setTimeout(() => {
@@ -398,6 +533,13 @@ GamePlayer.prototype.move = function (dir) {
                 });
             }, 200);
         }
+        const updateWorking = () => {
+            common.$rootScope.$apply(() => {
+
+                this.map.working.props[1] *= 0.95;
+
+            })
+        }
 
         function consumeMove() {
             common.$rootScope.$apply(function () {
@@ -414,7 +556,7 @@ GamePlayer.prototype.move = function (dir) {
             } else if (result === false) { //eat without move
                 afterMove();
             } else { //blocked
-                
+
             }
         } else {
             this.setPos(pos);
@@ -456,16 +598,7 @@ function controlPlayer(e) {
     }
 }
 
-function itemsRandomMove(items, cb) {
-    items.forEach(function (v, i) {
-        setTimeout(function () {
-            v.randomMove();
-        }, 200 * i)
-    })
-    setTimeout(function () {
-        cb && cb();
-    }, 200 * items.length)
-}
+
 let player;
 let productConfig = {
     "硬件流水灯": {
@@ -500,7 +633,6 @@ module.controller("GameController", ["$scope", "$rootScope", "$timeout", functio
             config.material[j].forEach(function (v, i) {
                 let item = new GameItem(map, j);
                 item.setPos(v);
-                map.registerItem(item);
             })
         }
 
@@ -522,7 +654,7 @@ module.controller("GameController", ["$scope", "$rootScope", "$timeout", functio
         })
 
     }
-    startGame(new Map(5, 5, $gameWrap), sp.workingKind);
+    startGame(new Map(5, 5, $gameWrap, sp.working), sp.workingKind);
 
 
 }])

@@ -1,6 +1,7 @@
 define(["require", "system-sys", "system-common", "system-dbg", "res"], function (require, sys, common, dbg, res) {
 
     const $dom = $(`.scene[data-scene="chat"]`);
+    console.log($dom)
     const $$ = $dom.find.bind($dom);
     const $bg = $$(".bg");
     const $chat = $$(".chat-text");
@@ -43,7 +44,8 @@ define(["require", "system-sys", "system-common", "system-dbg", "res"], function
         tcn,
         gap,
         rand,
-        init
+        init,
+        emphasize
     };
 
 
@@ -81,7 +83,44 @@ define(["require", "system-sys", "system-common", "system-dbg", "res"], function
         )
     };
 
+    function emphasize(people) {
+        let $emphasize = $$(".emphasize.layer");
+        let $$$ = $emphasize.find.bind($emphasize);
+        let $half = $$$(".big-half");
+        let $descr = $$$(".descr");
+        let $mask = $$$(".panel-wrap .mask");
+     
+        $half.attr("src", people.half);
+        $bg.addClass("filter-gray").addClass("ease");
 
+        console.log(arguments);
+        setTimeout(function () {
+            let transTime1=common.getDuration($half.css("transition-duration"));
+            $half.active();
+            $descr.active();
+            setTimeout(function () {
+                $mask.active();
+            }, transTime1);
+            setTimeout(function () {    
+                 let transTime2=common.getDuration($half.css("transition-duration"));
+                $half.addClass("leave");
+                $descr.addClass("leave");
+                setTimeout(function () {
+                    $mask.inactive();
+                    let transTime3=common.getDuration($bg.css("transition-duration"));
+                    $bg.removeClass("filter-gray");
+                    $half.removeClass("leave").noEase().inactive("leave");
+                    $descr.removeClass("leave").noEase().inactive("leave");
+                    setTimeout(function(){
+                        $bg.removeClass("ease")
+                        $half.ease();
+                        $descr.ease();
+                        plot_core.resume();
+                    },transTime3)
+                }, transTime2);
+            }, transTime1+1500);
+        }, 100)
+    }
 
 
     function messageCreate(t, $container, $nameImg) {
@@ -328,7 +367,7 @@ define(["require", "system-sys", "system-common", "system-dbg", "res"], function
                 $btnGroup.append(input_div);
                 input_div.css("left", "480" - parseInt(input_div.css("width")) / 2 + "px")
 
-                break;                
+                break;
             }
 
         }
@@ -547,8 +586,7 @@ define(["require", "system-sys", "system-common", "system-dbg", "res"], function
         }
     }
 
-    function ts(background, time = 800) {
-
+    function ts(background, time = 800) {        
 
         if (fastMode) {
             time = 10;

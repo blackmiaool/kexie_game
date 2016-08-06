@@ -1,7 +1,5 @@
 "use strict";
 
-var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol ? "symbol" : typeof obj; };
-
 define(["angular", "system-dbg", "system-config", "_"], function (angular, dbg, config) {
 
     var sceneChanging = false;
@@ -11,122 +9,10 @@ define(["angular", "system-dbg", "system-config", "_"], function (angular, dbg, 
     var sceneFadeTime = dbg.imdeveloper ? 1 : quick ? 1 : sceneFadeTimeRow;
     var currentScene = {};
 
-    _.extend($.fn, {
-        hide: function hide() {
-            this.addClass("hide");
-            return this;
-        },
-        show: function show() {
-            this.removeClass("hide");
-            return this;
-        },
-        isShown: function isShown() {
-            return !this.hasClass("hide");
-        },
-        toggleShow: function toggleShow() {
-            if (this.hasClass("hide")) {
-                this.removeClass("hide");
-            } else {
-                this.addClass("hide");
-            }
-        },
-        active: function active() {
-            var state = arguments.length <= 0 || arguments[0] === undefined ? true : arguments[0];
-
-            this.addClass("active");
-            return this;
-        },
-        inactive: function inactive() {
-            var state = arguments.length <= 0 || arguments[0] === undefined ? true : arguments[0];
-
-
-            this.removeClass("active");
-            return this;
-        },
-        isActive: function isActive() {
-            return this.hasClass("active");
-        },
-        toggleActive: function toggleActive() {
-            if (this.hasClass("active")) {
-                this.removeClass("active");
-            } else {
-                this.addClass("active");
-            }
-        }
-    });
-
-    function changeScene(target) {
-        for (var _len = arguments.length, args = Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
-            args[_key - 1] = arguments[_key];
-        }
-
-        if (sceneChanging == true) {
-            return;
-        }
-        if (typeof target == "string") {
-
-            target = scenes[target];
-        } else if ((typeof target === "undefined" ? "undefined" : _typeof(target)) == "object") {
-
-            //            target = target;
-        } else {
-
-                console.error("bad target");
-            }
-
-        function call_enter(args) {
-            setTimeout(function () {
-                if (target.enter) {
-                    target.enter.apply(target, args);
-                }
-                exports.$rootScope.$emit(target.id + "_enter", args);
-            }, sceneFadeTime);
-        }
-
-        if (target.id) {
-            console.info("out", currentScene.id, "in", target.id, args);
-            if (currentScene.dom_id) {
-                $("#" + currentScene.dom_id).css("z-index", "0");
-                $("#" + currentScene.dom_id).fadeOut(sceneFadeTime);
-            }
-            $("#" + target.dom_id).css("z-index", "1");
-            $("#" + target.dom_id).fadeIn(sceneFadeTime);
-            currentScene = target;
-
-            if (target.pre_enter) {
-                target.pre_enter.apply(target, args);
-            }
-            exports.$rootScope.$emit(target.id + "_pre_enter", args);
-            call_enter(args);
-        } else {
-            call_enter(args);
-        }
-    }
     var exports = {
         sx: 960,
         sy: 540,
         quick: quick,
-        sceneChanging: sceneChanging,
-        Scene: function Scene(_ref) {
-            var id = _ref.id;
-            var dom_id = _ref.dom_id;
-            var init = _ref.init;
-            var pre_enter = _ref.pre_enter;
-            var enter = _ref.enter;
-
-            this.id = id;
-            this.dom_id = dom_id;
-            this.init = init;
-            this.pre_enter = pre_enter;
-            this.enter = enter;
-            scenes[id] = this;
-            if (this.init) {
-                this.init();
-            }
-        },
-        currentScene: currentScene,
-        scenes: scenes,
-        changeScene: changeScene,
         readTextFile: function readTextFile(file, cb) {
             var rawFile = new XMLHttpRequest();
             rawFile.open("GET", file.name, true);

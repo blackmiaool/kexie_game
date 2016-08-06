@@ -2,7 +2,7 @@
 
 define(["require", "res", "z", "system-sys", "_", "system-plotApi"], function (require, res, z, sys, _, plot) {
     return regeneratorRuntime.mark(function _callee(plot_cb) {
-        var ts, tc, tcc, tcn, th, tm, tmood, img, gap, pp, chat_times, get_talk, items, chatting, result, a, b, _result, _a, _b, _a2, _b2, _a3, _b3, _a4, _b4;
+        var tc, th, ts, tm, tcc, tmood, tcn, emphasize, img, gap, pp, chat_times, get_talk, items, chatting, result, a, b, _result, _a, _b, _a2, _b2, _a3, _b3, _a4, _b4;
 
         return regeneratorRuntime.wrap(function _callee$(_context) {
             while (1) {
@@ -12,19 +12,17 @@ define(["require", "res", "z", "system-sys", "_", "system-plotApi"], function (r
                             return "与" + data + "交谈";
                         };
 
-                        ts = plot.ts;
-                        tc = plot.tc;
-                        tcc = plot.tcc; //use same person as last invoke tc
-
-                        tcn = plot.tcn; //tc without wait touch
-
-                        th = plot.th;
-                        tm = plot.tm;
-                        tmood = plot.tmood;
+                        tc = plot["tc"];
+                        th = plot["th"];
+                        ts = plot["ts"];
+                        tm = plot["tm"];
+                        tcc = plot["tcc"];
+                        tmood = plot["tmood"];
+                        tcn = plot["tcn"];
+                        emphasize = plot["emphasize"];
                         img = res.img;
                         gap = plot.gap;
                         pp = res.pp;
-                        tmood = plot.tmood;
                         _context.next = 14;
                         return ts(res.img.keamenkou, 500);
 

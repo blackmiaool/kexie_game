@@ -3295,112 +3295,17 @@ input {
   height: 100%;
   width: 100%;
 }
-.scene[data-scene="chat"] .chat-wrap > .emphasize .big-half {
+.scene[data-scene="chat"] .chat-wrap > .emphase .big-half {
   position: absolute;
   right: 1100px;
   left: auto;
-  bottom: -154px;
+  bottom: -72px;
   width: auto;
-  height: 660px;
-  transition: right 1000ms cubic-bezier(0.26, 0.815, 0.59, 0.995);
+  height: 577px;
+  transition: right 0.5s ease-out;
 }
-.scene[data-scene="chat"] .chat-wrap > .emphasize .big-half.active {
+.scene[data-scene="chat"] .chat-wrap > .emphase .big-half.active {
   right: 57px;
-}
-.scene[data-scene="chat"] .chat-wrap > .emphasize .big-half.leave {
-  right: -557px;
-}
-.scene[data-scene="chat"] .chat-wrap > .emphasize .descr {
-  position: absolute;
-  width: 70%;
-  bottom: 10%;
-  height: 70px;
-  right: -716px;
-  transition: right 1000ms cubic-bezier(0.26, 0.815, 0.59, 0.995);
-}
-.scene[data-scene="chat"] .chat-wrap > .emphasize .descr.active {
-  right: -40px;
-}
-.scene[data-scene="chat"] .chat-wrap > .emphasize .descr.leave {
-  right: 1540px;
-}
-.scene[data-scene="chat"] .chat-wrap > .emphasize .descr .panel-wrap {
-  height: 60px;
-}
-.scene[data-scene="chat"] .chat-wrap > .emphasize .descr .panel-mask {
-  position: absolute;
-  left: 0;
-  right: 0;
-  top: 0;
-  bottom: 0;
-  margin: auto;
-  -webkit-transform: skewX(44.7deg);
-  -ms-transform: skewX(44.7deg);
-  transform: skewX(44.7deg);
-  overflow: hidden;
-  bottom: 6px;
-  top: 2px;
-  left: 32px;
-}
-.scene[data-scene="chat"] .chat-wrap > .emphasize .descr .panel-mask .mask {
-  position: absolute;
-  top: 0;
-  border: 0;
-  width: 253px;
-  transform: skewX(-84deg);
-  background-color: rgba(255, 255, 255, 0.5);
-  bottom: 0;
-  left: -530px;
-  transition: left 500ms;
-}
-.scene[data-scene="chat"] .chat-wrap > .emphasize .descr .panel-mask .mask.active {
-  left: 121px;
-}
-.scene[data-scene="chat"] .chat-wrap > .emphasize .descr .panel-mask .mask.leave {
-  left: -521px;
-}
-.scene[data-scene="chat"] .chat-wrap > .emphasize .descr .panel {
-  height: 100%;
-  border-style: solid;
-  border-width: 68.4px 0px 0px 70.8px;
-  -webkit-border-image: url("../res/UI/chat_emphasize.png") 114 1 0 118 fill repeat round;
-  -moz-border-image: url("../res/UI/chat_emphasize.png") 114 1 0 118 fill repeat round;
-  -ms-border-image: url("../res/UI/chat_emphasize.png") 114 1 0 118 fill repeat round;
-  -o-border-image: url("../res/UI/chat_emphasize.png") 114 1 0 118 fill repeat round;
-  border-image: url("../res/UI/chat_emphasize.png") 114 1 0 118 fill repeat round;
-}
-.scene[data-scene="chat"] .chat-wrap > .emphasize .descr .title {
-  position: absolute;
-  left: 40px;
-  top: -24px;
-  font-size: 20px;
-  font-weight: bold;
-}
-.scene[data-scene="chat"] .chat-wrap > .emphasize .descr .title .title-bg {
-  background-color: black;
-}
-.scene[data-scene="chat"] .chat-wrap > .emphasize .descr .title text {
-  stroke: #444;
-  stroke-width: 1;
-  stroke-linejoin: round;
-}
-.scene[data-scene="chat"] .chat-wrap > .emphasize .descr .content {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  -webkit-transform: translate(-50%, -50%);
-  -ms-transform: translate(-50%, -50%);
-  transform: translate(-50%, -50%);
-  left: 64%;
-  top: 134%;
-  font-size: 40px;
-  font-family: "chinese";
-  margin: auto;
-}
-.scene[data-scene="chat"] .chat-wrap > .emphasize .descr .content text {
-  stroke: black;
-  stroke-width: 1;
-  stroke-linejoin: round;
 }
 .scene[data-scene="chat"] .layer {
   position: absolute;
@@ -3494,8 +3399,8 @@ input {
   width: 100%;
   background-size: cover;
 }
-.scene[data-scene="chat"] .bg.ease {
-  transition: all 1000ms cubic-bezier(0.26, 0.815, 0.59, 0.995);
+.scene[data-scene="chat"] .bg .ease {
+  transition: all 0.5s;
 }
 .scene[data-scene="cover"] {
   background: url("../res/Background/cover.jpg");
@@ -4271,51 +4176,12 @@ input {
   margin: 10px;
 }
 .scene[data-scene="make"] > .center .main-content[data-phase="making"] {
-  width: 100%;
-  height: 86%;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin-top: 35px;
-}
-.scene[data-scene="make"] > .center .main-content[data-phase="making"] .deep-item-star .star-icon {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  -webkit-transform: translate(-50%, -50%);
-  -ms-transform: translate(-50%, -50%);
-  transform: translate(-50%, -50%);
-}
-.scene[data-scene="make"] > .center .main-content[data-phase="making"] .deep-item-star .round-num {
-  position: absolute;
-  top: 4px;
-  left: 4px;
-  font-size: 16px;
-  display: inline-block;
-}
-.scene[data-scene="make"] > .center .main-content[data-phase="making"] .item-row {
-  position: absolute;
-  bottom: -4px;
-  left: 0;
-  right: 0;
-  text-align: center;
-  margin: auto;
-}
-.scene[data-scene="make"] > .center .main-content[data-phase="making"] .item-row .game-item-wrap {
-  width: 40px;
-  height: 40px;
-  display: inline-block;
-  overflow: visible;
-  transition: all 0.5s;
-}
-.scene[data-scene="make"] > .center .main-content[data-phase="making"] .item-row .game-item-wrap.adding {
-  transform: translateX(50px);
-  width: 0;
-}
-.scene[data-scene="make"] > .center .main-content[data-phase="making"] .item-row .game-item-wrap .game-item {
-  width: 40px;
-  height: 40px;
+  height: 100%;
+  width: 100%;
 }
 .scene[data-scene="make"] > .top-block {
   position: absolute;
@@ -4993,8 +4859,4 @@ input {
 #editor-wrap .table-wrap {
   width: 100%;
   overflow-x: auto;
-}
-@font-face {
-  font-family: 'chinese';
-  src: url('../res/fonts/chinese.ttf');
 }

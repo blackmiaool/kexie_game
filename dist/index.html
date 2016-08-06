@@ -96,16 +96,55 @@
                 </div>
                 
             </div>
-<div class="scene" data-scene="chat" ng-if="scenes['chat']" >
+<div class="scene" data-scene="chat" ng-show="scenes['chat']" >
 
-                <div class="chat-wrap"  ng-controller="ChatController">
+                <div class="chat-wrap" ng-controller="ChatController">
                 
-                    <div class="bg" ondragstart="return false;">
+                    <div class="bg layer" ondragstart="return false;">
                 
                     </div>
-                    <div class="half-wrap">
+                    <div class="emphasize layer">
+                        <img src="" class="big-half">
+                        <div class="descr">
+                            <div class="panel-wrap">
+                                <div class="panel">
+                                    
+                                </div>
+                                <div class="panel-mask">
+                                    <div class="mask"></div>
+                                </div>
+                            </div>
+                
+                            <div class="title">
+                                <svg>
+                                    <pattern id="pattern" patternUnits="userSpaceOnUse" width="50" height="10">
+                                        <linearGradient xmlns="http://www.w3.org/2000/svg" id="orange_red" x1="0%" y1="0%" x2="0%" y2="100%">
+                                            <stop offset="0%" style="stop-color:rgb(255,255,255);" />
+                                            <stop offset="100%" style="stop-color:gray;" />
+                                        </linearGradient>
+                                    </pattern>
+                                    <use xlink:href="#css" />
+                                    <text x="0" y="30" class="headline" style="fill:url(#orange_red);">科协会长</text>
+                                </svg>
+                            </div>
+                            <div class="content">
+                                <svg>
+                                    <pattern id="pattern" patternUnits="userSpaceOnUse" width="50" height="10">
+                                        <linearGradient xmlns="http://www.w3.org/2000/svg" id="content-color" x1="0%" y1="0%" x2="0%" y2="100%">
+                                            <stop offset="0%" style="stop-color:rgb(255,255,255);" />
+                                            <stop offset="50%" style="stop-color:steelblue;" />
+                                            <stop offset="100%" style="stop-color:black;" />
+                                        </linearGradient>
+                                    </pattern>
+                                    <use xlink:href="#css" />
+                                    <text x="0" y="30" class="headline" style="fill:url(#content-color);">戴俊</text>
+                                </svg>
+                            </div>
+                        </div>
                     </div>
-                    <div class="text-wrap">
+                    <div class="half-wrap layer">
+                    </div>
+                    <div class="text-wrap layer">
                         <div class="chat-text hide">
                             <p class="chat-content"></p>
                         </div>
@@ -114,10 +153,10 @@
                             <label class="name-content"></label>
                         </div>
                     </div>
-                    <div class="mood-wrap">
+                    <div class="mood-wrap layer">
                         <img src="" alt="" class="mood">
                     </div>
-                    <div class="btn-wrap">
+                    <div class="btn-wrap layer">
                         <div class="chat-btn-group"></div>
                     </div>
                 </div>
@@ -438,7 +477,11 @@
                             <div ng-repeat="row in rows" class="row" ng-style="{'top':gr*($index+1)+'px'}">
                         
                             </div>
+                            
                         </div>
+                        <div class="item-row">
+                                
+                            </div>
                         </div>
                     </main>
                 </div>

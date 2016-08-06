@@ -104,7 +104,6 @@ define(["angular-module"], function (module) {
                     }
 
                     element.addClass("deep-bar");
-                    console.log("t", text);
 
                     scope.$watch(attrs["deepPower"], updateWidth, true);
                 };

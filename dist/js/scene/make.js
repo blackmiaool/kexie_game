@@ -153,14 +153,27 @@ define(["require", "system-scene", "system-sys", "angular", "system-dbg", "z", "
         });
     }]);
 
-    function Map(columnNum, rowNum, $gameWrap) {
+    function Map(columnNum, rowNum, $gameWrap, working) {
         var column = columnNum;
         var row = rowNum;
         var columns = [];
         var rows = [];
         var data = [];
         var idle = true;
+        var map = this;
+        var step = 0;
+        working.round = 0;
+        updateNextItem();
+        updateNextInnovation();
 
+        function updateNextItem() {
+            working.nextItem = _.random(4, 7);
+        }
+
+        function updateNextInnovation() {
+            working.nextInnovation = _.random(7, 11);
+        }
+        this.working = working;
         for (var i = 0; i < columnNum - 1; i++) {
             columns.push(i);
         }
@@ -213,22 +226,135 @@ define(["require", "system-scene", "system-sys", "angular", "system-dbg", "z", "
         function playerMoveEnd(cb) {
             var _this = this;
 
+            step++;
+
+            addInnovation();
             if (z.game.move < 1) {
+                working.round++;
+                working.nextItem--;
+                working.nextInnovation--;
+                console.log(stars);
+                starsUpdate();
                 itemsRandomMove(items, function () {
                     _this.idle = true;
                     cb && cb();
                 });
+
+                if (!working.nextItem) {
+                    updateNextItem();
+                    addNewItem();
+                }
+                if (!working.nextInnovation) {
+                    updateNextInnovation();
+                    addInnovation();
+                }
             } else {
                 this.idle = true;
                 cb && cb();
             }
         }
+
+        function starsUpdate() {
+            stars.forEach(function (v, i) {
+                var $$ = v.$dom.find.bind(v.$dom);
+                var $num = $$(".round-num");
+                var round = $num.text();
+                round--;
+                $num.text(round);
+                console.log(round);
+                if (!round) {
+                    setTimeout(function () {
+                        stars.every(function (w, i) {
+                            if (w === v) {
+                                v.map.stars.splice(i, 1);
+                                return false;
+                            } else {
+                                return true;
+                            }
+                        });
+                    });
+
+                    v.$dom.remove();
+                    map.data[v.pos[0]][v.pos[1]] = false;
+                }
+            });
+        }
+
+        function itemsRandomMove(items, cb) {
+            items.forEach(function (v, i) {
+                setTimeout(function () {
+                    v.randomMove();
+                }, 200 * i);
+            });
+            setTimeout(function () {
+                cb && cb();
+            }, 200 * items.length);
+        }
+
+        function addInnovation() {
+            var star = new GameStar(map);
+            star.setPos(getFreeRandomPos());
+        }
+
+        function addNewItem() {
+            var material = productConfig[working.name].material;
+            var materials = _.pairs(material);
+            var item = common.randomItem(materials);
+
+            item = new GameItem(map, item[0]);
+            item.setPos(getFreeRandomPos());
+        }
+
+        function getFreeRandomPos(item) {
+            var seedAddon = arguments.length <= 1 || arguments[1] === undefined ? 0 : arguments[1];
+
+            function getPos(seed) {
+                var x = common.seed(seed[0], map.column - 1);
+                var y = common.seed(seed[1], map.row - 1);
+                return [x, y];
+            }
+
+            function getSeed(working, item) {
+                var ret1 = 0;
+                var ret2 = 0;
+                for (var _i3 = 0; _i3 < working.name.length; _i3++) {
+                    ret1 += working.name.charCodeAt(_i3);
+                }
+                for (var _i4 = 0; _i4 < item.name.length; _i4++) {
+                    ret2 += item.name.charCodeAt(_i4);
+                }
+
+                return [ret1 * 10 + ret2, ret2 * 10 + ret1];
+            }
+            var seed = void 0;
+            if (item) {
+                seed = getSeed(working, item);
+            } else {
+                seed = [_.random(0, 10000), _.random(0, 10000)];
+            }
+
+            seed[0] += seedAddon;
+            seed[1] += seedAddon * 17;
+            var pos = void 0;
+            do {
+                pos = getPos(seed);
+                seed[0]++;
+                seed[1]++;
+            } while (map.getData(pos));
+
+            return pos;
+        }
+
         var items = [];
+        var stars = [];
 
         function registerItem(item) {
             items.push(item);
         }
 
+        function registerStar(star) {
+            stars.push(star);
+        }
         _.extend(this, {
             column: column,
             row: row,
@@ -242,8 +368,12 @@ define(["require", "system-scene", "system-sys", "angular", "system-dbg", "z", "
             $gameWrap: $gameWrap,
             idle: idle,
             items: items,
+            stars: stars,
             registerItem: registerItem,
-            playerMoveEnd: playerMoveEnd
+            registerStar: registerStar,
+            playerMoveEnd: playerMoveEnd,
+            getFreeRandomPos: getFreeRandomPos
+
         });
     }
 
@@ -268,39 +398,6 @@ define(["require", "system-scene", "system-sys", "angular", "system-dbg", "z", "
         return ret;
     }
 
-    function generateFreeRandomPos(map, working) {
-        var item = arguments.length <= 2 || arguments[2] === undefined ? {
-            name: "player"
-        } : arguments[2];
-
-        function getPos(seed) {
-            var x = common.seed(seed[0], map.column - 1);
-            var y = common.seed(seed[1], map.row - 1);
-            return [x, y];
-        }
-
-        function getSeed(working, item) {
-            var ret1 = 0;
-            var ret2 = 0;
-            for (var i = 0; i < working.name.length; i++) {
-                ret1 += working.name.charCodeAt(i);
-            }
-            for (var _i3 = 0; _i3 < item.name.length; _i3++) {
-                ret2 += item.name.charCodeAt(_i3);
-            }
-
-            return [ret1 * 10 + ret2, ret2 * 10 + ret1];
-        }
-        var seed = getSeed(working, item);
-        var pos = void 0;
-        do {
-            pos = getPos(seed);
-            seed[0]++;
-            seed[1]++;
-        } while (map.getData(pos));
-
-        return pos;
-    }
     GameUnit.prototype.randomMove = function () {
         var _this2 = this;
 
@@ -338,8 +435,19 @@ define(["require", "system-scene", "system-sys", "angular", "system-dbg", "z", "
         this.map.$gameWrap.append($dom);
     };
 
+    function GameStar(map) {
+        GameUnit.call(this, map);
+        map.registerStar(this);
+        var round = _.random(1, 3);
+        var $item = $("<div class=\"deep-item-star\" \n                        style=\"width:" + this.radius + "px;height:" + this.radius + "px\">\n                        <img draggable=\"false\"\n                            src=\"" + res.img.little_star + "\" \n                            class=\"star-icon\">\n                        <span class=\"round-num\">" + round + "</span>\n                    </div>");
+        GameUnit.prototype.setDom.call(this, $item);
+    }
+    GameStar.prototype = Object.create(GameUnit.prototype);
+    GameStar.prototype.constructor = GameUnit;
+
     function GameItem(map, name) {
         GameUnit.call(this, map);
+        map.registerItem(this);
         var radius = map.gr;
         var $item = $("<div class=\"deep-item-icon\" style=\"width:" + radius + "px;height:" + radius + "px\">\n                        <img draggable=\"false\" src=\"" + common.$rootScope.getItemIcon(res.items[name]) + "\" class=\"skill-icon\">\n                    </div>");
         GameUnit.prototype.setDom.call(this, $item);
@@ -359,8 +467,21 @@ define(["require", "system-scene", "system-sys", "angular", "system-dbg", "z", "
         this.$dom.css("transition", "none");
         this.$dom.fadeOut(300, function () {
             _this3.$dom.remove();
-            console.log("remo");
+            var removeList = ["width", "height", "left", "top", "transition"];
+            removeList.forEach(function (v, i) {
+                _this3.$dom.css(v, "");
+            });
+            _this3.$dom.show();
+            var $wrap = $("<div class=\"game-item-wrap\"></div>");
+            $wrap.addClass("adding");
+            setTimeout(function () {
+                $wrap.removeClass("adding");
+            }, 100);
+            $wrap.append(_this3.$dom);
+            $(".item-row").append($wrap);
         });
+
+        this.map.working.props[0] = 100 - (100 - this.map.working.props[0]) * 0.85;
         return true;
     };
 
@@ -416,6 +537,7 @@ define(["require", "system-scene", "system-sys", "angular", "system-dbg", "z", "
                 // actually move       
                 var afterMove = function afterMove() {
                     consumeMove();
+                    updateWorking();
                     _this4.$dom.inactive();
                     _this4.map.idle = false;
                     setTimeout(function () {
@@ -432,6 +554,12 @@ define(["require", "system-scene", "system-sys", "angular", "system-dbg", "z", "
                             });
                         });
                     }, 200);
+                };
+                var updateWorking = function updateWorking() {
+                    common.$rootScope.$apply(function () {
+
+                        _this4.map.working.props[1] *= 0.95;
+                    });
                 };
 
                 var target = _this4.map.getData(pos);
@@ -482,16 +610,6 @@ define(["require", "system-scene", "system-sys", "angular", "system-dbg", "z", "
         }
     }
 
-    function itemsRandomMove(items, cb) {
-        items.forEach(function (v, i) {
-            setTimeout(function () {
-                v.randomMove();
-            }, 200 * i);
-        });
-        setTimeout(function () {
-            cb && cb();
-        }, 200 * items.length);
-    }
     var player = void 0;
     var productConfig = {
         "硬件流水灯": {
@@ -524,7 +642,6 @@ define(["require", "system-scene", "system-sys", "angular", "system-dbg", "z", "
                 config.material[j].forEach(function (v, i) {
                     var item = new GameItem(map, j);
                     item.setPos(v);
-                    map.registerItem(item);
                 });
             }
 
@@ -545,7 +662,7 @@ define(["require", "system-scene", "system-sys", "angular", "system-dbg", "z", "
                 rows: rows
             });
         }
-        startGame(new Map(5, 5, $gameWrap), sp.workingKind);
+        startGame(new Map(5, 5, $gameWrap, sp.working), sp.workingKind);
     }]);
     scene.register(sceneThis);
     return exports;

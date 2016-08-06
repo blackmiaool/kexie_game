@@ -2,24 +2,22 @@
 
 define(["require", "res", "z", "system-sys", "_", "system-plotApi"], function (require, res, z, sys, _, plot) {
     return regeneratorRuntime.mark(function _callee(plot_cb) {
-        var ts, tc, tcc, tcn, th, tm, tmood, img, gap, pp, result;
+        var tc, th, ts, tm, tcc, tmood, tcn, emphasize, img, gap, pp, result;
         return regeneratorRuntime.wrap(function _callee$(_context) {
             while (1) {
                 switch (_context.prev = _context.next) {
                     case 0:
-                        ts = plot.ts;
-                        tc = plot.tc;
-                        tcc = plot.tcc; //use same person as last invoke tc
-
-                        tcn = plot.tcn; //tc without wait touch
-
-                        th = plot.th;
-                        tm = plot.tm;
-                        tmood = plot.tmood;
+                        tc = plot["tc"];
+                        th = plot["th"];
+                        ts = plot["ts"];
+                        tm = plot["tm"];
+                        tcc = plot["tcc"];
+                        tmood = plot["tmood"];
+                        tcn = plot["tcn"];
+                        emphasize = plot["emphasize"];
                         img = res.img;
                         gap = plot.gap;
                         pp = res.pp;
-                        tmood = plot.tmood;
                         _context.next = 13;
                         return ts(res.img.uestc);
 
