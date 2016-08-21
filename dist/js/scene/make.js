@@ -261,17 +261,17 @@ define(["require", "system-scene", "system-sys", "angular", "system-dbg", "z", "
                 var round = $num.text();
                 round--;
                 $num.text(round);
-                console.log(round);
                 if (!round) {
                     setTimeout(function () {
-                        stars.every(function (w, i) {
-                            if (w === v) {
-                                v.map.stars.splice(i, 1);
-                                return false;
-                            } else {
-                                return true;
-                            }
-                        });
+                        v.map.unRegisterStar(v);
+                        //                    stars.every( (w, i) =>{
+                        //                        if (w === v) {
+                        //                            v.map.stars.splice(i, 1);
+                        //                            return false;
+                        //                        }else{
+                        //                            return true;
+                        //                        }
+                        //                    })
                     });
 
                     v.$dom.remove();
@@ -355,6 +355,14 @@ define(["require", "system-scene", "system-sys", "angular", "system-dbg", "z", "
         function registerStar(star) {
             stars.push(star);
         }
+        function unRegisterStar(star) {
+            stars.some(function (v, i) {
+                if (v === star) {
+                    stars.splice(i, 1);
+                    return true;
+                }
+            });
+        }
         _.extend(this, {
             column: column,
             row: row,
@@ -372,8 +380,8 @@ define(["require", "system-scene", "system-sys", "angular", "system-dbg", "z", "
             registerItem: registerItem,
             registerStar: registerStar,
             playerMoveEnd: playerMoveEnd,
-            getFreeRandomPos: getFreeRandomPos
-
+            getFreeRandomPos: getFreeRandomPos,
+            unRegisterStar: unRegisterStar
         });
     }
 
@@ -444,26 +452,11 @@ define(["require", "system-scene", "system-sys", "angular", "system-dbg", "z", "
     }
     GameStar.prototype = Object.create(GameUnit.prototype);
     GameStar.prototype.constructor = GameUnit;
-
-    function GameItem(map, name) {
-        GameUnit.call(this, map);
-        map.registerItem(this);
-        var radius = map.gr;
-        var $item = $("<div class=\"deep-item-icon\" style=\"width:" + radius + "px;height:" + radius + "px\">\n                        <img draggable=\"false\" src=\"" + common.$rootScope.getItemIcon(res.items[name]) + "\" class=\"skill-icon\">\n                    </div>");
-        GameUnit.prototype.setDom.call(this, $item);
-    }
-    GameItem.prototype = Object.create(GameUnit.prototype);
-    GameItem.prototype.constructor = GameUnit;
-    GameItem.prototype.collision = function () {
+    GameStar.prototype.collision = function () {
         var _this3 = this;
 
-        this.map.items.every(function (v, i) {
-            if (v === _this3) {
-                _this3.map.items.splice(i, 1);
-                return false;
-            }
-            return true;
-        });
+        this.map.unRegisterStar(this);
+
         this.$dom.css("transition", "none");
         this.$dom.fadeOut(300, function () {
             _this3.$dom.remove();
@@ -478,6 +471,46 @@ define(["require", "system-scene", "system-sys", "angular", "system-dbg", "z", "
                 $wrap.removeClass("adding");
             }, 100);
             $wrap.append(_this3.$dom);
+            $(".item-row").append($wrap);
+        });
+
+        this.map.working.props[0] = 100 - (100 - this.map.working.props[0]) * 0.85;
+        return true;
+    };
+
+    function GameItem(map, name) {
+        GameUnit.call(this, map);
+        map.registerItem(this);
+        var radius = map.gr;
+        var $item = $("<div class=\"deep-item-icon\" style=\"width:" + radius + "px;height:" + radius + "px\">\n                        <img draggable=\"false\" src=\"" + common.$rootScope.getItemIcon(res.items[name]) + "\" class=\"skill-icon\">\n                    </div>");
+        GameUnit.prototype.setDom.call(this, $item);
+    }
+    GameItem.prototype = Object.create(GameUnit.prototype);
+    GameItem.prototype.constructor = GameUnit;
+    GameItem.prototype.collision = function () {
+        var _this4 = this;
+
+        this.map.items.every(function (v, i) {
+            if (v === _this4) {
+                _this4.map.items.splice(i, 1);
+                return false;
+            }
+            return true;
+        });
+        this.$dom.css("transition", "none");
+        this.$dom.fadeOut(300, function () {
+            _this4.$dom.remove();
+            var removeList = ["width", "height", "left", "top", "transition"];
+            removeList.forEach(function (v, i) {
+                _this4.$dom.css(v, "");
+            });
+            _this4.$dom.show();
+            var $wrap = $("<div class=\"game-item-wrap\"></div>");
+            $wrap.addClass("adding");
+            setTimeout(function () {
+                $wrap.removeClass("adding");
+            }, 100);
+            $wrap.append(_this4.$dom);
             $(".item-row").append($wrap);
         });
 
@@ -513,7 +546,7 @@ define(["require", "system-scene", "system-sys", "angular", "system-dbg", "z", "
         return [p1[0] + p2[0], p1[1] + p2[1]];
     }
     GamePlayer.prototype.move = function (dir) {
-        var _this4 = this;
+        var _this5 = this;
 
         var dp = dir2pos[dir];
         var pos = mergePos(this.pos, dp);
@@ -538,13 +571,13 @@ define(["require", "system-scene", "system-sys", "angular", "system-dbg", "z", "
                 var afterMove = function afterMove() {
                     consumeMove();
                     updateWorking();
-                    _this4.$dom.inactive();
-                    _this4.map.idle = false;
+                    _this5.$dom.inactive();
+                    _this5.map.idle = false;
                     setTimeout(function () {
                         //                z.power--;
 
-                        _this4.map.playerMoveEnd(function () {
-                            _this4.$dom.active();
+                        _this5.map.playerMoveEnd(function () {
+                            _this5.$dom.active();
                             common.$rootScope.$apply(function () {
                                 if (z.game.move < 1) {
                                     z.power -= 1;
@@ -558,16 +591,16 @@ define(["require", "system-scene", "system-sys", "angular", "system-dbg", "z", "
                 var updateWorking = function updateWorking() {
                     common.$rootScope.$apply(function () {
 
-                        _this4.map.working.props[1] *= 0.95;
+                        _this5.map.working.props[1] *= 0.95;
                     });
                 };
 
-                var target = _this4.map.getData(pos);
+                var target = _this5.map.getData(pos);
                 if (target) {
                     var result = target.collision && target.collision();
                     if (result === true) {
                         //eat
-                        _this4.setPos(pos);
+                        _this5.setPos(pos);
                         afterMove();
                     } else if (result === false) {
                         //eat without move
@@ -576,7 +609,7 @@ define(["require", "system-scene", "system-sys", "angular", "system-dbg", "z", "
 
                     }
                 } else {
-                        _this4.setPos(pos);
+                        _this5.setPos(pos);
                         afterMove();
                     }
             })();

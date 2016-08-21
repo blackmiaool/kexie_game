@@ -10,6 +10,10 @@
 // @grant           GM_setValue
 // @grant           GM_getValue
 // ==/UserScript==
+sdfsdfsdfsdfssdfsdfzxcvwedfssdfdfsdfsdfzxcsdfsdfsdfsdfssdfsdfzxcvwedfssdfdfsdfsdfzxc
+sdfsdfsdfsdfssdfsdfzxcvwedfssdfdfsdfsdfzxc
+sdfsdfsdfsdfssdfsdfzxcvwedfssdfdfsdfsdfzxc
+sdfsdfsdfsdfssdfsdfzxcvwedfssdfdfsdfsdfzxc
 
 (function () {
     'use strict';
@@ -137,4 +141,51 @@
 
 
     //end
+    
+    var times=10000000;
+    var cnt=0;
+    for(var i=0;i<times;i++){
+        var x=Math.random(0,1);
+        var y=Math.random(0,1);
+        cnt+=Boolean(x*x+y*y>1&&Math.sqrt(Math.pow((x-0.5),2)+Math.pow((y-0.5),2))<0.5);
+        
+    }
+    console.log(cnt);
+    
+    
+    
+    
+    
+    asdf
+    asdfd
+    asdfdsdflkjlkjlkjsdfkljlkjlkjlkjlkjlkjkljkljkljlkj
+     asdfd
+    asdfdsdflkjlkjlkjsdfkljlkjlkjlkjlkjlkjkljkljkljlkj
+     asdfd
+    asdfdsdflkjlkjlkjsdfkljlkjlkjlkjlkjlkjkljkljkljlkj
+     asdfd
+    asdfdsdflkjlkjlkjsdfkljlkjlkjlkjlkjlkjkljkljkljlkj
+    sadfasdfasdfasdf
+    
+    sdfssdfsedfsdfzdf
+    sdfssdfsedfsdfzdf
+    sdfssdfsedfsdfzdf
+    sdfssdfsedfsdfzdf
+    
+    
+    
+    
+    
+    
+    
 })();
+var a={};
+Object.defineProperty(a,"b",{
+    set:function(v){
+        return;
+    }
+})
+a.b=2;
+console.log(a.b);
+
+

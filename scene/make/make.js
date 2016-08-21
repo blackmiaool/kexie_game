@@ -242,18 +242,18 @@ function Map(columnNum, rowNum, $gameWrap, working) {
             let $num = $$(".round-num");
             let round = $num.text();
             round--;
-            $num.text(round);
-            console.log(round)
+            $num.text(round);            
             if (!round) {
                 setTimeout( ()=> {
-                    stars.every( (w, i) =>{
-                        if (w === v) {
-                            v.map.stars.splice(i, 1);
-                            return false;
-                        }else{
-                            return true;
-                        }
-                    })
+                    v.map.unRegisterStar(v);
+//                    stars.every( (w, i) =>{
+//                        if (w === v) {
+//                            v.map.stars.splice(i, 1);
+//                            return false;
+//                        }else{
+//                            return true;
+//                        }
+//                    })
                 })
             
 
@@ -340,6 +340,15 @@ function Map(columnNum, rowNum, $gameWrap, working) {
     function registerStar(star) {
         stars.push(star);
     }
+    function unRegisterStar(star){
+        stars.some(function(v,i){
+            if(v===star){
+                stars.splice(i,1);
+                return true;
+            }
+            
+        })
+    }
     _.extend(this, {
         column,
         row,
@@ -358,7 +367,7 @@ function Map(columnNum, rowNum, $gameWrap, working) {
         registerStar,
         playerMoveEnd,
         getFreeRandomPos,
-
+        unRegisterStar,
     })
 }
 
@@ -426,6 +435,31 @@ function GameStar(map) {
 }
 GameStar.prototype = Object.create(GameUnit.prototype);
 GameStar.prototype.constructor = GameUnit;
+GameStar.prototype.collision = function () {
+    this.map.unRegisterStar(this);
+
+    this.$dom.css("transition", "none")
+    this.$dom.fadeOut(300, () => {
+        this.$dom.remove();
+        const removeList = ["width", "height", "left", "top", "transition"];
+        removeList.forEach((v, i) => {
+            this.$dom.css(v, "");
+        });
+        this.$dom.show()
+        let $wrap = $(`<div class="game-item-wrap"></div>`);
+        $wrap.addClass("adding");
+        setTimeout(function () {
+            $wrap.removeClass("adding");
+        }, 100);
+        $wrap.append(this.$dom);
+        $(".item-row").append($wrap);
+
+    });
+
+    this.map.working.props[0] = 100 - (100 - this.map.working.props[0]) * 0.85;
+    return true;
+}
+
 
 function GameItem(map, name) {
     GameUnit.call(this, map);

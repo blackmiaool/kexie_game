@@ -225,7 +225,7 @@ gulp.task('reload', function () {
 
 });
 
-livereload.listen({port:35728});
+livereload.listen({port:35724});
 gulp.watch('less/**/*.less', ['less']);
 gulp.watch('scene/**/*.less', ['less']);
 gulp.watch(['js/**/*.js', "!js/scene/*.js", "!js/plot/*.js"], ['es6']);
